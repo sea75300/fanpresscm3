@@ -1,0 +1,15 @@
+## Module Controller list file
+---
+ajax/nkorg/classicimporter/checkConnection: fpcm/modules/nkorg/classicimporter/controller/checkConnection
+ajax/nkorg/classicimporter/importrolls: fpcm/modules/nkorg/classicimporter/controller/importrolls
+ajax/nkorg/classicimporter/importusers: fpcm/modules/nkorg/classicimporter/controller/importusers
+ajax/nkorg/classicimporter/importcategories: fpcm/modules/nkorg/classicimporter/controller/importcategories
+ajax/nkorg/classicimporter/importips: fpcm/modules/nkorg/classicimporter/controller/importips
+ajax/nkorg/classicimporter/importsmileys: fpcm/modules/nkorg/classicimporter/controller/importsmileys
+ajax/nkorg/classicimporter/filescheckcount: fpcm/modules/nkorg/classicimporter/controller/filescheckcount
+ajax/nkorg/classicimporter/filesimport: fpcm/modules/nkorg/classicimporter/controller/filesimport
+ajax/nkorg/classicimporter/articlescheckcount: fpcm/modules/nkorg/classicimporter/controller/articlescheckcount
+ajax/nkorg/classicimporter/articlesimport: fpcm/modules/nkorg/classicimporter/controller/articlesimport
+ajax/nkorg/classicimporter/importconfig: fpcm/modules/nkorg/classicimporter/controller/importconfig
+ajax/nkorg/classicimporter/importtemplates: fpcm/modules/nkorg/classicimporter/controller/importtemplates
+ajax/nkorg/classicimporter/resetSystem: fpcm/modules/nkorg/classicimporter/controller/resetSystem

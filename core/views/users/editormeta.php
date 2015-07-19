@@ -1,0 +1,20 @@
+    <table class="fpcm-ui-table fpcm-ui-options">
+        <tr>
+            <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_TIMEZONE'); ?>:</td>
+            <td>
+                <?php fpcm\model\view\helper::selectGroup('usermeta[system_timezone]', $timezoneAreas, $author->getUserMeta('system_timezone')); ?>	
+            </td>
+        </tr>
+        <tr>
+            <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_LANG'); ?>:</td>
+            <td>
+                <?php \fpcm\model\view\helper::select('usermeta[system_lang]', $languages, $author->getUserMeta('system_lang'), false, false); ?>
+            </td>
+        </tr>                
+        <tr>
+            <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK'); ?>:</td>
+            <td>
+                <?php \fpcm\model\view\helper::textInput('usermeta[system_dtmask]', '', $author->getUserMeta('system_dtmask')); ?>
+            </td>
+        </tr>       
+    </table>

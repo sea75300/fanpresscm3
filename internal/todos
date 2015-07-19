@@ -1,0 +1,57 @@
+ FanPress CM 3.0
+
+-- ToDos --
+
+* Konstanten von Entwicklungs- auf Release-Werte setzten
+* weitere Events prüfen
+* Dokumentation
+* Support Module erstellen
+
+Stand: 07.07.2015 - 20:40 Uhr
+
+-- Fertig --
+
+* E-Mail-Benachrichtigung bei Kommentar (an globale und Autoren-Adresse, ist konfigurierbar)
+* Hinweis auf private/ nicht genehmigte Kommentare in Artikel-Liste
+* Vergrößerung Symbole in Navigation wenn verkleinert
+* IP-Sperre auswerten in Pub-Controllern & Login
+* Smileys in Artikel/ Kommentaren parsen
+* Übernahme von Benutzer-Daten in Kommentar-Form wenn eingeloggt
+* Artikel-Suche einschränken nach "pinned", "postponed", "comments"
+* Rollen/ Gruppen bearbeiten
+* API: Page-Title Funktion
+* Captcha ausblenden, wenn Benutzer eingeloggt
+* {{mention}}:{{/mention}} in Kommentaren parsen
+* <readmore>:</readmore> in Artikel parsen
+* Überarbeitung Conrjob-Aufruf: synchron (beim Laden) und Asynchron via AJAX-Controller
+* Cronjob für automatisches Leeren von Logs ab bestimmter Größe
+* Trennung Artikel-Listen-Template und Artikel-Einzeltemple
+* Modul-Paket in Modulmanager hochladen
+* Module aktivieren/deaktivieren
+* Modul-Paketquellen in Modulmanager neu laden
+* Module deinstallieren
+* Module installieren
+* Module aktualisieren
+* Module-Abhängigkeiten prüfen
+* Modul-Event-Klassen vervollständigen
+* Installer
+* Smileys bearbeiten (verworfen)
+* Erweiterte Spam-Prüfung anhand von Link-Anzahl
+* Sprachpaket Englisch
+* RSS Feed Controller
+* Hilfe auf Englisch übersetzten!!!
+* manuelle/s Modul-Installation/Update
+* Einstellungen IP-Adressen für Zugriffssperrung auf Artikel-Liste, Kommentare-Form, Login
+* Style-Optimierung max-width in Dateimanager
+* Importer Modul: Optionen importieren insb. Twitter!!! und testen
+* Importer Modul: Import auch ohne Rollen-Mapping, Prüfung ob weitere Gruppen importiert wurden
+* Undefined index article_rss in Options view -> Bugfix
+* Abfrage "Installer enabled" Konstante
+* Warnung wenn Fenster/ Tab mit offenem Editor und begonnenem Artikel geschlossen werden soll
+* Möglichkeit, in Classic Import System zurückzusetzten bis auf Default-Daten
+* Bugfix: mehrere Module mit einmal de/aktivieren
+* changetime/user in Importer auf createtime/user setzten, wenn keine edittime
+* Kommentar-Liste: Überschrift falsch
+* "Format"-Select in TinyMCE ausblenden
+* No postponed Meldung in Cronjob entfernen
+* Syslogs: AJAX-Loader bei Klick auf Tab, aktualisieren-Button entfernen

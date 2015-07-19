@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg3375"
+   viewBox="0 0 744.09449 1052.3622"
+   height="200"
+   width="200"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
+     id="namedview249"
+     showgrid="false"
+     inkscape:zoom="1.18"
+     inkscape:cx="85.169492"
+     inkscape:cy="100"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3375" />
+  <defs
+     id="defs3377">
+    <linearGradient
+       id="linearGradient4430">
+      <stop
+         id="stop4432"
+         offset="0"
+         style="stop-color:#5fbcd3;stop-opacity:1;" />
+      <stop
+         id="stop4434"
+         offset="1"
+         style="stop-color:#5fbcd3;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       osb:paint="gradient"
+       id="linearGradient4299">
+      <stop
+         id="stop4301"
+         offset="0"
+         style="stop-color:#00ccff;stop-opacity:1;" />
+      <stop
+         id="stop4303"
+         offset="1"
+         style="stop-color:#00ccff;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="matrix(3.0556694,0,0,3.0556694,-1944.3289,-761.02093)"
+       gradientUnits="userSpaceOnUse"
+       y2="316.98425"
+       x2="658.5329"
+       y1="582.53741"
+       x1="794.71399"
+       id="linearGradient4436"
+       xlink:href="#linearGradient4430" />
+    <filter
+       id="filter4663"
+       style="color-interpolation-filters:sRGB">
+      <feFlood
+         id="feFlood4665"
+         result="flood"
+         flood-color="rgb(0,0,0)"
+         flood-opacity="0.498039" />
+      <feComposite
+         id="feComposite4667"
+         result="composite1"
+         operator="out"
+         in2="SourceGraphic"
+         in="flood" />
+      <feGaussianBlur
+         id="feGaussianBlur4669"
+         result="blur"
+         stdDeviation="30.3"
+         in="composite1" />
+      <feOffset
+         id="feOffset4671"
+         result="offset"
+         dy="-21.6"
+         dx="11.5" />
+      <feComposite
+         id="feComposite4673"
+         result="fbSourceGraphic"
+         operator="atop"
+         in2="SourceGraphic"
+         in="offset" />
+      <feColorMatrix
+         id="feColorMatrix4675"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(0,0,0)"
+         flood-opacity="0.498039"
+         id="feFlood4677" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite4679" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="30.3"
+         in="composite1"
+         id="feGaussianBlur4681" />
+      <feOffset
+         result="offset"
+         dy="-21.6"
+         dx="11.5"
+         id="feOffset4683" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="atop"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite4685" />
+      <feColorMatrix
+         id="feColorMatrix4776"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(115,0,217)"
+         flood-opacity="0.498039"
+         id="feFlood4778" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite4780" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="30.3"
+         in="composite1"
+         id="feGaussianBlur4782" />
+      <feOffset
+         result="offset"
+         dy="-21.6"
+         dx="11.5"
+         id="feOffset4784" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="atop"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite4786" />
+      <feColorMatrix
+         id="feColorMatrix4793"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(0,0,0)"
+         flood-opacity="1"
+         id="feFlood4795" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite4797" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="30.3"
+         in="composite1"
+         id="feGaussianBlur4799" />
+      <feOffset
+         result="offset"
+         dy="-21.6"
+         dx="11.5"
+         id="feOffset4801" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="atop"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite4803" />
+      <feColorMatrix
+         id="feColorMatrix4845"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(61,0,176)"
+         flood-opacity="1"
+         id="feFlood4847" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite4849" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="30.3"
+         in="composite1"
+         id="feGaussianBlur4851" />
+      <feOffset
+         result="offset"
+         dy="-21.6"
+         dx="11.5"
+         id="feOffset4853" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="atop"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite4855" />
+      <feColorMatrix
+         id="feColorMatrix5065"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(61,0,176)"
+         flood-opacity="1"
+         id="feFlood5067" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite5069" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="0"
+         in="composite1"
+         id="feGaussianBlur5071" />
+      <feOffset
+         result="offset"
+         dy="-21.875"
+         dx="25"
+         id="feOffset5073" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="in"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite5075" />
+      <feColorMatrix
+         id="feColorMatrix5077"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(61,0,176)"
+         flood-opacity="1"
+         id="feFlood5079" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite5081" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="0"
+         in="composite1"
+         id="feGaussianBlur5083" />
+      <feOffset
+         result="offset"
+         dy="-21.9"
+         dx="25"
+         id="feOffset5085" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="in"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite5087" />
+      <feColorMatrix
+         id="feColorMatrix5121"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(0,0,0)"
+         flood-opacity="1"
+         id="feFlood5123" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite5125" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="0"
+         in="composite1"
+         id="feGaussianBlur5127" />
+      <feOffset
+         result="offset"
+         dy="-21.9"
+         dx="25"
+         id="feOffset5129" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="in"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite5131" />
+      <feColorMatrix
+         id="feColorMatrix5133"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(0,0,0)"
+         flood-opacity="1"
+         id="feFlood5135" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite5137" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="0"
+         in="composite1"
+         id="feGaussianBlur5139" />
+      <feOffset
+         result="offset"
+         dy="-21.9"
+         dx="25"
+         id="feOffset5141" />
+      <feComposite
+         result="fbSourceGraphic"
+         operator="in"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite5143" />
+      <feColorMatrix
+         id="feColorMatrix5171"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(0,118,255)"
+         flood-opacity="1"
+         id="feFlood5173" />
+      <feComposite
+         result="composite1"
+         operator="out"
+         in="flood"
+         in2="fbSourceGraphic"
+         id="feComposite5175" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="0"
+         in="composite1"
+         id="feGaussianBlur5177" />
+      <feOffset
+         result="offset"
+         dy="-21.9"
+         dx="25"
+         id="feOffset5179" />
+      <feComposite
+         result="composite2"
+         operator="in"
+         in="offset"
+         in2="fbSourceGraphic"
+         id="feComposite5181" />
+    </filter>
+    <mask
+       id="mask5142"
+       maskUnits="userSpaceOnUse">
+      <ellipse
+         transform="matrix(0.81559235,0,0,0.92577328,56.83568,-39.717103)"
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter4663)"
+         id="ellipse5144"
+         cx="462.30612"
+         cy="269.39322"
+         rx="174.11726"
+         ry="342.03574" />
+    </mask>
+    <filter
+       id="filter6020"
+       style="color-interpolation-filters:sRGB">
+      <feFlood
+         id="feFlood6022"
+         result="flood"
+         flood-color="rgb(0,0,0)"
+         flood-opacity="0.54902" />
+      <feComposite
+         id="feComposite6024"
+         result="composite1"
+         operator="out"
+         in2="SourceGraphic"
+         in="flood" />
+      <feGaussianBlur
+         id="feGaussianBlur6026"
+         result="blur"
+         stdDeviation="12"
+         in="composite1" />
+      <feOffset
+         id="feOffset6028"
+         result="offset"
+         dy="-10"
+         dx="-10" />
+      <feComposite
+         id="feComposite6030"
+         result="composite2"
+         operator="atop"
+         in2="SourceGraphic"
+         in="offset" />
+    </filter>
+    <mask
+       id="mask4549"
+       maskUnits="userSpaceOnUse">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:122.22677612px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#9955ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="384.55417"
+         y="-18.158995"
+         id="text4551"><tspan
+           id="tspan4553"
+           x="384.55417"
+           y="-18.158995"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff">LOREM IPSUM DOLOR SIT AMET, CONSETETUR</tspan><tspan
+           x="384.5542"
+           y="55.835224"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4555">SADIPSCING ELITR, SED DIAM NONUMY EIRMOD</tspan><tspan
+           x="384.55417"
+           y="129.82944"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4557">TEMPOR INVIDUNT UT LABORE ET DOLORE MAGNA</tspan><tspan
+           x="384.5542"
+           y="203.82365"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4559">ALIQUYAM ERAT, SED DIAM VOLUPTUA. AT VERO</tspan><tspan
+           x="384.5542"
+           y="277.81787"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4561">EOS ET ACCUSAM ET JUSTO DUO DOLORES ET EA</tspan><tspan
+           x="384.55417"
+           y="351.8121"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4563">REBUM. STET CLITA KASD GUBERGREN, NO SEA</tspan><tspan
+           x="384.55417"
+           y="425.80634"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4565">TAKIMATA SANCTUS EST LOREM IPSUM DOLOR</tspan><tspan
+           x="384.55414"
+           y="499.80054"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4567">SIT AMET. LOREM IPSUM DOLOR SIT AMET,</tspan><tspan
+           x="384.55414"
+           y="573.79474"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4569">CONSETETUR SADIPSCING ELITR, SED DIAM</tspan><tspan
+           x="384.55414"
+           y="647.78894"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4571">NONUMY EIRMOD TEMPOR INVIDUNT UT LABORE</tspan><tspan
+           x="384.55414"
+           y="721.7832"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4573">ET DOLORE MAGNA ALIQUYAM ERAT, SED DIAM</tspan><tspan
+           x="384.55417"
+           y="795.7774"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4575">VOLUPTUA.</tspan><tspan
+           x="384.55417"
+           y="869.77161"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4577" /><tspan
+           x="384.5542"
+           y="943.76581"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4579">AT VERO EOS ET ACCUSAM ET JUSTO</tspan><tspan
+           x="384.55417"
+           y="1017.7601"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4581">DUO DOLORES ET EA REBUM. STET CLITA KASD</tspan><tspan
+           x="384.55417"
+           y="1091.7543"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4583">GUBERGREN, NO SEA TAKIMATA SANCTUS EST</tspan><tspan
+           x="384.55414"
+           y="1165.7484"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.19537354px;font-family:'04b03';-inkscape-font-specification:'04b03';text-align:center;text-anchor:middle;fill:#9955ff"
+           id="tspan4585">LOREM IPSUM DOLOR SIT AMET IPSUM DOLOR.</tspan></text>
+    </mask>
+    <mask
+       id="mask4511"
+       maskUnits="userSpaceOnUse">
+      <ellipse
+         ry="384.54712"
+         rx="142.37357"
+         cy="258.41412"
+         cx="418.03445"
+         id="ellipse4513"
+         style="display:inline;opacity:1;fill:#003380;fill-opacity:1;stroke:none" />
+    </mask>
+    <mask
+       id="mask4404"
+       maskUnits="userSpaceOnUse">
+      <ellipse
+         style="display:inline;opacity:1;fill:#003380;fill-opacity:1;stroke:none"
+         id="ellipse4406"
+         cx="622.93433"
+         cy="254.24443"
+         rx="435.04654"
+         ry="1257.385" />
+    </mask>
+  </defs>
+  <metadata
+     id="metadata3380">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     style="display:inline;opacity:1"
+     id="layer1">
+    <text
+       id="text4861"
+       y="310.1752"
+       x="210.10799"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan4893"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;font-family:'04b03';-inkscape-font-specification:'04b03'"
+         y="310.1752"
+         x="210.10799" /></text>
+    <rect
+       transform="matrix(3.0556694,0,0,3.0556694,323.55686,6.194174)"
+       ry="22.774599"
+       rx="18.687799"
+       y="5.3706551"
+       x="-147.5463"
+       height="330.31989"
+       width="330.31989"
+       id="rect4230-1"
+       style="fill:#aaeeff;fill-opacity:1;filter:url(#filter6020);stroke:#0044aa" />
+    <rect
+       ry="69.591644"
+       rx="57.103737"
+       y="21.999544"
+       x="-124.55261"
+       height="1009.3484"
+       width="1009.3484"
+       id="rect4230-1-0"
+       style="display:inline;fill:#5599ff;fill-opacity:0" />
+    <path
+       id="rect4230-1-6"
+       d="m -73.49044,20.944474 c -31.63547,0 -57.10915,31.031627 -57.10915,69.585395 l 0,870.172001 c 0,38.55377 25.47368,69.58543 57.10915,69.58543 l 895.13475,0 c 31.63548,0 57.10917,-31.03166 57.10917,-69.58543 l 0,-870.172001 c 0,-38.553768 -25.47369,-69.585395 -57.10917,-69.585395 l -895.13475,0 z"
+       mask="none"
+       style="display:inline;fill:url(#linearGradient4436);fill-opacity:1" />
+    <rect
+       transform="matrix(3.0556694,0,0,3.0556694,-709.59138,-608.7904)"
+       mask="url(#mask4511)"
+       ry="22.916868"
+       rx="18.804539"
+       y="206.90814"
+       x="188.10861"
+       height="332.38333"
+       width="332.38333"
+       id="rect4230-1-9-0"
+       style="display:inline;fill:#333333;fill-opacity:1" />
+    <rect
+       mask="url(#mask4404)"
+       ry="69.527313"
+       rx="56.846191"
+       y="23.040958"
+       x="-129.08102"
+       height="1008.4152"
+       width="1004.7961"
+       id="rect4230-1-9-0-0"
+       style="display:inline;opacity:1;fill:#333333;fill-opacity:1" />
+    <rect
+       transform="matrix(3.0556694,0,0,3.0556694,-702.56705,-608.4026)"
+       mask="url(#mask5142)"
+       ry="22.916868"
+       rx="18.804539"
+       y="205.30405"
+       x="187.64197"
+       height="332.38333"
+       width="332.38333"
+       id="rect4230-1-9"
+       style="display:inline;fill:#ffffff;fill-opacity:1" />
+    <path
+       id="rect4230-1-9-1"
+       d="m -67.85346,26.320565 c -31.41064,0 -56.69836,30.77376 -56.69836,69.002578 l 0,862.834877 c 0,38.22886 25.28772,69.00258 56.69836,69.00258 l 888.78327,0 c 31.41066,0 56.69841,-30.77372 56.69841,-69.00258 l 0,-862.834877 c 0,-38.228818 -25.28769,-69.002578 -56.69841,-69.002578 l -888.78327,0 z"
+       mask="url(#mask4549)"
+       style="display:inline;fill:#d5f6ff;fill-opacity:1" />
+  </g>
+</svg>

@@ -1,0 +1,94 @@
+<?php
+    /**
+     * System check Dashboard Container
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
+
+    namespace fpcm\model\dashboard;
+
+    /**
+     * System check dashboard container object
+     * 
+     * @package fpcm.model.dashboard
+     * @author Stefan Seehafer <sea75300@yahoo.de>
+     */
+    class syscheck extends \fpcm\model\abstracts\dashcontainer {
+        
+        /**
+         * ggf. nötige Container-Berechtigungen
+         * @var array
+         */
+        protected $checkPermissions = array('system' => 'options');
+        
+        /**
+         * Table container
+         * @var array
+         */
+        protected $tableContent = array();
+
+        /**
+         * Konstruktor
+         */
+        public function __construct() {
+            
+            $this->cacheName = 'syscheck';
+            
+            parent::__construct();   
+            
+            $this->runCheck();
+
+            $this->headline = $this->language->translate('SYSTEM_CHECK');
+            $this->content  = implode(PHP_EOL, array('<table class="fpcm-ui-table fpcm-small-text2" style="overflow:auto;">', implode(PHP_EOL, $this->tableContent),'</table>'));
+            $this->name     = 'syscheck';            
+            $this->position = 3;
+            $this->height   = 1;
+        }
+        
+        /**
+         * Check ausführen
+         */
+        protected function runCheck() {
+            $checkFolders = array(
+                $this->language->translate('SYSCHECK_FOLDER_DATA')          => \fpcm\classes\baseconfig::$dataDir,
+                $this->language->translate('SYSCHECK_FOLDER_CACHE')         => \fpcm\classes\baseconfig::$cacheDir,
+                $this->language->translate('SYSCHECK_FOLDER_CONFIG')        => \fpcm\classes\baseconfig::$configDir,
+                $this->language->translate('SYSCHECK_FOLDER_FILEMANAGER')   => \fpcm\classes\baseconfig::$filemanagerTempDir,
+                $this->language->translate('SYSCHECK_FOLDER_LOGS')          => \fpcm\classes\baseconfig::$logDir,
+                $this->language->translate('SYSCHECK_FOLDER_MODULES')       => \fpcm\classes\baseconfig::$moduleDir,
+                $this->language->translate('SYSCHECK_FOLDER_REVISIONS')     => \fpcm\classes\baseconfig::$revisionDir,
+                $this->language->translate('SYSCHECK_FOLDER_SHARE')         => \fpcm\classes\baseconfig::$shareDir,
+                $this->language->translate('SYSCHECK_FOLDER_SMILEYS')       => \fpcm\classes\baseconfig::$smileyDir,
+                $this->language->translate('SYSCHECK_FOLDER_STYLES')        => \fpcm\classes\baseconfig::$stylesDir,
+                $this->language->translate('SYSCHECK_FOLDER_TEMP')          => \fpcm\classes\baseconfig::$tempDir,
+                $this->language->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir
+            );
+            
+            foreach ($checkFolders as $description => $folderPath) {
+                $checkres = $this->boolToText(is_writable($folderPath));
+                $this->tableContent[] =  "<tr><td><strong>$description:</strong></td><td class=\"fpcm-ui-center\">$checkres</td></tr>";
+            }
+            
+            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_CHECK_CONNECT').':</strong></td><td class="fpcm-ui-center">'.$this->boolToText2(\fpcm\classes\baseconfig::canConnect()).'</td></tr>';
+        }
+        
+        /**
+         * bool nach text beschreibbar/ nicht beschreibbar
+         * @param bool $value
+         * @return string
+         */
+        protected function boolToText($value) {
+            return ($value) ? '<span class="fa fa-check-square fpcm-ui-booltext-yes" title="'.$this->language->translate('GLOBAL_WRITABLE').'"></span>' : '<span class="fa fa-minus-square fpcm-ui-booltext-no" title="'.$this->language->translate('GLOBAL_NOT_WRITABLE').'"></span>';
+        }
+        
+        /**
+         * bool nach Text ja/ nein
+         * @param bool $value
+         * @return string
+         */
+        protected function boolToText2($value) {
+            return ($value) ? '<span class="fa fa-check-square fpcm-ui-booltext-yes" title="'.$this->language->translate('GLOBAL_YES').'"></span>' : '<span class="fa fa-minus-square fpcm-ui-booltext-no" title="'.$this->language->translate('GLOBAL_NO').'"></span>';
+        }
+        
+    }

@@ -1,0 +1,114 @@
+<?php include __DIR__.'/html_dialogs.php'; ?>
+<table class="fpcm-ui-table">
+    <?php if ($editorMode) : ?>
+    <tr>
+        <td>
+            <div class="fpcm-ui-editor-metabox">
+                <?php include dirname(__DIR__).'/times.php'; ?>
+                <?php include dirname(__DIR__).'/metainfo.php'; ?>
+                <div class="fpcm-clear"></div>
+            </div>
+        </td>
+    </tr>    
+    <?php endif; ?>
+    <tr>
+        <td>
+            <?php \fpcm\model\view\helper::textInput('article[title]', 'fpcm-full-width', $article->getTitle()); ?>
+        </td>
+    </tr>
+    <tr>
+        <td class="fpcm-ui-editor-categories">
+            <?php include dirname(__DIR__).'/categories.php'; ?>
+        </td>
+    </tr>
+    <tr>
+        <td class="ui-widget-content ui-corner-all ui-state-normal">
+            <div class="fpcm-editor-selectboxes">
+                <div class="fpcm-fpcm-editor-selectbox">
+                    <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-styles"><?php $FPCM_LANG->write('EDITOR_SELECTSTYLES'); ?></button>
+                    <div class="fpcm-editor-select">
+                        <ul class="fpcm-editor-smenu">
+                            <?php foreach ($editorStyles as $description => $tag) : ?>
+                            <li class="fpcm-editor-cssclick" htmltag="<?php print $tag; ?>"><a><?php print $description; ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>              
+                    </div>                
+                </div>
+
+                <div class="fpcm-fpcm-editor-selectbox">
+                    <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-paragraphs"><?php $FPCM_LANG->write('EDITOR_PARAGRAPH'); ?></button>
+                    <div class="fpcm-editor-select">
+                        <ul class="fpcm-editor-smenu">
+                            <li class="fpcm-editor-htmlclick" htmltag="p"><a><?php $FPCM_LANG->write('EDITOR_PARAGRAPH'); ?></a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="h1"><a><?php $FPCM_LANG->write('EDITOR_PARAGRAPH_HEADLINE'); ?> 1</a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="h2"><a><?php $FPCM_LANG->write('EDITOR_PARAGRAPH_HEADLINE'); ?> 2</a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="h3"><a><?php $FPCM_LANG->write('EDITOR_PARAGRAPH_HEADLINE'); ?> 3</a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="h4"><a><?php $FPCM_LANG->write('EDITOR_PARAGRAPH_HEADLINE'); ?> 4</a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="h5"><a><?php $FPCM_LANG->write('EDITOR_PARAGRAPH_HEADLINE'); ?> 5</a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="h6"><a><?php $FPCM_LANG->write('EDITOR_PARAGRAPH_HEADLINE'); ?> 6</a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="pre"><a><?php $FPCM_LANG->write('EDITOR_PRE'); ?></a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="code"><a><?php $FPCM_LANG->write('EDITOR_CODE'); ?></a></li>                    
+                        </ul>              
+                    </div>                
+                </div>
+
+                <div class="fpcm-fpcm-editor-selectbox">
+                    <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-fontsizes"><?php $FPCM_LANG->write('EDITOR_SELECTFS'); ?></button>
+                    <div class="fpcm-editor-select">
+                        <ul class="fpcm-editor-smenu">
+                            <li class="fpcm-editor-htmlfontsize" htmltag="8"><a>8pt</a></li>
+                            <li class="fpcm-editor-htmlfontsize" htmltag="9"><a>9pt</a></li>
+                            <li class="fpcm-editor-htmlfontsize" htmltag="10"><a>10pt</a></li>
+                            <li class="fpcm-editor-htmlfontsize" htmltag="12"><a>12pt</a></li>
+                            <li class="fpcm-editor-htmlfontsize" htmltag="14"><a>14pt</a></li>
+                            <li class="fpcm-editor-htmlfontsize" htmltag="16"><a>16pt</a></li>
+                            <?php //fpModuleEventsAcp::runOnAddEditorFontSize(); ?>
+                        </ul>              
+                    </div>                
+                </div>                    
+            </div>
+
+            <div class="fpcm-ui-buttonset fpcm-ui-editor-buttons">
+                <button title="Bold (Ctrl + B)" class="fpcm-editor-htmlclick" htmltag="b"><span class="fa fa-bold"></span></button>
+                <button title="Italic (Ctrl + I)" class="fpcm-editor-htmlclick" htmltag="i"><span class="fa fa-italic"></span></button>
+                <button title="Underline (Ctrl + U)" class="fpcm-editor-htmlclick" htmltag="u"><span class="fa fa-underline"></span></button>
+                <button title="Strike (Ctrl + O)" class="fpcm-editor-htmlclick" htmltag="s"><span class="fa fa-strikethrough"></span></button>
+                <button title="Color (Ctrl + Shift + F)" id="fpcm-editor-html-insertcolor-btn" onclick="return false;"><span class="fa fa-tint"></span></button>
+                <button title="Superscript (Ctrl + Y)" class="fpcm-editor-htmlclick" htmltag="sup"><span class="fa fa-superscript"></span></button>
+                <button title="Subscript (Ctrl + Shift + Y)" class="fpcm-editor-htmlclick" htmltag="sub"><span class="fa fa-subscript"></span></button>
+                <button title="Align left (Ctrl + Shift + L)" class="fpcm-editor-alignclick" htmltag="left"><span class="fa fa-align-left"></span></button>
+                <button title="Align center (Ctrl + Shift + C)" class="fpcm-editor-alignclick" htmltag="center"><span class="fa fa-align-center"></span></button>
+                <button title="Align right (Ctrl + Shift + R)" class="fpcm-editor-alignclick" htmltag="right"><span class="fa fa-align-right"></span></button>
+                <button title="Align justify (Ctrl + Shift + J)" class="fpcm-editor-alignclick" htmltag="justify"><span class="fa fa-align-justify"></span></button>            
+                <button title="List (Ctrl + .)" id="fpcm-editor-html-insertlist-btn"><span class="fa fa-list-ul"></span></button>
+                <button title="Numbered list (Ctrl + #)" id="fpcm-editor-html-insertlistnum-btn"><span class="fa fa-list-ol"></span></button>            
+                <button title="Quotation (Ctrl + Q)" class="fpcm-editor-htmlclick" htmltag="blockquote"><span class="fa fa-quote-left"></span></button>
+                <button title="Link (Ctrl + L)" id="fpcm-editor-html-insertlink-btn"><span class="fa fa-link"></span></button>
+                <button title="Image (Ctrl + P)" id="fpcm-editor-html-insertimage-btn"><span class="fa fa-picture-o"></span></button>
+                <button title="Media-Player (Ctrl + Shift + Z)" id="fpcm-editor-html-insertmedia-btn"><span class="fa fa-youtube-play"></span></button>
+                <button title="iFrame (Ctrl + F)" id="fpcm-editor-html-insertiframe-btn"><span class="fa fa-puzzle-piece"></span></button>
+                <button title="More (Ctrl + M)" id="fpcm-editor-html-insertmore-btn"><span class="fa fa-plus-square"></span></button>
+                <button title="Table (Ctrl + Shift + T)" id="fpcm-editor-html-inserttable-btn"><span class="fa fa-table"></span></button>
+                <button title="<?php $FPCM_LANG->write('HL_OPTIONS_SMILEYS'); ?> (Ctrl + Shift + E)" id="fpcm-editor-html-insertsmiley-btn"><span class="fa fa-smile-o"></span></button>
+                <button title="Symbol (Ctrl + Shift + I)" id="fpcm-editor-html-insertsymbol-btn"><span class="fa fa-font"></span></button>
+            <?php if (count($extraButtons)) : ?>
+                <?php foreach ($extraButtons as $extraButton)  : ?>
+                <button title="<?php print $extraButton['title']; ?>" class="fpcm-editor-htmlclick <?php print $extraButton['class']; ?>" htmltag="<?php print $extraButton['htmltag']; ?>" id="fpcm-editor-html-<?php print $extraButton['id']; ?>-btn"><span class="<?php print $extraButton['icon']; ?>"></span></button>
+                <?php endforeach; ?>
+            <?php endif; ?>
+                <button title="Remove Style (Ctrl + Shift + S)" id="fpcm-editor-html-removetags-btn"><span class="fa fa-eraser"></span></button>
+            </div>                
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?php \fpcm\model\view\helper::textArea('article[content]', 'fpcm-full-width', $article->getContent()) ?>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    jQuery(function() {
+        fpcmEditor.initCodeMirror();
+    });    
+</script>

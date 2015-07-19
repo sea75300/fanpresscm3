@@ -1,0 +1,6 @@
+## FanPress CM server config file
+---
+updates: "http://nobody-knows.org/updatepools/fanpress/system/"
+modules: "http://nobody-knows.org/updatepools/fanpress/modules/"
+updatesManual: "http://nobody-knows.org/download/fanpress-cm/#Download"
+modulesManual: "http://nobody-knows.org/download/fanpress-cm/module/"

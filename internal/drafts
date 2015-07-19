@@ -1,0 +1,81 @@
+Event wird ausgeführt, wenn 
+     * @param 
+     * @return 
+     
+    ----
+
+
+
+<?php
+    /**
+     * Module-Event: #???#
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
+    namespace fpcm\model\events;
+
+    final class #???# extends \fpcm\model\abstracts\event {
+
+        public function run($data = null) {
+            
+            $eventClasses = \fpcm\classes\baseconfig::$moduleDir.'*/events/#???#.php';
+            
+            if (!count($eventClasses)) return $data;
+            
+            $mdata = $data;
+            foreach (glob($eventClasses) as $eventClass) {
+                
+                $classkey = $this->getModuleKeyByEvent($eventClass);                
+                if (!in_array($classkey, $this->activeModules)) continue;
+                
+                $eventClass = '\\fpcm\\modules\\'.$classkey.'\\events\\#???#';
+                
+                /**
+                 * @var \fpcm\model\abstracts\event
+                 */
+                $module = new $eventClass();
+
+                if (!$this->is_a($module)) continue;
+                
+                $mdata = $module->run($mdata);
+            }
+            
+            if (!$mdata) return $data;
+            
+            return array_merge($data, $mdata);
+            
+        }
+    }
+
+    ---- Dialog Draft ----
+    
+                var buttons = [
+                {
+                    text: fpcmYes,
+                    icons: { primary: "ui-icon-check" },                    
+                    click: function() {
+
+                        jQuery(this).dialog('close');
+                    }
+                },
+                {
+                    text: fpcmNo,
+                    icons: { primary: "ui-icon-closethick" },
+                    click: function() {
+
+                        jQuery(this).dialog('close');
+                    }
+                }
+            ];
+            fpcmJs.confirmDialog('<p class="fpcm-ui-center">' + fpcmConfirmMessage + '</p>', buttons);
+            
+            
+            
+<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>            

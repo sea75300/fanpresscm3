@@ -1,0 +1,4 @@
+## Module Controller list file
+---
+ajax/nkorg/integration/articletitle: fpcm/modules/nkorg/integration/controller/articletitle
+ajax/nkorg/integration/pagetitle: fpcm/modules/nkorg/integration/controller/pagetitle

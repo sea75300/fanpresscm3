@@ -1,0 +1,119 @@
+<?php
+    /**
+     * FanPress CM static data model
+     * 
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
+    namespace fpcm\model\abstracts;
+
+    /**
+     * Statisches Model ohen DB-Verbindung
+     * 
+     * @package fpcm.model.abstracts
+     * @abstract
+     * @author Stefan Seehafer <sea75300@yahoo.de>
+     */ 
+    abstract class staticModel {
+        
+        /**
+         * Data array
+         * @var array
+         */
+        protected $data;
+        
+        /**
+         * Cache object
+         * @var \fpcm\classes\cache
+         */
+        protected $cache;
+        
+        /**
+         * Event list
+         * @var \fpcm\model\events\eventList 
+         */
+        protected $events;
+        
+        /**
+         * Config object
+         * @var \fpcm\model\system\config
+         */
+        protected $config;
+        
+        /**
+         * Sprachobjekt
+         * @var \fpcm\classes\language
+         */
+        protected $language;        
+        
+        /**
+         * Session objekt
+         * @var \fpcm\model\system\session
+         */
+        protected $session;
+        
+        /**
+         * Cache name
+         * @var string
+         */
+        protected $cacheName    = false;        
+
+        /**
+         * Konstruktor
+         * @return void
+         */
+        public function __construct() {
+
+            $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
+            $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)));            
+            
+            if (!\fpcm\classes\baseconfig::dbConfigExists()) return;
+
+            $this->session  = new \fpcm\model\system\session();
+            $this->config   = \fpcm\classes\baseconfig::$settings->config;
+            $this->language = \fpcm\classes\baseconfig::$settings->language;
+            
+            if (is_object($this->config)) $this->config->setUserSettings();
+        }
+        
+        /**
+         * Magic get
+         * @param string $name
+         * @return mixed
+         */
+        public function __get($name) {
+            return isset($this->data[$name]) ? $this->data[$name] : false;
+        }
+        
+        /**
+         * Magic set
+         * @param mixed $name
+         * @param mixed $value
+         */
+        public function __set($name, $value) {
+            $this->data[$name] = $value;
+        }
+        
+        /**
+         * Magische Methode für nicht vorhandene Methoden
+         * @param string $name
+         * @param mixed $arguments
+         * @return boolean
+         */
+        public function __call($name, $arguments) {
+            print "Function not found! {$name}";
+            return false;
+        }
+
+        /**
+         * Magische Methode für nicht vorhandene, statische Methoden
+         * @param string $name
+         * @param mixed $arguments
+         * @return boolean
+         */        
+        public static function __callStatic($name, $arguments) {
+            print "Function not found! {$name}";
+            return false;
+        }
+    }

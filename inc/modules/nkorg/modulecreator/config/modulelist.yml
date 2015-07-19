@@ -1,0 +1,8 @@
+## Module list config file
+---
+name: FanPress CM 3.x Modulecreator Module
+version: 3.0.0
+description: This module allows you to create a base structure for a new module including events, config files, folder structure and so on.
+author: imagine
+link: http://nobody-knows.org/
+sysversion: 3.0.0

@@ -1,0 +1,10 @@
+## Module list config file
+---
+name: FanPress CM Integration
+vendor: nkorg
+key: integration
+author: Stefan
+link: http://nobody-knows.org/fanpress3
+version: 0.0.1
+sysversion: 3.0.0rc2 b20150617
+description: "Helper module for integration of FanPress CM into your website."

@@ -1,0 +1,23 @@
+<?php
+    /**
+     * {{modulename}}, {{infolink}}
+     *
+     * {{vendor}}/{{modulekey}} event class: {{eventname}}
+     * 
+     * @version {{version}}
+     * @author {{author}} <{{author}}@yourdomain.xyz>
+     * @copyright (c) {{year}}, {{author}}
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     *
+     */
+
+    namespace fpcm\modules\{{vendor}}\{{modulekey}}\events;
+
+    class {{eventname}} extends \fpcm\model\abstracts\moduleEvent {
+
+        public function run($params = null) {
+            // check FanPress CM documentation, if this events requires a return value
+            return $params;
+        }
+
+    }
