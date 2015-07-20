@@ -5,9 +5,8 @@
 * Konstanten von Entwicklungs- auf Release-Werte setzten
 * weitere Events prüfen
 * Dokumentation
-* Support Module erstellen
 
-Stand: 07.07.2015 - 20:40 Uhr
+Stand: 20.07.2015 - 20:40 Uhr
 
 -- Fertig --
 
@@ -55,3 +54,4 @@ Stand: 07.07.2015 - 20:40 Uhr
 * "Format"-Select in TinyMCE ausblenden
 * No postponed Meldung in Cronjob entfernen
 * Syslogs: AJAX-Loader bei Klick auf Tab, aktualisieren-Button entfernen
+* Support Module erstellen

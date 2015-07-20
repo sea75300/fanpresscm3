@@ -89,7 +89,7 @@
             
             if (!$newid) {
                 trigger_error('Unable to import article with ID '.$id.'! Skipping comments...');
-                usleep(1500);
+                usleep(500000);
                 die('0');
             }            
             
@@ -97,7 +97,7 @@
             $comments = $db->fetch($db->select('comments', '*', "newsid = {$id}"), true);
             
             if (!count($comments)) {
-                usleep(1500);
+                usleep(750000);
                 die('1');
             }
             
@@ -125,7 +125,7 @@
                 $newcomment->save();
             }
             
-            sleep(1);
+            usleep(750000);
             die('1');
             
         }

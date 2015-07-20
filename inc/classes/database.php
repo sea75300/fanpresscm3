@@ -266,8 +266,14 @@
 
             $this->lastQueryString = $statement->queryString;
             
-            if (!$statement->execute($bindParams)) {
-                $this->getError();
+            try {
+                $res = $statement->execute($bindParams);
+            } catch (\PDOException $e) {
+                logs::sqllogWrite($e);
+            }            
+            
+            if (!$res) {
+                $this->getStatementError($statement);
                 return false;
             }
 
@@ -289,16 +295,38 @@
             
             $this->lastQueryString = $statement->queryString;
             
-            $statement->execute($bindParams);            
+            try {
+                $res = $statement->execute($bindParams);
+            } catch (\PDOException $e) {
+                logs::sqllogWrite($e);
+            }
+            
+            if (!$res) {
+                $this->getStatementError($statement);
+            }
+
             return $statement;
         }
 
         /**
-         * Liefert den letzten Fehler der DB Verbindung zurück
-         * @return array
+         * Schreibt letzte Fehlermeldung der DB-Verbindung in DB-Log
+         * @return boolean
          */
         public function getError() {	
             logs::sqllogWrite(print_r($this->connection->errorInfo(), true));
+            
+            return true;
+        }
+
+        /**
+         * Schreibt letzte Fehlermeldung des ausgefühtren Statements in DB-Log
+         * @param \PDOStatement $statement
+         * @return boolean
+         */
+        public function getStatementError(\PDOStatement &$statement) {	
+            logs::sqllogWrite(print_r($statement->errorInfo(), true));
+            
+            return true;
         }
 
         /**

@@ -281,6 +281,12 @@
          * @return boolean
          */
         public function save() {
+            
+            if (!$this->username) {
+                trigger_error('Username cannot be blank.');
+                return false;
+            }
+            
             if ($this->authorExists()) return self::AUTHOR_ERROR_EXISTS;
             if (!$this->checkPasswordSecure() && !$this->passwordSecCheckDisabled()) return self::AUTHOR_ERROR_PASSWORDINSECURE;
             

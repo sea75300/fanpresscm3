@@ -82,6 +82,24 @@ class creator extends \fpcm\controller\abstracts\ajaxController {
             }
         }
         
+        $moduleclass = new \fpcm\modules\nkorg\modulecreator\model\moduleclass();
+        $eventName = $this->info['vendor'].$this->info['key'];
+
+        $code = $moduleclass->parse(array(
+            'eventname'  => $eventName,
+            'modulename' => $this->info['name'],
+            'vendor'     => $this->info['vendor'],
+            'modulekey'  => $this->info['key'],
+            'version'    => $this->info['version'],
+            'author'     => $this->info['author'],
+            'infolink'   => filter_var($this->info['link'], FILTER_VALIDATE_URL)
+        ));
+
+        if (!file_put_contents($this->moddir.'/'.$eventName.'.php', $code)) {
+            trigger_error('Unable to create event class file for event "'.$eventName.'".');
+            return false;
+        }
+        
         return true;
     }
     

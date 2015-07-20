@@ -65,7 +65,7 @@
 
             if (is_array($pathFiles)) {
                 foreach ($pathFiles as $pathFile) {
-                    if (!file_exists($pathFile) || !is_writable($pathFile)) continue;
+                    if (!file_exists($pathFile) || !is_writable($pathFile) || strpos($path, './') !== false || strpos($path, '../') !== false) continue;                    
                     if (is_dir($pathFile)) {
                         $res = $res && self::deleteRecursive($pathFile);
                         continue;

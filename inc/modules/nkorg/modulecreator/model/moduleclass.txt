@@ -1,0 +1,30 @@
+<?php
+    /**
+     * {{modulename}}, {{infolink}}
+     *
+     * {{vendor}}/{{modulekey}} class: {{eventname}}
+     * 
+     * @version {{version}}
+     * @author {{author}} <{{author}}@yourdomain.xyz>
+     * @copyright (c) {{year}}, {{author}}
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     *
+     */
+
+    namespace fpcm\modules\{{vendor}}\{{modulekey}};
+
+    class {{eventname}} extends \fpcm\model\abstracts\module {
+
+        public function runInstall() { 
+            return true;
+        }
+
+        public function runUninstall() {
+            return true;
+        }
+
+        public function runUpdate() {
+            return true;
+        }
+
+    }

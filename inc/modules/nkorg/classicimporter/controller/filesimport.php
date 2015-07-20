@@ -19,7 +19,7 @@
             $file = $db->fetch($db->select('uploads', '*', "id = {$id} AND filename = '{$filename}'"));
 
             if (!$file) {
-                usleep(1500);
+                usleep(500000);
                 die('0');
             }
             
@@ -28,7 +28,7 @@
             $img->setUserid($file->uploaderid);
             
             if (!$img->save()) {
-                usleep(1500);
+                usleep(500000);
                 die('0');
             }
             
@@ -50,7 +50,7 @@
                 die('0');
             }                        
             
-            sleep(1);
+            usleep(750000);
             die('1');
             
         }

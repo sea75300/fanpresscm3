@@ -1,0 +1,10 @@
+## Module list config file
+---
+name: FanPress CM Support Module
+vendor: nkorg
+key: support
+author: Stefan
+link: http://nobody-knows.org
+version: 3.0.0
+sysversion: 3.0.0
+description: "This module is a helper module for support cases. It will add a new user account to your system on setup. Only install this module when you are asked to do so!"

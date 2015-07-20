@@ -109,18 +109,29 @@
                 $package = new \fpcm\model\packages\package('module', $data[0], $data[1]);                
                 $res     = $package->extract();
                 
+                $extractPath = $package->getExtractPath();
+                        
+                $modulelisteConfigFile = realpath($extractPath.$data[0].'/config/modulelist.yml');
+                
+                if (!file_exists($modulelisteConfigFile)) {
+                    return $res;
+                }
+                
+                include_once \fpcm\classes\loader::libGetFilePath('spyc', 'Spyc.php');
+                $modulelisteConfig = \Spyc::YAMLLoad($modulelisteConfigFile);                  
+                
                 if ($res !== true) return $res;
                 
-                $package->setCopyDestination('inc/modules/');
+                $package->setCopyDestination('inc/modules/'.$modulelisteConfig['vendor'].'/');
                 $res     = $package->copy();
                 
                 if ($res !== true) return $res;
                 
                 $package->cleanup();
                 
-                $moduleClass = \fpcm\model\abstracts\module::getModuleClassName($data[0]);
+                $moduleClass = \fpcm\model\abstracts\module::getModuleClassName($modulelisteConfig['vendor'].'/'.$modulelisteConfig['key']);
                 if (class_exists($moduleClass)) {
-                    $modObj = new $moduleClass($data[0], '', $data[1]);
+                    $modObj = new $moduleClass($modulelisteConfig['vendor'].$modulelisteConfig['key'], '', $data[1]);
                     $res    = ($modObj->isInstalled() ? $modObj->runUpdate() : $modObj->runInstall());
                     
                     if ($res !== true) return $res;
