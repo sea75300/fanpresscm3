@@ -13,38 +13,46 @@ An assistent for integration is provided by the "FanPress CM Integration" Modul 
 When using php include, fist include the api file and create a new API object.
 
 ```php
-    <?php include_once 'fanpress/fpcmapi.php'; ?>
-    <?php $api = new fpcmAPI(); ?>
+<?php include_once 'fanpress/fpcmapi.php'; ?>
+<?php $api = new fpcmAPI(); ?>
 ```
 
 Now you can use the API functions:
 
-    $api->showArticles() to display active articles, a single article or the article archive in front end. (fulfils task of shownews.php from FanPress CM 1.x and 2.x)
-    $api->showLatestNews() to show recent news list.
-    $api->showPageNumber() displays current page number, accepts a parameter for page descriptions like "Page XYZ".
-    $api->showTitle() displayse the article title in HTML <title> , accepts a parameter for a seperator of your text in <title>.
+```php
+$api->showArticles() to display active articles, a single article or the article archive in front end. (fulfils task of shownews.php from FanPress CM 1.x and 2.x)
+$api->showLatestNews() to show recent news list.
+$api->showPageNumber() displays current page number, accepts a parameter for page descriptions like "Page XYZ".
+$api->showTitle() displayse the article title in HTML <title> , accepts a parameter for a seperator of your text in <title>.
+```
 
 You can use a couple of constants fpr further configuration of the output:
 
-```php
-    FPCM_PUB_CATEGORY_LATEST articles from category in $api->showLatestNews()
-    FPCM_PUB_CATEGORY_LISTALL articles from category in $api->showArticles()
-    FPCM_PUB_LIMIT_LISTALL amount of active articles in $api->showArticles()
-    FPCM_PUB_LIMIT_ARCHIVE amount of archived articles in $api->showArticles()
-    FPCM_PUB_LIMIT_LATEST amount of articles in $api->showLatestNews()
-    FPCM_PUB_OUTPUT_UTF8 enable or disbale usage of UTF-8 charset in output of $api->showLatestNews(), $api->showArticles() and $api->showTitle(). Should only be used in case special signs as german umlauts are displayed incorrectly.
-```
+* FPCM_PUB_CATEGORY_LATEST
+    * articles from category in $api->showLatestNews()
+* FPCM_PUB_CATEGORY_LISTALL
+    * articles from category in $api->showArticles()
+* FPCM_PUB_LIMIT_LISTALL
+    * amount of active articles in $api->showArticles()
+* FPCM_PUB_LIMIT_ARCHIVE
+    * amount of archived articles in $api->showArticles()
+* FPCM_PUB_LIMIT_LATEST
+    * amount of articles in $api->showLatestNews()
+* FPCM_PUB_OUTPUT_UTF8
+    * enable or disbale usage of UTF-8 charset in output of $api->showLatestNews(), $api->showArticles() and $api->showTitle(). Should only be used in case special signs as german umlauts are displayed incorrectly.
 
 ## iframes
 
 In case your're using iframes you have to call the controllers manually.
 
-```php
-    your-domain.xyz/fanpress/index.php?module=fpcm/list show all active articles (fulfils task of shownews.php from FanPress CM 1.x and 2.x)
-    your-domain.xyz/fanpress/index.php?module=fpcm/archive show article archive (fulfils task of shownews.php from FanPress CM 1.x and 2.x)
-    your-domain.xyz/fanpress/index.php?module=fpcm/article&&id=A_DIGIT show a singel article with given id including comments
-    your-domain.xyz/fanpress/index.php?module=fpcm/latest show latest news
-```
+* your-domain.xyz/fanpress/index.php?module=fpcm/list
+    * show all active articles (fulfils task of shownews.php from FanPress CM 1.x and 2.x)
+* your-domain.xyz/fanpress/index.php?module=fpcm/archive
+    * show article archive (fulfils task of shownews.php from FanPress CM 1.x and 2.x)
+* your-domain.xyz/fanpress/index.php?module=fpcm/article&&id=A_DIGIT
+    * show a single article with given id including comments
+* your-domain.xyz/fanpress/index.php?module=fpcm/latest
+    * show latest news
 
 ## RSS Feed
 
