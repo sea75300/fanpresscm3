@@ -19,6 +19,9 @@
      */ 
     final class security {        
         
+        /**
+         * Passwort Check RegEx
+         */
         const regexPasswordCkeck = "/^.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/";
         
         /**

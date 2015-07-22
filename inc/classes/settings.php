@@ -22,12 +22,10 @@
          *
          * @var array
          */
-        public $data;
+        protected $data;
 
         /**
-         * 
-         * @global \fpcm\classes\database $fpcmDatabase
-         * @param int $id
+         * Konstruktor
          */
         public function __construct() {
 

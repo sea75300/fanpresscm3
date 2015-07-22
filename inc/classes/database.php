@@ -103,7 +103,7 @@
         private $lastQueryString = '';
 
         /**
-         * 
+         * Konstruktor
          * @param array $dbconfig alternative Datenbank-Zugangsdaten, wenn false werden Daten aus FPCM-Config genutzt
          * @param bool $dieOnError wenn Verbindung fehlschlägt, soll Ausführung vollständig abgebrochen werden
          * @return void

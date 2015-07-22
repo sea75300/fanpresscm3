@@ -55,6 +55,14 @@
          */
         private $html       = false;
 
+        /**
+         * Konstruktor
+         * @param sring $to Empfänger-Adresse
+         * @param sring $subject Betreff
+         * @param sring|array $text E-Mail-Inhalt
+         * @param sring $from Absender-Adresse, Default: fanpresscm@@hostdomain.xyz
+         * @param bool $html enthält $text HTML-Code ja/nein
+         */
         function __construct($to, $subject, $text, $from = false, $html = false) {
             $this->to       = $to;
             $this->from     = $from ? $from : 'FanPress CM <fanpresscm@'.$_SERVER['HTTP_HOST'].'>';
@@ -65,42 +73,82 @@
             $this->events   = baseconfig::$fpcmEvents;
         }
 
+        /**
+         * Empfänger auslesen
+         * @return sring
+         */
         function getTo() {
             return $this->to;
         }
 
+        /**
+         * Absender auslesen
+         * @return sring
+         */
         function getFrom() {
             return $this->from;
         }
 
+        /**
+         * Betreff auslesen
+         * @return sring
+         */
         function getSubject() {
             return $this->subject;
         }
 
+        /**
+         * E-Mail-Inhalt auslesen
+         * @return sring
+         */
         function getText() {
             return $this->text;
         }
 
+        /**
+         * HTMl-E-Mail ja/nein
+         * @return bool
+         */
         function isHtml() {
             return $this->html;
         }
 
+        /**
+         * Empfänger setzten
+         * @param sring $to
+         */
         function setTo($to) {
             $this->to = $to;
         }
 
+        /**
+         * Absender setzten
+         * @param sring $from
+         */
         function setFrom($from) {
             $this->from = $from;
         }
 
+        /**
+         * Betreff setzten
+         * @param sring $subject
+         */
         function setSubject($subject) {
             $this->subject = $subject;
         }
 
+        /**
+         * E-Mail-Inhalt setzten
+         * @param sring $text
+         */
         function setText($text) {
             $this->text = $text;
         }
 
+        /**
+         * E-Mail- als HTML-E-Mail markieren
+         * @param bool $html
+         */
         function setHtml($html) {
             $this->html = $html;
         }
