@@ -96,8 +96,7 @@
                     'daysshort'             => $this->lang->getDaysShort(),
                     'months'                => $this->lang->getMonths()
                 ),
-                'fpcmExtended'              => $this->lang->translate('GLOBAL_EXTENDED'),
-                'fpcmCloseEditorConfirm'    => $this->lang->translate('EDITOR_LEAVE_CONFIRM')
+                'fpcmExtended'              => $this->lang->translate('GLOBAL_EXTENDED')
             );
             
             $this->view->addJsVars($this->jsVars);

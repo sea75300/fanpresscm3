@@ -327,15 +327,6 @@ var fpcmEditor = function () {
             }                
         });    
     };
-    
-    this.removeUnloadMessage = function () {
-        window.onbeforeunload = null;  
-    };
-};
-
-window.onbeforeunload = function () {    
-    fpcmJs.showLoader(false);
-    return fpcmCloseEditorConfirm;
 };
 
 jQuery(function() {
@@ -552,18 +543,6 @@ jQuery(function() {
             primary: "ui-icon-arrowreturn-1-w",
         },
         text: true
-    });
-    
-    jQuery('#btnArticleSave').click(function () {
-        fpcmEditor.removeUnloadMessage();
-    });
-    
-    jQuery('#btnArticleDelete').click(function () {
-        fpcmEditor.removeUnloadMessage();
-    });
-    
-    jQuery('.fpcm-articlelist-openlink').click(function () {
-        fpcmEditor.removeUnloadMessage();
     });
     
     /**

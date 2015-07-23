@@ -22,7 +22,6 @@
         'SELECT_ITEMS_MSG'              => 'Please select an action or elements!',
         'SEARCH_WAITMSG'                => 'Please wait at least 10 second before you start a new search.',
         'RSSFEED_DISABLED'              => 'The RSS feed is disabled. Please contact the site owner for further information.',
-        'EDITOR_LEAVE_CONFIRM'          => 'Do you really want to close the editor and discard all changes?',
         'MAINTENANCE_MODE_ENABLED'      => 'Maintenance mode is currently enabled. This function or service is not available at the moment.',
         
         'SAVE_SUCCESS_ADDUSER'          => 'The user has been saved!',

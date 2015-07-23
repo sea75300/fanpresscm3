@@ -39,10 +39,3 @@
         <?php endif; ?>
     </form>
 </div>
-<?php if ($isRevision) : ?>
-<script type="text/javascript">
-    jQuery(function() {
-        fpcmEditor.removeUnloadMessage();
-    });
-</script>
-<?php endif; ?>

@@ -22,7 +22,6 @@
         'SELECT_ITEMS_MSG'              => 'Bitte wähle Elemente oder eine Aktion aus!',
         'SEARCH_WAITMSG'                => 'Bitte warte 10 Sekunden, bevor du einen neuen Suchvorgang durchführst.',
         'RSSFEED_DISABLED'              => 'Der RSS-Feed ist deaktiviert. Wende dich an den Seitenbetreiber, um zu erfahren wieso.',
-        'EDITOR_LEAVE_CONFIRM'          => 'Möchtest du as Editor-Fenster wirklich schließen und alle Änderungen verwerfen?',
         'MAINTENANCE_MODE_ENABLED'      => 'Der Wartungsmodus von FanPress CM ist gerade aktiv, daher steht diese Funktion im Moment nicht zur Verfügung.',
         
         'SAVE_SUCCESS_ADDUSER'          => 'Der Benutzer wurde gespeichert!',
