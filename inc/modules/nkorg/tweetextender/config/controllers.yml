@@ -1,0 +1,4 @@
+## Module Controller list file
+---
+nkorg/tweetextender/addterm: fpcm/modules/nkorg/tweetextender/controller/addterm
+nkorg/tweetextender/editterm: fpcm/modules/nkorg/tweetextender/controller/editterm
