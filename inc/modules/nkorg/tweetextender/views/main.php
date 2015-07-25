@@ -1,4 +1,4 @@
-    <form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $FPCM_CURRENT_MODULE; ?>&key=nkorg/tweetextender">
+<form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $FPCM_CURRENT_MODULE; ?>&key=nkorg/tweetextender">
     <div class="fpcm-content-wrapper">
         <h1><span class="fa fa-twitter-square fa-fw"></span> <?php $FPCM_LANG->write('NKORG_TWEETENTENDER_HEADLINE'); ?></h1>
 

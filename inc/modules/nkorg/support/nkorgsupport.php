@@ -5,8 +5,8 @@
      * nkorg/support class: nkorgsupport
      * 
      * @version 0.0.1
-     * @author Stefan <Stefan@yourdomain.xyz>
-     * @copyright (c) 2015, Stefan
+     * @author Stefan aka imagine <sea75300@yahoo.de>
+     * @copyright (c) 2015, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      *
      */

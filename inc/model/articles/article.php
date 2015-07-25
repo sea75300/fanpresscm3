@@ -624,17 +624,18 @@
                 return false;
             }
 
-            $author  = new \fpcm\model\users\author($this->createuser);
+            /* @var $eventResult article */
+            $eventResult = $this->events->runEvent('articleCreateTweet', $this);
 
-            $this->events->runEvent('articleCreateTweet', $this);
+            $author  = new \fpcm\model\users\author($eventResult->getCreateuser());
             
             $tpl = new \fpcm\model\pubtemplates\tweet();
             $tpl->setReplacementTags(array(
-                '{{headline}}'  => $this->getTitle(),
+                '{{headline}}'  => $eventResult->getTitle(),
                 '{{author}}'    => $author->getDisplayname(),
                 '{{date}}'      => date($this->config->system_dtmask),
-                '{{permaLink}}' => $this->getArticleLink(),
-                '{{shortLink}}' => $this->getArticleShortLink()
+                '{{permaLink}}' => $eventResult->getArticleLink(),
+                '{{shortLink}}' => $eventResult->getArticleShortLink()
             ));
             
             $twitter = new \fpcm\model\system\twitter();

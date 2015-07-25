@@ -8,7 +8,7 @@
         </ul>
         
         <div id="termeditor">
-            <form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $FPCM_CURRENT_MODULE; ?>">
+            <form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $FPCM_CURRENT_MODULE; ?><?php print $additional; ?>">
                 <table class="fpcm-ui-table">
                     <tr>
                         <td><?php $FPCM_LANG->write('NKORG_TWEETENTENDER_SEARCHTERM'); ?>:</td>

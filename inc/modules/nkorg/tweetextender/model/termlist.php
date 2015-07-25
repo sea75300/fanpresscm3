@@ -9,6 +9,10 @@ class termlist extends \fpcm\model\abstracts\model {
         return parent::__construct($id);
     }
     
+    /**
+     * 
+     * @return array
+     */
     public function getTerms() {
         
         $termRows = $this->dbcon->fetch($this->dbcon->select($this->table), true);

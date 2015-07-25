@@ -5,8 +5,8 @@
      * nkorg/tweetextender event class: acpConfig
      * 
      * @version 3.0.0
-     * @author Stefan <Stefan@yourdomain.xyz>
-     * @copyright (c) 2015, Stefan
+     * @author Stefan aka imagine <sea75300@yahoo.de>
+     * @copyright (c) 2015, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      *
      */
