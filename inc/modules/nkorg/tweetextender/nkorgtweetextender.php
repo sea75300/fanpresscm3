@@ -28,6 +28,9 @@
         }
 
         public function runUninstall() {
+            
+            $this->dbcon->drop(self::NKORGTWEETEXTENDER_TABLE_NAME);
+            
             return true;
         }
 

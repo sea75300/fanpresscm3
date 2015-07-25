@@ -129,17 +129,6 @@
             $this->connection = null;
         }
 
-
-        /**
-         * Parst einfach Anfürungszeichen in Zichenkette
-         * @param string $string Text mit einfachen Anfürungszeichen
-         * @return string
-         */
-        public function quoteString($string) {
-            return str_replace("'", "\'", $string);
-        }
-
-
         /**
          * Führt SELECT-Befehl auf DB aus
          * @param string $table select table
@@ -149,7 +138,7 @@
          * @param bool $distinct Distinct select
          * @return mixed
          */
-        public function select($table, $item = '*', $where = null, $params = null, $distinct = false) {            
+        public function select($table, $item = '*', $where = null, array $params = array(), $distinct = false) {            
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = $distinct ? "SELECT DISTINCT $item FROM $table" : "SELECT $item FROM $table";
             if (!is_null($where)) $sql .= " WHERE $where";
@@ -164,7 +153,7 @@
          * @param array $params
          * @return bool|int
          */
-        public function insert($table, $fields, $values, $params = null) {
+        public function insert($table, $fields, $values, array $params = array()) {
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "INSERT INTO $table ($fields) VALUES ($values);";
 
@@ -181,7 +170,7 @@
          * @param string $where
          * @return bool
          */
-        public function update($table, array $fields, $params = null, $where = null) {
+        public function update($table, array $fields, array $params = array(), $where = null) {
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";            
             $sql = "UPDATE $table SET ";
             $sql .= implode(' = ?, ', $fields).' = ?';            
@@ -196,7 +185,7 @@
          * @param array $params
          * @return bool
          */
-        public function delete($table, $where = null, $params = null) {
+        public function delete($table, $where = null, array $params = array()) {
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql    = "DELETE FROM $table";
             if (!is_null($where)) $sql .= " WHERE $where";    
@@ -205,11 +194,12 @@
         }
 
         /**
-         * Ändert Tabellenstruktur
+         * Ändert Tabellenstruktur via ALTER TABLE
          * @param string $table
          * @param string $methode
          * @param string $field
          * @param string $where
+         * @return bool
          */
         public function alter($table, $methode, $field, $where = "") {
             
@@ -225,11 +215,14 @@
          * @param string $table In welcher Tabelle soll gezählt werden
          * @param string $countitem Welche Spalte soll gezählt werden
          * @param string $where Nach welchen Filterkriterien soll gezählt werden
-         * @return int
+         * @param array $params
+         * @return boolean
          */
-        public function count($table, $countitem = '*',$where = null, $params = null) {
+        public function count($table, $countitem = '*', $where = null, array $params = array()) {
             $sql = "SELECT count(".$countitem.") AS counted FROM {$this->dbprefix}_{$table}";
-            if ($where != null) { $sql .= " WHERE ".$where.";"; }
+            if (!is_null($where)) {
+                $sql .= " WHERE ".$where.";";                
+            }
 
             $result = $this->query($sql, $params);	
             if ($result === false) { $this->getError();return false; }
@@ -240,24 +233,50 @@
 
         /**
          * Negiert den Wert des übergebenen Feldes
-         * @param string $table
+         * @param string|array $table
          * @param string $field
          * @param string $where
+         * @return bool
          */
         public function reverseBool($table, $field, $where) {        
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "UPDATE $table SET $field = NOT $field";
             if (!is_null($where)) $sql .= " WHERE $where";
             return $this->exec($sql);
+        }        
+        
+        /**
+         * Liefert höchten Wert einer Tabellen-ID
+         * @param string $table Tabellen-Name
+         * @return int
+         */
+        public function getMaxTableId($table) {
+            $sql = "SELECT max(id) as maxid from {$this->dbprefix}_{$table};";
+            $data = $this->fetch($this->query($sql));
+
+            if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
+                logs::sqllogWrite("MAXID from {$this->dbprefix}_{$table} is {$data->maxid}.");
+            }
+
+            return $data->maxid;
+        }
+        
+        /**
+         * Tabelle via DROP TABLE löschen
+         * @param string $table
+         * @return bool
+         */
+        public function drop($table) {            
+            return $this->exec("DROP TABLE {$this->dbprefix}_{$table}");            
         }
 
         /**
          * Führt ein SQL Kommando aus
          * @param string $command SQL String
          * @param array $bindParams Paramater, welche gebunden werden sollen
-         * @return void
+         * @return bool
          */
-        public function exec($command, $bindParams = null) {        
+        public function exec($command, array $bindParams = array()) {        
             $statement = $this->connection->prepare($command);     
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
@@ -286,7 +305,7 @@
          * @param array $bindParams Paramater, welche gebunden werden sollen
          * @return PDOStatement Zeilen in der Datenbank
          */
-        public function query($command, $bindParams = null) {
+        public function query($command, array$bindParams = array()) {
             $statement = $this->connection->prepare($command);
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
@@ -333,14 +352,14 @@
          * Liefert eine Zeile des results als Objekt zurück
          * @param PDOStatement $result Resultset
          * @param bool $getAll soll fetchAll() erzwungen werden
-         * @return object
+         * @return array
          */		
-        public function fetch($result,$getAll = false) {
+        public function fetch(\PDOStatement $result,$getAll = false) {
             if ($result->rowCount() > 1 || $getAll == true) {
                 return $result->fetchAll(\PDO::FETCH_OBJ);
-            } else {
-                return $result->fetch(\PDO::FETCH_OBJ);
             }
+            
+            return $result->fetch(\PDO::FETCH_OBJ);
         }
 
         /**
@@ -363,22 +382,6 @@
          */
         public function getLastQueryString() {
             return $this->lastQueryString;
-        }        
-        
-        /**
-         * Liefert höchten Wert einer Tabellen-ID
-         * @param string $table Tabellen-Name
-         * @return int
-         */
-        public function getMaxTableId($table) {
-            $sql = "SELECT max(id) as maxid from {$this->dbprefix}_{$table};";
-            $data = $this->fetch($this->query($sql));
-
-            if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
-                logs::sqllogWrite("MAXID from {$this->dbprefix}_{$table} is {$data->maxid}.");
-            }
-
-            return $data->maxid;
         }
         
         /**
