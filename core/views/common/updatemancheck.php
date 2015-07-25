@@ -2,6 +2,6 @@
 
 <?php if($autoDialog) : ?>
 <script type="text/javascript">
-    jQuery(function() { fpcmJs.openManualCheckFrame(); });
+    jQuery(document).ready(function() { fpcmJs.openManualCheckFrame(); });
 </script>
 <?php endif; ?>

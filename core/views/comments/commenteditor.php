@@ -52,7 +52,7 @@
 </div>
 
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(document).ready(function() {
         fpcmEditor.initTinyMceComment();
         fpcmJs.setFocus('commentname');
     });

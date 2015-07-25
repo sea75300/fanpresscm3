@@ -32,6 +32,6 @@ var fpcmEditor = function () {
     }
 };
 
-jQuery(function() {    
+jQuery(document).ready(function() {    
     fpcmEditor = new fpcmEditor();   
 });

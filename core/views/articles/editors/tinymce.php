@@ -28,7 +28,7 @@
 </table>
 
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(document).ready(function() {
         fpcmEditor.initTinyMce();
     });
 </script>

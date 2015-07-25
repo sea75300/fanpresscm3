@@ -108,7 +108,7 @@
 </table>
 
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(document).ready(function() {
         fpcmEditor.initCodeMirror();
     });    
 </script>

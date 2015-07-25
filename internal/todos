@@ -55,3 +55,5 @@ Stand: 20.07.2015 - 20:40 Uhr
 * No postponed Meldung in Cronjob entfernen
 * Syslogs: AJAX-Loader bei Klick auf Tab, aktualisieren-Button entfernen
 * Support Module erstellen
+* Artikel-Dashboard-Container: Anzeige von Infos zu postponed, approval, draft
+* Optimierung Ladezeiten von HTML-Editor

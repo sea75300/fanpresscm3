@@ -329,7 +329,7 @@ var fpcmEditor = function () {
     };
 };
 
-jQuery(function() {
+jQuery(document).ready(function() {
     
     fpcmJs.setFocus('articletitle');
     

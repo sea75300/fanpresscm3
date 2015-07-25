@@ -122,7 +122,7 @@
 <script type="text/javascript">
     var editor = null;
     
-    jQuery(function() {        
+    jQuery(document).ready(function() {        
         jQuery('#fpcm-editor-html-insertlink-btn').click(function() {
             jQuery('#fpcm-editor-html-insertlink').dialog({
                 width: 500,

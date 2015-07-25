@@ -25,7 +25,7 @@
 </div>
 
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(document).ready(function() {
         fpcmModuleInstaller = new fpcmModuleInstaller();
         fpcmModuleInstaller.init('install');
     });

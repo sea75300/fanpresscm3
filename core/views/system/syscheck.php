@@ -23,7 +23,7 @@
 </table>
 
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(document).ready(function() {
         jQuery('.fpcm-ui-button').button();
     });
 </script>

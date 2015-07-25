@@ -17,7 +17,7 @@
 </div>
 
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(document).ready(function() {
         fpcmUpdater = new fpcmUpdater();
         fpcmUpdater.runUpdate();
     });

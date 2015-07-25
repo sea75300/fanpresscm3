@@ -118,6 +118,22 @@
                 $content[] = '  <strong>'.\fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())).'</strong><br>';
                 $content[] = '  <span>'.  $createInfo.'</span>';
                 $content[] = '  </td>';
+                $content[] = '  <td class="fpcm-ui-dashboard-recentarticles-meta">';
+                
+                if ($article->getPinned()) {
+                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_PINNED').'"><span class="fa fa-thumb-tack fa-rotate-90 fa-fw"></span></span>';
+                }                
+                if ($article->getDraft()) {
+                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_DRAFT').'"><span class="fa fa-file-text-o fa-fw"></span></span>';
+                }
+                if ($article->getPostponed()) {
+                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_POSTPONETO').'"><span class="fa fa-clock-o fa-fw"></span></span>';
+                }
+                if ($article->getApproval()) {
+                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_APPROVAL').'"><span class="fa fa-thumbs-o-up fa-fw"></span></span>';
+                }                  
+
+                $content[] = '  </td>';
                 $content[] = '</tr>';
             }
             

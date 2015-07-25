@@ -952,7 +952,8 @@ h3, .fpcm-dashboard-container h3 {
     float: none;
 }
 
-.fpcm-ui-editor-metabox-right {
+.fpcm-ui-editor-metabox-right,
+table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
     font-size: 2.0em;
     color:#3399ff;
 }
