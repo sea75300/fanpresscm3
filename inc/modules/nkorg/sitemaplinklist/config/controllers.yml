@@ -1,0 +1,4 @@
+## Module Controller list file
+---
+ajax/nkorg/sitemaplinklist/checkpath: fpcm/modules/nkorg/sitemaplinklist/controller/checkpath
+ajax/nkorg/sitemaplinklist/savelinks: fpcm/modules/nkorg/sitemaplinklist/controller/savelinks
