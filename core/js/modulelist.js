@@ -185,7 +185,7 @@ var fpcmModulelist = function () {
             url: fpcmAjaxActionPath + 'modules/actions',
             type: 'POST',
             data: {
-                'keys'   : moduleKeys,
+                'keys'   : JSON.stringify(moduleKeys),
                 'action' : moduleAction
             }
         })

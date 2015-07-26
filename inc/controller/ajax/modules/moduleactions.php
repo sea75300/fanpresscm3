@@ -66,7 +66,7 @@
             $this->cache->cleanup();
             
             $this->action   = $this->getRequestVar('action');            
-            $this->keys     = $this->getRequestVar('keys');
+            $this->keys     = $this->getRequestVar('keys', array(1,4,7));
 
             if (!is_array($this->keys)) {
                 $this->keys = json_decode($this->keys, true);

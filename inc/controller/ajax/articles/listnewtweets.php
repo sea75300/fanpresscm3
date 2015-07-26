@@ -41,7 +41,7 @@
                 return false;
             }
 
-            $sparams['ids'] = array_map('intval', json_decode($this->getRequestVar('ids'), true));
+            $sparams['ids'] = array_map('intval', json_decode($this->getRequestVar('ids', array(1,4,7)), true));
             
             $articleList = new \fpcm\model\articles\articlelist();            
             $this->articleItems = $articleList->getArticlesByCondition($sparams, false);
@@ -57,7 +57,7 @@
 
             $resOk     = array();
             $resError  = array();
-            
+
             foreach ($this->articleItems as $article) {
                 if (!$article->createTweet()) {
                     $resError[] = $article->getTitle();
@@ -79,6 +79,8 @@
             }
 
             print json_encode($messages);
+            
+            return true;
             
         }
 
