@@ -98,10 +98,6 @@
             
             if ($this->versionFailed) return false;
 
-            $module = (!is_null(\fpcm\classes\http::get('module'))) ? \fpcm\classes\http::get('module', array(1,4,7)) : false;
-
-            if (!$module || strpos($module, 'fpcm/') === false || $module != 'fpcm/latest') return false;            
-            
             /**
              * @var abstracts\controller
              */
