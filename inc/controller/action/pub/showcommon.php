@@ -212,8 +212,8 @@
                 '{{changeUser}}'                    => isset($this->users[$article->getChangeuser()]) ? $this->users[$article->getChangeuser()] : $this->lang->translate('GLOBAL_NOTFOUND'),
                 '{{statusPinned}}'                  => $article->getPinned() ? $this->lang->translate('PUBLIC_ARTICLE_PINNED') : '',
                 '{{shareButtons}}'                  => $shareButtonParser->parse(),
-                '{{categoryIcons}}'                 => implode(PHP_EOL, $categoryTexts),
-                '{{categoryTexts}}'                 => implode(PHP_EOL, $categoryIcons),
+                '{{categoryIcons}}'                 => implode(PHP_EOL, $categoryIcons),
+                '{{categoryTexts}}'                 => implode(PHP_EOL, $categoryTexts),
                 '{{commentCount}}'                  => $commentCount,
                 '{{permaLink}}:{{/permaLink}}'      => $article->getArticleLink(),
                 '{{commentLink}}:{{/commentLink}}'  => $article->getArticleLink().'#comments',
@@ -226,7 +226,7 @@
             
             if ($this->session->exists()) {
                 $html   = array();
-                $html[] = '<div class="fpcm-pub-articletoolbar-article'.$article->getId().'">';
+                $html[] = '<div class="fpcm-pub-articletoolbar-article fpcm-pub-articletoolbar-article'.$article->getId().'">';
                 $html[] = '<a href="'.$article->getEditLink().'">'.$this->lang->translate('HL_ARTICLE_EDIT').'</a>';
                 $html[] = '</div>';
                 

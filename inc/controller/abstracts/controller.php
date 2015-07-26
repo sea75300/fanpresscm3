@@ -250,9 +250,7 @@
                 
                 return false;
             }
-            
-            
-            
+
             return true;
         }
 

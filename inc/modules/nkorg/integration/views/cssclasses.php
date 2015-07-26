@@ -1,6 +1,7 @@
 <p><?php $FPCM_LANG->write('NKORG_INTEGRATION_CSSCLASSES_TEXT'); ?></p>
 <pre>
 .fpcm-pub-articletoolbar-main { }
+.fpcm-pub-articletoolbar-article {}
 .fpcm-pub-news-sharebuttons { }
 .fpcm-pub-category-text { }
 .fpcm-pub-readmore-link { }

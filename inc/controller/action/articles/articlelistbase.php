@@ -326,7 +326,7 @@
             $this->view->assign('listActionLimit', '');
             
             $pageValue = 1;
-            $pageCount = round($this->articleCount / $this->listShowLimit);
+            $pageCount = ceil($this->articleCount / $this->listShowLimit);
             
             if ($this->getRequestVar('page')) {
                 $pageValue = (int) $this->getRequestVar('page');

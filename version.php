@@ -9,6 +9,6 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
-    $fpcmVersion = '3.0.0rc6 b'.date('Ymd');
+    $fpcmVersion = '3.0.0rc7';
 
 ?>

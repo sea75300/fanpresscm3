@@ -277,7 +277,7 @@
             self::$dashcontainerDir    = self::$incDir.'model/dashboard/';
 
             $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
-            self::$rootPath            = $http.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/';
+            self::$rootPath            = $http.$_SERVER['HTTP_HOST'].'/'.basename(self::$baseDir).'/';
 
             self::$uploadRootPath      = self::$rootPath.basename(self::$dataDir).'/uploads/';
             self::$shareRootPath       = self::$rootPath.basename(self::$dataDir).'/share/';

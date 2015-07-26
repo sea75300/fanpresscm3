@@ -319,7 +319,11 @@
                 $phpImgWsp->cropMaximumInPixel(0, 0, 'MM');
             }
             $phpImgWsp->resizeInPixel(100, 100);
-            $phpImgWsp->save($this->getFilepath().dirname($this->getThumbnail()), basename($this->getThumbnail()));
+            $phpImgWsp->save($this->getFilepath().dirname($this->getThumbnail()),
+                             basename($this->getThumbnail()),
+                             true,
+                             null,
+                             85);
 
             $this->events->runEvent('thumbnailCreate', $this);
             
