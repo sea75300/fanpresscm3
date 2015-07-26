@@ -11,25 +11,29 @@
      * @param string $class
      */
     function fpcmAutoLoader($class) {
-        if (strpos($class, 'fpcm') === false) return false;
+        if (strpos($class, 'fpcm') === false) {
+            return false;
+        }
 
         $class = str_replace(array('fpcm\\', '\\'), array('', DIRECTORY_SEPARATOR), $class);
         $includePath = fpcm\classes\baseconfig::$baseDir.DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARATOR.$class.'.php';
         
         if (file_exists($includePath)) {
-            include_once $includePath;            
-        } else {
-            $includePaths = array('/inc/controller/', '/inc/model/', '/inc/classes/', '/inc/modules');
-            
-            $paths = array();
-            foreach ($includePaths AS $path) {            
-                $includePath = fpcm\classes\baseconfig::$baseDir.$path.$class.'.php';
-                if (file_exists($includePath)) {
-                    include_once $includePath;
-                    break;
-                }
-            }            
+            include_once $includePath;
+            return true;   
         }
+        
+        $includePaths = array('controller', 'model', 'classes', 'modules');
+        foreach ($includePaths AS $path) {            
+            $includePath = fpcm\classes\baseconfig::$incDir.$path.DIRECTORY_SEPARATOR.$class.'.php';
+            if (!file_exists($includePath)) {
+                continue;
+            }
+            include_once $includePath;
+            break;
+        } 
+        
+        return true;
     }
     
     /**
@@ -43,32 +47,32 @@
     function fpcmErrorHandler($ecode, $etext, $efile, $eline) {        
         $errorLog = dirname(__DIR__).'/data/logs/phplog.txt';
         
-        $text = array(
-            $etext,
-            'in file '.$efile.', line '.$eline,
-            'ERROR CODE: '.$ecode
-        );
-        
-        $LogLine = json_encode(array('time' => date('Y-m-d H:i:s'), 'text' => implode(PHP_EOL, $text)));
-        if (file_put_contents($errorLog, $LogLine.PHP_EOL, FILE_APPEND) === false) {
-            return true;
+        if (!is_writable($errorLog)) {
+            return false;
         }
         
-        return (defined("FPCM_DEBUG") && FPCM_DEBUG) ? true : false;
+        $text = array($etext, 'in file '.$efile.', line '.$eline, 'ERROR CODE: '.$ecode);
+        
+        $LogLine = json_encode(array('time' => date('Y-m-d H:i:s'), 'text' => implode(PHP_EOL, $text)));
+        file_put_contents($errorLog, $LogLine.PHP_EOL, FILE_APPEND);
+
+        return false;
     }
     
     /**
      * Debug-Ausgabe am Ende der Seite
      */
     function fpcmDebugOutput() {
-        if (defined("FPCM_DEBUG") && FPCM_DEBUG) {
-            $html   = array();
-            $html[] = 'Memory usage: '.round(memory_get_usage(true) / 1024 / 1024,2).'MB<br>';
-            $html[] = 'Memorypeak: '.round(memory_get_peak_usage(true) / 1024 / 1024,2).'MB<br>';
-            $html[] = 'BASEDIR: '.\fpcm\classes\baseconfig::$baseDir.'<br>';
-            $html[] = 'PHPVERSION: '.PHP_VERSION;
-            print '<p style="text-align:center;font-size:0.9em;margin-bottom:35px;">'.implode("\n", $html).'</p>'.PHP_EOL.PHP_EOL;
+        if (!FPCM_DEBUG) {
+            return false;
         }
+        
+        $html   = array();
+        $html[] = 'Memory usage: '.round(memory_get_usage(true) / 1024 / 1024,2).'MB<br>';
+        $html[] = 'Memorypeak: '.round(memory_get_peak_usage(true) / 1024 / 1024,2).'MB<br>';
+        $html[] = 'BASEDIR: '.\fpcm\classes\baseconfig::$baseDir.'<br>';
+        $html[] = 'PHPVERSION: '.PHP_VERSION;
+        print '<p style="text-align:center;font-size:0.9em;margin-bottom:35px;">'.implode("\n", $html).'</p>'.PHP_EOL.PHP_EOL;
     }    
     
     /**

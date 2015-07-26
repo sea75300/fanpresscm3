@@ -20,6 +20,10 @@
             $acfile      = new \fpcm\modules\nkorg\sitemaplinklist\model\activelinkfile();
             $activeLinks = $acfile->loadData();
             
+            if (!is_array($activeLinks) || !count($activeLinks)) {
+                return $params;
+            }
+            
             foreach ($activeLinks as $activeLink) {
                 $params[] = array(
                     'label' => $activeLink,
