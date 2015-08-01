@@ -19,7 +19,7 @@
     final class settings {
         
         /**
-         *
+         * Data array for __get/__set
          * @var array
          */
         protected $data;
@@ -36,7 +36,7 @@
         }
         
         /**
-         * 
+         * Magic get
          * @param string $name
          * @return mixed
          */
@@ -45,7 +45,7 @@
         }
         
         /**
-         * 
+         * Magic set
          * @param mixed $name
          * @param mixed $value
          */

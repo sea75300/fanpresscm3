@@ -139,11 +139,13 @@
         }
 
         /**
-         * Gibt text für übergebene Sprachavriable zurück
-         * @param string $langvar
+         * Gibt Text für übergebene Sprachavriable zurück
+         * @param string $langvar Sprachvariable
+         * @param array $replaceParams Liste von Platzhaltern in der Sprachvariable mit zu ersetzendem Text
+         * * Aufbau: Key = Platzhalter => Value = Text
          * @return string
          */
-        public function translate($langvar, $replaceParams = array()) {
+        public function translate($langvar, array $replaceParams = array()) {
             $langvar  = strtoupper($langvar);
             $langData = isset($this->langData[$langvar]) ? $this->langData[$langvar] : null;            
             return is_null($langData) ? $langData : str_replace(array_keys($replaceParams), array_values($replaceParams), $langData);
@@ -187,8 +189,9 @@
 
         /**
          * Schreibt Text für übergebene Sprachavriable an die Stelle des Aufrufs, sbwp. in einer View
-         * @param string $langvar
-         * @param array $replaceParams
+         * @param string $langvar Sprachvariable
+         * @param array $replaceParams Liste von Platzhaltern in der Sprachvariable mit zu ersetzendem Text
+         * * Aufbau: Key = Platzhalter => Value = Text
          */
         public function write($langvar, array $replaceParams = array()) {
             print $this->translate($langvar, $replaceParams);

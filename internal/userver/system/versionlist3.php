@@ -1,6 +1,6 @@
 <?php
-    $newversion    = '3.0.0rc4 '.date('Ymd');
-    $newversionDev = '3.0.0rc4 '.date('Ymd_His');
+    $newversion    = '3.0.0 ';
+    $newversionDev = '3.0.0';
     
     $versions = array(
         'default' => array(

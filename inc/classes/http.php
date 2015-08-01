@@ -19,7 +19,7 @@
     final class http {
         
         /**
-         *
+         * HTTP-Reuqest aus $_REQUEST und $_COOKIE
          * @var array
          */
         private static $request;

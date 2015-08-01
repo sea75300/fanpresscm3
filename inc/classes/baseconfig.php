@@ -372,6 +372,7 @@
         
         /**
          * Aktiviert bzw. deaktiviert Installer
+         * @param bool $status neuer Status
          * @return bool
          */
         public static function enableInstaller($status) {
@@ -392,6 +393,7 @@
         
         /**
          * Aktiviert bzw. deaktiviert asynchrone Cronjob-Ausführung
+         * @param bool $status neuer Status
          * @return bool
          */
         public static function enableAsyncCronjobs($status) {

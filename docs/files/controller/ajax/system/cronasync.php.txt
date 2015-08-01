@@ -1,0 +1,48 @@
+<?php
+    /**
+     * AJAX cron controller
+     * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
+    namespace fpcm\controller\ajax\system;
+    
+    /**
+     * AJAX-Controller - synchrone Ausführung von Cronjobs
+     * 
+     * @package fpcm.controller.ajax.system.cronasync
+     * @author Stefan Seehafer <sea75300@yahoo.de>
+     */  
+    class cronasync extends \fpcm\controller\abstracts\ajaxController {
+
+        /**
+         * Konstruktor
+         */
+        public function __construct() {
+            parent::__construct();
+        }
+        
+        /**
+         * Request-Handler
+         * @return bool
+         */
+        public function request() {
+            return \fpcm\classes\baseconfig::asyncCronjobsEnabled();
+        }
+        
+        /**
+         * Controller-Processing
+         */
+        public function process() {
+            if (!parent::process()) return false;
+
+            $cronlist = new \fpcm\model\crons\cronlist();
+            $crons = $cronlist->getCrons();
+
+            foreach ($crons as $cron) {
+                $cronlist->registerCron($cron, true);
+            }            
+        }
+        
+    }
+?>
