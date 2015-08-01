@@ -35,9 +35,7 @@
             foreach ($terms as $term) {
                 $newTitle = preg_replace(array('/('.$term->getSearchterm().')/is'), $term->getReplaceterm(), $moduleArticle->getTitle());
                 $moduleArticle->setTitle($newTitle);
-            }            
-            
-            \fpcm\classes\logs::syslogWrite($moduleArticle->getTitle());
+            }
             
             return $moduleArticle;
         }
