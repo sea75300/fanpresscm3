@@ -144,6 +144,8 @@
                 return false;
             }
             
+            $this->cache->cleanup();
+            
             return true;
         }
         

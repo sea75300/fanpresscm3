@@ -266,6 +266,8 @@
                 $commentList = new \fpcm\model\comments\commentList();
                 $commentList->deleteCommentsByArticle($ids);
             }
+
+            $this->cache->cleanup();
             
             return $res;
         }
@@ -277,6 +279,7 @@
          */
         public function restoreArticles(array $ids) {
             if (!$this->config->articles_trash) return false;
+            $this->cache->cleanup();
             return $this->dbcon->update($this->table, array('deleted'), array(0), 'id IN ('.implode(', ', $ids).') AND deleted = 1');
         }
         
@@ -286,6 +289,7 @@
          * @return bool
          */
         public function publishPostponedArticles(array $ids) {
+            $this->cache->cleanup();
             return $this->dbcon->update($this->table, array('postponed'), array(0), 'id IN ('.implode(', ', $ids).') AND postponed = 1 AND approval = 0 AND deleted = 0 AND draft = 0');
         }
         
@@ -320,7 +324,8 @@
          * @param array $ids
          * @return bool
          */
-        public function toggleComments(array $ids) {   
+        public function toggleComments(array $ids) {
+            $this->cache->cleanup();
             return $this->dbcon->reverseBool($this->table, 'comments', 'id IN ('.implode(', ', $ids).')');
         }
         
@@ -329,7 +334,8 @@
          * @param array $ids
          * @return bool
          */
-        public function toggleApproval(array $ids) {   
+        public function toggleApproval(array $ids) {
+            $this->cache->cleanup();            
             return $this->dbcon->reverseBool($this->table, 'approval', 'id IN ('.implode(', ', $ids).')');
         }
         
@@ -338,9 +344,9 @@
          * @param array $ids
          * @return bool
          */
-        public function togglePinned(array $ids) {   
-            $res = $this->dbcon->reverseBool($this->table, 'pinned', 'id IN ('.implode(', ', $ids).') AND deleted = 0 AND archived = 0');
-            return $res;
+        public function togglePinned(array $ids) {
+            $this->cache->cleanup();
+            return $this->dbcon->reverseBool($this->table, 'pinned', 'id IN ('.implode(', ', $ids).') AND deleted = 0 AND archived = 0');
         }
         
         /**
