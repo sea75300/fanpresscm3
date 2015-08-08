@@ -29,8 +29,7 @@
         'INSTALLER_FINALIZE'                => 'installation finished...',
         'INSTALLER_FINALIZE_TEXT'           => '<strong>Success!</strong> Installing FanPress CM has been finished!'.
                                                'You can now log into your system! <span class="fa fa-smile-o"></span>',
-        'INSTALLER_FINALIZE_DIABLED'        => '<strong>Important!</strong> Please delete the file <strong>'.
-                                               '/inc/installer.enabled</strong> and the folder <strong>'.
-                                               '/data/config/dbstruct</strong> via FTP to disable the installer!!!!'
+        'INSTALLER_FINALIZE_DIABLED'        => '<strong>Important:</strong> Please delete the file <strong>'.
+                                               '/data/config/installer.enabled</strong> via FTP to disable the installer!!!!'
         
     );
