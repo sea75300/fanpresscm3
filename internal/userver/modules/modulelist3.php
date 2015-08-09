@@ -1,6 +1,6 @@
 <?php
     /* Verfügbare Module auf Server */
-    $maxVersion = "3.0.0";
+    $maxVersion = "4.0.0";
 
     $modulesServer = array(
         'nkorg/classicimporter' => array(

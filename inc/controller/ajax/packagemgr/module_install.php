@@ -108,6 +108,13 @@
                 case 4 :
                     $moduleClass = \fpcm\model\abstracts\module::getModuleClassName($keyData[0]);
                     $res = class_exists($moduleClass);
+                    
+                    $moduleClassPath = \fpcm\classes\baseconfig::$moduleDir.$keyData[0].'/'.str_replace(array('\\', '/'), '', $keyData[0]).'.php';
+                    if (!file_exists($moduleClassPath)) {
+                        $res = false;
+                        trigger_error('Module class '.$moduleClass.' not found in "'.$moduleClassPath.'"!');
+                        break;
+                    }
 
                     if ($res) {
                         $modObj = new $moduleClass($keyData[0], '', $keyData[1]);                        
