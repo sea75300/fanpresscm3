@@ -37,7 +37,7 @@
          * @return string
          */
         public static function getSessionCookieValue() {            
-            return http::get(self::getSessionCookieName(), array(1,4,7));
+            return http::cookieOnly(self::getSessionCookieName(), array(1,4,7));
         }
                 
         /**
@@ -67,6 +67,15 @@
             return '$5$'.substr(hash('sha256', self::getSecureBaseString()), 0, 16).'$';
         }
         
+        /**
+         * Erzeugt Page-Token zur Absicherung gegen 
+         * @return string
+         */
+        public static function getPageToken() {
+            $str = '$'.self::getSecureBaseString().'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module');
+            return hash('sha256', $str);
+        }
+
         /**
          * Erzeugt Basis-String für Hash-Funktionen
          * @return string

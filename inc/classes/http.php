@@ -39,14 +39,46 @@
          * @return mixed null wenn Variable nicht gesetzt
          */
         public static function get($varname = null, array $filter = array(1,4,7)) {
-            
             if (is_null($varname)) return self::$request;
-            
-            $returnVal  = (isset(self::$request[$varname]))
-                        ? self::filter(self::$request[$varname], $filter)
-                        : null;
-            
+            $returnVal = (isset(self::$request[$varname])) ? self::filter(self::$request[$varname], $filter) : null;
             return $returnVal;            
+        }
+
+        /**
+         * Daten aus $_POST
+         * Ersetz für direkten Zugriff auf $_POST
+         * @param string $varname Variablenname
+         * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
+         * @return mixed null wenn Variable nicht gesetzt
+         */
+        public static function postOnly($varname = null, array $filter = array(1,4,7)) {
+            if (is_null($varname)) return $_POST;
+            $returnVal  = (isset($_POST[$varname])) ? self::filter($_POST[$varname], $filter) : null;
+            return $returnVal;
+        }
+
+        /**
+         * Daten aus $_GET
+         * Ersetz für direkten Zugriff auf $_GET
+         * @param string $varname Variablenname
+         * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
+         * @return mixed null wenn Variable nicht gesetzt
+         */
+        public static function getOnly($varname = null, array $filter = array(1,4,7)) {
+            if (is_null($varname)) return $_GET;
+            $returnVal  = (isset($_GET[$varname])) ? self::filter($_GET[$varname], $filter) : null;
+            return $returnVal;
+        }
+
+        /**
+         * Daten aus $_COOKIE
+         * Ersetz für direkten Zugriff auf $_COOKIE
+         * @param string $varname Variablenname
+         * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
+         * @return mixed null wenn Variable nicht gesetzt
+         */
+        public static function cookieOnly($varname = null, array $filter = array(1,4,7)) {
+            return (isset($_COOKIE[$varname])) ? self::filter($_COOKIE[$varname], $filter) : null;
         }
         
         /**

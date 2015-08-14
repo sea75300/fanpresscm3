@@ -135,7 +135,8 @@
          * @return string
          */
         public function buttonClicked($buttonName) {
-            return !is_null($this->getRequestVar('btn'.ucfirst($buttonName)));
+            $btnName = 'btn'.ucfirst($buttonName);
+            return !is_null(\fpcm\classes\http::postOnly($btnName)) && is_null(\fpcm\classes\http::getOnly($btnName));
         }
 
         /**
