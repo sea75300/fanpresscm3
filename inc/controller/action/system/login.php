@@ -81,7 +81,7 @@
             
             $this->loginLocked();
             
-            if ($this->buttonClicked('login') && !is_null($this->getRequestVar('login')) && !$this->loginLocked) {
+            if ($this->buttonClicked('login') && !is_null($this->getRequestVar('login')) && !$this->loginLocked && $this->checkPageToken()) {
                 $data = $this->getRequestVar('login');                
                 $data = $this->events->runEvent('loginBefore', $data);
                 
@@ -107,7 +107,7 @@
                 }                
             }
             
-            if ($this->buttonClicked('reset') && !is_null($this->getRequestVar('username')) && !is_null($this->getRequestVar('email')) && !$this->loginLocked) {
+            if ($this->buttonClicked('reset') && !is_null($this->getRequestVar('username')) && !is_null($this->getRequestVar('email')) && !$this->loginLocked && $this->checkPageToken()) {
 
                 $userList = new \fpcm\model\users\userList();
                 $id = $userList->getUserIdByUsername($this->getRequestVar('username'));
@@ -145,6 +145,7 @@
          * Controller-Processing
          */
         public function process() {
+
             if ($this->iplist->ipIsLocked() || $this->iplist->ipIsLocked('nologin')) {
                 $this->view->addErrorMessage('ERROR_IP_LOCKED');
                 $this->view->assign('lockedGlobal', true);
@@ -159,10 +160,14 @@
                 ));
                 $this->view->assign('nofade', false);
             }
+            
+            if (!$this->checkPageToken() && ($this->buttonClicked('reset') || $this->buttonClicked('login'))) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+            }
 
             $this->view->assign('loginAttempts', $this->currentAttempts);
             $this->view->assign('loginAttemptsMax', $this->maxAttempts);
-            $this->view->render();            
+            $this->view->render();
         }
         
         /**

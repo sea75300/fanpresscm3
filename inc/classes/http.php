@@ -96,6 +96,14 @@
         public static function getHttpHost() {
             return $_SERVER['HTTP_HOST'];
         }
+        
+        /**
+         * Gibt Page-Token-Informationen zurück
+         * @return string
+         */
+        public static function getPageToken() {
+            return self::postOnly(security::getPageTokenFieldName());
+        }
 
         /**
          * Gibt Inhalt von Dateiupload via PHP zurück

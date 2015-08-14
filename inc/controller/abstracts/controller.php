@@ -351,5 +351,18 @@
             
             return;
         }
+        
+        /**
+         * Page-Token prüfen
+         * @return boolean
+         */
+        protected function checkPageToken() {
+
+            if ( \fpcm\classes\http::getPageToken() == \fpcm\classes\http::getSessionVar(\fpcm\classes\security::getPageTokenFieldName()) ) {                
+                return true;
+            }
+            
+            return false;
+        }
     }
 ?>

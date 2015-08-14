@@ -23,6 +23,7 @@
         'SEARCH_WAITMSG'                => 'Bitte warte 10 Sekunden, bevor du einen neuen Suchvorgang durchführst.',
         'RSSFEED_DISABLED'              => 'Der RSS-Feed ist deaktiviert. Wende dich an den Seitenbetreiber, um zu erfahren wieso.',
         'MAINTENANCE_MODE_ENABLED'      => 'Der Wartungsmodus von FanPress CM ist gerade aktiv, daher steht diese Funktion im Moment nicht zur Verfügung.',
+        'CSRF_INVALID'                  => 'Das CSRF-Token ist ungültig. Die Aktion wurde nicht durchgeführt!',
         
         'SAVE_SUCCESS_ADDUSER'          => 'Der Benutzer wurde gespeichert!',
         'SAVE_SUCCESS_USER_DISBALE'     => 'Der Benutzer wurde deaktiviert!',

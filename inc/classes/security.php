@@ -31,7 +31,15 @@
         public static function getSessionCookieName() {
             return 'fpcm_sid'.md5($_SERVER['HTTP_HOST'].'_'.date('d-m-Y'));
         }
-
+        
+        /**
+         * Page-Token-Feld-Name zurückgeben
+         * @return string
+         */
+        public static function getPageTokenFieldName() {
+            return md5('pagetoken'.$_SERVER['HTTP_HOST'].'_'.date('d-m-Y'));
+        }
+        
         /**
          * gibt Inhalt von Session cookie zurück
          * @return string
@@ -72,8 +80,9 @@
          * @return string
          */
         public static function getPageToken() {
-            $str = '$'.self::getSecureBaseString().'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module');
-            return hash('sha256', $str);
+            $str = hash('sha256', '$'.$_SERVER['HTTP_HOST'].'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$'.date('Y-m-d-H'));
+            http::setSessionVar(self::getPageTokenFieldName(), $str);
+            return $str;
         }
 
         /**
