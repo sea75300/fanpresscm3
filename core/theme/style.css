@@ -267,7 +267,17 @@ img {
     font-size: 1.5em;
 }
 
-.fpcm-message-notice, .fpcm-message-error, .fpcm-message-neutral {
+.fpcm-message-box .fpcm-msg-close {
+    position: absolute;
+    top:  0.3em;
+    right: 0.3em;
+    font-size: 0.4em;
+    cursor: pointer;
+}
+
+.fpcm-message-notice,
+.fpcm-message-error,
+.fpcm-message-neutral {
     margin: 0.8em;
 }
 
@@ -283,7 +293,9 @@ img {
     border: 1px solid #FAD42E;
 }
 
-.fpcm-message-error, .fpcm-dashboard-updates-outdated, .fpcm-ui-important-text {
+.fpcm-message-error,
+.fpcm-dashboard-updates-outdated,
+.fpcm-ui-important-text {
     color: #cc0000;
 }
 
@@ -308,7 +320,7 @@ table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments.fpcm-ui-
 
 input, select, textarea, option, button {
     outline: 0;
-    font-size: 10pt;    
+    font-size: 1em;    
 }
 
 input[type=text], input[type=password], textarea {

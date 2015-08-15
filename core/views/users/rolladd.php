@@ -25,8 +25,8 @@
                 </div>                
             </div>
         </div>
-    </div>             
-</form>
+    </form>
+</div>             
 
 <script type="text/javascript">
     jQuery(document).ready(function() {

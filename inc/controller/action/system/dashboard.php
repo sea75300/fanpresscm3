@@ -45,7 +45,7 @@
             if ($this->session->exists()) {
                 $this->getClasses();                
             }
-
+            
             $this->view->assign('containers', $this->containers);
             $this->view->render();            
         }

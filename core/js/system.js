@@ -307,6 +307,17 @@ jQuery(document).ready(function () {
         return false;
     });
     
+    jQuery('#fpcm-messages').find('.fpcm-msg-close').click(function () {
+        var closeId = jQuery(this).attr('id');
+        jQuery('#msgbox-' + closeId.substring(9)).fadeOut('slow');
+    }).mouseover(function () {
+        jQuery(this).find('.fa.fa-square').removeClass('fa-inverse');
+        jQuery(this).find('.fa.fa-times').addClass('fa-inverse');
+    }).mouseout(function () {
+        jQuery(this).find('.fa.fa-square').addClass('fa-inverse');
+        jQuery(this).find('.fa.fa-times').removeClass('fa-inverse');
+    });
+    
     jQuery('#password_confirm').focusout(function () {
         var password = jQuery('#password').val();
         var confirm  = jQuery(this).val();

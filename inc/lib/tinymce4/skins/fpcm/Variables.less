@@ -11,6 +11,7 @@
 @has-gradients:                  true;
 @has-radius:                     true;
 @has-boxshadow:                  true;
+@has-button-borders:             true;
 
 // Text colors
 @text:                           #333333;
@@ -26,7 +27,6 @@
 @btn-border-right:               rgba(166,201,226,1.0);
 @btn-border-bottom:              rgba(166,201,226,1.0);
 @btn-border-left:                rgba(166,201,226,1.0);
-@btn-split-border:               #c5dbec;
 @btn-caret-border:               @btn-text;
 @btn-text-disabled:              @text-disabled;
 @btn-box-shadow:                 inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
@@ -36,6 +36,9 @@
 @btn-bg-hlight:                  #e4f0fb;
 @btn-bg-hover:                   darken(@btn-bg, 5%);
 @btn-bg-hlight-hover:            darken(@btn-bg-hlight, 5%);
+@btn-border-hover:               darken(@btn-bg, 20%);
+@btn-border-active:              darken(@btn-bg, 20%);
+@btn-padding:                    4px 8px;
 
 @btn-primary-bg:                 #5c9ccc;
 @btn-primary-bg-hlight:          #2e6e9e;
@@ -47,10 +50,16 @@
 @btn-primary-border-right:       mix(@btn-border-right, @btn-primary-bg, 50%);
 @btn-primary-border-bottom:      mix(@btn-border-bottom, @btn-primary-bg, 50%);
 @btn-primary-border-left:        mix(@btn-border-left, @btn-primary-bg, 50%);
+@btn-primary-border:             transparent;
+@btn-primary-border-hover:       transparent;
+
+// Button group
+@btn-group-border-width:         1px;
 
 // Menu
 @menuitem-text:                  #333333;
 @menu-bg:                        #ffffff;
+@menu-margin:                    -1px 0 0;
 @menu-border:                    rgba(166,201,226,1.0);
 @menubar-border:                 mix(@panel-border, @panel-bg, 60%);
 @menuitem-text-inverse:          #ffffff;
@@ -145,3 +154,12 @@
 // Misc
 @colorbtn-backcolor-bg:          #bbd2e7;
 @iframe-border:                  @panel-border;
+
+// Slider
+@slider-border:                  #aaaaaa;
+@slider-bg:                      #eeeeee;
+@slider-handle-border:           #bbbbbb;
+@slider-handle-bg:               #dddddd;
+
+@flow-layout-spacing:            2px;
+@tabs-bg:						 #FFF;

@@ -4,7 +4,7 @@
 
         <?php foreach ($messageList as $msgtext => $msgtype) : ?>
 
-        <div class="fpcm-message-box fpcm-message-<?php print $msgtype; ?>">
+        <div class="fpcm-message-box fpcm-message-<?php print $msgtype; ?>" id="msgbox-<?php print md5($msgtype.$msgtext); ?>">
             <div class="fpcm-msg-icon">
                 <span class="fa-stack fa-lg">
                     <span class="fa fa-square fa-stack-2x fa-inverse"></span>
@@ -19,6 +19,16 @@
             </div>
 
             <div class="fpcm-msg-text"><?php print $msgtext; ?></div>
+            
+            <?php if (isset($nofade)) : ?>
+            <div class="fpcm-msg-close" id="msgclose-<?php print md5($msgtype.$msgtext); ?>">
+                <span class="fa-stack fa-lg">
+                  <span class="fa fa-square fa-stack-2x fa-inverse"></span>
+                  <span class="fa fa-times fa-stack-1x"></span>
+                </span>
+            </div>            
+            <?php endif; ?>
+            
             <div class="fpcm-clear"></div>
         </div>            
 

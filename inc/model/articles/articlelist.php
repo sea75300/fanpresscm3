@@ -174,6 +174,7 @@
             }
             
             if (isset($conditions['category'])) {
+                $conditions['category'] = (int )$conditions['category'];
                 $where[] = "(categories LIKE ? OR categories LIKE ? OR categories LIKE ?)";
                 $valueParams[] = "%{$conditions['category']}%";
                 $valueParams[] = "%{$conditions['category']},";
@@ -382,6 +383,7 @@
             $where = 'id > 0';
             
             if (isset($condition['category'])) {
+                $condition['category'] = (int)$condition['category'];
                 $valueParams[] = "categories LIKE '{$condition['category']}'";
                 $valueParams[] = "categories LIKE '%;{$condition['category']}'";
                 $valueParams[] = "categories LIKE '{$condition['category']};%'";

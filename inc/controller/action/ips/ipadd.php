@@ -31,6 +31,12 @@
         }
 
         public function request() {
+            
+            if ($this->buttonClicked('ipSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
             if ($this->buttonClicked('ipSave')) {
                 $this->ipaddress->setIpaddress($this->getRequestVar('ipaddress'));
                 $this->ipaddress->setIptime(time());
