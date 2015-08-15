@@ -34,7 +34,7 @@
         'nkorg/tweetextender' => array(
             'name'          => 'Tweet Extender',
             'description'   => 'The Tweet Extender allows you to modify posts send to twitter when the connection and sending on creation/ updating is enabled.',
-            'version'       => '3.0.0',
+            'version'       => '3.0.1',
             'minsysverion'  => '2.99.0',
             'maxsysverion'  => '4.0.0'
         ),
