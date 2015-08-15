@@ -79,9 +79,13 @@
          * Erzeugt Page-Token zur Absicherung gegen 
          * @return string
          */
-        public static function getPageToken() {
+        public static function getPageToken() {            
             $str = hash('sha256', '$'.$_SERVER['HTTP_HOST'].'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$'.date('Y-m-d-H'));
-            http::setSessionVar(self::getPageTokenFieldName(), $str);
+            
+            $cache = new cache(self::getPageTokenFieldName());
+            $cache->write($str, FPCM_PAGETOKENCACHE_TIMEOUT);
+            unset($cache);
+            
             return $str;
         }
 

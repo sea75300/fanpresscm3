@@ -32,8 +32,12 @@
         public function request() {
 
             $author = $this->session->getCurrentUser();
+                
+            if ($this->buttonClicked('profileSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+            }
 
-            if ($this->buttonClicked('profileSave')) {
+            if ($this->buttonClicked('profileSave') && $this->checkPageToken()) {
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
                 $author->setUserMeta($this->getRequestVar('usermeta'));

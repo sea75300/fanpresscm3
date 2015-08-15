@@ -113,7 +113,13 @@
          * @return boolean
          */
         public function request() {
-            if ($this->buttonClicked('doAction') && !is_null($this->getRequestVar('actions'))) {
+            
+            if ($this->buttonClicked('doAction') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
+            if ($this->buttonClicked('doAction') && !is_null($this->getRequestVar('actions')) && $this->checkPageToken()) {
                 
                 $actionData = $this->getRequestVar('actions');
                 

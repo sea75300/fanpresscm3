@@ -87,6 +87,13 @@
         define ('FPCM_LANGCACHE_TIMEOUT', 3600 * 24);
     }
     
+    if (!defined('FPCM_PAGETOKENCACHE_TIMEOUT')) {
+        /**
+         * Timeout für Sprach-Cache
+         */
+        define ('FPCM_PAGETOKENCACHE_TIMEOUT', 3600 * 5);
+    }
+    
     if (!defined('FPCM_COMMENT_MARKSPAM_PASTCHECK')) {
         /**
          * Anzahl an Spam deklarierter vorhandener Kommentare, wenn ein neuer Kommentar geschrieben wird

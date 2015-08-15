@@ -90,6 +90,8 @@
             </table>
         </div>
 
+        <?php \fpcm\model\view\helper::pageTokenField(); ?>
+        
     </form> 
 </div>
 

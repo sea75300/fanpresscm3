@@ -37,5 +37,7 @@
                 <?php endif; ?>
             </div>
         <?php endif; ?>
+        
+        <?php \fpcm\model\view\helper::pageTokenField(); ?>
     </form>
 </div>

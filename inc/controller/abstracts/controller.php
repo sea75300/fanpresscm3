@@ -358,7 +358,8 @@
          */
         protected function checkPageToken() {
 
-            if ( \fpcm\classes\http::getPageToken() == \fpcm\classes\http::getSessionVar(\fpcm\classes\security::getPageTokenFieldName()) ) {                
+            $cache = new \fpcm\classes\cache(\fpcm\classes\security::getPageTokenFieldName());
+            if (\fpcm\classes\http::getPageToken() == $cache->read()) {                
                 return true;
             }
             

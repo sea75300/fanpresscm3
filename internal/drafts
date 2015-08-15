@@ -1,3 +1,13 @@
+
+            if ($this->buttonClicked('configSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+            }
+
+
+
+
+
+
 Event wird ausgeführt, wenn 
      * @param 
      * @return 

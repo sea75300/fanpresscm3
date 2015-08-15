@@ -10,5 +10,7 @@
                 <?php include __DIR__.'/commentlist_inner.php'; ?>
             </div>
         </div>
-    </div>             
+    </div>
+
+    <?php \fpcm\model\view\helper::pageTokenField(); ?>
 </form>

@@ -55,3 +55,5 @@
         fpcmJs.setFocus('username');
     });
 </script>
+
+<?php \fpcm\model\view\helper::pageTokenField(); ?>

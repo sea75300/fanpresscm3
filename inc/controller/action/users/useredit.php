@@ -36,9 +36,13 @@
             if (!$author->exists()) {
                 $this->view->setNotFound('LOAD_FAILED_USER', 'users/list');                
                 return true;
-            }            
+            }
+                
+            if ($this->buttonClicked('userSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+            }
             
-            if ($this->buttonClicked('userSave')) {
+            if ($this->buttonClicked('userSave') && $this->checkPageToken()) {
                 $author->setUserName($this->getRequestVar('username'));
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));

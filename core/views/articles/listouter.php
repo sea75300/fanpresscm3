@@ -35,6 +35,8 @@
                 </tr>
             </table>
         </div>
+        
+        <?php \fpcm\model\view\helper::pageTokenField(); ?>
     </form>
         
     <?php include __DIR__.'/searchform.php'; ?>
