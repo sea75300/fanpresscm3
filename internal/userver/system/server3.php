@@ -3,6 +3,10 @@
 
     $data       = json_decode(base64_decode(str_rot13($_GET['data'])), TRUE);
 
+    if (isset($data['webinstaller'])) {
+        die(base64_encode($newversion));
+    }
+    
     $version    = trim(strip_tags($data['version']));
     $version   .= isset($data['dev']) ? 'dev' : '';
     
