@@ -26,8 +26,8 @@ class fpcmWebInstaller {
             $this->template();
         }
 
-        if (file_exists(__DIR__.'/fanpress3/')) {
-            $this->texts[] = 'This directory already contains a directory called "fanpress3"!';
+        if (file_exists(__DIR__.'/fanpress/')) {
+            $this->texts[] = 'This directory already contains a "fanpress"-directory!';
             $this->template();
         }
         
@@ -70,7 +70,7 @@ class fpcmWebInstaller {
         }
 
         if ($executeNext) {
-            $this->texts[] = '<a href="fanpress3/index.php?module=installer">Click here to continue to FanPress CM 3.x install assistent...</a>';
+            $this->texts[] = '<a href="fanpress/index.php?module=installer">Click here to continue to FanPress CM 3.x install assistent...</a>';
         }
 
         $this->template();
@@ -118,6 +118,8 @@ class fpcmWebInstaller {
             return false;
         }
 
+        $this->texts[]  = "<p>Download successfull... continue...</p>";
+        
         return true;
     }
     
@@ -125,8 +127,11 @@ class fpcmWebInstaller {
 
         $archive = new ZipArchive();
         
-        if ($archive->open($this->locaFileName) !== true) {
-            $this->texts[] = "<p>Unable to open install package archive!</p>";
+        $this->texts[]  = "<p>Extracting install package <i>{$this->locaFileName}</i>...</p>";
+        
+        $res = $archive->open($this->locaFileName);
+        if ($res !== true) {
+            $this->texts[] = "<p>Unable to open install package archive! Error code: {$res}</p>";
             return false;
         }
 
@@ -134,6 +139,8 @@ class fpcmWebInstaller {
             $this->texts[] = "<p>Unable to extract install package archive!</p>";
             return false;
         }
+        
+        $this->texts[]  = "<p>Extracting install sucessfull...</p>";
         
         return true;
     }
