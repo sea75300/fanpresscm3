@@ -298,6 +298,7 @@ Help language file
                 like "Page XYZ".</li>
                 <li><strong>$api->showTitle()</strong> displayse the article title in HTML &lt;title&gt; , 
                 accepts a parameter for a seperator of your text in &lt;title&gt;.</li>
+                <li><strong>$api->legacyRedirect()</strong> redirect visitors which enters your site using an FanPress CM 1/2 article/ page url style.</li>
             </ul>
             <p>You can use a couple of constants fpr further configuration of the output:</p>
             <ul>
