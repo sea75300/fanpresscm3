@@ -26,8 +26,9 @@
          * Request-Handler
          * @return boolean
          */
-        public function request() {           
-            if (!$this->session->exists()) $this->redirect();
+        public function request() {   
+
+            if (!$this->session->exists()) $this->redirect('system/login');
             if (!is_null($this->getRequestVar('redirect'))) $this->redirectFE = true;
             
             $this->session->setLogout(time());

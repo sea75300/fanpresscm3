@@ -254,6 +254,24 @@
 
             return true;
         }
+        
+        /**
+         * Page-Token prüfen
+         * @return boolean
+         */
+        protected function checkPageToken() {
+
+            if (!is_null($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], \fpcm\classes\baseconfig::$rootPath) === false) {
+                return false;
+            }
+            
+            $cache = new \fpcm\classes\cache(\fpcm\classes\security::getPageTokenFieldName());
+            if (\fpcm\classes\http::getPageToken() == $cache->read()) {                
+                return true;
+            }
+            
+            return false;
+        }
 
         /**
          * Controller-Processing
@@ -339,31 +357,16 @@
          * @return void
          */
         public function __destruct() {
-            $this->cache    = null;
-            $this->config   = null;
-            $this->session  = null;
-            $this->lang     = null;
-            $this->events   = null;
-            $this->request  = null;
-            $this->crons    = null;
-            
+            $this->cache       = null;
+            $this->config      = null;
+            $this->session     = null;
+            $this->lang        = null;
+            $this->events      = null;
+            $this->request     = null;
+            $this->crons       = null;            
             $this->permissions = null;
             
             return;
-        }
-        
-        /**
-         * Page-Token prüfen
-         * @return boolean
-         */
-        protected function checkPageToken() {
-
-            $cache = new \fpcm\classes\cache(\fpcm\classes\security::getPageTokenFieldName());
-            if (\fpcm\classes\http::getPageToken() == $cache->read()) {                
-                return true;
-            }
-            
-            return false;
         }
     }
 ?>

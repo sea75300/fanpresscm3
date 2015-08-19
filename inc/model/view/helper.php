@@ -353,7 +353,7 @@
          * Erzeugt verstecktes Feld mit Page-Token zur Absicherung gegen Cross-Site-Request-Forgery
          */
         public static function pageTokenField() {
-            self::hiddenInput(\fpcm\classes\security::getPageTokenFieldName(), \fpcm\classes\security::getPageToken());
+            self::hiddenInput(\fpcm\classes\security::getPageTokenFieldName(), \fpcm\classes\security::createPageToken());
         }
 
         /**

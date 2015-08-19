@@ -171,7 +171,7 @@
             $params = array(
                 'fpcmTinyMceLang'        => $this->config->system_lang,
                 'fpcmTinyMceElements'     => '~readmore',
-                'fpcmTinyMcePlugins'     => 'advlist autolink anchor charmap code fullscreen hr image insertdatetime link lists importcss media nonbreaking searchreplace table textcolor visualblocks visualchars wordcount fpcm_emoticons fpcm_readmore autoresize colorpicker',
+                'fpcmTinyMcePlugins'     => 'advlist anchor autolink autoresize charmap code colorpicker fullscreen hr image importcss insertdatetime link lists media nonbreaking searchreplace table textcolor visualblocks visualchars wordcount fpcm_emoticons fpcm_readmore',
                 'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime | undo redo removeformat searchreplace fullscreen code',
                 'fpcmTinyMceCssClasses'  => array_merge($editorStyles, $this->getEditorStyles()),
                 'fpcmTinyMceLinkList'    => $this->getEditorLinks(),

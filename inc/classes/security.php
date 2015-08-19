@@ -37,7 +37,7 @@
          * @return string
          */
         public static function getPageTokenFieldName() {
-            return md5('pagetoken'.$_SERVER['HTTP_HOST'].'_'.date('d-m-Y'));
+            return md5('pagetoken'.$_SERVER['HTTP_HOST'].'_'.date('d-m-Y').'$'.$_SERVER['QUERY_STRING']);
         }
         
         /**
@@ -79,9 +79,9 @@
          * Erzeugt Page-Token zur Absicherung gegen 
          * @return string
          */
-        public static function getPageToken() {            
-            $str = hash('sha256', '$'.$_SERVER['HTTP_HOST'].'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$'.date('Y-m-d-H'));
-            
+        public static function createPageToken() {            
+            $str = hash('sha256', '$'.$_SERVER['HTTP_HOST'].'$pageToken$'.self::getSessionCookieValue().'$'.$_SERVER['QUERY_STRING'].'$'.date('Y-m-d-H'));
+
             $cache = new cache(self::getPageTokenFieldName());
             $cache->write($str, FPCM_PAGETOKENCACHE_TIMEOUT);
             unset($cache);

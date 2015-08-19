@@ -6,7 +6,7 @@
 	"text-disabled": "#aaaaaa",
 	"has-gradients": true,
 	"has-radius": true,
-	"has-boxshadow": true,
+	"has-boxshadow": false,
 	"has-button-borders": true,
 	"btn-text": "#000000",
 	"btn-text-shadow": "#ffffff",
