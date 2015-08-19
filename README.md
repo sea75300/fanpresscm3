@@ -23,6 +23,7 @@ $api->showArticles() to display active articles, a single article or the article
 $api->showLatestNews() to show recent news list.
 $api->showPageNumber() displays current page number, accepts a parameter for page descriptions like "Page XYZ".
 $api->showTitle() displayse the article title in HTML <title> , accepts a parameter for a seperator of your text in <title>.
+$api->legacyRedirect() redirect visitors which enters your site using an FanPress CM 1/2 article/ page url style.
 ```
 
 You can use a couple of constants fpr further configuration of the output:
