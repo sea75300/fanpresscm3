@@ -255,7 +255,8 @@
          * Initiiert Grundsystem
          */
         public static function init() {
-            self::$baseDir             = dirname(dirname(__DIR__));            
+
+            self::$baseDir             = dirname(dirname(__DIR__));                        
             self::$dataDir             = self::$baseDir.'/data/';
             self::$cacheDir            = self::$dataDir.'cache/';
             self::$configDir           = self::$dataDir.'config/';
@@ -277,7 +278,7 @@
             self::$dashcontainerDir    = self::$incDir.'model/dashboard/';
 
             $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
-            self::$rootPath            = $http.$_SERVER['HTTP_HOST'].'/'.basename(self::$baseDir).'/';
+            self::$rootPath            = $http.$_SERVER['HTTP_HOST'].rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/').'/'.basename(self::$baseDir).'/';
 
             self::$uploadRootPath      = self::$rootPath.basename(self::$dataDir).'/uploads/';
             self::$shareRootPath       = self::$rootPath.basename(self::$dataDir).'/share/';

@@ -50,6 +50,12 @@
          * @var int
          */
         protected $loginLockedExpire = 15;
+        
+        /**
+         * Page Token Prüfung erfolgreich
+         * @var bool
+         */
+        protected $pageTokenOk = true;
 
         /**
          * Konstruktor
@@ -77,11 +83,13 @@
                 return false;
             }
             
+            $this->pageTokenOk = $this->checkPageToken();
+            
             session_start();
             
             $this->loginLocked();
             
-            if ($this->buttonClicked('login') && !is_null($this->getRequestVar('login')) && !$this->loginLocked && $this->checkPageToken()) {
+            if ($this->buttonClicked('login') && !is_null($this->getRequestVar('login')) && !$this->loginLocked && $this->pageTokenOk) {
                 $data = $this->getRequestVar('login');                
                 $data = $this->events->runEvent('loginBefore', $data);
                 
@@ -107,7 +115,7 @@
                 }                
             }
             
-            if ($this->buttonClicked('reset') && !is_null($this->getRequestVar('username')) && !is_null($this->getRequestVar('email')) && !$this->loginLocked && $this->checkPageToken()) {
+            if ($this->buttonClicked('reset') && !is_null($this->getRequestVar('username')) && !is_null($this->getRequestVar('email')) && !$this->loginLocked && $this->pageTokenOk) {
 
                 $userList = new \fpcm\model\users\userList();
                 $id = $userList->getUserIdByUsername($this->getRequestVar('username'));
@@ -130,9 +138,7 @@
                 $this->view->addErrorMessage('LOGIN_REQUIRED');
             }            
             
-            $reset  = !is_null($this->getRequestVar('reset'))
-                    ? true
-                    : false;
+            $reset  = !is_null($this->getRequestVar('reset')) ? true : false;
             
             $this->view->assign('resetPasswort', $reset);
             $this->view->assign('noFullWrapper', true);
@@ -145,24 +151,24 @@
          * Controller-Processing
          */
         public function process() {
+            
+            if (!$this->pageTokenOk && ($this->buttonClicked('reset') || $this->buttonClicked('login'))) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+            }
 
-            if ($this->iplist->ipIsLocked() || $this->iplist->ipIsLocked('nologin')) {
+            if (($this->iplist->ipIsLocked() || $this->iplist->ipIsLocked('nologin')) && !$this->pageTokenOk) {
                 $this->view->addErrorMessage('ERROR_IP_LOCKED');
                 $this->view->assign('lockedGlobal', true);
                 $this->view->assign('nofade', false);
             }            
             
-            if ($this->loginLocked) {
+            if ($this->loginLocked && !$this->pageTokenOk) {
                 $this->view->addErrorMessage('LOGIN_ATTEMPTS_MAX', array(
                     '{{logincount}}' => $this->currentAttempts,
                     '{{lockedtime}}' => $this->loginLockedExpire / 60,
                     '{{lockeddate}}' => date($this->config->system_dtmask, $this->loginLockedDate)
                 ));
                 $this->view->assign('nofade', false);
-            }
-            
-            if (!$this->checkPageToken() && ($this->buttonClicked('reset') || $this->buttonClicked('login'))) {
-                $this->view->addErrorMessage('CSRF_INVALID');
             }
 
             $this->view->assign('loginAttempts', $this->currentAttempts);

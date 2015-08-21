@@ -260,13 +260,17 @@
          * @return boolean
          */
         protected function checkPageToken() {
-
-            if (!is_null($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], \fpcm\classes\baseconfig::$rootPath) === false) {
+            if (isset($_SERVER['HTTP_REFERER']) && !is_null($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], \fpcm\classes\baseconfig::$rootPath) === false) {
                 return false;
             }
             
-            $cache = new \fpcm\classes\cache(\fpcm\classes\security::getPageTokenFieldName());
-            if (\fpcm\classes\http::getPageToken() == $cache->read()) {                
+            $fieldname = \fpcm\classes\security::getPageTokenFieldName();
+            $cache     = new \fpcm\classes\cache($fieldname);
+            
+            $tokenData = $cache->read();
+            $cache->cleanup($fieldname);
+            
+            if (\fpcm\classes\http::getPageToken() == $tokenData) {
                 return true;
             }
             

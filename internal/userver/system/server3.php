@@ -4,7 +4,7 @@
     $data       = json_decode(base64_decode(str_rot13($_GET['data'])), TRUE);
 
     if (isset($data['webinstaller'])) {
-        die(base64_encode($newversion));
+        die(base64_encode(str_rot13(base64_encode($installfile))));
     }
     
     $version    = trim(strip_tags($data['version']));
