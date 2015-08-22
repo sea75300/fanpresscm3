@@ -156,13 +156,13 @@
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
 
-            if (($this->iplist->ipIsLocked() || $this->iplist->ipIsLocked('nologin')) && !$this->pageTokenOk) {
+            if (($this->iplist->ipIsLocked() || $this->iplist->ipIsLocked('nologin'))) {
                 $this->view->addErrorMessage('ERROR_IP_LOCKED');
                 $this->view->assign('lockedGlobal', true);
                 $this->view->assign('nofade', false);
             }            
             
-            if ($this->loginLocked && !$this->pageTokenOk) {
+            if ($this->loginLocked) {
                 $this->view->addErrorMessage('LOGIN_ATTEMPTS_MAX', array(
                     '{{logincount}}' => $this->currentAttempts,
                     '{{lockedtime}}' => $this->loginLockedExpire / 60,
