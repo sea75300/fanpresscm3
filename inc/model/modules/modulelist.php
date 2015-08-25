@@ -48,7 +48,7 @@
                 $value['description']       = isset($value['description']) ? $value['description'] : '';
                 $value['author']            = isset($value['author']) ? $value['author'] : '';
                 $value['link']              = isset($value['link']) ? $value['link'] : '';
-                $value['systemMinVersion']  = isset($value['systemMinVersion']) ? $value['systemMinVersion'] : '';
+                $value['systemMinVersion']  = isset($value['minsysverion']) ? $value['minsysverion'] : '';
                 
                 $mlConfig = $this->getConfigByModuleKey($key, 'modulelist');
                 $moduleItem   = new \fpcm\model\modules\listitem(
