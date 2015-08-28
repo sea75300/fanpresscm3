@@ -57,6 +57,7 @@
         'CRONJOB_FMTHUMBS'             => 'create filemanager thumbnails',
         'CRONJOB_POSTPONEDARTICLES'    => 'publish postponed articles',
         'CRONJOB_UPDATECHECK'          => 'check for updates',
+        'CRONJOB_DBBACKUP'             => 'create database dump',
         
     );
 

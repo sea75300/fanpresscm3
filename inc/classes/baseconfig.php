@@ -150,6 +150,12 @@
         public static $langDir;
         
         /**
+         * Verzeichnis für automatisch, via Cron erzeugte Datenbank-Dumps
+         * @var string
+         */
+        public static $dbdumpDir;
+        
+        /**
          * root-URL
          * @var string
          */
@@ -238,7 +244,7 @@
          * @var database
          */
         public static $fpcmDatabase;
-        
+
         /**
          * Installer aktiv Status-Datei
          * @var string
@@ -268,6 +274,7 @@
             self::$stylesDir           = self::$dataDir.'styles/';
             self::$tempDir             = self::$dataDir.'temp/';
             self::$uploadDir           = self::$dataDir.'uploads/';
+            self::$dbdumpDir           = self::$dataDir.'dbdump/';
             
             self::$coreDir             = self::$baseDir.'/core/';
             self::$viewsDir            = self::$coreDir.'views/';

@@ -11,4 +11,5 @@ INSERT INTO `{{dbpref}}_cronjobs` (`id`, `cjname`, `lastexec`) VALUES
 (3, 'clearTemp', 0),
 (4, 'fmThumbs', 0),
 (5, 'postponedArticles', 0),
-(6, 'updateCheck', 0);
+(6, 'updateCheck', 0)
+(7, 'dbBackup', 0);

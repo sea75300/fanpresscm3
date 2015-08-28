@@ -57,6 +57,7 @@
         'CRONJOB_FMTHUMBS'             => 'Dateimanger-Thumbnails erzeugen',
         'CRONJOB_POSTPONEDARTICLES'    => 'geplante Artikel veröffentlichen',
         'CRONJOB_UPDATECHECK'          => 'Prüfung auf Updates',
+        'CRONJOB_DBBACKUP'             => 'System-Datenbank sichern',
     );
 
 ?>

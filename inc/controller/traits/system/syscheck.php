@@ -129,6 +129,7 @@
                 \fpcm\classes\baseconfig::$stylesDir,
                 \fpcm\classes\baseconfig::$tempDir,
                 \fpcm\classes\baseconfig::$shareDir,
+                \fpcm\classes\baseconfig::$dbdumpDir
             );
             
             foreach ($checkFolders as $folderPath) {
