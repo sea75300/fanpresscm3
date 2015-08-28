@@ -13,7 +13,10 @@
                                        'your system administrator.',        
         
         'PUBLIC_COMMENT_EMAIL_SUBJECT'  => 'A new comment was created.',
-        'PUBLIC_COMMENT_EMAIL_TEXT'     => "{{name}} (email address: {{email}}) has created a new comment for article {{articleurl}}.\n\Please log in to moderate the comment. {{systemurl}}",
+        'PUBLIC_COMMENT_EMAIL_TEXT'     => "{{name}} (email address: {{email}}) has created a new comment for article {{articleurl}}.\n\n{{commenttext}}\n\Please log in to moderate the comment. {{systemurl}}",
+
+        'CRONJOB_UPDATES_NEWVERSION'      => 'New FanPress CM version available',
+        'CRONJOB_UPDATES_NEWVERSION_TEXT' => "FanPress CM version {{version}} was just released and is available to update. Please log into your FanPress CM system to start update.\n\n{{acplink}}",
         
     );
 

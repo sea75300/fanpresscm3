@@ -144,11 +144,25 @@
          * * 5 - htmlspecialchars_decode
          * * 6 - html_entity_decode
          * * 7 - trim
+         * * 8 - json_decode
+         * * 9 - (int)-Cast
+         * 
+         * * allowedtags - erlaubte HTML-Tags für "1 - strip_tags"
+         * * mode - Modus für
+         * * * "2 - htmlspecialchars"
+         * * * "3 - htmlentities",
+         * * * "5 - htmlspecialchars_decode"
+         * * * "6 - html_entity_decode"
+         * * object - json_decode-Ergebnis als Objekt oder Array
          * 
          * @return mixed
          */
         public static function filter($filterString, array $filters) {
 
+            if (!$filterString) {
+                return $filterString;
+            }
+            
             if (is_array($filterString)) {  
                 foreach ($filterString as $value) {
                     static::filter($value, $filters);
@@ -181,6 +195,12 @@
                     break;
                     case 7 :
                         $filterString = trim($filterString);
+                    break;
+                    case 8 :
+                        $filterString = json_decode($filterString, ($filters['object'] ? false : true));
+                    break;
+                    case 9 :
+                        $filterString = (int) $filterString;
                     break;
                 }                
             }            
