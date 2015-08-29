@@ -11,6 +11,8 @@
      */
     class dbBackup extends \fpcm\model\abstracts\cron {
 
+        protected $dumpfile;
+
         /**
          * Auszuführender Cron-Code
          */
@@ -21,6 +23,15 @@
             $dbconfig = \fpcm\classes\baseconfig::getDatabaseConfig();
             
             $dumpSettings = array();
+            
+            if (function_exists('gzopen')) {
+                $dumpSettings['compress'] = \Ifsnop\Mysqldump\Mysqldump::GZIP;
+                $this->dumpfile = \fpcm\classes\baseconfig::$dbdumpDir.'/'.$dbconfig['DBNAME'].'_'.date('Y-m-d H-i-s').'.sql.gz';
+            }
+            else {
+                $this->dumpfile = \fpcm\classes\baseconfig::$dbdumpDir.'/'.$dbconfig['DBNAME'].'_'.date('Y-m-d H-i-s').'.sql';
+            }            
+            
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableArticles;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableAuthors;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableCategories;
@@ -33,11 +44,9 @@
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tablePermissions;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableRoll;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableSessions;
-            $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableSmileys;            
-
-            $dumpfile = \fpcm\classes\baseconfig::$dbdumpDir.'/'.$dbconfig['DBNAME'].'_'.date('Y-m-d H-i-s').'.sql.dump';
+            $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableSmileys;
             
-            \fpcm\classes\logs::syslogWrite('Create new database dump in '.$dumpfile);
+            \fpcm\classes\logs::syslogWrite('Create new database dump in "'.$this->dumpfile.'"...');
             
             $mysqlDump = new \Ifsnop\Mysqldump\Mysqldump($dbconfig['DBNAME'],
                                                          $dbconfig['DBUSER'],
@@ -45,20 +54,27 @@
                                                          $dbconfig['DBHOST'],
                                                          $dbconfig['DBTYPE'],
                                                          $dumpSettings);
-            $mysqlDump->start($dumpfile);
+            $mysqlDump->start($this->dumpfile);
             
             $this->updateLastExecTime();
             
-            if (!file_exists($dumpfile)) {
-                \fpcm\classes\logs::syslogWrite('Unable to create database dump in '.$dumpfile.', file not found. See system check and error log!');
+            if (!file_exists($this->dumpfile)) {
+                \fpcm\classes\logs::syslogWrite('Unable to create database dump in "'.$this->dumpfile.'", file not found. See system check and error log!');
                 return false;
             }
             
-            \fpcm\classes\logs::syslogWrite('New database dump created in '.$dumpfile);                
+            \fpcm\classes\logs::syslogWrite('New database dump created in "'.$this->dumpfile.'".');                
             
             return true;
         }
         
+        public function __destruct() {
+            if (!file_exists($this->dumpfile)) {
+                \fpcm\classes\logs::syslogWrite('Database dump in "'.$this->dumpfile.'" not found. Creating might be abborted! See system check and error log!');
+            }
+        }
+
+
         /**
          * Häufigkeit der Ausführung einschränken
          * @return boolean
