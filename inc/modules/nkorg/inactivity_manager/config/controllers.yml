@@ -1,0 +1,4 @@
+## Module Controller list file
+---
+nkorg/inactivity_manager/addmessage: fpcm/modules/nkorg/inactivity_manager/controller/addmessage
+nkorg/inactivity_manager/editmessage: fpcm/modules/nkorg/inactivity_manager/controller/editmessage

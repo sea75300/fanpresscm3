@@ -94,7 +94,7 @@
                 'fpcmPostponeDatePicker'    => array(
                     'daysfull'              => $this->lang->getDays(),
                     'daysshort'             => $this->lang->getDaysShort(),
-                    'months'                => $this->lang->getMonths()
+                    'months'                => array_values($this->lang->getMonths())
                 ),
                 'fpcmExtended'              => $this->lang->translate('GLOBAL_EXTENDED')
             );

@@ -18,5 +18,5 @@
         'NKORG_TWEETENTENDER_SAVED_FAILED'  => 'Beim Speichern des Begriffes ist ein Fehler aufgetreten!',        
         
         'NKORG_TWEETENTENDER_DELETE_OK'      => 'Die ausgewählten Begriffe wurden gelöscht.',
-        'NKORG_TWEETENTENDER_DELETE_FAILED'  => 'Die ausgewählten Begriffe könnten nicht gelöscht werden!',
+        'NKORG_TWEETENTENDER_DELETE_FAILED'  => 'Die ausgewählten Begriffe konnten nicht gelöscht werden!',
     );
