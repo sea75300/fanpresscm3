@@ -27,7 +27,11 @@
      
     $updateData['notice']  = isset($versions[$version]['notice'])
                             ? $versions[$version]['notice']
-                            : false;   
+                            : false;
+     
+    $updateData['signature'] = isset($versions[$version]['signature'])
+                             ? $versions[$version]['signature']
+                             : false;
     
     header('Content-type: text/plain');
     header("Content-Transfer-Encoding: binary\n");
