@@ -62,7 +62,8 @@
                 $this->language->translate('SYSCHECK_FOLDER_SMILEYS')       => \fpcm\classes\baseconfig::$smileyDir,
                 $this->language->translate('SYSCHECK_FOLDER_STYLES')        => \fpcm\classes\baseconfig::$stylesDir,
                 $this->language->translate('SYSCHECK_FOLDER_TEMP')          => \fpcm\classes\baseconfig::$tempDir,
-                $this->language->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir
+                $this->language->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir,
+                $this->language->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir
             );
             
             foreach ($checkFolders as $description => $folderPath) {

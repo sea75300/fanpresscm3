@@ -24,13 +24,17 @@
             
             $dumpSettings = array();
             
+            $this->dumpfile = \fpcm\classes\baseconfig::$dbdumpDir.'/'.$dbconfig['DBNAME'].'_'.date('Y-m-d_H-i-s').'.sql';
             if (function_exists('gzopen')) {
                 $dumpSettings['compress'] = \Ifsnop\Mysqldump\Mysqldump::GZIP;
-                $this->dumpfile = \fpcm\classes\baseconfig::$dbdumpDir.'/'.$dbconfig['DBNAME'].'_'.date('Y-m-d H-i-s').'.sql.gz';
+                $this->dumpfile .= '.gz';
             }
-            else {
-                $this->dumpfile = \fpcm\classes\baseconfig::$dbdumpDir.'/'.$dbconfig['DBNAME'].'_'.date('Y-m-d H-i-s').'.sql';
-            }            
+            
+            $dumpSettings['single-transaction']   = false;
+            $dumpSettings['lock-tables']          = false;
+            $dumpSettings['add-locks']            = false;
+            $dumpSettings['extended-insert']      = false;
+            $dumpSettings['no-autocommit']        = false;
             
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableArticles;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableAuthors;
@@ -45,7 +49,7 @@
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableRoll;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableSessions;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableSmileys;
-            
+
             \fpcm\classes\logs::syslogWrite('Create new database dump in "'.$this->dumpfile.'"...');
             
             $mysqlDump = new \Ifsnop\Mysqldump\Mysqldump($dbconfig['DBNAME'],
@@ -67,13 +71,6 @@
             
             return true;
         }
-        
-        public function __destruct() {
-            if (!file_exists($this->dumpfile)) {
-                \fpcm\classes\logs::syslogWrite('Database dump in "'.$this->dumpfile.'" not found. Creating might be abborted! See system check and error log!');
-            }
-        }
-
 
         /**
          * Häufigkeit der Ausführung einschränken

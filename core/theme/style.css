@@ -856,11 +856,11 @@ h3, .fpcm-dashboard-container h3 {
 }
 
 .fpcm-dashboard-container.fpcm-dashboard-container-height-middle .fpcm-dashboard-container-inner {
-    height: 325px;
+    height: 375px;
 }
 
 .fpcm-dashboard-container.fpcm-dashboard-container-height-big .fpcm-dashboard-container-inner {
-    height: 500px;
+    height: 600px;
 }
 
 .fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content {
