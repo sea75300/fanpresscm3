@@ -2,7 +2,7 @@
     /**
      * Inactivity Manager, http://nobody-knows.org/
      *
-     * nkorg/inactivity_manager event class: publicShowArchive
+     * nkorg/inactivity_manager event class: extendHelp
      * 
      * @version 1.0.0
      * @author Stefan <Stefan@yourdomain.xyz>
@@ -13,16 +13,11 @@
 
     namespace fpcm\modules\nkorg\inactivity_manager\events;
 
-    class publicShowArchive extends \fpcm\model\abstracts\moduleEvent {
+    class extendHelp extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
 
-            $messages = new \fpcm\modules\nkorg\inactivity_manager\model\messages();
-            $messageList = $messages->getMessages(true);
-            
-            foreach ($messageList as $message) {
-                array_unshift($params, $message);                
-            }
+            $params['NKORGINACTIVITY_MANAGER_HEADLINE'] = $this->lang->translate('NKORGINACTIVITY_MANAGER_HELP');
             
             return $params;
         }

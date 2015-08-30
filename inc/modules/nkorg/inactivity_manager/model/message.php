@@ -9,6 +9,8 @@ class message extends \fpcm\model\abstracts\model {
     protected $starttime = 0;
     
     protected $stoptime  = 0;
+    
+    protected $nocomments = false;
 
     public function __construct($id = null) {
         $this->table        = \fpcm\modules\nkorg\inactivity_manager\nkorginactivity_manager::NKORGINACTIVITY_MANAGER_TABLE_NAME;
@@ -41,6 +43,14 @@ class message extends \fpcm\model\abstracts\model {
         $this->stoptime = (int) $stoptime;
     }
     
+    public function getNocomments() {
+        return (bool) $this->nocomments;
+    }
+
+    public function setNocomments($nocomments) {
+        $this->nocomments = (int) $nocomments;
+    }
+            
     public function save() {
         $params = $this->getPreparedSaveParams();        
         return $this->dbcon->insert($this->table, implode(',', array_keys($params)), implode(', ', $this->getPreparedValueParams(count($params))), array_values($params));

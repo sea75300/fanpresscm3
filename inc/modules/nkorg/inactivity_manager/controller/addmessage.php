@@ -29,6 +29,9 @@
                 $stoptime = strtotime($newmessage['stop']);
                 $this->message->setStoptime($stoptime);
                 
+                $commentsDiabled = (isset($newmessage['nocomments']) ? true : false);
+                $this->message->setNocomments($commentsDiabled);
+                
                 $res = $this->message->save();
                 
                 if ($res) {

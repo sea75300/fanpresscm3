@@ -16,7 +16,18 @@
     class parseTemplateCommentForm extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
-            // check FanPress CM documentation, if this events requires a return value
+
+            $messages = new \fpcm\modules\nkorg\inactivity_manager\model\messages();
+            $messageList = $messages->getMessages(true, true);
+
+            if (!count($messageList)) {
+                $params['{{inactivityManagerCommentsDiabled}}'] = '';
+                return $params;
+            }
+
+            $params['{{submitButton}}'] = "<button type=\"button\" disabled=\"disabled\" \">{$this->lang->translate('GLOBAL_SUBMIT')}</button>";
+            $params['{{inactivityManagerCommentsDiabled}}'] = $this->lang->translate('NKORGINACTIVITY_MANAGER_NOCOMMENTS_MSG');
+            
             return $params;
         }
 

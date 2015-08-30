@@ -32,7 +32,7 @@
                 }
             }
 
-            $view->assign('messages', $messages->getMessage());
+            $view->assign('messages', $messages->getMessages());
             
             $view->render();
         }

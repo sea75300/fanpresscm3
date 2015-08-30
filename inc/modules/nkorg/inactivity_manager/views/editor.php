@@ -21,6 +21,10 @@
                     <tr>
                         <td><?php $FPCM_LANG->write('NKORGINACTIVITY_MANAGER_STOP'); ?></td>
                         <td><?php \fpcm\model\view\helper::textInput('msg[stop]', 'nkorg-inactivity-manager-dates', date('Y-m-d', $msg->getStoptime())); ?></td>
+                    </tr> 
+                    <tr>
+                        <td><?php $FPCM_LANG->write('NKORGINACTIVITY_MANAGER_NOCOMMENTS'); ?></td>
+                        <td><?php fpcm\model\view\helper::checkbox('msg[nocomments]', '', '1', '', '', $msg->getNocomments()); ?></td>
                     </tr>
                 </table> 
 

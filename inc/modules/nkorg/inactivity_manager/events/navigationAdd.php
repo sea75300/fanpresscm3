@@ -17,14 +17,14 @@
 
         public function run($params = null) {
 
-        $params['after'][] = array(
-            'url'               => 'modules/config&key='.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__),
-            'permission'        => array('system' => 'options'),
-            'description'       => $this->lang->translate('NKORGINACTIVITY_MANAGER_HEADLINE'),
-            'icon'              => 'fa fa-calendar fa-fw',
-            'class'             => '',
-            'id'                => ''
-        );
+            $params['after'][] = array(
+                'url'               => 'modules/config&key='.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__),
+                'permission'        => array('system' => 'options'),
+                'description'       => $this->lang->translate('NKORGINACTIVITY_MANAGER_HEADLINE'),
+                'icon'              => 'fa fa-calendar fa-fw',
+                'class'             => '',
+                'id'                => ''
+            );
             
             return $params;
         }

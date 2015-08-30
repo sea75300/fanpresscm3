@@ -13,12 +13,16 @@ class messages extends \fpcm\model\abstracts\model {
      * 
      * @return array
      */
-    public function getMessage($filter = false) {
+    public function getMessages($filter = false, $nocomments = false) {
         
         $where = "id > 0";
         if ($filter) {
             $timer  = time();
             $where .= " AND starttime <= {$timer} AND stoptime >= {$timer}";
+            
+            if ($nocomments) {
+                $where .= " AND nocomments = 1";
+            }
         }        
         
         $where .= " ORDER BY starttime ASC, stoptime ASC";        

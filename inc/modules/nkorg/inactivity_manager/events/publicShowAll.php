@@ -18,7 +18,7 @@
         public function run($params = null) {
             
             $messages = new \fpcm\modules\nkorg\inactivity_manager\model\messages();
-            $messageList = $messages->getMessage(true);
+            $messageList = $messages->getMessages(true);
             
             foreach ($messageList as $message) {
                 array_unshift($params, $message);                
