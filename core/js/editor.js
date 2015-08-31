@@ -287,6 +287,7 @@ var fpcmEditor = function () {
             image_class_list      : fpcmTinyMceCssClasses,
             link_list             : fpcmTinyMceLinkList,
             image_list            : fpcmTinyMceImageList,
+            textpattern_patterns  : fpcmTinyMceTextpattern,
             menubar               : false,
             relative_urls         : false,
             image_advtab          : true,
