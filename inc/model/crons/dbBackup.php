@@ -11,6 +11,10 @@
      */
     class dbBackup extends \fpcm\model\abstracts\cron {
 
+        /**
+         * Backup-Pfad-Datei
+         * @var string
+         */
         protected $dumpfile;
 
         /**

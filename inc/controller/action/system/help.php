@@ -10,7 +10,7 @@
     class help extends \fpcm\controller\abstracts\controller {
         
         /**
-         *
+         * Controller-View
          * @var \fpcm\model\view\acp
          */
         protected $view;

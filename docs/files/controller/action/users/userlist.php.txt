@@ -59,6 +59,15 @@
                 $this->view->addNoticeMessage('SAVE_SUCCESS_EDITROLL');
             }
 
+            if ( ($this->buttonClicked('disableUser') ||
+                  $this->buttonClicked('enableUser') ||
+                  $this->buttonClicked('deleteActive') ||
+                  $this->buttonClicked('deleteDisabled') ||
+                  $this->buttonClicked('deleteRoll') ) && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
             if ($this->buttonClicked('disableUser') && !is_null($this->getRequestVar('useridsa'))) {
                 $this->disableUsers($this->getRequestVar('useridsa'));
             }

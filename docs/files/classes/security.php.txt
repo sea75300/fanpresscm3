@@ -29,15 +29,23 @@
          * @return string
          */
         public static function getSessionCookieName() {
-            return 'fpcm_sid'.md5($_SERVER['HTTP_HOST'].'_'.date('d-m-Y'));
+            return 'fpcm_sid'.md5(baseconfig::$rootPath.'_'.date('d-m-Y'));
         }
-
+        
+        /**
+         * Page-Token-Feld-Name zurückgeben
+         * @return string
+         */
+        public static function getPageTokenFieldName() {
+            return hash('sha256', 'pagetoken'.baseconfig::$rootPath.'_'.date('d-m-Y').'$'.http::getOnly('module'));
+        }
+        
         /**
          * gibt Inhalt von Session cookie zurück
          * @return string
          */
         public static function getSessionCookieValue() {            
-            return http::get(self::getSessionCookieName(), array(1,4,7));
+            return http::cookieOnly(self::getSessionCookieName(), array(1,4,7));
         }
                 
         /**
@@ -67,6 +75,21 @@
             return '$5$'.substr(hash('sha256', self::getSecureBaseString()), 0, 16).'$';
         }
         
+        /**
+         * Erzeugt Page-Token zur Absicherung gegen 
+         * @return string
+         */
+        public static function createPageToken() {
+            $str = hash('sha256', '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$');
+
+            $cache = new cache(self::getPageTokenFieldName());
+            $cache->cleanup(self::getPageTokenFieldName());
+            $cache->write($str, FPCM_PAGETOKENCACHE_TIMEOUT);            
+            unset($cache);
+            
+            return $str;
+        }
+
         /**
          * Erzeugt Basis-String für Hash-Funktionen
          * @return string

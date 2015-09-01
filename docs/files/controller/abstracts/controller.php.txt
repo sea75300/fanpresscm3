@@ -135,7 +135,8 @@
          * @return string
          */
         public function buttonClicked($buttonName) {
-            return !is_null($this->getRequestVar('btn'.ucfirst($buttonName)));
+            $btnName = 'btn'.ucfirst($buttonName);
+            return !is_null(\fpcm\classes\http::postOnly($btnName)) && is_null(\fpcm\classes\http::getOnly($btnName));
         }
 
         /**
@@ -253,6 +254,28 @@
 
             return true;
         }
+        
+        /**
+         * Page-Token prüfen
+         * @return boolean
+         */
+        protected function checkPageToken() {
+            if (isset($_SERVER['HTTP_REFERER']) && !is_null($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], \fpcm\classes\baseconfig::$rootPath) === false) {
+                return false;
+            }
+            
+            $fieldname = \fpcm\classes\security::getPageTokenFieldName();
+            $cache     = new \fpcm\classes\cache($fieldname);
+            
+            $tokenData = $cache->read();
+            $cache->cleanup($fieldname);
+            
+            if (\fpcm\classes\http::getPageToken() == $tokenData) {
+                return true;
+            }
+            
+            return false;
+        }
 
         /**
          * Controller-Processing
@@ -338,14 +361,13 @@
          * @return void
          */
         public function __destruct() {
-            $this->cache    = null;
-            $this->config   = null;
-            $this->session  = null;
-            $this->lang     = null;
-            $this->events   = null;
-            $this->request  = null;
-            $this->crons    = null;
-            
+            $this->cache       = null;
+            $this->config      = null;
+            $this->session     = null;
+            $this->lang        = null;
+            $this->events      = null;
+            $this->request     = null;
+            $this->crons       = null;            
             $this->permissions = null;
             
             return;

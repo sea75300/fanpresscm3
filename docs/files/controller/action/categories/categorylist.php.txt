@@ -34,7 +34,12 @@
             
             if ($this->getRequestVar('edited')) {
                 $this->view->addNoticeMessage('SAVE_SUCCESS_EDITCATEGORY');
-            }            
+            }
+            
+            if ($this->buttonClicked('delete') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
 
             if ($this->buttonClicked('delete') && !is_null($this->getRequestVar('ids'))) {                
                 $category = new \fpcm\model\categories\category($this->getRequestVar('ids'));

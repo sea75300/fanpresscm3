@@ -113,10 +113,16 @@
          * @return boolean
          */
         public function request() {
+
+            if ($this->buttonClicked('doAction') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
             if ($this->buttonClicked('doAction') && !is_null($this->getRequestVar('actions'))) {
                 
                 $actionData = $this->getRequestVar('actions');
-                
+
                 if ((!isset($actionData['ids']) && $actionData['action'] != 'trash') || !$actionData['action']) {
                     $this->view->addErrorMessage('SELECT_ITEMS_MSG');
                     $this->initPagination();
@@ -134,7 +140,7 @@
                     $this->initPagination();
                     return true;                    
                 }
-                
+
                 if (!call_user_func(array($this, 'do'.  ucfirst($action)), $ids)) {
                     
                     if ($action == 'delete') {

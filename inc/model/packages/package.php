@@ -164,6 +164,7 @@
          * @param string $key Package-Key
          * @param string $version Package-Version
          * @param string $type Package-Type
+         * @param string $signature Package-Signature
          */
         public function __construct($type, $key, $version = '', $signature = '') {
             $this->type            = $type;

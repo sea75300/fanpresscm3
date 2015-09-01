@@ -46,6 +46,11 @@
          */
         public function request() {        
 
+            if ($this->buttonClicked('deleteComments') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
             if ($this->buttonClicked('deleteComments') && !is_null($this->getRequestVar('ids'))) {                
                 $ids = $this->getRequestVar('ids');
                 if ($this->list->deleteComments($ids)) {

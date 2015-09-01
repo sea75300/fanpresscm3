@@ -39,14 +39,46 @@
          * @return mixed null wenn Variable nicht gesetzt
          */
         public static function get($varname = null, array $filter = array(1,4,7)) {
-            
             if (is_null($varname)) return self::$request;
-            
-            $returnVal  = (isset(self::$request[$varname]))
-                        ? self::filter(self::$request[$varname], $filter)
-                        : null;
-            
+            $returnVal = (isset(self::$request[$varname])) ? self::filter(self::$request[$varname], $filter) : null;
             return $returnVal;            
+        }
+
+        /**
+         * Daten aus $_POST
+         * Ersetz für direkten Zugriff auf $_POST
+         * @param string $varname Variablenname
+         * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
+         * @return mixed null wenn Variable nicht gesetzt
+         */
+        public static function postOnly($varname = null, array $filter = array(1,4,7)) {
+            if (is_null($varname)) return $_POST;
+            $returnVal  = (isset($_POST[$varname])) ? self::filter($_POST[$varname], $filter) : null;
+            return $returnVal;
+        }
+
+        /**
+         * Daten aus $_GET
+         * Ersetz für direkten Zugriff auf $_GET
+         * @param string $varname Variablenname
+         * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
+         * @return mixed null wenn Variable nicht gesetzt
+         */
+        public static function getOnly($varname = null, array $filter = array(1,4,7)) {
+            if (is_null($varname)) return $_GET;
+            $returnVal  = (isset($_GET[$varname])) ? self::filter($_GET[$varname], $filter) : null;
+            return $returnVal;
+        }
+
+        /**
+         * Daten aus $_COOKIE
+         * Ersetz für direkten Zugriff auf $_COOKIE
+         * @param string $varname Variablenname
+         * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
+         * @return mixed null wenn Variable nicht gesetzt
+         */
+        public static function cookieOnly($varname = null, array $filter = array(1,4,7)) {
+            return (isset($_COOKIE[$varname])) ? self::filter($_COOKIE[$varname], $filter) : null;
         }
         
         /**
@@ -63,6 +95,14 @@
          */
         public static function getHttpHost() {
             return $_SERVER['HTTP_HOST'];
+        }
+        
+        /**
+         * Gibt Page-Token-Informationen zurück
+         * @return string
+         */
+        public static function getPageToken() {
+            return self::postOnly(security::getPageTokenFieldName());
         }
 
         /**
@@ -104,11 +144,25 @@
          * * 5 - htmlspecialchars_decode
          * * 6 - html_entity_decode
          * * 7 - trim
+         * * 8 - json_decode
+         * * 9 - (int)-Cast
+         * 
+         * * allowedtags - erlaubte HTML-Tags für "1 - strip_tags"
+         * * mode - Modus für
+         * * * "2 - htmlspecialchars"
+         * * * "3 - htmlentities",
+         * * * "5 - htmlspecialchars_decode"
+         * * * "6 - html_entity_decode"
+         * * object - json_decode-Ergebnis als Objekt oder Array
          * 
          * @return mixed
          */
         public static function filter($filterString, array $filters) {
 
+            if (!$filterString) {
+                return $filterString;
+            }
+            
             if (is_array($filterString)) {  
                 foreach ($filterString as $value) {
                     static::filter($value, $filters);
@@ -141,6 +195,12 @@
                     break;
                     case 7 :
                         $filterString = trim($filterString);
+                    break;
+                    case 8 :
+                        $filterString = json_decode($filterString, ($filters['object'] ? false : true));
+                    break;
+                    case 9 :
+                        $filterString = (int) $filterString;
                     break;
                 }                
             }            

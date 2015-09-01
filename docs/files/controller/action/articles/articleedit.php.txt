@@ -60,8 +60,12 @@
             if ($this->getRequestVar('revrestore')) {
                 $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLEREVRESTORE');
             }
+            
+            if ($this->buttonClicked('doAction') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+            }
 
-            if ($this->buttonClicked('articleRevisionRestore') && ($this->getRequestVar('rev') || $this->getRequestVar('revisionIds'))) {
+            if ($this->buttonClicked('articleRevisionRestore') && ($this->getRequestVar('rev') || $this->getRequestVar('revisionIds')) && $this->checkPageToken()) {
                 
                 $revisionIdsArray = !is_null($this->getRequestVar('revisionIds')) ? array_map('intval', $this->getRequestVar('revisionIds')) : false;
                 
@@ -80,7 +84,7 @@
                 $this->showRevision = true;
             }
 
-            if ($this->buttonClicked('articleDelete') && !$this->showRevision) {
+            if ($this->buttonClicked('articleDelete') && !$this->showRevision && $this->checkPageToken()) {
                 if ($this->article->delete()) {
                     $this->redirect('articles/listall');
                 } else {
@@ -88,7 +92,7 @@
                 }
             }
             
-            if ($this->buttonClicked('revisionDelete') && $this->getRequestVar('revisionIds') && !$this->showRevision) {
+            if ($this->buttonClicked('revisionDelete') && $this->getRequestVar('revisionIds') && !$this->showRevision && $this->checkPageToken()) {
                 if ($this->article->deleteRevisions($this->getRequestVar('revisionIds'))) {
                     $this->view->addNoticeMessage('DELETE_SUCCESS_REVISIONS');
                 } else {
@@ -100,7 +104,7 @@
             
             $allTimer = time();
             
-            if ($this->buttonClicked('articleSave') && !$this->showRevision) {
+            if ($this->buttonClicked('articleSave') && !$this->showRevision && $this->checkPageToken()) {
                 $this->article->createRevision();
                 
                 $data = $this->getRequestVar('article', array(4,7));
@@ -240,6 +244,10 @@
          */
         protected function handleCommentActions() {
 
+            if (!$this->checkPageToken()) {
+                return false;
+            }
+            
             if ($this->buttonClicked('deleteComments') && !is_null($this->getRequestVar('ids'))) {                
                 $ids = $this->getRequestVar('ids');
                 if ($this->commentList->deleteComments($ids)) {

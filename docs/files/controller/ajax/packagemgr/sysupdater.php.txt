@@ -67,7 +67,8 @@
                     $fileInfo = $tmpFile->getContent();
                 }
 
-                $pkg = new \fpcm\model\packages\package('update', $fileInfo);
+                $signature = isset($remoteData['signature']) ? $remoteData['signature'] : '';
+                $pkg = new \fpcm\model\packages\package('update', $fileInfo, '', $signature);
             }            
             
             switch ($this->step) {

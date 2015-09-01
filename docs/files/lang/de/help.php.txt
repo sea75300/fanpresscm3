@@ -323,6 +323,8 @@ Help language file
                 die Beschreibung für "Seite XYZ" angeben.</li>
                 <li><strong>$api->showTitle()</strong> zum Anzeigen des Titels des aktuell aufgerufenen Artikels im &lt;title&gt;-Tag.
                 Als Parameter kannst du einen Trenner zum restlichen Inhalt des &lt;title&gt;-Tags angeben.</li>
+                <li><strong>$api->legacyRedirect()</strong> bietet dir die Möglichkeit, deine Besucher (v. a. bei vorheriger Nutzung des
+                Importer-Modules) vom alten FanPress CM 1/2-URL-Stil zur entsprechenden Stelle von FanPress CM 3 weiterzuleiten.</li>
             </ul>
             <p>Die Ausgabe kannst du zudem über einige PHP-Konstanten beeinflussen:</p>
             <ul>

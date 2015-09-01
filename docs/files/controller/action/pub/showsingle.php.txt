@@ -199,10 +199,11 @@
                     $this->view->addNoticeMessage('SAVE_SUCCESS_COMMENT');
                     
                     $text  = $this->lang->translate('PUBLIC_COMMENT_EMAIL_TEXT', array(
-                        '{{name}}'       => $this->newComment->getName(),
-                        '{{email}}'      => $this->newComment->getEmail(),
-                        '{{articleurl}}' => $this->article->getArticleLink(),
-                        '{{systemurl}}'  => \fpcm\classes\baseconfig::$rootPath
+                        '{{name}}'        => $this->newComment->getName(),
+                        '{{email}}'       => $this->newComment->getEmail(),
+                        '{{commenttext}}' => strip_tags($this->newComment->getText()),
+                        '{{articleurl}}'  => $this->article->getArticleLink(),
+                        '{{systemurl}}'   => \fpcm\classes\baseconfig::$rootPath
                     ));
                     
                     $to    = array();

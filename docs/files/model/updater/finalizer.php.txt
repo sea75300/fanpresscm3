@@ -110,6 +110,10 @@
          */
         private function alterTables() {
             $res = true;
+            
+            if (version_compare($this->config->system_version, '3.0.4', '<'))
+            $res = $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "7, 'dbBackup', 0");
+            
             return $res;
         }
         

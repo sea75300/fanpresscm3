@@ -12,7 +12,7 @@
                                      . 'nicht selbst veranlasst, so kontaktiere am Besten einen Administrator.',
         
         'PUBLIC_COMMENT_EMAIL_SUBJECT' => 'Es wurde ein neuer Kommentar geschrieben',
-        'PUBLIC_COMMENT_EMAIL_TEXT'    => "Von {{name}} (E-Mail-Adresse: {{email}}) wurde ein Kommentar auf den Artikel {{articleurl}} geschrieben.\n\nLogge dich ein um den Kommentar zu moderieren. {{systemurl}}",
+        'PUBLIC_COMMENT_EMAIL_TEXT'    => "Von {{name}} (E-Mail-Adresse: {{email}}) wurde ein Kommentar auf den Artikel {{articleurl}} geschrieben.\n\n{{commenttext}}\n\nLogge dich ein um den Kommentar zu moderieren. {{systemurl}}",
 
         'CRONJOB_UPDATES_NEWVERSION'      => 'Neue FanPress CM Version verfügbar',
         'CRONJOB_UPDATES_NEWVERSION_TEXT' => "Es ist eine neue Version {{version}} von FanPress CM verfügbar. Bitte melde dich im ACP an, um das Update durchzuführen.\n\n{{acplink}}",

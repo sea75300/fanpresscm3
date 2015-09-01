@@ -73,7 +73,7 @@ class creator extends \fpcm\controller\abstracts\ajaxController {
             return false;
         }
         
-        $folders = array('config', 'controller', 'model', 'events', 'js', 'lang', 'views');
+        $folders = array('config', 'controller', 'model', 'events', 'js', 'lang', 'views', 'data');
         
         foreach ($folders as $folder) {
             if (!mkdir($this->moddir.'/'.$folder)) {

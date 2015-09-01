@@ -348,6 +348,14 @@
         public static function escapeVal($value, $mode = false) {
             return htmlentities($value, ($mode ? (int) $mode : ENT_COMPAT | ENT_HTML5));
         }
+        
+        /**
+         * Erzeugt verstecktes Feld mit Page-Token zur Absicherung gegen Cross-Site-Request-Forgery
+         */
+        public static function pageTokenField() {
+            $tokenValue = \fpcm\classes\security::createPageToken();
+            self::hiddenInput(\fpcm\classes\security::getPageTokenFieldName(), $tokenValue);
+        }
 
         /**
          * IDs aufräumen

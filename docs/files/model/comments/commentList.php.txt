@@ -86,7 +86,8 @@
          * @param array $ids
          * @return bool
          */
-        public function deleteComments(array $ids) {   
+        public function deleteComments(array $ids) {
+            $this->cache->cleanup();
             return $this->dbcon->delete($this->table, 'id IN ('.implode(', ', $ids).')');
         }
 
@@ -100,6 +101,8 @@
             if (!is_array($article_ids)) {
                 $article_ids = array($article_ids);
             }
+
+            $this->cache->cleanup();
             
             return $this->dbcon->delete($this->table, 'articleid IN ('.implode(',', $article_ids).')');
         }
@@ -109,7 +112,8 @@
          * @param array $ids
          * @return bool
          */
-        public function toggleApprovement(array $ids) {   
+        public function toggleApprovement(array $ids) { 
+            $this->cache->cleanup();  
             return $this->dbcon->reverseBool($this->table, 'approved', 'id IN ('.implode(', ', $ids).')');
         }
 
@@ -118,7 +122,8 @@
          * @param array $ids
          * @return bool
          */
-        public function togglePrivate(array $ids) {   
+        public function togglePrivate(array $ids) {
+            $this->cache->cleanup();
             return $this->dbcon->reverseBool($this->table, 'private', 'id IN ('.implode(', ', $ids).')');
         }
 
@@ -127,7 +132,8 @@
          * @param array $ids
          * @return bool
          */
-        public function toggleSpammer(array $ids) {   
+        public function toggleSpammer(array $ids) {
+            $this->cache->cleanup();
             return $this->dbcon->reverseBool($this->table, 'spammer', 'id IN ('.implode(', ', $ids).')');
         }
         

@@ -36,6 +36,11 @@
                 $this->view->addNoticeMessage('SAVE_SUCCESS_SMILEY');
             }
             
+            if ($this->buttonClicked('configSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
             if ($this->buttonClicked('deleteSmiley') && $this->getRequestVar('smileyids')) {               
                 $deleteItems = array_map('unserialize', array_map('base64_decode', $this->getRequestVar('smileyids')));
                 if ($this->smileyList->deleteSmileys($deleteItems)) {

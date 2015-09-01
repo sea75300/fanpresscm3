@@ -31,34 +31,41 @@
         }
 
         public function request() {
-            if ($this->buttonClicked('userSave')) {                
-                $this->author->setUserName($this->getRequestVar('username'));
-                $this->author->setEmail($this->getRequestVar('email'));
-                $this->author->setDisplayName($this->getRequestVar('displayname'));
-                $this->author->setRoll($this->getRequestVar('roll'));
-                $this->author->setUserMeta(array());
-                $this->author->setRegistertime(time());
-
-                $newpass         = $this->getRequestVar('password');
-                $newpass_confirm = $this->getRequestVar('password_confirm');
-
-                $save = true;
-                if ($newpass && $newpass_confirm && (md5($newpass) == md5($newpass_confirm))) {
-                    $this->author->setPassword($newpass);
-                } else {
-                    $save = false;
-                    $this->view->addErrorMessage('SAVE_FAILED_PASSWORD_MATCH');
-                }
+            if (!$this->buttonClicked('userSave')) {
+                return true;
+            }
                 
-                if ($save) {
-                    $res = $this->author->save();
+            if ($this->buttonClicked('userSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
 
-                    if ($res === false) $this->view->addErrorMessage('SAVE_FAILED_USER');
-                    if ($res === true) $this->redirect ('users/list', array('added' => 1));
-                    if ($res === \fpcm\model\users\author::AUTHOR_ERROR_PASSWORDINSECURE) $this->view->addErrorMessage('SAVE_FAILED_PASSWORD_SECURITY');
-                    if ($res === \fpcm\model\users\author::AUTHOR_ERROR_EXISTS) $this->view->addErrorMessage('SAVE_FAILED_USER_EXISTS');
-                    if ($res === \fpcm\model\users\author::AUTHOR_ERROR_NOEMAIL) $this->view->addErrorMessage('SAVE_FAILED_USER_EMAIL');
-                }                
+            $this->author->setUserName($this->getRequestVar('username'));
+            $this->author->setEmail($this->getRequestVar('email'));
+            $this->author->setDisplayName($this->getRequestVar('displayname'));
+            $this->author->setRoll($this->getRequestVar('roll'));
+            $this->author->setUserMeta(array());
+            $this->author->setRegistertime(time());
+
+            $newpass         = $this->getRequestVar('password');
+            $newpass_confirm = $this->getRequestVar('password_confirm');
+
+            $save = true;
+            if ($newpass && $newpass_confirm && (md5($newpass) == md5($newpass_confirm))) {
+                $this->author->setPassword($newpass);
+            } else {
+                $save = false;
+                $this->view->addErrorMessage('SAVE_FAILED_PASSWORD_MATCH');
+            }
+
+            if ($save) {
+                $res = $this->author->save();
+
+                if ($res === false) $this->view->addErrorMessage('SAVE_FAILED_USER');
+                if ($res === true) $this->redirect ('users/list', array('added' => 1));
+                if ($res === \fpcm\model\users\author::AUTHOR_ERROR_PASSWORDINSECURE) $this->view->addErrorMessage('SAVE_FAILED_PASSWORD_SECURITY');
+                if ($res === \fpcm\model\users\author::AUTHOR_ERROR_EXISTS) $this->view->addErrorMessage('SAVE_FAILED_USER_EXISTS');
+                if ($res === \fpcm\model\users\author::AUTHOR_ERROR_NOEMAIL) $this->view->addErrorMessage('SAVE_FAILED_USER_EMAIL');
             }
             
             return true;

@@ -89,7 +89,7 @@
     
     if (!defined('FPCM_PAGETOKENCACHE_TIMEOUT')) {
         /**
-         * Timeout für Sprach-Cache
+         * Timeout für Pagetoken-Cache
          */
         define ('FPCM_PAGETOKENCACHE_TIMEOUT', 3600 * 5);
     }

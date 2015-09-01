@@ -41,6 +41,11 @@
          */
         public function request() {
             
+            if ($this->buttonClicked('configSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
             if ($this->buttonClicked('configSave')) {                
                 $newconfig = $this->getRequestVar();
                 $newconfig['twitter_data'] = json_encode($newconfig['twitter_data']);

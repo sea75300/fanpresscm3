@@ -44,6 +44,11 @@
                 $this->view->addNoticeMessage('SAVE_SUCCESS_IPADDRESS');
             }
             
+            if ($this->buttonClicked('delete') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
             if ($this->buttonClicked('delete') && !is_null($this->getRequestVar('ipids'))) {
                 
                 $ids = array_map('intval', $this->getRequestVar('ipids'));

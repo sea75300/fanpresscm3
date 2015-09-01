@@ -24,7 +24,8 @@
          * @param string $subpaths
          * @return string
          */
-        public static function libGetFilePath($libname, $libfile, $subpaths = '') {            
+        public static function libGetFilePath($libname, $libfile, $subpaths = '') {      
+
             $path = baseconfig::$incDir.'lib/'.$libname.'/'.trim($subpaths, '/').$libfile;
             
             if (!file_exists($path)) {

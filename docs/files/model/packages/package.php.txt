@@ -66,7 +66,7 @@
          * @var string
          */
         protected $remoteHash   = '';
-        
+
         /**
          * Pfad zur lokalen Paket-Kopie
          * @var string
@@ -146,6 +146,18 @@
          * @var string
          */
         protected $tempListFile = '';
+        
+        /**
+         * Signatur-String, der vom Update-Server geschickt wurde
+         * @var string
+         */
+        protected $remoteSignature = '';
+        
+        /**
+         * Signatur-String, der lokal berechnet wurde
+         * @var string
+         */
+        protected $localSignature    = '';
 
         /**
          * Konstruktor
@@ -153,11 +165,12 @@
          * @param string $version Package-Version
          * @param string $type Package-Type
          */
-        public function __construct($type, $key, $version = '') {
-            $this->type         = $type;
-            $this->key          = $key;
-            $this->version      = $version;
-            $this->archive      = new \ZipArchive();
+        public function __construct($type, $key, $version = '', $signature = '') {
+            $this->type            = $type;
+            $this->key             = $key;
+            $this->version         = $version;
+            $this->remoteSignature = $signature;
+            $this->archive         = new \ZipArchive();
             
             $this->init();
         }
@@ -340,8 +353,6 @@
                 return self::FPCMPACKAGE_REMOTEFILE_ERROR;
             }
             
-            $this->remoteHash = sha1_file($this->remoteFile);
-            
             if ($this->type == 'module' && !is_dir(dirname($this->localFile))) {
                 if (!mkdir(dirname($this->localFile))) {
                     trigger_error('Unable to create module vendor folder: '.dirname($this->localFile));
@@ -375,12 +386,9 @@
                 return self::FPCMPACKAGE_LOCALEXISTS_ERROR;
             }
             
-            $this->localHash = sha1_file($this->localFile);
-            
-            if ($this->remoteHash != $this->localHash) {
-                trigger_error('Remote and local file hash do not match for '.$this->localFile);
-                \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
-                return self::FPCMPACKAGE_HASHCHECK_ERROR;
+            $res = $this->checkHashes();
+            if ($res !== true) {
+                return $res;
             }
             
             return true;
@@ -528,6 +536,44 @@
             $this->tempListFile = \fpcm\classes\baseconfig::$tempDir.md5($this->localFile);
         }
         
+        /**
+         * Prüft ob Datei-Hashed und ggf. Datei-Signaturen übereinstimmen
+         * @return boolean
+         */
+        private function checkHashes() {
+            $this->buildHashes();
+            
+            if ($this->remoteHash != $this->localHash) {
+                trigger_error('Remote and local file hash do not match for '.$this->localFile);
+                \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
+                return self::FPCMPACKAGE_HASHCHECK_ERROR;
+            }
+            
+            
+            if ($this->remoteSignature != $this->localSignature) {
+                trigger_error('Remote and local file hash do not match for '.$this->localFile);
+                \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
+                return self::FPCMPACKAGE_HASHCHECK_ERROR;
+            }
+            
+            return true;
+        }
+        
+        /**
+         * Erzeugt Hashed und loale Datei-Signatur
+         * @return void
+         */
+        private function buildHashes() {
+            $this->remoteHash = sha1_file($this->remoteFile);            
+            $this->localHash  = sha1_file($this->localFile);
+            
+            if (!$this->remoteSignature) {
+                return;
+            }
+
+            $this->localSignature = '$sig$'.md5_file($this->localFile).'_'.sha1_file($this->localFile).'$sig$';
+        }
+
         /**
          * Dateiname/ Key der Form modulkey_versionX.Y.Z aufsplitten
          * @param string $filename
