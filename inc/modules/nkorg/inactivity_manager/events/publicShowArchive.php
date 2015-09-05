@@ -21,7 +21,7 @@
             $messageList = $messages->getMessages(true);
             
             foreach ($messageList as $message) {
-                array_unshift($params, $message);                
+                array_unshift($params, (string) $message);                
             }
             
             return $params;

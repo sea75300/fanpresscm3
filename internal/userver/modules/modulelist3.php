@@ -71,7 +71,7 @@
             'description'   => 'The Inactivity Manager module allows you to manage and display of various messages, in case of temporary inactivity or increased response time of your website, for example when you\'re on vacation. The module also allows you to disable certain features of your FanPress CM system like posting new comments.',
             'author'        => 'imagine',
             'link'          => 'http://nobody-knows.org/',
-            'version'       => '1.0.0',
+            'version'       => '1.0.1',
             'minsysverion'  => '3.0.4',
             'maxsysverion'  => '4.0.0'
         ),
