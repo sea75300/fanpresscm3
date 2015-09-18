@@ -53,6 +53,8 @@
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableRoll;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableSessions;
             $dumpSettings['include-tables'][] = $dbconfig['DBPREF'].'_'.\fpcm\classes\database::tableSmileys;
+            
+            $dumpSettings['include-tables']   = $this->events->runEvent('cronjobDbDumpIncludeTables', $dumpSettings['include-tables']);
 
             \fpcm\classes\logs::syslogWrite('Create new database dump in "'.$this->dumpfile.'"...');
             
@@ -71,7 +73,14 @@
                 return false;
             }
             
-            \fpcm\classes\logs::syslogWrite('New database dump created in "'.$this->dumpfile.'".');                
+            \fpcm\classes\logs::syslogWrite('New database dump created in "'.$this->dumpfile.'".');            
+            
+            $text  = $this->language->translate('CRONJOB_DBBACKUPS_TEXT', array(
+                '{{filetime}}' => date($this->config->system_dtmask, $this->getLastExecTime()),
+                '{{dumpfile}}' => $this->dumpfile                
+            ));
+            $email = new \fpcm\classes\email($this->config->system_email, $this->language->translate('CRONJOB_DBBACKUPS_SUBJECT'), $text);
+            $email->submit();
             
             return true;
         }

@@ -10,7 +10,7 @@
     /**
      * System package objekt
      * 
-     * @package fpcm.model.system
+     * @package fpcm.model.packages
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class package {
@@ -54,6 +54,11 @@
          * Fehler beim kopieren der Paket-Dateien
          */
         const FPCMPACKAGE_FILESCOPY_ERROR  = -8;
+        
+        /**
+         * Packages-Unterordner auf Paket-Server
+         */
+        const FPCMPACKAGE_SERVER_PACKAGEPATH = 'packages/';
         
         /**
          * Pfad auf Paket-Server
@@ -479,11 +484,15 @@
         
         /**
          * Lädt Paket-Dateiliste aus temporärer Datei
+         * @return boolean
          */
         public function loadPackageFileListFromTemp() {
-            if (!count($this->files)) {
-                $this->files = json_decode(base64_decode(file_get_contents($this->tempListFile)), true);
+            if (count($this->files)) {
+                return true;
             }
+            
+            $this->files = json_decode(base64_decode(file_get_contents($this->tempListFile)), true);
+            return true;
         }
         
         /**
@@ -507,7 +516,7 @@
         /**
          * Baut Datei-Liste aus Archiv auf
          */
-        private function listArchiveFiles() {
+        protected function listArchiveFiles() {
             for ($i = 0; $i < $this->archive->numFiles; $i++) {
                 $this->files[] = $this->archive->getNameIndex($i);
             }
@@ -518,22 +527,12 @@
         /**
          * Initialisiert Daten
          */
-        private function init() {
-            $this->filename     = (($this->type == 'module') ? $this->key.'_version'.$this->version : $this->key.$this->version).'.zip';
+        protected function init() {
+            $this->filename     = $this->key.$this->version.'.zip';
 
-            $url    = ($this->type == 'module')
-                    ? \fpcm\classes\baseconfig::$moduleServer
-                    : \fpcm\classes\baseconfig::$updateServer;
-
-            $url   .= 'packages/';
-
-            $this->remoteFile   = $url.$this->filename;
+            $this->remoteFile   = \fpcm\classes\baseconfig::$updateServer.self::FPCMPACKAGE_SERVER_PACKAGEPATH.$this->filename;
             $this->localFile    = \fpcm\classes\baseconfig::$tempDir.$this->filename;
-            
-            $this->extractPath  = ($this->type == 'module')
-                                ? \fpcm\classes\baseconfig::$tempDir.dirname($this->key).'/'
-                                : dirname($this->localFile).'/'.md5(basename($this->localFile, '.zip')).'/';
-
+            $this->extractPath  = dirname($this->localFile).'/'.md5(basename($this->localFile, '.zip')).'/';
             $this->tempListFile = \fpcm\classes\baseconfig::$tempDir.md5($this->localFile);
         }
         
@@ -541,7 +540,7 @@
          * Prüft ob Datei-Hashed und ggf. Datei-Signaturen übereinstimmen
          * @return boolean
          */
-        private function checkHashes() {
+        protected function checkHashes() {
             $this->buildHashes();
             
             if ($this->remoteHash != $this->localHash) {
@@ -564,7 +563,7 @@
          * Erzeugt Hashed und loale Datei-Signatur
          * @return void
          */
-        private function buildHashes() {
+        protected function buildHashes() {
             $this->remoteHash = sha1_file($this->remoteFile);            
             $this->localHash  = sha1_file($this->localFile);
             
@@ -573,6 +572,15 @@
             }
 
             $this->localSignature = '$sig$'.md5_file($this->localFile).'_'.sha1_file($this->localFile).'$sig$';
+        }
+        
+        /**
+         * Ersetzt "fanpress"-Ordnername durch basedir-Daen in einem Pfad
+         * @param string $path
+         * @return string
+         */
+        protected function replaceFanpressDirString($path) {
+            return str_replace('fanpress/', basename(\fpcm\classes\baseconfig::$baseDir).'/', $path);
         }
 
         /**

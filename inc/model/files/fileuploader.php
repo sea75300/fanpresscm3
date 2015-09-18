@@ -106,7 +106,7 @@
                 
                 $data = \fpcm\model\packages\package::explodeModuleFileName(basename($fileNames[$key], '.zip'));
                 
-                $package = new \fpcm\model\packages\package('module', $data[0], $data[1]);                
+                $package = new \fpcm\model\packages\module('module', $data[0], $data[1]);                
                 $res     = $package->extract();
                 
                 $extractPath = $package->getExtractPath();
@@ -122,7 +122,7 @@
                 
                 if ($res !== true) return $res;
                 
-                $package->setCopyDestination('inc/modules/'.$modulelisteConfig['vendor'].'/');
+                $package->setCopyDestination($package->getCopyDestination().$modulelisteConfig['vendor'].'/');
                 $res     = $package->copy();
                 
                 if ($res !== true) return $res;

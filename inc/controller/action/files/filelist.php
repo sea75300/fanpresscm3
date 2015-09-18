@@ -137,18 +137,13 @@
         
         public function process() {
             if (!parent::process()) return false;
-            
-            $list   = $this->fileList->getDatabaseList();
-            $users  = $this->userList->getUsersAll();
-            
+
             $this->view->addJsVars(array(
                 'fpcmBaseUrl'     => \fpcm\classes\baseconfig::$rootPath,
                 'fpcmFmgrMode'    => $this->mode,
                 'fpcmFmgrNewName' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME'),
                 'fpcmEditorType'  => $this->config->system_editor
             ));
-            
-            $this->initViewAssigns($list, $users);
             
             $this->view->assign('newUploader', $this->config->file_uploader_new);
             $this->view->assign('jquploadPath', \fpcm\classes\loader::libGetFileUrl('jqupload'));

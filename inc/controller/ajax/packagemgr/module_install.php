@@ -72,8 +72,7 @@
             
             if ($this->canConnect) {
                 $keyData = \fpcm\model\packages\package::explodeModuleFileName($this->key);                
-                $pkg = new \fpcm\model\packages\package('module', $keyData[0], $keyData[1]);
-                $pkg->setCopyDestination('inc/modules/');
+                $pkg = new \fpcm\model\packages\module('module', $keyData[0], $keyData[1]);
             }            
             
             if (!isset($keyData[0]) || !isset($keyData[1])) {

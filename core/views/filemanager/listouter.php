@@ -29,3 +29,9 @@
         <?php endif; ?>
     </div>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        fpcmJs.reloadFiles();
+    });
+</script>

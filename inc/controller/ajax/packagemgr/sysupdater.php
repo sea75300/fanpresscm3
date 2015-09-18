@@ -68,7 +68,7 @@
                 }
 
                 $signature = isset($remoteData['signature']) ? $remoteData['signature'] : '';
-                $pkg = new \fpcm\model\packages\package('update', $fileInfo, '', $signature);
+                $pkg = new \fpcm\model\packages\update('update', $fileInfo, '', $signature);
             }            
             
             switch ($this->step) {
