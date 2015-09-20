@@ -68,7 +68,7 @@
             $userList = new \fpcm\model\users\userList();            
             $users    = $userList->getUsersAll();
 
-            $this->initViewAssigns($list, $users);            
+            $this->initViewAssigns($list, $users);
             $this->initPermisions();           
 
             $this->view->initAssigns();

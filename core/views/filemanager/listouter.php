@@ -30,8 +30,10 @@
     </div>
 </div>
 
+<?php if ($loadAjax) : ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         fpcmJs.reloadFiles();
     });
 </script>
+<?php endif; ?>

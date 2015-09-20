@@ -83,6 +83,15 @@
         }
         
         /**
+         * Liefert Anzahl von Dateieinträgen in Datenbank zurück
+         * @return int
+         * @since FPCM 3.1
+         */
+        public function getDatabaseFileCount() {
+            return $this->dbcon->count($this->table);
+        }
+
+        /**
          * Erzeugt Thumbanils für Dateimanager
          * @param arraye $folderFiles
          */

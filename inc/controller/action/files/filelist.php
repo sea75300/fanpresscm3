@@ -138,6 +138,9 @@
         public function process() {
             if (!parent::process()) return false;
 
+            $loadAjax = ($this->fileList->getDatabaseFileCount() >= 1 ? true : false);
+            $this->view->assign('loadAjax', $loadAjax);
+            
             $this->view->addJsVars(array(
                 'fpcmBaseUrl'     => \fpcm\classes\baseconfig::$rootPath,
                 'fpcmFmgrMode'    => $this->mode,
@@ -157,6 +160,7 @@
                 $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             }
             
+            $this->initViewAssigns(array(), array());
             $this->initPermisions();
             $this->view->render();
         }
