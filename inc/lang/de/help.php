@@ -13,8 +13,8 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-            <p>Im <b>Dashboard</b> findest du verschiedene Informationen u. a. zum Update-Satus deiner FanPress CM Installation, etc. Du kannst auch
-            eigene Dashboard-Container erzeugen. Erzeuge dazu eine neue Conatainer-Datei unter "fanpress/inc/dashboard" oder über das entsprechende Modul-Event.</p>
+            <p>Im <b>Dashboard</b> findest du verschiedene Informationen u. a. zum Update-Status deiner FanPress CM Installation, etc. Du kannst auch
+            eigene Dashboard-Container erzeugen. Erzeuge dazu eine neue Container-Datei unter "fanpress/inc/dashboard" oder über das entsprechende Modul-Event.</p>
         ]]>
         </text>
     </chapter>
@@ -34,7 +34,7 @@ Help language file
                     <i>HTML</i> in der Format-Leiste kannst du eine einfache HTML-Ansicht öffnen.
                 </li>
                 <li><b>HTML-Ansicht:</b><br>
-                    Die HTML-Ansicht ist ein reiner HTML-Editor, welcher neben verschiedenen Formatierungsmöglichkeiten u. a. auch Syntax-Hilighting
+                    Die HTML-Ansicht ist ein reiner HTML-Editor, welcher neben verschiedenen Formatierungsmöglichkeiten u. a. auch Syntax-Highlighting
                     bietet.        
                 </li>
             </ul>
@@ -55,7 +55,7 @@ Help language file
             <p>Der Artikel-Editor kann am oberen Rand bis zu drei Tabs enthalten. Immer angezeigt wird der Tab <i>Artikel-Editor</i>, welcher den Editor
             an sich umfasst. Als weitere Tabs können <i>Kommentare</i> und/oder <i>Revisionen</i> folgen.</p>
 
-            <p>Unter <i>Kommentare</i> erhälst du eine Auflistung aller Kommentare, welche zu zum ausgewählten Artikel geschrieben wurden. Die Liste
+            <p>Unter <i>Kommentare</i> erhältst du eine Auflistung aller Kommentare, welche zu zum ausgewählten Artikel geschrieben wurden. Die Liste
             bietet dir die Möglichkeit, einzelne Kommentare zu löschen. Über einen Klick auf den Namen des Verfassern kannst du in einem einfachen
             Editor die Kommentare bearbeiten, freischalten, auf privat setzten, etc. Den Zugriff auf die Kommentare können du über die
             Berechtigungen geregelt werden.</p>
@@ -78,7 +78,7 @@ Help language file
             <p>Über den Button <span class="fpcm-ui-button">Suche & Filter</span> kannst du mithilfe eines Dialogs die angezeigten Artikel anhand verschiedener Kriterien
             weiter eingrenzen. Über die Hauptnavigation kannst du bereits eine Vorauswahl treffen, welche Artikel dir angezeigt werden sollen.</p>
             <p>Sofern aktiv hast du am oberen Rand den Reiter "Papierkorb". Hier findest du eine Übersicht aller gelöschten Artikel. Du
-            kannsst diese hier wieder herstellen oder vollständig löschen.</p>
+            kannst diese hier wieder herstellen oder vollständig löschen.</p>
         ]]>
         </text>
     </chapter>
@@ -88,7 +88,7 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-            <p>Im Bereich <b>Kommentare</b> erhältst du - unabhänig von den Artikeln - eine genrelle Übersicht über alle
+            <p>Im Bereich <b>Kommentare</b> erhältst du - unabhängig von den Artikeln - eine generelle Übersicht über alle
             geschriebenen Kommentare. Hier besteht die Möglichkeit, alle Kommentare zu löschen, ent/sperren, etc.</p>
             <p>Willst du nur die Artikel zu einem bestimmten Artikel anzeigen lassen, geht das wie gewohnt über die Liste
             auf dem Kommentar-Tab im Artikel-Editor.</p>
@@ -129,7 +129,7 @@ Help language file
             anpassen:</p>
             <ul>
                 <li><b>Passwort</b> zum Login</li>
-                <li><b>Name</b> welcher in den Artikel als Author-name angezeigt wird</li>
+                <li><b>Name</b> welcher in den Artikel als Autor-Name angezeigt wird</li>
                 <li><b>E-Mail-Adresse</b> an die bspw. ein zurückgesetztes Passwort gesendet wird</li>
                 <li><b>Sprache</b> des FanPress CM Admin-Bereichs</li>
                 <li><b>Zeitzone</b> welche für die Umrechnung von Zeitangaben genutzt wird</li>
@@ -153,7 +153,7 @@ Help language file
                             Der Tab enthält verschiedene zentrale Einstellungen für FanPress CM.
                             <ul>
                                 <li><em>E-Mail-Adresse:</em> Zentrale E-Mail-Adresse für Systembenachrichtigungen.</li>
-                                <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontent, wichtig v. a. bei der Nutzung
+                                <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontend, wichtig v. a. bei der Nutzung
                                     von phpinclude. Entspricht in vielen Fällen der <em>deine-domain.xyz/index.php</em> oder der Datei, in der
                                     <em>fpcmapi.php</em> includiert ist.</li>
                                 <li><em>Sprache:</em> Globale Spracheinstellung, kann durch Profileinstellung überschrieben werden.</li>
@@ -161,13 +161,13 @@ Help language file
                                 <li><em>Datum- und Zeitanzeige:</em> Maske für die Anzeige von Datums- und Zeitangaben, kann durch
                                 Profileinstellung überschrieben werden.</li>
                                 <li><em>Maximale Länge einer Admin-Sitzung:</em> Länge einer Session im FanPress-CM Adminbereich.</li>
-                                <li><em>Zeit bis zum atomatischen Neuaufbau des Cache in Sekunden:</em> Zeit bis der Cache-Inhalt von
+                                <li><em>Zeit bis zum automatischen Neuaufbau des Cache in Sekunden:</em> Zeit bis der Cache-Inhalt von
                                 FanPress CM automatisch verworfen und der Cache neu aufgebaut wird.</li>
                                 <li><em>Verwendung per:</em> Nutzung von FanPress CM via phpinclude oder in einem iframe.</li>
                                 <li><em>Pfad zu deiner CSS-Datei:</em> Pfad zu deiner CSS-Datei mit deinen eigenen Style-Angaben. Wichtig
                                 wenn du FanPress CM via iframe nutzt.</li>
                                 <li><em>jQuery Bibliothek laden:</em> Soll jQuery bei Nutzung von phpinclude geladen werden oder nicht.
-                                Wichtig wenn du jQuery nicht andersweitig in deiner Seite eingebunden hast.</li>
+                                Wichtig wenn du jQuery nicht anderweitig in deiner Seite eingebunden hast.</li>
                             </ul>
                         </li>
                         <li><b>Editor & Dateimanager:</b><br>
@@ -181,8 +181,8 @@ Help language file
                                 <li><em>Artikel vor dem Löschen in Papierkorb verschieben:</em> Artikel nicht direkt löschen sondern
                                 zuerst in Papierkorb verschieben. Hier kannst du sie ggf. wiederherstellen.</li>
                                 <li><em>Vorschaubild erzeugen wenn Bild größer ist als:</em> Automatisches Erzeugen von Thumbnails, wenn
-                                hochgeladene Bilder grüßer als die eingestellten Werte sind.</li>
-                                <li><em>Maxmimale Größe des Vorschaubildes:</em> Größe der von FanPress CM erzeugten Thumbnails.</li>
+                                hochgeladene Bilder größer als die eingestellten Werte sind.</li>
+                                <li><em>Maximale Größe des Vorschaubildes:</em> Größe der von FanPress CM erzeugten Thumbnails.</li>
                                 <li><em>CSS-Klassen im Editor:</em> CSS-Klassen zur Nutzung im FanPress CM Editor.</li>
                             </ul>
                         </li>            
@@ -207,20 +207,20 @@ Help language file
                                 <li><em>Anti-Spam-Frage:</em> Frage für das Standard-Spam-Plugin.</li>
                                 <li><em>Antwort auf Anti-Spam-Frage:</em> Antwort für das Standard-Spam-Plugin.</li>
                                 <li><em>Zeitsperre zwischen zwei Kommentaren:</em> Zeit in Sekunden, die zwischen zwei Kommentaren von
-                                der selben IP-Adresse verangen sein muss.</li>
-                                <li><em>Muss E-Mail Adresse angegeben werden:</em> Muss E-Mail-Adresse beim Schreiben eines Kommentares
+                                der selben IP-Adresse vergangen sein muss.</li>
+                                <li><em>Muss E-Mail Adresse angegeben werden:</em> Muss E-Mail-Adresse beim Schreiben eines Kommentars
                                 angegeben werden oder nicht.</li>
                                 <li><em>Müssen Kommentare freigeschalten werden:</em> Kommentare sind sofort sichtbar oder
-                                müssen manuell durch den Author oder einen Admin freigegeben werden.</li>
+                                müssen manuell durch den Autor oder einen Admin freigegeben werden.</li>
                                 <li><em>Benachrichtigung bei neuem Kommentare an:</em> E-Mail-Adresse festlegen, an welche die
-                                Benachrichtigungen über neue Kommentare gehen. (nur an Author, nur an globale Adresse oder an beide)</li>
+                                Benachrichtigungen über neue Kommentare gehen. (nur an Autor, nur an globale Adresse oder an beide)</li>
                             </ul>
                         </li>
                         <li><b>Twitter-Verbindung:</b><br>
                             Sofern dieser Tab angezeigt wird, siehe letzter Hilfe-Abschnitt ganz unten.
                         </li>
                         <li><b>System-Überprüfung & Updates:</b><br>
-                            Auf diesem Tab erhälst du eine Übersicht über den aktuelle Update-Status deines FanPress CM-Systems sowie
+                            Auf diesem Tab erhältst du eine Übersicht über den aktuelle Update-Status deines FanPress CM-Systems sowie
                             der verfügbaren Funktionen, etc. deines Servers. Bei allen <i>nicht-optionalen</i> Werten sollte ein blauer
                             Haken wie <span class="fa fa-check-square fpcm-ui-booltext-yes"></span> zu sehen sein. Wenn dies nicht der
                             Fall ist, wende sich an deinen Host.
@@ -244,7 +244,7 @@ Help language file
                 </li>
                 <li><b>Templates:</b><br>
                     Benutzer mit entsprechenden Rechten können die Templates zur Ausgabe von Artikeln, Kommentaren, etc. bearbeiten.
-                    Für eine bessere Übersicht bietet der Template-Editor Syntax-Hilighting und eine Liste der verfügbaren Platzhalter.
+                    Für eine bessere Übersicht bietet der Template-Editor Syntax-Highlighting und eine Liste der verfügbaren Platzhalter.
                 </li>
                 <li><b>Smileys:</b><br>
                     Benutzer mit den entsprechenden Rechten können die nutzbaren Smileys verwalten.
@@ -270,12 +270,12 @@ Help language file
             erscheinen. Die Aktionen, welche ein Benutzer im Module-Manager ausführen kann, hängen von seinen Berechtigungen ab. Benutzer
             ohne Administrationsrechte sollten i. d. R. keine Möglichkeit haben, Module zu installieren bzw. Änderungen an ihrer
             Konfiguration vorzunehmen.</p>
-            <p>Über den Buttons am Anfang eienr Zeile kannst du Module einzeln verwalten. Um Änderungen an mheren Modulen mit einmal
+            <p>Über den Buttons am Anfang einer Zeile kannst du Module einzeln verwalten. Um Änderungen an mehren Modulen mit einmal
             vorzunehmen, aktivieren die Checkbox am Ende jeder Modul-Zeile und wähle unten rechts die Aktion aus.</p>
-            <p>Am kompfortabelsten kannst du Module verwalten, wenn dein Host Verbindungen zu anderen Servern zulässt (siehe Info im Dashboard).
+            <p>Am komfortabelsten kannst du Module verwalten, wenn dein Host Verbindungen zu anderen Servern zulässt (siehe Info im Dashboard).
             Musst du Erweiterungen manuell installieren/aktualisieren, verwende den Tab "Modul manuell installieren". Wähle die entspreche de ZIP-Datei aus
             und klicke auf <span class="fpcm-ui-button">Upload starten</span>. Die Datei wird nun auf den Server geschoben und automatisch in das richtige Verzeichnis unter
-            "fanpress/inc/modules" entpackt. Ist ein Modul noch nicht installiert werden ggf. zusätzliche Schritte zur Installtion
+            "fanpress/inc/modules" entpackt. Ist ein Modul noch nicht installiert werden ggf. zusätzliche Schritte zur Installation
             durchgeführt. Ist ein Modul bereits installiert, werden definierte Update-Schritte durchgeführt.</p>
             <p>Für Module lasst sich <b>Abhängigkeiten</b> definieren, d. h. ein Modul kann erst dann aktiviert/ verwendet werden wenn
             andere Module installiert sind. Wird dir vor einem Modul der Button <span class="fpcm-ui-button"><span class="ui-icon ui-icon-alert"></span></span> angezeigt,
@@ -305,7 +305,7 @@ Help language file
         <text>
         <![CDATA[
             <p>Wie du FanPress CM auf deiner Seite verwendest, hängt davon ab wie du den Inhalt in die Seite einbindest.</p>
-            <p>Hilfe bei der Einbindung erhälst du durch das "FanPress CM Integration" Modul, welches du über die Modulverwaltung
+            <p>Hilfe bei der Einbindung erhältst du durch das "FanPress CM Integration" Modul, welches du über die Modulverwaltung
             installieren kannst. Du kannst natürlich auch manuell vorgehen:</p>
             <p><b>php include:</b></p>
             <p>Wenn du deine Seite mittels php include verwendest, binde zuerst die API-Datei im FanPress Verzeichnis ein und erzeuge
@@ -331,7 +331,7 @@ Help language file
                 <li><strong>FPCM_PUB_CATEGORY_LATEST</strong> Kategorie festlegen in $api->showLatestNews()</li>
                 <li><strong>FPCM_PUB_CATEGORY_LISTALL</strong> Kategorie festlegen in $api->showArticles()</li>
                 <li><strong>FPCM_PUB_LIMIT_LISTALL</strong> Anzahl der aktiven Artikel in $api->showArticles()</li>
-                <li><strong>FPCM_PUB_LIMIT_ARCHIVE</strong> Anzahl der archvierten Artikel in $api->showArticles()</li>
+                <li><strong>FPCM_PUB_LIMIT_ARCHIVE</strong> Anzahl der archivierten Artikel in $api->showArticles()</li>
                 <li><strong>FPCM_PUB_LIMIT_LATEST</strong> Anzahl der Artikel in $api->showLatestNews()</li>
                 <li><strong>FPCM_PUB_OUTPUT_UTF8</strong> UTF-8-Zeichensatz für Ausgabe de/aktivieren, in $api->showLatestNews(),
                 $api->showArticles() und $api->showTitle(), sollte nur genutzt werden wenn Umlaute, Sonderzeichen, etc. nicht richtig
@@ -374,7 +374,7 @@ Help language file
                 <li>Scrolle auf der folgenden Seite ganz nach unten bis du im Footer den Punkt "Manage Your Apps" siehst und klicke
                 diesen an. Wählen den Button <span class="fpcm-ui-button">Create new app</span>, fülle das Formular aus und bestätige mit
                 <span class="fpcm-ui-button">Create your Twitter application</span>.</li>
-                <li>Öffne den Tab <strong>Keys and Access Tokens</strong> und kopiere von dort<strong>Consumer Key (API Key)</strong>
+                <li>Öffne den Tab <strong>Keys and Access Tokens</strong> und kopiere von dort <strong>Consumer Key (API Key)</strong>
                     und <strong>Consumer Secret (API Secret)</strong> in die Felder in den Systemeinstellungen.</li>
                 <li>Um Tweets erzeugen zu können, stelle den <strong>Access Level</strong> über den Reiter <strong>Permissions</strong>
                     von <strong>Read-only</strong> auf <strong>Read and Write</strong>.</li>
@@ -384,7 +384,7 @@ Help language file
                     in die Felder in den Systemeinstellungen.</li>
                 
                 <li>Klicke nun in den <strong>Systemeinstellungen</strong> auf Speichern, um die Daten zu speichern.</li>
-                <li>Wurden alle Schritte richtig durchgeführt, so erhälst du einen entsprechenden Hinweis.</li>
+                <li>Wurden alle Schritte richtig durchgeführt, so erhältst du einen entsprechenden Hinweis.</li>
             </ol>
             <p>Um die Twitter-Verbindung zu löschen, klicke den Button <span class="fpcm-ui-button">Verbindung zu löschen</span> an.</p>
         ]]>
@@ -400,7 +400,7 @@ Help language file
             <em>fanpress@nobody-knows.org</em> oder <em>sea75300@yahoo.de</em>. Alternativ kannst du auch auf der Download-Seite unter
             <a href="http://nobody-knows.org/download/fanpress-cm/">nobody-knows.org</a> einen Kommentar hinterlassen.</p>
             <p>Das Module <em>FanPress CM Support Module</em> kann installiert werden, um einen einfachen, temporären Zugang
-            zur Verfügung zu stellen. Beachte bitte, dass bereits bei der Installtion einen E-Mail mit den Zugangsdaten versendet
+            zur Verfügung zu stellen. Beachte bitte, dass bereits bei der Installation einen E-Mail mit den Zugangsdaten versendet
             wird.</p>
         ]]>
         </text> 

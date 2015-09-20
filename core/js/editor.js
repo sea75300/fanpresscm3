@@ -301,11 +301,9 @@ var fpcmEditor = function () {
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl,
                     title           : fpcmFileManagerHeadline,
-                    width           : 900,
-                    height          : 500,
-                    resizable       : "yes",
-                    inline          : "yes",
-                    close_previous  : "no",
+                    width           : 1024,
+                    height          : 600,
+                    close_previous  : false,
                     buttons  : [
                         {
                             text: fpcmClose,                      

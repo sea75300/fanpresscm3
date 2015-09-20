@@ -27,7 +27,7 @@
         'NKORGINACTIVITY_MANAGER_DELETE_FAILED' => 'Die ausgewählten Inaktivitäts-Nachrichten konnten nicht gelöscht werden!',
         
         'NKORGINACTIVITY_MANAGER_HELP'          => 'Dieses Modul bietet für die Artikel-Einzel-Ansicht einige Template-Platzhalter.'.
-                                                    '<pre>{{inactivityManagerMessages}} - alle Nachrichten, deren Zeitraum mit dem'.
-                                                    'aktuellen Datum übereinstimmt'.
-                                                    '{{inactivityManagerCommentsDiabled}} - Hinweis das Kommentare deaktiviert sind</pre>',
+                                                    '<pre>{{inactivityManagerMessages}} - alle Nachrichten, deren Zeitraum mit dem '.
+                                                    'aktuellen Datum übereinstimmt {{inactivityManagerCommentsDiabled}} - Hinweis '.
+                                                    'das Kommentare deaktiviert sind</pre>',
     );

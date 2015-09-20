@@ -244,7 +244,7 @@ Help language file
         <![CDATA[
             <p>The <b>Modules</b> area allows you to manage installed and available module including updates and so on.
             Depeding on teh amount of used events, classes, etc. modules and extend functionality of FanPress CM.</p>
-            <p>When your host allows external connections to other servers (see dashboard conatainer of system check),
+            <p>When your host allows external connections to other servers (see dashboard Container of system check),
             managing modules is pretty easy. In case you have to install/ update modules, use the "Install module manually" tab.
             Simply select the module ZIP archive file and start the upload. The package will be automaticaly extracted into the correct
             subfolder in "fanpress/inc/modules". If an uploaded module is not installed, it's install action will be called otherwise
