@@ -1,11 +1,19 @@
- FanPress CM 3.0
+FanPress CM 3.1
 
--- ToDos --
+-- ToDo v3.1 --
 
-* Konstanten von Entwicklungs- auf Release-Werte setzten
+* DIV-Wrapper um Eingabe-Felder (input, textarea, etc. für einheitliches Design)
+* Vorschau-Möglichkeit in Template-Editor
+* evtl. DIFF-Ansicht in Revisionen
+* verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
+* überarbeitetes AJAX-Framework
+* einige Config-Konstanten in Systemeinstellungen verlagern
+
+-- ToDo allgemein --
+
+
 * weitere Events prüfen
 * Dokumentation
-* Legacy Redirect Modul bei Artikel Aufruf 
 
 Stand: 20.07.2015 - 20:40 Uhr
 
@@ -58,3 +66,5 @@ Stand: 20.07.2015 - 20:40 Uhr
 * Support Module erstellen
 * Artikel-Dashboard-Container: Anzeige von Infos zu postponed, approval, draft
 * Optimierung Ladezeiten von HTML-Editor
+* Legacy Redirect Modul bei Artikel Aufruf 
+* Konstanten von Entwicklungs- auf Release-Werte setzten
