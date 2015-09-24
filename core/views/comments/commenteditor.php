@@ -39,7 +39,7 @@
     <?php endif; ?>
     <tr>
          <td><strong><?php $FPCM_LANG->write('COMMMENT_TEXT'); ?></strong>:</td>
-        <td><?php \fpcm\model\view\helper::textArea('comment[text]', 'fpcm-full-width', stripslashes($comment->getText())) ?></td>
+        <td><?php \fpcm\model\view\helper::textArea('comment[text]', 'fpcm-full-width', stripslashes($comment->getText()), false, false); ?></td>
     </tr>
 </table>
 

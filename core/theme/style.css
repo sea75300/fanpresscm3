@@ -134,11 +134,6 @@ img {
     padding: 0.5em;
 }
 
-.fpcm-login-form input[type=text], .fpcm-login-form input[type=password] {
-    width: 95%;
-    margin: 0 auto;
-}
-
 @media (max-width: 35em) {
     .fpcm-login-form {        
         width: 100%;
@@ -319,50 +314,66 @@ table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments.fpcm-ui-
 /* Formulare */
 
 input, select, textarea, option, button {
+    border: 0;
     outline: 0;
-    font-size: 1em;    
+    font-size: 1em;
 }
 
-input[type=text], input[type=password], textarea {
+.fpcm-ui-input-wrapper {
+    display: inline-block;
+}
+
+.fpcm-ui-input-wrapper,
+textarea {
     background-color: #ffffff;
     border: 1px solid #C5DBEC;
+    border-radius: 5px;
 }
 
-input[type="text"][readonly], .fpcm-ui-readonly {
+.fpcm-ui-input-wrapper-inner,
+textarea {
+    padding: 0.3em 0.4em;
+}
+
+.fpcm-ui-input-wrapper-inner {
+    padding: 0.3em 0.4em;
+    width: auto;
+    height: auto;
+}
+
+.fpcm-ui-input-wrapper,
+.fpcm-ui-input-wrapper input {
+    width: 100%;
+    height: auto;
+}
+
+input[type="text"][readonly],
+textarea[readonly],
+.fpcm-ui-readonly {
     opacity: 0.35;
 }
 
-input[type=text]:hover,
-input[type=text]:active,
-input[type=text]:focus,
-input[type=password]:hover,
-input[type=password]:active,
-input[type=password]:focus,
 textarea:hover,
+textarea:focus,
 textarea:active,
-textarea:focus {
+.fpcm-ui-input-wrapper:hover,
+.fpcm-ui-input-wrapper-hover {
     border: 1px solid #79B7E7;
     box-shadow: #79B7E7 0px 0px 4px;
 }
 
-input[type=Radio] {
-    background:transparent;
-    margin-right:3px;
+table.fpcm-ui-options div.fpcm-ui-input-wrapper {
+    width: 200px;
 }
 
-input[type=text],
-input[type=password],
-input[type=submit],
-input[type=reset],
-textarea,
-select {
-    padding: 0.3em 0.4em;
-    border-radius: 5px;
+table.fpcm-ui-articles-search div.fpcm-ui-input-wrapper {
+    width: 198px;
+    margin-left: -0.5em;
 }
 
 textarea.fpcm-options-cssclasses {
-    height: 100px;
-    resize: vertical;
+    height: 150px;
+    width: 50%;
 }
 
 /* Admin-Bereich Navigation */

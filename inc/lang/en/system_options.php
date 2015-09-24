@@ -64,6 +64,7 @@
         'SYSTEM_OPTIONS_COMMENTFORMTEMPLATE'        => 'Comment form template',
         'SYSTEM_OPTIONS_ANTISPAMQUESTION'           => 'Spam captcha question',
         'SYSTEM_OPTIONS_ANTISPAMANSWER'             => 'Spam captcha answer',
+        'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'ACP article list limit',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Flood protection between two comments',
         'SYSTEM_OPTIONS_FLOODPROTECTION_0'          => 'none',

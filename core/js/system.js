@@ -13,6 +13,7 @@ jQuery(document).ready(function () {
     
     fpcmJs.windowResize();
     fpcmJs.assignButtons();
+    fpcmJs.initInputShadow();
     
     jQuery(window).resize(function () {
         fpcmJs.windowResize();

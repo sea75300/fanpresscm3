@@ -212,8 +212,12 @@
         public function getUserMeta($valueName = null) {
             $userMeta = json_decode($this->usrmeta, true);
             
-            if (is_null($valueName))          { return $userMeta; }
-            if (isset($userMeta[$valueName])) { return $userMeta[$valueName]; }
+            if (is_null($valueName))          {
+                return $userMeta;                
+            }
+            if (isset($userMeta[$valueName])) {
+                return $userMeta[$valueName];
+            }
             
             switch ($valueName) {
                 case 'system_lang' :
@@ -221,10 +225,13 @@
                 break;
                 case 'system_dtmask' :
                     return $this->config->system_dtmask;
-                break;   
+                break;
                 case 'system_timezone' :
                     return $this->config->system_timezone;
-                break;             
+                break;
+                case 'articles_acp_limit' :
+                    return FPCM_ACP_ARTICLELIST_LIMIT;
+                break;
             }
         }
 

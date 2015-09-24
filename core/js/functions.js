@@ -716,4 +716,24 @@ var fpcmJs = function () {
     this.setFocus = function(elemId) {
         jQuery('#' + elemId).focus();
     };
+    
+    this.initInputShadow = function() {
+        jQuery('.fpcm-ui-input-wrapper input[type=text]').focus(function () {
+            jQuery(this).parent().parent().addClass('fpcm-ui-input-wrapper-hover');
+        }).blur(function () {
+            jQuery(this).parent().parent().removeClass('fpcm-ui-input-wrapper-hover');
+        });
+
+        jQuery('.fpcm-ui-input-wrapper input[type=password]').focus(function () {
+            jQuery(this).parent().parent().addClass('fpcm-ui-input-wrapper-hover');
+        }).blur(function () {
+            jQuery(this).parent().parent().removeClass('fpcm-ui-input-wrapper-hover');
+        });
+
+        jQuery('.fpcm-ui-input-wrapper textarea').focus(function () {
+            jQuery(this).parent().parent().addClass('fpcm-ui-input-wrapper-hover');
+        }).blur(function () {
+            jQuery(this).parent().parent().removeClass('fpcm-ui-input-wrapper-hover');
+        });  
+    };
 }

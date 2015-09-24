@@ -16,5 +16,11 @@
             <td>
                 <?php \fpcm\model\view\helper::textInput('usermeta[system_dtmask]', '', $author->getUserMeta('system_dtmask')); ?>
             </td>
-        </tr>       
+        </tr>
+        <tr>
+            <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ACPARTICLES_LIMIT'); ?>:</td>
+            <td>
+                <?php fpcm\model\view\helper::select('usermeta[articles_acp_limit]', $articleLimitList, $author->getUserMeta('articles_acp_limit'), false, false); ?>
+            </td>
+        </tr>
     </table>

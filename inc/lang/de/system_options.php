@@ -64,6 +64,7 @@
         'SYSTEM_OPTIONS_COMMENTFORMTEMPLATE'        => 'Kommentar-Formular-Template',
         'SYSTEM_OPTIONS_ANTISPAMQUESTION'           => 'Anti-Spam-Frage',
         'SYSTEM_OPTIONS_ANTISPAMANSWER'             => 'Antwort auf Anti-Spam-Frage',
+        'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'Anzahl an Artikeln im ACP',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Zeitsperre zwischen zwei Kommentaren',
         'SYSTEM_OPTIONS_FLOODPROTECTION_0'          => 'keine',

@@ -88,8 +88,8 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZE'); ?>:</td>
                         <td>
-                            <?php fpcm\model\view\helper::textInput('files_img_thumb_minwidth', 'fpcm-ui-spinner', $globalConfig['files_img_thumb_minwidth']); ?> <span class="fa fa-times fa-fw"></span>
-                            <?php fpcm\model\view\helper::textInput('files_img_thumb_minheight', 'fpcm-ui-spinner', $globalConfig['files_img_thumb_minheight']); ?>
+                            <?php fpcm\model\view\helper::textInput('files_img_thumb_minwidth', 'fpcm-ui-spinner', $globalConfig['files_img_thumb_minwidth'], false, 5, false, false); ?> <span class="fa fa-times fa-fw"></span>
+                            <?php fpcm\model\view\helper::textInput('files_img_thumb_minheight', 'fpcm-ui-spinner', $globalConfig['files_img_thumb_minheight'], false, 5, false, false); ?>
                             <?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZEPIXELS'); ?>
                         </td>
                     </tr>	                        
@@ -97,15 +97,15 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWIMGTHUMBSIZE'); ?>:</td>
                         <td>
-                            <?php fpcm\model\view\helper::textInput('file_img_thumb_width', 'fpcm-ui-spinner', $globalConfig['file_img_thumb_width']); ?> <span class="fa fa-times fa-fw"></span>
-                            <?php fpcm\model\view\helper::textInput('file_img_thumb_height', 'fpcm-ui-spinner', $globalConfig['file_img_thumb_height']); ?>
+                            <?php fpcm\model\view\helper::textInput('file_img_thumb_width', 'fpcm-ui-spinner', $globalConfig['file_img_thumb_width'], false, 5, false, false); ?> <span class="fa fa-times fa-fw"></span>
+                            <?php fpcm\model\view\helper::textInput('file_img_thumb_height', 'fpcm-ui-spinner', $globalConfig['file_img_thumb_height'], false, 5, false, false); ?>
                             <?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZEPIXELS'); ?>
                         </td>	
                     </tr>
                     <tr>			
                         <td class="fpcm-align-top"><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_EDITOR_CSS'); ?>:</td>
                         <td>
-                            <?php fpcm\model\view\helper::textArea('system_editor_css', 'fpcm-half-width fpcm-options-cssclasses', $globalConfig['system_editor_css']) ?>
+                            <?php fpcm\model\view\helper::textArea('system_editor_css', 'fpcm-ui-half-width fpcm-options-cssclasses', $globalConfig['system_editor_css'], false); ?>
                         </td>	
                     </tr>
                 </table>

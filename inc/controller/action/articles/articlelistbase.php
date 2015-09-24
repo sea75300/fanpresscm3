@@ -88,10 +88,8 @@
             $this->commentList      = new \fpcm\model\comments\commentList();
             $this->userList         = new \fpcm\model\users\userList();
 
-            if (!$this->listShowLimit) {
-                $this->listShowLimit = 50;
-            }
-            
+            $this->listShowLimit    = $this->config->articles_acp_limit;
+
             $this->view             = new \fpcm\model\view\acp('listouter', 'articles');
             
             $this->articleActions   = array(

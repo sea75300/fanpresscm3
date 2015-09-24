@@ -22,7 +22,7 @@
     </tr>
      <tr>
         <td>
-            <?php \fpcm\model\view\helper::textArea('article[content]', 'fpcm-full-width', stripslashes($article->getContent())) ?>
+            <?php \fpcm\model\view\helper::textArea('article[content]', 'fpcm-full-width', stripslashes($article->getContent()), false, false); ?>
         </td>
     </tr>
 </table>

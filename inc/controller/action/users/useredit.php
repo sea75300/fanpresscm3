@@ -37,12 +37,13 @@
                 $this->view->setNotFound('LOAD_FAILED_USER', 'users/list');                
                 return true;
             }
-                
-            if ($this->buttonClicked('userSave') && !$this->checkPageToken()) {
+
+            $checkPageToken = $this->checkPageToken();
+            if ($this->buttonClicked('userSave') && !$checkPageToken) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
             
-            if ($this->buttonClicked('userSave') && $this->checkPageToken()) {
+            if ($this->buttonClicked('userSave') && $checkPageToken) {
                 $author->setUserName($this->getRequestVar('username'));
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
@@ -108,6 +109,19 @@
             
             $this->view->assign('timezoneAreas', $timezones);
             $this->view->assign('externalSave', true);
+
+            $articleLimitList = array(
+                10 => 10,
+                25 => 25,
+                50 => 50,
+                75 => 75,
+                100 => 100,
+                125 => 125,
+                150 => 150,
+                200 => 200,
+                250 => 250
+            );
+            $this->view->assign('articleLimitList', $articleLimitList);
             
             $this->view->render();            
         }

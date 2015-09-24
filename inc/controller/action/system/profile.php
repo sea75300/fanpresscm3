@@ -32,15 +32,17 @@
         public function request() {
 
             $author = $this->session->getCurrentUser();
-                
-            if ($this->buttonClicked('profileSave') && !$this->checkPageToken()) {
+            
+            $pageTokenCheck = $this->checkPageToken();
+            if ($this->buttonClicked('profileSave') && !$pageTokenCheck) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
 
-            if ($this->buttonClicked('profileSave') && $this->checkPageToken()) {
+            if ($this->buttonClicked('profileSave') && $pageTokenCheck) {
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
                 $author->setUserMeta($this->getRequestVar('usermeta'));
+                
 
                 $newpass         = $this->getRequestVar('password');
                 $newpass_confirm = $this->getRequestVar('password_confirm');
@@ -107,7 +109,20 @@
             
             $this->view->addJsVars(array(
                 'fpcmDtMasks' => \fpcm\classes\baseconfig::$dateTimeMasks
-            ));            
+            ));
+            
+            $articleLimitList = array(
+                10 => 10,
+                25 => 25,
+                50 => 50,
+                75 => 75,
+                100 => 100,
+                125 => 125,
+                150 => 150,
+                200 => 200,
+                250 => 250
+            );
+            $this->view->assign('articleLimitList', $articleLimitList);
             
             $this->view->render();            
         }

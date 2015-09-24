@@ -2,7 +2,6 @@ FanPress CM 3.1
 
 -- ToDo v3.1 --
 
-* DIV-Wrapper um Eingabe-Felder (input, textarea, etc. für einheitliches Design)
 * Vorschau-Möglichkeit in Template-Editor
 * evtl. DIFF-Ansicht in Revisionen
 * verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
@@ -15,9 +14,16 @@ FanPress CM 3.1
 * weitere Events prüfen
 * Dokumentation
 
-Stand: 20.07.2015 - 20:40 Uhr
+Stand: 24.09.2015 - 20:08 Uhr
 
--- Fertig --
+-- ToDo v3.1 --
+
+* DIV-Wrapper um Eingabe-Felder (input, textarea, etc. für einheitliches Design)
+* einige Config-Konstanten in Systemeinstellungen verlagern:
+* * Anzahl Artikel in ACP-Liste - ben.-def. Einstellung - Default in Konstante
+* * ??
+
+-- ToDo v3.0 --
 
 * E-Mail-Benachrichtigung bei Kommentar (an globale und Autoren-Adresse, ist konfigurierbar)
 * Hinweis auf private/ nicht genehmigte Kommentare in Artikel-Liste

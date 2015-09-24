@@ -37,6 +37,7 @@
      * @property string $articles_sort Sortierung der Artikel im Frontend
      * @property string $articles_sort_order Reihenfolge der Sortierung der Artikel im Frontend
      * @property bool   $articles_rss RSS-Feed ist aktiv
+     * @property int    $articles_acp_limit Anzahl an Artikeln in der ACP-Liste
      * 
      * @property string $comments_template_active aktives Kommentar-Template
      * @property int    $comments_flood Sperre zwischen zwei Kommentaren
@@ -195,10 +196,9 @@
             }
 
             foreach ($userData as $key => $value) {
-                if (!isset($this->data[$key])) continue;
                 $this->data[$key] = $value;
             }
-            
+
             if ($this->system_lang != \fpcm\classes\baseconfig::$settings->language->getLangCode()) {
                 \fpcm\classes\baseconfig::$settings->language = new \fpcm\classes\language($this->system_lang);                
             }

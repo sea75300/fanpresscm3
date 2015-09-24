@@ -126,9 +126,14 @@
          * @param bool $readonly readonly Status
          * @param int $maxLenght maximale Länge für Feld-Eingabe
          * @param string $placeholder Platzhalter-Text
+         * @param string $wrapper Wrapper-DIV nutzen
          */
-        public static function textInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false) {
+        public static function textInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false, $wrapper = true) {
             $html   = array();
+            if ($wrapper) {
+                $wrapperClass = is_string($wrapper) ? $wrapper : '';
+                $html[] = "<div class=\"fpcm-ui-input-wrapper $wrapperClass\"><div class=\"fpcm-ui-input-wrapper-inner\">";
+            }
             $html[] = "<input type=\"text\" class=\"fpcm-ui-input-text $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\" value=\"".htmlentities($value, ENT_QUOTES)."\" maxlenght=\"$maxLenght\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
             if ($placeholder) $html[] = " placeholder=\"$placeholder\"";
@@ -137,6 +142,8 @@
             }
             
             $html[] = ">\n";
+            $html[] = "</div>\n";
+            if ($wrapper) $html[] = "</div>\n";
             
             print implode('', $html);
         }
@@ -158,9 +165,14 @@
          * @param bool $readonly readonly Status
          * @param int $maxLenght maximale Länge für Feld-Eingabe
          * @param sting $placeholder HTML5-Platzhalter-Text
+         * @param string $wrapper Wrapper-DIV nutzen
          */
-        public static function passwordInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false) {
+        public static function passwordInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false, $wrapper = true) {
             $html   = array();
+            if ($wrapper) {
+                $wrapperClass = is_string($wrapper) ? $wrapper : '';
+                $html[] = "<div class=\"fpcm-ui-input-wrapper $wrapperClass\"><div class=\"fpcm-ui-input-wrapper-inner\">";
+            }
             $html[] = "<input type=\"password\" class=\"fpcm-ui-input-text $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\" value=\"".htmlentities($value, ENT_QUOTES)."\" maxlenght=\"$maxLenght\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
             if ($placeholder) $html[] = " placeholder=\"$placeholder\"";
@@ -168,6 +180,8 @@
                 $html[] = " title=\"$placeholder\"";
             }
             $html[] = ">\n";
+            $html[] = "</div>\n";
+            if ($wrapper) $html[] = "</div>\n";
             
             print implode('', $html);
         }
@@ -222,12 +236,13 @@
          * @param string $class CSS-Klasse
          * @param string $value Wert
          * @param bool $readonly readonly Status
+         * @param string $wrapper Wrapper-DIV nutzen
          */
         public static function textArea($name, $class = '', $value = '', $readonly = false) {
             $html   = array();
             $html[] = "<textarea type=\"text\" class=\"fpcm-ui-textarea $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
-            $html[] = ">".htmlentities($value, ENT_QUOTES)."</textarea>\n";
+            $html[] = ">".htmlentities($value, ENT_QUOTES)."</textarea></div>\n";
             
             print implode('', $html);            
         }
