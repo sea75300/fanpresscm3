@@ -23,11 +23,12 @@
 
         public function request() {
             
-            if ($this->buttonClicked('doAction') && !$this->checkPageToken()) {
+            $pageTokenCheck = $this->checkPageToken();
+            if ($this->buttonClicked('doAction') && !$pageTokenCheck) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
             
-            if ($this->buttonClicked('articleSave') && $this->checkPageToken()) {
+            if ($this->buttonClicked('articleSave') && $pageTokenCheck) {
                 $data = $this->getRequestVar('article', array(4,7));
 
                 $this->article->setTitle($data['title']);

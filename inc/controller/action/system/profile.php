@@ -33,11 +33,12 @@
 
             $author = $this->session->getCurrentUser();
                 
-            if ($this->buttonClicked('profileSave') && !$this->checkPageToken()) {
+            $pageTokenCheck = $this->checkPageToken();
+            if ($this->buttonClicked('profileSave') && !$pageTokenCheck) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
 
-            if ($this->buttonClicked('profileSave') && $this->checkPageToken()) {
+            if ($this->buttonClicked('profileSave') && $pageTokenCheck) {
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
                 $author->setUserMeta($this->getRequestVar('usermeta'));

@@ -40,11 +40,12 @@
          */
         public function request() {
 
-            if ($this->buttonClicked('permissionsSave') && !$this->checkPageToken()) {
+            $pageTokenCheck = $this->checkPageToken();
+            if ($this->buttonClicked('permissionsSave') && !$pageTokenCheck) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
             
-            if ($this->buttonClicked('permissionsSave') && !is_null($this->getRequestVar('permissions')) && $this->checkPageToken()) {
+            if ($this->buttonClicked('permissionsSave') && !is_null($this->getRequestVar('permissions')) && $pageTokenCheck) {
                 
                 $permissionData = $this->getRequestVar('permissions');
 
