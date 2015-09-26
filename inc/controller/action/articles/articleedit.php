@@ -91,7 +91,7 @@
                 $this->showRevision = true;
             }
 
-            if ($this->buttonClicked('articleDelete') && !$this->showRevision && $pageTokenCheck) {
+            if ($this->buttonClicked('articleDelete') && !$this->showRevision && $this->pageTokenCheck) {
                 if ($this->article->delete()) {
                     $this->redirect('articles/listall');
                 } else {
@@ -99,7 +99,7 @@
                 }
             }
             
-            if ($this->buttonClicked('revisionDelete') && $this->getRequestVar('revisionIds') && !$this->showRevision && $pageTokenCheck) {
+            if ($this->buttonClicked('revisionDelete') && $this->getRequestVar('revisionIds') && !$this->showRevision && $this->pageTokenCheck) {
                 if ($this->article->deleteRevisions($this->getRequestVar('revisionIds'))) {
                     $this->view->addNoticeMessage('DELETE_SUCCESS_REVISIONS');
                 } else {
@@ -111,7 +111,7 @@
             
             $allTimer = time();
             
-            if ($this->buttonClicked('articleSave') && !$this->showRevision && $pageTokenCheck) {
+            if ($this->buttonClicked('articleSave') && !$this->showRevision && $this->pageTokenCheck) {
                 $this->article->createRevision();
                 
                 $data = $this->getRequestVar('article', array(4,7));
