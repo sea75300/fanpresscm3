@@ -27,6 +27,8 @@
          */
         public function __construct() {
             parent::__construct();
+            
+            $this->cache = new \fpcm\classes\cache('navigation_'.$this->session->getUserId());
         }
 
         /**
@@ -34,6 +36,11 @@
          * @return array
          */
         public function render() {
+            
+            if (!$this->cache->isExpired()) {
+                return $this->cache->read();
+            }
+            
             $this->permissions = new \fpcm\model\system\permissions($this->session->getCurrentUser()->getRoll());
 
             $navigation = $this->getNavigation();
@@ -43,6 +50,8 @@
                 $moduleOptions = $this->checkPermissions($moduleOptions);            
             }
 
+            $this->cache->write($navigation, $this->config->system_cache_timeout);
+            
             return $navigation;
         }
 

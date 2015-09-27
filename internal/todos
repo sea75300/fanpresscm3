@@ -21,7 +21,7 @@ Stand: 24.09.2015 - 20:08 Uhr
 * DIV-Wrapper um Eingabe-Felder (input, textarea, etc. für einheitliches Design)
 * einige Config-Konstanten in Systemeinstellungen verlagern:
 * * Anzahl Artikel in ACP-Liste - ben.-def. Einstellung - Default in Konstante
-* * ??
+* gerenderte Navigation wird pro Benutzer gecached
 
 -- ToDo v3.0 --
 

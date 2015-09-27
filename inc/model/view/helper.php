@@ -242,7 +242,7 @@
             $html   = array();
             $html[] = "<textarea type=\"text\" class=\"fpcm-ui-textarea $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
-            $html[] = ">".htmlentities($value, ENT_QUOTES)."</textarea></div>\n";
+            $html[] = ">".htmlentities($value, ENT_QUOTES)."</textarea>\n";
             
             print implode('', $html);            
         }
