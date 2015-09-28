@@ -56,6 +56,6 @@
         'EDITOR_STATUS_ARCHIVE'         => 'Artikel ist archiviert',
         'EDITOR_STATUS_APPROVAL'        => 'Artikel muss freigegeben werden',
         'EDITOR_STATUS_COMMENTS'        => 'Kommentare sind aktiv',
-        'EDITOR_STATUS_REVISION'        => 'Anzeige ist Revision',
+        'EDITOR_STATUS_REVISION'        => 'Revision anzeigen (Revision = links, Aktuell = rechts)',
         'EDITOR_STATUS_REVISION_SHOW'   => 'Revision öffnen'
     );

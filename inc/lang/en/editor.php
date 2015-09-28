@@ -56,6 +56,6 @@
         'EDITOR_STATUS_ARCHIVE'         => 'Article is archived',
         'EDITOR_STATUS_APPROVAL'        => 'Article requires approval',
         'EDITOR_STATUS_COMMENTS'        => 'Comments are enabled',
-        'EDITOR_STATUS_REVISION'        => 'Revision is displayed',
+        'EDITOR_STATUS_REVISION'        => 'Revision is displayed (revision state = left, current state = right)',
         'EDITOR_STATUS_REVISION_SHOW'   => 'Open revision'
     );

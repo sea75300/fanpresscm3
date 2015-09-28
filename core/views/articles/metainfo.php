@@ -28,10 +28,4 @@
         <span class="fa fa-archive"></span>
     </span>
     <?php endif; ?>
-
-    <?php if (isset($isRevision) && $isRevision) : ?>
-    <span class="fpcm-ui-editor-metainfo-1" title="<?php $FPCM_LANG->write('EDITOR_STATUS_REVISION'); ?>">
-        <span class="fa fa-history"></span>
-    </span>    
-    <?php endif; ?>
 </div>

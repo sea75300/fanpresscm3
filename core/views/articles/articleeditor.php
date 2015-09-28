@@ -1,6 +1,10 @@
 <div class="fpcm-tabs-general">
     <ul>
+        <?php if ($isRevision) : ?>
+        <li><a href="#tabs-article"><?php $FPCM_LANG->write('EDITOR_STATUS_REVISION'); ?></a></li>
+        <?php else : ?>
         <li><a href="#tabs-article"><?php $FPCM_LANG->write('ARTICLES_EDITOR'); ?></a></li>
+        <?php endif; ?>
         <?php if ($showComments && !$isRevision) : ?>
         <li><a href="#tabs-comments"><?php $FPCM_LANG->write('HL_COMMENTS_MNG'); ?> (<?php print $commentCount; ?>)</a></li>
         <?php endif; ?>
@@ -13,7 +17,7 @@
         <div id="tabs-article">
             <?php include __DIR__.'/editors/'.$editorFile.'.php'; ?>                
             <?php include __DIR__.'/buttons.php'; ?>
-        </div>            
+        </div>
 
         <?php if ($showComments && !$isRevision) : ?>
             <div id="tabs-comments">

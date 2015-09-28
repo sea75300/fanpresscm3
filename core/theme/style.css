@@ -277,7 +277,6 @@ img {
 }
 
 .fpcm-message-notice, .fpcm-dashboard-updates-current {
-    color: #2E6E9E;
     background:#CCE9F4;
     border: 1px solid #69BDDD;
 }
@@ -288,6 +287,13 @@ img {
     border: 1px solid #FAD42E;
 }
 
+ins,
+.fpcm-message-notice,
+.fpcm-dashboard-updates-current {
+    color: #2E6E9E;
+}
+
+del,
 .fpcm-message-error,
 .fpcm-dashboard-updates-outdated,
 .fpcm-ui-important-text {
@@ -1011,8 +1017,16 @@ table.fpcm-ui-articles .fpcm-ui-editor-metabox-right        {
     opacity: 1.0;
 }
 
-.fpcm-ui-editor-metabox-right span              {
+.fpcm-ui-editor-metabox-right span {
     padding: 0em 0.1em;
+}
+
+.fpcm-ui-editor-contentdiff-left {
+    padding-right: 0.6em !important;
+}
+
+.fpcm-ui-editor-contentdiff-right {
+    padding-left: 0.6em !important;
 }
 
 .fpcm-editor-selectboxes {
@@ -1053,8 +1067,9 @@ table.fpcm-ui-articles .fpcm-ui-editor-metabox-right        {
     font-size: 0.9em;
 }
 
-.fpcm-ui-template-replacements dt, .fpcm-ui-monospace {
-    font: 1em 'Courier New', monospace;
+.fpcm-ui-template-replacements dt,
+.fpcm-ui-monospace {
+    font: 1em 'Courier New', monospace !important;
 }
 
 /* Module Manager */

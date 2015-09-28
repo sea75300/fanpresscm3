@@ -3,7 +3,6 @@ FanPress CM 3.1
 -- ToDo v3.1 --
 
 * Vorschau-Möglichkeit in Template-Editor
-* evtl. DIFF-Ansicht in Revisionen
 * verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
 * überarbeitetes AJAX-Framework
 * einige Config-Konstanten in Systemeinstellungen verlagern
@@ -22,6 +21,7 @@ Stand: 24.09.2015 - 20:08 Uhr
 * einige Config-Konstanten in Systemeinstellungen verlagern:
 * * Anzahl Artikel in ACP-Liste - ben.-def. Einstellung - Default in Konstante
 * gerenderte Navigation wird pro Benutzer gecached
+* DIFF-Ansicht in Revisionen
 
 -- ToDo v3.0 --
 

@@ -60,7 +60,7 @@
         public function __construct() {
             parent::__construct();
             
-            $this->fileLib = new \fpcm\model\system\fileLib();
+            $this->fileLib      = new \fpcm\model\system\fileLib();
             $this->categoryList = new \fpcm\model\categories\categoryList();
         }
         

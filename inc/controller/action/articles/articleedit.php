@@ -32,6 +32,18 @@
          * @var bool
          */
         protected $checkPageToken = true;
+        
+        /**
+         *
+         * @var \fpcm\model\articles\article
+         */
+        protected $currentArticle = null;
+        
+        /**
+         *
+         * @var int
+         */
+        protected $revisionId = 0;
 
         /**
          * @see \fpcm\controller\abstracts\controller::__construct()
@@ -72,23 +84,41 @@
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
 
+            $revisionIdsArray   = !is_null($this->getRequestVar('revisionIds'))
+                                ? array_map('intval', $this->getRequestVar('revisionIds'))
+                                : false;
+            
+            $this->revisionId   = !is_null($this->getRequestVar('rev'))
+                                ? (int) $this->getRequestVar('rev')
+                                : (is_array($revisionIdsArray) ? array_shift($revisionIdsArray) : false);
+            
             if ($this->buttonClicked('articleRevisionRestore') && ($this->getRequestVar('rev') || $this->getRequestVar('revisionIds')) && $this->checkPageToken) {
-                
-                $revisionIdsArray = !is_null($this->getRequestVar('revisionIds')) ? array_map('intval', $this->getRequestVar('revisionIds')) : false;
-                
-                $revisionId = !is_null($this->getRequestVar('rev'))
-                            ? (int) $this->getRequestVar('rev')
-                            : (is_array($revisionIdsArray) ? array_shift($revisionIdsArray) : false);
-                
-                if ($revisionId && $this->article->restoreRevision($revisionId)) {
+                if ($this->revisionId && $this->article->restoreRevision($this->revisionId)) {
                     $this->redirect('articles/edit&articleid='.$this->article->getId().'&revrestore=1');
                 } else {
                     $this->view->addErrorMessage('SAVE_FAILED_ARTICLEREVRESTORE');
                 }
             }            
             
-            if ($this->getRequestVar('rev') && $this->article->getRevision((int) $this->getRequestVar('rev'))) {
-                $this->showRevision = true;
+            if ($this->revisionId) {
+                
+                include_once \fpcm\classes\loader::libGetFilePath('PHP-FineDiff', 'finediff.php');
+                
+                $this->currentArticle = clone $this->article;
+                
+                if (!$this->revisionId) {
+                    $this->revisionId = (int) $this->getRequestVar('rev');
+                }                
+                
+                $this->showRevision   = ($this->article->getRevision($this->revisionId) ? true : false);
+                
+                $from = $this->currentArticle->getContent();
+                $to   = $this->article->getContent();
+
+                $opcode = \FineDiff::getDiffOpcodes($from, $to, \FineDiff::$sentenceGranularity);
+                
+                $this->view->assign('textFrom', \FineDiff::renderDiffToHTMLFromOpcodes($from, $opcode));
+                $this->view->assign('textTo', \FineDiff::renderDiffToHTMLFromOpcodes($to, $opcode));
             }
 
             if ($this->buttonClicked('articleDelete') && !$this->showRevision && $this->checkPageToken) {
@@ -183,6 +213,10 @@
                 $this->view->addErrorMessage('SAVE_FAILED_ARTICLE');                
             }
             
+            if (!$this->revisionId) {
+                $this->article->prepareDataLoad();
+            }
+            
             return true;
             
         }
@@ -193,8 +227,6 @@
          */        
         public function process() {
             if (!parent::process()) return false;
-            
-            $this->article->prepareDataLoad();
             
             $this->view->assign('editorAction', 'articles/edit&articleid='.$this->article->getId());
             $this->view->assign('editorMode', 1);
@@ -209,13 +241,6 @@
             $this->view->assign('revisions', $revisions);
             $this->view->assign('revisionCount', count($revisions));
             $this->view->assign('revisionPermission', $this->permissions->check(array('article' => 'revisions')));
-
-            if ($this->showRevision) {
-                $this->view->assign('isRevision', true);
-                $this->view->assign('showRevisions', false);
-                $this->view->assign('showComments', false);
-                $this->view->assign('editorAction', 'articles/edit&articleid='.$this->article->getId().'&rev='.$this->getRequestVar('rev'));
-            }
             
             $this->view->addJsVars(array(
                 'fpcmEditorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT'),
@@ -228,6 +253,16 @@
             }
             
             $this->initPermissions();
+
+            $this->view->assign('isRevision', false);
+            if ($this->showRevision) {
+                $this->view->assign('currentArticle', $this->currentArticle);
+                $this->view->assign('editorFile', 'revisiondiff');
+                $this->view->assign('isRevision', true);
+                $this->view->assign('showRevisions', false);
+                $this->view->assign('showComments', false);
+                $this->view->assign('editorAction', 'articles/edit&articleid='.$this->article->getId().'&rev='.$this->getRequestVar('rev'));
+            }
             
             $this->view->render();
         }

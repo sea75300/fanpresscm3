@@ -23,7 +23,7 @@
 ?>
 
 <div class="fpcm-ui-editor-metabox-left">
-    <?php if (!$timesMode) : ?>
+    <?php if (!$timesMode && !$isRevision) : ?>
     <div><?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-articlelist-openlink', '_blank'); ?></div>
     <div><?php \fpcm\model\view\helper::linkButton($article->getArticleShortLink(), 'EDITOR_ARTICLE_SHORTLINK', '', 'fpcm-articlelist-shortlink'); ?></div>
     <?php endif; ?>
