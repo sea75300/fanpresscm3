@@ -22,12 +22,6 @@
         protected $iplist;
         
         /**
-         * maximale Anzahl an Fehler-Logins
-         * @var int
-         */
-        protected $maxAttempts       = 0;
-        
-        /**
          * aktuelle Anzahl an Fehler-Logins
          * @var int
          */
@@ -64,7 +58,6 @@
             parent::__construct();
             $this->view = new \fpcm\model\view\acp('login', 'login');
             
-            $this->maxAttempts       = FPCM_ACP_LOGINFAILED_LIMIT;
             $this->loginLockedExpire = session_cache_expire();
             $this->iplist            = new \fpcm\model\ips\iplist();            
         }
@@ -97,9 +90,9 @@
                 $loginRes = $session->checkUser($data['username'], $data['password']);
 
                 if ($loginRes === \fpcm\model\users\author::AUTHOR_ERROR_DISABLED) {
-                    $this->currentAttempts = FPCM_ACP_LOGINFAILED_LIMIT;
+                    $this->currentAttempts = $this->config->system_loginfailed_locked;
                     $this->view->addErrorMessage('LOGIN_FAILED_DISABLED');
-                    if ($this->currentAttempts == $this->maxAttempts) {
+                    if ($this->currentAttempts == $this->config->system_loginfailed_locked) {
                         $this->loginLocked();
                     }
                 } elseif ($loginRes === true && $session->save() && $session->setCookie()) {
@@ -109,7 +102,7 @@
                     $this->currentAttempts++;
                     \fpcm\classes\http::setSessionVar('loginAttempts', $this->currentAttempts);
                     $this->view->addErrorMessage('LOGIN_FAILED');
-                    if ($this->currentAttempts == $this->maxAttempts) {
+                    if ($this->currentAttempts == $this->config->system_loginfailed_locked) {
                         $this->loginLocked();
                     }
                 }                
@@ -172,7 +165,7 @@
             }
 
             $this->view->assign('loginAttempts', $this->currentAttempts);
-            $this->view->assign('loginAttemptsMax', $this->maxAttempts);
+            $this->view->assign('loginAttemptsMax', $this->config->system_loginfailed_locked);
             $this->view->render();
         }
         
@@ -190,7 +183,7 @@
                 $this->loginLockedDate  = \fpcm\classes\http::getSessionVar('lockedTime');
             }            
             
-            if ($this->currentAttempts >= $this->maxAttempts) {
+            if ($this->currentAttempts >= $this->config->system_loginfailed_locked) {
                 $this->loginLocked      = true;
                 
                 if (!$this->loginLockedDate) {

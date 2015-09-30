@@ -66,9 +66,12 @@
                 $this->language->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir
             );
             
+            natcasesort($checkFolders);
+            
             foreach ($checkFolders as $description => $folderPath) {
                 $checkres = $this->boolToText(is_writable($folderPath));
-                $this->tableContent[] =  "<tr><td><strong>$description:</strong></td><td class=\"fpcm-ui-center\">$checkres</td></tr>";
+                $linePath = \fpcm\model\files\ops::removeBaseDir($folderPath, true);
+                $this->tableContent[] =  "<tr><td title=\"$linePath\"><strong>$description:</strong></td><td class=\"fpcm-ui-center\">$checkres</td></tr>";
             }
             
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_CHECK_CONNECT').':</strong></td><td class="fpcm-ui-center">'.$this->boolToText2(\fpcm\classes\baseconfig::canConnect()).'</td></tr>';

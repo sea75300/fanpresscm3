@@ -220,7 +220,7 @@
             $params = array($comment->getName(), '%'.$comment->getEmail().'%', '%'.$comment->getWebsite().'%', $comment->getIpaddress());
             $count = $this->dbcon->count($this->table, 'id', implode(' OR ', $where).' AND spammer = 1', $params);
             
-            return $count >= FPCM_COMMENT_MARKSPAM_PASTCHECK ? true : false;
+            return $count >= $this->config->comments_markspam_commentcount ? true : false;
             
         }
 

@@ -2,8 +2,6 @@
     /**
      * System check trait
      * 
-     * System check trait
-     * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2015, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
@@ -115,11 +113,26 @@
                 'result'    => (false || $current),
                 'helplink'  => 'http://php.net/manual/en/class.phar.php'
             );
+
+            foreach ($this->getCheckFolders() as $description => $folderPath) {
+                $current = is_writable($folderPath);
+                
+                $pathOutput = \fpcm\model\files\ops::removeBaseDir($folderPath, true);
+                $checkOptions['<i>'.$pathOutput.'</i> '.$this->lang->translate('GLOBAL_WRITABLE')]    = array(
+                    'current'   => $current ? 'true' : 'false',
+                    'recommend' => 'true',
+                    'result'    => (true && $current)
+                );                
+            }
             
+            return $checkOptions;
+        }
+        
+        public function getCheckFolders() {
             $checkFolders = array(
+                \fpcm\classes\baseconfig::$dataDir,
                 \fpcm\classes\baseconfig::$cacheDir,
                 \fpcm\classes\baseconfig::$configDir,
-                \fpcm\classes\baseconfig::$dataDir,
                 \fpcm\classes\baseconfig::$filemanagerTempDir,
                 \fpcm\classes\baseconfig::$logDir,
                 \fpcm\classes\baseconfig::$moduleDir,
@@ -132,16 +145,9 @@
                 \fpcm\classes\baseconfig::$dbdumpDir
             );
             
-            foreach ($checkFolders as $folderPath) {
-                $current = is_writable($folderPath);
-                $checkOptions[$folderPath.' '.$this->lang->translate('GLOBAL_WRITABLE')]    = array(
-                    'current'   => $current ? 'true' : 'false',
-                    'recommend' => 'true',
-                    'result'    => (true && $current)
-                );                
-            }
+            natsort($checkFolders);
             
-            return $checkOptions;
+            return $checkFolders;
         }
         
     }

@@ -8,8 +8,8 @@
         <tr class="fpcm-ui-editor-postponed <?php if (!$article->getPostponed()) : ?>fpcm-hidden<?php endif; ?>">
             <td colspan="2" class="fpcm-ui-options fpcm-ui-editor-postpone fpcm-ui-center">
                 <?php fpcm\model\view\helper::textInput('article[postponedate]', 'fpcm-ui-datepicker', date('Y-m-d', $postponedTimer)); ?>
-                <?php fpcm\model\view\helper::textInput('article[postponehour]', 'fpcm-ui-spinner-hour', date('H', $postponedTimer)); ?>
-                <?php fpcm\model\view\helper::textInput('article[postponeminute]', 'fpcm-ui-spinner-minutes', date('i', $postponedTimer)); ?>
+                <?php fpcm\model\view\helper::textInput('article[postponehour]', 'fpcm-ui-spinner-hour', date('H', $postponedTimer), false, 2, false, false); ?>
+                <?php fpcm\model\view\helper::textInput('article[postponeminute]', 'fpcm-ui-spinner-minutes', date('i', $postponedTimer), false, 2, false, false); ?>
             </td>
         </tr>
         <?php endif; ?>

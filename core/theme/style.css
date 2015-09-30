@@ -337,6 +337,7 @@ textarea {
 }
 
 .fpcm-ui-input-wrapper-inner,
+.ui-spinner,
 textarea {
     padding: 0.3em 0.4em;
 }
@@ -375,6 +376,10 @@ table.fpcm-ui-options div.fpcm-ui-input-wrapper {
 table.fpcm-ui-articles-search div.fpcm-ui-input-wrapper {
     width: 198px;
     margin-left: -0.5em;
+}
+
+.ui-spinner {
+    width: 195px;
 }
 
 textarea.fpcm-options-cssclasses {
@@ -943,15 +948,11 @@ h3, .fpcm-dashboard-container h3 {
     color: #000000 !important;
 }
 
-.fpcm-editor-dialog input, .fpcm-editor-dialog h2 {
+.fpcm-editor-dialog h2 {
     margin:0px 0px 5px 0px;
 }
 
-.fpcm-editor-dialog input[type=text] {
-    width:98% !important;
-}
-
-#fpcm-extended-dialog.fpcm-editor-dialog input[type=text] {
+#fpcm-extended-dialog.fpcm-editor-dialog .fpcm-ui-input-wrapper {
     width:50% !important;
 }
 

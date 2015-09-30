@@ -16,10 +16,6 @@
             <div id="tabs-options-general">
                 <table class="fpcm-ui-table fpcm-ui-options">
                     <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::boolSelect('system_maintenance', $globalConfig['system_maintenance']); ?></td>		
-                    </tr>
-                    <tr>			
                         <td><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?>:</td>
                         <td><?php fpcm\model\view\helper::textInput('system_email', '', $globalConfig['system_email']); ?></td>		
                     </tr>			
@@ -38,10 +34,6 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK'); ?>:</td>
                         <td><?php fpcm\model\view\helper::textInput('system_dtmask', '', $globalConfig['system_dtmask']); ?></td>
-                    </tr>			 			 
-                    <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_SESSIONLENGHT'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::select('system_session_length', $acpLenghts, $globalConfig['system_session_length'], false, false); ?></td>
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_CACHETIMEOUT'); ?>:</td>
@@ -61,7 +53,24 @@
                             <?php fpcm\model\view\helper::boolSelect('system_loader_jquery', $globalConfig['system_loader_jquery']); ?>
                             <span style="position:relative;bottom:0.8em;" class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_INCLUDEJQUERY_YES'); ?>"></span>
                         </td>
-                    </tr>                            
+                    </tr>
+                </table>
+                
+                <h4><?php $FPCM_LANG->write('SYSTEM_HL_OPTIONS_SECURITY'); ?></h4>
+                
+                <table class="fpcm-ui-table fpcm-ui-options">
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('system_maintenance', $globalConfig['system_maintenance']); ?></td>		
+                    </tr>			 			 
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_SESSIONLENGHT'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::select('system_session_length', $acpLenghts, $globalConfig['system_session_length'], false, false); ?></td>
+                    </tr>			 			 
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('system_loginfailed_locked', 'fpcm-ui-spinner', $globalConfig['system_loginfailed_locked'], false, 5, false, false); ?></td>
+                    </tr>
                 </table>
             </div>
 
@@ -174,10 +183,7 @@
                    </tr>	
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENT_NOTIFY'); ?>:</td>
-                        <td>
-                        <?php fpcm\model\view\helper::select('comments_notify', $notify, $globalConfig['comments_notify'], false, false); ?>
-                        
-                        </td>
+                        <td><?php fpcm\model\view\helper::select('comments_notify', $notify, $globalConfig['comments_notify'], false, false); ?></td>
                    </tr>	 
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ANTISPAMQUESTION'); ?>:</td>
@@ -186,6 +192,10 @@
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ANTISPAMANSWER'); ?>:</td>
                         <td><?php fpcm\model\view\helper::textInput('comments_antispam_answer', '', $globalConfig['comments_antispam_answer']); ?></td>
+                   </tr>	 
+                   <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENT_MARKSPAM_PASTCHECK'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('comments_markspam_commentcount', 'fpcm-ui-spinner', $globalConfig['comments_markspam_commentcount'], false, 5, false, false); ?></td>		
                    </tr>	
                </table>                    
             </div>

@@ -27,6 +27,7 @@
      * @property bool   $system_loader_jquery jQuery in Frontend laden
      * @property bool   $system_editor aktiver Editor (0 = TinyMCE, 1= HTML)
      * @property bool   $system_maintenance Wartungsmodusaktiv
+     * @property int    $system_loginfailed_locked Anzahl fehlgeschlagener Login-Versuche, nach denen Login temporär gesperrt wird
      * 
      * @property bool   $articles_revisions Revisionen aktiv
      * @property bool   $articles_trash Papierkorb aktiv
@@ -46,6 +47,7 @@
      * @property string $comments_antispam_question Spam-Captcha-Frage
      * @property string $comments_antispam_answer Spam-Captcha-Antwort
      * @property int    $comments_notify wohin sollen Benachrichtigung bei neuem Kommentar gehen (0 = nur globale E-MailAdresse, 1 = nur Author, 2 = beide)
+     * @property int    $comments_markspam_commentcount Anzahl an Spam deklarierter vorhandener Kommentare, über der ein ein neuer Kommentar automatisch als Spam markiert wird
      * 
      * @property int    $files_img_thumb_minwidth Bildbreite, ab der automatisch Thumbnails erzeugt werden
      * @property int    $files_img_thumb_minheight Bildhöhe, ab der automatisch Thumbnails erzeugt werden

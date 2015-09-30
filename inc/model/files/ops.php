@@ -77,4 +77,21 @@
             
             return $res && rmdir($path);
         }
+        
+        /**
+         * Entfernt FanPress CM baseDir-String aus einer Pfadangabe
+         * @param string $path
+         * @param bool $keepFanPress
+         * @return string
+         * @since FPCM 3.1
+         */
+        public static function removeBaseDir($path, $keepFanPress = false) {
+            
+            $replacePath = \fpcm\classes\baseconfig::$baseDir;
+            if ($keepFanPress) {
+                $replacePath = dirname($replacePath);
+            }
+            
+            return str_replace($replacePath, '', $path);
+        }
     }

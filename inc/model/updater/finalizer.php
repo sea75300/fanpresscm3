@@ -82,7 +82,8 @@
         private function addSystemOptions() {
             
             $res = true;
-            $res = $res && $this->config->add('system_maintenance', false);
+            $res = $res && $this->config->add('comments_markspam_commentcount', FPCM_COMMENT_MARKSPAM_PASTCHECK);
+            $res = $res && $this->config->add('system_loginfailed_locked', FPCM_ACP_LOGINFAILED_LIMIT);
             return $res;
 
         }

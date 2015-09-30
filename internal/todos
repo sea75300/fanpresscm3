@@ -20,6 +20,8 @@ Stand: 24.09.2015 - 20:08 Uhr
 * DIV-Wrapper um Eingabe-Felder (input, textarea, etc. für einheitliches Design)
 * einige Config-Konstanten in Systemeinstellungen verlagern:
 * * Anzahl Artikel in ACP-Liste - ben.-def. Einstellung - Default in Konstante
+* * Anzahl Login-Versuche vor temporärerer Sperre
+* * Kommentare automatisch als Spam markieren, wenn mehr als X Spam-Kommentare vorhanden sind
 * gerenderte Navigation wird pro Benutzer gecached
 * DIFF-Ansicht in Revisionen
 

@@ -11,6 +11,7 @@
         'SYSTEM_HL_OPTIONS_EDITOR'                  => 'Editor &amp; Dateimanager',
         'SYSTEM_HL_OPTIONS_ARTICLES'                => 'Artikel',
         'SYSTEM_HL_OPTIONS_COMMENTS'                => 'Kommentare',
+        'SYSTEM_HL_OPTIONS_SECURITY'                => 'Sicherheit & Wartung',
         'SYSTEM_HL_OPTIONS_TWITTER'                 => 'Twitter-Verbindung',
         'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System-Überprüfung & Updates',
 
@@ -65,6 +66,7 @@
         'SYSTEM_OPTIONS_ANTISPAMQUESTION'           => 'Anti-Spam-Frage',
         'SYSTEM_OPTIONS_ANTISPAMANSWER'             => 'Antwort auf Anti-Spam-Frage',
         'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'Anzahl an Artikeln im ACP',
+        'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Anzahl Login-Versuche vor temporärerer Sperre',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Zeitsperre zwischen zwei Kommentaren',
         'SYSTEM_OPTIONS_FLOODPROTECTION_0'          => 'keine',
@@ -86,6 +88,7 @@
         'SYSTEM_OPTIONS_COMMENT_NOTIFY_AUTHOR'      => 'nur Author',
         'SYSTEM_OPTIONS_COMMENT_NOTIFY_ALL'         => 'globale E-Mail-Adresse und Author',
         'SYSTEM_OPTIONS_COMMENT_ENABLED_GLOBAL'     => 'Kommentar-System ist aktiv',
+        'SYSTEM_OPTIONS_COMMENT_MARKSPAM_PASTCHECK' => 'Automatische Spam-Markierung, wenn von Autor bereits Spam-Kommentare vorhanden sind',
         'SYSTEM_OPTIONS_REVISIONS_ENABLED'          => 'Revisionen aktivieren',
         'SYSTEM_OPTIONS_NEWS_SORTING'               => 'News sortieren nach',
         'SYSTEM_OPTIONS_NEWS_BYWRITTENTIME'         => 'Veröffentlichung',

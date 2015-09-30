@@ -62,6 +62,7 @@
     if (!defined('FPCM_ACP_ARTICLELIST_LIMIT')) {
         /**
          * Anzahl Elemente in ACP-Artikel-Liste
+         * kann ab FPCM 3.1 durch Einstellung in Benutzeroptionen überschrieben werden
          */        
         define ('FPCM_ACP_ARTICLELIST_LIMIT', 100);
     }
@@ -69,6 +70,7 @@
     if (!defined('FPCM_ACP_LOGINFAILED_LIMIT')) {
         /**
          * Anzahl an Fehlerlogins bis Sperre
+         * @deprecated since FPCM 3.1.0, moved to system options
          */        
         define ('FPCM_ACP_LOGINFAILED_LIMIT', 5);
     }
@@ -84,7 +86,7 @@
         /**
          * Timeout für Sprach-Cache
          */
-        define ('FPCM_LANGCACHE_TIMEOUT', 3600 * 24);
+        define ('FPCM_LANGCACHE_TIMEOUT', 3600 * 24 * 7);
     }
     
     if (!defined('FPCM_PAGETOKENCACHE_TIMEOUT')) {
@@ -98,6 +100,7 @@
         /**
          * Anzahl an Spam deklarierter vorhandener Kommentare, wenn ein neuer Kommentar geschrieben wird
          * Nutzung in Default-Captcha-Plugin
+         * @deprecated since FPCM 3.1.0, moved to system options
          */
         define ('FPCM_COMMENT_MARKSPAM_PASTCHECK', 2);
     }

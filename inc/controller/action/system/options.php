@@ -53,7 +53,17 @@
                 foreach ($this->config->twitter_events as $key => $value) {
                     $newconfig['twitter_events'][$key] = isset($newconfig['twitter_events'][$key]) ? 1 : 0;
                 }                
-                $newconfig['twitter_events'] = json_encode($newconfig['twitter_events']);
+                $newconfig['twitter_events']                 = json_encode($newconfig['twitter_events']);
+                $newconfig['articles_limit']                 = (int) $newconfig['articles_limit'];
+                $newconfig['system_cache_timeout']           = (int) $newconfig['system_cache_timeout'];
+                $newconfig['system_session_length']          = (int) $newconfig['system_session_length'];
+                $newconfig['comments_flood']                 = (int) $newconfig['comments_flood'];
+                $newconfig['system_loginfailed_locked']      = (int) $newconfig['system_loginfailed_locked'];
+                $newconfig['comments_markspam_commentcount'] = (int) $newconfig['comments_markspam_commentcount'];
+                $newconfig['files_img_thumb_minwidth']       = (int) $newconfig['files_img_thumb_minwidth'];
+                $newconfig['files_img_thumb_minheight']      = (int) $newconfig['files_img_thumb_minheight'];
+                $newconfig['file_img_thumb_width']           = (int) $newconfig['file_img_thumb_width'];
+                $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
                 
                 $this->config->setNewConfig($newconfig);
                 if (!$this->config->update()) {
