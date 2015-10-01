@@ -8,6 +8,8 @@
 jQuery.noConflict();
 jQuery(document).ready(function () {
 
+    fpcmAjax = new fpcmAjaxHandler();
+
     fpcmJs = new fpcmJs();
     fpcmJs.runCronsAsync();
     

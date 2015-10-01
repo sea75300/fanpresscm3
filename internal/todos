@@ -2,10 +2,8 @@ FanPress CM 3.1
 
 -- ToDo v3.1 --
 
-* Vorschau-Möglichkeit in Template-Editor
 * verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
 * überarbeitetes AJAX-Framework
-* einige Config-Konstanten in Systemeinstellungen verlagern
 
 -- ToDo allgemein --
 

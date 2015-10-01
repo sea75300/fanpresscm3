@@ -37,6 +37,7 @@
             'inc/lib/fancybox/jquery.fancybox.pack.js',
             'inc/lib/spinjs/spin.min.js',
             'inc/lib/spinjs/jquery.spin.js',
+            'core/js/ajax.js',
             'core/js/functions.js',
             'core/js/system.js'
         );

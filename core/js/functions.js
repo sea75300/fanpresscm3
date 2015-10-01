@@ -40,17 +40,9 @@ var fpcmJs = function () {
         
         self.showLoader(true);
         
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'cache',
-            type: 'GET'
-        })
-        .done(function(result) {
-            self.showLoader(false);
-            self.addAjaxMassage('notice', result);    
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        fpcmAjax.action   = 'cache';
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);fpcmJs.addAjaxMassage(\'notice\', fpcmAjax.result); ';
+        fpcmAjax.get();
         
         return false;        
     };
@@ -59,23 +51,12 @@ var fpcmJs = function () {
         self.showLoader(true);
         
         var logType = id.split('_');
-
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'logs/clear&log=' + logType[1],
-            type: 'GET'
-        })
-        .done(function(result) {
-            self.showLoader(false);
-
-            jQuery('.fpcm-messages').remove();
-            jQuery('#fpcm-body').append(result);
-            
-            self.messagesCenter();
-            self.reloadLogs(id);
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        
+        fpcmAjax.action   = 'logs/clear';
+        fpcmAjax.query    = 'log=' + logType[1];
+        fpcmAjax.workData = id;
+        fpcmAjax.execDone = "fpcmJs.showLoader(false);jQuery('.fpcm-messages').remove();jQuery('#fpcm-body').append(fpcmAjax.result);fpcmJs.messagesCenter();fpcmJs.reloadLogs(fpcmAjax.workData);";
+        fpcmAjax.get();
         
         return false;
     };
@@ -85,35 +66,22 @@ var fpcmJs = function () {
         
         var logType = id.split('_');
 
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'logs/reload&log=' + logType[1],
-            type: 'GET'
-        })
-        .done(function(result) {
-            self.showLoader(false);
-            jQuery('#fpcm-logcontent'+logType[1]).html(result);
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        fpcmAjax.action   = 'logs/reload';
+        fpcmAjax.query    = 'log=' + logType[1];
+        fpcmAjax.workData = logType[1];
+        fpcmAjax.execDone = "fpcmJs.showLoader(false);jQuery('#fpcm-logcontent'+ fpcmAjax.workData).html(fpcmAjax.result);";
+        fpcmAjax.get();
         
         return false;
     };
     
     this.reloadFiles = function () {
         self.showLoader(true);
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'filelist&mode=' + fpcmFmgrMode,
-            type: 'GET'
-        })
-        .done(function(result) {
-            self.showLoader(false);
-            jQuery("#tabs-files-list").html(result);   
-            self.assignButtons();            
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+
+        fpcmAjax.action   = 'filelist';
+        fpcmAjax.query    = 'mode=' + fpcmFmgrMode;
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);jQuery("#tabs-files-list").html(fpcmAjax.result);fpcmJs.assignButtons();';
+        fpcmAjax.get();
         
         return false;
     };
@@ -561,7 +529,7 @@ var fpcmJs = function () {
             jQuery('#fpcm-body').append(result);            
             if (!fadeOut) {
                 jQuery('.fpcm-messages').removeClass('fpcm-messages-fadeout');
-            }            
+            }
             self.messagesCenter();
         })
         .fail(function() {
@@ -571,17 +539,9 @@ var fpcmJs = function () {
     
     this.systemCheck = function () {
         fpcmJs.showLoader(true);
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'syscheck',
-            type: 'GET'
-        })
-        .done(function(result) {
-            self.showLoader(false);
-            jQuery("#tabs-options-check").html(result);
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        fpcmAjax.action = 'syscheck';
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);jQuery("#tabs-options-check").html(result);';
+        fpcmAjax.get();
     };
     
     this.actionButtonsGenreal = function () {
@@ -634,10 +594,8 @@ var fpcmJs = function () {
     
     this.runCronsAsync = function () {
         if (typeof fpcmCronAsyncDiabled != 'undefined' && fpcmCronAsyncDiabled) return;
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'cronasync',
-            type: 'GET'
-        });
+        fpcmAjax.action = 'cronasync';
+        fpcmAjax.get();
     };
     
     this.confirmDialog = function (content, buttons, title, id) {
