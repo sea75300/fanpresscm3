@@ -9,6 +9,8 @@ var fpcmModuleInstaller = function () {
     
     var self = this;
     
+    this.code = '';
+    
     this.init = function (type) {
 
         if (typeof fpcmUpdaterProgressbar == 'undefined') {
@@ -39,7 +41,6 @@ var fpcmModuleInstaller = function () {
     this.runInstall = function (key, moduleIndex, type) {
 
         var idx      = 0;
-        var code     = '';
         var skipRest = false;
         var scode    = '';
         var content  = '';
@@ -67,26 +68,16 @@ var fpcmModuleInstaller = function () {
             jQuery('#fpcm-ui-headspinner').addClass('fa-spin');
             jQuery(moduleListClass).append(content);
             
-            jQuery.ajax({
-                url: fpcmAjaxActionPath + 'packagemgr/mod' + type,
-                type: 'POST',
-                async: false,
-                data: {
-                    'step' : idx,
-                    'key'  : key,
-                    'midx' : moduleIndex
-                }
-            })
-            .done(function(result) {
-                code = jQuery.trim(result);
-            })
-            .fail(function() {
-                alert(fpcmAjaxErrorMessage);
-            });
+            fpcmAjax.action     = 'packagemgr/mod' + type;
+            fpcmAjax.data       = {step:idx,key:key,midx:moduleIndex};
+            fpcmAjax.execDone   = "fpcmModuleInstaller.code=jQuery.trim(fpcmAjax.result);";
+            fpcmAjax.async      = false;
+            fpcmAjax.post();
+            fpcmAjax.reset();            
 
-            if (idx < fpcmUpdaterMaxStep && code != idx + '_' +1) {
+            if (idx < fpcmUpdaterMaxStep && self.code != idx + '_' +1) {
                 fpcmJs.showLoader(false);
-                jQuery(moduleListClass).append('<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[code] + '</p>');
+                jQuery(moduleListClass).append('<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.code] + '</p>');
                 skipRest = true;
             } else if (idx == 5) {
                 jQuery('.fpcm-updater-list-files-show').button({
@@ -98,9 +89,9 @@ var fpcmModuleInstaller = function () {
                     jQuery('.fpcm-updater-list-files-' + moduleIndex).fadeToggle();
                     return false;
                 });                
-                jQuery(moduleListClass).append('<p>' + code + '</p>');
+                jQuery(moduleListClass).append('<p>' + self.code + '</p>');
             } else {
-                jQuery(moduleListClass).append('<p><strong> ' + fpcmUpdaterMessages[code] + '</strong></p>');
+                jQuery(moduleListClass).append('<p><strong> ' + fpcmUpdaterMessages[self.code] + '</strong></p>');
             }
             
             jQuery('#fpcm-ui-headspinner').removeClass('fa-spin');

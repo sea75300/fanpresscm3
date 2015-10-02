@@ -9,6 +9,8 @@ var fpcmUpdater = function () {
     
     var self = this;
     
+    this.code = '';
+    
     this.runUpdate = function () {
         var updateStart = (new Date().getTime());
         
@@ -20,7 +22,6 @@ var fpcmUpdater = function () {
         self.progressbar(0);
         
         var idx      = 0;
-        var code     = '';
         var skipRest = false;
         var scode    = '';
         var content  = '';        
@@ -37,39 +38,25 @@ var fpcmUpdater = function () {
             jQuery('#fpcm-ui-headspinner').addClass('fa-spin');            
             jQuery('.fpcm-updater-list').append(content);
             
-            jQuery.ajax({
-                url: fpcmAjaxActionPath + 'packagemgr/sysupdater',
-                type: 'POST',
-                async: false,
-                data: {
-                    'step': idx
-                }
-            })
-            .done(function(result) {
-                self.progressbar(idx);
-                code = jQuery.trim(result);
-            })
-            .fail(function() {
-                alert(fpcmAjaxErrorMessage);
-            });
+            fpcmAjax.action     = 'packagemgr/sysupdater';
+            fpcmAjax.data       = {step:idx};
+            fpcmAjax.execDone   = "fpcmUpdater.progressbar(fpcmAjax.workData);fpcmUpdater.code = jQuery.trim(fpcmAjax.result);";
+            fpcmAjax.async      = false;
+            fpcmAjax.workData   = idx;
+            fpcmAjax.post();
+            fpcmAjax.reset();
             
             if (idx == 4) {
-                jQuery.ajax({
-                    url: fpcmAjaxActionPath + 'packagemgr/sysupdatervc',
-                    type: 'GET',
-                    async: false
-                })
-                .done(function(result) {
-                    jQuery('.fpcm-updater-list').append('<p><strong>' + fpcmUpdaterNewVersion + ':</strong> ' + result + '</p>');
-                })
-                .fail(function() {
-                    alert(fpcmAjaxErrorMessage);
-                });
+                fpcmAjax.action     = 'packagemgr/sysupdatervc';
+                fpcmAjax.execDone   = "jQuery('.fpcm-updater-list').append('<p><strong>' + fpcmUpdaterNewVersion + ':</strong> ' + fpcmAjax.result + '</p>');";
+                fpcmAjax.async      = false;
+                fpcmAjax.get();
+                fpcmAjax.reset();                
             }
             
-            if (idx < fpcmUpdaterMaxStep && code != idx + '_' + 1) {
+            if (idx < fpcmUpdaterMaxStep && self.code != idx + '_' + 1) {
                 fpcmJs.showLoader(false);
-                fpcmJs.addAjaxMassage('error', fpcmUpdaterMessages[code], false);
+                fpcmJs.addAjaxMassage('error', fpcmUpdaterMessages[self.code], false);
                 skipRest = true;
             } else if (idx == 5) {
                 jQuery('.fpcm-updater-list-files-show').button({
@@ -80,9 +67,9 @@ var fpcmUpdater = function () {
                 }).click(function () {
                     jQuery('.fpcm-updater-list-files').fadeToggle();
                 });                
-                jQuery('.fpcm-updater-list').append('<p>' + code + '</p>');
+                jQuery('.fpcm-updater-list').append('<p>' + self.code + '</p>');
             } else {
-                jQuery('.fpcm-updater-list').append('<p><strong> ' + fpcmUpdaterMessages[code] + '</strong></p>');
+                jQuery('.fpcm-updater-list').append('<p><strong> ' + fpcmUpdaterMessages[self.code] + '</strong></p>');
             }            
         }
         

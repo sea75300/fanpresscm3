@@ -396,30 +396,13 @@ var fpcmJs = function () {
                     return false;
                 }
 
-                jQuery.ajax({
-                    url: fpcmAjaxActionPath + 'articles/tweet',
-                    type: 'POST',
-                    async: false,
-                    data: {
-                        'ids'   : JSON.stringify(articleIds),
-                    }
-                })
-                .done(function(result) {
-                    self.showLoader(false);
+                fpcmAjax.action     = 'articles/tweet';
+                fpcmAjax.data       = {ids: JSON.stringify(articleIds)};
+                fpcmAjax.execDone   = "fpcmJs.showLoader(false);result = JSON.parse(fpcmAjax.result);if (result.notice != 0) {fpcmJs.addAjaxMassage('notice', result.notice);}if (result.error != 0) {fpcmJs.addAjaxMassage('error', result.error);}jQuery('#actionsaction').prop('selectedIndex',0);jQuery('#actionsaction').selectmenu('refresh');";
+                fpcmAjax.async      = false;
+                fpcmAjax.post();
+                fpcmAjax.reset();
 
-                    result = JSON.parse(result);
-                    if (result.notice != 0) self.addAjaxMassage('notice', result.notice);                     
-                    if (result.error != 0) self.addAjaxMassage('error', result.error); 
-                    
-                    jQuery('#actionsaction').prop('selectedIndex',0);
-                    jQuery('#actionsaction').selectmenu('refresh');
-                    
-                })
-                .fail(function() {
-                    alert(fpcmAjaxErrorMessage);
-                });
-                
-                fpcmJs.showLoader(false);
                 return false;
             }
         });
@@ -494,47 +477,23 @@ var fpcmJs = function () {
         }
 
         self.showLoader(true);
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'articles/search',
-            type: 'POST',
-            data: sParams
-        })
-        .done(function(result) {
-            self.showLoader(false);
-            jQuery("#tabs-article-list").html(result);
-            noActionButtonAssign = true;
-            self.assignButtons();
-            jQuery('.fpcm-articlelist-openlink').button({ icons: { primary: "ui-icon-circle-triangle-e" }, text: false });
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        
+        fpcmAjax.action     = 'articles/search';
+        fpcmAjax.data       = sParams;
+        fpcmAjax.execDone   = "fpcmJs.showLoader(false);jQuery('#tabs-article-list').html(fpcmAjax.result);noActionButtonAssign = true;fpcmJs.assignButtons();jQuery('.fpcm-articlelist-openlink').button({icons:{primary:'ui-icon-circle-triangle-e'},text:false});";
+        fpcmAjax.post();
+        
         fpcmArticlesLastSearch = (new Date()).getTime();
     };
     
     this.addAjaxMassage = function (type, message, fadeOut) {
         if (typeof fadeOut == 'undefined') fadeOut = true;
 
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'addmsg',
-            type: 'POST',
-            data: {
-                'type'   : type,
-                'msgtxt' : message
-            }
-        })
-        .done(function(result) {
-            self.showLoader(false);
-            jQuery('.fpcm-messages').remove();            
-            jQuery('#fpcm-body').append(result);            
-            if (!fadeOut) {
-                jQuery('.fpcm-messages').removeClass('fpcm-messages-fadeout');
-            }
-            self.messagesCenter();
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        fpcmAjax.action     = 'addmsg';
+        fpcmAjax.data       = {type:type,msgtxt:message};
+        fpcmAjax.execDone   = "fpcmJs.showLoader(false);jQuery('.fpcm-messages').remove();jQuery('#fpcm-body').append(result);if (!fpcmAjax.workData) {jQuery('.fpcm-messages').removeClass('fpcm-messages-fadeout');};fpcmJs.messagesCenter();";
+        fpcmAjax.workData   = fadeOut;
+        fpcmAjax.post();
     };
     
     this.systemCheck = function () {

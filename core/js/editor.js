@@ -388,19 +388,11 @@ jQuery(document).ready(function() {
     });
 
     jQuery('#fpcm-editor-html-removetags-btn').click(function() {
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'editor/cleartags',
-            type: 'POST',
-            data: {
-                text: editor.doc.getValue()
-            }
-        })
-        .done(function(result) {
-            editor.doc.setValue(result);
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        
+        fpcmAjax.action     = 'editor/cleartags';
+        fpcmAjax.data       = {text: editor.doc.getValue()};
+        fpcmAjax.execDone   = 'window.editor.doc.setValue(fpcmAjax.result);';
+        fpcmAjax.post();
         
         return false;
     });

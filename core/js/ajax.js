@@ -51,5 +51,17 @@ var fpcmAjaxHandler = function () {
         self.method = 'post';
         self.exec();
     };
+    
+    this.reset = function() {
+        self.ajaxPath       = fpcmAjaxActionPath;
+        self.action         = '';
+        self.query          = false;
+        self.method         = 'POST';
+        self.async          = true;
+        self.data           = [];
+        self.workData       = false;
+        self.execDone       = false;
+        self.execFail       = false;            
+    };
 
 }

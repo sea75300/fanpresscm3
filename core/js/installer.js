@@ -9,6 +9,8 @@ var fpcmInstaller = function () {
     
     var self = this;
     
+    this.breakDbInit = false;
+    
     this.checkDBData = function() {
         sfields = jQuery('.fpcm-installer-data');
         sParams = {};
@@ -19,25 +21,12 @@ var fpcmInstaller = function () {
             sParams[objName] = objVal;
         }); 
         
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'installer/checkdb',
-            type: 'POST',
-            async: false,
-            data: {
-                'dbdata': sParams
-            }
-        })
-        .done(function(result) {
-            if (result == '1' || result == 1) {
-                jQuery('#installerform').submit();
-                return true;
-            } else {
-                alert(fpcmInstallerDBTestFailed);
-            }
-        })
-        .fail(function() {
-            alert('Error during AJAX request');
-        });
+        fpcmAjax.action     = 'installer/checkdb';
+        fpcmAjax.data       = {dbdata: sParams};
+        fpcmAjax.execDone   = "if (fpcmAjax.result == '1' || fpcmAjax.result == 1) {jQuery('#installerform').submit();return true;} else {alert(fpcmInstallerDBTestFailed);}";
+        fpcmAjax.async      = false;
+        fpcmAjax.post();
+        fpcmAjax.reset();
         
         return false;
     };
@@ -47,23 +36,16 @@ var fpcmInstaller = function () {
 
             jQuery('#fpcm-installer-execlist').append('<p>' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
             
-            jQuery.ajax({
-                url: fpcmAjaxActionPath + 'installer/initdb',
-                type: 'POST',
-                async: false,
-                data: {
-                    'file': obj
-                }
-            })
-            .done(function(result) {
-                if (result == '0' || result == 0) {
-                    jQuery('#fpcm-installer-execlist').append('<p class="fpcm-ui-important-text">FAILED!</p>');
-                    return false;
-                }
-            })
-            .fail(function() {
-                alert('Error during AJAX request');
-            });            
+            fpcmAjax.action     = 'installer/initdb';
+            fpcmAjax.data       = {file: obj};
+            fpcmAjax.execDone   = "if (result == '0' || result == 0) {jQuery('#fpcm-installer-execlist').append('<p class='fpcm-ui-important-text'>FAILED!</p>');self.breakDbInit = false;}";
+            fpcmAjax.async      = false;
+            fpcmAjax.post();
+            fpcmAjax.reset();            
+            
+            if (self.breakDbInit) {
+                return false;
+            }            
         });         
     };
     

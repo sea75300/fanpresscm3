@@ -3,7 +3,7 @@ FanPress CM 3.1
 -- ToDo v3.1 --
 
 * verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
-* überarbeitetes AJAX-Framework
+* überarbeitetes AJAX-Framework testen (Installer, Updater, Module, etc.)
 
 -- ToDo allgemein --
 
@@ -22,6 +22,7 @@ Stand: 24.09.2015 - 20:08 Uhr
 * * Kommentare automatisch als Spam markieren, wenn mehr als X Spam-Kommentare vorhanden sind
 * gerenderte Navigation wird pro Benutzer gecached
 * DIFF-Ansicht in Revisionen
+* überarbeitetes AJAX-Framework
 
 -- ToDo v3.0 --
 

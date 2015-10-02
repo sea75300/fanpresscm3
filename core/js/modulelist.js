@@ -81,16 +81,9 @@ var fpcmModulelist = function () {
         
         jQuery('#fpcmuireloadpkglist').click(function () {
             fpcmJs.showLoader(true);
-            jQuery.ajax({
-                url: fpcmAjaxActionPath + 'modules/loadpkglist',
-                type: 'GET'
-            })
-            .done(function() {
-                fpcmJs.showLoader(false);           
-            })
-            .fail(function() {
-                alert(fpcmAjaxErrorMessage);
-            });            
+            fpcmAjax.action     = 'modules/loadpkglist';
+            fpcmAjax.execDone   = "fpcmJs.showLoader(false);";
+            fpcmAjax.get();           
         });
         
         if (noActionButtonAssign) return false;
@@ -181,62 +174,29 @@ var fpcmModulelist = function () {
     };
     
     this.runActions = function (moduleAction, moduleKeys) {
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'modules/actions',
-            type: 'POST',
-            data: {
-                'keys'   : JSON.stringify(moduleKeys),
-                'action' : moduleAction
-            }
-        })
-        .done(function(result) {
-            fpcmJs.showLoader(false);
-            jQuery("#modules-list-content").html(result);
-            noActionButtonAssign = true;
-            fpcmJs.assignButtons();
-            fpcmJs.messagesCenter();
-            jQuery('#moduleActions').prop('selectedIndex',0);
-            jQuery('#moduleActions').selectmenu('refresh');                
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });        
+        fpcmJs.showLoader(true);
+        fpcmAjax.action     = 'modules/actions';
+        fpcmAjax.data       = {keys:JSON.stringify(moduleKeys),action:moduleAction};
+        fpcmAjax.execDone   = "fpcmJs.showLoader(false);jQuery('#modules-list-content').html(fpcmAjax.result);noActionButtonAssign=true;fpcmJs.assignButtons();fpcmJs.messagesCenter();jQuery('#moduleActions').prop('selectedIndex',0);jQuery('#moduleActions').selectmenu('refresh');";
+        fpcmAjax.post();       
     };
     
     this.runInstall = function (moduleKeys) {
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'modules/actions',
-            type: 'POST',
-            async: false,
-            data: {
-                'keys'   : moduleKeys,
-                'action' : 'install'
-            }
-        })
-        .done(function() {
-            fpcmJs.relocate(fpcmActionPath + 'package/modinstall');
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });        
+        fpcmAjax.action     = 'modules/actions';
+        fpcmAjax.data       = {keys:moduleKeys,action:'install'};
+        fpcmAjax.execDone   = "fpcmJs.relocate(fpcmActionPath + 'package/modinstall');";
+        fpcmAjax.async      = false;
+        fpcmAjax.post();
+        fpcmAjax.reset();        
     };
     
     this.runUpdate = function (moduleKeys) {
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'modules/actions',
-            type: 'POST',
-            async: false,
-            data: {
-                'keys'   : moduleKeys,
-                'action' : 'update'
-            }
-        })
-        .done(function() {
-            fpcmJs.relocate(fpcmActionPath + 'package/modupdate');
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });        
+        fpcmAjax.action     = 'modules/actions';
+        fpcmAjax.data       = {keys:moduleKeys,action:'update'};
+        fpcmAjax.execDone   = "fpcmJs.relocate(fpcmActionPath + 'package/modupdate');";
+        fpcmAjax.async      = false;
+        fpcmAjax.post();
+        fpcmAjax.reset();      
     };
     
     this.doSingleAction = function (object_id, action) {

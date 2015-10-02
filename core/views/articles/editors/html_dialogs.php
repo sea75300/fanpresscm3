@@ -339,17 +339,11 @@
                     }
                 ],
                 open: function (event, ui) {
-                    jQuery.ajax({
-                        url: fpcmAjaxActionPath + 'editor/smileys',
-                        type: "POST",
-                        async: false,
-                        success: function(data) {
-                            jQuery('#fpcm-editor-html-insertsmileys').append(data);
-                        }
-                    })
-                    .fail(function() {
-                        alert(fpcmAjaxErrorMessage);
-                    });
+                    fpcmAjax.action     = 'editor/smileys';
+                    fpcmAjax.execDone   = "jQuery('#fpcm-editor-html-insertsmileys').append(fpcmAjax.result);";
+                    fpcmAjax.async      = false;
+                    fpcmAjax.post();
+                    fpcmAjax.reset();                
 
                     jQuery('.fpcm-editor-htmlsmiley').click(function() {
                         fpcmEditor.insertSmilies(jQuery(this).attr('smileycode'));
