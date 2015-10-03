@@ -47,7 +47,9 @@
             $this->version      = $fpcmVersion;
             
             $this->addJsVars(array(
-                'fpcmCronAsyncDiabled' => true
+                'fpcmAjaxErrorMessage'   => $this->language->translate('AJAX_REQUEST_ERROR'),
+                'fpcmPasswordCheckAlert' => $this->language->translate('SAVE_FAILED_PASSWORD_MATCH'),
+                'fpcmCronAsyncDiabled'   => true
             ));
         }
 

@@ -326,7 +326,11 @@ jQuery(document).ready(function () {
         var confirm  = jQuery(this).val();
 
         if (password != confirm) {
-            fpcmJs.addAjaxMassage('error', 'SAVE_FAILED_PASSWORD_MATCH');
+            if (fpcmPasswordCheckAlert) {
+                alert(fpcmPasswordCheckAlert);
+            } else {
+                fpcmJs.addAjaxMassage('error', 'SAVE_FAILED_PASSWORD_MATCH');                
+            }
         }
 
         return false;

@@ -21,9 +21,7 @@
          */
         public function process() {
             parent::process();
-            
-            $this->cache->cleanup();
-            
+
             $view = new \fpcm\model\view\ajax();
             
             $type = $this->getRequestVar('type');
