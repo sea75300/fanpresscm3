@@ -162,7 +162,7 @@ var fpcmEditor = function () {
     };
 
     this.showFileManager = function() {
-        jQuery('#fpcm-editor-html-filemanager').append('<iframe class="fpcm-full-width" src="' + fpcmFileManagerUrl + '"></iframe>');
+        fpcmJs.appendHtml('#fpcm-editor-html-filemanager', '<iframe class="fpcm-full-width" src="' + fpcmFileManagerUrl + '"></iframe>');
         jQuery('#fpcm-editor-html-filemanager').dialog({
             width    : 900,
             modal    : true,
@@ -186,7 +186,7 @@ var fpcmEditor = function () {
     };
     
     this.showCommentLayer = function (layerUrl) {
-        jQuery('#fpcm-editor-comments').append('<iframe id="fpcm-editor-comment-frame" name="fpcmeditorcommentframe" class="fpcm-full-width" src="' + layerUrl + '"></iframe>');
+        fpcmJs.appendHtml('#fpcm-editor-comments', '<iframe id="fpcm-editor-comment-frame" name="fpcmeditorcommentframe" class="fpcm-full-width" src="' + layerUrl + '"></iframe>');
         jQuery('#fpcm-editor-comments').dialog({
             width    : 900,
             modal    : true,
@@ -518,10 +518,10 @@ jQuery(document).ready(function() {
              ],
             open: function (event, ui) {                
                 var appendCode  = fpcmCanConnect
-                                ? '<input type="text" value="' + link + '">'
+                                ? '<div class="fpcm-ui-input-wrapper"><div class="fpcm-ui-input-wrapper-inner"><input type="text" value="' + link + '"></div></div>'
                                 : '<iframe class="fpcm-full-width"  src="' + link + '"></iframe>';
 
-                jQuery(this).append(appendCode);
+                fpcmJs.appendHtml(this, appendCode);
             },
             close: function( event, ui ) {
                 jQuery(this).empty();

@@ -162,7 +162,7 @@ var fpcmModulelist = function () {
             ],
             open: function (event, ui) {
                 jQuery.each(details, function(key, val) {
-                    jQuery('#fpcm-modulelist-infos-' + key).append('<span>' + val + '</span>');
+                    fpcmJs.appendHtml('#fpcm-modulelist-infos-' + key, '<span>' + val + '</span>');
                 });
             },
             close: function(event, ui) {
@@ -177,7 +177,7 @@ var fpcmModulelist = function () {
         fpcmJs.showLoader(true);
         fpcmAjax.action     = 'modules/actions';
         fpcmAjax.data       = {keys:JSON.stringify(moduleKeys),action:moduleAction};
-        fpcmAjax.execDone   = "fpcmJs.showLoader(false);jQuery('#modules-list-content').html(fpcmAjax.result);noActionButtonAssign=true;fpcmJs.assignButtons();fpcmJs.messagesCenter();jQuery('#moduleActions').prop('selectedIndex',0);jQuery('#moduleActions').selectmenu('refresh');";
+        fpcmAjax.execDone   = "fpcmJs.showLoader(false);fpcmJs.assignHtml('#modules-list-content', fpcmAjax.result);noActionButtonAssign=true;fpcmJs.assignButtons();fpcmJs.messagesCenter();jQuery('#moduleActions').prop('selectedIndex',0);jQuery('#moduleActions').selectmenu('refresh');";
         fpcmAjax.post();       
     };
     

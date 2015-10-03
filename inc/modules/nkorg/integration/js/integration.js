@@ -7,20 +7,10 @@ jQuery(document).ready(function() {
     jQuery('#btnSpacerArticleTitle').click(function() {
         fpcmJs.showLoader(true);
 
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'nkorg/integration/articletitle',
-            type: 'POST',
-            data: {
-                spacertext: jQuery('#spacertextArticle').val()
-            }
-        })
-        .done(function(result) {
-            fpcmJs.showLoader(false);
-            jQuery('#codearticletitle').text(result);
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        fpcmAjax.action   = 'nkorg/integration/articletitle';
+        fpcmAjax.data     = { spacertext: jQuery('#spacertextArticle').val() };
+        fpcmAjax.execDone = "fpcmJs.showLoader(false);fpcmJs.assignText('#codearticletitle', fpcmAjax.result);";
+        fpcmAjax.post();
         
         return false;
     });
@@ -28,20 +18,10 @@ jQuery(document).ready(function() {
     jQuery('#btnSpacerPageTitle').click(function() {
         fpcmJs.showLoader(true);
 
-        jQuery.ajax({
-            url: fpcmAjaxActionPath + 'nkorg/integration/pagetitle',
-            type: 'POST',
-            data: {
-                spacertext: jQuery('#spacertextPage').val()
-            }
-        })
-        .done(function(result) {
-            fpcmJs.showLoader(false);
-            jQuery('#codepagetitle').text(result);
-        })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
-        });
+        fpcmAjax.action   = 'nkorg/integration/pagetitle';
+        fpcmAjax.data     = { spacertext: jQuery('#spacertextPage').val() };
+        fpcmAjax.execDone = "fpcmJs.showLoader(false);fpcmJs.assignText('#codepagetitle', fpcmAjax.result);";
+        fpcmAjax.post();
         
         return false;
     });

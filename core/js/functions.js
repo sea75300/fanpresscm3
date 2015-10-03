@@ -55,7 +55,7 @@ var fpcmJs = function () {
         fpcmAjax.action   = 'logs/clear';
         fpcmAjax.query    = 'log=' + logType[1];
         fpcmAjax.workData = id;
-        fpcmAjax.execDone = "fpcmJs.showLoader(false);jQuery('.fpcm-messages').remove();jQuery('#fpcm-body').append(fpcmAjax.result);fpcmJs.messagesCenter();fpcmJs.reloadLogs(fpcmAjax.workData);";
+        fpcmAjax.execDone = "fpcmJs.showLoader(false);jQuery('.fpcm-messages').remove();fpcmJs.appendHtml('#fpcm-body', fpcmAjax.result);fpcmJs.messagesCenter();fpcmJs.reloadLogs(fpcmAjax.workData);";
         fpcmAjax.get();
         
         return false;
@@ -69,7 +69,7 @@ var fpcmJs = function () {
         fpcmAjax.action   = 'logs/reload';
         fpcmAjax.query    = 'log=' + logType[1];
         fpcmAjax.workData = logType[1];
-        fpcmAjax.execDone = "fpcmJs.showLoader(false);jQuery('#fpcm-logcontent'+ fpcmAjax.workData).html(fpcmAjax.result);";
+        fpcmAjax.execDone = "fpcmJs.showLoader(false);fpcmJs.assignHtml('#fpcm-logcontent'+ fpcmAjax.workData, fpcmAjax.result);";
         fpcmAjax.get();
         
         return false;
@@ -80,7 +80,7 @@ var fpcmJs = function () {
 
         fpcmAjax.action   = 'filelist';
         fpcmAjax.query    = 'mode=' + fpcmFmgrMode;
-        fpcmAjax.execDone = 'fpcmJs.showLoader(false);jQuery("#tabs-files-list").html(fpcmAjax.result);fpcmJs.assignButtons();';
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);fpcmJs.assignHtml("#tabs-files-list", fpcmAjax.result);fpcmJs.assignButtons();';
         fpcmAjax.get();
         
         return false;
@@ -480,7 +480,7 @@ var fpcmJs = function () {
         
         fpcmAjax.action     = 'articles/search';
         fpcmAjax.data       = sParams;
-        fpcmAjax.execDone   = "fpcmJs.showLoader(false);jQuery('#tabs-article-list').html(fpcmAjax.result);noActionButtonAssign = true;fpcmJs.assignButtons();jQuery('.fpcm-articlelist-openlink').button({icons:{primary:'ui-icon-circle-triangle-e'},text:false});";
+        fpcmAjax.execDone   = "fpcmJs.showLoader(false);fpcmJs.assignHtml('#tabs-article-list', fpcmAjax.result);noActionButtonAssign = true;fpcmJs.assignButtons();jQuery('.fpcm-articlelist-openlink').button({icons:{primary:'ui-icon-circle-triangle-e'},text:false});";
         fpcmAjax.post();
         
         fpcmArticlesLastSearch = (new Date()).getTime();
@@ -491,7 +491,7 @@ var fpcmJs = function () {
 
         fpcmAjax.action     = 'addmsg';
         fpcmAjax.data       = {type:type,msgtxt:message};
-        fpcmAjax.execDone   = "fpcmJs.showLoader(false);jQuery('.fpcm-messages').remove();jQuery('#fpcm-body').append(result);if (!fpcmAjax.workData) {jQuery('.fpcm-messages').removeClass('fpcm-messages-fadeout');};fpcmJs.messagesCenter();";
+        fpcmAjax.execDone   = "fpcmJs.showLoader(false);jQuery('.fpcm-messages').remove();fpcmJs.appendHtml('#fpcm-body', fpcmAjax.result);if (!fpcmAjax.workData) {jQuery('.fpcm-messages').removeClass('fpcm-messages-fadeout');};fpcmJs.messagesCenter();";
         fpcmAjax.workData   = fadeOut;
         fpcmAjax.post();
     };
@@ -499,7 +499,7 @@ var fpcmJs = function () {
     this.systemCheck = function () {
         fpcmJs.showLoader(true);
         fpcmAjax.action = 'syscheck';
-        fpcmAjax.execDone = 'fpcmJs.showLoader(false);jQuery("#tabs-options-check").html(result);';
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);fpcmJs.assignHtml("#tabs-options-check", fpcmAjax.result);';
         fpcmAjax.get();
     };
     
@@ -543,7 +543,7 @@ var fpcmJs = function () {
             ],
             open: function (event, ui) {
                 jQuery(this).empty();
-                jQuery(this).append('<iframe class="fpcm-full-width" style="height:100%;"  src="' + fpcmManualCheckUrl + '"></iframe>');
+                self.appendHtml(this, '<iframe class="fpcm-full-width" style="height:100%;"  src="' + fpcmManualCheckUrl + '"></iframe>');
             },
             close: function( event, ui ) {
                 jQuery(this).empty();
@@ -564,7 +564,7 @@ var fpcmJs = function () {
 
         var dialogId = 'fpcm-confirm-dialog-'+ id;        
         
-        jQuery('#fpcm-body').append('<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="' + dialogId + '">' + content + '</div>');
+        self.appendHtml('#fpcm-body', '<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="' + dialogId + '">' + content + '</div>');
         jQuery('#' + dialogId).dialog({
             width    : 500,
             modal    : true,
@@ -632,6 +632,18 @@ var fpcmJs = function () {
     
     this.setFocus = function(elemId) {
         jQuery('#' + elemId).focus();
+    };
+    
+    this.assignHtml = function(elemId, data) {
+        jQuery(elemId).html(data);
+    };
+    
+    this.assignText = function(elemId, data) {
+        jQuery(elemId).text(data);
+    };
+    
+    this.appendHtml = function(elemId, data) {
+        jQuery(elemId).append(data);
     };
     
     this.initInputShadow = function() {

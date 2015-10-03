@@ -281,7 +281,7 @@ jQuery(document).ready(function () {
         jQuery('.fpcm-ui-fileinput-select').change(function () {
             var uploads = jQuery(this);            
             for (var i=0;i<uploads[0].files.length;i++) {
-                jQuery('#fpcm-ui-phpupload-filelist').append('<tr><td>' + uploads[0].files[i].name +'</td></tr>')
+                fpcmJs.appendHtml('#fpcm-ui-phpupload-filelist', '<tr><td>' + uploads[0].files[i].name +'</td></tr>')
             }
         });
         return false;

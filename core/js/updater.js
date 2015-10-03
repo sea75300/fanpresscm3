@@ -36,7 +36,7 @@ var fpcmUpdater = function () {
                     : '<p>' + fpcmUpdaterMessages[scode] + '</p>';
             
             jQuery('#fpcm-ui-headspinner').addClass('fa-spin');            
-            jQuery('.fpcm-updater-list').append(content);
+            fpcmJs.appendHtml('.fpcm-updater-list', content);
             
             fpcmAjax.action     = 'packagemgr/sysupdater';
             fpcmAjax.data       = {step:idx};
@@ -48,7 +48,7 @@ var fpcmUpdater = function () {
             
             if (idx == 4) {
                 fpcmAjax.action     = 'packagemgr/sysupdatervc';
-                fpcmAjax.execDone   = "jQuery('.fpcm-updater-list').append('<p><strong>' + fpcmUpdaterNewVersion + ':</strong> ' + fpcmAjax.result + '</p>');";
+                fpcmAjax.execDone   = "fpcmJs.appendHtml('.fpcm-updater-list', '<p><strong>' + fpcmUpdaterNewVersion + ':</strong> ' + fpcmAjax.result + '</p>');";
                 fpcmAjax.async      = false;
                 fpcmAjax.get();
                 fpcmAjax.reset();                
@@ -67,9 +67,9 @@ var fpcmUpdater = function () {
                 }).click(function () {
                     jQuery('.fpcm-updater-list-files').fadeToggle();
                 });                
-                jQuery('.fpcm-updater-list').append('<p>' + self.code + '</p>');
+                fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + self.code + '</p>');
             } else {
-                jQuery('.fpcm-updater-list').append('<p><strong> ' + fpcmUpdaterMessages[self.code] + '</strong></p>');
+                fpcmJs.appendHtml('.fpcm-updater-list', '<p><strong> ' + fpcmUpdaterMessages[self.code] + '</strong></p>');
             }            
         }
         
@@ -78,7 +78,7 @@ var fpcmUpdater = function () {
         if (!skipRest) fpcmJs.addAjaxMassage('notice', fpcmUpdaterMessages['EXIT_1'], false);
 
         var updateTimer = ((new Date().getTime()) - updateStart) / 1000;
-        jQuery('.fpcm-updater-list').append('<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
+        fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
         
         fpcmJs.showLoader(false);
     };

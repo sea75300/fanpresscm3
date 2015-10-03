@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<HTML>
+<HTML lang="<?php print $FPCM_LANG->getLangCode(); ?>">
     <head>
         <title><?php $FPCM_LANG->write('HEADLINE'); ?></title>
         <meta http-equiv="content-type" content= "text/html; charset=utf-8">

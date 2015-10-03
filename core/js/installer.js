@@ -34,11 +34,11 @@ var fpcmInstaller = function () {
     this.initDatabase = function () {
         jQuery.each(fpcmSqlFiles, function( key, obj ) {
 
-            jQuery('#fpcm-installer-execlist').append('<p>' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
+            fpcmJs.appendHtml('#fpcm-installer-execlist', '<p>' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
             
             fpcmAjax.action     = 'installer/initdb';
             fpcmAjax.data       = {file: obj};
-            fpcmAjax.execDone   = "if (result == '0' || result == 0) {jQuery('#fpcm-installer-execlist').append('<p class='fpcm-ui-important-text'>FAILED!</p>');self.breakDbInit = false;}";
+            fpcmAjax.execDone   = "if (result == '0' || result == 0) {fpcmJs.appendHtml('#fpcm-installer-execlist', '<p class='fpcm-ui-important-text'>FAILED!</p>');self.breakDbInit = false;}";
             fpcmAjax.async      = false;
             fpcmAjax.post();
             fpcmAjax.reset();            
