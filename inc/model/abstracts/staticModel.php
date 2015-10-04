@@ -70,7 +70,7 @@
             
             if (!\fpcm\classes\baseconfig::dbConfigExists()) return;
 
-            $this->session  = new \fpcm\model\system\session();
+            $this->session  = \fpcm\classes\baseconfig::$settings->session;
             $this->config   = \fpcm\classes\baseconfig::$settings->config;
             $this->language = \fpcm\classes\baseconfig::$settings->language;
             

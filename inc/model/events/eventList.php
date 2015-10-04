@@ -43,12 +43,24 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
+            $eventCache = new \fpcm\classes\cache('sysevents');
+            if (!$eventCache->isExpired()) {
+                $this->events = $eventCache->read();
+                if (is_array($this->events)) {
+                    return true;
+                }                
+            }
+            
             $eventFiles = glob(\fpcm\classes\baseconfig::$incDir.'model/events/*.php');
 
+            if (!$eventFiles || !count($eventFiles)) return false;
+            
             foreach ($eventFiles as $eventFile) {                
                 if ($eventFile == __FILE__) continue;
                 $this->events[] = basename($eventFile, '.php');
             }
+            
+            $eventCache->write($this->events, FPCM_LANGCACHE_TIMEOUT);
         }
 
         /**
@@ -58,15 +70,27 @@
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
+            $eventCache = new \fpcm\classes\cache('moduleevents');
+            if (!$eventCache->isExpired()) {
+                $this->moduleEvents = $eventCache->read();
+                if (is_array($this->moduleEvents)) {
+                    return true;
+                }                
+            }
+            
             $eventFiles = glob(\fpcm\classes\baseconfig::$moduleDir."*/*/events/*.php");
 
-            if (!$eventFiles || !count($eventFiles)) return array();
+            if (!$eventFiles || !count($eventFiles)) return false;
             
             foreach ($eventFiles as $eventFile) {
                 $eventKey  = basename($eventFile, '.php');
                 $moduleKey = \fpcm\model\abstracts\module::getModuleKeyByFolder($eventFile);
                 $this->moduleEvents[$eventKey][] = $moduleKey;
             }
+            
+            $eventCache->write($this->moduleEvents, FPCM_LANGCACHE_TIMEOUT);
+            
+            return true;
         }
 
         /**

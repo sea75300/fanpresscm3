@@ -15,6 +15,7 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @property \fpcm\model\system\config $config Config-Objekt
      * @property language $language Sprach-Objekt
+     * @property \fpcm\model\system\session $session Session-Objekt
      */     
     final class settings {
         
@@ -33,6 +34,7 @@
 
             $this->config   = new \fpcm\model\system\config();
             $this->language = new \fpcm\classes\language($this->config->system_lang);
+            $this->session  = new \fpcm\model\system\session();
         }
         
         /**

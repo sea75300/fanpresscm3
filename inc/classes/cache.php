@@ -140,7 +140,7 @@
         protected function initCacheName($cacheName) {
             
             if (is_null($cacheName)) return null;
-            
+
             return md5(strtolower($cacheName));
         }
 

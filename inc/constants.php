@@ -86,7 +86,7 @@
         /**
          * Timeout für Sprach-Cache
          */
-        define ('FPCM_LANGCACHE_TIMEOUT', 3600 * 24 * 7);
+        define ('FPCM_LANGCACHE_TIMEOUT', 3600 * 24 * 31);
     }
     
     if (!defined('FPCM_PAGETOKENCACHE_TIMEOUT')) {

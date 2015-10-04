@@ -317,7 +317,6 @@
             self::$fpcmEvents           = new \fpcm\model\events\eventList();
 
             if (self::dbConfigExists()) {
-                self::$fpcmDatabase = new \fpcm\classes\database();
                 self::initSettings();
             }            
         }
@@ -346,6 +345,16 @@
          * @return array
          */
         public static function getControllers() {
+            
+            $controllerCache = new cache('controllerCache');
+            
+            if (!$controllerCache->isExpired()) {
+                $controllerList = $controllerCache->read();
+                if (is_array($controllerList)) {
+                    return $controllerList;
+                }                
+            }
+            
             include_once loader::libGetFilePath('spyc', 'Spyc.php');
 
             if (!file_exists(self::$controllerFiles['actions']) || !file_exists(self::$controllerFiles['ajax'])) {
@@ -356,7 +365,11 @@
             $ajaxs   = \Spyc::YAMLLoad(self::$controllerFiles['ajax']);
             $modules = self::initModuleControllers();
 
-            return array_unique(array_merge($actions, $ajaxs, $modules));
+            $controllerList = array_unique(array_merge($actions, $ajaxs, $modules));
+            
+            $controllerCache->write($controllerList, FPCM_LANGCACHE_TIMEOUT);
+            
+            return $controllerList;
         }
         
         /**
@@ -418,7 +431,8 @@
          * Globale Settings initialisieren
          */
         public static function initSettings() {
-            self::$settings = new \fpcm\classes\settings();
+            self::$fpcmDatabase = new \fpcm\classes\database();
+            self::$settings     = new \fpcm\classes\settings();
         }
 
         /**
