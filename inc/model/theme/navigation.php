@@ -123,7 +123,7 @@
                 ),
                 'filemanager'   => array(
                     array(
-                        'url'               => 'files/list&mode=2',
+                        'url'               => 'files/list&mode=1',
                         'permission'        => array('article' => 'add', 'article' => 'edit'),
                         'description'       => $this->language->translate('HL_FILES_MNG'),
                         'icon'              => 'fa fa-folder-open fa-fw',

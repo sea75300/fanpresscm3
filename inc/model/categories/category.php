@@ -150,6 +150,15 @@
         private function categoryExists($name) {
             $counted = $this->dbcon->count("categories", 'id', "name like '$name'");
             return ($counted > 0) ? true : false;
-        }         
+        }
+        
+        /**
+         * Liefert <img>-Tag für Kategorie-Icon zurück
+         * @return string
+         * @since FPCM 3.1.0
+         */
+        public function getCategoryImage() {           
+            return '<img src="'.$this->getIconPath().'" alt="'.$this->getName().'" title="'.$this->getName().'" class="fpcm-pub-category-icon">';
+        }
         
     }

@@ -23,6 +23,7 @@ Stand: 24.09.2015 - 20:08 Uhr
 * gerenderte Navigation wird pro Benutzer gecached
 * DIFF-Ansicht in Revisionen
 * überarbeitetes AJAX-Framework
+* Artikel-Bilder festlegen
 
 -- ToDo v3.0 --
 

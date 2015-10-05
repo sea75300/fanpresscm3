@@ -187,7 +187,7 @@
                 $categoryTexts[] = '<span class="fpcm-pub-category-text">'.$category->getName().'</span>';
 
                 if (!$category->getIconPath()) continue;
-                $categoryIcons[] = '<img src="'.$category->getIconPath().'" alt="'.$category->getName().'" title="'.$category->getName().'" class="fpcm-pub-category-icon">';
+                $categoryIcons[] = $category->getCategoryImage();
             }
 
             $shareButtonParser = new \fpcm\model\pubtemplates\sharebuttons($article->getArticleLink(), $article->getTitle());
@@ -217,7 +217,8 @@
                 '{{commentCount}}'                  => $commentCount,
                 '{{permaLink}}:{{/permaLink}}'      => $article->getArticleLink(),
                 '{{commentLink}}:{{/commentLink}}'  => $article->getArticleLink().'#comments',
-                '<readmore>:</readmore>'            => $article->getMd5path()
+                '<readmore>:</readmore>'            => $article->getMd5path(),
+                '{{articleImage}}'                  => $article->getArticleImage()
             );
 
             $tpl->setReplacementTags($replacements);

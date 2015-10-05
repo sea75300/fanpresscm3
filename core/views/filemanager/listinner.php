@@ -17,9 +17,12 @@
                 <div class="fpcm-filelist-actions">
                     <a href="<?php print $file->getThumbnailUrl(); ?>" class="fpcm-filelist-link-thumb fpcm-ui-filelist-button" target="_blank"><?php $FPCM_LANG->write('FILE_LIST_OPEN_THUMB'); ?></a>
                     <a href="<?php print $file->getImageUrl(); ?>" target="_blank" class="fpcm-filelist-link-full fpcm-file-list-link"><?php $FPCM_LANG->write('FILE_LIST_OPEN_FULL'); ?></a>
-                    <?php if ($mode == 1) : ?>
+                    <?php if ($mode == 2) : ?>
                     <a href="<?php print $file->getThumbnailUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-filelist-tinymce-thumb fpcm-ui-filelist-button"><?php $FPCM_LANG->write('FILE_LIST_INSERT_THUMB'); ?></a>
                     <a href="<?php print $file->getImageUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-filelist-tinymce-full fpcm-ui-filelist-button"><?php $FPCM_LANG->write('FILE_LIST_INSERT_FULL'); ?></a>
+                    <?php endif; ?>
+                    <?php if ($mode == 3) : ?>
+                    <a href="<?php print $file->getImageUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-filelist-articleimage fpcm-ui-filelist-button"><?php $FPCM_LANG->write('EDITOR_ARTICLEIMAGE'); ?></a>
                     <?php endif; ?>                    
                 </div>
                 

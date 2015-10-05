@@ -49,6 +49,7 @@
         'EDITOR_REVISION_RESTORE'       => 'Restore revision',
         'EDITOR_ARTICLE_SHORTLINK'      => 'Shortlink',
         'EDITOR_CHANGEAUTHOR'           => 'Change author',
+        'EDITOR_ARTICLEIMAGE'           => 'Add article image',
         
         'EDITOR_STATUS_DRAFT'           => 'Article is draft',
         'EDITOR_STATUS_PINNED'          => 'Article is pinned',

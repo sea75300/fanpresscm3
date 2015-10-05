@@ -50,7 +50,7 @@
             if (!is_null($this->getRequestVar('mode'))) {
                 $this->mode = (int) $this->getRequestVar('mode');
                 
-                if ($this->mode == 1) {
+                if ($this->mode > 1) {
                     $this->view->setShowHeader(false);
                     $this->view->setShowFooter(false);
                 }

@@ -34,7 +34,8 @@
             '{{categoryTexts}}'                 => '',
             '{{commentCount}}'                  => '',
             '{{permaLink}}:{{/permaLink}}'      => '',
-            '{{commentLink}}:{{/commentLink}}'  => ''            
+            '{{commentLink}}:{{/commentLink}}'  => '',
+            '{{articleImage}}'                  => ''             
         );
         
         /**

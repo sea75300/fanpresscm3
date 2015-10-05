@@ -952,7 +952,7 @@ h3, .fpcm-dashboard-container h3 {
     margin:0px 0px 5px 0px;
 }
 
-#fpcm-extended-dialog.fpcm-editor-dialog .fpcm-ui-input-wrapper {
+#fpcm-extended-dialog.fpcm-editor-dialog .fpcm-ui-editor-postpone div.fpcm-ui-input-wrapper {
     width:50% !important;
 }
 

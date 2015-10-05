@@ -1,6 +1,3 @@
-<!-- Dateimanager layer -->  
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-filemanager"></div>
-
 <!-- Link einfügen -->  
 <div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertlink">  
     <table class="fpcm-ui-table">

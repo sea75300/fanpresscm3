@@ -77,6 +77,13 @@
          * @var int
          */
         protected $approval         = 0;
+        
+        /**
+         * Pfad zum Artikel-Bild
+         * @var string
+         * @since FPCM 3.1.0
+         */
+        protected $imagepath        = '';
 
         /**
          * Veröffentlichungszeit
@@ -261,6 +268,15 @@
         }
         
         /**
+         * Gibt Pfad zum Artikel-Bild zurück
+         * @return string
+         * @since FPCM 3.1.0
+         */
+        public function getImagepath() {
+            return $this->imagepath;
+        }
+                
+        /**
          * Ttiel setzten
          * @param string $title
          */
@@ -371,7 +387,16 @@
         public function setApproval($approval) {
             $this->approval = (int) $approval;
         }
-
+        
+        /**
+         * Setzt Pfad zum Artikel-Bild
+         * @param string $imagepath
+         * @since FPCM 3.1.0
+         */
+        public function setImagepath($imagepath) {
+            $this->imagepath = $imagepath;
+        }
+        
         /**
          * Artikel vollständig löschen erzwingen
          * @param bool $forceDelete
@@ -433,6 +458,20 @@
             $url = fgetss($remote);
             
             return $this->events->runEvent('articleShortLink', array('artikellink' => urlencode($this->getArticleLink()), 'url' => $url))['url'];
+        }
+        
+        /**
+         * Liefert <img>-Tag für Artikel-Image zurück
+         * @return string
+         * @since FPCM 3.1.0
+         */
+        public function getArticleImage() {
+            
+            if (!$this->imagepath) {
+                return '';
+            }
+            
+            return "<img class=\"fpcm-pub-article-image\" src=\"{$this->imagepath}\" alt=\"{$this->title}\" title=\"{$this->title}\">";
         }
 
         /**

@@ -1,4 +1,4 @@
-<?php if ($mode == 2) : ?>
+<?php if ($mode == 1) : ?>
 <div class="fpcm-content-wrapper">
     <h1><span class="fa fa-folder-open"></span> <?php $FPCM_LANG->write('HL_FILES_MNG'); ?></h1>
 <?php else : ?>

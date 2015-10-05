@@ -198,7 +198,14 @@ var fpcmJs = function () {
                 primary: "ui-icon-image"
             },
             text: false        
-        });    
+        });
+        
+        jQuery('.fpcm-filelist-articleimage').button({
+            icons: {
+                primary: "ui-icon-image"
+            },
+            text: false        
+        });
     };
     
     this.filemanagerButtons = function () {
@@ -277,6 +284,21 @@ var fpcmJs = function () {
                 window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
             } else {
                 top.tinymce.activeEditor.windowManager.getParams().oninsert(url, { alt: title, text: title });
+                top.tinymce.activeEditor.windowManager.close();
+            }
+
+            return false;
+        });
+
+        jQuery('.fpcm-filelist-articleimage').click(function () {
+            var url   = jQuery(this).attr('href');
+
+            parent.document.getElementById('articleimagepath').value  = url;
+
+            if (fpcmEditorType == 1) {
+                window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
+                window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
+            } else {
                 top.tinymce.activeEditor.windowManager.close();
             }
 

@@ -112,8 +112,13 @@
         private function alterTables() {
             $res = true;
             
-            if (version_compare($this->config->system_version, '3.0.4', '<'))
-            $res = $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "7, 'dbBackup', 0");
+            if (version_compare($this->config->system_version, '3.0.4', '<')) {
+                $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "7, 'dbBackup', 0");                
+            }
+            
+            if (version_compare($this->config->system_version, '3.1.0', '<')) {
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD', '`imagepath`', 'TEXT NOT NULL');
+            }
             
             return $res;
         }

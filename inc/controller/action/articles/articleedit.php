@@ -83,10 +83,18 @@
             if ($this->buttonClicked('doAction') && !$this->checkPageToken) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
-
+            
             $revisionIdsArray   = !is_null($this->getRequestVar('revisionIds'))
                                 ? array_map('intval', $this->getRequestVar('revisionIds'))
                                 : false;
+            
+            if ($this->buttonClicked('revisionDelete') && $revisionIdsArray && !$this->showRevision && $this->checkPageToken) {
+                if ($this->article->deleteRevisions($revisionIdsArray)) {
+                    $this->view->addNoticeMessage('DELETE_SUCCESS_REVISIONS');
+                } else {
+                    $this->view->addErrorMessage('DELETE_FAILED_REVISIONS');
+                }
+            }
             
             $this->revisionId   = !is_null($this->getRequestVar('rev'))
                                 ? (int) $this->getRequestVar('rev')
@@ -129,14 +137,6 @@
                 }
             }
             
-            if ($this->buttonClicked('revisionDelete') && $this->getRequestVar('revisionIds') && !$this->showRevision && $this->checkPageToken) {
-                if ($this->article->deleteRevisions($this->getRequestVar('revisionIds'))) {
-                    $this->view->addNoticeMessage('DELETE_SUCCESS_REVISIONS');
-                } else {
-                    $this->view->addErrorMessage('DELETE_FAILED_REVISIONS');
-                }
-            }            
-            
             $res = false;
             
             $allTimer = time();
@@ -176,6 +176,7 @@
                 $this->article->setDraft(isset($data['draft']) ? 1 : 0);
                 $this->article->setComments(isset($data['comments']) ? 1 : 0);
                 $this->article->setApproval($this->permissions->check(array('article' => 'approve')) ? 1 : 0);
+                $this->article->setImagepath($data['imagepath']);
 
                 if (isset($data['archived'])) {
                     $this->article->setArchived(1);

@@ -15,5 +15,6 @@ CREATE TABLE IF NOT EXISTS `{{dbpref}}_articles` (
   `deleted` tinyint(4) NOT NULL,
   `comments` tinyint(4) NOT NULL,
   `approval` tinyint(4) NOT NULL,
+  `imagepath` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

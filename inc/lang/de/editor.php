@@ -49,6 +49,7 @@
         'EDITOR_REVISION_RESTORE'       => 'Revision wiederherstellen',
         'EDITOR_ARTICLE_SHORTLINK'      => 'Kurzlink',
         'EDITOR_CHANGEAUTHOR'           => 'Author ändern',
+        'EDITOR_ARTICLEIMAGE'           => 'Artikel-Bild festlegen',
         
         'EDITOR_STATUS_DRAFT'           => 'Artikel als Entwurf gespeichert',
         'EDITOR_STATUS_PINNED'          => 'Artikel ist gepinnt',

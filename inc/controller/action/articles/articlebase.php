@@ -90,7 +90,8 @@
             $this->view->assign('userfields', $this->getUserFields());
             $this->jsVars += array(
                 'fpcmFileManagerHeadline'   => $this->lang->translate('HL_FILES_MNG'),
-                'fpcmFileManagerUrl'        => \fpcm\classes\baseconfig::$rootPath.'index.php?module=files/list&mode=1',
+                'fpcmFileManagerUrl'        => \fpcm\classes\baseconfig::$rootPath.'index.php?module=files/list&mode=',
+                'fpcmFileManagerUrlMode'    => 2,
                 'fpcmPostponeDatePicker'    => array(
                     'daysfull'              => $this->lang->getDays(),
                     'daysshort'             => $this->lang->getDaysShort(),

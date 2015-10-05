@@ -35,6 +35,7 @@
         'TEMPLATE_ARTICLE_TEXT'             => 'Article text content',
         'TEMPLATE_ARTICLE_SHAREBUTTONS'     => 'Share buttons',
         'TEMPLATE_ARTICLE_STATUSPINNED'     => '"Article is pinned" notice',
+        'TEMPLATE_ARTICLE_ARTICLEIMAGE'     => 'Article image',
         
         'TEMPLATE_COMMMENT_AUTHOR'          => 'Comment author',
         'TEMPLATE_COMMMENT_EMAIL'           => 'Author email address',

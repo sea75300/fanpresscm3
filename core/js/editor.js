@@ -162,7 +162,7 @@ var fpcmEditor = function () {
     };
 
     this.showFileManager = function() {
-        fpcmJs.appendHtml('#fpcm-editor-html-filemanager', '<iframe class="fpcm-full-width" src="' + fpcmFileManagerUrl + '"></iframe>');
+        fpcmJs.appendHtml('#fpcm-editor-html-filemanager', '<iframe class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
         jQuery('#fpcm-editor-html-filemanager').dialog({
             width    : 900,
             modal    : true,
@@ -299,7 +299,7 @@ var fpcmEditor = function () {
             autoresize_min_height : '500',
             file_picker_callback  : function(callback, value, meta) {
                 tinymce.activeEditor.windowManager.open({
-                    file            : fpcmFileManagerUrl,
+                    file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
                     title           : fpcmFileManagerHeadline,
                     width           : 1024,
                     height          : 600,
@@ -535,6 +535,18 @@ jQuery(document).ready(function() {
             primary: "ui-icon-arrowreturn-1-w",
         },
         text: true
+    });
+    
+    jQuery('#fpcmuieditoraimgfmg').button({
+        icons: {
+            primary: "ui-icon-folder-open",
+        },
+        text: false
+    }).click(function () {
+        fpcmFileManagerUrlMode = 3;
+        fpcmEditor.showFileManager();
+        fpcmFileManagerUrlMode = 2;
+        return false;
     });
     
     /**
