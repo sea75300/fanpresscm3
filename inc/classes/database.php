@@ -199,11 +199,12 @@
          * @param string $methode
          * @param string $field
          * @param string $where
+         * @param bool $checkExists Prüfung durchführen, ob Feld existiert
          * @return bool
          */
-        public function alter($table, $methode, $field, $where = "") {
+        public function alter($table, $methode, $field, $where = "", $checkExists = true) {
             
-            if ($this->fetch($this->select($table, $field)) !== false) return true;
+            if ($checkExists && $this->fetch($this->select($table, $field)) !== false) return true;
             
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "ALTER TABLE $table $methode $field $where";
