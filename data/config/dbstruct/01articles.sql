@@ -18,3 +18,13 @@ CREATE TABLE IF NOT EXISTS `{{dbpref}}_articles` (
   `imagepath` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `title` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `categories` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `createuser` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `createtime` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `pinned` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `postponed` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `deleted` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `approval` );
+ALTER TABLE `{{dbpref}}_articles` ADD INDEX ( `draft` );
