@@ -16,6 +16,7 @@
         'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System-Überprüfung & Updates',
 
         'SYSTEM_OPTIONS_MAINTENANCE'                => 'Wartungsmodus aktiv',
+        'SYSTEM_OPTIONS_CRONJOBS'                   => 'Asynchrone Cronjob-Ausführung inaktiv',
         'SYSTEM_OPTIONS_URL'                        => 'URL für Artikellinks',
         'SYSTEM_OPTIONS_LANG'                       => 'Sprache',   
         'SYSTEM_OPTIONS_DATETIMEMASK'               => 'Datum- und Zeitanzeige (Syntax: <a href="http://php.net/manual/de/function.date.php">date()</a>-Funktion von PHP)',

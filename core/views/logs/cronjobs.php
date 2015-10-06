@@ -6,7 +6,7 @@
     </tr>
     <tr class="fpcm-td-spacer"><td></td></tr>   
     <?php foreach ($cronjobList as $cronjob) : ?>
-    <tr>
+    <tr <?php if ($currentTime > $cronjob->getNextExecTime()) : ?>class="fpcm-ui-important-text"<?php endif; ?>>
         <td><?php $FPCM_LANG->write('CRONJOB_'.strtoupper($cronjob->getCronName())); ?></td>
         <td class="fpcm-ui-center"><?php print date($FPCM_DATETIME_MASK, $cronjob->getLastExecTime()); ?></td>
         <td class="fpcm-ui-center"><?php print date($FPCM_DATETIME_MASK, $cronjob->getNextExecTime()); ?></td>

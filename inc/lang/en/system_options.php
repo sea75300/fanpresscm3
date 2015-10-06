@@ -16,6 +16,7 @@
         'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System check and updates',
         
         'SYSTEM_OPTIONS_MAINTENANCE'                => 'Maintenance mode enabled',
+        'SYSTEM_OPTIONS_CRONJOBS'                   => 'Asynchronous cronjob execution disabled',
         'SYSTEM_OPTIONS_URL'                        => 'Article url base',
         'SYSTEM_OPTIONS_LANG'                       => 'Language',   
         'SYSTEM_OPTIONS_DATETIMEMASK'               => 'Date-Time-Mask (Syntax: <a href="http://php.net/manual/de/function.date.php">date()</a> function by PHP)',

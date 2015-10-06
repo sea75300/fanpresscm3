@@ -575,8 +575,10 @@ var fpcmJs = function () {
     
     this.runCronsAsync = function () {
         if (typeof fpcmCronAsyncDiabled != 'undefined' && fpcmCronAsyncDiabled) return;
+        fpcmAjax.reset();
         fpcmAjax.action = 'cronasync';
         fpcmAjax.get();
+        fpcmAjax.reset();
     };
     
     this.confirmDialog = function (content, buttons, title, id) {

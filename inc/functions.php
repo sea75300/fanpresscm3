@@ -56,7 +56,7 @@
         $LogLine = json_encode(array('time' => date('Y-m-d H:i:s'), 'text' => implode(PHP_EOL, $text)));
         file_put_contents($errorLog, $LogLine.PHP_EOL, FILE_APPEND);
 
-        return false;
+        return true;
     }
     
     /**

@@ -1112,18 +1112,12 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     display: none;
 }
 
-.fpcm-profile-info-icon {
-    font-size: 4em;
-    width: 60px;
-    text-align: left;
-}
-
-#profile-dialog-layer table {
+#fpcm-profile-dialog-layer table {
     width: 100%;
-    border: 1px;
+    border: 0px;
 }
 
-#profile-dialog-layer table td {
+#fpcm-profile-dialog-layer table td {
     vertical-align: middle;
 }
 

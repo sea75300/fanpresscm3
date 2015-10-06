@@ -43,7 +43,7 @@
         
         'HL_PROFILE'                    => 'Profile',
         'PROFILE_MENU_LOGGEDINSINCE'    => 'Logged in since',
-        'PROFILE_MENU_YOURIP'           => 'Your ip address:',
+        'PROFILE_MENU_YOURIP'           => 'Your ip address',
         
         'NAVIGATION_HIDE'               => 'Hide menu',
         'HELP_SELECT'                   => 'Click on headline to open help entry',

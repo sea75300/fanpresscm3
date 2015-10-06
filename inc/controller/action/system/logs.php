@@ -41,7 +41,8 @@
             $this->view->assign('databaseLogs', array_map('json_decode', \fpcm\classes\logs::sqllogRead()));
 
             $cronlist = new \fpcm\model\crons\cronlist();
-            $this->view->assign('cronjobList', $cronlist->getCronsData());            
+            $this->view->assign('cronjobList', $cronlist->getCronsData());
+            $this->view->assign('currentTime', time());
             
             $this->view->render();
         }
