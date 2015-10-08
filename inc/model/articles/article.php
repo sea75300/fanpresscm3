@@ -467,7 +467,7 @@
          */
         public function getArticleImage() {
             
-            if (!$this->imagepath) {
+            if (!trim($this->imagepath)) {
                 return '';
             }
             

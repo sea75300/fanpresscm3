@@ -50,6 +50,7 @@
         'EDITOR_ARTICLE_SHORTLINK'      => 'Kurzlink',
         'EDITOR_CHANGEAUTHOR'           => 'Author ändern',
         'EDITOR_ARTICLEIMAGE'           => 'Artikel-Bild festlegen',
+        'EDITOR_ARTICLEIMAGE_SHOW'      => 'Artikel-Bild anzeigen',
         
         'EDITOR_STATUS_DRAFT'           => 'Artikel als Entwurf gespeichert',
         'EDITOR_STATUS_PINNED'          => 'Artikel ist gepinnt',

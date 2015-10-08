@@ -320,7 +320,8 @@
                 '{{commentCount}}'                  => $commentCount,
                 '{{permaLink}}:{{/permaLink}}'      => $this->article->getArticleLink(),
                 '{{commentLink}}:{{/commentLink}}'  => $this->article->getArticleLink().'#comments',
-                '<readmore>:</readmore>'            => $this->article->getMd5path()
+                '<readmore>:</readmore>'            => $this->article->getMd5path(),
+                '{{articleImage}}'                  => $this->article->getArticleImage()
             );
 
             $this->articleTemplate->setReplacementTags($replacements);

@@ -530,6 +530,13 @@ jQuery(document).ready(function() {
          return false;
     });
     
+    jQuery('.fpcm-articlelist-articleimage').button({
+        icons: {
+            primary: "ui-icon-image",
+        },
+        text: false
+    }).fancybox();
+    
     jQuery('.fpcm-ui-revision-restore').button({
         icons: {
             primary: "ui-icon-arrowreturn-1-w",

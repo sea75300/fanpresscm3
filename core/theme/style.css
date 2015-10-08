@@ -975,7 +975,8 @@ h3, .fpcm-dashboard-container h3 {
 }
 
 .fpcm-ui-editor-metabox-left div.fpcm-ui-editor-metabox-left-frontend,
-.fpcm-ui-editor-metabox-left div.fpcm-ui-editor-metabox-left-short {
+.fpcm-ui-editor-metabox-left div.fpcm-ui-editor-metabox-left-short,
+.fpcm-ui-editor-metabox-left div.fpcm-ui-editor-metabox-left-aimg {
     margin: 0.3em 0.6em 0.3em 0;
 }
 
