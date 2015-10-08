@@ -294,13 +294,8 @@ var fpcmJs = function () {
             var url   = jQuery(this).attr('href');
 
             parent.document.getElementById('articleimagepath').value  = url;
-
-            if (fpcmEditorType == 1) {
-                window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
-                window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
-            } else {
-                top.tinymce.activeEditor.windowManager.close();
-            }
+            window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
+            window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
 
             return false;
         });
