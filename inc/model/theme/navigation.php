@@ -288,7 +288,7 @@
             $items = array(
                 array(
                     'url'               => 'modules/list',
-                    'permission'        => array('modules' => 'install', 'modules' => 'uninstall', 'modules' => 'configure', 'modules' => 'enable'),
+                    'permission'        => array('modules' => array('install', 'uninstall', 'configure', 'enable')),
                     'description'       => $this->language->translate('HL_MODULES_MNG'),                    
                     'class'             => '',
                     'id'                => '',

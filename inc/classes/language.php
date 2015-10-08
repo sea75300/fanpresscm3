@@ -82,8 +82,14 @@
                 return;
             }            
             
-            $moduleLangFiles = glob(baseconfig::$moduleDir.'*/*/lang/'.$langCode.'/*.php');            
-            $langfiles = array_merge(glob(baseconfig::$langDir.$langCode.'/*.php'), (is_array($moduleLangFiles) ? $moduleLangFiles : array()));
+            $moduleLangFiles = ($langCode != FPCM_DEFAULT_LANGUAGE_CODE ? glob(baseconfig::$moduleDir.'*/*/lang/'.FPCM_DEFAULT_LANGUAGE_CODE.'/*.php') : array());
+            $moduleLangFiles_langcode = glob(baseconfig::$moduleDir.'*/*/lang/'.$langCode.'/*.php');
+            
+            if (is_array($moduleLangFiles_langcode)) {
+                $moduleLangFiles += $moduleLangFiles_langcode;
+            }
+
+            $langfiles       = array_merge(glob(baseconfig::$langDir.$langCode.'/*.php'), (is_array($moduleLangFiles) ? $moduleLangFiles : array()));
             
             foreach ($langfiles as $file) {
 
