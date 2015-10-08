@@ -84,7 +84,6 @@
             $articleList = new \fpcm\model\articles\articlelist();
             $userlist    = new \fpcm\model\users\userList();
             
-            
             $conditions = array(
                 'draft'     => -1,
                 'approval'  => -1,
@@ -121,16 +120,16 @@
                 $content[] = '  <td class="fpcm-ui-dashboard-recentarticles-meta">';
                 
                 if ($article->getPinned()) {
-                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_PINNED').'"><span class="fa fa-thumb-tack fa-rotate-90 fa-fw"></span></span>';
+                    $content[] = '      <span class="fa-stack fa-fw fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_PINNED').'"><span class="fa fa-square fa-stack-2x"></span><span class="fa fa-thumb-tack fa-rotate-90 fa-stack-1x fa-inverse"></span></span>';
                 }                
                 if ($article->getDraft()) {
-                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_DRAFT').'"><span class="fa fa-file-text-o fa-fw"></span></span>';
+                    $content[] = '      <span class="fa-stack fa-fw fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_DRAFT').'"><span class="fa fa-square fa-stack-2x"></span><span class="fa fa-file-text-o fa-stack-1x fa-inverse"></span></span>';
                 }
                 if ($article->getPostponed()) {
-                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_POSTPONETO').'"><span class="fa fa-clock-o fa-fw"></span></span>';
+                    $content[] = '      <span class="fa-stack fa-fw fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_POSTPONETO').'"><span class="fa fa-square fa-stack-2x"></span><span class="fa fa-clock-o fa-stack-1x fa-inverse"></span></span>';
                 }
                 if ($article->getApproval()) {
-                    $content[] = '      <span class="fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_APPROVAL').'"><span class="fa fa-thumbs-o-up fa-fw"></span></span>';
+                    $content[] = '      <span class="fa-stack fa-fw fpcm-ui-status-1" title="'.$this->language->translate('EDITOR_STATUS_APPROVAL').'"><span class="fa fa-square fa-stack-2x"></span><span class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></span></span>';
                 }                  
 
                 $content[] = '  </td>';

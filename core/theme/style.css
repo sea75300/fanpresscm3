@@ -974,6 +974,11 @@ h3, .fpcm-dashboard-container h3 {
     margin-right: 0.6em;
 }
 
+.fpcm-ui-editor-metabox-left div.fpcm-ui-editor-metabox-left-frontend,
+.fpcm-ui-editor-metabox-left div.fpcm-ui-editor-metabox-left-short {
+    margin: 0.3em 0.6em 0.3em 0;
+}
+
 .fpcm-ui-editor-metabox-right {
     float: right;
 }
@@ -982,9 +987,9 @@ h3, .fpcm-dashboard-container h3 {
     float: none;
 }
 
-.fpcm-ui-editor-metabox-right,
-table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
-    font-size: 2.0em;
+table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta,
+.fpcm-ui-editor-metabox-right {
+    font-size: 1.4em;
     color:#3399ff;
 }
 
@@ -996,7 +1001,7 @@ table.fpcm-ui-comments .fpcm-ui-editor-metabox-right
     float: none; 
 }
 
-table.fpcm-ui-articles .fpcm-ui-editor-metabox-left         {
+table.fpcm-ui-articles .fpcm-ui-editor-metabox-left {
     font-size: 0.85em;
     padding: 0.4em 0em 0.2em;
 }
@@ -1005,9 +1010,12 @@ table.fpcm-ui-articles .fpcm-ui-editor-metabox-left strong  {
     color:#3399ff;
 }
 
-table.fpcm-ui-articles .fpcm-ui-editor-metabox-right        {
-    font-size: 1.75em;
-    width:175px;
+table.fpcm-ui-articles .fpcm-ui-editor-metabox-right {
+    width:12em;
+}
+
+table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
+    font-size: 1.1em;
 }
 
 .fpcm-ui-editor-metabox-right .fpcm-ui-status-0 {
@@ -1019,7 +1027,7 @@ table.fpcm-ui-articles .fpcm-ui-editor-metabox-right        {
 }
 
 .fpcm-ui-editor-metabox-right span {
-    padding: 0em 0.1em;
+    padding: 0em;
 }
 
 .fpcm-ui-editor-contentdiff-left {

@@ -24,8 +24,8 @@
 
 <div class="fpcm-ui-editor-metabox-left">
     <?php if (!$timesMode && !$isRevision) : ?>
-    <div><?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-articlelist-openlink', '_blank'); ?></div>
-    <div><?php \fpcm\model\view\helper::linkButton($article->getArticleShortLink(), 'EDITOR_ARTICLE_SHORTLINK', '', 'fpcm-articlelist-shortlink'); ?></div>
+    <div class="fpcm-ui-editor-metabox-left-frontend"><?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-articlelist-openlink', '_blank'); ?></div>
+    <div class="fpcm-ui-editor-metabox-left-short"><?php \fpcm\model\view\helper::linkButton($article->getArticleShortLink(), 'EDITOR_ARTICLE_SHORTLINK', '', 'fpcm-articlelist-shortlink'); ?></div>
     <?php endif; ?>
     
     <div><?php print $timeInfoCreate; ?><br>
