@@ -56,7 +56,7 @@
             
             parent::__construct();
             
-            $session            = \fpcm\classes\baseconfig::$settings->session;
+            $session            = \fpcm\classes\baseconfig::$fpcmSession;
             $this->currentUser  = $session->getUserId();
             $this->isAdmin      = $session->getCurrentUser()->isAdmin();
             $this->permissions  = new \fpcm\model\system\permissions($session->currentUser->getRoll());

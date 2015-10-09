@@ -56,7 +56,7 @@
         $LogLine = json_encode(array('time' => date('Y-m-d H:i:s'), 'text' => implode(PHP_EOL, $text)));
         file_put_contents($errorLog, $LogLine.PHP_EOL, FILE_APPEND);
 
-        return true;
+        return false;
     }
     
     /**
@@ -68,11 +68,13 @@
         }
         
         $html   = array();
-        $html[] = 'Memory usage: '.round(memory_get_usage(true) / 1024 / 1024,2).'MB<br>';
-        $html[] = 'Memorypeak: '.round(memory_get_peak_usage(true) / 1024 / 1024,2).'MB<br>';
-        $html[] = 'BASEDIR: '.\fpcm\classes\baseconfig::$baseDir.'<br>';
-        $html[] = 'PHPVERSION: '.PHP_VERSION;
-        print '<p style="text-align:center;font-size:0.9em;margin-bottom:35px;">'.implode("\n", $html).'</p>'.PHP_EOL.PHP_EOL;
+        $html[] = 'Memory usage: '.round(memory_get_usage(true) / 1024 / 1024,2).'MB';
+        $html[] = 'Memorypeak: '.round(memory_get_peak_usage(true) / 1024 / 1024,2).'MB';
+        $html[] = 'Basedir: '.\fpcm\classes\baseconfig::$baseDir;
+        $html[] = 'PHP version: '.PHP_VERSION;
+        $html[] = 'Runtime: '.fpcm\classes\timer::cal().' sec';
+        $html[] = 'Database queries: '.\fpcm\classes\baseconfig::$fpcmDatabase->getQueryCount();
+        print '<p style="text-align:center;font-size:0.9em;margin-bottom:35px;">'.implode("<br>\n", $html).'</p>'.PHP_EOL.PHP_EOL;
     }    
     
     /**

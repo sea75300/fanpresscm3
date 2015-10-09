@@ -83,11 +83,10 @@
          */
         function __construct($initUserSettings = true, $useCache = true) {
             
-            $this->table     = \fpcm\classes\database::tableConfig;
-            $this->cacheName = 'config';
-            
-            parent::__construct();
-            
+            $this->table    = \fpcm\classes\database::tableConfig;
+            $this->dbcon    = \fpcm\classes\baseconfig::$fpcmDatabase;
+            $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
+            $this->cache    = new \fpcm\classes\cache('config');
             $this->useCache = $useCache;
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
@@ -182,8 +181,8 @@
          */
         public function setUserSettings() {
 
-            if (!defined('FPCM_USERID')) return false;
-            
+            if (!defined('FPCM_USERID') || !FPCM_USERID) return false;
+
             $cache2 = new \fpcm\classes\cache($this->cacheName.'_user'.FPCM_USERID);
             
             $userData = $cache2->read();
@@ -200,9 +199,9 @@
             foreach ($userData as $key => $value) {
                 $this->data[$key] = $value;
             }
-
-            if ($this->system_lang != \fpcm\classes\baseconfig::$settings->language->getLangCode()) {
-                \fpcm\classes\baseconfig::$settings->language = new \fpcm\classes\language($this->system_lang);                
+            
+            if ($this->system_lang != \fpcm\classes\baseconfig::$fpcmLanguage->getLangCode()) {
+                \fpcm\classes\baseconfig::$fpcmLanguage = new \fpcm\classes\language($this->system_lang);                
             }
         }
         

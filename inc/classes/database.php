@@ -101,6 +101,12 @@
          * @var string
          */
         private $lastQueryString = '';
+        
+        /**
+         * Anzahl an Datenbank abgesetzte Queries
+         * @var int
+         */
+        private $queryCount = 0;
 
         /**
          * Konstruktor
@@ -277,7 +283,10 @@
          * @param array $bindParams Paramater, welche gebunden werden sollen
          * @return bool
          */
-        public function exec($command, array $bindParams = array()) {        
+        public function exec($command, array $bindParams = array()) {
+            
+            $this->queryCount++;
+            
             $statement = $this->connection->prepare($command);     
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
@@ -307,6 +316,9 @@
          * @return PDOStatement Zeilen in der Datenbank
          */
         public function query($command, array$bindParams = array()) {
+            
+            $this->queryCount++;
+            
             $statement = $this->connection->prepare($command);
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
@@ -368,6 +380,9 @@
          * @return string
          */
         public function getLastInsertId() {
+            
+            $this->queryCount++;
+            
             $return = $this->connection->lastInsertId();
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
@@ -410,6 +425,15 @@
          */
         public function getDbprefix() {
             return $this->dbprefix;
+        }
+        
+        /**
+         * Gibt Anzahl an ausgeführt Datenbank-Queries zurück
+         * @return int
+         * @since FPCM 3.1.0
+         */
+        public function getQueryCount() {
+            return $this->queryCount;
         }
 
     }

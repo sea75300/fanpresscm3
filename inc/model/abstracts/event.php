@@ -67,7 +67,7 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $config = \fpcm\classes\baseconfig::$settings->config;
+            $config = \fpcm\classes\baseconfig::$fpcmConfig;
             $config->setUserSettings();
             
             if ($this->cache->isExpired()) {

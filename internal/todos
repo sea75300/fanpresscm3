@@ -4,6 +4,8 @@ FanPress CM 3.1
 
 * verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
 * überarbeitetes AJAX-Framework testen (Installer, Updater, Module, etc.)
+* Überarbeitung Suchfunktion, evtl. flexible Filter mit und/oder
+* Erweiterung & Update der Hilfe-Texte (Kommentare, Profil, Optionen, Editor)
 
 -- ToDo allgemein --
 
@@ -11,7 +13,7 @@ FanPress CM 3.1
 * weitere Events prüfen
 * Dokumentation
 
-Stand: 24.09.2015 - 20:08 Uhr
+Stand: 09.10.2015 - 22:00 Uhr
 
 -- ToDo v3.1 --
 
@@ -24,6 +26,12 @@ Stand: 24.09.2015 - 20:08 Uhr
 * DIFF-Ansicht in Revisionen
 * überarbeitetes AJAX-Framework
 * Artikel-Bilder festlegen
+* Revisionen löschen nicht möglich
+* rote Einfärbung von Cronjob-Name, wenn nächste Ausführung < aktuellem Datum ist
+* Hinweis, wenn asynchrone Cronjob-Ausführung deaktiviert ist
+* Anpassung Meldung, dass "{{submitUrl}}" in Kommentar-Form-Template fehlt
+* Meta-Icons in Kommentaren anpassen
+* Runtime und DB-Queries in Debug-Daten
 
 -- ToDo v3.0 --
 

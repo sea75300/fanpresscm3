@@ -43,8 +43,8 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $this->config = \fpcm\classes\baseconfig::$settings->config;
-            $this->lang   = \fpcm\classes\baseconfig::$settings->language;
+            $this->config = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->lang   = \fpcm\classes\baseconfig::$fpcmLanguage;
             
             $this->config->setUserSettings();
         }

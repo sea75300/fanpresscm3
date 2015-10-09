@@ -6,15 +6,21 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
-    error_reporting(E_STRICT);
+    error_reporting(0);
 
     /**
      * FanPress CM internal checkpoint
      */
     define('IN_FPCM', true);
 
-    include __DIR__.'/classes/baseconfig.php';
+    include __DIR__.'/classes/baseconfig.php';    
+    include __DIR__.'/classes/timer.php';
     include __DIR__.'/constants.php';
+    
+    if (FPCM_DEBUG) {
+        fpcm\classes\timer::start();
+    }
+
     include __DIR__.'/functions.php';
     
     spl_autoload_register('fpcmAutoLoader');

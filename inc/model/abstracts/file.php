@@ -117,8 +117,8 @@
             
             $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)));
             $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
-            $this->config   = \fpcm\classes\baseconfig::$settings->config;
-            $this->language = \fpcm\classes\baseconfig::$settings->language;
+            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
             
             $this->config->setUserSettings();
             

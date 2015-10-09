@@ -143,8 +143,8 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $this->config   = \fpcm\classes\baseconfig::$settings->config;
-            $this->language = \fpcm\classes\baseconfig::$settings->language;
+            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
             
             $this->modkey           = $key;
             $this->name             = $name;

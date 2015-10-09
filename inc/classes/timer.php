@@ -1,0 +1,63 @@
+<?php
+    /**
+     * Static timer class, internal only!
+     * 
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @since FPCM 3.1.0
+     */
+
+    namespace fpcm\classes;
+
+    /**
+     * Static timer class, internal only!
+     * 
+     * @package fpcm.classes.timer
+     * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @since FPCM 3.1.0
+     */ 
+    final class timer {
+        
+        /**
+         * Start micro time
+         * @var int
+         */
+        private static $start = 0;
+        
+        /**
+         * Stop micro time
+         * @var int
+         */
+        private static $stop = 0;
+
+        /**
+         * Start timer
+         */
+        public static function start() {
+            self::$start = microtime(true);
+        }
+
+        /**
+         * stop timer
+         */
+        public static function stop() {
+            self::$stop = microtime(true);
+        }
+
+        /**
+         * Calc stiff, calls @see timer::stop if not called before
+         * @return int
+         */
+        public static function cal() {
+            
+            if (!self::$stop) {
+                self::$stop = microtime(true);
+            }
+            
+            return number_format(self::$stop - self::$start, 4);
+        }
+
+    }
+
+?>

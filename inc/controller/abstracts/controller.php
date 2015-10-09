@@ -103,8 +103,8 @@
 
             $this->events       = \fpcm\classes\baseconfig::$fpcmEvents;
             $this->cache        = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)));
-            $this->config       = \fpcm\classes\baseconfig::$settings->config;
-            $this->session      = \fpcm\classes\baseconfig::$settings->session;
+            $this->config       = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->session      = \fpcm\classes\baseconfig::$fpcmSession;
             $this->crons        = new \fpcm\model\crons\cronlist();
             
             $moduleList           = new \fpcm\model\modules\modulelist();
@@ -116,7 +116,7 @@
             
             $this->config->setUserSettings();
             
-            $this->lang         = \fpcm\classes\baseconfig::$settings->language;
+            $this->lang         = \fpcm\classes\baseconfig::$fpcmLanguage;
         }
         
         /**

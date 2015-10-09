@@ -70,9 +70,9 @@
             
             if (!\fpcm\classes\baseconfig::dbConfigExists()) return;
 
-            $this->session  = \fpcm\classes\baseconfig::$settings->session;
-            $this->config   = \fpcm\classes\baseconfig::$settings->config;
-            $this->language = \fpcm\classes\baseconfig::$settings->language;
+            $this->session  = \fpcm\classes\baseconfig::$fpcmSession;
+            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
             
             if (is_object($this->config)) $this->config->setUserSettings();
         }

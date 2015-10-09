@@ -71,7 +71,7 @@
          */
         public function getCategoriesCurrentUser() {
             
-            $currentUserGroup = \fpcm\classes\baseconfig::$settings->session->getCurrentUser()->getRoll();
+            $currentUserGroup = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll();
             
             $list = $this->dbcon->fetch($this->dbcon->select($this->table,'*',"groups LIKE '%$currentUserGroup%'"), true);
             

@@ -78,6 +78,10 @@
             parent::__construct();
             
             $this->table    = \fpcm\classes\database::tableSessions;
+            
+            if (!is_object($this->config)) {
+                $this->config = new config(false);
+            }
 
             if ($init && !is_null(\fpcm\classes\security::getSessionCookieValue())) {                
                 $this->sessionId = \fpcm\classes\security::getSessionCookieValue();            

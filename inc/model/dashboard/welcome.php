@@ -29,7 +29,7 @@
 
             parent::__construct();            
 
-            $this->session = \fpcm\classes\baseconfig::$settings->session;
+            $this->session = \fpcm\classes\baseconfig::$fpcmSession;
             $this->headline = $this->language->translate('WELCOME_HEADLINE', array('{{username}}' => $this->session->currentUser->getDisplayname()));
             $this->content  = $this->language->translate('WELCOME_CONTENT', array('{{profilelink}}' => 'index.php?module=system/profile'));
             $this->name     = 'welcome';            

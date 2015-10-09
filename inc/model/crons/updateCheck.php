@@ -40,8 +40,8 @@
                     '{{acplink}}' => \fpcm\classes\baseconfig::$rootPath
                 );
                 
-                $config   = \fpcm\classes\baseconfig::$settings->config;
-                $language = \fpcm\classes\baseconfig::$settings->language;
+                $config   = \fpcm\classes\baseconfig::$fpcmConfig;
+                $language = \fpcm\classes\baseconfig::$fpcmLanguage;
                 $email = new \fpcm\classes\email($config->system_email,
                                                  $language->translate('CRONJOB_UPDATES_NEWVERSION'),
                                                  $language->translate('CRONJOB_UPDATES_NEWVERSION_TEXT', $replacements));                

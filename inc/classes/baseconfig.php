@@ -228,16 +228,28 @@
         public static $versionFile;
         
         /**
-         * Zentrale Einstallungsinformationen
-         * @var settings
-         */
-        public static $settings;
-        
-        /**
          * Eventliste
          * @var \fpcm\model\events\eventList
          */
         public static $fpcmEvents;
+        
+        /**
+         * Zentrales Config-Event
+         * @var \fpcm\model\system\config
+         */
+        public static $fpcmConfig;
+        
+        /**
+         * Zentrales Language-Objekt
+         * @var language
+         */
+        public static $fpcmLanguage;
+        
+        /**
+         * Zentrales Session Objekt
+         * @var \fpcm\model\system\session
+         */
+        public static $fpcmSession;
         
         /**
          * Datenbank-Objekt
@@ -317,8 +329,15 @@
             self::$fpcmEvents           = new \fpcm\model\events\eventList();
 
             if (self::dbConfigExists()) {
-                self::initSettings();
-            }            
+                self::$fpcmDatabase     = new \fpcm\classes\database();                
+            }
+            
+            self::$fpcmConfig           = new \fpcm\model\system\config();
+            
+            self::$fpcmLanguage         = new language(self::$fpcmConfig->system_lang);
+            
+            self::$fpcmSession          = new \fpcm\model\system\session();
+            
         }
 
         /**
@@ -425,14 +444,6 @@
 
             logs::syslogWrite('Asynchronous cron job execution enabled.');
             return unlink(self::$cronAsyncFile);            
-        }
-        
-        /**
-         * Globale Settings initialisieren
-         */
-        public static function initSettings() {
-            self::$fpcmDatabase = new \fpcm\classes\database();
-            self::$settings     = new \fpcm\classes\settings();
         }
 
         /**

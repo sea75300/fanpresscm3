@@ -107,12 +107,10 @@
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            if (get_class($this) != 'fpcm\model\system\config') {
-                $this->config   = \fpcm\classes\baseconfig::$settings->config;
-                $this->language = \fpcm\classes\baseconfig::$settings->language;
-                
-                if (is_object($this->config)) $this->config->setUserSettings();
-            }
+            $this->config   =& \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language =& \fpcm\classes\baseconfig::$fpcmLanguage;
+
+            if (is_object($this->config)) $this->config->setUserSettings();
             
             if (!is_null($id)) {
                 $this->id = (int) $id;
