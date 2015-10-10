@@ -47,6 +47,7 @@
         
         'NAVIGATION_HIDE'               => 'Hide menu',
         'HELP_SELECT'                   => 'Click on headline to open help entry',
+        'HELP_BTN_OPEN'                 => 'Open help chapter',
         'HL_HELP_CACHE'                 => 'Cache',
         'HL_HELP_INTEGRATION'           => 'Page integration',
         'HL_HELP_SUPPORT'               => 'Contact and support',

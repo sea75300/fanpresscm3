@@ -47,6 +47,7 @@
         
         'NAVIGATION_HIDE'               => 'Navigation ausblenden',
         'HELP_SELECT'                   => 'Klicke auf eine Überschrift, um den Hilfeintrag zu öffnen',
+        'HELP_BTN_OPEN'                 => 'Hilfe-Eintrag aufrufen',
         'HL_HELP_CACHE'                 => 'Cache',
         'HL_HELP_INTEGRATION'           => 'Integration in deine Seite',
         'HL_HELP_SUPPORT'               => 'Kontakt & Support',

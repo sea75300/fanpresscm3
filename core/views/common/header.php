@@ -52,4 +52,4 @@
         <?php include_once __DIR__.'/updatemancheck.php'; ?>
         <?php endif; ?>
         
-        <div class="fpcm-wrapper <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-full<?php endif; ?> <?php if (defined('FPCM_DEBUG') && FPCM_DEBUG) : ?>fpcm-wrapper-debug<?php endif; ?>">
+        <div class="fpcm-wrapper <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-full<?php endif; ?>">

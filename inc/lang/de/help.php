@@ -2,7 +2,7 @@
 <!--
 Help language file
 @author Stefan Seehafer <sea75300@yahoo.de>
-@copyright (c) 2013-2014, Stefan Seehafer
+@copyright (c) 2013-2015, Stefan Seehafer
 @license http://www.gnu.org/licenses/gpl.txt GPLv3
 */
 -->
@@ -129,11 +129,12 @@ Help language file
             anpassen:</p>
             <ul>
                 <li><b>Passwort</b> zum Login</li>
-                <li><b>Name</b> welcher in den Artikel als Author-name angezeigt wird</li>
+                <li><b>Name</b> welcher in den Artikel als Author-Name angezeigt wird</li>
                 <li><b>E-Mail-Adresse</b> an die bspw. ein zurückgesetztes Passwort gesendet wird</li>
                 <li><b>Sprache</b> des FanPress CM Admin-Bereichs</li>
                 <li><b>Zeitzone</b> welche für die Umrechnung von Zeitangaben genutzt wird</li>
                 <li><b>Datum- und Zeitanzeige</b>, welche für die Darstellung von Zeitangaben genutzt wird</li>
+                <li><b>Anzahl an Artikeln im ACP</b>, legt die Anzahl an Artikeln fest, welche unter "Artikel bearbeiten" pro Seite angezeigt werden</li>
             </ul>
         ]]>
         </text>
@@ -150,24 +151,36 @@ Help language file
                     Benutzer mit den entsprechenden Rechten können hier zentrale Einstellungen von FanPress CM ändern.
                     <ul>
                         <li><b>Allgemein:</b><br>
-                            Der Tab enthält verschiedene zentrale Einstellungen für FanPress CM.
                             <ul>
-                                <li><em>E-Mail-Adresse:</em> Zentrale E-Mail-Adresse für Systembenachrichtigungen.</li>
-                                <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontent, wichtig v. a. bei der Nutzung
-                                    von phpinclude. Entspricht in vielen Fällen der <em>deine-domain.xyz/index.php</em> oder der Datei, in der
-                                    <em>fpcmapi.php</em> includiert ist.</li>
-                                <li><em>Sprache:</em> Globale Spracheinstellung, kann durch Profileinstellung überschrieben werden.</li>
-                                <li><em>Zeitzone:</em> Globale Zeitzone, kann durch Profileinstellung überschrieben werden.</li>
-                                <li><em>Datum- und Zeitanzeige:</em> Maske für die Anzeige von Datums- und Zeitangaben, kann durch
-                                Profileinstellung überschrieben werden.</li>
-                                <li><em>Maximale Länge einer Admin-Sitzung:</em> Länge einer Session im FanPress-CM Adminbereich.</li>
-                                <li><em>Zeit bis zum atomatischen Neuaufbau des Cache in Sekunden:</em> Zeit bis der Cache-Inhalt von
-                                FanPress CM automatisch verworfen und der Cache neu aufgebaut wird.</li>
-                                <li><em>Verwendung per:</em> Nutzung von FanPress CM via phpinclude oder in einem iframe.</li>
-                                <li><em>Pfad zu deiner CSS-Datei:</em> Pfad zu deiner CSS-Datei mit deinen eigenen Style-Angaben. Wichtig
-                                wenn du FanPress CM via iframe nutzt.</li>
-                                <li><em>jQuery Bibliothek laden:</em> Soll jQuery bei Nutzung von phpinclude geladen werden oder nicht.
-                                Wichtig wenn du jQuery nicht andersweitig in deiner Seite eingebunden hast.</li>
+                                <li>Der obere Teil enthält allgemeine Einstellungen:
+                                    <ul>
+                                        <li><em>E-Mail-Adresse:</em> Zentrale E-Mail-Adresse für Systembenachrichtigungen.</li>
+                                        <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontent, wichtig v. a. bei der Nutzung
+                                            von phpinclude. Entspricht in vielen Fällen der <em>deine-domain.xyz/index.php</em> oder der Datei, in der
+                                            <em>fpcmapi.php</em> includiert ist.</li>
+                                        <li><em>Sprache:</em> Globale Spracheinstellung, kann durch Profileinstellung überschrieben werden.</li>
+                                        <li><em>Zeitzone:</em> Globale Zeitzone, kann durch Profileinstellung überschrieben werden.</li>
+                                        <li><em>Datum- und Zeitanzeige:</em> Maske für die Anzeige von Datums- und Zeitangaben, kann durch
+                                        Profileinstellung überschrieben werden.</li>
+                                        <li><em>Zeit bis zum Verfall des Cache-Inhaltes:</em> Zeit bis der Cache-Inhalt von
+                                        FanPress CM automatisch verworfen und der Cache neu aufgebaut wird.</li>
+                                        <li><em>Verwendung per:</em> Nutzung von FanPress CM via phpinclude oder in einem iframe.</li>
+                                        <li><em>Pfad zu deiner CSS-Datei:</em> Pfad zu deiner CSS-Datei mit deinen eigenen Style-Angaben. Wichtig
+                                        wenn du FanPress CM via iframe nutzt.</li>
+                                        <li><em>jQuery Bibliothek laden:</em> Soll jQuery bei Nutzung von phpinclude geladen werden oder nicht.
+                                        Wichtig wenn du jQuery nicht andersweitig in deiner Seite eingebunden hast.</li>                                        
+                                    </ul>
+                                </li>
+                                <li>Der untere Teil enthält Einstellungen zur Wartungs und System-Sicherheit:
+                                    <ul>
+                                        <li><em>Wartungsmodus aktiv:</em> Wurde der Wartungsmodus aktiviert, so haben nur angemeldete Benutzer Zugriff auf FanPress CM.
+                                            Besucher deienr Seite, etc. erhalten eine Hinweis-Meldung.</li>
+                                        <li><em>Maximale Länge einer Admin-Sitzung:</em> Länge einer Session im FanPress-CM Adminbereich.</li>
+                                        <li><em>Anzahl Login-Versuche vor temporärerer Sperre:</em> Hiermit kannst du Anzahl der Fehlgeschlagenen Logins einstellen,
+                                            bis der Login vorübergehend gesperrt wird. Diese Option hilft dabei, die Übernahme von FanPress CM Accounts
+                                            zu erschweren.</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li><b>Editor & Dateimanager:</b><br>
@@ -214,6 +227,8 @@ Help language file
                                 müssen manuell durch den Author oder einen Admin freigegeben werden.</li>
                                 <li><em>Benachrichtigung bei neuem Kommentare an:</em> E-Mail-Adresse festlegen, an welche die
                                 Benachrichtigungen über neue Kommentare gehen. (nur an Author, nur an globale Adresse oder an beide)</li>
+                                <li><em>Automatische Spam-Markierung:</em> Sind vom aktuellen Kommentar-Autor bereits diese Anzahl an Kommentaren
+                                    als Spam markiert im System vorhanden, so wird der neue Kommentar automatisch als Spam markiert.</li>
                             </ul>
                         </li>
                         <li><b>Twitter-Verbindung:</b><br>
@@ -237,10 +252,11 @@ Help language file
                 </li>
                 <li><b>IP-Adressen:</b><br>
                     Benutzer mit Rechten zur Änderung der Systemeinstellungen können hier IP-Adressen sperren oder Sperren wieder aufheben.
-                    (z. B. wegen Spam)
+                    (z. B. wegen Spam) Pro Eintrag kann festgelegt werden, für welchen öffentlichen Bereich von FanPress CM die Sperren gelten
+                    soll: keine Kommentare, kein Login, überhuapt kein Zugriff
                 </li>
                 <li><b>Kategorien:</b><br>
-                    Benutzer mit entsprechenden Rechten  können hier neue Kategorien, sowie bestehende ändern oder löschen.
+                    Benutzer mit entsprechenden Rechten können hier neue Kategorien, sowie bestehende ändern oder löschen.
                 </li>
                 <li><b>Templates:</b><br>
                     Benutzer mit entsprechenden Rechten können die Templates zur Ausgabe von Artikeln, Kommentaren, etc. bearbeiten.

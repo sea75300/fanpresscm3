@@ -14,6 +14,12 @@
          * @var \fpcm\model\view\acp
          */
         protected $view;
+        
+        /**
+         * ID des automatisch offenen Kapitels
+         * @var int
+         */
+        protected $chapterHeadline = '';
 
         /**
          * Konstruktor
@@ -22,8 +28,12 @@
             parent::__construct();
             
             $this->checkPermission = array();
+            $this->view            = new \fpcm\model\view\acp('help', 'system');
+        }
 
-            $this->view   = new \fpcm\model\view\acp('help', 'system');
+        public function request() {
+            $this->chapterHeadline = $this->getRequestVar('ref');
+            return parent::request();
         }
         
         /**
@@ -35,15 +45,17 @@
 
             $xml = simplexml_load_string($this->lang->getHelp());
             
-            $contents = array();
-            
+            $contents  = array();
             foreach ($xml->chapter as $chapter) {
-                $contents[trim($chapter->headline)] = trim($chapter->text);
+                $headline = trim($chapter->headline);
+                $contents[$headline] = trim($chapter->text);
             }
             
             $contents = $this->events->runEvent('extendHelp', $contents);
-            
             $this->view->assign('chapters', $contents);
+
+            $pos = $this->chapterHeadline ? (int) array_search(strtoupper(base64_decode($this->chapterHeadline)), array_keys($contents)) : false;
+            $this->view->assign('defaultCapter', $pos);
             
             $this->view->render();
         }

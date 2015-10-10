@@ -74,7 +74,7 @@
         $html[] = 'PHP version: '.PHP_VERSION;
         $html[] = 'Runtime: '.fpcm\classes\timer::cal().' sec';
         $html[] = 'Database queries: '.\fpcm\classes\baseconfig::$fpcmDatabase->getQueryCount();
-        print '<p style="text-align:center;font-size:0.9em;margin-bottom:35px;">'.implode("<br>\n", $html).'</p>'.PHP_EOL.PHP_EOL;
+        print '<div class="fpcm-debug-data"><div>'.implode("<br>\n", $html).'</div></div>'.PHP_EOL.PHP_EOL;
     }    
     
     /**

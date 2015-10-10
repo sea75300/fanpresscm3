@@ -1,5 +1,8 @@
 <div class="fpcm-content-wrapper">
-    <h1><span class="fa fa-exclamation-triangle"></span> <?php $FPCM_LANG->write('HL_LOGS'); ?></h1>
+    <h1>
+        <span class="fa fa-exclamation-triangle"></span> <?php $FPCM_LANG->write('HL_LOGS'); ?>
+        <?php \fpcm\model\view\helper::helpButton('hl_options'); ?>
+    </h1>
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/logs">
         
         <div class="fpcm-tabs-general">

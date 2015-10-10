@@ -57,6 +57,27 @@ h1 {
     box-shadow: 2px 2px 2px #999999;
 }
 
+h1 a.fpcm-ui-helpbutton {
+    float: right;
+    display: block;
+    font-size: 0.9em;
+    opacity: 0.5;
+}
+
+h1 a.fpcm-ui-helpbutton:hover {
+    opacity: 1;
+}
+
+h1 a.fpcm-ui-helpbutton span.ui-button-text {
+    display: inline;
+    padding: 0.25em;
+}
+
+h1 a.fpcm-ui-helpbutton span.ui-button-text:before {
+    font-family: FontAwesome;
+    content: '\f059';
+}
+
 h2 {
     font-size:1.35em;
     color: #2E6E9E;
@@ -117,7 +138,6 @@ img {
 .fpcm-full-width-date   { width: 85%; }
 .fpcm-wrapper.fpcm-wrapper-full, .fpcm-full-width { width: 100%; }
 .fpcm-wrapper.fpcm-wrapper-small-navigation { width: 95%; }
-.fpcm-wrapper.fpcm-wrapper-debug { margin-bottom: 0.4em; }
 
 .fpcm-content-wrapper   { margin: 0 0.8em; }
 .fpcm-inner-wrapper     { margin: 0.4em 0.4em 55px 0.4em; }
@@ -220,6 +240,19 @@ img {
     bottom: 0px;
     width: 100%;
     z-index: 4;
+}
+
+.fpcm-debug-data {
+    position:fixed;
+    left: 0px;
+    bottom: 31px;
+    width: 15%;
+    font-size: 0.85em;
+    background: rgba(200,200,200,0.5);
+}
+
+.fpcm-debug-data div {
+    padding: 0.2em 0.4em;
 }
 
 .fpcm-messages {
@@ -392,8 +425,8 @@ textarea.fpcm-options-cssclasses {
 .fpcm-admin-navi {
     float: left;
     display: block;
-    background: rgba(255,255,255,0.85);
     width: 15%;
+    background: rgba(255,255,255,0.85);
     box-shadow: 2px 2px 2px #cccccc;
 }
 

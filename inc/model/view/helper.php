@@ -373,6 +373,17 @@
         }
 
         /**
+         * Erzeugt eine "Hilfe"-Button welcher Hilfe-Seite aufruft und entsprechende Kapitel öffnet
+         * @param string $entry Name der Sprach-Variable für Überschrift
+         * @see inc/lang/de/help.php <headline>-Elemente
+         * @since FPCM 3.1.0
+         */
+        public static function helpButton($entry) {
+            $href = \fpcm\classes\baseconfig::$rootPath.'index.php?module=system/help&ref='.base64_encode(strtolower($entry));
+            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-helpbutton\" id=\"fpcmuihelpbutton\" target=\"_self\" title=\"".self::$language->translate('HELP_BTN_OPEN')."\"></a>\n";
+        }
+
+        /**
          * IDs aufräumen
          * @param string $text ID-String
          * @return string

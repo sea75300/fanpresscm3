@@ -31,7 +31,7 @@
         'SYSTEM_OPTIONS_SESSIONLENGHT_14400'        => '4 Stunden',
         'SYSTEM_OPTIONS_SESSIONLENGHT_18000'        => '5 Stunden', 
         
-        'SYSTEM_OPTIONS_CACHETIMEOUT'               => 'Zeit bis zum atomatischen Neuaufbau des Cache in Sekunden',
+        'SYSTEM_OPTIONS_CACHETIMEOUT'               => 'Zeit bis zum Verfall des Cache-Inhaltes',
         'SYSTEM_OPTIONS_CACHETIMEOUT_3600'          => '1 Stunde',
         'SYSTEM_OPTIONS_CACHETIMEOUT_21600'         => '6 Stunden',
         'SYSTEM_OPTIONS_CACHETIMEOUT_43200'         => '12 Stunden',
@@ -89,7 +89,7 @@
         'SYSTEM_OPTIONS_COMMENT_NOTIFY_AUTHOR'      => 'nur Author',
         'SYSTEM_OPTIONS_COMMENT_NOTIFY_ALL'         => 'globale E-Mail-Adresse und Author',
         'SYSTEM_OPTIONS_COMMENT_ENABLED_GLOBAL'     => 'Kommentar-System ist aktiv',
-        'SYSTEM_OPTIONS_COMMENT_MARKSPAM_PASTCHECK' => 'Automatische Spam-Markierung, wenn von Autor bereits Spam-Kommentare vorhanden sind',
+        'SYSTEM_OPTIONS_COMMENT_MARKSPAM_PASTCHECK' => 'Automatische Spam-Markierung',
         'SYSTEM_OPTIONS_REVISIONS_ENABLED'          => 'Revisionen aktivieren',
         'SYSTEM_OPTIONS_NEWS_SORTING'               => 'News sortieren nach',
         'SYSTEM_OPTIONS_NEWS_BYWRITTENTIME'         => 'Veröffentlichung',

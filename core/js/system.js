@@ -61,8 +61,6 @@ jQuery(document).ready(function () {
         fpcmJs.showLoader(true);
     });
     
-    jQuery('.fpcm-ui-buttonset').buttonset(); 
-    
     jQuery('.fpcm-navigation-hide').click(function () {
         fpcmJs.hideNavigation();
     });

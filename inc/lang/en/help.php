@@ -123,6 +123,7 @@ Help language file
                 <li><b>Language</b> for FanPress CM acp</li>
                 <li><b>Timezone</b> for time and date of articles, etc.</li>
                 <li><b>Date-Time-Mask</b> of your current location</li>
+                <li><b>ACP article list limit</b> defined the nu7mber of articles display per page in ACP article list</li>
             </ul>
         ]]>
         </text>
@@ -139,21 +140,30 @@ Help language file
                     Users with permissions to change settngs can chose those options:
                     <ul>
                         <li><b>General:</b><br>
-                            This tab contains generl settings.
                             <ul>
-                                <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
-                                <li><em>Article url base:</em> Base url for articles, important for use with phpinclude. In most cases
-                                    this will be something like <em>your-domain.com/index.php</em> or a file which includes
-                                    <em>fpcmapi.php</em>.</li>
-                                <li><em>Language:</em> Global system language, can be override by user settings.</li>
-                                <li><em>Timezone:</em> Global system timezone, can be override by user settings.</li>
-                                <li><em>Date-Time-Mask:</em> Settings how to display date and time informations, can be override by user settings.</li>
-                                <li><em>ACP session lenght:</em> Interval until auto logout from ACP.</li>
-                                <li><em>Interval for cache timeout:</em> Interval until cache content expires automatically.</li>
-                                <li><em>Usemode:</em> Mode how to use FanPress CM (phpinclude or iframe).</li>
-                                <li><em>CSS style file path:</em> Pfad to your css file if you use iframes.</li>
-                                <li><em>Include jQuery libary:</em> Include jQuery libary shipped with FanPress CM. Important if you use
-                                phpclude and get a warning the jQuery isn't loaded at your page.</li>
+                                <li>The upper part contains gerneral settings of the FanPress CM system.
+                                    <ul>
+                                        <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
+                                        <li><em>Article url base:</em> Base url for articles, important for use with phpinclude. In most cases
+                                            this will be something like <em>your-domain.com/index.php</em> or a file which includes
+                                            <em>fpcmapi.php</em>.</li>
+                                        <li><em>Language:</em> Global system language, can be override by user settings.</li>
+                                        <li><em>Timezone:</em> Global system timezone, can be override by user settings.</li>
+                                        <li><em>Date-Time-Mask:</em> Settings how to display date and time informations, can be override by user settings.</li>
+                                        <li><em>Interval for cache timeout:</em> Interval until cache content expires automatically.</li>
+                                        <li><em>Usemode:</em> Mode how to use FanPress CM (phpinclude or iframe).</li>
+                                        <li><em>CSS style file path:</em> Pfad to your css file if you use iframes.</li>
+                                        <li><em>Include jQuery libary:</em> Include jQuery libary shipped with FanPress CM. Important if you use
+                                        phpclude and get a warning the jQuery isn't loaded at your page.</li>
+                                    </ul>
+                                </li>
+                                <li>The lower second part includes maintenance and security settings.
+                                    <ul>
+                                        <li><em>Maintenance mode enabled:</em> The "Maintenance mode" limits system access to already logged-in users only.</li>
+                                        <li><em>ACP session lenght:</em> Interval until auto logout from ACP.</li>
+                                        <li><em>Login auto-lock:</em> This settings defines the number of failed login-attempts before authentication is locked temporarily.</li>
+                                    </ul>                                     
+                                </li>
                             </ul>
                         </li>
                         <li><b>Editor and file manager:</b><br>
@@ -162,7 +172,7 @@ Help language file
                                 <li><em>Select editor:</em> Enables TinyMCE editor view or classic HTML editor view..</li>
                                 <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
                                 <li><em>Revisions enabled:</em> Enabled revision function to save changes on articles and make them
-                                restorable.</li>+
+                                restorable.</li>
                                 <li><em>Article trash is enabled:</em> Enable article trash to and be able to restore deleted articles.</li>
                                 <li><em>Create thumbnail if image is bigger than:</em> Setting to automatically create thumbnails if
                                 images are bigger the then amount of pixel.</li>
@@ -195,6 +205,8 @@ Help language file
                                 article.</li>
                                 <li><em>Send Notification of new comments to:</em> Email address which should be used for notifications
                                 about new comments. (author only, global only, both)</li>
+                                <li><em>Automatic "Mark as Spam":</em> This options allows you to set a limit number of comments, which are already
+                                    marked as spam, before a new comment of this author will be marked as spam automatically.</li>
                             </ul>
                         </li>
                         <li><b>Twitterc connection:</b><br>

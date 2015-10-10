@@ -1,5 +1,8 @@
 <div class="fpcm-content-wrapper">
-    <h1><span class="fa fa-key"></span> <?php $FPCM_LANG->write('HL_OPTIONS_PERMISSIONS'); ?></h1>
+    <h1>
+        <span class="fa fa-key"></span> <?php $FPCM_LANG->write('HL_OPTIONS_PERMISSIONS'); ?>
+        <?php \fpcm\model\view\helper::helpButton('hl_options'); ?>
+    </h1>
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/permissions">
         <div class="fpcm-tabs-general">
             <ul>

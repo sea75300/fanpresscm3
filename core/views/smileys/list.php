@@ -1,5 +1,8 @@
 <div class="fpcm-content-wrapper">
-    <h1><span class="fa fa-smile-o"></span> <?php $FPCM_LANG->write('HL_OPTIONS_SMILEYS'); ?></h1>
+    <h1>
+        <span class="fa fa-smile-o"></span> <?php $FPCM_LANG->write('HL_OPTIONS_SMILEYS'); ?>
+        <?php \fpcm\model\view\helper::helpButton('hl_options'); ?>
+    </h1>
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=smileys/list">
         <div class="fpcm-tabs-general">
             <ul>

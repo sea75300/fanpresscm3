@@ -158,6 +158,7 @@ var fpcmJs = function () {
     
     this.assignButtons = function () {
         jQuery('.fpcm-ui-button').button();
+        jQuery('.fpcm-ui-buttonset').buttonset();
         
         self.actionButtonsGenreal();
         self.assignSaveButton();

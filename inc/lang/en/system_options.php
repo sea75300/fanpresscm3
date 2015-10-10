@@ -67,7 +67,7 @@
         'SYSTEM_OPTIONS_ANTISPAMQUESTION'           => 'Spam captcha question',
         'SYSTEM_OPTIONS_ANTISPAMANSWER'             => 'Spam captcha answer',
         'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'ACP article list limit',
-        'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Number of login attempts before locking',
+        'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Login auto-lock',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Flood protection between two comments',
         'SYSTEM_OPTIONS_FLOODPROTECTION_0'          => 'none',
@@ -89,7 +89,7 @@
         'SYSTEM_OPTIONS_COMMENT_NOTIFY_AUTHOR'      => 'author email address',
         'SYSTEM_OPTIONS_COMMENT_NOTIFY_ALL'         => 'global and author email address',
         'SYSTEM_OPTIONS_COMMENT_ENABLED_GLOBAL'     => 'Comments are enabled',
-        'SYSTEM_OPTIONS_COMMENT_MARKSPAM_PASTCHECK' => 'Mark as spam, if author has already more than X spam comments',
+        'SYSTEM_OPTIONS_COMMENT_MARKSPAM_PASTCHECK' => 'Automatic "Mark as Spam"',
         'SYSTEM_OPTIONS_REVISIONS_ENABLED'          => 'Revisions enabled',
         'SYSTEM_OPTIONS_NEWS_SORTING'               => 'Sort articles by',
         'SYSTEM_OPTIONS_NEWS_BYWRITTENTIME'         => 'Creation date',

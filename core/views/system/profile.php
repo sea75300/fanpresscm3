@@ -1,5 +1,8 @@
 <div class="fpcm-content-wrapper">
-    <h1><span class="fa fa-wrench"></span> <?php $FPCM_LANG->write('HL_PROFILE'); ?></h1>
+    <h1>
+        <span class="fa fa-wrench"></span> <?php $FPCM_LANG->write('HL_PROFILE'); ?>
+        <?php \fpcm\model\view\helper::helpButton('hl_profile'); ?>
+    </h1>
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/profile">
         <div class="fpcm-tabs-general">
             <ul>

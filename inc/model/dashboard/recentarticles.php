@@ -140,7 +140,7 @@
             
             $this->content = implode(PHP_EOL, $content);
             
-            $this->cache->write($this->content);
+            $this->cache->write($this->content, $this->config->system_cache_timeout);
         }
         
     }

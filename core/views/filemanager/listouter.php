@@ -1,6 +1,9 @@
 <?php if ($mode == 1) : ?>
 <div class="fpcm-content-wrapper">
-    <h1><span class="fa fa-folder-open"></span> <?php $FPCM_LANG->write('HL_FILES_MNG'); ?></h1>
+    <h1>
+        <span class="fa fa-folder-open"></span> <?php $FPCM_LANG->write('HL_FILES_MNG'); ?>
+        <?php \fpcm\model\view\helper::helpButton('hl_files_mng'); ?>
+    </h1>
 <?php else : ?>
 <div class="fpcm-inner-wrapper">
 <?php endif; ?>
