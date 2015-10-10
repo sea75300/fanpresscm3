@@ -1,0 +1,38 @@
+<?php
+    /**
+     * Dashboard language file
+     * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2013-2014, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
+
+    $lang = array(
+        'WELCOME_HEADLINE'  => '<span class="fa fa-user"></span> Willkommen {{username}}! <span class="fa fa-smile-o"></span>',
+        'WELCOME_CONTENT'   => 'Du befindest dich im Dashboard von FanPress CM, dem News-System speziell für Fanseiten.<br>Über die '.
+                               'Navigation links kannst du in die verschiedenen Bereiche gelangen.<br><br>Nachfolgend findet du einige '.
+                               'Statistiken und weitere Informationen zum aktuellen System. <a class="fpcm-ui-button fpcm-ui-button-bottom fpcm-loader" href="{{profilelink}}">Profil aufrufen</a>',
+        
+        'RECENT_ARTICLES'       => '<span class="fa fa-tasks"></span> Zuletzt geschriebene News',
+        
+        'SYSTEM_UPDATE'         => '<span class="fa fa-refresh"></span> Verfügbare Updates',
+        
+        'SYSTEM_CHECK'          => '<span class="fa fa-medkit"></span> Systemprüfung',
+        'SYSTEM_CHECK_CONNECT'  => 'Verbindung zu anderen Servern herstellen',
+        
+        'SYSTEM_STATS'                      => '<span class="fa fa-bar-chart"></span> Statistiken',
+        'SYSTEM_STATS_ARTICLES_ALL'         => 'Artikel gesamt',
+        'SYSTEM_STATS_ARTICLES_ACTIVE'      => 'Artikel aktiv',
+        'SYSTEM_STATS_ARTICLES_ARCHIVE'     => 'Artikel archiviert',
+        'SYSTEM_STATS_ARTICLES_DRAFT'       => 'Artikel-Entwürfe',
+        'SYSTEM_STATS_ARTICLES_TRASH'       => 'Artikel im Papierkorb',
+        'SYSTEM_STATS_COMMENTS_ALL'         => 'Kommentare gesamt',
+        'SYSTEM_STATS_COMMENTS_UNAPPR'      => 'Kommentare nicht genehmigt',
+        'SYSTEM_STATS_COMMENTS_PRIVATE'     => 'Kommentare privat',
+        'SYSTEM_STATS_USERS'                => 'Benutzer (davon aktiv)',
+        'SYSTEM_STATS_CATEGORIES'           => 'Kategorien',
+        'SYSTEM_STATS_UPLOAD_COUNT'         => 'hochgeladene Dateien',
+        'SYSTEM_STATS_UPLOAD_SIZE'          => 'Größe des Upload-Ordners',
+        'SYSTEM_STATS_CACHE_SIZE'           => 'Größe des Caches',
+    );
+    
+?>

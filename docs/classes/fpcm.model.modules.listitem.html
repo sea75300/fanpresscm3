@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/fpcm.html">\fpcm</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">2</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-982835007"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-982835007" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1644241696"></a>
+                                <a href="../namespaces/fpcm.html" style="margin-left: 30px; padding-left: 0">fpcm</a>
+            </div>
+            <div id="namespace-1644241696" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2058924874"></a>
+                                <a href="../namespaces/fpcm.classes.html" style="margin-left: 30px; padding-left: 0">classes</a>
+            </div>
+            <div id="namespace-2058924874" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.classes.baseconfig.html">baseconfig</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.cache.html">cache</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.database.html">database</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.email.html">email</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.http.html">http</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.language.html">language</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.loader.html">loader</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.logs.html">logs</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.security.html">security</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.classes.timer.html">timer</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1962378279"></a>
+                                <a href="../namespaces/fpcm.model.html" style="margin-left: 30px; padding-left: 0">model</a>
+            </div>
+            <div id="namespace-1962378279" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-240818380"></a>
+                                <a href="../namespaces/fpcm.model.abstracts.html" style="margin-left: 30px; padding-left: 0">abstracts</a>
+            </div>
+            <div id="namespace-240818380" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.cron.html">cron</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.dashcontainer.html">dashcontainer</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.event.html">event</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.file.html">file</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.filelist.html">filelist</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.model.html">model</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.module.html">module</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.moduleEvent.html">moduleEvent</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.remoteModel.html">remoteModel</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.spamCaptcha.html">spamCaptcha</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.staticModel.html">staticModel</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.abstracts.view.html">view</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1170987180"></a>
+                                <a href="../namespaces/fpcm.model.articles.html" style="margin-left: 30px; padding-left: 0">articles</a>
+            </div>
+            <div id="namespace-1170987180" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.articles.article.html">article</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.articles.articlelist.html">articlelist</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-17429389"></a>
+                                <a href="../namespaces/fpcm.model.captchas.html" style="margin-left: 30px; padding-left: 0">captchas</a>
+            </div>
+            <div id="namespace-17429389" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.captchas.fpcmDefault.html">fpcmDefault</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-598737773"></a>
+                                <a href="../namespaces/fpcm.model.categories.html" style="margin-left: 30px; padding-left: 0">categories</a>
+            </div>
+            <div id="namespace-598737773" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.categories.category.html">category</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.categories.categoryList.html">categoryList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-326379074"></a>
+                                <a href="../namespaces/fpcm.model.comments.html" style="margin-left: 30px; padding-left: 0">comments</a>
+            </div>
+            <div id="namespace-326379074" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.comments.comment.html">comment</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.comments.commentList.html">commentList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1878192347"></a>
+                                <a href="../namespaces/fpcm.model.crons.html" style="margin-left: 30px; padding-left: 0">crons</a>
+            </div>
+            <div id="namespace-1878192347" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.crons.anonymizeIps.html">anonymizeIps</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.crons.clearLogs.html">clearLogs</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.crons.clearTemp.html">clearTemp</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.crons.cronlist.html">cronlist</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.crons.dbBackup.html">dbBackup</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.crons.fmThumbs.html">fmThumbs</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.crons.postponedArticles.html">postponedArticles</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.crons.updateCheck.html">updateCheck</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-140845087"></a>
+                                <a href="../namespaces/fpcm.model.dashboard.html" style="margin-left: 30px; padding-left: 0">dashboard</a>
+            </div>
+            <div id="namespace-140845087" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.dashboard.recentarticles.html">recentarticles</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.dashboard.syscheck.html">syscheck</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.dashboard.sysstats.html">sysstats</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.dashboard.updatecheck.html">updatecheck</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.dashboard.welcome.html">welcome</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2043748292"></a>
+                                <a href="../namespaces/fpcm.model.events.html" style="margin-left: 30px; padding-left: 0">events</a>
+            </div>
+            <div id="namespace-2043748292" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.events.acpConfig.html">acpConfig</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.articleCreateTweet.html">articleCreateTweet</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.articleSave.html">articleSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.articleSaveAfter.html">articleSaveAfter</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.articleShortLink.html">articleShortLink</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.articleUpdate.html">articleUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.articleUpdateAfter.html">articleUpdateAfter</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.authorSave.html">authorSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.authorUpdate.html">authorUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.categorySave.html">categorySave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.categoryUpdate.html">categoryUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.clearCache.html">clearCache</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.clearSystemLogs.html">clearSystemLogs</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.commentSave.html">commentSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.commentUpdate.html">commentUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.configUpdate.html">configUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.controllerRedirect.html">controllerRedirect</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.createRevision.html">createRevision</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.cronjobDbDumpIncludeTables.html">cronjobDbDumpIncludeTables</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.dashboardContainersLoad.html">dashboardContainersLoad</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.editorAddLinks.html">editorAddLinks</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.editorAddStyles.html">editorAddStyles</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.editorAddUserFields.html">editorAddUserFields</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.editorGetFileList.html">editorGetFileList</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.editorInitHtml.html">editorInitHtml</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.editorInitTinymce.html">editorInitTinymce</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.emailSubmit.html">emailSubmit</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.eventList.html">eventList</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.extendHelp.html">extendHelp</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.fileUploadPhpAfter.html">fileUploadPhpAfter</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.fileUploadPhpBefore.html">fileUploadPhpBefore</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.getCronList.html">getCronList</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.getRevision.html">getRevision</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.getRevisionsAfter.html">getRevisionsAfter</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.getRevisionsBefore.html">getRevisionsBefore</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.imageSave.html">imageSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.imageUpdate.html">imageUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.ipaddressSave.html">ipaddressSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.loginBefore.html">loginBefore</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.navigationAdd.html">navigationAdd</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.navigationRender.html">navigationRender</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.navigationSubmenuModulesAdd.html">navigationSubmenuModulesAdd</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.parseTemplate.html">parseTemplate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.parseTemplateArticle.html">parseTemplateArticle</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.parseTemplateComment.html">parseTemplateComment</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.parseTemplateCommentForm.html">parseTemplateCommentForm</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.parseTemplateTweet.html">parseTemplateTweet</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.permissionsCheck.html">permissionsCheck</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.permissionsGetAll.html">permissionsGetAll</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.permissionsSave.html">permissionsSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.permissionsUpdate.html">permissionsUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicAddCssFiles.html">publicAddCssFiles</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicAddJsFiles.html">publicAddJsFiles</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicPageinationShowAll.html">publicPageinationShowAll</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicPageinationShowArchive.html">publicPageinationShowArchive</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicParseShareButtons.html">publicParseShareButtons</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicReplaceSpamCaptcha.html">publicReplaceSpamCaptcha</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicShowAll.html">publicShowAll</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicShowArchive.html">publicShowArchive</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicShowSingle.html">publicShowSingle</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.publicTemplateHtmlTags.html">publicTemplateHtmlTags</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.reloadFileList.html">reloadFileList</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.reloadSystemLogs.html">reloadSystemLogs</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.runSystemCheck.html">runSystemCheck</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.sessionCreate.html">sessionCreate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.sessionUpdate.html">sessionUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.smileySave.html">smileySave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.templateSave.html">templateSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.themeAddCssFiles.html">themeAddCssFiles</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.themeAddJsFiles.html">themeAddJsFiles</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.thumbnailCreate.html">thumbnailCreate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.userrollSave.html">userrollSave</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.userrollUpdate.html">userrollUpdate</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.viewRenderAfter.html">viewRenderAfter</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.events.viewRenderBefore.html">viewRenderBefore</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-821042105"></a>
+                                <a href="../namespaces/fpcm.model.files.html" style="margin-left: 30px; padding-left: 0">files</a>
+            </div>
+            <div id="namespace-821042105" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.files.fileuploader.html">fileuploader</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.files.image.html">image</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.files.imagelist.html">imagelist</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.files.ops.html">ops</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.files.revision.html">revision</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.files.smiley.html">smiley</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.files.smileylist.html">smileylist</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.files.tempfile.html">tempfile</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1728208179"></a>
+                                <a href="../namespaces/fpcm.model.interfaces.html" style="margin-left: 30px; padding-left: 0">interfaces</a>
+            </div>
+            <div id="namespace-1728208179" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/fpcm.model.interfaces.cron.html">cron</a></li>
+                                                    <li class="interface"><a href="../classes/fpcm.model.interfaces.dashcontainer.html">dashcontainer</a></li>
+                                                    <li class="interface"><a href="../classes/fpcm.model.interfaces.event.html">event</a></li>
+                                                    <li class="interface"><a href="../classes/fpcm.model.interfaces.model.html">model</a></li>
+                                                    <li class="interface"><a href="../classes/fpcm.model.interfaces.module.html">module</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-703007719"></a>
+                                <a href="../namespaces/fpcm.model.ips.html" style="margin-left: 30px; padding-left: 0">ips</a>
+            </div>
+            <div id="namespace-703007719" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.ips.ipaddress.html">ipaddress</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.ips.iplist.html">iplist</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-440623172"></a>
+                                <a href="../namespaces/fpcm.model.modules.html" style="margin-left: 30px; padding-left: 0">modules</a>
+            </div>
+            <div id="namespace-440623172" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.modules.listitem.html">listitem</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.modules.modulelist.html">modulelist</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-17951638"></a>
+                                <a href="../namespaces/fpcm.model.packages.html" style="margin-left: 30px; padding-left: 0">packages</a>
+            </div>
+            <div id="namespace-17951638" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.packages.module.html">module</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.packages.package.html">package</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.packages.update.html">update</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2117561895"></a>
+                                <a href="../namespaces/fpcm.model.pubtemplates.html" style="margin-left: 30px; padding-left: 0">pubtemplates</a>
+            </div>
+            <div id="namespace-2117561895" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.article.html">article</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.comment.html">comment</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.commentform.html">commentform</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.latestnews.html">latestnews</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.sharebuttons.html">sharebuttons</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.template.html">template</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.templatelist.html">templatelist</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.pubtemplates.tweet.html">tweet</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1958927386"></a>
+                                <a href="../namespaces/fpcm.model.system.html" style="margin-left: 30px; padding-left: 0">system</a>
+            </div>
+            <div id="namespace-1958927386" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.system.config.html">config</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.system.fileLib.html">fileLib</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.system.permissions.html">permissions</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.system.session.html">session</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.system.twitter.html">twitter</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1819119678"></a>
+                                <a href="../namespaces/fpcm.model.theme.html" style="margin-left: 30px; padding-left: 0">theme</a>
+            </div>
+            <div id="namespace-1819119678" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.theme.navigation.html">navigation</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-428245283"></a>
+                                <a href="../namespaces/fpcm.model.updater.html" style="margin-left: 30px; padding-left: 0">updater</a>
+            </div>
+            <div id="namespace-428245283" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.updater.finalizer.html">finalizer</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.updater.modules.html">modules</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.updater.system.html">system</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-436309246"></a>
+                                <a href="../namespaces/fpcm.model.users.html" style="margin-left: 30px; padding-left: 0">users</a>
+            </div>
+            <div id="namespace-436309246" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.users.author.html">author</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.users.userList.html">userList</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.users.userRoll.html">userRoll</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.users.userRollList.html">userRollList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1661902754"></a>
+                                <a href="../namespaces/fpcm.model.view.html" style="margin-left: 30px; padding-left: 0">view</a>
+            </div>
+            <div id="namespace-1661902754" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/fpcm.model.view.acp.html">acp</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.view.ajax.html">ajax</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.view.error.html">error</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.view.helper.html">helper</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.view.installer.html">installer</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.view.module.html">module</a></li>
+                                                    <li class="class"><a href="../classes/fpcm.model.view.pub.html">pub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/fpcm.model.modules.html">\fpcm\model\modules</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\fpcm\model\modules</small>listitem</h1>
+                    <p><em>Module-Objekt für Module-Liste</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method___set" class="">__set()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method___toString" class="">__toString()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method___call" class="">__call()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method___callStatic" class="">__callStatic()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method___destruct" class="">__destruct()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getKey" class="">getKey()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getName" class="">getName()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getVersion" class="">getVersion()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getVersionRemote" class="">getVersionRemote()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getDescription" class="">getDescription()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getAuthor" class="">getAuthor()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getLink" class="">getLink()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getStatus" class="">getStatus()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_setStatus" class="">setStatus()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_setDependencies" class="">setDependencies()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_setVersionRemote" class="">setVersionRemote()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_dependenciesOk" class="">dependenciesOk()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_isInstalled" class="">isInstalled()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_setIsInstalled" class="">setIsInstalled()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_setDependenciesOk" class="">setDependenciesOk()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getData" class="">getData()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_disable" class="">disable()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_enable" class="">enable()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getConfig" class="">getConfig()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getDependencies" class="">getDependencies()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getModuleClassName" class="">getModuleClassName()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getModuleEventNamespace" class="">getModuleEventNamespace()</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_getModuleKeyByFolder" class="">getModuleKeyByFolder()</a><br />
+                                                                    <a href="../classes/fpcm.model.modules.listitem.html#method_runInstall" class="">runInstall()</a><br />
+                                                                    <a href="../classes/fpcm.model.modules.listitem.html#method_runUninstall" class="">runUninstall()</a><br />
+                                                                    <a href="../classes/fpcm.model.modules.listitem.html#method_runUpdate" class="">runUpdate()</a><br />
+                                                                    <a href="../classes/fpcm.model.modules.listitem.html#method_save" class="">save()</a><br />
+                                                                    <a href="../classes/fpcm.model.modules.listitem.html#method_update" class="">update()</a><br />
+                                                                    <a href="../classes/fpcm.model.modules.listitem.html#method_hasUpdates" class="">hasUpdates()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#method_init" class="">init()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_dbcon" class="">$dbcon</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_table" class="">$table</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_objExists" class="">$objExists</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_data" class="">$data</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_config" class="">$config</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_language" class="">$language</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_modkey" class="">$modkey</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_name" class="">$name</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_version" class="">$version</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_versionRemote" class="">$versionRemote</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_description" class="">$description</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_author" class="">$author</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_link" class="">$link</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_systemMinVersion" class="">$systemMinVersion</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_status" class="">$status</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_isInstalled" class="">$isInstalled</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_dependenciesOk" class="">$dependenciesOk</a><br />
+                                                                    <a href="../classes/fpcm.model.abstracts.module.html#property_dependencies" class="">$dependencies</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/model.modules.listitem.html"><div class="path-wrapper">model/modules/listitem.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">fpcm.model.system</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/fpcm.model.abstracts.module.html">\fpcm\model\abstracts\module</a></div>
+                                                                                                    <div class="namespace-wrapper">\fpcm\model\modules\listitem</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Stefan Seehafer <a href="mailto:sea75300@yahoo.de">sea75300@yahoo.de</a></p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dbcon" name="property_dbcon" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dbcon</h3>
+                <pre class="signature">$dbcon : \fpcm\classes\database</pre>
+                <p><em>Datenbank-Objekt</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/fpcm.classes.database.html">\fpcm\classes\database</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_table" name="property_table" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$table</h3>
+                <pre class="signature">$table : string</pre>
+                <p><em>Tabelle</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_objExists" name="property_objExists" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$objExists</h3>
+                <pre class="signature">$objExists : boolean</pre>
+                <p><em>Objekt existier</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_data" name="property_data" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$data</h3>
+                <pre class="signature">$data : array</pre>
+                <p><em>Data array</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_config" name="property_config" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$config</h3>
+                <pre class="signature">$config : \fpcm\model\system\config</pre>
+                <p><em>Config-Objekt</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/fpcm.model.system.config.html">\fpcm\model\system\config</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_language" name="property_language" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$language</h3>
+                <pre class="signature">$language : \fpcm\classes\language</pre>
+                <p><em>Sprachobjekt</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/fpcm.classes.language.html">\fpcm\classes\language</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_modkey" name="property_modkey" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$modkey</h3>
+                <pre class="signature">$modkey : string</pre>
+                <p><em>Module-Key</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_name" name="property_name" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$name</h3>
+                <pre class="signature">$name : string</pre>
+                <p><em>Module-Name/ Beschreibung</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_version" name="property_version" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$version</h3>
+                <pre class="signature">$version : string</pre>
+                <p><em>lokale Modul-Version</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_versionRemote" name="property_versionRemote" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$versionRemote</h3>
+                <pre class="signature">$versionRemote : string</pre>
+                <p><em>Modul-Version auf Update-Server</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_description" name="property_description" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$description</h3>
+                <pre class="signature">$description : string</pre>
+                <p><em>ausführliche Modul-Beschreibung</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_author" name="property_author" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$author</h3>
+                <pre class="signature">$author : string</pre>
+                <p><em>Author des Moduls</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_link" name="property_link" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$link</h3>
+                <pre class="signature">$link : string</pre>
+                <p><em>Info-Link zu diesem Modul</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_systemMinVersion" name="property_systemMinVersion" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$systemMinVersion</h3>
+                <pre class="signature">$systemMinVersion : string</pre>
+                <p><em>minimale Version von FPCM, die dieses Modul benötigt</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_status" name="property_status" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$status</h3>
+                <pre class="signature">$status : boolean</pre>
+                <p><em>ist Modul aktiv</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_isInstalled" name="property_isInstalled" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$isInstalled</h3>
+                <pre class="signature">$isInstalled : boolean</pre>
+                <p><em>ist Modul installiert</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dependenciesOk" name="property_dependenciesOk" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dependenciesOk</h3>
+                <pre class="signature">$dependenciesOk : boolean</pre>
+                <p><em>Abhängigkeiten von anderen Modulen alle erfüllt</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dependencies" name="property_dependencies" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dependencies</h3>
+                <pre class="signature">$dependencies : array</pre>
+                <p><em>Abhängigkeiten von anderen Modulen</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$key</span>, string  <span class="argument">$name</span>, string  <span class="argument">$version</span>, string  <span class="argument">$versionRemote = &#039;-&#039;</span>, string  <span class="argument">$description = &#039;-&#039;</span>, string  <span class="argument">$author = &#039;-&#039;</span>, string  <span class="argument">$link = &#039;&#039;</span>, string  <span class="argument">$systemMinVersion = &#039;&#039;</span>, boolean  <span class="argument">$init = true</span>) </pre>
+                <p><em>Konstruktor</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>Modul-Key</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>Module-Name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$version </td>
+                                <td><p>Modul-Version</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$versionRemote </td>
+                                <td><p>Server-Version</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$description </td>
+                                <td><p>Modul-Beschreibung</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$author </td>
+                                <td><p>Module-Author</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$link </td>
+                                <td><p>Modul-Info-Link</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$systemMinVersion </td>
+                                <td><p>minimale System-Version für Modul</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$init </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(string  <span class="argument">$name</span>) : mixed</pre>
+                <p><em>Magic get</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___set" name="method___set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__set(mixed  <span class="argument">$name</span>, mixed  <span class="argument">$value</span>) </pre>
+                <p><em>Magic set</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___toString" name="method___toString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__toString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__toString() : string</pre>
+                <p><em>Magic string</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___call" name="method___call" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__call()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__call(string  <span class="argument">$name</span>, mixed  <span class="argument">$arguments</span>) : boolean</pre>
+                <p><em>Magische Methode für nicht vorhandene Methoden</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$arguments </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___callStatic" name="method___callStatic" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__callStatic()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__callStatic(string  <span class="argument">$name</span>, mixed  <span class="argument">$arguments</span>) : boolean</pre>
+                <p><em>Magische Methode für nicht vorhandene, statische Methoden</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$arguments </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___destruct" name="method___destruct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__destruct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__destruct() : void</pre>
+                <p><em>Destruktor</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getKey" name="method_getKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getKey() : string</pre>
+                <p><em>Module-Key zurückgeben</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getName" name="method_getName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getName() : string</pre>
+                <p><em>Module-Name zurückgeben</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getVersion" name="method_getVersion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getVersion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getVersion() : string</pre>
+                <p><em>lokale Module-Version zurückgeben</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getVersionRemote" name="method_getVersionRemote" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getVersionRemote()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getVersionRemote() : string</pre>
+                <p><em>remote Module-Version zurückgeben</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDescription" name="method_getDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDescription() : string</pre>
+                <p><em>Module-Beschreibung zurückgeben</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAuthor" name="method_getAuthor" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAuthor()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAuthor() : string</pre>
+                <p><em>Module-Author zurückgeben</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLink" name="method_getLink" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLink()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLink() : string</pre>
+                <p><em>Module-Info-Link zurückgeben</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getStatus" name="method_getStatus" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getStatus()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getStatus() : boolean</pre>
+                <p><em>Gibt aktuellen Status zurück</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setStatus" name="method_setStatus" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setStatus()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setStatus(boolean  <span class="argument">$status</span>) </pre>
+                <p><em>Setzt Modul-Status (aktiv/inaktiv)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$status </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDependencies" name="method_setDependencies" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDependencies()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDependencies(array  <span class="argument">$dependencies</span>) </pre>
+                <p><em>Abhängigkeiten setzten</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$dependencies </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setVersionRemote" name="method_setVersionRemote" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setVersionRemote()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setVersionRemote(\fpcm\model\abstracts\setzten  <span class="argument">$versionRemote</span>) </pre>
+                <p><em>remote Version setzten</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\fpcm\model\abstracts\setzten</td>
+                                <td>$versionRemote </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dependenciesOk" name="method_dependenciesOk" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dependenciesOk()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">dependenciesOk() : boolean</pre>
+                <p><em>Sind Abhängigkeiten erfüllt</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isInstalled" name="method_isInstalled" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isInstalled()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isInstalled() : boolean</pre>
+                <p><em>Status ob Modul installiert ist oder nicht</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIsInstalled" name="method_setIsInstalled" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIsInstalled()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setIsInstalled(boolean  <span class="argument">$isInstalled</span>) </pre>
+                <p><em>Setzt Installiert-Status</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$isInstalled </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDependenciesOk" name="method_setDependenciesOk" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDependenciesOk()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDependenciesOk(boolean  <span class="argument">$dependenciesOk</span>) </pre>
+                <p><em>Setzt Status, ob Abhänigkeiten erfüllt sind</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$dependenciesOk </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getData" name="method_getData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getData() : array</pre>
+                <p><em>Gibt Inhalt von &quot;data&quot; zurück</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_disable" name="method_disable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">disable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">disable() : boolean</pre>
+                <p><em>Module deaktivieren</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                    <span class="label label-info">final</span>
+                                    <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_enable" name="method_enable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">enable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">enable() : boolean</pre>
+                <p><em>Module aktivieren</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                    <span class="label label-info">final</span>
+                                    <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConfig" name="method_getConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConfig(string  <span class="argument">$filename</span>) : array</pre>
+                <p><em>Config-Dateien in yml-Format auslesen</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filename </td>
+                                <td><p>Dateiname der Config-Datei</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDependencies" name="method_getDependencies" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDependencies()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDependencies() : array</pre>
+                <p><em>Gibt Abhängigkeiten zurück, falls vorhanden</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getModuleClassName" name="method_getModuleClassName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getModuleClassName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getModuleClassName(string  <span class="argument">$key</span>) : string</pre>
+                <p><em>Gibt Klassename inkl. Namespace für ein Modul zurück,
+/ in Modulkey werden in \ ersetzt</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>Modul-Key</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getModuleEventNamespace" name="method_getModuleEventNamespace" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getModuleEventNamespace()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getModuleEventNamespace(string  <span class="argument">$key</span>, string  <span class="argument">$event</span>) : string</pre>
+                <p><em>Gibt Klassename inkl. Namespace für ein Modul zurück,
+/ in Modulkey werden in \ ersetzt</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>Modul-Key</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$event </td>
+                                <td><p>Event-Klassen-Name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getModuleKeyByFolder" name="method_getModuleKeyByFolder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getModuleKeyByFolder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getModuleKeyByFolder(string  <span class="argument">$folder</span>) : string</pre>
+                <p><em>Gibt Module-Key anhand von Ordnerstruktur zurück</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$folder </td>
+                                <td><p>Pfad einer Datei</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_runInstall" name="method_runInstall" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">runInstall()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">runInstall() : boolean</pre>
+                <p><em>Installation durchführen</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_runUninstall" name="method_runUninstall" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">runUninstall()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">runUninstall() : boolean</pre>
+                <p><em>Deinstallation durchführen</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_runUpdate" name="method_runUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">runUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">runUpdate() : boolean</pre>
+                <p><em>Update durchführen</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_save" name="method_save" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">save()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">save() : boolean</pre>
+                <p><em>Module in DB speichern</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                    <span class="label label-info">final</span>
+                                    <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_update" name="method_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">update() : boolean</pre>
+                <p><em>Module in DB speichern</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                    <span class="label label-info">final</span>
+                                    <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasUpdates" name="method_hasUpdates" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasUpdates()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasUpdates() : boolean</pre>
+                <p><em>Prüfen, ob Version von Modul-Server größer als lokale Version ist</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                    <span class="label label-info">final</span>
+                                    <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_init" name="method_init" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">init()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">init() </pre>
+                <p><em>Inittiert Objekt mit Daten aus der Datenbank, sofern ID vergeben wurde</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/fpcm.model.abstracts.module.html"><div class="path-wrapper">\fpcm\model\abstracts\module</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">listitem.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/model/modules/listitem.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/fpcm.html">\fpcm</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on October 11th, 2015 at 00:26.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
