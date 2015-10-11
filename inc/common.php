@@ -6,7 +6,7 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
-    error_reporting(0);
+//    error_reporting(0);
 
     /**
      * FanPress CM internal checkpoint

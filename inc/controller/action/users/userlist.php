@@ -121,20 +121,20 @@
          */
         private function disableUsers($userId) {
             if ($this->userList->countActiveUsers() == 1) {
-                $this->view->addErrorMessage('SAVE_FAILED_USER_DISBALE_LAST');
+                $this->view->addErrorMessage('SAVE_FAILED_USER_DISABLE_LAST');
                 return;
             }                
 
             if ($userId == $this->session->getUserId()) {
-                $this->view->addErrorMessage('SAVE_FAILED_USER_DISBALE_OWN');
+                $this->view->addErrorMessage('SAVE_FAILED_USER_DISABLE_OWN');
                 return;
             }
 
             $user = new \fpcm\model\users\author($userId);
             if ($user->disable()) {
-                $this->view->addNoticeMessage('SAVE_SUCCESS_USER_DISBALE');
+                $this->view->addNoticeMessage('SAVE_SUCCESS_USER_DISABLE');
             } else {
-                $this->view->addErrorMessage('SAVE_FAILED_USER_DISBALE');
+                $this->view->addErrorMessage('SAVE_FAILED_USER_DISABLE');
             }
         }
         

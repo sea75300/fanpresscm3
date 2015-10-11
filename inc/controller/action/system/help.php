@@ -26,9 +26,10 @@
          */
         public function __construct() {
             parent::__construct();
-            
+
             $this->checkPermission = array();
             $this->view            = new \fpcm\model\view\acp('help', 'system');
+            $this->cache           = new \fpcm\classes\cache('helpcache_'.$this->config->system_lang);
         }
 
         public function request() {
@@ -43,13 +44,14 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $xml = simplexml_load_string($this->lang->getHelp());
-            
-            $contents  = array();
-            foreach ($xml->chapter as $chapter) {
-                $headline = trim($chapter->headline);
-                $contents[$headline] = trim($chapter->text);
-            }
+            $contents = $this->cache->read();
+            if ($this->cache->isExpired() || !is_array($contents)) {
+                $xml = simplexml_load_string($this->lang->getHelp());
+                foreach ($xml->chapter as $chapter) {
+                    $headline = trim($chapter->headline);
+                    $contents[$headline] = trim($chapter->text);
+                }                
+            }            
             
             $contents = $this->events->runEvent('extendHelp', $contents);
             $this->view->assign('chapters', $contents);

@@ -6,7 +6,7 @@
     <div class="fpcm-tabs-general">
         <ul>
             <li><a href="#tabs-modules-list"><?php $FPCM_LANG->write('MODULES_LIST_HEADLINE'); ?></a></li>
-            <li><a href="#tabs-modules-upload"><?php $FPCM_LANG->write('MODULES_LIST_UPLOAD'); ?></a></li>
+            <?php if ($permissionInstall) : ?><li><a href="#tabs-modules-upload"><?php $FPCM_LANG->write('MODULES_LIST_UPLOAD'); ?></a></li><?php endif; ?>
         </ul>
 
         <div id="tabs-modules-list">
@@ -29,6 +29,7 @@
             </div>         
         </div>
         
+        <?php if ($permissionInstall) : ?>
         <div id="tabs-modules-upload">
             <form action="<?php print $FPCM_BASEMODULELINK; ?>modules/list" method="POST" enctype="multipart/form-data">
                 <table id="fpcm-ui-phpupload-filelist" class="fpcm-ui-table fpcm-ui-phpupload"></table>
@@ -45,6 +46,7 @@
                 </div>    
             </form>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 

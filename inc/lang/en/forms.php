@@ -126,7 +126,7 @@
         'FILE_FORM_UPLOADSTART'         => 'Start upload',
         'FILE_FORM_UPLOADCANCEL'        => 'Cancel upload',
         
-        'IPLIST_DESCRIPTION'            => '<strong>Notizće:</strong><br>To lock a single ip address, insert in into the address field in its full lenght. (for example 192.168.1.2)<br>'.
+        'IPLIST_DESCRIPTION'            => '<strong>Notizće:</strong><br>To lock a single ip address, insert in into the address field in its full length. (for example 192.168.1.2)<br>'.
                                            'In case you want to lock an area like "192.168.2.X", replace the last numbers with an *. (for example 192.168.2.* or 192.168.*.*)',
         'IPLIST_ADDIP'                  => 'Lock IP address',
         'IPLIST_IPADDRESS'              => 'IP address',

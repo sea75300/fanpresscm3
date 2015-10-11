@@ -35,7 +35,7 @@
         'PERMISSION_MODULES_CONFIGURE'  => 'Configure modules',
         'PERMISSION_MODULES_INSTALL'    => 'Install modules',
         'PERMISSION_MODULES_UNINSTALL'  => 'Uninstall modules',
-        'PERMISSION_MODULES_ENABLE'     => 'Enable and disbale modules',
+        'PERMISSION_MODULES_ENABLE'     => 'Enable and disable modules',
         'PERMISSION_UPLOADS_ADD'        => 'Upload files',
         'PERMISSION_UPLOADS_DELETE'     => 'Delete files',
         'PERMISSION_UPLOADS_THUMBS'     => 'Create thumbnails',

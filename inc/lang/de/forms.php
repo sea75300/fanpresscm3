@@ -117,7 +117,7 @@
         'FILE_LIST_NEWTHUMBS'           => 'Neue Thumbnails erzeugen',
         'FILE_LIST_RENAME'              => 'Dateien umbenennen',
         'FILE_LIST_RENAME_NEWNAME'      => 'Bitte einen neuen Dateiname eingeben:',
-        'FILE_LIST_PHPMAXINFO'          => 'Maxmimal {{filecount}} Dateien mit {{filesize}}.',
+        'FILE_LIST_PHPMAXINFO'          => 'Maximal {{filecount}} Dateien mit {{filesize}}.',
         
         'FILE_LIST_SMILEYCODE'          => 'Smiley-Code',
         'FILE_LIST_SMILEYADD'           => 'Smiley hinzufügen',

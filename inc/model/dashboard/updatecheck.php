@@ -39,7 +39,7 @@
             $this->headline = $this->language->translate('SYSTEM_UPDATE');
             $this->content  = implode(PHP_EOL, array('<table class="fpcm-ui-table">', implode(PHP_EOL, $this->tableContent),'</table>'));
             $this->name     = 'syscheck';            
-            $this->position = 4;
+            $this->position = 5;
             $this->height   = 1;
         }
         

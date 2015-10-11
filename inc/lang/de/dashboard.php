@@ -7,19 +7,21 @@
      */
 
     $lang = array(
-        'WELCOME_HEADLINE'  => '<span class="fa fa-user"></span> Willkommen {{username}}! <span class="fa fa-smile-o"></span>',
+        'WELCOME_HEADLINE'  => '<span class="fa fa-fw fa-user"></span> Willkommen {{username}}! <span class="fa fa-fw fa-smile-o"></span>',
         'WELCOME_CONTENT'   => 'Du befindest dich im Dashboard von FanPress CM, dem News-System speziell für Fanseiten.<br>Über die '.
                                'Navigation links kannst du in die verschiedenen Bereiche gelangen.<br><br>Nachfolgend findet du einige '.
                                'Statistiken und weitere Informationen zum aktuellen System. <a class="fpcm-ui-button fpcm-ui-button-bottom fpcm-loader" href="{{profilelink}}">Profil aufrufen</a>',
         
-        'RECENT_ARTICLES'       => '<span class="fa fa-tasks"></span> Zuletzt geschriebene News',
+        'RECENT_ARTICLES'       => '<span class="fa fa-fw fa-pencil"></span> Zuletzt geschriebene News',
         
-        'SYSTEM_UPDATE'         => '<span class="fa fa-refresh"></span> Verfügbare Updates',
+        'RECENT_COMMENTS'       => '<span class="fa fa-fw fa-comments-o"></span> Zuletzt geschriebene Kommentare',
         
-        'SYSTEM_CHECK'          => '<span class="fa fa-medkit"></span> Systemprüfung',
+        'SYSTEM_UPDATE'         => '<span class="fa fa-fw fa-refresh"></span> Verfügbare Updates',
+        
+        'SYSTEM_CHECK'          => '<span class="fa fa-fw fa-medkit"></span> Systemprüfung',
         'SYSTEM_CHECK_CONNECT'  => 'Verbindung zu anderen Servern herstellen',
         
-        'SYSTEM_STATS'                      => '<span class="fa fa-bar-chart"></span> Statistiken',
+        'SYSTEM_STATS'                      => '<span class="fa fa-fw fa-bar-chart"></span> Statistiken',
         'SYSTEM_STATS_ARTICLES_ALL'         => 'Artikel gesamt',
         'SYSTEM_STATS_ARTICLES_ACTIVE'      => 'Artikel aktiv',
         'SYSTEM_STATS_ARTICLES_ARCHIVE'     => 'Artikel archiviert',

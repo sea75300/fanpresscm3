@@ -10,7 +10,7 @@
         'COMMMENT_AUTHOR'       => 'Name',
         'COMMMENT_WEBSITE'      => 'Webseite',
         'COMMMENT_CREATEDATE'   => 'Geschrieben am',
-        'COMMMENT_IPADDRESS'    => 'IP-Adresse des Authors',
+        'COMMMENT_IPADDRESS'    => 'IP-Adresse des Autors',
         'COMMMENT_LASTCHANGE'   => '<strong>Zuletzt geändert:</strong> {{username}} am {{time}}',
         'COMMMENT_TEXT'         => 'Kommentar-Text',
         'COMMMENT_PRIVATE'      => 'Kommentar ist privat',

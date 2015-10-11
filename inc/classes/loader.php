@@ -1,6 +1,6 @@
 <?php
     /**
-     * Libary loader class
+     * library loader class
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2015, Stefan Seehafer
@@ -10,7 +10,7 @@
     namespace fpcm\classes;
     
     /**
-     * Libary loader
+     * library loader
      * 
      * @package fpcm.classes.loader
      * @author Stefan Seehafer <sea75300@yahoo.de>

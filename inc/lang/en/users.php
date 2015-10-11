@@ -7,7 +7,7 @@
      */
 
     $lang = array(
-        'USERS_DISPLAYNAME'      => 'Displayname',
+        'USERS_DISPLAYNAME'      => 'Display name',
         'USERS_PASSWORD_CONFIRM' => 'Confirm password',
         'USERS_REQUIREMENTS'     => 'requires at least six digits including upper and lower case letters and numbers',
         'USERS_ROLL'             => 'Roll',

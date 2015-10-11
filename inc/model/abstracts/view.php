@@ -109,7 +109,7 @@
         }
         
         /**
-         * ACP-Dateilibary initialisieren
+         * ACP-Dateilibrary initialisieren
          */
         private function initFileLibAcp() {
             
@@ -130,14 +130,14 @@
         }
         
         /**
-         * Dateilibary für Modul-View initialisieren in Abhängzigkeiten von übergebenem Typ
+         * Dateilibrary für Modul-View initialisieren in Abhängzigkeiten von übergebenem Typ
          */
         private function initFileLibModule() {
             call_user_func(array($this, 'initFileLib'.ucfirst($this->moduleViewType)));
         }
 
         /**
-         * Öffentliche Dateilibary initialisieren
+         * Öffentliche Dateilibrary initialisieren
          */
         private function initFileLibPub() {
             $this->viewCssFiles = $this->fileLib->getCssPubliclib();
@@ -145,7 +145,7 @@
         }
         
         /**
-         * Dateilibary in AJAX-View initialisieren
+         * Dateilibrary in AJAX-View initialisieren
          */
         private function initFileLibAjax() {
             $this->viewCssFiles = array();
@@ -153,7 +153,7 @@
         }
         
         /**
-         * Dateilibary in Error-View initialisieren
+         * Dateilibrary in Error-View initialisieren
          */
         private function initFileLibError() {
             $this->viewCssFiles = $this->fileLib->getCsslib();

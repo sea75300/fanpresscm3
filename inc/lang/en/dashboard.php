@@ -7,19 +7,21 @@
      */
 
     $lang = array(
-        'WELCOME_HEADLINE'  => '<span class="fa fa-user"></span> Welcome {{username}}! <span class="fa fa-smile-o"></span>',
+        'WELCOME_HEADLINE'  => '<span class="fa fa-fw fa-user"></span> Welcome {{username}}! <span class="fa fa-fw fa-smile-o"></span>',
         'WELCOME_CONTENT'   => 'You are in the FanPress CM dashboard. Choose an area using the navigation at the left site. '.
                                'Below you\'ll find additional information about you system including statistics. '.
                                '<a class="fpcm-ui-button fpcm-ui-button-bottom fpcm-loader" href="{{profilelink}}">Open profile</a>',
         
-        'RECENT_ARTICLES'       => '<span class="fa fa-tasks"></span> Recent articles',
+        'RECENT_ARTICLES'       => '<span class="fa fa-fw fa-pencil"></span> Recent articles',
         
-        'SYSTEM_UPDATE'         => '<span class="fa fa-refresh"></span> Updates available',
+        'RECENT_COMMENTS'       => '<span class="fa fa-fw fa-comments-o"></span> Recent comments',
         
-        'SYSTEM_CHECK'          => '<span class="fa fa-medkit"></span> System check',
+        'SYSTEM_UPDATE'         => '<span class="fa fa-fw fa-refresh"></span> Updates available',
+        
+        'SYSTEM_CHECK'          => '<span class="fa fa-fw fa-medkit"></span> System check',
         'SYSTEM_CHECK_CONNECT'  => 'Connection to external serves',
         
-        'SYSTEM_STATS'                      => '<span class="fa fa-bar-chart"></span> System stats',
+        'SYSTEM_STATS'                      => '<span class="fa fa-fw fa-bar-chart"></span> System stats',
         'SYSTEM_STATS_ARTICLES_ALL'         => 'Article count',
         'SYSTEM_STATS_ARTICLES_ACTIVE'      => 'Article active',
         'SYSTEM_STATS_ARTICLES_ARCHIVE'     => 'Article archived',

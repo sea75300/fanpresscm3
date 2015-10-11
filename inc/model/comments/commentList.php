@@ -58,11 +58,9 @@
          * @param bool $private private Kommentare ja/nein
          * @param bool $hideUnapproved genehmigte Kommentare ja/nein
          * @param bool $spam als Spam markierte Kommentare ja/nein
-         * @param int $from Zeitpunkt von
-         * @param int $to Zeitpunkt bis
          * @return array
          */
-        public function getCommentsByCondition($articleId, $private = 0, $hideUnapproved = 1, $spam = 0, $from = -1, $to = -1) {
+        public function getCommentsByCondition($articleId, $private = 0, $hideUnapproved = 1, $spam = 0) {
             
             $params = array($articleId, $private, $spam);
             
@@ -78,6 +76,19 @@
             }
             
             $list = $this->dbcon->fetch($this->dbcon->select($this->table, '*', implode(' AND ', $where).$this->dbcon->orderBy(array('createtime ASC')), $params), true);            
+            return $this->createCommentResult($list);
+        }
+        
+        /**
+         * Liefert ein Array mit Kommentaren zurück
+         * @param int $offset
+         * @param int $limit
+         * @param string $order
+         * @return array
+         * @since FPCM 3.1.0
+         */
+        public function getCommentsByLimit($offset, $limit, $order = 'DESC') {
+            $list = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'id > 0'.$this->dbcon->orderBy(array("createtime {$order}")).$this->dbcon->limitQuery($offset, $limit)), true);
             return $this->createCommentResult($list);
         }
 

@@ -9,7 +9,7 @@
     namespace fpcm\model\system;
 
     /**
-     * View File Libary Loader Objekt
+     * View File library Loader Objekt
      * 
      * @package fpcm.model.system
      * @author Stefan Seehafer <sea75300@yahoo.de>
@@ -17,7 +17,7 @@
     class fileLib extends \fpcm\model\abstracts\staticModel {
         
         /**
-         * FPCM CSS Libary
+         * FPCM CSS library
          * @var array
          */
         private $csslib = array(
@@ -28,7 +28,7 @@
         );
 
         /**
-         * FPCM JS Libary
+         * FPCM JS library
          * @var array
          */
         private $jslib = array(
@@ -43,7 +43,7 @@
         );
 
         /**
-         * FPCM Code Mirror JS Libary
+         * FPCM Code Mirror JS library
          * @var array
          */
         private $cmJsFiles = array(
@@ -63,7 +63,7 @@
         );
 
         /**
-         * FPCM Code Mirror CSS Libary
+         * FPCM Code Mirror CSS library
          * @var array
          */
         private $cmCssFiles = array(
@@ -73,7 +73,7 @@
         );
         
         /**
-         * Gibt CSS Libary zurück
+         * Gibt CSS library zurück
          * @return array
          */
         public function getCsslib() {
@@ -84,7 +84,7 @@
         }
 
         /**
-         * Gibt JS Libary zurück
+         * Gibt JS library zurück
          * @return array
          */
         public function getJslib() {
@@ -95,7 +95,7 @@
         }
 
         /**
-         * Gibt Code Mirror JS Libary zurück
+         * Gibt Code Mirror JS library zurück
          * @return array
          */        
         public function getCmJsFiles() {
@@ -103,7 +103,7 @@
         }
 
         /**
-         * Gibt Code Mirror CSS Libary zurück
+         * Gibt Code Mirror CSS library zurück
          * @return array
          */        
         public function getCmCssFiles() {
@@ -111,7 +111,7 @@
         }
         
         /**
-         * Gibt CSS Libary für Public Controller zurück
+         * Gibt CSS library für Public Controller zurück
          * @return array
          */
         public function getCssPubliclib() {
@@ -122,7 +122,7 @@
         }
         
         /**
-         * Gibt JS Libary für Public Controller zurück
+         * Gibt JS library für Public Controller zurück
          * @return array
          */
         public function getJsPubliclib() {
@@ -139,7 +139,7 @@
         }
 
         /**
-         * Kombinierte Libary-Pfad mit Root Pfad
+         * Kombinierte library-Pfad mit Root Pfad
          * @param string $path
          * @return string
          */
