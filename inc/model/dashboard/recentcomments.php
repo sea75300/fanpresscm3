@@ -89,7 +89,7 @@
             $users    = array_flip($userlist->getUsersNameList());
             
             $content    = array();
-            $content[]  = '<table class="fpcm-ui-table fpcm-ui-articles">';
+            $content[]  = '<table class="fpcm-ui-table fpcm-ui-articles fpcm-ui-large-td">';
             foreach ($comments as $comment) {
                 
                 $createInfo = $this->language->translate('COMMMENT_LASTCHANGE', array(

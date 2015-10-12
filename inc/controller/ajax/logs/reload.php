@@ -97,6 +97,18 @@
             $view->initAssigns();
             $view->render();             
         }
+        
+        /**
+         * Lädt Cronjob-Log (Typ 4)
+         */
+        private function loadLog4() {
+            $cronlist = new \fpcm\model\crons\cronlist();
+            $view = new \fpcm\model\view\ajax('cronjobs', 'logs');
+            $view->assign('cronjobList', $cronlist->getCronsData());
+            $view->assign('currentTime', time());
+            $view->initAssigns();
+            $view->render();
+        }
 
     }
 ?>

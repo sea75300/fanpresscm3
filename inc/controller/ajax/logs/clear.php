@@ -39,6 +39,10 @@
             
             $this->log = (int) $this->getRequestVar('log');
             
+            if ($this->log > 3) {
+                return false;
+            }
+            
             return true;
         }
         

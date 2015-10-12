@@ -35,6 +35,8 @@
         'SYSTEM_STATS_UPLOAD_COUNT'         => 'hochgeladene Dateien',
         'SYSTEM_STATS_UPLOAD_SIZE'          => 'Größe des Upload-Ordners',
         'SYSTEM_STATS_CACHE_SIZE'           => 'Größe des Caches',
+        
+        'RECENT_FPCMNEWS'                   => '<span class="fa fa-fw fa-rss"></span> Aktuelle FanPress CM News'
     );
     
 ?>

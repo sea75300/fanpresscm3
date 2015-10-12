@@ -35,6 +35,8 @@
         'SYSTEM_STATS_UPLOAD_COUNT'         => 'uploaded files',
         'SYSTEM_STATS_UPLOAD_SIZE'          => 'Upload folder size',
         'SYSTEM_STATS_CACHE_SIZE'           => 'Cache size',
+        
+        'RECENT_ARTICLES'                   => '<span class="fa fa-fw fa-rss"></span> Recent FanPress CM news'
     );
     
 ?>

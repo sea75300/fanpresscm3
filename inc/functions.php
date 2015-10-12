@@ -47,8 +47,8 @@
     function fpcmErrorHandler($ecode, $etext, $efile, $eline) {        
         $errorLog = dirname(__DIR__).'/data/logs/phplog.txt';
         
-        if (!is_writable($errorLog)) {
-            return false;
+        if (!is_writable($errorLog)) {            
+            return true;
         }
         
         $text = array($etext, 'in file '.$efile.', line '.$eline, 'ERROR CODE: '.$ecode);

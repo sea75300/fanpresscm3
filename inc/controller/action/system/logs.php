@@ -33,16 +33,12 @@
             if (!parent::process()) return false;
 
             $userList = new \fpcm\model\users\userList();
-
             $this->view->assign('userList', $userList->getUsersAll());            
             $this->view->assign('sessionList', $this->session->getSessions());
-            $this->view->assign('errorLogs', array_map('json_decode', \fpcm\classes\logs::errorlogRead()));
-            $this->view->assign('systemLogs', array_map('json_decode', \fpcm\classes\logs::syslogRead()));
-            $this->view->assign('databaseLogs', array_map('json_decode', \fpcm\classes\logs::sqllogRead()));
-
-            $cronlist = new \fpcm\model\crons\cronlist();
-            $this->view->assign('cronjobList', $cronlist->getCronsData());
-            $this->view->assign('currentTime', time());
+            $this->view->assign('errorLogs', array());
+            $this->view->assign('systemLogs', array());
+            $this->view->assign('databaseLogs', array());
+            $this->view->assign('cronjobList', array());
             
             $this->view->render();
         }

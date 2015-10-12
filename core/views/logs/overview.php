@@ -11,7 +11,7 @@
                 <li><a href="#tabs-logs-systemlog" id="fpcm-logs-reload_1" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_SYSTEM'); ?></a></li>
                 <li><a href="#tabs-logs-phplog" id="fpcm-logs-reload_2" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_ERROR'); ?></a></li>
                 <li><a href="#tabs-logs-sqllog" id="fpcm-logs-reload_3" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_DATABASE'); ?></a></li>
-                <li><a href="#tabs-logs-cronjobs"><?php $FPCM_LANG->write('HL_LOGS_CRONJOBS'); ?></a></li>
+                <li><a href="#tabs-logs-cronjobs" id="fpcm-logs-reload_4" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_CRONJOBS'); ?></a></li>
             </ul>
             <div id="tabs-logs-sessionlog">
                 <div id="fpcm-logcontent0">
@@ -62,7 +62,7 @@
                 </div> 
             </div>             
             <div id="tabs-logs-cronjobs">
-                <div id="fpcm-logcontent5">
+                <div id="fpcm-logcontent4">
                     <?php include __DIR__.'/cronjobs.php'; ?>
                 </div>
             </div>
