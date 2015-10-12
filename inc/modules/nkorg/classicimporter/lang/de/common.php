@@ -8,7 +8,7 @@
 
     $lang = array (
         'FPCM_CLASSICIMPORTER_HEADLINE'     => 'FanPress CM Classic Importer',
-        'FPCM_CLASSICIMPORTER_NOIMPORT'     => 'Der Classic Importer sollte nicht verwendet werden, da bereits Daten im System vorhanden sind. Bei Nutzung des Importers könnte es zu Problemen kommen. Falls du doch einen Import durchf+hren möchtest, verwende ggf. vorher die "System zurücksetzten"-Funktion.',
+        'FPCM_CLASSICIMPORTER_NOIMPORT'     => 'Der Classic Importer sollte nicht verwendet werden, da bereits Daten im System vorhanden sind. Bei Nutzung des Importers könnte es zu Problemen kommen. Falls du doch einen Import durchführen möchtest, verwende ggf. vorher die "System zurücksetzten"-Funktion.',
         'FPCM_CLASSICIMPORTER_CHECK'        => 'Bitte prüfe, ob alle Daten korrekt importiert wurden, <strong>bevor</strong> du mit dem Import fortfährst!',
         'FPCM_CLASSICIMPORTER_OPENMODULE'   => 'Modul aufrufen',
         'FPCM_CLASSICIMPORTER_RESETSYSTEM'  => 'System zurücksetzten',

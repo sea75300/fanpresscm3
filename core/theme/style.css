@@ -945,7 +945,8 @@ h3, .fpcm-dashboard-container h3 {
     right: 15px;
 }
 
-.fpcm-dashboard-container.fpcm-dashboard-container-recentarticles table.fpcm-ui-table td {
+.fpcm-dashboard-container.fpcm-dashboard-container-recentarticles table.fpcm-ui-table td,
+.fpcm-dashboard-container.fpcm-dashboard-container-recentcomments table.fpcm-ui-table td {
     padding: 0.4em 0.3em !important;
 }
 

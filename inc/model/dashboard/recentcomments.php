@@ -39,7 +39,7 @@
          * @see \fpcm\model\abstracts\dashcontainer
          * @var bool
          */
-        protected $width        = false;
+        protected $width        = true;
 
         /**
          * Benutzer ist Admin
@@ -62,15 +62,15 @@
             $this->permissions  = new \fpcm\model\system\permissions($session->currentUser->getRoll());
             $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser);
             
-//            if ($this->cache->isExpired()) {
+            if ($this->cache->isExpired()) {
                 $this->renderContent();                
-//            } else {
-//                $this->content = $this->cache->read();
-//            }
+            } else {
+                $this->content = $this->cache->read();
+            }
                                    
             $this->headline = $this->language->translate('RECENT_COMMENTS');
             $this->name     = 'recentcomments';
-            $this->position = 3;
+            $this->position = 4;
         }
         
         /**
@@ -91,6 +91,12 @@
             $content    = array();
             $content[]  = '<table class="fpcm-ui-table fpcm-ui-articles">';
             foreach ($comments as $comment) {
+                
+                $createInfo = $this->language->translate('COMMMENT_LASTCHANGE', array(
+                    '{{username}}' => isset($users[$comment->getChangeuser()]) ? $users[$comment->getChangeuser()] : $this->language->translate('GLOBAL_NOTFOUND'),
+                    '{{time}}'     => date($this->config->system_dtmask, $comment->getChangetime())
+                ));
+                
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-articlelist-open">';
                 $content[] = '  <a class="fpcm-articlelist-openlink" href="'.$comment->getArticleLink().'" target="_blank">'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'</a>';
@@ -102,8 +108,8 @@
                 $content[] = '  </td>';
                 
                 $content[] = '  <td>';
-                $content[] = '  <strong>'.\fpcm\model\view\helper::escapeVal(strip_tags($comment->getName())).'</strong><br>';
-                $content[] = '  <span>'.$this->language->translate('COMMMENT_CREATEDATE').': '.date($this->config->system_dtmask, $comment->getCreatetime()).'</span>';
+                $content[] = '  <strong>'.\fpcm\model\view\helper::escapeVal(strip_tags($comment->getName())).'</strong> @ '.date($this->config->system_dtmask, $comment->getCreatetime()).'<br>';
+                $content[] = '  <span>'.$createInfo.'</span>';
                 $content[] = '  </td>';
                 $content[] = '  <td class="fpcm-ui-dashboard-recentarticles-meta">';
 
