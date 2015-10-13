@@ -111,7 +111,7 @@ jQuery(document).ready(function () {
             text: true
         }).click(function () {
             jQuery('.fpcm-ui-input-select-articlesearch').selectmenu({
-                width: 200,
+                width: '100%',
                 appendTo: '#fpcm-articles-search-dialog'
             });
             jQuery('.fpcm-full-width-date').datepicker({
@@ -134,8 +134,8 @@ jQuery(document).ready(function () {
                         click: function() {                            
                             var sfields = jQuery('.fpcm-articles-search-input');
                             var sParams = {
-                                "mode": fpcmArticleSearchMode,
-                                "filter": {}
+                                mode: fpcmArticleSearchMode,
+                                filter: {}
                             };
                             
                             jQuery.each(sfields, function( key, obj ) {

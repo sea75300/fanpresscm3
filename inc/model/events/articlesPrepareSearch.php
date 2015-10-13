@@ -1,10 +1,10 @@
 <?php
     /**
-     * Module-Event: cronjobDbDumpIncludeTables
+     * Module-Event: articlesPrepareSearch
      * 
-     * Event wird ausgeführt, wenn Cronjob für automatische Datenbank-Sicherung läuft
-     * Parameter: array mit Liste der zu sichernden Tabellen
-     * Rückgabe: array mit Liste der zu sichernden Tabellen
+     * Event wird ausgeführt, wenn Artikel-Suche durchgeführt wird
+     * Parameter: array mit Liste der Suchparameter aus dem Suchformular
+     * Rückgabe: array mit Liste der Suchparameter aus dem Suchformular
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
      * @copyright (c) 2011-2015, Stefan Seehafer
@@ -14,11 +14,11 @@
     namespace fpcm\model\events;
 
     /**
-     * Module-Event: cronjobDbDumpIncludeTables
+     * Module-Event: articlesPrepareSearch
      * 
-     * Event wird ausgeführt, wenn Cronjob für automatische Datenbank-Sicherung läuft
-     * Parameter: array mit Liste der zu sichernden Tabellen
-     * Rückgabe: array mit Liste der zu sichernden Tabellen
+     * Event wird ausgeführt, wenn Artikel-Suche durchgeführt wird
+     * Parameter: array mit Liste der Suchparameter aus dem Suchformular
+     * Rückgabe: array mit Liste der Suchparameter aus dem Suchformular
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
      * @copyright (c) 2011-2015, Stefan Seehafer
@@ -26,16 +26,16 @@
      * @package fpcm.model.events
      * @since FPCM 3.1
      */
-    final class cronjobDbDumpIncludeTables extends \fpcm\model\abstracts\event {
+    final class articlesPrepareSearch extends \fpcm\model\abstracts\event {
 
         /**
-         * wird ausgeführt, wenn Systemcheck durchgführt wird
+         * wird ausgeführt, wenn Artikel gespeichert wird
          * @param array $data
          * @return array
          */
         public function run($data = null) {
             
-            $eventClasses = glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/cronjobDbDumpIncludeTables.php');
+            $eventClasses = glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/articlesPrepareSearch.php');
             
             if (!count($eventClasses)) return $data;
             
@@ -45,7 +45,7 @@
                 $classkey = $this->getModuleKeyByEvent($eventClass);                
                 if (!in_array($classkey, $this->activeModules)) continue;
                 
-                $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'cronjobDbDumpIncludeTables');
+                $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'articlesPrepareSearch');
                 
                 /**
                  * @var \fpcm\model\abstracts\event
@@ -56,9 +56,9 @@
                 
                 $mdata = $module->run($mdata);
             }
-
+            
             if (!$mdata) return $data;
-
+            
             return $mdata;
             
         }

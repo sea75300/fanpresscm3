@@ -8,7 +8,6 @@ FanPress CM 3.1
 -- ToDo v3.1 --
 
 * überarbeitetes AJAX-Framework testen (Installer, Updater, Module, etc.)
-* Überarbeitung Suchfunktion, evtl. flexible Filter mit und/oder
 
 Stand: 09.10.2015 - 22:00 Uhr
 
@@ -31,6 +30,7 @@ Stand: 09.10.2015 - 22:00 Uhr
 * Runtime und DB-Queries in Debug-Daten
 * verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
 * Erweiterung & Update der Hilfe-Texte (Kommentare, Profil, Optionen, Editor)
+* Überarbeitung Suchfunktion
 
 -- ToDo v3.0 --
 

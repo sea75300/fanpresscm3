@@ -189,25 +189,7 @@
             $this->view->assign('showTrash', $this->config->articles_trash);
             $this->view->assign('deletePermissions', $this->deleteActions);
             
-            $this->view->assign('searchUsers', $users);
-            $this->view->assign('searchCategories', $this->categoryList->getCategoriesNameListCurrent());
-            $this->view->assign('searchTypes', array(
-                $this->lang->translate('ARTICLE_SEARCH_TYPE_ALL')   => -1,
-                $this->lang->translate('ARTICLE_SEARCH_TYPE_TITLE') => 0,
-                $this->lang->translate('ARTICLE_SEARCH_TYPE_TEXT')  => 1
-            ));
-            $this->view->assign('searchPinned', array(
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
-            ));  
-            $this->view->assign('searchPostponed', array(
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
-            ));  
-            $this->view->assign('searchComments', array(
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
-            ));          
+            $this->initSearchForm($users);
             
             if ($this->config->articles_trash) {
                 $this->view->assign('trash', $this->articleList->getArticlesDeleted(true));                
@@ -216,17 +198,8 @@
 
             $commentCounts = $this->commentList->countComments($this->getArticleListIds());
             $this->view->assign('commentCount', $commentCounts);
-            
             $this->view->assign('commentPrivateUnapproved', $this->commentList->countUnapprovedPrivateComments($this->getArticleListIds()));            
-            
             $this->view->assign('commentSum', $commentCounts && $this->articleCount ? array_sum($commentCounts) : 0);
-            
-            $this->view->addJsVars(array(
-                'fpcmArticlesSearchWaitMsg'  => $this->lang->translate('SEARCH_WAITMSG'),
-                'fpcmArticlesSearchHeadline' => $this->lang->translate('ARTICLES_SEARCH'),
-                'fpcmArticlesSearchStart'    => $this->lang->translate('ARTICLE_SEARCH_START'),
-                'fpcmArticlesLastSearch'     => 0
-            ));
             
             $this->translateCategories();
             
@@ -393,6 +366,52 @@
             }
             
             $this->initEditPermisions();
+        }
+        
+        /**
+         * Initialisiert Suchformular-Daten
+         * @param array $users
+         */
+        private function initSearchForm($users) {
+
+            $users = array($this->lang->translate('ARTICLE_SEARCH_USER') => -1) + $users;
+            $this->view->assign('searchUsers', $users);
+            
+            $categories = array($this->lang->translate('ARTICLE_SEARCH_CATEGORY') => -1) + $this->categoryList->getCategoriesNameListCurrent();
+            $this->view->assign('searchCategories', $categories);
+
+            $this->view->assign('searchTypes', array(
+                $this->lang->translate('ARTICLE_SEARCH_TYPE_ALL')   => -1,
+                $this->lang->translate('ARTICLE_SEARCH_TYPE_TITLE') => 0,
+                $this->lang->translate('ARTICLE_SEARCH_TYPE_TEXT')  => 1
+            ));
+            $this->view->assign('searchPinned', array(
+                $this->lang->translate('ARTICLE_SEARCH_PINNED') => -1,
+                $this->lang->translate('GLOBAL_YES') => 1,
+                $this->lang->translate('GLOBAL_NO')  => 0
+            ));  
+            $this->view->assign('searchPostponed', array(
+                $this->lang->translate('ARTICLE_SEARCH_POSTPONED') => -1,
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ));
+            $this->view->assign('searchComments', array(
+                $this->lang->translate('ARTICLE_SEARCH_COMMENTS') => -1,
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ));
+            $this->view->assign('searchApproval', array(
+                $this->lang->translate('ARTICLE_SEARCH_APPROVAL') => -1,
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ));
+
+            $this->view->addJsVars(array(
+                'fpcmArticlesSearchWaitMsg'  => $this->lang->translate('SEARCH_WAITMSG'),
+                'fpcmArticlesSearchHeadline' => $this->lang->translate('ARTICLES_SEARCH'),
+                'fpcmArticlesSearchStart'    => $this->lang->translate('ARTICLE_SEARCH_START'),
+                'fpcmArticlesLastSearch'     => 0
+            ));
         }
         
     }

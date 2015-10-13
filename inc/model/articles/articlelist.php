@@ -245,7 +245,7 @@
             $where .= ' '.implode(' ', $where2);
             
             $list = $this->dbcon->fetch($this->dbcon->select($this->table, '*', $where, array_values($valueParams)), true);
-            
+
             return $this->createListResult($list, $monthIndex);
         }
         

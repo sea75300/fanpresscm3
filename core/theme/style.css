@@ -406,11 +406,6 @@ table.fpcm-ui-options div.fpcm-ui-input-wrapper {
     width: 200px;
 }
 
-table.fpcm-ui-articles-search div.fpcm-ui-input-wrapper {
-    width: 198px;
-    margin-left: -0.5em;
-}
-
 .ui-spinner {
     width: 195px;
 }
@@ -553,10 +548,6 @@ table.fpcm-ui-table     {
 
 table.fpcm-ui-table td  {
     padding: 0.5em 0.3em;
-}
-
-table.fpcm-ui-table.fpcm-ui-articles-search td  {
-    padding: 0.2em 0.3em;
 }
 
 table.fpcm-ui-table th {
@@ -724,22 +715,13 @@ table.fpcm-ui-table.fpcm-ui-editor-extended tr td {
     vertical-align: middle;
 }
 
-table.fpcm-ui-table.fpcm-ui-articles-search textarea.fpcm-full-width-text {
-    width: 414px;
-    height: 85px;
-    resize: none;
-}
-
-table.fpcm-ui-table.fpcm-ui-editor-extended td {
-    height: 25px;
-}
-
 table.fpcm-ui-table.fpcm-ui-table-insert tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr th:first-child,
 table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr td:first-child {
     width: 66%;
 }
 
+table.fpcm-ui-table.fpcm-ui-articles-search td,
 table.fpcm-ui-table.fpcm-ui-options-twitter tr td,
 table.fpcm-ui-table.fpcm-ui-articlelist-acp tr td {
     width: 33%;

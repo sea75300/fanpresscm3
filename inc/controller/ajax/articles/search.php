@@ -116,14 +116,17 @@
                 }                
             }
             
-            if ($filter['userid'])           $sparams['user']       = (int) $filter['userid'];
-            if ($filter['categoryid'])       $sparams['category']   = (int) $filter['categoryid'];            
-            if ($filter['datefrom'])         $sparams['datefrom']   = strtotime($filter['datefrom']);
-            if ($filter['dateto'])           $sparams['dateto']     = strtotime($filter['dateto']);
-            if ($filter['pinned'] != '')     $sparams['pinned']     = (int) $filter['pinned'];
-            if ($filter['postponed'] != '')  $sparams['postponed']  = (int) $filter['postponed'];
-            if ($filter['comments'] != '')   $sparams['comments']   = (int) $filter['comments'];
-            if ($this->mode != -1)           $sparams['archived']   = (int) $this->mode;
+            if ($filter['userid'] > 0)      $sparams['user']       = (int) $filter['userid'];
+            if ($filter['categoryid'] > 0)  $sparams['category']   = (int) $filter['categoryid'];            
+            if ($filter['datefrom'])        $sparams['datefrom']   = strtotime($filter['datefrom']);
+            if ($filter['dateto'])          $sparams['dateto']     = strtotime($filter['dateto']);
+            if ($filter['pinned'] > -1)     $sparams['pinned']     = (int) $filter['pinned'];
+            if ($filter['postponed'] > -1)  $sparams['postponed']  = (int) $filter['postponed'];
+            if ($filter['comments'] > -1)   $sparams['comments']   = (int) $filter['comments'];
+            if ($filter['approval'] > -1)   $sparams['approval']   = (int) $filter['approval'];
+            if ($this->mode != -1)          $sparams['archived']   = (int) $this->mode;
+            
+            $sparams = $this->events->runEvent('articlesPrepareSearch', $sparams);
             
             $this->articleItems = $this->articleList->getArticlesByCondition($sparams, true);
             $this->translateCategories();
