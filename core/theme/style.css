@@ -1300,6 +1300,10 @@ span.fpcm-ui-shorthelp {
     color: #0048A9;
 }
 
+table.fpcm-ui-table.fpcm-ui-options tr td span.fpcm-ui-shorthelp.fpcm-options {
+    position:relative;bottom:0.8em;
+}
+
 .fpcm-ui-progressbar-label {
     float: left;
     display: block;

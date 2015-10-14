@@ -18,7 +18,7 @@
             <!-- Dateimanager layer -->  
             <div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-filemanager"></div>            
             
-            <?php include __DIR__.'/editors/'.$editorFile.'.php'; ?>                
+            <?php include $editorFile; ?>                
             <?php include __DIR__.'/buttons.php'; ?>
         </div>
 

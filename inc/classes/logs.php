@@ -130,7 +130,7 @@
                     $file = baseconfig::$logFiles['dblog'];
                     break;
                 default:
-                    return baseconfig::$settings->session->clearSessions();
+                    return baseconfig::$fpcmSession->clearSessions();
             }
             
             if (isset($file)) {

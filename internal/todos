@@ -31,6 +31,9 @@ Stand: 09.10.2015 - 22:00 Uhr
 * verbesserte Hilfe (nicht zentral sondern Seiten-bezogen)
 * Erweiterung & Update der Hilfe-Texte (Kommentare, Profil, Optionen, Editor)
 * Überarbeitung Suchfunktion
+* Bugfix: Fatal error: Access to undeclared static property: fpcm\classes\baseconfig::$settings in /users/imagine/www/fanpress3/inc/classes/logs.php on line 133
+* Kontext-Hilfe für DateTime-Masks in Optionen + Profil analog jQuery Lib/ Passwort
+* Editor-Plugins, verschieben von Init-Daten aus articlebase in Plugin-Klassen, ähnlich Spam-Plugins
 
 -- ToDo v3.0 --
 

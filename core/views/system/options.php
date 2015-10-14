@@ -32,11 +32,14 @@
                     </tr>		
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_TIMEZONE'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::selectGroup('system_timezone', $timezoneAreas, $globalConfig['system_timezone']); ?></td>		
+                        <td><?php fpcm\model\view\helper::selectGroup('system_timezone', $timezoneAreas, $globalConfig['system_timezone']); ?></td>
                     </tr>						
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::textInput('system_dtmask', '', $globalConfig['system_dtmask']); ?></td>
+                        <td>
+                            <?php fpcm\model\view\helper::textInput('system_dtmask', '', $globalConfig['system_dtmask']); ?>
+                            <a href="http://us2.php.net/manual/function.date.php" target="_blank"><span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK_HELP'); ?>"></span></a>
+                        </td>
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_CACHETIMEOUT'); ?>:</td>

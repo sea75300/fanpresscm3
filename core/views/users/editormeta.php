@@ -15,6 +15,7 @@
             <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK'); ?>:</td>
             <td>
                 <?php \fpcm\model\view\helper::textInput('usermeta[system_dtmask]', '', $author->getUserMeta('system_dtmask')); ?>
+                <a href="http://us2.php.net/manual/function.date.php" target="_blank"><span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK_HELP'); ?>"></span></a>
             </td>
         </tr>
         <tr>

@@ -17,7 +17,6 @@
             $this->view    = new \fpcm\model\view\acp('articleadd', 'articles');
             
             $this->article = new \fpcm\model\articles\article();
-            $this->fileLib = new \fpcm\model\system\fileLib();
             $this->categoryList = new \fpcm\model\categories\categoryList();
         }
 
