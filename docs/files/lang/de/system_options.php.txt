@@ -19,7 +19,8 @@
         'SYSTEM_OPTIONS_CRONJOBS'                   => 'Asynchrone Cronjob-Ausführung inaktiv',
         'SYSTEM_OPTIONS_URL'                        => 'URL für Artikellinks',
         'SYSTEM_OPTIONS_LANG'                       => 'Sprache',   
-        'SYSTEM_OPTIONS_DATETIMEMASK'               => 'Datum- und Zeitanzeige (Syntax: <a href="http://php.net/manual/de/function.date.php">date()</a>-Funktion von PHP)',
+        'SYSTEM_OPTIONS_DATETIMEMASK'               => 'Datum- und Zeitanzeige',
+        'SYSTEM_OPTIONS_DATETIMEMASK_HELP'          => 'Syntax entspricht date()-Funktion von PHP',
         'SYSTEM_OPTIONS_TIMEZONE'                   => 'Zeitzone',
         'SYSTEM_OPTIONS_SESSIONLENGHT'              => 'Maximale Länge einer Admin-Sitzung',
         'SYSTEM_OPTIONS_SESSIONLENGHT_1800'         => '0,5 Stunden',
@@ -67,7 +68,7 @@
         'SYSTEM_OPTIONS_ANTISPAMQUESTION'           => 'Anti-Spam-Frage',
         'SYSTEM_OPTIONS_ANTISPAMANSWER'             => 'Antwort auf Anti-Spam-Frage',
         'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'Anzahl an Artikeln im ACP',
-        'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Anzahl Login-Versuche vor temporärerer Sperre',
+        'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Anzahl Login-Versuche vor temporärer Sperre',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Zeitsperre zwischen zwei Kommentaren',
         'SYSTEM_OPTIONS_FLOODPROTECTION_0'          => 'keine',

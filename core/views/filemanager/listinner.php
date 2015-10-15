@@ -1,10 +1,5 @@
-<?php if (!count($files)) : ?>
-<table class="fpcm-ui-table fpcm-ui-filemanager">
-    <tr>
-        <td colspan="4"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>
-</table>
-<?php endif; ?> 
+<?php \fpcm\model\view\helper::notFoundContainer($files, 4); ?>
+
 <div class="fpcm-filelist-images">
     <?php foreach($files AS $file) : ?>
     <div class="fpcm-filelist-thumb-box">

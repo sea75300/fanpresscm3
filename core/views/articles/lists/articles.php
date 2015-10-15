@@ -8,12 +8,8 @@
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
     </tr>
 
-    <?php if (!count($list)) : ?>
-    <tr class="fpcm-td-spacer" colspan="6"><td></td></tr>
-    <tr>
-        <td colspan="6"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>                    
-    <?php endif; ?>    
+    <?php \fpcm\model\view\helper::notFoundContainer($list, 6); ?>
+
     <?php foreach($list AS $articleMonth => $articles) : ?>
         <tr class="fpcm-td-spacer" colspan="6"><td></td></tr>
         <tr>

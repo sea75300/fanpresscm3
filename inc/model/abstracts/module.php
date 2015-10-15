@@ -327,7 +327,7 @@
          */
         public function isInstalled() {
             return (bool) $this->isInstalled;
-        }        
+        }
         
         /**
          * Setzt Installiert-Status
@@ -344,6 +344,14 @@
         public function setDependenciesOk($dependenciesOk) {
             $this->dependenciesOk = (bool) $dependenciesOk;
         }        
+        
+        /**
+         * Prüft, ob für aktuelle Systemsprache ein Sprachpaket vorliegt
+         * @return bool
+         */
+        public function currentLanguageIncluded() {
+            return is_dir(\fpcm\classes\baseconfig::$moduleDir.$this->modkey.'/lang/'.$this->config->system_lang);
+        }
         
         /**
          * Gibt Inhalt von "data" zurück

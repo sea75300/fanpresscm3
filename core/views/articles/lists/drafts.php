@@ -7,12 +7,8 @@
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all-draft', false); ?></th>
     </tr>
 
-    <?php if (!count($drafts)) : ?>
-    <tr class="fpcm-td-spacer"><td></td></tr>
-    <tr>
-        <td colspan="5"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>
-    <?php endif; ?>    
+    <?php \fpcm\model\view\helper::notFoundContainer($drafts, 5); ?>
+
     <?php foreach($drafts AS $articleMonth => $articles) : ?>
         <tr class="fpcm-td-spacer"><td></td></tr>
         <tr>

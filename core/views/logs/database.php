@@ -3,12 +3,10 @@
         <th><?php $FPCM_LANG->write('LOGS_LIST_TIME'); ?></th>
         <th><?php $FPCM_LANG->write('LOGS_LIST_TEXT'); ?></th>
     </tr>
-    <tr class="fpcm-td-spacer"><td></td></tr>
-    <?php if (!count($databaseLogs)) : ?>
-    <tr>
-        <td colspan="2"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>                    
-    <?php endif; ?>    
+    
+    <?php \fpcm\model\view\helper::notFoundContainer($databaseLogs, 2); ?>
+
+    <tr class="fpcm-td-spacer"><td></td></tr>  
     <?php foreach ($databaseLogs as $value) : ?>
     <?php if (!is_object($value)) continue; ?>
     <tr>

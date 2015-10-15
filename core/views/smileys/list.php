@@ -17,12 +17,8 @@
                         <th><?php $FPCM_LANG->write('FILE_LIST_SMILEYCODE'); ?></th>
                         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
                     </tr>
+                    <?php \fpcm\model\view\helper::notFoundContainer($list, 4); ?>
                     <tr class="fpcm-td-spacer"><td></td></tr>
-                    <?php if (!count($list)) : ?>
-                    <tr>
-                        <td colspan="4"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-                    </tr>                    
-                    <?php endif; ?>
                     <?php foreach ($list as $smiley) : ?>
                     <tr>
                         <td class="fpcm-ui-smiley-listimg"><img src="<?php print $smiley->getSmileyUrl(); ?>" alt="<?php print $smiley->getFilename(); ?>" <?php print $smiley->getWhstring(); ?>></td>

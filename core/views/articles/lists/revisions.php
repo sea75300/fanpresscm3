@@ -7,11 +7,8 @@
     </tr>
     <tr class="fpcm-td-spacer"><td></td></tr>
 
-    <?php if (!count($revisions)) : ?>
-    <tr>
-        <td colspan="4"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>
-    <?php endif; ?>
+    <?php \fpcm\model\view\helper::notFoundContainer($revisions, 4); ?>
+
     <?php foreach($revisions AS $revisionTime => $revisionTitle) : ?>
         <tr>
             <td class="fpcm-ui-articlelist-open"><?php \fpcm\model\view\helper::linkButton($article->getEditLink().'&rev='.$revisionTime, 'EDITOR_STATUS_REVISION_SHOW', '', 'fpcm-articlelist-openlink'); ?></td>

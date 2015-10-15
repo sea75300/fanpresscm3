@@ -176,6 +176,7 @@
         'MODULES_FAILED_UPDATE'         => '<span class="fa fa-minus-square fpcm-ui-booltext-no"></span> Unable to update module.',
         'MODULES_FAILED_TEMPKEYS'       => 'No selected modules found for installation.',
         'MODULES_FAILED_DEPENCIES'      => 'Unfulfilled dependencies for module!',
+        'MODULES_FAILED_LANGUAGE'       => 'Language pack for current system language is missing!',
         
         'PUBLIC_FAILED_CAPTCHA'         => 'Your captcha answer was wrong!',
         'PUBLIC_FAILED_NAME'            => 'Please insert your name!',

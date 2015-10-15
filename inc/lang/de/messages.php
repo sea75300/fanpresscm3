@@ -176,6 +176,7 @@
         'MODULES_FAILED_UPDATE'         => '<span class="fa fa-minus-square fpcm-ui-booltext-no"></span> Das ausgewählte Modul konnte nicht aktualisiert werden.',
         'MODULES_FAILED_TEMPKEYS'       => 'Es wurden keine Module zur Installation vorgemerkt!',
         'MODULES_FAILED_DEPENCIES'      => 'Es wurden nicht-erfüllte Abhängigkeiten erkannt!',
+        'MODULES_FAILED_LANGUAGE'       => 'Für die aktuelle Sprache wurde kein Sprachpaket gefunden!',
         
         'PUBLIC_FAILED_CAPTCHA'         => 'Du hast die Captcha-Frage nicht korrekt beantwortet!',
         'PUBLIC_FAILED_NAME'            => 'Bitte gibt deinen Namen ein!',

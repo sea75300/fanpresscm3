@@ -7,18 +7,15 @@
         <th class="fpcm-ui-modules-version fpcm-ui-center"><?php $FPCM_LANG->write('MODULES_LIST_VERSION_REMOTE'); ?></th>
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
     </tr>
+    
+    <?php \fpcm\model\view\helper::notFoundContainer($modules, 6); ?>
 
     <tr class="fpcm-td-spacer"><td colspan="6"></td></tr>
-    <?php if (!count($modules)) : ?>
-    <tr>
-        <td colspan="6"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>                    
-    <?php endif; ?>
     <?php foreach ($modules as $module) :  ?>                
     <tr class="fpcm-ui-modules-updates<?php print $module->hasUpdates(); ?>">
         <td class="fpcm-ui-center">
         <?php if ($module->isInstalled()) : ?>
-            <?php if ($module->dependenciesOk()) : ?>            
+            <?php if ($module->dependenciesOk() && $module->currentLanguageIncluded()) : ?>
                 <?php if ($module->getStatus()) : ?>
                     <?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'modules/config&key='.$module->getkey(), 'MODULES_LIST_CONFIGURE', str_replace('/', '', $module->getKey()), 'fpcm-modules-configuremodule fpcm-loader'); ?>
                     <?php if ($permissionEnable) : ?>
@@ -30,7 +27,9 @@
                         <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_ENABLE', str_replace('/', '', $module->getKey()), 'fpcm-modulelist-singleaction-enable'); ?>
                     <?php endif; ?>           
                 <?php endif; ?>
-            <?php else : ?>    
+            <?php elseif (!$module->currentLanguageIncluded()) : ?>    
+                <?php \fpcm\model\view\helper::dummyButton('MODULES_FAILED_LANGUAGE', 'fpcm-modules-depencerror'); ?>
+            <?php elseif (!$module->dependenciesOk()) : ?>    
                 <?php \fpcm\model\view\helper::dummyButton('MODULES_FAILED_DEPENCIES', 'fpcm-modules-depencerror'); ?>
             <?php endif; ?>
 

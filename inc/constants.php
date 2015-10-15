@@ -62,7 +62,7 @@
     if (!defined('FPCM_ACP_ARTICLELIST_LIMIT')) {
         /**
          * Anzahl Elemente in ACP-Artikel-Liste
-         * kann ab FPCM 3.1 durch Einstellung in Benutzeroptionen überschrieben werden
+         * @deprecated since FPCM 3.1.0, moved to system options
          */        
         define ('FPCM_ACP_ARTICLELIST_LIMIT', 100);
     }

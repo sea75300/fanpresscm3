@@ -7,12 +7,10 @@
         <th></th>
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
     </tr>
+    
+    <?php \fpcm\model\view\helper::notFoundContainer($comments, 6); ?>
+
     <tr class="fpcm-td-spacer"><td></td></tr>
-    <?php if (!count($comments)) : ?>
-    <tr>
-        <td colspan="6"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>                    
-    <?php endif; ?>
     <?php foreach($comments AS $comment) : ?>
     <tr>
         <td <?php if ($commentsMode == 1) : ?>class="fpcm-ui-articlelist-open"<?php endif; ?>>

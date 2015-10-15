@@ -47,8 +47,8 @@
     function fpcmErrorHandler($ecode, $etext, $efile, $eline) {        
         $errorLog = dirname(__DIR__).'/data/logs/phplog.txt';
         
-        if (!is_writable($errorLog)) {
-            return false;
+        if (!is_writable($errorLog)) {            
+            return true;
         }
         
         $text = array($etext, 'in file '.$efile.', line '.$eline, 'ERROR CODE: '.$ecode);
@@ -56,14 +56,14 @@
         $LogLine = json_encode(array('time' => date('Y-m-d H:i:s'), 'text' => implode(PHP_EOL, $text)));
         file_put_contents($errorLog, $LogLine.PHP_EOL, FILE_APPEND);
 
-        return false;
+        return (defined('FPCM_DEBUG' && FPCM_DEBUG) ? false : true);
     }
     
     /**
      * Debug-Ausgabe am Ende der Seite
      */
     function fpcmDebugOutput() {
-        if (!FPCM_DEBUG) {
+        if (defined('FPCM_DEBUG') && !FPCM_DEBUG) {
             return false;
         }
         

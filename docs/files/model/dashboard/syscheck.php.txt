@@ -42,7 +42,7 @@
             $this->headline = $this->language->translate('SYSTEM_CHECK');
             $this->content  = implode(PHP_EOL, array('<table class="fpcm-ui-table fpcm-small-text2" style="overflow:auto;">', implode(PHP_EOL, $this->tableContent),'</table>'));
             $this->name     = 'syscheck';            
-            $this->position = 3;
+            $this->position = 5;
             $this->height   = 1;
         }
         

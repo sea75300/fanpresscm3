@@ -21,11 +21,9 @@
                         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
                     </tr>
                     <tr class="fpcm-td-spacer"><td></td></tr>
-                    <?php if (!count($ipList)) : ?>
-                    <tr>
-                        <td colspan="5"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-                    </tr>                    
-                    <?php endif; ?>    
+                    
+                    <?php \fpcm\model\view\helper::notFoundContainer($ipList, 5); ?>
+                    
                     <?php foreach ($ipList as $value) : ?>
                     <tr>
                         <td><?php print \fpcm\model\view\helper::escapeVal($value->getIpaddress()); ?></td>

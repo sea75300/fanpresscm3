@@ -5,12 +5,8 @@
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all-trash', false); ?></th>
     </tr>
 
-    <?php if (!count($trash)) : ?>
-    <tr class="fpcm-td-spacer"><td></td></tr>
-    <tr>
-        <td colspan="3"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>
-    <?php endif; ?>
+    <?php \fpcm\model\view\helper::notFoundContainer($trash, 3); ?>
+
     <?php foreach($trash AS $articleMonth => $articles) : ?>
         <tr class="fpcm-td-spacer"><td></td></tr>
         <tr>

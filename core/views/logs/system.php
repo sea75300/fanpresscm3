@@ -2,13 +2,11 @@
     <tr>
         <th><?php $FPCM_LANG->write('LOGS_LIST_TIME'); ?></th>
         <th><?php $FPCM_LANG->write('LOGS_LIST_TEXT'); ?></th>
-    </tr>   
+    </tr>
+    
+    <?php \fpcm\model\view\helper::notFoundContainer($systemLogs, 2); ?>
+    
     <tr class="fpcm-td-spacer"><td></td></tr>
-    <?php if (!count($systemLogs)) : ?>
-    <tr>
-        <td colspan="2"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
-    </tr>                    
-    <?php endif; ?>    
     <?php foreach ($systemLogs as $value) : ?>
     <?php if (!is_object($value)) continue; ?>
     <tr>

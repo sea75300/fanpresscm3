@@ -384,6 +384,17 @@
         }
 
         /**
+         * Liefert "Keine Einträge gefunden"-Zeile zurück
+         * @param array $data
+         * @param int $cols
+         * @return void
+         */
+        public static function notFoundContainer(array $data, $cols) {
+            if (count($data)) return false;
+            print "<tr class=\"fpcm-td-spacer\" colspan=\"{$cols}\"><td></td></tr><tr><td colspan=\"6\">".self::$language->translate('GLOBAL_NOTFOUND2')."</td></tr>";
+        }
+
+        /**
          * IDs aufräumen
          * @param string $text ID-String
          * @return string

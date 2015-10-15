@@ -42,7 +42,7 @@
             $this->headline = $this->language->translate('SYSTEM_stats');
             $this->content  = implode(PHP_EOL, array('<table class="fpcm-ui-table fpcm-small-text2">', implode(PHP_EOL, $this->tableContent),'</table>'));
             $this->name     = 'sysstats';            
-            $this->position = 4;
+            $this->position = 6;
             $this->height   = 1;
         }
         

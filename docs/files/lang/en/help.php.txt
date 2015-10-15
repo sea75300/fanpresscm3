@@ -37,13 +37,13 @@ Help language file
                 </li>
             </ul>
 
-            <p>the <span class="fpcm-ui-button">Shortlink</span>-button at the top of the editor allows you to create a shortened
+            <p>The <span class="fpcm-ui-button">Shortlink</span>-button at the top of the editor allows you to create a shortened
             link using <a href=http://is.gd>is.gd</a> service. The service can be changed by modules.</p>
 
             <p>If possible, you can connect FanPress CM to twitter and let the system create automatically create tweets during
-            when publishing or updatig an article. See the help chapter for further information..</p>
+            when publishing or updating an article. See the help chapter for further information..</p>
 
-            <p>To postpone an article until a certain time, open the extended dialog in the button box at the bottom of the editor
+            <p>To postpone an article until a certain time, open the extended dialogue in the button box at the bottom of the editor
             and check the postpone checkbox. Know you can select a date and time.</p>
 
             <p>To hide content like spoilers and so an, you can use the FanPress CM tag <strong>&lt;readmore&gt;</strong>. Just insert
@@ -68,6 +68,19 @@ Help language file
         <![CDATA[
             <p>This area allows you to manager you existing articles. You can edit or delete them as well as set different article
             options.</p>
+            <ul>
+                <li><em>Pin/ unpin articles:</em> Pin selected articles to keep them on top of you sites article list or revet the
+                    pinned status.</li>
+                <li><em>Approve articles:</em> Publish selected articles waiting for approval to make them visible to your visitors.</li>
+                <li><em>Archive article:</em> Move selected articles to internal archive.</li>
+                <li><em>Enable/ disable comments:</em> Enable or disabled comment list and form for selected articles.</li>
+                <li><em>Create new tweets:</em> Create new posts at Twitter for selected articles in case you enabled the Twitter
+                    connection in system options.</li>
+                <li><em>Delete:</em> Throw selected articles into trash if enabled. If trash is not enabled, articles will be deleted
+                    immediately.</li>
+                <li><em>Restore articles:</em> Restore selected articles from trash if enabled.</li>
+                <li><em>Clear trash:</em> Remove all articles in trash.</li>
+            </ul>
             <p>The <span class="fpcm-ui-button">Search & filter</span> button allows you to search or filter you articles by various conditions. The main menu
             let you made an additional pre selection for f. g. for active articles.</p>
             <p>If the system trash is enabled in system settings, you'll find a third tab called <i>Trash</i> at the top.
@@ -82,8 +95,16 @@ Help language file
         <text>
         <![CDATA[
             <p>The <i>Comments</i> area is an extension of the editor <i>Comments</i>-tab. This area lists you all existing articles
-            regardless of their related article. Your can manage all articles as you can do in the edtor tab, which means edit, delete,
+            regardless of their related article. Your can manage all articles as you can do in the editor tab, which means edit, delete,
             approve them or set the the spam/ private status.</p>
+            <ul>
+                <li><em>Comment is private:</em> Private comments will not be displayed to your visitors.</li>
+                <li><em>Comment is approved:</em> Approved comments will be displayed in public. Visitors can read and replay to them.
+                    Unapproved comments won't show up in public like private comments. Comment approval can be disabled in system
+                    options.</li>
+                <li><em>Comment is spam:</em> Comments marks as spam won't be displayed to your visitors. They will be used to improve
+                    spam detection if you don't delete them.</li>
+            </ul>
         ]]>
         </text>
     </chapter>
@@ -93,7 +114,7 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-        <p>The <i>filemanager</i> allows you to manage all uploaded images you are using in your articles. A simplyfied view is
+        <p>The <i>filemanager</i> allows you to manage all uploaded images you are using in your articles. A simplified view is
         available when opend in the article editor. The filemanager shows you a list of all images with a thumbnail and allows
         you to perform a few actions like deletion, creating new thumbnails and rename images.</p>
         <p>To upload an image, select the upload files tab. This tab has two different modes, which can be changed in system settings.</p>
@@ -103,8 +124,8 @@ Help language file
         <p><b>How to insert an image into an article?</b></p>
         <p>To insert the source path of an image, use the button <span class="fpcm-ui-button">Insert image url</span> or
         <span class="fpcm-ui-button">Insert thumbnail url</span>, depending on what you want to insert into your article.</p>
-        <p>You also can click right on both buttons and copy the source link and insert it into the source field in the Imser image
-        dialog. The HTML editor view uses an autocompletion in the source field. Just start typing the file name. TinyMCE includes an
+        <p>You also can click right on both buttons and copy the source link and insert it into the source field in the Insert image
+        dialogue. The HTML editor view uses an auto-completion in the source field. Just start typing the file name. TinyMCE includes an
         option called "Image list" where you can select an image.</p>
         ]]>
         </text>
@@ -117,13 +138,13 @@ Help language file
         <![CDATA[
             <p>The <b>profile</b> contains your personal settings such as:</p>
             <ul>
-                <li><b>Password</b> for you login</li>
-                <li><b>Displayname</b> which will be displayed in every article you created</li>
-                <li><b>E-Mail address</b> for password reset, comment notifications, etc.</li>
-                <li><b>Language</b> for FanPress CM acp</li>
-                <li><b>Timezone</b> for time and date of articles, etc.</li>
-                <li><b>Date-Time-Mask</b> of your current location</li>
-                <li><b>ACP article list limit</b> defined the nu7mber of articles display per page in ACP article list</li>
+                <li><em>Password</em> for you login</li>
+                <li><em>Display name</em> which will be displayed in every article you created</li>
+                <li><em>E-Mail address</em> for password reset, comment notifications, etc.</li>
+                <li><em>Language</em> for FanPress CM acp</li>
+                <li><em>Timezone</em> for time and date of articles, etc.</li>
+                <li><em>Date-Time-Mask</em> of your current location</li>
+                <li><em>ACP article list limit</em> defined the number of articles display per page in ACP article list</li>
             </ul>
         ]]>
         </text>
@@ -137,11 +158,11 @@ Help language file
             <p>The <b>Options</b> allows to change all system wide settings of FanPress CM.</p>
             <ul>
                 <li><b>System settings:</b><br>
-                    Users with permissions to change settngs can chose those options:
+                    Users with permissions to change settings can chose those options:
                     <ul>
                         <li><b>General:</b><br>
                             <ul>
-                                <li>The upper part contains gerneral settings of the FanPress CM system.
+                                <li>The upper part contains general settings of the FanPress CM system.
                                     <ul>
                                         <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
                                         <li><em>Article url base:</em> Base url for articles, important for use with phpinclude. In most cases
@@ -152,15 +173,15 @@ Help language file
                                         <li><em>Date-Time-Mask:</em> Settings how to display date and time informations, can be override by user settings.</li>
                                         <li><em>Interval for cache timeout:</em> Interval until cache content expires automatically.</li>
                                         <li><em>Usemode:</em> Mode how to use FanPress CM (phpinclude or iframe).</li>
-                                        <li><em>CSS style file path:</em> Pfad to your css file if you use iframes.</li>
-                                        <li><em>Include jQuery libary:</em> Include jQuery libary shipped with FanPress CM. Important if you use
-                                        phpclude and get a warning the jQuery isn't loaded at your page.</li>
+                                        <li><em>CSS style file path:</em> path to your css file if you use iframes.</li>
+                                        <li><em>Include jQuery library:</em> Include jQuery library shipped with FanPress CM. Important if you use
+                                        phpclude and get a warning the jQuery is not loaded at your page.</li>
                                     </ul>
                                 </li>
                                 <li>The lower second part includes maintenance and security settings.
                                     <ul>
                                         <li><em>Maintenance mode enabled:</em> The "Maintenance mode" limits system access to already logged-in users only.</li>
-                                        <li><em>ACP session lenght:</em> Interval until auto logout from ACP.</li>
+                                        <li><em>ACP session length:</em> Interval until auto logout from ACP.</li>
                                         <li><em>Login auto-lock:</em> This settings defines the number of failed login-attempts before authentication is locked temporarily.</li>
                                     </ul>                                     
                                 </li>
@@ -176,7 +197,7 @@ Help language file
                                 <li><em>Article trash is enabled:</em> Enable article trash to and be able to restore deleted articles.</li>
                                 <li><em>Create thumbnail if image is bigger than:</em> Setting to automatically create thumbnails if
                                 images are bigger the then amount of pixel.</li>
-                                <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnials.</li>
+                                <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnails.</li>
                                 <li><em>CSS classes in editor:</em> CSS classes with can be used in article editor.</li>
                             </ul>
                         </li>            
@@ -187,7 +208,7 @@ Help language file
                                 <li><em>Article list template:</em> Template for front end article list.</li>
                                 <li><em>Single article template:</em> Template to display a single article in front end.</li>
                                 <li><em>Sort articles by:</em> Sorting of articles in article list.</li>
-                                <li><em>Show share buttons:</em> Enabled social media share bottuns.</li>
+                                <li><em>Show share buttons:</em> Enabled social media share buttons.</li>
                                 <li><em>Show archive link:</em> Enable archive link in front end pagination.</li>
                                 <li><em>RSS-Feed is enabled:</em> Enable RSS feed.</li>
                             </ul>
@@ -199,9 +220,9 @@ Help language file
                                 <li><em>Comment template:</em> Template to display a single comment.</li>
                                 <li><em>Spam captcha question:</em> Question for default spam captcha plugin.</li>
                                 <li><em>Spam captcha answer:</em> Answer for default spam captcha plugin.</li>
-                                <li><em>Flood protection between two comments:</em> Time betweet to comment from same IP address.</li>
+                                <li><em>Flood protection between two comments:</em> Time between to comment from same IP address.</li>
                                 <li><em>Email address is required:</em> Email address is required to add a comment to an article.</li>
-                                <li><em>Approval of comments is required:</em> Comment must be approved before beeing displayed in
+                                <li><em>Approval of comments is required:</em> Comment must be approved before being displayed in
                                 article.</li>
                                 <li><em>Send Notification of new comments to:</em> Email address which should be used for notifications
                                 about new comments. (author only, global only, both)</li>
@@ -209,8 +230,8 @@ Help language file
                                     marked as spam, before a new comment of this author will be marked as spam automatically.</li>
                             </ul>
                         </li>
-                        <li><b>Twitterc connection:</b><br>
-                            If you see this tab, got to teh Twitter connection chapter below.
+                        <li><b>Twitter connection:</b><br>
+                            If you see this tab, got to the Twitter connection chapter below.
                         </li>
                         <li><b>System check and updates:</b><br>
                             This tab give you a detailed overview about your systems status and may indicate problems with your webspace.
@@ -220,21 +241,21 @@ Help language file
                     </ul>
                 </li>
                 <li><b>User and rolls:</b><br>
-                    Herer you can manage users and user rolls in your system, including deletion, editing and so on.
+                    Here you can manage users and user rolls in your system, including deletion, editing and so on.
                 </li>
                 <li><b>Permissions:</b><br>
                     Permissions allows you to define which user can use a function or not. This area should be visible for
                     administrators only! You can't prohibit the Administrator roll to access permission settings.
                 </li>
-                <li><b>IP-Adressen:</b><br>
+                <li><b>IP addresses:</b><br>
                     Here you can lock IP addresses to prohibit access to FanPress CM because of spam comments, many login failures, etc.
                 </li>
-                <li><b>Kategorien:</b><br>
-                    The area to manage article categories, depeding on given permissions.
+                <li><b>Categories:</b><br>
+                    The area to manage article categories, depending on given permissions.
                 </li>
                 <li><b>Templates:</b><br>
                     Edit templates to display articles, comments, the latest news, etc. in front end. The template editor includes
-                    syntaxhilighting and a list of allowed replacements.
+                    syntaxhighlighting and a list of allowed replacements.
                 </li>
                 <li><b>Smileys:</b><br>
                     Manage smileys available in articles and comments.
@@ -255,21 +276,21 @@ Help language file
         <text>
         <![CDATA[
             <p>The <b>Modules</b> area allows you to manage installed and available module including updates and so on.
-            Depeding on teh amount of used events, classes, etc. modules and extend functionality of FanPress CM.</p>
-            <p>When your host allows external connections to other servers (see dashboard conatainer of system check),
+            Depending on the amount of used events, classes, etc. modules and extend functionality of FanPress CM.</p>
+            <p>When your host allows external connections to other servers (see dashboard container of system check),
             managing modules is pretty easy. In case you have to install/ update modules, use the "Install module manually" tab.
-            Simply select the module ZIP archive file and start the upload. The package will be automaticaly extracted into the correct
+            Simply select the module ZIP archive file and start the upload. The package will be automatically extracted into the correct
             subfolder in "fanpress/inc/modules". If an uploaded module is not installed, it's install action will be called otherwise
             the update instructions will be executed.</p>
             <p>You can manage every module using the buttons in front of the module name. The visible buttons depend on the module
             manager roll permissions. Non-admin users should NOT have access to settings to manage modules. If you want to perform
             an action to various modules at the same time, check the boxes at the end on a line and select the action your want to
             execute at the right bottom.</p>
-            <p>Modul authors can define module <b>dependencies</b>, which means a selected module requires other modules to be enabled
+            <p>Module authors can define module <b>dependencies</b>, which means a selected module requires other modules to be enabled
             and usable. The button <span class="fpcm-ui-button"><span class="ui-icon ui-icon-alert"></span></span> at the beginning of a
             module line informs you about dependency errors. See module description for further information.</p>
             <p>In case you want to create an own module, check the <a href="http://nobody-knows.org/download/fanpress-cm/tutorial-zum-schreiben-eines-moduls/">Tutorial</a>
-            and our <a href="http://nobody-knows.org/fpupdate/doku/">class documenation</a>.
+            and our <a href="http://nobody-knows.org/fpupdate/doku/">class documentation</a>.
             </p>
         ]]>
         </text>
@@ -293,7 +314,7 @@ Help language file
         <text>
         <![CDATA[
             <p>Including FanPress CM depend an how you use the system on your site.</p>
-            <p>An assistent for integration is provided by the "FanPress CM Integration" Modul which can be found in module manage.
+            <p>An assistant for integration is provided by the "FanPress CM Integration" module which can be found in module manager.
             If you do it manually, here are further information:</p>
             <p><b>php include:</b></p>
             <p>When using php include, fist include the api file and create a new API object.</p>
@@ -309,17 +330,17 @@ Help language file
                 <li><strong>$api->showPageNumber()</strong> displays current page number, accepts a parameter for page descriptions
                 like "Page XYZ".</li>
                 <li><strong>$api->showTitle()</strong> displayse the article title in HTML &lt;title&gt; , 
-                accepts a parameter for a seperator of your text in &lt;title&gt;.</li>
+                accepts a parameter for a separator of your text in &lt;title&gt;.</li>
                 <li><strong>$api->legacyRedirect()</strong> redirect visitors which enters your site using an FanPress CM 1/2 article/ page url style.</li>
             </ul>
-            <p>You can use a couple of constants fpr further configuration of the output:</p>
+            <p>You can use a couple of constants for further configuration of the output:</p>
             <ul>
                 <li><strong>FPCM_PUB_CATEGORY_LATEST</strong> articles from category in $api->showLatestNews()</li>
                 <li><strong>FPCM_PUB_CATEGORY_LISTALL</strong> articles from category in $api->showArticles()</li>
                 <li><strong>FPCM_PUB_LIMIT_LISTALL</strong> amount of active articles in $api->showArticles()</li>
                 <li><strong>FPCM_PUB_LIMIT_ARCHIVE</strong> amount of archived articles in $api->showArticles()</li>
                 <li><strong>FPCM_PUB_LIMIT_LATEST</strong> amount of articles in $api->showLatestNews()</li>
-                <li><strong>FPCM_PUB_OUTPUT_UTF8</strong> enable or disbale usage of UTF-8 charset in output of $api->showLatestNews(),
+                <li><strong>FPCM_PUB_OUTPUT_UTF8</strong> enable or disable usage of UTF-8 charset in output of $api->showLatestNews(),
                 $api->showArticles() and $api->showTitle(). Should only be used in case special signs as german umlauts are displayed
                 incorrectly.</li>
             </ul>              
@@ -330,7 +351,7 @@ Help language file
                  (fulfils task of shownews.php from FanPress CM 1.x and 2.x)</li>
                 <li><strong>your-domain.xyz/fanpress/index.php?module=fpcm/archive</strong> show article archive
                  (fulfils task of shownews.php from FanPress CM 1.x and 2.x)</li>
-                <li><strong>your-domain.xyz/fanpress/index.php?module=fpcm/article&&amp;id=A_DIGIT</strong> show a singel article with
+                <li><strong>your-domain.xyz/fanpress/index.php?module=fpcm/article&&amp;id=A_DIGIT</strong> show a single article with
                 given id including comments</li>
                 <li><strong>your-domain.xyz/fanpress/index.php?module=fpcm/latest</strong> show latest news</li>
             </ul>
@@ -349,9 +370,9 @@ Help language file
         <![CDATA[
             <p>FanPress CM includes a twitter connection interface, so you can directly connect to Twitter and create tweets when
             publishing and/or updating an article.</p>
-            <p>Follow the follwing steps to initialize the connection.</p>
+            <p>Follow the following steps to initialize the connection.</p>
             <ol>
-                <li>Head to <strong>Options &rarr; System settings &rarr; Twitetr connection</strong>.</li>
+                <li>Head to <strong>Options &rarr; System settings &rarr; Twitter connection</strong>.</li>
                 <li><strong>API key:</strong> Click the  <span class="fpcm-ui-button">Request API key and/or token</span> button
                 and log into Twitters developer page with your account data.</li>
                 <li>Scroll down to a page footer until you see a link called "Manage Your Apps" and click to it. Next select the
@@ -363,10 +384,10 @@ Help language file
                     <strong>Read and Write</strong>.</li>
                 <li><strong>Access Token:</strong> After that you need to create an Access Token. On Twitter scroll down to
                     <strong>Your Access Token</strong> and select the <span class="fpcm-ui-button">Create my access token</span>
-                    button. Again copy <strong>Access Token</strong> und <strong>Access Token Secret</strong> into the same-named
+                    button. Again copy <strong>Access Token</strong> and <strong>Access Token Secret</strong> into the same-named
                     fields in system settings.</li>                
                 <li>Now you can click <span class="fpcm-ui-button">Save</span> in system settings.</li>
-                <li>In case all steps where successfull, you'll get a message that the connection is active.</li>
+                <li>In case all steps where successful, you'll get a message that the connection is active.</li>
             </ol>
             <p>To disconnect you system from Twitter, select <span class="fpcm-ui-button">Delete connection</span>.</p>
         ]]>
