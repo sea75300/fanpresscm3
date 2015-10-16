@@ -209,6 +209,12 @@
             );
             $this->view->assign('articleLimitList', $articleLimitList);
             
+            $defaultFontsizes = array();
+            for ($i=8; $i<=16;$i++) {
+                $defaultFontsizes[$i.' pt'] = $i.'pt';
+            }
+            $this->view->assign('defaultFontsizes', $defaultFontsizes);
+            
             $this->view->addJsVars(array(
                 'fpcmDtMasks' => \fpcm\classes\baseconfig::$dateTimeMasks
             ));

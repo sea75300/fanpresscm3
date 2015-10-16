@@ -321,7 +321,7 @@ var fpcmEditor = function () {
             },
             setup : function(ed) { 
                 ed.on('init', function() {
-                    this.getBody().style.fontSize = '14px';
+                    this.getBody().style.fontSize = fpcmTinyMceDefaultFontsize;
                     jQuery(this.iframeElement).removeAttr('title');
                 });
             }                

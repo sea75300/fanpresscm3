@@ -26,6 +26,7 @@
      * @property int    $system_cache_timeout Cache-Timeout
      * @property bool   $system_loader_jquery jQuery in Frontend laden
      * @property bool   $system_editor aktiver Editor (0 = TinyMCE, 1= HTML)
+     * @property int    $system_editor_fontsize Standard-Schriftgröße im Editor
      * @property bool   $system_maintenance Wartungsmodusaktiv
      * @property int    $system_loginfailed_locked Anzahl fehlgeschlagener Login-Versuche, nach denen Login temporär gesperrt wird
      * 

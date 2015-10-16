@@ -61,6 +61,7 @@
         'SYSTEM_OPTIONS_NEWS_EDITOR_STD'            => 'WYSIWYG view',
         'SYSTEM_OPTIONS_NEWS_EDITOR_CLASSIC'        => 'HTML view',
         'SYSTEM_OPTIONS_NEWS_EDITOR_CSS'            => 'CSS classes in editor',
+        'SYSTEM_OPTIONS_NEWS_EDITOR_FONTSIZE'       => 'Default editor font size',
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'Use jQuery uploader',
         'SYSTEM_OPTIONS_ARCHIVE_LINK'               => 'Show archive link',
         'SYSTEM_OPTIONS_ACTIVECOMMENTTEMPLATE'      => 'Comment template',

@@ -85,7 +85,11 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_EDITOR'); ?>:</td>
                         <td><?php fpcm\model\view\helper::select('system_editor', $editors, $globalConfig['system_editor'], false, false); ?></td>		
-                    </tr> 
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_EDITOR_FONTSIZE'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::select('system_editor_fontsize', $defaultFontsizes, $globalConfig['system_editor_fontsize'], false, false); ?></td>
+                    </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_REVISIONS_ENABLED'); ?>:</td>
                         <td>
@@ -134,7 +138,7 @@
                     </tr>				
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ACTIVENEWSTEMPLATE'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::select('articles_template_active', $articleTemplates, $globalConfig['articles_template_active'], false, false); ?></td>		
+                        <td><?php fpcm\model\view\helper::select('articles_template_active', $articleTemplates, $globalConfig['articles_template_active'], false, false); ?></td>
                     </tr>				
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ACTIVENEWSTEMPLATESINGLE'); ?>:</td>

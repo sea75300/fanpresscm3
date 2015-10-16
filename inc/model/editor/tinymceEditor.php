@@ -59,7 +59,8 @@
                 'fpcmTinyMceCssClasses'  => array_merge($editorStyles, $this->getEditorStyles()),
                 'fpcmTinyMceLinkList'    => $this->getEditorLinks(),
                 'fpcmTinyMceImageList'   => $this->getFileList(),
-                'fpcmTinyMceTextpattern' => $this->getTextPatterns()
+                'fpcmTinyMceTextpattern' => $this->getTextPatterns(),
+                'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize
             );
             
             return $this->events->runEvent('editorInitTinymce', $params);

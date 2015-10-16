@@ -61,6 +61,7 @@
         'SYSTEM_OPTIONS_NEWS_EDITOR_STD'            => 'WYSIWYG Ansicht',
         'SYSTEM_OPTIONS_NEWS_EDITOR_CLASSIC'        => 'HTML Ansicht',
         'SYSTEM_OPTIONS_NEWS_EDITOR_CSS'            => 'CSS-Klassen im Editor',
+        'SYSTEM_OPTIONS_NEWS_EDITOR_FONTSIZE'       => 'Standard-Schriftgröße im Editor',
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'jQuery Dateiupload verwenden',
         'SYSTEM_OPTIONS_ARCHIVE_LINK'               => 'Archiv-Link anzeigen',
         'SYSTEM_OPTIONS_ACTIVECOMMENTTEMPLATE'      => 'Kommentare-Template',

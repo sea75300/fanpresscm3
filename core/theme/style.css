@@ -1003,6 +1003,10 @@ h3, .fpcm-dashboard-container h3 {
     float: none;
 }
 
+table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
+    width: 8em;
+}
+
 table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta,
 .fpcm-ui-editor-metabox-right {
     font-size: 1.4em;
