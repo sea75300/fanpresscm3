@@ -61,19 +61,41 @@
 
             $res = true;
             
-            $pathFiles = glob($path.'/*');
+            $pathFiles  = glob($path.'/*');
 
             if (is_array($pathFiles)) {
+                $pathFilesHidden = glob($path.'/.*');
+                if (is_array($pathFilesHidden)) {
+                    $pathFiles += $pathFilesHidden;
+                }
+                
+                $pathFilesHtAccess = glob($path.'/.htaccess');
+                if (is_array($pathFilesHtAccess)) {
+                    $pathFiles += $pathFilesHtAccess;
+                }
+
                 foreach ($pathFiles as $pathFile) {
-                    if (!file_exists($pathFile) || !is_writable($pathFile) || strpos($path, './') !== false || strpos($path, '../') !== false) continue;                    
+
+                    if (!file_exists($pathFile) ||
+                        !is_writable($pathFile) ||
+                        (substr($pathFile, -2) == '/.' && !substr($pathFile, -5) == '/.hta') ||
+                        substr($pathFile, -3) == '/..') {
+                        continue;
+                    }
+                    
                     if (is_dir($pathFile)) {
                         $res = $res && self::deleteRecursive($pathFile);
+                        if (file_exists($pathFile)) {
+                            $res = $res && rmdir($pathFile);                            
+                        }
                         continue;
                     }
 
                     $res = $res && unlink($pathFile);
                 }   
             }
+            
+            clearstatcache();
             
             return $res && rmdir($path);
         }

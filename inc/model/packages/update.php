@@ -49,9 +49,10 @@
             foreach ($this->files as $zipFile) {
                 $source = $this->extractPath.$zipFile;
 
-                $dest   = dirname(\fpcm\classes\baseconfig::$baseDir.$this->copyDestination.$zipFile);
+                $dest   = dirname(\fpcm\classes\baseconfig::$baseDir).$this->copyDestination.$zipFile;
+                $dest   = is_dir($source) ? dirname($dest) : $dest;                
                 $dest   = $this->replaceFanpressDirString($dest);
-                
+
                 if (is_dir($source)) {
                     if (!file_exists($dest) && !mkdir($dest, 0777)) {
                         if (!is_array($res)) $res = array();
