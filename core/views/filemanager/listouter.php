@@ -36,7 +36,7 @@
 <?php if ($loadAjax) : ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        fpcmJs.reloadFiles();
+        fpcmJs.reloadFiles();        
     });
 </script>
 <?php endif; ?>

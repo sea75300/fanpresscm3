@@ -169,137 +169,11 @@ var fpcmJs = function () {
         self.articleActionsOkButton();
         self.commentActionButtons();
         self.usersActionButtons();
-        self.filemanagerButtons();
-        self.filemanagerInsertButtons();
         self.moduleActionButtons();
         self.assignDeleteButton();
         self.pagerButtons();
         
         noActionButtonAssign = false;
-    };
-    
-    this.setFileManagerIconButtons = function () {
-        jQuery('.fpcm-filelist-link-thumb').button({
-            icons: {
-                primary: "ui-icon-newwin"
-            },
-            text: false        
-        }).next().button({
-            icons: {
-                primary: "ui-icon-arrow-4-diag"
-            },
-            text: false        
-        }).next().button({
-            icons: {
-                primary: "ui-icon-circle-zoomin"
-            },
-            text: false        
-        }).next().button({
-            icons: {
-                primary: "ui-icon-image"
-            },
-            text: false        
-        });
-        
-        jQuery('.fpcm-filelist-articleimage').button({
-            icons: {
-                primary: "ui-icon-image"
-            },
-            text: false        
-        });
-    };
-    
-    this.filemanagerButtons = function () {
-        jQuery('.fpcm-filemanager-buttons #btnRenameFiles').button({
-            icons: {
-                primary: "ui-icon-pencil",
-            },
-            text: true
-        }).click(function () {
-            if (typeof fpcmFmgrNewName != 'undefined') {
-                var newName = prompt(fpcmFmgrNewName, '');
-                if (!newName || newName == '') {
-                    jQuery(this).addClass('fpcm-noloader');
-                    return false;
-                }            
-                jQuery('#newfilename').val(newName);                
-            }
-            
-        });
-        
-        jQuery('.fpcm-filemanager-buttons #btnCreateThumbs').button({
-            icons: {
-                primary: "ui-icon-image",
-            },
-            text: true
-        }).click(function () {            
-            if (!confirm(fpcmConfirmMessage)) {
-                jQuery(this).addClass('fpcm-noloader');
-                return false;
-            }
-        });
-        
-        self.filemanagerDeleteCheckboxes();
-    };
-    
-    this.filemanagerInsertButtons = function () {
-        jQuery('.fpcm-filelist-tinymce-thumb').click(function () {
-            var url   = jQuery(this).attr('href');
-            var title = jQuery(this).attr('imgtxt');  
-
-            if (fpcmEditorType == 1) {
-                if (parent.fileOpenMode == 1) {
-                    parent.document.getElementById('linksurl').value  = url;
-                    parent.document.getElementById('linkstext').value = title;
-                }            
-                if (parent.fileOpenMode == 2) {
-                    parent.document.getElementById('imagespath').value = url;
-                    parent.document.getElementById('imagesalt').value  = title;                
-                }
-
-                window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
-                window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
-            } else {
-                top.tinymce.activeEditor.windowManager.getParams().oninsert(url, { alt: title, text: title });
-                top.tinymce.activeEditor.windowManager.close();
-            }
-
-            return false;
-        });
-
-        jQuery('.fpcm-filelist-tinymce-full').click(function () {
-            var url   = jQuery(this).attr('href');
-            var title = jQuery(this).attr('imgtxt');
-
-            if (fpcmEditorType == 1) {
-                if (parent.fileOpenMode == 1) {
-                    parent.document.getElementById('linksurl').value  = url;
-                    parent.document.getElementById('linkstext').value = title;
-                }            
-                if (parent.fileOpenMode == 2) {
-                    parent.document.getElementById('imagespath').value = url;
-                    parent.document.getElementById('imagesalt').value  = title;
-                }
-
-                window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
-                window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
-            } else {
-                top.tinymce.activeEditor.windowManager.getParams().oninsert(url, { alt: title, text: title });
-                top.tinymce.activeEditor.windowManager.close();
-            }
-
-            return false;
-        });
-
-        jQuery('.fpcm-filelist-articleimage').click(function () {
-            var url   = jQuery(this).attr('href');
-
-            parent.document.getElementById('articleimagepath').value  = url;
-            window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
-            window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
-
-            return false;
-        });
     };
     
     this.assignCheckboxes = function () {
@@ -309,8 +183,6 @@ var fpcmJs = function () {
                 jQuery('.fpcm-list-selectbox').prop('checked', true);
             else
                 jQuery('.fpcm-list-selectbox').prop('checked', false);
-            
-            self.filemanagerDeleteCheckboxes();
         });
         jQuery('#fpcmselectalldraft').click(function(){
             jQuery('.fpcm-select-allsub').prop('checked', false);
@@ -605,22 +477,6 @@ var fpcmJs = function () {
             },
             text: false
         });
-    };
-    
-    this.filemanagerDeleteCheckboxes = function() {
-        jQuery('.fpcm-filemanager-buttons #fpcmselectall').button({
-            icons: {
-                primary: "ui-icon-circle-check"
-            },
-            text: false
-        });
-        
-        jQuery('.fpcm-filelist-actions-checkbox').find('input[type="checkbox"]').button({
-            icons: {
-                primary: "ui-icon-check"
-            },
-            text: false
-        }).button('refresh');
     };
     
     this.pagerButtons = function() {

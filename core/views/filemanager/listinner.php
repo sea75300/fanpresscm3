@@ -55,7 +55,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        fpcmJs.setFileManagerIconButtons();
+        fpcmFilemgr.assignButtons();
     });
 </script>
 
