@@ -1,5 +1,5 @@
 <?php if ($permRename || $permThumbs || $permDelete) : ?>
-<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-filemanager-buttons">
+<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-filemanager-buttons <?php if ($mode > 1) : ?>fpcm-hidden<?php endif; ?>">
     <table>
         <tr>
             <td><?php fpcm\model\view\helper::checkbox('fpcm-select-all', 'fpcm-select-all-checkbutton', '', 'GLOBAL_SELECTALL', 'fpcm-select-all', false); ?></td>

@@ -33,10 +33,12 @@
     </div>
 </div>
 
+<?php include __DIR__.'/buttons.php'; ?>
+
 <?php if ($loadAjax) : ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        fpcmJs.reloadFiles();        
+        fpcmJs.reloadFiles();
     });
 </script>
 <?php endif; ?>

@@ -7,7 +7,9 @@
 
 var fpcmEditor = function () {
     
-    var self = this;
+    var self = this;    
+    var filemanagerWidth  = jQuery(window).width() * 0.75;
+    var filemanagerHeight = jQuery(window).height() * 0.75;
 
     /**
      * Author: DDogg, http://www.php.de/html-usability-und-barrierefreiheit/34508-onclick-input-text-area.html
@@ -162,13 +164,24 @@ var fpcmEditor = function () {
     };
 
     this.showFileManager = function() {
-        fpcmJs.appendHtml('#fpcm-editor-html-filemanager', '<iframe class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
+        fpcmJs.appendHtml('#fpcm-editor-html-filemanager', '<iframe id="fpcm-editor-html-filemanager-frame" class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
         jQuery('#fpcm-editor-html-filemanager').dialog({
-            width    : 900,
+            minWidth : filemanagerWidth,
+            minHeight: filemanagerHeight,
             modal    : true,
             resizable: true,
             title    : fpcmFileManagerHeadline,
             buttons  : [
+                {
+                    text: fpcmExtended,
+                    icons: {
+                        primary: "ui-icon-wrench",
+                        secondary: "ui-icon-triangle-1-n"
+                    },                    
+                    click: function() {
+                        jQuery(this).children('#fpcm-editor-html-filemanager-frame').contents().find('.fpcm-filemanager-buttons').fadeToggle();
+                    }
+                },
                 {
                     text: fpcmClose,
                     icons: {
@@ -187,6 +200,7 @@ var fpcmEditor = function () {
     
     this.showCommentLayer = function (layerUrl) {
         fpcmJs.appendHtml('#fpcm-editor-comments', '<iframe id="fpcm-editor-comment-frame" name="fpcmeditorcommentframe" class="fpcm-full-width" src="' + layerUrl + '"></iframe>');
+        jQuery('.fpcm-ui-commentaction-buttons').fadeOut();
         jQuery('#fpcm-editor-comments').dialog({
             width    : 900,
             modal    : true,
@@ -209,6 +223,7 @@ var fpcmEditor = function () {
                     },                    
                     click: function() {
                         jQuery(this).dialog('close');
+                        jQuery('.fpcm-ui-commentaction-buttons').fadeIn();
                     }
                 }                            
             ],
@@ -297,14 +312,21 @@ var fpcmEditor = function () {
             link_assume_external_targets: true,
             default_link_target   : "_blank",
             autoresize_min_height : '500',
-            file_picker_callback  : function(callback, value, meta) {
+            file_picker_callback  : function(callback, value, meta) {                
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
                     title           : fpcmFileManagerHeadline,
-                    width           : 1024,
-                    height          : 600,
+                    width           : filemanagerWidth,
+                    height          : filemanagerHeight,
                     close_previous  : false,
                     buttons  : [
+                        {
+                            text: fpcmExtended,                   
+                            onclick: function() {
+                                var tinyMceWins = top.tinymce.activeEditor.windowManager.getWindows();
+                                jQuery('#'+ tinyMceWins[1]._id).find('iframe').contents().find('.fpcm-filemanager-buttons').fadeToggle();
+                            }
+                        },
                         {
                             text: fpcmClose,                      
                             onclick: function() {

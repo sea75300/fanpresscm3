@@ -258,7 +258,7 @@
             $this->view->assign('isRevision', false);
             if ($this->showRevision) {
                 $this->view->assign('currentArticle', $this->currentArticle);
-                $this->view->assign('editorFile', 'revisiondiff');
+                $this->view->assign('editorFile', \fpcm\classes\baseconfig::$viewsDir.'articles/editors/revisiondiff.php');
                 $this->view->assign('isRevision', true);
                 $this->view->assign('showRevisions', false);
                 $this->view->assign('showComments', false);

@@ -117,7 +117,7 @@
 </div>
 
 <script type="text/javascript">
-    var editor = null;
+    var editor = null;    
     
     jQuery(document).ready(function() {        
         jQuery('#fpcm-editor-html-insertlink-btn').click(function() {

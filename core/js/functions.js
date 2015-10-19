@@ -80,7 +80,7 @@ var fpcmJs = function () {
 
         fpcmAjax.action   = 'filelist';
         fpcmAjax.query    = 'mode=' + fpcmFmgrMode;
-        fpcmAjax.execDone = 'fpcmJs.showLoader(false);fpcmJs.assignHtml("#tabs-files-list", fpcmAjax.result);fpcmJs.assignButtons();';
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);fpcmJs.assignHtml("#tabs-files-list", fpcmAjax.result);fpcmJs.assignButtons();fpcmFilemgr.assignButtons();';
         fpcmAjax.get();
         
         return false;

@@ -50,12 +50,3 @@
     
     <div class="fpcm-clear"></div>
 </div>
-
-<?php include __DIR__.'/buttons.php'; ?>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmFilemgr.assignButtons();
-    });
-</script>
-
