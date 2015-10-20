@@ -6,6 +6,7 @@
  */
 
 var noActionButtonAssign = false;
+var noDeleteButtonAssign = false;
 
 var fpcmJs = function () {
     
@@ -80,7 +81,7 @@ var fpcmJs = function () {
 
         fpcmAjax.action   = 'filelist';
         fpcmAjax.query    = 'mode=' + fpcmFmgrMode;
-        fpcmAjax.execDone = 'fpcmJs.showLoader(false);fpcmJs.assignHtml("#tabs-files-list", fpcmAjax.result);fpcmJs.assignButtons();fpcmFilemgr.assignButtons();';
+        fpcmAjax.execDone = 'fpcmJs.assignHtml("#tabs-files-list-content", fpcmAjax.result);fpcmJs.assignButtons();fpcmFilemgr.assignButtons();fpcmJs.showLoader(false);';
         fpcmAjax.get();
         
         return false;
@@ -218,6 +219,9 @@ var fpcmJs = function () {
     };
 
     this.assignDeleteButton = function () {
+        
+        if (noDeleteButtonAssign) return false;
+        
         jQuery('.fpcm-delete-btn').button({
             icons: {
                 primary: "ui-icon-trash",
@@ -229,7 +233,9 @@ var fpcmJs = function () {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }
-        });        
+        });
+        
+        noDeleteButtonAssign = true;
     };
     
     this.assignNewButton = function () {

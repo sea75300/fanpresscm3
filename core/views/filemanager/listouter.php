@@ -16,8 +16,9 @@
 
         <form method="post" action="<?php print $FPCM_SELF; ?>?module=files/list&mode=<?php print $mode; ?>">
             <div id="tabs-files-list">
-                <?php include __DIR__.'/listinner.php'; ?>
-            </div>
+                <div id="tabs-files-list-content"><?php include __DIR__.'/listinner.php'; ?></div>
+                <?php include __DIR__.'/buttons.php'; ?>
+            </div>            
         </form>
 
         <?php if ($permUpload) : ?>
@@ -33,12 +34,11 @@
     </div>
 </div>
 
-<?php include __DIR__.'/buttons.php'; ?>
-
 <?php if ($loadAjax) : ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         fpcmJs.reloadFiles();
+        fpcmFilemgr.initActionButtons();
     });
 </script>
 <?php endif; ?>

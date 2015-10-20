@@ -5,8 +5,6 @@
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  */
 
-var noActionButtonAssign = false;
-
 var fpcmFilemanager = function () {
     
     var self = this;
@@ -14,11 +12,8 @@ var fpcmFilemanager = function () {
     this.assignButtons = function () {
         fpcmJs.assignCheckboxes();
         self.initButtonIcons();
-        self.initActionButtons();
         self.initInsertButtons();
         self.initSelectionCheckboxes();
-
-        noActionButtonAssign = false;
     };
     
     this.initButtonIcons = function () {
