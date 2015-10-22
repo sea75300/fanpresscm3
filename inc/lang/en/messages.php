@@ -133,7 +133,7 @@
                                            'In case you\'re unable to do so, contact you host for further help.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Module updates are available. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Show updates</a>',
-        'UPDATE_MODULECHECK_CURRENT'     => 'All installed modules are <strong>up to date</strong>!',
+        'UPDATE_MODULECHECK_CURRENT'     => 'All installed modules are up to date!',
         'UPDATE_MODULECHECK_FAILED'      => 'Update check for installed modules failed!',
         
         'PACKAGES_FAILED_REMOTEFILE'     => 'Error while connecting to package server!',
