@@ -125,16 +125,16 @@
         'LOAD_FAILED_ROLL'              => 'Die gesuchte Benutzerrolle wurde nicht gefunden.',
         'LOAD_FAILED_CATEGORY'          => 'Die gesuchte Kategorie wurde nicht gefunden.',
         
-        'UPDATE_VERSIONCHECK_NEW'       => 'Eine neue FanPress CM Version ist verfügbar! Zum Aktualisieren deines Systems <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>.',
-        'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM <strong>aktuell</strong>!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
+        'UPDATE_VERSIONCHECK_NEW'       => 'Eine neue FanPress CM Version ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
+        'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM aktuell!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
         'UPDATE_NOTAUTOCHECK'           => 'Es konnte automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
         'UPDATE_WRITEERROR'             => 'Die Datei <strong>version.php</strong> im FanPress CM-Verzeichnis ist nicht beschreibbar, was u. U. auch auf andere Dateien deiner Installation zutrifft.<br>'.
                                            'Dies kann durch falsche Dateirechte verursacht werden. Prüfe/ ändere die Rechte der - am Besten aller - Dateien via FTP, bis diese Meldung verschwindet.<br>'.
                                            'Sollte dies nicht gelingen, wende dich bitte an deinen Host für weitere Hilfe.',
         
-        'UPDATE_MODULECHECK_NEW'         => 'Für einige Module sind Updates verfügbar. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Anzeigen</a>',
+        'UPDATE_MODULECHECK_NEW'         => 'Für einige Module sind Updates verfügbar. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Updates anzeigen</a>',
         'UPDATE_MODULECHECK_CURRENT'     => 'Alle installierten Module sind <strong>aktuell</strong>!',
-        'UPDATE_MODULECHECK_FAILED'      => 'Es konnte automatische Modul-Update-Prüfung durchgeführt werden!',
+        'UPDATE_MODULECHECK_FAILED'      => 'Es konnte keine Update-Prüfung für die installierten Module durchgeführt werden!',
         
         'PACKAGES_FAILED_REMOTEFILE'     => 'Es konnte keine Verbindung zum Paketserver hergestellt werden!',
         'PACKAGES_FAILED_LOCALFILE'      => 'Es konnte keine lokale Paket-Datei erzeugt werden!',

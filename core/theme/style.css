@@ -263,17 +263,10 @@ img {
     min-width: 200px;
 }
 
-.fpcm-message-box,
-.fpcm-dashboard-updates-current,
-.fpcm-dashboard-updates-outdated {
+.fpcm-message-box {
     padding: 0.3em;
     color: #000000;
     border-radius: 5px;    
-}
-
-.fpcm-dashboard-updates-current,
-.fpcm-dashboard-updates-outdated {
-    margin-bottom: 0.8em;
 }
 
 .fpcm-message-box {
@@ -310,21 +303,45 @@ img {
     margin: 0.8em;
 }
 
-.fpcm-message-notice, .fpcm-dashboard-updates-current {
+.fpcm-message-notice {
     background:#CCE9F4;
     border: 1px solid #69BDDD;
 }
 
 .fpcm-message-neutral {
-    color: #363636;
     background: #FBEC88;
     border: 1px solid #FAD42E;
 }
 
 ins,
-.fpcm-message-notice,
-.fpcm-dashboard-updates-current {
+.fpcm-message-notice {
     color: #2E6E9E;
+}
+
+table.fpcm-ui-table.fpcm-dashboard-updates tr:first-child td {
+    padding-bottom: 0.8em;
+}
+
+table.fpcm-ui-table.fpcm-dashboard-updates tr td:last-child {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+   -moz-hyphens: auto;
+   -o-hyphens: auto;
+   -webkit-hyphens: auto;
+   -ms-hyphens: auto;
+   -hyphens: auto;
+}
+
+.fpcm-dashboard-updates-current {
+    color: #3399ff;
+}
+
+.fpcm-dashboard-updates-checkerror {
+    color: #666666;
+}
+
+.fpcm-message-neutral {
+    color: #363636;
 }
 
 del,
@@ -338,7 +355,7 @@ del,
     position: absolute;
     width: 100%;
     background: rgba(255,255,255,0.5);
-    padding: 0.4em 0;
+    updates: 0.4em 0;
 }
 
 table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments.fpcm-ui-important-text {
@@ -346,9 +363,9 @@ table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments.fpcm-ui-
     font-size: 1.25em;
 }
 
-.fpcm-message-error, .fpcm-dashboard-updates-outdated {
-    background:#E6A8A8;
+.fpcm-message-error {
     border: 1px solid #cc0000;
+    background:#E6A8A8;
 }
 
 /* Formulare */
@@ -575,17 +592,6 @@ table.fpcm-ui-table th.fpcm-th-full {
     border: 1px solid #C5DBEC;
 }
 
-.fpcm-message-box .fpcm-msg-icon,
-.fpcm-message-box .fpcm-msg-text,
-table.fpcm-ui-table.fpcm-ui-options tr td,
-table.fpcm-ui-table.fpcm-ui-articles tr td,
-table.fpcm-ui-table.fpcm-ui-comments tr td,
-table.fpcm-ui-table.fpcm-ui-users tr td,
-table.fpcm-ui-table.fpcm-ui-categories tr td,
-table.fpcm-ui-table.fpcm-ui-middle tr td {
-    vertical-align: middle;
-}
-
 td,
 table.fpcm-ui-table tr td.fpcm-align-top {
     vertical-align: top;
@@ -703,6 +709,15 @@ table.fpcm-ui-table.fpcm-ui-permissions td {
     margin: 0 auto
 }
 
+.fpcm-message-box .fpcm-msg-icon,
+.fpcm-message-box .fpcm-msg-text,
+#fpcm-profile-dialog-layer table td,
+table.fpcm-ui-table.fpcm-ui-options tr td,
+table.fpcm-ui-table.fpcm-ui-articles tr td,
+table.fpcm-ui-table.fpcm-ui-comments tr td,
+table.fpcm-ui-table.fpcm-ui-users tr td,
+table.fpcm-ui-table.fpcm-ui-categories tr td,
+table.fpcm-ui-table.fpcm-ui-middle tr td,
 table.fpcm-ui-table.fpcm-ui-smileys tr td ,
 table.fpcm-ui-table.fpcm-ui-users tr td:last-child,
 table.fpcm-ui-table.fpcm-ui-editor-smileys td,
@@ -712,7 +727,9 @@ table.fpcm-ui-table.fpcm-ui-article-revisions tr td,
 table.fpcm-ui-table.fpcm-ui-iplist tr td,
 table.fpcm-ui-table.fpcm-ui-permissions th,
 table.fpcm-ui-table.fpcm-ui-permissions td,
-table.fpcm-ui-table.fpcm-ui-editor-extended tr td {
+table.fpcm-ui-table.fpcm-ui-editor-extended tr td,
+table.fpcm-ui-table.fpcm-dashboard-updates tr td,
+table.fpcm-module-manager td.module-manager-list-buttons {
     vertical-align: middle;
 }
 
@@ -1118,7 +1135,6 @@ table.fpcm-module-manager td.module-manager-list-td1 {
 
 table.fpcm-module-manager td.module-manager-list-buttons {
     width: 100px;
-    vertical-align: middle;
     text-align: center;
 }
 
@@ -1144,10 +1160,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
 #fpcm-profile-dialog-layer table {
     width: 100%;
     border: 0px;
-}
-
-#fpcm-profile-dialog-layer table td {
-    vertical-align: middle;
 }
 
 .fpcm-updater-programmbar {
