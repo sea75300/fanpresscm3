@@ -8,7 +8,7 @@
 jQuery.noConflict();
 jQuery(document).ready(function () {
 
-    if (fpcmSessionCheckEnabled) {
+    if (typeof fpcmSessionCheckEnabled != 'undefined' && fpcmSessionCheckEnabled) {
         setInterval(function() { fpcmJs.checkSession(); }, 60000);
     }
 

@@ -549,6 +549,11 @@ var fpcmJs = function () {
     };
     
     this.checkSession = function() {
+        
+        if (!fpcmSessionCheckEnabled) {
+            return false;
+        }
+        
         fpcmAjax.action   = 'session';
         fpcmAjax.execDone = 'var chkres = fpcmAjax.result; fpcmJs.addCheckSessionMessage(fpcmAjax.result);';
         fpcmAjax.get();
