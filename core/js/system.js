@@ -8,6 +8,10 @@
 jQuery.noConflict();
 jQuery(document).ready(function () {
 
+    if (fpcmSessionCheckEnabled) {
+        setInterval(function() { fpcmJs.checkSession(); }, 60000);
+    }
+
     fpcmAjax = new fpcmAjaxHandler();
 
     fpcmJs = new fpcmJs();

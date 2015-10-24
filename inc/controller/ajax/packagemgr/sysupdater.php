@@ -59,7 +59,6 @@
                 $updater->checkUpdates();
 
                 $remoteData = $updater->getRemoteData();
-
                 $fileInfo = pathinfo($remoteData['filepath'], PATHINFO_FILENAME);
 
                 $tmpFile = new \fpcm\model\files\tempfile('forceUpdateFile');
@@ -95,6 +94,15 @@
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while moving update package content!');
                     }
+                    
+                    if ($this->canConnect) {
+                        $pkg->loadPackageFileListFromTemp();
+
+                        $filelistoutput = new \fpcm\model\files\tempfile('filelistOuput');
+                        $filelistoutput->setContent('<ul class="fpcm-updater-list-files fpcm-hidden"><li>'.implode('</li><li>', $pkg->getFiles()).'</li></ul>');
+                        $filelistoutput->save();                        
+                    }                    
+                    
                     break;
                 case 4 :
                     $finalizer = new \fpcm\model\updater\finalizer();
@@ -107,11 +115,10 @@
                     break;
                 case 5 :
                     if ($this->canConnect) {
-                        $pkg->loadPackageFileListFromTemp();
-                        $files = $pkg->getFiles();
                         $pkg->cleanup();
                         \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
-                        die('<ul class="fpcm-updater-list-files fpcm-hidden"><li>'.implode('</li><li>', $files).'</li></ul>');
+                        $filelistoutput = new \fpcm\model\files\tempfile('filelistOuput');
+                        die($filelistoutput->getContent());
                     }
                     
                     \fpcm\classes\baseconfig::enableAsyncCronjobs(true);

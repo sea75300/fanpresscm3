@@ -24,6 +24,7 @@
         'RSSFEED_DISABLED'              => 'The RSS feed is disabled. Please contact the site owner for further information.',
         'MAINTENANCE_MODE_ENABLED'      => 'Maintenance mode is currently enabled. This function or service is not available at the moment.',
         'CSRF_INVALID'                  => 'The CSRF token is inavlid. The action was not executed!',
+        'SESSION_TIMEOUT'               => 'Your current session has reached it maximum life time. Do you want to proceed to login screen? (select "no" to stay on this site)',
         
         'SAVE_SUCCESS_ADDUSER'          => 'The user has been saved!',
         'SAVE_SUCCESS_USER_DISABLE'     => 'The user has been disabled!',

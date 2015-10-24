@@ -22,7 +22,6 @@ var fpcmAjaxHandler = function () {
 
     this.exec = function() {
         jQuery.ajax({
-//            url         : self.ajaxPath + 'ajax/' + self.action + self.query,
             url         : self.ajaxPath + self.action + (self.query ? '&' + self.query : ''),
             type        : self.method.toUpperCase(),
             data        : self.data,

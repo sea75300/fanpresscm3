@@ -7,7 +7,7 @@
      */
 
     ini_set('display_error', 0);
-    error_reporting(E_ALL);
+    error_reporting(E_ALL | E_STRICT);
 
     /**
      * FanPress CM internal checkpoint

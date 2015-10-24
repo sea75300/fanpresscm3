@@ -121,7 +121,20 @@
          * View-Variablen initialisieren
          */
         protected function initAssigns() {
-
+            
+            /**
+             * Current module
+             */
+            $this->assign('FPCM_CURRENT_MODULE', \fpcm\classes\http::get('module'));
+            
+            if ($this->session->exists()) {
+                $this->assign('FPCM_USER', $this->session->currentUser->getDisplayName());
+                $this->assign('FPCM_SESSION_LOGIN', $this->session->getLogin());
+                $nav = new \fpcm\model\theme\navigation();
+                $this->assign('FPCM_NAVIGATION', $nav->render());
+                $this->jsvars = array('fpcmSessionCheckEnabled' => true, 'fpcmSessionCheckMsg' => $this->language->translate('SESSION_TIMEOUT')) + $this->jsvars;
+            }
+            
             /**
              * CSS und JS Files
              */
@@ -166,18 +179,6 @@
             $this->assign('FPCM_DATETIME_ZONE', $this->config->system_timezone);
             $this->assign('FPCM_MAINTENANCE_MODE', $this->config->system_maintenance);
             $this->assign('FPCM_CRONJOBS_DISABLED', \fpcm\classes\baseconfig::asyncCronjobsEnabled());
-            
-            /**
-             * Current module
-             */
-            $this->assign('FPCM_CURRENT_MODULE', \fpcm\classes\http::get('module'));
-            
-            if ($this->session->exists()) {
-                $this->assign('FPCM_USER', $this->session->currentUser->getDisplayName());
-                $this->assign('FPCM_SESSION_LOGIN', $this->session->getLogin());
-                $nav = new \fpcm\model\theme\navigation();
-                $this->assign('FPCM_NAVIGATION', $nav->render());
-            }
             
             helper::init($this->config->system_lang);
         }

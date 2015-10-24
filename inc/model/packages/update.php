@@ -23,7 +23,7 @@
          * @param string $type Package-Type
          * @param string $signature Package-Signature
          */
-        public function __construct($type, $key, $version = '', $signature = '') {            
+        public function __construct($type, $key, $version = '', $signature = '') {
             parent::__construct('update', $key, $version, $signature);
         }
 

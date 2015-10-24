@@ -547,4 +547,39 @@ var fpcmJs = function () {
             jQuery(this).parent().parent().removeClass('fpcm-ui-input-wrapper-hover');
         });  
     };
+    
+    this.checkSession = function() {
+        fpcmAjax.action   = 'session';
+        fpcmAjax.execDone = 'var chkres = fpcmAjax.result; fpcmJs.addCheckSessionMessage(fpcmAjax.result);';
+        fpcmAjax.get();
+        
+        return false;
+    };
+    
+    this.addCheckSessionMessage = function(sessionOk) {
+        
+        fpcmSessionCheckEnabled = false;
+        if (sessionOk == '0') {
+            var buttons = [
+                {
+                    text: fpcmYes,
+                    icons: { primary: "ui-icon-check" },                    
+                    click: function() {
+                        fpcmJs.relocate(fpcmActionPath + 'system/login');
+                        jQuery(this).dialog('close');
+                    }
+                },
+                {
+                    text: fpcmNo,
+                    icons: { primary: "ui-icon-closethick" },
+                    click: function() {
+                        fpcmSessionCheckEnabled = true;
+                        jQuery(this).dialog('close');
+                    }
+                }
+            ];
+
+            self.confirmDialog('<p class="fpcm-ui-center">' + fpcmSessionCheckMsg + '</p>', buttons, '', 'sessioncheck');
+        }        
+    };
 }
