@@ -23,6 +23,8 @@
                 
                 <p><?php print $message; ?></p>
                 
+                <p><?php \fpcm\model\view\helper::linkButton('javascript:window.history.back();', 'GLOBAL_BACK'); ?></p>
+                
             </div>
         </div>
         

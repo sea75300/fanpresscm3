@@ -22,6 +22,12 @@
          * @var \fpcm\model\system\config
          */
         protected $config;
+        
+        /**
+         *
+         * @var int
+         */
+        protected $syscheck = 0;
 
         /**
          * Konstruktor
@@ -40,6 +46,10 @@
          * @return boolean
          */
         public function request() {
+            
+            if ($this->getRequestVar('syscheck')) {
+                $this->syscheck = $this->getRequestVar('syscheck', array(9));
+            }
             
             if ($this->buttonClicked('configSave') && !$this->checkPageToken()) {
                 $this->view->addErrorMessage('CSRF_INVALID');
@@ -223,6 +233,7 @@
             $this->view->assign('showTwitter', $twitter->checkRequirements());
             $this->view->assign('twitterIsActive', $twitter->checkConnection());
             $this->view->assign('twitterScreenName', $twitter->getUsername());
+            $this->view->assign('syscheck', $this->syscheck);
             
             $this->view->render();            
         }

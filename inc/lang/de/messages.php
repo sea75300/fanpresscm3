@@ -13,7 +13,7 @@
         'LOGIN_PASSWORD_RESET'          => 'Dein Passwort wurde erfolgreich zurückgesetzt! Prüfe deinen Posteingang auf die E-Mail mit dem neuen Passwort.',
         'LOGIN_PASSWORD_RESET_FAILED'   => 'Beim Anfordern eines neues Passworts ist ein Fehler aufgetreten!',
         'LOGIN_ATTEMPTS_MAX'            => 'Du hast deinen Benutzername oder Passwort {{logincount}}-mal falsch eingeben. Der Zugang wurde um {{lockeddate}} für {{lockedtime}} Minuten gesperrt.',
-        'PERMISSIONS_REQUIRED'          => 'Du hast keine Berechtigugen um auf diese Seite zuzugreifen!',
+        'PERMISSIONS_REQUIRED'          => 'Du hast keine Berechtigungen um auf diese Seite zuzugreifen!',
         'VIEW_NOT_FOUND'                => 'Die View {{viewname}} wurde nicht gefunden!',
         'AJAX_REQUEST_ERROR'            => 'Beim Ausführen der Aktion ist ein Fehler aufgetreten! Für weitere Informationen findest du im JavaScript-Log deines Browsers.',
         'ERROR_IP_LOCKED'               => 'Deine IP-Adresse wurde für diese Aktion gesperrt! Um den Grund zu erfahren wende dich an die Betreiber der Seite.',

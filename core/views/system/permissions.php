@@ -13,7 +13,7 @@
             <div id="tabs-permissions-articles">
                 <table class="fpcm-ui-table fpcm-ui-permissions fpcm-ui-permissions-article">
                     <tr>
-                        <th></td>
+                        <th></th>
                         <th><?php $FPCM_LANG->write('PERMISSION_ARTICLES'); ?></th>
                         <th><?php $FPCM_LANG->write('PERMISSION_COMMENTS'); ?></th>
                         <th><?php $FPCM_LANG->write('PERMISSION_UPLOADS'); ?></th>
@@ -52,10 +52,9 @@
             <div id="tabs-permissions-system">
                 <table class="fpcm-ui-table fpcm-ui-permissions fpcm-ui-permissions-system">
                     <tr>
-                        <th></td>
+                        <th></th>
                         <th><?php $FPCM_LANG->write('PERMISSION_SYSTEM'); ?></th>
                         <th><?php $FPCM_LANG->write('PERMISSION_MODULES'); ?></th>
-                        <th></td>
                     </tr>
                     <tr class="fpcm-td-spacer"><td></td></tr>
                     <?php foreach ($permissions as $group => $permissionData) : ?>
@@ -78,7 +77,6 @@
                             <?php endforeach; ?>
                             </div>
                         </td>
-                        <td></td>
                     </tr>
                     <?php endforeach; ?>
                </table>                    

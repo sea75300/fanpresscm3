@@ -35,6 +35,10 @@
          */
         public function request() {
             
+            if (!$this->permissions->check(array('system' => 'logs'))) {
+                return false;
+            }
+            
             if (is_null($this->getRequestVar('log'))) return false;
             
             $this->log = (int) $this->getRequestVar('log');

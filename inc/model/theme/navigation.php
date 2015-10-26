@@ -270,7 +270,7 @@
                 ),
                 array(
                     'url'               => 'system/logs',
-                    'permission'        => array('system' => 'options'),
+                    'permission'        => array('system' => 'logs'),
                     'description'       => $this->language->translate('HL_LOGS'),
                     'class'             => '',
                     'id'                => '',

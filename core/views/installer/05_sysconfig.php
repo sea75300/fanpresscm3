@@ -5,11 +5,11 @@
         <table class="fpcm-ui-table fpcm-ui-options">
             <tr>			
                 <td><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?>:</td>
-                <td><?php fpcm\model\view\helper::textInput('conf[system_email]', '', ''); ?></td>		
+                <td><?php fpcm\model\view\helper::textInput('conf[system_email]', '', $defaultMail); ?></td>		
             </tr>			
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_URL'); ?>:</td>
-                <td><?php fpcm\model\view\helper::textInput('conf[system_url]', '', ''); ?></td>
+                <td><?php fpcm\model\view\helper::textInput('conf[system_url]', '', $_SERVER['HTTP_HOST'].'/index.php'); ?></td>
             </tr>	
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_LANG'); ?>:</td>
@@ -21,7 +21,10 @@
             </tr>						
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK'); ?>:</td>
-                <td><?php fpcm\model\view\helper::textInput('conf[system_dtmask]', '', 'd.m.Y H:i:s'); ?></td>
+                <td>
+                    <?php fpcm\model\view\helper::textInput('conf[system_dtmask]', '', 'd.m.Y H:i:s'); ?>
+                    <a href="http://us2.php.net/manual/function.date.php" target="_blank"><span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK_HELP'); ?>"></span></a>
+                </td>
             </tr>			 			 
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_SESSIONLENGHT'); ?>:</td>

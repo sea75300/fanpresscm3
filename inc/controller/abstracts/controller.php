@@ -155,15 +155,6 @@
             $subDir = ($subDir) ? '../' : '';
             header("Location: ".$subDir."index.php?module=system/login&nologin");
         }
-        
-        /**
-         * Redirect wenn keine Berechtigungen
-         * @param string $subDir
-         */
-        protected function redirectNoPermissions($subDir = false) {
-            $subDir = ($subDir) ? '../' : '';
-            header("Location: ".$subDir."index.php?module=system/dashboard&nopermissions");
-        }
 
         /**
          * Controller Redirect
@@ -293,8 +284,7 @@
                 $modulename = $modulename[2].'/'.$modulename[3];
 
                 if (!in_array($modulename, $this->enabledModules)) {
-                    trigger_error("Request for controller '{$currentClass}' of disabled module '{$modulename}'!");
-                    
+                    trigger_error("Request for controller '{$currentClass}' of disabled module '{$modulename}'!");                    
                     $view = new \fpcm\model\view\error();
                     $view->setMessage("The controller '{$this->getRequestVar('module')}' is not enabled for execution!");
                     $view->render();
@@ -304,8 +294,10 @@
             
             if ($this->permissions) {
                 if (count($this->checkPermission) && !$this->permissions->check($this->checkPermission)) {
-                    $this->redirectNoPermissions();
-                    return false;
+                    $view = new \fpcm\model\view\error();
+                    $view->setMessage($this->lang->translate('PERMISSIONS_REQUIRED'));
+                    $view->render();
+                    die();
                 }
                 
                 if ($this->session->getCurrentUser()->isAdmin() && $this->permissions->check(array('system' => 'update'))) {

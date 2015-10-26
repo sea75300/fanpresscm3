@@ -75,6 +75,7 @@
             }
             
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_CHECK_CONNECT').':</strong></td><td class="fpcm-ui-center">'.$this->boolToText2(\fpcm\classes\baseconfig::canConnect()).'</td></tr>';
+            $this->tableContent[] = '<tr colspan="2"><td class="fpcm-ui-center"><a class="fpcm-ui-button" href="index.php?module=system/options&syscheck=1">'.$this->language->translate('SYSCHECK_COMPLETE').'</a></td></tr>';
         }
         
         /**

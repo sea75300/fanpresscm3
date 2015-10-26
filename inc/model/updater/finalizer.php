@@ -67,6 +67,10 @@
                     $permissions['article']['revisions'] = $groupId < 3 ? 1 : 0;
                 }
                 
+                if (!isset($permissions['system']['logs'])) {
+                    $permissions['system']['logs'] = $groupId < 2 ? 1 : 0;
+                }
+                
                 $permission->setPermissionData($permissions);
                 $permission->setRollId($groupId);
                 $res = $res && $permission->update();

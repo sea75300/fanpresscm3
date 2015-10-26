@@ -83,6 +83,6 @@
      */
     function fpcmDump($data) {
         print "<pre>";
-        var_dump($data);
+        var_dump(func_get_args());
         print "</pre>";
     }    

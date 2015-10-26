@@ -21,7 +21,7 @@
         public function __construct() {
             parent::__construct();
             
-            $this->checkPermission = array('system' => 'options');
+            $this->checkPermission = array('system' => 'logs');
 
             $this->view   = new \fpcm\model\view\acp('overview', 'logs');
         }

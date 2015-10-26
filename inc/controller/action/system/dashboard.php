@@ -37,11 +37,7 @@
             if (!parent::process()) {
                 return false;
             }
-            
-            if (!is_null($this->getRequestVar('nopermissions'))) {
-                $this->view->addErrorMessage('PERMISSIONS_REQUIRED');
-            }
-            
+
             if ($this->session->exists()) {
                 $this->getClasses();                
             }

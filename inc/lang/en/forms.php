@@ -156,7 +156,8 @@
         'SYSCHECK_FOLDER_SHARE'         => 'Share button folder',
         'SYSCHECK_FOLDER_MODULES'       => 'Modules folder',
         'SYSCHECK_FOLDER_UPLOADS'       => 'Upload folder',
-        'SYSCHECK_FOLDER_DBDUMPS'       => 'Datagbase dump folder'
+        'SYSCHECK_FOLDER_DBDUMPS'       => 'Datagbase dump folder',
+        'SYSCHECK_COMPLETE'             => 'Complete system check'
     );
 
 ?>
