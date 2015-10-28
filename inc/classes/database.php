@@ -420,6 +420,16 @@
         }
         
         /**
+         * Erzeugt CONCAT SQl_String
+         * @param array $fields
+         * @return string
+         * @since FPCM 3.1.0
+         */
+        public function concatString(array $fields) {
+            return ' CONCAT ('.implode(', ', array_map('trim', $fields)).') ';
+        }
+        
+        /**
          * Tabelle-Prefix zurückgeben
          * @return string
          */

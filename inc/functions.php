@@ -79,9 +79,9 @@
     
     /**
      * FanPress CM Dump Funktion
-     * @param mixed $data
+     * @param mixed
      */
-    function fpcmDump($data) {
+    function fpcmDump() {
         print "<pre>";
         var_dump(func_get_args());
         print "</pre>";
