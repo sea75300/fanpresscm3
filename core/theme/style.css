@@ -1217,8 +1217,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     width: 350px !important;
 }
 
-.mce-btn:hover,
-.mce-btn:focus,
 .mce-btn.mce-active {
     background-image:-moz-linear-gradient(top, #ffffff, #cee4f8) !important;
     background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#cee4f8)) !important;
