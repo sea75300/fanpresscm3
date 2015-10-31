@@ -526,6 +526,7 @@ table.fpcm-ui-table.fpcm-ui-modules tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-options tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-syscheck tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-permissions tr:nth-child(odd),
+table.fpcm-ui-table.fpcm-ui-backups tr:nth-child(odd),
 div.fpcm-filelist-thumb-box:nth-child(odd) div.fpcm-filelist-thumb-box-inner
 {
     background: #f8f8f8;
@@ -547,6 +548,7 @@ table.fpcm-ui-table.fpcm-ui-modules tr:hover,
 table.fpcm-ui-table.fpcm-ui-options tr:hover,
 table.fpcm-ui-table.fpcm-ui-syscheck tr:hover,
 table.fpcm-ui-table.fpcm-ui-permissions tr:hover,
+table.fpcm-ui-table.fpcm-ui-backups tr:hover,
 div.fpcm-filelist-thumb-box:hover div.fpcm-filelist-thumb-box-inner
 {
     background: #f3f3f3;
@@ -729,6 +731,7 @@ table.fpcm-ui-table.fpcm-ui-permissions th,
 table.fpcm-ui-table.fpcm-ui-permissions td,
 table.fpcm-ui-table.fpcm-ui-editor-extended tr td,
 table.fpcm-ui-table.fpcm-dashboard-updates tr td,
+table.fpcm-ui-table.fpcm-ui-backups tr td,
 table.fpcm-module-manager td.module-manager-list-buttons {
     vertical-align: middle;
 }

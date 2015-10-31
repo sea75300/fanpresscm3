@@ -31,6 +31,7 @@
         'GLOBAL_INSERT'                 => 'Insert',
         'GLOBAL_NOTFOUND'               => 'Not found',
         'GLOBAL_NOTFOUND2'              => 'No entries found...',
+        'GLOBAL_NOTFOUND_FILE'          => 'File not found!',
         'GLOBAL_CACHE_CLEAR'            => 'Clear cache',
         'GLOBAL_FRONTEND_OPEN'          => 'Show articles on website',
         'GLOBAL_ADMINISTRATOR'          => 'Administrator',
@@ -44,6 +45,7 @@
         'GLOBAL_INFO'                   => 'Information',
         'GLOBAL_OPENNEWWIN'             => 'Open in new window',
         'GLOBAL_PAGER'                  => 'Page {{current}} of {{total}}',
+        'GLOBAL_DOWNLOAD'               => 'Download',
 
         'LOGIN_BTN'                     => 'Login',
         'LOGIN_NEWPASSWORD'             => 'Request new password',
@@ -103,6 +105,8 @@
         'LOGS_LIST_CRONJOB_NAME'        => 'Cronjob name',
         'LOGS_LIST_CRONJOB_LASTEXEC'    => 'Last execution',
         'LOGS_LIST_CRONJOB_NEXTEXEC'    => 'Next execution',
+        
+        'BACKUPS_TAB_DATABASE'          => 'Database',
         
         'FILE_LIST_AVAILABLE'           => 'Available files',
         'FILE_LIST_UPLOADFORM'          => 'Upload files',

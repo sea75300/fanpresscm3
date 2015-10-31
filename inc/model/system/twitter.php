@@ -35,6 +35,11 @@
             parent::__construct();
 
             include_once \fpcm\classes\loader::libGetFilePath('tmhoauth', 'tmhOAuth.php');
+            
+            if (!$this->checkRequirements()) {
+                return;
+            }
+            
             $this->oAuth = new \tmhOAuth($this->config->twitter_data);
         }
         
@@ -43,6 +48,11 @@
          * @return bool
          */
         public function checkRequirements() {
+
+            if (!is_array($this->config->twitter_data)) {
+                return false;
+            }
+            
             return \fpcm\classes\baseconfig::canConnect() && function_exists('curl_init');
         }
 

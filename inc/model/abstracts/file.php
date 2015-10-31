@@ -130,7 +130,6 @@
             if ($this->exists()){
                 $ext = pathinfo($this->fullpath, PATHINFO_EXTENSION);
                 $this->extension = ($ext) ? $ext : '';
-                
                 $this->filesize = filesize($this->fullpath);
             }          
         }
