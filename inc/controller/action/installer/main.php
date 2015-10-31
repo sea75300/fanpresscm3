@@ -193,9 +193,6 @@
                 $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_432000') => 432000
             );
             $this->view->assign('cacheTimeout', $cacheTimeout);
-            
-            $firstUser = new \fpcm\model\users\author(1);
-            $this->view->assign('defaultMail', $firstUser->getEmail());
         }
         
         /**

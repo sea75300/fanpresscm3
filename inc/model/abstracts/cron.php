@@ -14,7 +14,7 @@
      * @package fpcm.model.abstracts
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
-    abstract class cron extends staticModel implements \fpcm\model\interfaces\cron {
+    abstract class cron implements \fpcm\model\interfaces\cron {
 
         /**
          * Datenbank-Objekt

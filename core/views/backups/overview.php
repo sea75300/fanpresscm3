@@ -11,6 +11,7 @@
             </ul>
             <div id="tabs-backups-database">
                 <table class="fpcm-ui-table fpcm-ui-backups">
+                    <?php fpcm\model\view\helper::notFoundContainer($folderList, 2); ?>
                     <?php foreach ($folderList as $value) : ?>
                     <tr>
                         <td class="fpcm-ui-editbutton-col">

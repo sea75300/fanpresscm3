@@ -1,15 +1,15 @@
 <div class="fpcm-ui-center">
-    <h3><span class="fa fa-cog"></span> <?php $FPCM_LANG->write('INSTALLER_ADMINUSER'); ?></h3>
+    <h3><span class="fa fa-cog"></span> <?php $FPCM_LANG->write('INSTALLER_SYSTEMCONFIG'); ?></h3>
     
     <div class="fpcm-ui-left">
         <table class="fpcm-ui-table fpcm-ui-options">
             <tr>			
                 <td><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?>:</td>
-                <td><?php fpcm\model\view\helper::textInput('conf[system_email]', '', $defaultMail); ?></td>		
+                <td><?php fpcm\model\view\helper::textInput('conf[system_email]', '', ''); ?></td>		
             </tr>			
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_URL'); ?>:</td>
-                <td><?php fpcm\model\view\helper::textInput('conf[system_url]', '', $_SERVER['HTTP_HOST'].'/index.php'); ?></td>
+                <td><?php fpcm\model\view\helper::textInput('conf[system_url]', '', 'http://'.$_SERVER['HTTP_HOST'].'/index.php'); ?></td>
             </tr>	
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_LANG'); ?>:</td>

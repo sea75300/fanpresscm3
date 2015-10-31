@@ -113,17 +113,20 @@
          */
         private function initFileLibAcp() {
             
-            $this->jsvars = array(
-                'fpcmQuickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
-                'fpcmOpenProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
-                'fpcmLogout'           => $this->language->translate('LOGOUT_BTN'),
-                'fpcmConfirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
-                'fpcmAjaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
-                'fpcmClose'            => $this->language->translate('GLOBAL_CLOSE'),
-                'fpcmYes'              => $this->language->translate('GLOBAL_YES'),
-                'fpcmNo'               => $this->language->translate('GLOBAL_NO'),
-                'fpcmNewWindow'        => $this->language->translate('GLOBAL_OPENNEWWIN')
-            );
+            if (is_object($this->language)) {
+                $this->jsvars = array(
+                    'fpcmQuickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
+                    'fpcmOpenProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
+                    'fpcmLogout'           => $this->language->translate('LOGOUT_BTN'),
+                    'fpcmConfirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
+                    'fpcmAjaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
+                    'fpcmClose'            => $this->language->translate('GLOBAL_CLOSE'),
+                    'fpcmYes'              => $this->language->translate('GLOBAL_YES'),
+                    'fpcmNo'               => $this->language->translate('GLOBAL_NO'),
+                    'fpcmNewWindow'        => $this->language->translate('GLOBAL_OPENNEWWIN')
+                );
+            }
+            
             
             $this->viewCssFiles = $this->fileLib->getCsslib();
             $this->viewJsFiles  = $this->fileLib->getJslib();

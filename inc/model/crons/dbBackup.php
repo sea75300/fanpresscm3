@@ -56,7 +56,7 @@
             
             $dumpSettings['include-tables']   = $this->events->runEvent('cronjobDbDumpIncludeTables', $dumpSettings['include-tables']);
 
-            \fpcm\classes\logs::syslogWrite('Create new database dump in "'.$this->dumpfile.'"...');
+            \fpcm\classes\logs::syslogWrite('Create new database dump in "'.\fpcm\model\files\ops::removeBaseDir($this->dumpfile, true).'"...');
             
             $mysqlDump = new \Ifsnop\Mysqldump\Mysqldump($dbconfig['DBNAME'],
                                                          $dbconfig['DBUSER'],
@@ -69,17 +69,17 @@
             $this->updateLastExecTime();
             
             if (!file_exists($this->dumpfile)) {
-                \fpcm\classes\logs::syslogWrite('Unable to create database dump in "'.$this->dumpfile.'", file not found. See system check and error log!');
+                \fpcm\classes\logs::syslogWrite('Unable to create database dump in "'.\fpcm\model\files\ops::removeBaseDir($this->dumpfile, true).'", file not found. See system check and error log!');
                 return false;
             }
             
-            \fpcm\classes\logs::syslogWrite('New database dump created in "'.$this->dumpfile.'".');            
-            
-            $text  = $this->language->translate('CRONJOB_DBBACKUPS_TEXT', array(
-                '{{filetime}}' => date($this->config->system_dtmask, $this->getLastExecTime()),
-                '{{dumpfile}}' => $this->dumpfile                
+            \fpcm\classes\logs::syslogWrite('New database dump created in "'.\fpcm\model\files\ops::removeBaseDir($this->dumpfile, true).'".');            
+
+            $text  = \fpcm\classes\baseconfig::$fpcmLanguage->translate('CRONJOB_DBBACKUPS_TEXT', array(
+                '{{filetime}}' => date(\fpcm\classes\baseconfig::$fpcmConfig->system_dtmask, $this->getLastExecTime()),
+                '{{dumpfile}}' => \fpcm\model\files\ops::removeBaseDir($this->dumpfile, true)
             ));
-            $email = new \fpcm\classes\email($this->config->system_email, $this->language->translate('CRONJOB_DBBACKUPS_SUBJECT'), $text);
+            $email = new \fpcm\classes\email(\fpcm\classes\baseconfig::$fpcmConfig->system_email, \fpcm\classes\baseconfig::$fpcmLanguage->translate('CRONJOB_DBBACKUPS_SUBJECT'), $text);
             $email->submit();
             
             return true;
