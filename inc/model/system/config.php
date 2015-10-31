@@ -194,6 +194,10 @@
 
                 if (!is_array($userData)) return false;                    
 
+                if (!isset($userData['articles_acp_limit'])) {
+                    $userData['articles_acp_limit'] = FPCM_ACP_ARTICLELIST_LIMIT;
+                }
+                
                 $cache2->write($userData, $this->system_cache_timeout);
             }
 
