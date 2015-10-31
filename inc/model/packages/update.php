@@ -50,7 +50,7 @@
                 $source = $this->extractPath.$zipFile;
 
                 $dest   = dirname(\fpcm\classes\baseconfig::$baseDir).$this->copyDestination.$zipFile;
-                $dest   = is_dir($source) ? dirname($dest) : $dest;                
+                $dest   = is_dir($source) ? dirname($dest).'/'.basename($dest) : $dest;                
                 $dest   = $this->replaceFanpressDirString($dest);
 
                 if (is_dir($source)) {
@@ -71,6 +71,10 @@
                 }
                 
             }            
+            
+            if (is_array($res)) {
+                $this->copyErrorPaths = $res;
+            }
             
             return is_array($res) ? self::FPCMPACKAGE_FILESCOPY_ERROR : $res;
         }

@@ -102,6 +102,7 @@
                         \fpcm\classes\logs::syslogWrite('Moved module package content successfully! '.$pkg->getExtractPath());
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while moving module package content! '.$pkg->getExtractPath());
+                        \fpcm\classes\logs::syslogWrite($pkg->getCopyErrorPaths());
                     }
                     break;
                 case 4 :

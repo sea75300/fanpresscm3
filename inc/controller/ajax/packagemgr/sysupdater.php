@@ -93,6 +93,7 @@
                         \fpcm\classes\logs::syslogWrite('Moved update package content successfully!');
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while moving update package content!');
+                        \fpcm\classes\logs::syslogWrite($pkg->getCopyErrorPaths());
                     }
                     
                     if ($this->canConnect) {

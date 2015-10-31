@@ -163,6 +163,13 @@
          * @var string
          */
         protected $localSignature    = '';
+        
+        /**
+         * Liste mit Dateien, welche beim Kopieren fehlfeschlagen sind
+         * @var array
+         * @since FPCM 3.1.0
+         */
+        protected $copyErrorPaths = array();
 
         /**
          * Konstruktor
@@ -345,6 +352,15 @@
             $this->dependencies = $dependencies;
         }        
         
+        /**
+         * Gibt Liste mit Pfaden zurück, welche nicht kopiert werden konnten
+         * @return array
+         * @since FPCM 3.1.0
+         */
+        public function getCopyErrorPaths() {
+            return $this->copyErrorPaths;
+        }
+                
         /**
          * Lädt Package in Abhängigkeit von Einstellungen herunter
          * @return boolean
