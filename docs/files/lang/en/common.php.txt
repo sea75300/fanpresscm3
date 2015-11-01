@@ -38,6 +38,7 @@
         'HL_CATEGORIES_MNG'             => 'Categories',        
         'HL_FILES_MNG'                  => 'Filemanager',
         'HL_ARTICLES_OPEN'              => 'Show articles on website',
+        'HL_BACKUPS'                    => 'Backup manager',
         'HL_HELP'                       => 'Help',
         'HL_PACKAGEMGR_SYSUPDATES'      => 'Update FanPress CM',
         

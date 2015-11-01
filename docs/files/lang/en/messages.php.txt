@@ -24,6 +24,7 @@
         'RSSFEED_DISABLED'              => 'The RSS feed is disabled. Please contact the site owner for further information.',
         'MAINTENANCE_MODE_ENABLED'      => 'Maintenance mode is currently enabled. This function or service is not available at the moment.',
         'CSRF_INVALID'                  => 'The CSRF token is inavlid. The action was not executed!',
+        'SESSION_TIMEOUT'               => 'Your current session has reached it maximum life time. Do you want to proceed to login screen? (select "no" to stay on this site)',
         
         'SAVE_SUCCESS_ADDUSER'          => 'The user has been saved!',
         'SAVE_SUCCESS_USER_DISABLE'     => 'The user has been disabled!',
@@ -125,16 +126,16 @@
         'LOAD_FAILED_ROLL'              => 'The requested user roll was no found.',
         'LOAD_FAILED_CATEGORY'          => 'The requested category was no found.',
         
-        'UPDATE_VERSIONCHECK_NEW'       => 'A new version of FanPress CM is available! To update your installation <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">click here</a>.',
-        'UPDATE_VERSIONCHECK_CURRENT'   => 'Your version of FanPress CM is <strong>up to date</strong>!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
+        'UPDATE_VERSIONCHECK_NEW'       => 'A new version of FanPress CM is available! <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to start update process.',
+        'UPDATE_VERSIONCHECK_CURRENT'   => 'Your version of FanPress CM is up to date!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
         'UPDATE_NOTAUTOCHECK'           => 'Automatic update check failed! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Check manually</a>',
         'UPDATE_WRITEERROR'             => 'The <strong>version.php</strong> file in FanPress CM root folder is not writable. This may affect other files of your installation too.<br>'.
                                            'This can be caused by wrong file permissions. Please check/change permissions of - in case - all files until this message disppears on reload.<br>'.
                                            'In case you\'re unable to do so, contact you host for further help.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Module updates are available. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Show updates</a>',
-        'UPDATE_MODULECHECK_CURRENT'     => 'All installed modules are <strong>up to date</strong>!',
-        'UPDATE_MODULECHECK_FAILED'      => 'Automatic update check for modules failed!',
+        'UPDATE_MODULECHECK_CURRENT'     => 'All installed modules are up to date!',
+        'UPDATE_MODULECHECK_FAILED'      => 'Update check for installed modules failed!',
         
         'PACKAGES_FAILED_REMOTEFILE'     => 'Error while connecting to package server!',
         'PACKAGES_FAILED_LOCALFILE'      => 'Unable to create local package file!',

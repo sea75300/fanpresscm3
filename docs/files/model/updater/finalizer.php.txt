@@ -67,6 +67,10 @@
                     $permissions['article']['revisions'] = $groupId < 3 ? 1 : 0;
                 }
                 
+                if (!isset($permissions['system']['logs'])) {
+                    $permissions['system']['logs'] = $groupId < 2 ? 1 : 0;
+                }
+                
                 $permission->setPermissionData($permissions);
                 $permission->setRollId($groupId);
                 $res = $res && $permission->update();
@@ -84,6 +88,7 @@
             $res = true;
             $res = $res && $this->config->add('comments_markspam_commentcount', FPCM_COMMENT_MARKSPAM_PASTCHECK);
             $res = $res && $this->config->add('system_loginfailed_locked', FPCM_ACP_LOGINFAILED_LIMIT);
+            $res = $res && $this->config->add('system_editor_fontsize', '12pt');
             return $res;
 
         }
@@ -116,7 +121,7 @@
                 $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "7, 'dbBackup', 0");                
             }
             
-            if (version_compare($this->config->system_version, '3.1.0', '<')) {
+            if (version_compare($this->config->system_version, '3.1.0-rc1', '<')) {
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD', '`imagepath`', 'TEXT NOT NULL');
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `title` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `categories` )', '', false);

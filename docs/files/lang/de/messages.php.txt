@@ -13,7 +13,7 @@
         'LOGIN_PASSWORD_RESET'          => 'Dein Passwort wurde erfolgreich zurückgesetzt! Prüfe deinen Posteingang auf die E-Mail mit dem neuen Passwort.',
         'LOGIN_PASSWORD_RESET_FAILED'   => 'Beim Anfordern eines neues Passworts ist ein Fehler aufgetreten!',
         'LOGIN_ATTEMPTS_MAX'            => 'Du hast deinen Benutzername oder Passwort {{logincount}}-mal falsch eingeben. Der Zugang wurde um {{lockeddate}} für {{lockedtime}} Minuten gesperrt.',
-        'PERMISSIONS_REQUIRED'          => 'Du hast keine Berechtigugen um auf diese Seite zuzugreifen!',
+        'PERMISSIONS_REQUIRED'          => 'Du hast keine Berechtigungen um auf diese Seite zuzugreifen!',
         'VIEW_NOT_FOUND'                => 'Die View {{viewname}} wurde nicht gefunden!',
         'AJAX_REQUEST_ERROR'            => 'Beim Ausführen der Aktion ist ein Fehler aufgetreten! Für weitere Informationen findest du im JavaScript-Log deines Browsers.',
         'ERROR_IP_LOCKED'               => 'Deine IP-Adresse wurde für diese Aktion gesperrt! Um den Grund zu erfahren wende dich an die Betreiber der Seite.',
@@ -24,6 +24,7 @@
         'RSSFEED_DISABLED'              => 'Der RSS-Feed ist deaktiviert. Wende dich an den Seitenbetreiber, um zu erfahren wieso.',
         'MAINTENANCE_MODE_ENABLED'      => 'Der Wartungsmodus von FanPress CM ist gerade aktiv, daher steht diese Funktion im Moment nicht zur Verfügung.',
         'CSRF_INVALID'                  => 'Das CSRF-Token ist ungültig. Die Aktion wurde nicht durchgeführt!',
+        'SESSION_TIMEOUT'               => 'Es wurde festgestellt, dass deine aktuelle Session abgelaufen ist. Willst du zur Login-Seite gehen? (wähle "Nein" um auf der aktuellen Seite zu bleiben)',
         
         'SAVE_SUCCESS_ADDUSER'          => 'Der Benutzer wurde gespeichert!',
         'SAVE_SUCCESS_USER_DISABLE'     => 'Der Benutzer wurde deaktiviert!',
@@ -125,16 +126,16 @@
         'LOAD_FAILED_ROLL'              => 'Die gesuchte Benutzerrolle wurde nicht gefunden.',
         'LOAD_FAILED_CATEGORY'          => 'Die gesuchte Kategorie wurde nicht gefunden.',
         
-        'UPDATE_VERSIONCHECK_NEW'       => 'Eine neue FanPress CM Version ist verfügbar! Zum Aktualisieren deines Systems <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>.',
-        'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM <strong>aktuell</strong>!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
+        'UPDATE_VERSIONCHECK_NEW'       => 'Eine neue FanPress CM Version ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
+        'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM aktuell!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
         'UPDATE_NOTAUTOCHECK'           => 'Es konnte automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
         'UPDATE_WRITEERROR'             => 'Die Datei <strong>version.php</strong> im FanPress CM-Verzeichnis ist nicht beschreibbar, was u. U. auch auf andere Dateien deiner Installation zutrifft.<br>'.
                                            'Dies kann durch falsche Dateirechte verursacht werden. Prüfe/ ändere die Rechte der - am Besten aller - Dateien via FTP, bis diese Meldung verschwindet.<br>'.
                                            'Sollte dies nicht gelingen, wende dich bitte an deinen Host für weitere Hilfe.',
         
-        'UPDATE_MODULECHECK_NEW'         => 'Für einige Module sind Updates verfügbar. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Anzeigen</a>',
-        'UPDATE_MODULECHECK_CURRENT'     => 'Alle installierten Module sind <strong>aktuell</strong>!',
-        'UPDATE_MODULECHECK_FAILED'      => 'Es konnte automatische Modul-Update-Prüfung durchgeführt werden!',
+        'UPDATE_MODULECHECK_NEW'         => 'Für einige Module sind Updates verfügbar. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Updates anzeigen</a>',
+        'UPDATE_MODULECHECK_CURRENT'     => 'Alle installierten Module sind aktuell!',
+        'UPDATE_MODULECHECK_FAILED'      => 'Es konnte keine Update-Prüfung für die installierten Module durchgeführt werden!',
         
         'PACKAGES_FAILED_REMOTEFILE'     => 'Es konnte keine Verbindung zum Paketserver hergestellt werden!',
         'PACKAGES_FAILED_LOCALFILE'      => 'Es konnte keine lokale Paket-Datei erzeugt werden!',

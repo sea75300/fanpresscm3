@@ -24,6 +24,7 @@
         'INSTALLER_CREATETABLES'            => 'Create database table...',
         'INSTALLER_CREATETABLES_STEP'       => 'create table <em>{{tablename}}</em>...',        
         
+        'INSTALLER_SYSTEMCONFIG'            => 'Configure system...',
         'INSTALLER_ADMINUSER'               => 'Create administrator account...',
         
         'INSTALLER_FINALIZE'                => 'installation finished...',

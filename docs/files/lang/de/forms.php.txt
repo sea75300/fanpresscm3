@@ -31,6 +31,7 @@
         'GLOBAL_INSERT'                 => 'Einfügen',
         'GLOBAL_NOTFOUND'               => 'Nicht gefunden',
         'GLOBAL_NOTFOUND2'              => 'Keine Einträge gefunden...',
+        'GLOBAL_NOTFOUND_FILE'          => 'Datei wurde nicht gefunden!',
         'GLOBAL_CACHE_CLEAR'            => 'Cache leeren',
         'GLOBAL_FRONTEND_OPEN'          => 'Artikel auf Webseite anzeigen',
         'GLOBAL_ADMINISTRATOR'          => 'Administrator',
@@ -44,6 +45,7 @@
         'GLOBAL_INFO'                   => 'Informationen',
         'GLOBAL_OPENNEWWIN'             => 'In neuem Fenster öffnen',
         'GLOBAL_PAGER'                  => 'Seite {{current}} von {{total}}',
+        'GLOBAL_DOWNLOAD'               => 'Herunterladen',
 
         'LOGIN_BTN'                     => 'Einloggen',
         'LOGIN_NEWPASSWORD'             => 'Neues Passwort anfordern',
@@ -103,6 +105,8 @@
         'LOGS_LIST_CRONJOB_NAME'        => 'Cronjob-Name',
         'LOGS_LIST_CRONJOB_LASTEXEC'    => 'Zuletzt ausgeführt',
         'LOGS_LIST_CRONJOB_NEXTEXEC'    => 'nächste Ausführung',
+
+        'BACKUPS_TAB_DATABASE'          => 'Datenbank',
         
         'FILE_LIST_AVAILABLE'           => 'Vorhandene Dateien',
         'FILE_LIST_UPLOADFORM'          => 'Dateien hochladen',
@@ -156,7 +160,8 @@
         'SYSCHECK_FOLDER_SHARE'         => 'Share-Button-Order',
         'SYSCHECK_FOLDER_MODULES'       => 'Module-Order',
         'SYSCHECK_FOLDER_UPLOADS'       => 'Upload-Order',
-        'SYSCHECK_FOLDER_DBDUMPS'       => 'Datenbank-Backup-Order'
+        'SYSCHECK_FOLDER_DBDUMPS'       => 'Datenbank-Backup-Order',
+        'SYSCHECK_COMPLETE'             => 'Vollständige Prüfung'
     );
 
 ?>

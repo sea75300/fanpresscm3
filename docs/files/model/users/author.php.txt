@@ -213,6 +213,11 @@
             $userMeta = json_decode($this->usrmeta, true);
             
             if (is_null($valueName))          {
+                
+                if (!isset($userMeta['articles_acp_limit'])) {
+                    $userMeta['articles_acp_limit'] = FPCM_ACP_ARTICLELIST_LIMIT;
+                }
+                
                 return $userMeta;                
             }
             if (isset($userMeta[$valueName])) {

@@ -393,6 +393,7 @@
             if (isset($condition['drafts'])) $where   .= ' AND draft = 1';
             if (isset($condition['active'])) $where   .= ' AND archived = 0 AND draft = 0';
             if (isset($condition['archived'])) $where .= ' AND archived = 1 AND draft = 0';
+            if (isset($condition['approval'])) $where .= ' AND approval = 1 AND draft = 0';
             if (isset($condition['deleted'])) {
                 $where  .= ' AND deleted = 1';
             } else {

@@ -265,6 +265,9 @@ Help language file
                     You can clear the logs in case they are to large. You'll also find a list of cronjobs (tasks which are
                     automatically executed regularly)
                 </li>
+                <li><b>Backup manager:</b><br>
+                    The "Backup manager" allows you to download the database backups created by the FanPress CM cronjob.
+                </li>
             </ul>
         ]]>
         </text>

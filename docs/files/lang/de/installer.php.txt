@@ -24,6 +24,7 @@
         'INSTALLER_CREATETABLES'            => 'Datenbank-Tabellen erzeugen...',
         'INSTALLER_CREATETABLES_STEP'       => 'erzeuge Tabelle <em>{{tablename}}</em>...',        
         
+        'INSTALLER_SYSTEMCONFIG'            => 'Systemeinstellungen anpassen...',
         'INSTALLER_ADMINUSER'               => 'Administrator-Account erstellen...',
         
         'INSTALLER_FINALIZE'                => 'Installation abgeschlossen...',

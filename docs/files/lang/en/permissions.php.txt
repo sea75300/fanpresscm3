@@ -32,6 +32,7 @@
         'PERMISSION_SYSTEM_TEMPLATES'   => 'Manage Templates',
         'PERMISSION_SYSTEM_SMILEYS'     => 'Manage Smileys',
         'PERMISSION_SYSTEM_UPDATE'      => 'Can run updates',
+        'PERMISSION_SYSTEM_LOGS'        => 'Can manage system logs',
         'PERMISSION_MODULES_CONFIGURE'  => 'Configure modules',
         'PERMISSION_MODULES_INSTALL'    => 'Install modules',
         'PERMISSION_MODULES_UNINSTALL'  => 'Uninstall modules',

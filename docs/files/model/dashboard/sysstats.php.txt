@@ -77,6 +77,9 @@
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_ARCHIVE').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition(array('archived' => true)).'</td></tr>';
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_DRAFT').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition(array('drafts' => true)).'</td></tr>';
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_TRASH').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition(array('deleted' => true)).'</td></tr>';
+            
+            $count = $articleList->countArticlesByCondition(array('approval' => true));
+            $this->tableContent[] = '<tr class="'.($count > 0 ? 'fpcm-ui-important-text' : 'fpcm-ui-text').'"><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_APPROVAL').':</strong></td><td class="fpcm-ui-center">'.$count.'</td></tr>';
         }
         
         /**
@@ -92,6 +95,9 @@
             
             $count = $commentList->countCommentsByCondition(array('private' => true));
             $this->tableContent[] = '<tr class="'.($count > 0 ? 'fpcm-ui-important-text' : 'fpcm-ui-text').'"><td><strong>'.$this->language->translate('SYSTEM_STATS_COMMENTS_PRIVATE').':</strong></td><td class="fpcm-ui-center">'.$count.'</td></tr>';
+            
+            $count = $commentList->countCommentsByCondition(array('spam' => true));
+            $this->tableContent[] = '<tr class="'.($count > 0 ? 'fpcm-ui-important-text' : 'fpcm-ui-text').'"><td><strong>'.$this->language->translate('SYSTEM_STATS_COMMENTS_SPAM').':</strong></td><td class="fpcm-ui-center">'.$count.'</td></tr>';
         }
         
         /**

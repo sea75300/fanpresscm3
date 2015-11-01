@@ -63,7 +63,8 @@
                 'permissions'       => 0,
                 'templates'         => 0,
                 'smileys'           => 0,
-                'update'            => 0
+                'update'            => 0,
+                'logs'              => 0
             ),
             'modules' => array(
                 'install'           => 0,
@@ -108,7 +109,8 @@
                 'permissions'       => 0,
                 'templates'         => 0,
                 'smileys'           => 0,
-                'update'            => 0
+                'update'            => 0,
+                'logs'              => 0
             ),
             'modules' => array(
                 'install'           => 0,

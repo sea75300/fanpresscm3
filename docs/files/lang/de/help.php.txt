@@ -294,6 +294,9 @@ Help language file
                     lassen. Außerdem findest du hier eine Liste von verfügbaren Cronjobs (regelmäßig, automatisch ausgeführten Aufgaben)
                     und deren Status.
                 </li>
+                <li><b>Backupmanager:</b><br>
+                    Im Bereich "Backupmanager" kannst du ab Version 3.1 die automatisch erzeugten Datenbank-Backups herunterladen.
+                </li>
             </ul>
         ]]>
         </text>
