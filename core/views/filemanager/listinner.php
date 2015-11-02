@@ -50,3 +50,5 @@
     
     <div class="fpcm-clear"></div>
 </div>
+
+<span id="fpcm-filelist-images-finished"></span>

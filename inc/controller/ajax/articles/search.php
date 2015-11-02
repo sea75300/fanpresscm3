@@ -122,9 +122,10 @@
             if ($filter['dateto'])          $sparams['dateto']     = strtotime($filter['dateto']);
             if ($filter['pinned'] > -1)     $sparams['pinned']     = (int) $filter['pinned'];
             if ($filter['postponed'] > -1)  $sparams['postponed']  = (int) $filter['postponed'];
-            if ($filter['comments'] > -1)   $sparams['comments']   = (int) $filter['comments'];
-            if ($filter['approval'] > -1)   $sparams['approval']   = (int) $filter['approval'];
+            if ($filter['comments'] > -1)   $sparams['comments']   = (int) $filter['comments'];            
             if ($this->mode != -1)          $sparams['archived']   = (int) $this->mode;
+            
+            $sparams['approval']   = (int) $filter['approval'];
             
             $sparams = $this->events->runEvent('articlesPrepareSearch', $sparams);
             

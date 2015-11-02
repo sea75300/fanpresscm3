@@ -34,12 +34,9 @@
             $images = $this->dbcon->fetch($this->dbcon->select($this->table, '*', '1=1'.$this->dbcon->orderBy(array('filetime DESC'))), true);
             
             $res = array();
-            foreach ($images as $image) {                
-                $imageObj = new image($image->filename, '', '', false);
-                $imageObj->setFiletime($image->filetime);
-                $imageObj->setId($image->id);
-                $imageObj->setUserid($image->userid);
-                
+            foreach ($images as $image) {
+                $imageObj = new image('', '', '', false);
+                $imageObj->createFromDbObject($image);
                 $res[$image->filename] = $imageObj;
             }
             
@@ -54,27 +51,28 @@
             $folderFiles    = $this->getFolderList();
             $dbFiles        = $this->getDatabaseList();
             
-            if (!$folderFiles || !count($folderFiles)) return;
-            
+            if (!$folderFiles || !count($folderFiles) || count($folderFiles) == count($dbFiles)) {
+                return;
+            }
+
             foreach ($folderFiles as $folderFile) {
                 if (isset($dbFiles[$folderFile])) continue;                
                 $image = new \fpcm\model\files\image(basename($folderFile), '', '', false, true);
                 $image->setFiletime(time());
-                $image->setUserid($userId);     
+                $image->setUserid($userId);
                 
                 if (!in_array($image->getMimetype(), image::$allowedTypes) || !in_array(strtolower($image->getExtension()), image::$allowedExts)) {
                     trigger_error("Filetype not allowed in \"$folderFile\".");
                     continue;
                 }
                 
-                if (!$image->exists(true) && !$image->save()) {
+                if (!$image->save()) {
                     trigger_error("Unable to save image \"$folderFile\" to database.");
                 }
             }
             
             foreach ($dbFiles as $dbFile) {
-                $image = new \fpcm\model\files\image($dbFile, '', '');
-                if (!$image->exists() && !$image->delete()) {
+                if (!$dbFile->existsFolder() && !$dbFile->delete()) {
                     trigger_error("Unable to remove image \"$folderFile\" from database.");
                 }
             }

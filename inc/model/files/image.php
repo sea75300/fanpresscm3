@@ -298,6 +298,11 @@
          * @return bool
          */
         public function exists($dbOnly = false) {
+            
+            if (!$this->filename) {
+                return false;
+            }
+            
             $count = $this->dbcon->count($this->table, '*', "filename LIKE '{$this->filename}'");
             if ($dbOnly) {
                 return $count > 0 ? true : false;
@@ -306,6 +311,15 @@
             return (parent::exists() && $count > 0) ? true : false;
         }
         
+        /**
+         * Prüft, ob Bild nur in Dateisystem existiert
+         * @return bool
+         * @since FPCM 3.1.2
+         */
+        public function existsFolder() {
+            return parent::exists();
+        }
+
         /**
          * Erzeugt ein Thumbnail für das aktuelle Bild
          * @return boolean
@@ -374,6 +388,61 @@
                     $this->mimetype = $fileData['mime'];
                 }
             }           
+        }
+        
+        /**
+         * Füllt Objekt mit Daten aus Datenbank-Result
+         * @param object $object
+         * @return boolean
+         * @since FPCM 3.1.2
+         */
+        public function createFromDbObject($object) {
+            
+            if (!is_object($object)) return false;
+            
+            $keys   = array_keys($this->getPreparedSaveParams());
+            $keys[] = 'id';
+            
+            foreach ($keys as $key) {
+                if (!isset($object->$key)) continue;
+                $this->$key = $object->$key;   
+            }
+            
+            return true;
+        }
+        
+        /**
+         * Bereitet Eigenschaften des Objects zum Speichern ind er Datenbank vor und entfernt nicht speicherbare Eigenschaften
+         * @return array
+         * @since FPCM 3.1.2
+         */
+        protected function getPreparedSaveParams() {
+            $params = get_object_vars($this);
+            unset(
+                $params['cache'],
+                $params['config'],
+                $params['dbcon'],
+                $params['events'],
+                $params['id'],
+                $params['nodata'],
+                $params['system'],
+                $params['table'],
+                $params['dbExcludes'],
+                $params['language'],
+                $params['editAction'],
+                $params['objExists'],
+                $params['cacheName']
+            );
+            
+            if ($this->nodata) unset($params['data']);
+
+            if (count($this->dbExcludes)) {
+                foreach ($this->dbExcludes AS $exclude) {
+                    unset($params[$exclude]);
+                }
+            }
+            
+            return $params;
         }
         
     }

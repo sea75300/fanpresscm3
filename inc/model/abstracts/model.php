@@ -264,7 +264,7 @@
             }
             
             return true;
-        }        
+        }
         
         /**
          * Bereitet Eigenschaften des Objects zum Speichern ind er Datenbank vor und entfernt nicht speicherbare Eigenschaften
