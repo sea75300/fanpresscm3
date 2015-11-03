@@ -101,7 +101,7 @@
                 $content[] = '  <td class="fpcm-ui-articlelist-open">';
                 $content[] = '  <a class="fpcm-articlelist-openlink" href="'.$comment->getArticleLink().'" target="_blank">'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'</a>';
                 if ($this->isAdmin || $allPermissions || ($ownPermissions && !$this->isAdmin && !$allPermissions && $this->currentUser == $comment->getCreateuser())) {
-                    $content[] = '  <a class="fpcm-ui-button-edit fpcm-loader" href="'.$comment->getEditLink().'">'.$this->language->translate('GLOBAL_EDIT').'</a>';
+                    $content[] = '  <a class="fpcm-ui-button-edit fpcm-loader" href="'.$comment->getEditLink().'&amp;mode=1">'.$this->language->translate('GLOBAL_EDIT').'</a>';
                 } else {
                     $content[] = '  <span class="fpcm-ui-button-edit fpcm-ui-readonly">'.$this->language->translate('GLOBAL_EDIT').'</span>';
                 }

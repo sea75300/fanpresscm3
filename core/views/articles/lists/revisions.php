@@ -5,10 +5,10 @@
         <th><?php $FPCM_LANG->write('EDITOR_REVISION_DATE'); ?></th>
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-allrevisions', false); ?></th>
     </tr>
-    <tr class="fpcm-td-spacer"><td></td></tr>
 
     <?php \fpcm\model\view\helper::notFoundContainer($revisions, 4); ?>
 
+    <tr class="fpcm-td-spacer"><td></td></tr>
     <?php foreach($revisions AS $revisionTime => $revisionTitle) : ?>
         <tr>
             <td class="fpcm-ui-articlelist-open"><?php \fpcm\model\view\helper::linkButton($article->getEditLink().'&rev='.$revisionTime, 'EDITOR_STATUS_REVISION_SHOW', '', 'fpcm-articlelist-openlink'); ?></td>
