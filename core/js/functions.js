@@ -437,7 +437,7 @@ var fpcmJs = function () {
 
         fpcmAjax.action     = 'addmsg';
         fpcmAjax.data       = {type:type,msgtxt:message};
-        fpcmAjax.execDone   = "fpcmJs.addAjaxMassageDone(fpcmAjax.result, fadeOut)";
+        fpcmAjax.execDone   = "fpcmJs.addAjaxMassageDone(fpcmAjax.result, fpcmAjax.workData)";
         fpcmAjax.workData   = fadeOut;
         fpcmAjax.post();
     };

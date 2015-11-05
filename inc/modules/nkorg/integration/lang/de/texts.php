@@ -24,6 +24,9 @@
                                                    'den Systemeinstellungen genutzt. Über die Konstante <em>FPCM_PUB_CATEGORY_LISTALL</em> kannst du die Anzeige auf '.
                                                    'eine einzelne Kategorie einschränken. Nutze hierfür die Kategorie-ID.',
         
+        'NKORG_INTEGRATION_SHOWARTICLES_TEXT2'  => 'Trage die Anzahl an Artikeln ein, welche angezeigt werden sollen',
+        'NKORG_INTEGRATION_SHOWARTICLES_TEXT3'  => 'Trage die Anzahl an Artikeln ein, welche im Archiv angezeigt werden sollen',
+        
         'NKORG_INTEGRATION_SHOWLATEST_TEXT'     => 'Füge an die Stelle, an der du die "Latest News" ausgeben lassen '.
                                                    'willst, folgenden Code ein. Die Umgebenden DIV-Box kannst du u. U. weglassen.'.
                                                    'Über die Konstante <em>FPCM_PUB_LIMIT_LATEST</em> kannst du die Anzahl festlegen, '.

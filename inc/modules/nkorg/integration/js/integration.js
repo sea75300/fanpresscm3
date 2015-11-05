@@ -14,7 +14,7 @@ jQuery(document).ready(function() {
         
         return false;
     });
-    
+
     jQuery('#btnSpacerPageTitle').click(function() {
         fpcmJs.showLoader(true);
 
@@ -25,4 +25,29 @@ jQuery(document).ready(function() {
         
         return false;
     });
+    
+    jQuery('#btnLimitListSetShowArticles').click(function() {
+        fpcmJs.showLoader(true);
+        jQuery('#limitListSpanShowArticles').text(jQuery('#limitListShowArticles').val());
+        fpcmJs.showLoader(false);
+        
+        return false;
+    });
+    
+    jQuery('#btnLimitListSetShowArchive').click(function() {
+        fpcmJs.showLoader(true);
+        jQuery('#limitListSpanShowArchive').text(jQuery('#limitListShowArchive').val());
+        fpcmJs.showLoader(false);
+        
+        return false;
+    });
+    
+    jQuery('#btnShowLatestLimitSet').click(function() {
+        fpcmJs.showLoader(true);
+        jQuery('#showLatestLimitSpan').text(jQuery('#showLatestLimit').val());
+        fpcmJs.showLoader(false);
+        
+        return false;
+    });
+    
 });
