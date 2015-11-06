@@ -1,0 +1,10 @@
+## Module list config file
+---
+name: Language Editor
+vendor: nkorg
+key: langeditor
+author: Stefan
+link: http://nobody-knows.org
+version: 1.0.0
+sysversion: 3.1.0
+description: "The "Language editor" module offers you an way to easily edit language files included in FanPress CM as is and installed modules."
