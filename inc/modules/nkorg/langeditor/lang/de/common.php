@@ -15,8 +15,9 @@
         'NKORG_LANGEDITOR_LOADERROR'    => 'Sprachdateien-Liste konnte nicht geladen werden',
         'NKORG_LANGEDITOR_SELECTERROR'  => 'Die ausgewählte Datei ist nicht vorhanden.',
         'NKORG_LANGEDITOR_EMPTYLINE'    => 'Leerzeile für neue Sprachvariable',
-        'NKORG_LANGEDITOR_DELETELINE'   => 'Zeile leer lassen, um Variable zu löschen',
+        'NKORG_LANGEDITOR_DELETELINE'   => 'Zeile leer lassen oder Checkbox aktivieren, um Variable zu löschen',
         'NKORG_LANGEDITOR_FILEERROR'    => 'Die ausgewählte Sprach-Datei konnte nicht geladen werden.',
+        'NKORG_LANGEDITOR_BACKUPERROR'  => 'Es konnte keine Sicherungskopie in {{path}} erzeugt werden.',
         'NKORG_LANGEDITOR_SAVEERROR'    => 'Die ausgewählte Sprach-Datei konnte nicht gespeichert werden.',
         'NKORG_LANGEDITOR_SAVEOK'       => 'Die ausgewählte Sprach-Datei wurde gespeichert.',
     );

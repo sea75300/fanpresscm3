@@ -15,7 +15,9 @@
                     <tr>
                         <th><?php $FPCM_LANG->write('NKORG_LANGEDITOR_LANGVAR'); ?></th>
                         <th><?php $FPCM_LANG->write('NKORG_LANGEDITOR_VARVALUE'); ?></th>
-                        <th class="fpcm-th-select-row fpcm-ui-center"></th>
+                        <th class="fpcm-th-select-row fpcm-ui-center">
+                            <span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('NKORG_LANGEDITOR_DELETELINE'); ?>"></span>
+                        </th>
                     </tr>
                     <?php foreach ($lines as $lineName => $lineValue) : ?>
                     <?php $hash   = md5($lineName.$lineValue); ?>
@@ -27,16 +29,18 @@
                         <td>
                             <?php fpcm\model\view\helper::textInput('langitems['.$hash.'][value]', '', str_replace(PHP_EOL, '\\n', $lineValue), false, 1024); ?>
                         </td>
-                        <td class="fpcm-td-select-row fpcm-ui-center"><span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('NKORG_LANGEDITOR_DELETELINE'); ?>"></span></td>
+                        <td class="fpcm-td-select-row fpcm-ui-center">
+                            <?php \fpcm\model\view\helper::checkbox('deleteitems[]', '', $hash, '', '', $selected); ?>
+                        </td>
                     </tr>
                     <tr>
                         <td>
-                            <?php fpcm\model\view\helper::textInput('langitems['.$unique.'][name]', '', ''); ?>
+                            <?php fpcm\model\view\helper::textInput('langitems['.$unique.'][name]', '', '', false, 1024, $FPCM_LANG->translate('NKORG_LANGEDITOR_EMPTYLINE')); ?>
                         </td>
                         <td>
-                            <?php fpcm\model\view\helper::textInput('langitems['.$unique.'][value]', '', '', false, 1024); ?>
+                            <?php fpcm\model\view\helper::textInput('langitems['.$unique.'][value]', '', '', false, 2048, $FPCM_LANG->translate('NKORG_LANGEDITOR_EMPTYLINE')); ?>
                         </td>
-                        <td class="fpcm-td-select-row fpcm-ui-center"><span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('NKORG_LANGEDITOR_EMPTYLINE'); ?>"></span></td>
+                        <td class="fpcm-td-select-row fpcm-ui-center"></td>
                     </tr>
                     <?php endforeach; ?>
                 </table>

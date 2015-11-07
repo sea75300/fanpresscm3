@@ -49,7 +49,8 @@
             if (!parent::process()) return false;
 
             if (!$this->moduleKey) {
-                $this->view->addErrorMessage('Module not found!');
+                $this->view = new \fpcm\model\view\error();
+                $this->view->setMessage('Selected module not found in installed modules!');
                 return $this->view->render();
             }
             
