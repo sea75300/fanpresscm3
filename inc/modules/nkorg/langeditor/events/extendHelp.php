@@ -16,7 +16,10 @@
     class extendHelp extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
-            // check FanPress CM documentation, if this events requires a return value
+
+            $datapath = \fpcm\model\files\ops::removeBaseDir(\fpcm\classes\baseconfig::$dataDir.'langeditback/');
+            $params['NKORG_LANGEDITOR_HEADLINE'] = $this->lang->translate('NKORG_LANGEDITOR_MANAGER_HELP', array('{{datapath}}' => $datapath));
+            
             return $params;
         }
 
