@@ -61,6 +61,10 @@
          */
         public function request() {
 
+            if (!$this->session->exists() && !$this->permissions->check($this->checkPermission)) {
+                return false;
+            }
+            
             if (is_null($this->getRequestVar('action')) || is_null($this->getRequestVar('keys'))) return true;
             
             $this->cache->cleanup();

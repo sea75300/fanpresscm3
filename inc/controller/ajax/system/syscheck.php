@@ -29,21 +29,27 @@
         public function __construct() {
             parent::__construct();
         }
+
+        public function request() {
+            if (!\fpcm\classes\baseconfig::installerEnabled() && \fpcm\classes\baseconfig::dbConfigExists() && !$this->session->exists()) {
+                return false;
+            }
+            
+            return true;
+        }
+
         
         /**
          * Controller-Processing
          */
         public function process() {
             
-            if (!\fpcm\classes\baseconfig::installerEnabled() && \fpcm\classes\baseconfig::dbConfigExists() && !parent::process()) {
-                return false;
-            }
-            
             $view = new \fpcm\model\view\ajax('syscheck', 'system');
             $view->initAssigns();
 
             $view->assign('checkOptions', $this->getCheckOptions());
-            $view->render();            
+            $view->render();
+
         }
         
         /**
