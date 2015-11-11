@@ -273,10 +273,6 @@
          * @return boolean
          */
         public function process() {
-            if (!$this->session->exists()) {
-                $this->redirectNoSession();
-                return false;
-            }
            
             $currentClass = get_class($this);
             if (strpos($currentClass, 'fpcm\\modules\\') !== false) {
@@ -290,6 +286,11 @@
                     $view->render();
                     die();
                 }
+            }
+            
+            if (!$this->session->exists()) {
+                $this->redirectNoSession();
+                return false;
             }
             
             if ($this->permissions) {

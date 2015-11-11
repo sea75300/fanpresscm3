@@ -34,7 +34,6 @@
          * Controller-Processing
          */
         public function process() {
-            if (!parent::process()) return false;
 
             $cronlist = new \fpcm\model\crons\cronlist();
             $crons = $cronlist->getCrons();

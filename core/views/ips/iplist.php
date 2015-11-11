@@ -31,14 +31,19 @@
                         <td><?php print date($FPCM_DATETIME_MASK, $value->getIptime()); ?></td>
                         <td class="fpcm-td-iplist-meta">
                             <div class="fpcm-ui-editor-metabox-right fpcm-ui-iplist-metabox-right">
-                                <span class="fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getNocomments(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOCOMMENTS'); ?>">
-                                    <span class="fa fa-comments"></span>
-                                </span>
-                                <span class="fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getNologin(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOLOGIN'); ?>">
-                                    <span class="fa fa-sign-in"></span>
-                                </span>
-                                <span class="fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getNoaccess(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOACCESS'); ?>">
-                                    <span class="fa fa-toggle-on"></span>
+                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getNocomments(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOCOMMENTS'); ?>">
+                                    <span class="fa fa-square fa-stack-2x"></span>
+                                    <span class="fa fa-comments fa-stack-1x fa-inverse"></span>
+                                </span>                                
+                                
+                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getNologin(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOLOGIN'); ?>">
+                                    <span class="fa fa-square fa-stack-2x"></span>
+                                    <span class="fa fa-sign-in fa-stack-1x fa-inverse"></span>
+                                </span>                                
+                                
+                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getPrivate(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOACCESS'); ?>">
+                                    <span class="fa fa-square fa-stack-2x"></span>
+                                    <span class="fa fa-toggle-on fa-stack-1x fa-inverse"></span>
                                 </span>
                             </div>
                         </td>

@@ -34,7 +34,10 @@
          * Controller-Processing
          */
         public function process() {
-            parent::process();
+            
+            if (!\fpcm\classes\baseconfig::installerEnabled() && \fpcm\classes\baseconfig::dbConfigExists() && !parent::process()) {
+                return false;
+            }
             
             $view = new \fpcm\model\view\ajax('syscheck', 'system');
             $view->initAssigns();
