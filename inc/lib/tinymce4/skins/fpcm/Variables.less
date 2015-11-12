@@ -14,38 +14,38 @@
 @has-button-borders:             true;
 
 // Text colors
-@text:                           #333333;
+@text:                           #222222;
 @text-inverse:                   #ffffff;
 @text-disabled:                  #aaaaaa;
 @text-shadow:                    0 1px 1px hsla(hue(@text-inverse), saturation(@text-inverse), lightness(@text-inverse), 0.75);
 @text-error:                     #aa0000;
 
 // Button
-@btn-text:                       #000000;
-@btn-text-shadow:                #ffffff;
-@btn-border-top:                 rgba(166,201,226,1.0);
-@btn-border-right:               rgba(166,201,226,1.0);
-@btn-border-bottom:              rgba(166,201,226,1.0);
-@btn-border-left:                rgba(166,201,226,1.0);
+@btn-text:                       #222222;
+@btn-text-shadow:                #fafafa;
+@btn-border-top:                 rgba(197,219,236,1);
+@btn-border-right:               rgba(197,219,236,1);
+@btn-border-bottom:              rgba(197,219,236,1);
+@btn-border-left:                rgba(197,219,236,1);
 @btn-caret-border:               @btn-text;
 @btn-text-disabled:              @text-disabled;
 @btn-box-shadow:                 inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
 @btn-box-shadow-active:          inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05);
 @btn-box-disabled-opacity:       0.4;
-@btn-bg:                         #ffffff;
-@btn-bg-hlight:                  #e4f0fb;
+@btn-bg:                         #fcfdfd;
+@btn-bg-hlight:                  #d0e5f5;
 @btn-bg-hover:                   darken(@btn-bg, 5%);
 @btn-bg-hlight-hover:            darken(@btn-bg-hlight, 5%);
 @btn-border-hover:               darken(@btn-bg, 20%);
 @btn-border-active:              darken(@btn-bg, 20%);
 @btn-padding:                    4px 8px;
 
-@btn-primary-bg:                 #5c9ccc;
-@btn-primary-bg-hlight:          #2e6e9e;
+@btn-primary-bg:                 #fbec88;
+@btn-primary-bg-hlight:          #fad42e;
 @btn-primary-bg-hover:           darken(@btn-primary-bg, 5%);
 @btn-primary-bg-hover-hlight:    darken(@btn-primary-bg-hlight, 5%);
-@btn-primary-text:               #ffffff;
-@btn-primary-text-shadow:        #333333;
+@btn-primary-text:               #363636;
+@btn-primary-text-shadow:        #fafafa;
 @btn-primary-border-top:         mix(@btn-border-top, @btn-primary-bg, 50%);
 @btn-primary-border-right:       mix(@btn-border-right, @btn-primary-bg, 50%);
 @btn-primary-border-bottom:      mix(@btn-border-bottom, @btn-primary-bg, 50%);
@@ -58,34 +58,34 @@
 
 // Menu
 @menuitem-text:                  #333333;
-@menu-bg:                        #ffffff;
+@menu-bg:                        #fcfdfd;
 @menu-margin:                    -1px 0 0;
-@menu-border:                    rgba(166,201,226,1.0);
+@menu-border:                    rgba(166,201,226,0.5);
 @menubar-border:                 mix(@panel-border, @panel-bg, 60%);
 @menuitem-text-inverse:          #ffffff;
 @menubar-bg-active:              darken(@btn-bg, 10%);
 @menuitem-bg-hover:              #0081C2;
-@menuitem-bg-selected:           #5c9ccc;
-@menuitem-bg-selected-hlight:    #2e6e9e;
+@menuitem-bg-selected:           #0088cc;
+@menuitem-bg-selected-hlight:    #0077b3;
 @menuitem-bg-disabled:           #CCC;
 @menuitem-caret:                 @menuitem-text;
 @menuitem-caret-selected:        @menuitem-text-inverse;
 @menuitem-separator-top:         #cbcbcb;
-@menuitem-separator-bottom:      #a6c9e2;
-@menuitem-bg-active:             #dfeffc;
+@menuitem-separator-bottom:      #ffffff;
+@menuitem-bg-active:             #c8def4;
 @menuitem-text-active:           #333333;
-@menuitem-preview-border-active: #79b7e7;
+@menuitem-preview-border-active: #aaaaaa;
 
 // Panel
-@panel-border:                   #c5dbec;
-@panel-bg:                       #ffffff;
-@panel-bg-hlight:                #ffffff;
+@panel-border:                   #a6c9e2;
+@panel-bg:                       #fcfdfd;
+@panel-bg-hlight:                #fcfdfd;
 
 // Tabs
 @tab-border:                     #c5dbec;
-@tab-bg:                         #ffffff;
-@tab-bg-hover:                   #c3ebfb;
-@tab-bg-active:                  #dfeffc;
+@tab-bg:                         #dfeffc;
+@tab-bg-hover:                   #d0e5f5;
+@tab-bg-active:                  #f5f8f9;
 
 // Tooltip
 @tooltip-bg:                     #000;
@@ -93,7 +93,7 @@
 @tooltip-font-size:              11px;
 
 // Window
-@window-border:                  #c5dbec;
+@window-border:                  #a6c9e2;
 @window-head-border:             @window-border;
 @window-head-close:              mix(@text, @window-bg, 60%);
 @window-head-close-hover:        mix(@text, @window-bg, 40%);
@@ -103,7 +103,7 @@
 @window-modalblock-bg:           #000;
 @window-modalblock-opacity:      0.3;
 @window-box-shadow:              0 3px 7px rgba(0, 0, 0, 0.3);
-@window-bg:                      #ffffff;
+@window-bg:                      #fcfdfd;
 @window-title-font-size:         20px;
 
 // Popover
@@ -131,7 +131,7 @@
 // Textbox
 @textbox-text-placeholder:       #aaa;
 @textbox-box-shadow:             inset 0 1px 1px rgba(0, 0, 0, 0.075);
-@textbox-bg:                     #ffffff;
+@textbox-bg:                     #fcfdfd;
 @textbox-border:                 #c5dbec;
 @textbox-border-focus:           #79b7e7;
 
@@ -149,17 +149,17 @@
 // Grid
 @grid-bg-active:                 @menuitem-bg-active;
 @grid-border-active:             #79b7e7;
-@grid-border:                    #c5dbec;
+@grid-border:                    #a6c9e2;
 
 // Misc
-@colorbtn-backcolor-bg:          #bbd2e7;
+@colorbtn-backcolor-bg:          #ffffff;
 @iframe-border:                  @panel-border;
 
 // Slider
 @slider-border:                  #aaaaaa;
-@slider-bg:                      #eeeeee;
-@slider-handle-border:           #bbbbbb;
-@slider-handle-bg:               #dddddd;
+@slider-bg:                      #fcfdfd;
+@slider-handle-border:           #4297d7;
+@slider-handle-bg:               #5c9ccc;
 
 @flow-layout-spacing:            2px;
 @tabs-bg:						 #FFF;
