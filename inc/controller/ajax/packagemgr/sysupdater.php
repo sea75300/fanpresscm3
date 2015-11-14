@@ -55,10 +55,20 @@
             $this->canConnect   = \fpcm\classes\baseconfig::canConnect();
             
             if ($this->canConnect) {
-                $updater = new \fpcm\model\updater\system();
-                $updater->checkUpdates();
+                
+                $versionDataFile = new \fpcm\model\files\tempfile('newversion');
+                if ($versionDataFile->exists() && $versionDataFile->getContent()) {
+                    $remoteData = json_decode($versionDataFile->getContent(), true);
+                }
+                else {
+                    $updater = new \fpcm\model\updater\system();
+                    $updater->checkUpdates();
 
-                $remoteData = $updater->getRemoteData();
+                    $remoteData = $updater->getRemoteData();
+                    $versionDataFile->setContent(json_encode($remoteData));
+                    $versionDataFile->save();
+                }
+
                 $fileInfo = pathinfo($remoteData['filepath'], PATHINFO_FILENAME);
 
                 $tmpFile = new \fpcm\model\files\tempfile('forceUpdateFile');

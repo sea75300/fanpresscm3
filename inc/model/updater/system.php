@@ -78,7 +78,7 @@
                 }
 
                 $this->decodeData();
-                
+
                 $this->cache->write($this->remoteData, $this->config->system_cache_timeout);
             } else {
                 $this->remoteData = $this->cache->read();

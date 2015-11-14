@@ -56,9 +56,7 @@
          * @return bool
          */
         public static function deleteRecursive($path) {
-            
-            $path = realpath($path);
-            
+
             if (!$path || !file_exists($path) || !is_dir($path)) return false;
 
             $res = true;
@@ -66,14 +64,20 @@
             $pathFiles  = glob($path.'/*');
 
             if (is_array($pathFiles)) {
-                $pathFilesHidden = glob($path.'/.*');
-                if (is_array($pathFilesHidden)) {
-                    $pathFiles += $pathFilesHidden;
+                $hfPath = realpath($path.'/.*');
+                if ($hfPath) {
+                    $pathFilesHidden = glob($hfPath);
+                    if (is_array($pathFilesHidden)) {
+                        $pathFiles += $pathFilesHidden;
+                    }
                 }
-                
-                $pathFilesHtAccess = glob($path.'/.htaccess');
-                if (is_array($pathFilesHtAccess)) {
-                    $pathFiles += $pathFilesHtAccess;
+
+                $htaPath = realpath($path.'/.htaccess');
+                if ($htaPath) {
+                    $pathFilesHtAccess = glob($htaPath);
+                    if (is_array($pathFilesHtAccess)) {
+                        $pathFiles += $pathFilesHtAccess;
+                    }
                 }
 
                 foreach ($pathFiles as $pathFile) {

@@ -63,9 +63,9 @@
             
             switch ($checkRes) {
                 case true :
-                    $iconClass   = 'fa-check';
-                    $statusClass = 'fpcm-dashboard-updates-current';
-                    $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_CURRENT', array( '{{releaseinfo}}' => $systemUpdates->getRemoteData('notice') ? '<a href="'.$systemUpdates->getRemoteData('notice').'">Release-Infos</a>' : '', '{{releasmsg}}' => $systemUpdates->getRemoteData('message')));
+                    $iconClass   = 'fa-cloud-download';
+                    $statusClass = 'fpcm-dashboard-updates-outdated';
+                    $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));
                     break;
                 case \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR:
                     $iconClass   = 'fa-exclamation-triangle';
@@ -73,9 +73,9 @@
                     $statusText  = $this->language->translate('UPDATE_NOTAUTOCHECK');
                     break;
                 default:
-                    $iconClass   = 'fa-cloud-download';
-                    $statusClass = 'fpcm-dashboard-updates-outdated';
-                    $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));
+                    $iconClass   = 'fa-check';
+                    $statusClass = 'fpcm-dashboard-updates-current';
+                    $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_CURRENT', array( '{{releaseinfo}}' => $systemUpdates->getRemoteData('notice') ? '<a href="'.$systemUpdates->getRemoteData('notice').'">Release-Infos</a>' : '', '{{releasmsg}}' => $systemUpdates->getRemoteData('message')));
                     break;
             }
 
