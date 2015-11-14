@@ -127,6 +127,7 @@
                 case 5 :
                     if ($this->canConnect) {
                         $pkg->cleanup();
+                        $versionDataFile->delete();
                         \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                         $filelistoutput = new \fpcm\model\files\tempfile('filelistOuput');
                         die($filelistoutput->getContent());
