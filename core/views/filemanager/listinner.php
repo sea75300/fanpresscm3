@@ -39,6 +39,10 @@
                         <td><?php print isset($users[$file->getUserid()]) ? $users[$file->getUserid()]->getDisplayName() : $FPCM_LANG->translate('GLOBAL_NOTFOUND'); ?></td>                    
                     </tr>
                     <tr>
+                        <td><strong><?php $FPCM_LANG->write('FILE_LIST_FILESIZE'); ?>:</strong></td>
+                        <td><?php print \fpcm\classes\tools::calcSize($file->getFilesize()); ?></td>                    
+                    </tr>
+                    <tr>
                         <td><strong><?php $FPCM_LANG->write('FILE_LIST_RESOLUTION'); ?>:</strong></td>
                         <td><?php print $file->getWidth(); ?> <span class="fa fa-times fa-fw"></span> <?php print $file->getHeight(); ?> <?php $FPCM_LANG->write('FILE_LIST_RESOLUTION_PIXEL'); ?></td>                    
                     </tr>

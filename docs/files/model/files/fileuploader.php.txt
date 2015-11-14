@@ -105,7 +105,7 @@
                 if (!move_uploaded_file($value, $fileName)) return false;
                 
                 $data = \fpcm\model\packages\package::explodeModuleFileName(basename($fileNames[$key], '.zip'));
-                
+
                 $package = new \fpcm\model\packages\module('module', $data[0], $data[1]);                
                 $res     = $package->extract();
                 
@@ -116,15 +116,15 @@
                 if (!file_exists($modulelisteConfigFile)) {
                     return $res;
                 }
-                
+
                 include_once \fpcm\classes\loader::libGetFilePath('spyc', 'Spyc.php');
                 $modulelisteConfig = \Spyc::YAMLLoad($modulelisteConfigFile);                  
                 
                 if ($res !== true) return $res;
                 
-                $package->setCopyDestination($package->getCopyDestination().$modulelisteConfig['vendor'].'/');
+                $package->setCopyDestination($modulelisteConfig['vendor'].'/');
                 $res     = $package->copy();
-                
+
                 if ($res !== true) return $res;
                 
                 $package->cleanup();

@@ -113,7 +113,7 @@
         }
         
         /**
-         * 
+         * Tabellenzeile rendern
          * @param string $statusClass
          * @param string $statusText
          * @param string $iconClass

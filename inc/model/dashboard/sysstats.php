@@ -21,12 +21,6 @@
          * @var array
          */
         protected $tableContent = array();
-        
-        /**
-         * Dateigrößen
-         * @var array
-         */
-        protected $sizeUnits = array('B', 'KiB', 'MiB', 'GiB', 'TiB');
 
         /**
          * Konstruktor
@@ -121,29 +115,17 @@
             $fileCount = $this->dbcon->count(\fpcm\classes\database::tableFiles, '*');
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_UPLOAD_COUNT').':</strong></td><td class="fpcm-ui-center">'.$fileCount.'</td></tr>'; 
             
-            $imgList = new \fpcm\model\files\imagelist();
-            $folderSize = $imgList->getUploadFolderSize();
-            $unitIdx = 0;
-            while ($folderSize > 1024) {
-                $folderSize = $folderSize / 1024;
-                $unitIdx++;
-            }
-            
-            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_UPLOAD_SIZE').':</strong></td><td class="fpcm-ui-center">'.number_format($folderSize, 2).' '.(isset($this->sizeUnits[$unitIdx]) ? $this->sizeUnits[$unitIdx] : '?').'</td></tr>';
+            $imgList    = new \fpcm\model\files\imagelist();
+            $folderSize = \fpcm\classes\tools::calcSize($imgList->getUploadFolderSize());
+            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_UPLOAD_SIZE').':</strong></td><td class="fpcm-ui-center">'.$folderSize.'</td></tr>';
         }
         
         /**
          * Cache-Statistiken berechnen
          */
         protected function getCacheStats() {
-            $cacheSize = $this->cache->getSize();
-            $unitIdx = 0;
-            while ($cacheSize > 1024) {
-                $cacheSize = $cacheSize / 1024;
-                $unitIdx++;
-            }
-            
-            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_CACHE_SIZE').':</strong></td><td class="fpcm-ui-center">'.number_format($cacheSize, 2).' '.(isset($this->sizeUnits[$unitIdx]) ? $this->sizeUnits[$unitIdx] : '?').'</td></tr>';            
+            $folderSize = \fpcm\classes\tools::calcSize($this->cache->getSize());
+            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_CACHE_SIZE').':</strong></td><td class="fpcm-ui-center">'.$folderSize.'</td></tr>';            
         }
         
         

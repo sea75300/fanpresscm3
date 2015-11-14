@@ -20,13 +20,13 @@
     abstract class articleEditor extends staticModel {
 
         /**
-         *
+         * Dateilisten-Objekt
          * @var \fpcm\model\files\imagelist
          */
         protected $fileList;
         
         /**
-         *
+         * Filelibrary-Objekt
          * @var \fpcm\model\system\fileLib
          */
         protected $fileLib;
@@ -116,7 +116,8 @@
         }
         
         /**
-         * 
+         * Gibt Textpattern-Konfiguration zurück,
+         * nur in TinyMCE genutzt
          * @return array
          */
         protected function getTextPatterns() {

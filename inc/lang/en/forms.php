@@ -111,6 +111,7 @@
         'FILE_LIST_AVAILABLE'           => 'Available files',
         'FILE_LIST_UPLOADFORM'          => 'Upload files',
         'FILE_LIST_FILENAME'            => 'Filename',
+        'FILE_LIST_FILESIZE'            => 'Filesize',
         'FILE_LIST_RESOLUTION'          => 'Resolution',
         'FILE_LIST_RESOLUTION_PIXEL'    => 'Pixel',
         'FILE_LIST_UPLOAD_DATE'         => 'uploaded on',

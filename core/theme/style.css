@@ -1220,15 +1220,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     width: 350px !important;
 }
 
-.mce-btn.mce-active {
-    background-image:-moz-linear-gradient(top, #ffffff, #cee4f8) !important;
-    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#cee4f8)) !important;
-    background-image:-webkit-linear-gradient(top, #ffffff, #cee4f8) !important;
-    background-image:linear-gradient(to bottom, #ffffff, #cee4f8) !important;
-    background-repeat:repeat-x;
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffcee4f8', GradientType=0) !important;
-}
-
 .ui-datepicker {
     z-index: 1000 !important;
 }

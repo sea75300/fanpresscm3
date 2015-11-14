@@ -57,6 +57,8 @@
          */
         public static function deleteRecursive($path) {
             
+            $path = realpath($path);
+            
             if (!$path || !file_exists($path) || !is_dir($path)) return false;
 
             $res = true;

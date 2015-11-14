@@ -91,10 +91,6 @@
             parent::__construct($filename, $filepath, $content);
             
             if ($this->exists() || $forceInit) {
-                $ext = pathinfo($this->fullpath, PATHINFO_EXTENSION);
-                $this->extension = ($ext) ? $ext : '';                
-                $this->filesize  = filesize($this->fullpath); 
-                
                 $this->init($initDB);
             }
             
@@ -286,7 +282,7 @@
                 return false;
             }
             
-            $this->filename =$oldname;
+            $this->filename = $oldname;
             unlink(\fpcm\classes\baseconfig::$uploadDir.$this->getThumbnail());
             
             return true;
@@ -376,7 +372,11 @@
                 foreach ($dbData as $key => $value) {
                     $this->$key = $value;
                 }                
-            }            
+            }
+            
+            $ext = pathinfo($this->fullpath, PATHINFO_EXTENSION);
+            $this->extension = ($ext) ? $ext : '';                
+            $this->filesize  = filesize($this->fullpath); 
             
             if (parent::exists()) {
                 $fileData = getimagesize($this->fullpath);
@@ -408,6 +408,9 @@
                 $this->$key = $object->$key;   
             }
             
+            $this->fullpath = $this->filepath.$this->filename;
+            $this->init(false);
+            
             return true;
         }
         
@@ -435,12 +438,6 @@
             );
             
             if ($this->nodata) unset($params['data']);
-
-            if (count($this->dbExcludes)) {
-                foreach ($this->dbExcludes AS $exclude) {
-                    unset($params[$exclude]);
-                }
-            }
             
             return $params;
         }

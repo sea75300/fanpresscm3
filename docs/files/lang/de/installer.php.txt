@@ -29,10 +29,10 @@
         
         'INSTALLER_FINALIZE'                => 'Installation abgeschlossen...',
         'INSTALLER_FINALIZE_TEXT'           => '<strong>Herzlichen Glückwunsch!</strong> Die Installation von FanPress CM wurde '.
-                                               'erfolgreich abgeschlossen! Du kannst dich nun in deinem System! '.
+                                               'erfolgreich abgeschlossen! Du kannst dich nun in deinem System anmelden! '.
                                                '<span class="fa fa-smile-o"></span>',
-        'INSTALLER_FINALIZE_DIABLED'        => '<strong>Wichtig:</strong> Lösche via FTP - sofern vorhanden - unbedingt die Datei '.
+        'INSTALLER_FINALIZE_DIABLED'        => '<strong>Wichtig:</strong> Lösche via FTP unbedingt die Datei '.
                                                '<strong>/data/config/installer.enabled</strong> um den Installations-Assistent zu '.
-                                               'deaktivieren!!!!'
+                                               'deaktivieren, sollte die Datei noch existieren!!!!'
         
     );

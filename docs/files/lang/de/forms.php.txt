@@ -111,6 +111,7 @@
         'FILE_LIST_AVAILABLE'           => 'Vorhandene Dateien',
         'FILE_LIST_UPLOADFORM'          => 'Dateien hochladen',
         'FILE_LIST_FILENAME'            => 'Dateiname',
+        'FILE_LIST_FILESIZE'            => 'Dateigröße',
         'FILE_LIST_RESOLUTION'          => 'Auflösung',
         'FILE_LIST_RESOLUTION_PIXEL'    => 'Pixel',
         'FILE_LIST_UPLOAD_DATE'         => 'hochgeladen am',

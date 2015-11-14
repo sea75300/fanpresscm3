@@ -139,7 +139,7 @@
          * Führt SELECT-Befehl auf DB aus
          * @param string $table select table
          * @param string $item select items
-         * @param string $where select condition
+         * @param string|null $where select condition
          * @param array $params select condition params
          * @param bool $distinct Distinct select
          * @return mixed
@@ -171,7 +171,6 @@
          * Führt UPDATE-Befehl auf DB aus
          * @param string $table
          * @param array $fields
-         * @param array $values
          * @param array $params
          * @param string $where
          * @return bool
