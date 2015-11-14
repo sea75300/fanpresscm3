@@ -60,23 +60,19 @@
         {
             $systemUpdates = new \fpcm\model\updater\system();
             $checkRes      = $systemUpdates->checkUpdates();
-            
-            switch ($checkRes) {
-                case true :
-                    $iconClass   = 'fa-cloud-download';
-                    $statusClass = 'fpcm-dashboard-updates-outdated';
-                    $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));
-                    break;
-                case \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR:
-                    $iconClass   = 'fa-exclamation-triangle';
-                    $statusClass = 'fpcm-dashboard-updates-checkerror';
-                    $statusText  = $this->language->translate('UPDATE_NOTAUTOCHECK');
-                    break;
-                default:
-                    $iconClass   = 'fa-check';
-                    $statusClass = 'fpcm-dashboard-updates-current';
-                    $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_CURRENT', array( '{{releaseinfo}}' => $systemUpdates->getRemoteData('notice') ? '<a href="'.$systemUpdates->getRemoteData('notice').'">Release-Infos</a>' : '', '{{releasmsg}}' => $systemUpdates->getRemoteData('message')));
-                    break;
+
+            if ($checkRes === false) {
+                $iconClass   = 'fa-cloud-download';
+                $statusClass = 'fpcm-dashboard-updates-outdated';
+                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));                
+            } elseif ($checkRes === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {
+                $iconClass   = 'fa-exclamation-triangle';
+                $statusClass = 'fpcm-dashboard-updates-checkerror';
+                $statusText  = $this->language->translate('UPDATE_NOTAUTOCHECK');            
+            } else {
+                $iconClass   = 'fa-check';
+                $statusClass = 'fpcm-dashboard-updates-current';
+                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_CURRENT', array( '{{releaseinfo}}' => $systemUpdates->getRemoteData('notice') ? '<a href="'.$systemUpdates->getRemoteData('notice').'">Release-Infos</a>' : '', '{{releasmsg}}' => $systemUpdates->getRemoteData('message')));
             }
 
             $this->renderTable($iconClass, $statusClass, $statusText);
@@ -91,22 +87,18 @@
             $moduleUpdates = new \fpcm\model\updater\modules();
             $checkRes      = $moduleUpdates->checkUpdates();            
             
-            switch ($checkRes) {
-                case true :
-                    $iconClass   = 'fa-cloud-download';
-                    $statusClass = 'fpcm-dashboard-updates-outdated';
-                    $statusText  = $this->language->translate('UPDATE_MODULECHECK_NEW');
-                    break;
-                case \fpcm\model\updater\modules::MODULEUPDATER_FURLOPEN_ERROR:
-                    $iconClass   = 'fa-exclamation-triangle';
-                    $statusClass = 'fpcm-dashboard-updates-checkerror';
-                    $statusText  = $this->language->translate('UPDATE_MODULECHECK_FAILED');
-                    break;
-                default:
-                    $iconClass   = 'fa-check';
-                    $statusClass = 'fpcm-dashboard-updates-current';
-                    $statusText  = $this->language->translate('UPDATE_MODULECHECK_CURRENT');
-                    break;
+            if ($checkRes === true) {
+                $iconClass   = 'fa-cloud-download';
+                $statusClass = 'fpcm-dashboard-updates-outdated';
+                $statusText  = $this->language->translate('UPDATE_MODULECHECK_NEW');
+            } elseif ($checkRes === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {
+                $iconClass   = 'fa-exclamation-triangle';
+                $statusClass = 'fpcm-dashboard-updates-checkerror';
+                $statusText  = $this->language->translate('UPDATE_MODULECHECK_FAILED');         
+            } else {
+                $iconClass   = 'fa-check';
+                $statusClass = 'fpcm-dashboard-updates-current';
+                $statusText  = $this->language->translate('UPDATE_MODULECHECK_CURRENT');
             }
 
             $this->renderTable($iconClass, $statusClass, $statusText);
