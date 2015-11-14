@@ -55,9 +55,8 @@
             
             $positions = array();
             foreach ($containers as $container) {
-                /**
-                 * @var \fpcm\model\abstracts\dashcontainer
-                 */
+                
+                /* @var $containerObj \fpcm\model\abstracts\dashcontainer */
                 $containerObj = new $container();
                 
                 if (!is_a($containerObj, '\fpcm\model\abstracts\dashcontainer')) {
@@ -67,14 +66,21 @@
                 
                 if (count($containerObj->getPermissions()) && !$this->permissions->check($containerObj->getPermissions())) continue;
                 
-                $position = $containerObj->getPosition();                
+                $position = $containerObj->getPosition();
+                
+                $this->view->setViewJsFiles($containerObj->getJavascriptFiles());
+                $this->view->addJsVars($containerObj->getJavascriptVars());
+                
+                $containerViewVars = $containerObj->getControllerViewVars();
+                $viewVars          = $this->view->getViewVars();
+                $this->view->setViewVars($viewVars + $containerViewVars);
+                
                 if (!$position || isset($this->containers[$position])) {
                     $this->containers[]  = $containerObj;
                 } else {
                     $this->containers[$position]  = $containerObj;
                 }
-                
-                
+
             }
             
             ksort($this->containers);

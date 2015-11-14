@@ -62,6 +62,25 @@
          * @return array
          */        
         public function getPermissions();
-        
-        
+
+        /**
+         * Gibt benötigte Javascript-Variablen zurück
+         * @return array
+         * @since FPCM 3.1.3
+         */
+        public function getJavascriptVars();
+
+        /**
+         * Gibt Liste mit zu ladenden Javascript-Dateien zurück
+         * @return array
+         * @since FPCM 3.1.3
+         */
+        public function getJavascriptFiles();
+
+        /**
+         * Gibt Liste mit zu Variablen zurück, welche an Dashboard-Controller-View übergeben werden sollen
+         * @return array
+         * @since FPCM 3.1.3
+         */
+        public function getControllerViewVars();
     }

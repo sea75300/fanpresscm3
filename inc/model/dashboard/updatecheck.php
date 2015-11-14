@@ -29,11 +29,33 @@
         protected $tableContent = array();
 
         /**
+         * Ergebnis der System-Update-Prüfung
+         * @var bool
+         * @since FPCM 3.1.3
+         */
+        private $systemCheckresult;
+        
+        /**
+         * System-Update-Object
+         * @var \fpcm\model\updater\system
+         * @since FPCM 3.1.3
+         */
+        private $systemUpdates;
+        
+        /**
+         * Status, ob automatischer Update-Check fehlgeschlagen ist wenn baseconfig::canConnect = 1 ist
+         * @var bool
+         * @since FPCM 3.1.3
+         */
+        private $autoCheckFailed = false;
+
+        /**
          * Konstruktor
          */
         public function __construct() {            
             parent::__construct();   
             
+            $this->systemUpdates = new \fpcm\model\updater\system();
             $this->runCheck();
 
             $this->headline = $this->language->translate('SYSTEM_UPDATE');
@@ -58,21 +80,24 @@
          */
         private function getSystemUpdateStatus()
         {
-            $systemUpdates = new \fpcm\model\updater\system();
-            $checkRes      = $systemUpdates->checkUpdates();
+            $this->systemCheckresult = $this->systemUpdates->checkUpdates();
 
-            if ($checkRes === false) {
+            if ($this->systemCheckresult === false) {
                 $iconClass   = 'fa-cloud-download';
                 $statusClass = 'fpcm-dashboard-updates-outdated';
                 $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));                
-            } elseif ($checkRes === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {
+            } elseif ($this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {
                 $iconClass   = 'fa-exclamation-triangle';
                 $statusClass = 'fpcm-dashboard-updates-checkerror';
-                $statusText  = $this->language->translate('UPDATE_NOTAUTOCHECK');            
+                $statusText  = $this->language->translate('UPDATE_NOTAUTOCHECK');
+                
+                if (\fpcm\classes\baseconfig::canConnect()) {
+                    $this->autoCheckFailed = true;
+                }
             } else {
                 $iconClass   = 'fa-check';
                 $statusClass = 'fpcm-dashboard-updates-current';
-                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_CURRENT', array( '{{releaseinfo}}' => $systemUpdates->getRemoteData('notice') ? '<a href="'.$systemUpdates->getRemoteData('notice').'">Release-Infos</a>' : '', '{{releasmsg}}' => $systemUpdates->getRemoteData('message')));
+                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_CURRENT', array( '{{releaseinfo}}' => $this->systemUpdates->getRemoteData('notice') ? '<a href="'.$this->systemUpdates->getRemoteData('notice').'">Release-Infos</a>' : '', '{{releasmsg}}' => $this->systemUpdates->getRemoteData('message')));
             }
 
             $this->renderTable($iconClass, $statusClass, $statusText);
@@ -102,6 +127,38 @@
             }
 
             $this->renderTable($iconClass, $statusClass, $statusText);
+        }
+        
+        /**
+         * @see \fpcm\model\interfaces\dashcontainer::getJavascriptVars()
+         * @return array
+         */
+        public function getJavascriptVars() {
+            
+            if (!$this->autoCheckFailed) {
+                return array();
+            }
+            
+            return array(
+                'fpcmManualCheckUrl'      => $this->systemUpdates->getManualCheckAddress(),
+                'fpcmManualCheckHeadline' => $this->language->translate('HL_PACKAGEMGR_SYSUPDATES')
+            );
+        }
+        
+        /**
+         * @see \fpcm\model\interfaces\dashcontainer::getControllerViewVars()
+         * @return array
+         */
+        public function getControllerViewVars() {
+            
+            if (!$this->autoCheckFailed) {
+                return array();
+            }
+            
+            return array(
+                'includeManualCheck' => true,
+                'autoDialog'         => false
+            );
         }
         
         /**
