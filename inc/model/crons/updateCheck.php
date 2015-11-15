@@ -33,7 +33,7 @@
             $res = $updater->checkUpdates();
             $this->setReturnData($res);
             
-            if ($res && $this->getAsyncCurrent() && FPCM_UPDATE_CRONNOTIFY_EMAIL) {
+            if (!$res && $this->getAsyncCurrent() && FPCM_UPDATE_CRONNOTIFY_EMAIL) {
                 
                 $replacements = array(
                     '{{version}}' => $updater->getRemoteData('version'),
