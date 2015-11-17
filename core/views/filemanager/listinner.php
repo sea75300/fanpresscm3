@@ -1,5 +1,8 @@
-<?php \fpcm\model\view\helper::notFoundContainer($files, 4); ?>
-
+<?php if (!count($files)) : ?>
+<table class="fpcm-ui-table fpcm-ui-nobg">
+    <?php \fpcm\model\view\helper::notFoundContainer($files, 4); ?>
+</table>
+<?php endif; ?>
 <div class="fpcm-filelist-images">
     <?php foreach($files AS $file) : ?>
     <div class="fpcm-filelist-thumb-box">

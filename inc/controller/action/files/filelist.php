@@ -153,11 +153,11 @@
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'filemanager.js'));
             
             if ($this->config->file_uploader_new) {
-                $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.'inc/lib/jqupload/server/index.php');
+                $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('ajax/jqupload'));
             } else {
-                $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.'index.php?module=files/list&mode='.$this->mode);
+                $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('files/list', array('mode' => $this->mode)));
                 
-                $translInfo = array( '{{filecount}}' => ini_get("max_file_uploads"), '{{filesize}}'  => ini_get("upload_max_filesize"));
+                $translInfo = array('{{filecount}}' => ini_get("max_file_uploads"), '{{filesize}}'  => ini_get("upload_max_filesize"));
                 $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             }
             

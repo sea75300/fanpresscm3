@@ -6,6 +6,7 @@ ajax/session: ajax/common/sessioncheck
 ajax/logs/clear: ajax/logs/clear
 ajax/logs/reload: ajax/logs/reload
 ajax/filelist: ajax/files/filelist
+ajax/jqupload: ajax/files/jqupload
 ajax/articles/search: ajax/articles/search
 ajax/articles/tweet: ajax/articles/listnewtweets
 ajax/editor/cleartags: ajax/articles/removeeditortags

@@ -18,7 +18,7 @@ jQuery(function () {
     jQuery('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
-        url: fpcmBaseUrl + 'inc/lib/jqupload/server/'
+        url: fpcmAjaxActionPath + 'jqupload'
     });
 
     // Enable iframe cross-domain access via redirect option:
