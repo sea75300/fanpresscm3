@@ -28,6 +28,11 @@
         
         public function request() {
             
+            if (!$this->session->exists()) {
+                $this->redirectNoSession();
+                return false;
+            }
+            
             if ($this->getRequestVar('save')) {
                 $filePath = base64_decode(str_rot13($this->getRequestVar('save')));
                 $file = new \fpcm\model\files\dbbackup(basename($filePath));

@@ -366,19 +366,15 @@
         protected function init() {
             
             $lastaction = time() + $this->config->system_session_length;
+            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionId = ? AND logout = 0 AND lastaction <= ? ".$this->dbcon->limitQuery(0, 1), array($this->sessionId, $lastaction)));
             
-            $count = $this->dbcon->count($this->table, '*', "sessionId = ? AND logout = 0 AND lastaction <= ?", array($this->sessionId, $lastaction));  
-            if ($count == 0) {
-                $this->sessionExists = false;
-                return;
-            }
-
-            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionId = ? AND logout = 0 AND lastaction <= ?", array($this->sessionId, $lastaction)));            
             if ($data === false) {
                 $this->sessionExists = false;
                 return;
             }
-            foreach ($data as $key => $value) { $this->$key = $value; }            
+            foreach ($data as $key => $value) {
+                $this->$key = $value;
+            }            
             $this->sessionExists = true;
         }
         
