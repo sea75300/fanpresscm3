@@ -82,7 +82,7 @@
         {
             $this->systemCheckresult = $this->systemUpdates->checkUpdates();
 
-            if ($this->systemCheckresult === false) {
+            if ($this->systemCheckresult === false || $this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FORCE_UPDATE) {
                 $iconClass   = 'fa-cloud-download';
                 $statusClass = 'fpcm-dashboard-updates-outdated';
                 $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));                
