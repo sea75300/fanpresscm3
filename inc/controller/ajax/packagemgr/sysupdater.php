@@ -84,25 +84,28 @@
                 case 1 :
                     $res = $pkg->download();
                     if ($res === true) {
-                        \fpcm\classes\logs::syslogWrite('Downloaded update package successfully!');
+                        \fpcm\classes\logs::syslogWrite('Downloaded update package successfully from '.$pkg->getRemoteFile());
                     } else {
-                        \fpcm\classes\logs::syslogWrite('Error while downloading update package!');
+                        \fpcm\classes\logs::syslogWrite('Error while downloading update package from '.$pkg->getRemoteFile());
                     }
                     break;
                 case 2 :
                     $res = $pkg->extract();
+                    $from = \fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile());
                     if ($res === true) {
-                        \fpcm\classes\logs::syslogWrite('Extracted update package successfully!');
+                        \fpcm\classes\logs::syslogWrite('Extracted update package successfully from '.$from);
                     } else {
-                        \fpcm\classes\logs::syslogWrite('Error while extracting update package!');
+                        \fpcm\classes\logs::syslogWrite('Error while extracting update package from '.$from);
                     }
                     break;
                 case 3 :
                     $res = $pkg->copy();
-                    if ($res === true) {
-                        \fpcm\classes\logs::syslogWrite('Moved update package content successfully!');
+                    $dest = \fpcm\model\files\ops::removeBaseDir(\fpcm\classes\baseconfig::$baseDir);
+                    $from = \fpcm\model\files\ops::removeBaseDir($pkg->getExtractPath());
+                    if ($res === true) {                        
+                        \fpcm\classes\logs::syslogWrite('Moved update package content successfully from '.$from.' to '.$dest);
                     } else {
-                        \fpcm\classes\logs::syslogWrite('Error while moving update package content!');
+                        \fpcm\classes\logs::syslogWrite('Error while moving update package content from '.$from.' to '.$dest);
                         \fpcm\classes\logs::syslogWrite($pkg->getCopyErrorPaths());
                     }
                     

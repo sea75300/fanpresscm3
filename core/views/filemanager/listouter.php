@@ -34,11 +34,11 @@
     </div>
 </div>
 
-<?php if ($loadAjax) : ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
+        <?php if ($loadAjax) : ?>
         fpcmJs.reloadFiles();
+        <?php endif; ?>
         fpcmFilemgr.initActionButtons();
     });
 </script>
-<?php endif; ?>
