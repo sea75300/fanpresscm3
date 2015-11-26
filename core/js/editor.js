@@ -312,6 +312,7 @@ var fpcmEditor = function () {
             link_assume_external_targets: true,
             default_link_target   : "_blank",
             autoresize_min_height : '500',
+            image_caption         : true,
             file_picker_callback  : function(callback, value, meta) {                
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
