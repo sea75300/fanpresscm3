@@ -48,6 +48,7 @@
 	"tab-bg-hover": "#d0e5f5",
 	"tab-bg-active": "#f5f8f9",
 	"tab-border": "#c5dbec",
+	"tabs-bg": "#ffffff",
 	"slider-bg": "#fcfdfd",
 	"slider-border": "#aaaaaa",
 	"slider-handle-bg": "#5c9ccc",
