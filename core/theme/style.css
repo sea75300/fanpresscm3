@@ -1220,6 +1220,11 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     width: 350px !important;
 }
 
+div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before {
+    font-family: FontAwesome;
+    content: '\f0fe';
+}
+
 .ui-datepicker {
     z-index: 1000 !important;
 }

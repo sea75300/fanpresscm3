@@ -122,7 +122,7 @@ var fpcmEditor = function () {
         aTag = "";
 
         do {
-            $liTxt = prompt("Element:","");
+            $liTxt = prompt(fpcmEditorHtmlElement,"");
             if($liTxt != "" && $liTxt != null) { aTag = aTag + '<li>' + $liTxt + '</li>\n'; }
         } while($liTxt != "" && $liTxt != null);
 

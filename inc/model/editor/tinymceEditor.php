@@ -60,7 +60,8 @@
                 'fpcmTinyMceLinkList'    => $this->getEditorLinks(),
                 'fpcmTinyMceImageList'   => $this->getFileList(),
                 'fpcmTinyMceTextpattern' => $this->getTextPatterns(),
-                'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize
+                'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize,
+                'fpcmTinyMceReadmoreBlockHL' => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE')
             );
             
             return $this->events->runEvent('editorInitTinymce', $params);

@@ -32,9 +32,27 @@
                 'result'    => version_compare(phpversion(), $phpVer, '>='),
                 'helplink'  => 'http://php.net/'
             );
+            
+            $recomVal = 64;
+            $curVal   = substr(ini_get('memory_limit'), 0, -1);
+            $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_PHPMEMLIMIT')]    = array(
+                'current'   => $curVal.' MiB',  
+                'recommend' => $recomVal.' MiB',
+                'result'    => ($curVal >= $recomVal ? true : false),
+                'helplink'  => 'http://php.net/manual/de/info.configuration.php'
+            );
+            
+            $recomVal = 10;
+            $curVal   = ini_get('max_execution_time');
+            $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_PHPMAXEXECTIME')]    = array(
+                'current'   => $curVal.' sec',
+                'recommend' => $recomVal.' sec',
+                'result'    => ($curVal >= $recomVal ? true : false),
+                'helplink'  => 'http://php.net/manual/de/info.configuration.php'
+            );
 
             $current = in_array('mysql', \PDO::getAvailableDrivers());
-            $checkOptions['MySQL/MariaDB database driver']    = array(
+            $checkOptions['MySQL/MariaDB Database Driver']    = array(
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
@@ -43,7 +61,7 @@
 
             $current = (CRYPT_SHA256 == 1 ? true : false);
             $current = $current && in_array('sha256', hash_algos());            
-            $checkOptions['sha256 hash algorithm']    = array(
+            $checkOptions['SHA256 Hash Algorithm']    = array(
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
@@ -99,7 +117,7 @@
             );
             
             $current = in_array('curl', $loadedExtensions);
-            $checkOptions['curl ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
+            $checkOptions['cURL ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (false || $current),

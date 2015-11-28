@@ -65,7 +65,8 @@
                 'fpcmCmColors'                  => $editorHtmlColors,
                 'fmcEditorKeyShortcutsEnabled'  => true,
                 'fpcmEditorAutocompleteLinks'   => $this->getEditorLinks(),
-                'fpcmEditorAutocompleteImages'  => $this->getFileList()
+                'fpcmEditorAutocompleteImages'  => $this->getFileList(),
+                'fpcmEditorHtmlElement'         => $this->language->translate('EDITOR_HTML_BUTTONS_LITEXT')
             );
         }
 
@@ -93,6 +94,18 @@
                 'cssClasses'   => $editorStyles,
                 'extraButtons' => array(
                     array('title' => '', 'id' => '', 'class' => '', 'htmltag' => '', 'icon' => '')
+                ),
+                'editorFontsizes'   => array(8,9,10,11,12,14,16,18,20,24),
+                'editorParagraphs'  => array(
+                    $this->language->translate('EDITOR_PARAGRAPH')               => 'p',
+                    $this->language->translate('EDITOR_PARAGRAPH_HEADLINE').' 1' => 'h1',
+                    $this->language->translate('EDITOR_PARAGRAPH_HEADLINE').' 2' => 'h2',
+                    $this->language->translate('EDITOR_PARAGRAPH_HEADLINE').' 3' => 'h3',
+                    $this->language->translate('EDITOR_PARAGRAPH_HEADLINE').' 4' => 'h4',
+                    $this->language->translate('EDITOR_PARAGRAPH_HEADLINE').' 5' => 'h5',
+                    $this->language->translate('EDITOR_PARAGRAPH_HEADLINE').' 6' => 'h6',
+                    $this->language->translate('EDITOR_PRE')                     => 'pre',
+                    $this->language->translate('EDITOR_CODE')                    => 'code',
                 )
             );
 

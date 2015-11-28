@@ -59,5 +59,24 @@
         'EDITOR_STATUS_APPROVAL'        => 'Artikel muss freigegeben werden',
         'EDITOR_STATUS_COMMENTS'        => 'Kommentare sind aktiv',
         'EDITOR_STATUS_REVISION'        => 'Revision anzeigen (Revision = links, Aktuell = rechts)',
-        'EDITOR_STATUS_REVISION_SHOW'   => 'Revision öffnen'
+        'EDITOR_STATUS_REVISION_SHOW'   => 'Revision öffnen',
+        
+        'EDITOR_HTML_BUTTONS_BOLD'      => 'Fett',
+        'EDITOR_HTML_BUTTONS_ITALIC'    => 'Kursiv',
+        'EDITOR_HTML_BUTTONS_UNDERLINE' => 'Unterstrichen',
+        'EDITOR_HTML_BUTTONS_STRIKE'    => 'Durchgestrichen',
+        'EDITOR_HTML_BUTTONS_SUP'       => 'Hochgestellt',
+        'EDITOR_HTML_BUTTONS_SUB'       => 'Tiefgestellt',
+        'EDITOR_HTML_BUTTONS_ALEFT'     => 'Linksbündig',
+        'EDITOR_HTML_BUTTONS_ACENTER'   => 'Zentriert',
+        'EDITOR_HTML_BUTTONS_ARIGHT'    => 'Rechtsbündig',
+        'EDITOR_HTML_BUTTONS_AJUSTIFY'  => 'Blocksatz',
+        'EDITOR_HTML_BUTTONS_LISTUL'    => 'Aufzählung',
+        'EDITOR_HTML_BUTTONS_LISTOL'    => 'Nummerierte Liste',
+        'EDITOR_HTML_BUTTONS_QUOTE'     => 'Zitat einfügen',
+        'EDITOR_HTML_BUTTONS_IFRAME'    => 'iFrame einfügen',
+        'EDITOR_HTML_BUTTONS_READMORE'  => '<readmore>-Block einfügen',
+        'EDITOR_HTML_BUTTONS_SYMBOL'    => 'Symbol einfügen',
+        'EDITOR_HTML_BUTTONS_REMOVESTYLE' => 'HTML-Tags entfernen',
+        'EDITOR_HTML_BUTTONS_LITEXT'      => 'Element-Text:'
     );
