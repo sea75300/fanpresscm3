@@ -106,7 +106,8 @@
                     $this->language->translate('EDITOR_PARAGRAPH_HEADLINE').' 6' => 'h6',
                     $this->language->translate('EDITOR_PRE')                     => 'pre',
                     $this->language->translate('EDITOR_CODE')                    => 'code',
-                )
+                ),
+                'editorDefaultFontsize' => $this->config->system_editor_fontsize
             );
 
             $vars = $this->events->runEvent('editorInitHtml', $vars);

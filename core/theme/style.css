@@ -971,9 +971,6 @@ h3, .fpcm-dashboard-container h3 {
 
 .editor-textarea-classic, .CodeMirror {
     font-family: 'Courier New', sans-serif !important;
-    color: #0048a9;
-    line-height: 1.2em !important;
-    font-size: 14px !important;
 }
 
 .editor-textarea-classic, .CodeMirror, .CodeMirror textarea {

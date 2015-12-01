@@ -91,7 +91,7 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td style="font-size: <?php print $editorDefaultFontsize; ?>">
             <?php \fpcm\model\view\helper::textArea('article[content]', 'fpcm-full-width', $article->getContent()) ?>
         </td>
     </tr>
