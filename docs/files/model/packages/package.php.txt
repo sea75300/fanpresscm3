@@ -461,7 +461,7 @@
             
             $vendorFolder = \fpcm\classes\baseconfig::$baseDir.$this->copyDestination.dirname($this->key);
             if ($this->type == 'module' && !is_dir($vendorFolder) && !mkdir($vendorFolder) ) {
-                trigger_error('Unable to create module vendor folder '.$vendorFolder);
+                trigger_error('Unable to create module vendor folder: '.\fpcm\model\files\ops::removeBaseDir($vendorFolder, true));
                 \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                 return false;
             }
@@ -474,7 +474,7 @@
                         ? \fpcm\classes\baseconfig::$baseDir.$this->copyDestination.str_replace(basename($this->key).'/', $this->key.'/', $zipFile)
                         : dirname(\fpcm\classes\baseconfig::$baseDir).$this->copyDestination.$zipFile);
 
-                $dest   = str_replace('fanpress/', basename(\fpcm\classes\baseconfig::$baseDir).'/', $dest);
+                $dest   = $this->replaceFanpressDirString($dest);
                 
                 if (is_dir($source)) {
                     if (!file_exists($dest) && !mkdir($dest, 0777)) {
@@ -516,15 +516,15 @@
          */
         public function cleanup() {            
             if (!unlink($this->tempListFile)) {
-                trigger_error('Unable to remove temp list file '.$this->tempListFile);
+                trigger_error('Unable to remove temp list file: '.\fpcm\model\files\ops::removeBaseDir($this->tempListFile, true));
             }
             
             if (!unlink($this->localFile)) {
-                trigger_error('Unable to delete local package copy '.$this->localFile);
+                trigger_error('Unable to delete local package copy: '.\fpcm\model\files\ops::removeBaseDir($this->localFile, true));
             }
             
             if (!\fpcm\model\files\ops::deleteRecursive($this->extractPath)) {
-                trigger_error('Package extraction path still exists in '.$this->extractPath);
+                trigger_error('Package extraction path still exists in '.\fpcm\model\files\ops::removeBaseDir($this->extractPath, true));
             }
             
         }
@@ -560,14 +560,14 @@
             $this->buildHashes();
             
             if ($this->remoteHash != $this->localHash) {
-                trigger_error('Remote and local file hash do not match for '.$this->localFile);
+                trigger_error('Remote and local file hash do not match for '.\fpcm\model\files\ops::removeBaseDir($this->localFile, true));
                 \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                 return self::FPCMPACKAGE_HASHCHECK_ERROR;
             }
             
             
             if ($this->remoteSignature != $this->localSignature) {
-                trigger_error('Remote and local file hash do not match for '.$this->localFile);
+                trigger_error('Remote and local file hash do not match for '.\fpcm\model\files\ops::removeBaseDir($this->localFile, true));
                 \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                 return self::FPCMPACKAGE_HASHCHECK_ERROR;
             }

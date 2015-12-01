@@ -53,13 +53,14 @@
         'HL_HELP_INTEGRATION'           => 'Page integration',
         'HL_HELP_SUPPORT'               => 'Contact and support',
         
-        'CRONJOB_ANONYMIZEIPS'         => 'anonymize IP addresses in comments',
-        'CRONJOB_CLEARLOGS'            => 'clear system logs',
-        'CRONJOB_CLEARTEMP'            => 'cleanup temporary files',
-        'CRONJOB_FMTHUMBS'             => 'create filemanager thumbnails',
-        'CRONJOB_POSTPONEDARTICLES'    => 'publish postponed articles',
-        'CRONJOB_UPDATECHECK'          => 'check for updates',
-        'CRONJOB_DBBACKUP'             => 'create database dump',
+        'CRONJOB_ANONYMIZEIPS'         => 'Anonymize IP addresses in comments',
+        'CRONJOB_CLEARLOGS'            => 'Clear system logs',
+        'CRONJOB_CLEARTEMP'            => 'Cleanup temporary files',
+        'CRONJOB_FMTHUMBS'             => 'Create filemanager thumbnails',
+        'CRONJOB_POSTPONEDARTICLES'    => 'Publish postponed articles',
+        'CRONJOB_UPDATECHECK'          => 'Check for updates',
+        'CRONJOB_DBBACKUP'             => 'Create database dump',
+        'CRONJOB_FILEINDEX'            => 'Rebuild file index'
         
     );
 

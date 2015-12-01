@@ -59,5 +59,24 @@
         'EDITOR_STATUS_APPROVAL'        => 'Article requires approval',
         'EDITOR_STATUS_COMMENTS'        => 'Comments are enabled',
         'EDITOR_STATUS_REVISION'        => 'Revision is displayed (revision state = left, current state = right)',
-        'EDITOR_STATUS_REVISION_SHOW'   => 'Open revision'
+        'EDITOR_STATUS_REVISION_SHOW'   => 'Open revision',
+        
+        'EDITOR_HTML_BUTTONS_BOLD'      => 'Bold',
+        'EDITOR_HTML_BUTTONS_ITALIC'    => 'Italic',
+        'EDITOR_HTML_BUTTONS_UNDERLINE' => 'Underline',
+        'EDITOR_HTML_BUTTONS_STRIKE'    => 'Strike out',
+        'EDITOR_HTML_BUTTONS_SUP'       => 'Superscript',
+        'EDITOR_HTML_BUTTONS_SUB'       => 'Subscript',
+        'EDITOR_HTML_BUTTONS_ALEFT'     => 'Align left',
+        'EDITOR_HTML_BUTTONS_ACENTER'   => 'Align center',
+        'EDITOR_HTML_BUTTONS_ARIGHT'    => 'Align right',
+        'EDITOR_HTML_BUTTONS_AJUSTIFY'  => 'Align justify',
+        'EDITOR_HTML_BUTTONS_LISTUL'    => 'Unordered list',
+        'EDITOR_HTML_BUTTONS_LISTOL'    => 'Ordered list',
+        'EDITOR_HTML_BUTTONS_QUOTE'     => 'Blockquote',
+        'EDITOR_HTML_BUTTONS_IFRAME'    => 'Insert iframe',
+        'EDITOR_HTML_BUTTONS_READMORE'  => 'Insert <readmore> block',
+        'EDITOR_HTML_BUTTONS_SYMBOL'    => 'Insert Symbol',
+        'EDITOR_HTML_BUTTONS_REMOVESTYLE' => 'Remove HTML and style tags',
+        'EDITOR_HTML_BUTTONS_LITEXT'      => 'Element text:'
     );

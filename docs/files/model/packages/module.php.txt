@@ -47,7 +47,7 @@
             
             $vendorFolder = \fpcm\classes\baseconfig::$baseDir.$this->copyDestination.dirname($this->key);
             if (!is_dir($vendorFolder) && !mkdir($vendorFolder) ) {
-                trigger_error('Unable to create module vendor folder '.$vendorFolder);
+                trigger_error('Unable to create module vendor folder '.\fpcm\model\files\ops::removeBaseDir($vendorFolder, true));
                 \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                 return false;
             }

@@ -165,4 +165,44 @@
             return false;
         }
         
+        /**
+         * PHP-Magic-Methode __call, ruft Event apiCallFunction auf
+         * @param string $name, Form: MODULEKEY mit _ statt _ + "_" +  FUNCTIONNAME (Bsp.: nkorg_example_foo)
+         * @param array $arguments
+         * @return mixed
+         * @since FPCM 3.1.5
+         */
+        public function __call($name, $arguments) {
+
+            /* @var $eventList fpcm\model\events\eventList */
+            $eventList = fpcm\classes\baseconfig::$fpcmEvents;
+            
+            $params = array(
+                'name'   => $name,
+                'args' => $arguments
+            );
+
+            return $eventList->runEvent('apiCallFunction', $params);
+        }
+        
+        /**
+         * PHP-Magic-Methode __callStatic, ruft Event apiCallFunction auf
+         * @param string $name, Form: MODULEKEY mit _ statt _ + "_" +  FUNCTIONNAME (Bsp.: nkorg_example_foo)
+         * @param array $arguments
+         * @return mixed
+         * @since FPCM 3.1.5
+         */
+        public static function __callStatic($name, $arguments) {
+            /* @var $eventList fpcm\model\events\eventList */
+            $eventList = fpcm\classes\baseconfig::$fpcmEvents;
+            
+            $params = array(
+                'name' => $name,
+                'args' => $arguments
+            );
+            
+            return $eventList->runEvent('apiCallFunction', $params);
+        }
+
+
     }

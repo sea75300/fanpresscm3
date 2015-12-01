@@ -66,7 +66,7 @@
                     continue;
                 }
                 
-                if (!$image->save()) {
+                if (!$image->exists(true) && !$image->save()) {
                     trigger_error("Unable to save image \"$folderFile\" to database.");
                 }
             }

@@ -19,6 +19,6 @@
             } else {
                 $fpcmApi->showArticles();
             }
-        ?>
+        ?>        
     </body>
 </html>

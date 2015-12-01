@@ -1,8 +1,8 @@
 ## Module list config file
 ---
 name: FanPress CM Module Example
-version: 3.0.0
+version: 3.1.5
 description: Example of a FanPress CM module.
 author: imagine
 link: http://nobody-knows.org/
-sysversion: 3.0.0
+sysversion: 3.1.5

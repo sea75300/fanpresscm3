@@ -119,5 +119,7 @@
         'SYSTEM_OPTIONS_SYSCHECK_RECOMMEND'         => 'Empfohlener Wert',
         'SYSTEM_OPTIONS_SYSCHECK_STATUS'            => 'Wert OK?',
         'SYSTEM_OPTIONS_SYSCHECK_FPCMVERSION'       => 'FanPress CM Version',
-        'SYSTEM_OPTIONS_SYSCHECK_PHPVERSION'        => 'PHP Version'
+        'SYSTEM_OPTIONS_SYSCHECK_PHPVERSION'        => 'PHP Version',
+        'SYSTEM_OPTIONS_SYSCHECK_PHPMEMLIMIT'       => 'PHP Speicherlimit',
+        'SYSTEM_OPTIONS_SYSCHECK_PHPMAXEXECTIME'    => 'Maximale Ausführungszeit für PHP'
     );
