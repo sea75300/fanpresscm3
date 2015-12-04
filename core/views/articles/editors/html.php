@@ -40,7 +40,7 @@
                     <div class="fpcm-editor-select">
                         <ul class="fpcm-editor-smenu">
                             <?php foreach ($editorParagraphs as $descr => $tag) : ?>
-                            <li class="fpcm-editor-htmlfontsize" htmltag="<?php print $tag; ?>"><a><?php print $descr; ?></a></li>
+                            <li class="fpcm-editor-htmlclick" htmltag="<?php print $tag; ?>"><a><?php print $descr; ?></a></li>
                             <?php endforeach; ?>                   
                         </ul>              
                     </div>                
