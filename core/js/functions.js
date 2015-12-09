@@ -222,11 +222,11 @@ var fpcmJs = function () {
                 jQuery('.fpcm-list-selectbox').prop('checked', false);
         });
         jQuery('#fpcmselectalldraft').click(function(){
-            jQuery('.fpcm-select-allsub').prop('checked', false);
+            jQuery('.fpcm-select-allsub-draft').prop('checked', false);
             if (jQuery(this).prop('checked'))        
-                jQuery('.fpcm-list-selectbox').prop('checked', true);
+                jQuery('.fpcm-list-selectbox-draft').prop('checked', true);
             else
-                jQuery('.fpcm-list-selectbox').prop('checked', false);
+                jQuery('.fpcm-list-selectbox-draft').prop('checked', false);
         });
         jQuery('#fpcmselectalltrash').click(function(){
             jQuery('.fpcm-select-allsub').prop('checked', false);
@@ -246,7 +246,6 @@ var fpcmJs = function () {
     this.assignCheckboxesSub = function () {
         jQuery('.fpcm-select-allsub').click(function(){
             var subValue = jQuery(this).val();
-            
             if (jQuery(this).prop('checked'))        
                 jQuery('.fpcm-list-selectbox-sub' + subValue).prop('checked', true);
             else

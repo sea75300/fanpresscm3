@@ -255,6 +255,11 @@
          * @return bool
          */
         public function deleteArticles(array $ids) {   
+            
+            if (!count($ids)) {
+                return false;
+            }
+            
             $where = 'id IN ('.implode(', ', $ids).')';
             
             if ($this->config->articles_trash) {
@@ -263,7 +268,7 @@
                 $res = $this->dbcon->delete($this->table, $where);
             }
 
-            if ($res) {
+            if ($res && !$this->config->articles_trash) {
                 $commentList = new \fpcm\model\comments\commentList();
                 $commentList->deleteCommentsByArticle($ids);
             }

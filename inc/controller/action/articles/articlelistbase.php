@@ -270,7 +270,8 @@
          * @return boolean
          */
         protected function doDelete(array $ids) {
-            if (!$this->deleteActions) return false;            
+            if (!$this->deleteActions) return false;
+
             return $this->articleList->deleteArticles($ids);
         }
         
