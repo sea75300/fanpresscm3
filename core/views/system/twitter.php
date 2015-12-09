@@ -13,7 +13,9 @@
             
             <?php if ($globalConfig['twitter_data']['user_token'] && $globalConfig['twitter_data']['user_secret'] && $twitterIsActive) : ?>
                 <?php \fpcm\model\view\helper::submitButton('twitterDisconnect', 'SYSTEM_OPTIONS_TWITTER_DISCONNECT', 'fpcm-ui-actions-genreal'); ?>
-            <?php endif; ?>            
+            <?php endif; ?>
+
+            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('HL_HELP'), '', \fpcm\classes\baseconfig::$rootPath.'index.php?module=system/help&ref='.base64_encode('system_options_twitter_connection'), '_blank'); ?>
         </td>
     </tr>
     <tr>			

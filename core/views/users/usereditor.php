@@ -13,7 +13,7 @@
         <td><?php $FPCM_LANG->write('GLOBAL_PASSWORD'); ?>:</td>
         <td>
             <?php \fpcm\model\view\helper::passwordInput('password', 'fpcm-usereditor-password') ?>
-            <span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('USERS_REQUIREMENTS'); ?>"></span>
+            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('USERS_REQUIREMENTS')); ?>
         </td>
     </tr>
     <tr>

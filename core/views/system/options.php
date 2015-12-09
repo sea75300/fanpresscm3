@@ -38,7 +38,7 @@
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK'); ?>:</td>
                         <td>
                             <?php fpcm\model\view\helper::textInput('system_dtmask', '', $globalConfig['system_dtmask']); ?>
-                            <a href="http://us2.php.net/manual/function.date.php" target="_blank"><span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK_HELP'); ?>"></span></a>
+                            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_DATETIMEMASK_HELP'), '', 'http://us2.php.net/manual/function.date.php', '_blank'); ?>
                         </td>
                     </tr>
                     <tr>			
@@ -57,7 +57,7 @@
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_INCLUDEJQUERY'); ?>:</td>
                         <td>
                             <?php fpcm\model\view\helper::boolSelect('system_loader_jquery', $globalConfig['system_loader_jquery']); ?>
-                            <span style="position:relative;bottom:0.8em;" class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_INCLUDEJQUERY_YES'); ?>"></span>
+                            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_INCLUDEJQUERY_YES'), 'position:relative;bottom:0.8em;'); ?>
                         </td>
                     </tr>
                 </table>

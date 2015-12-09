@@ -23,7 +23,7 @@
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK'); ?>:</td>
                 <td>
                     <?php fpcm\model\view\helper::textInput('conf[system_dtmask]', '', 'd.m.Y H:i:s'); ?>
-                    <a href="http://us2.php.net/manual/function.date.php" target="_blank"><span class="fa fa-question-circle fa-fw fpcm-ui-shorthelp" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_DATETIMEMASK_HELP'); ?>"></span></a>
+                    <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_DATETIMEMASK_HELP'), '', 'http://us2.php.net/manual/function.date.php', '_blank'); ?>
                 </td>
             </tr>			 			 
             <tr>			

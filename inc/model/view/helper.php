@@ -384,6 +384,27 @@
         }
 
         /**
+         * Erzeugt einen "Hilfe"/"Information"-Fragezeichen-Button, wie in System-Optionen, System-Check, etc genutzt.
+         * @param type $description Beschreibung für Tooltip
+         * @param type $style
+         * @param type $href Ziel-Link, false, wenn kein Link erzeugt werden soll
+         * @param type $target Link in gleichem/ neuen Fenster öffnen
+         * @since FPCM 3.1.6
+         */
+        public static function shortHelpButton($description, $style = '', $href = false, $target = '_self') {
+            
+            $html   = array();
+            
+            if ($href) $html[] = "<a href=\"{$href}\" target=\"{$target}\">";
+
+            $html[] = "<span style=\"{$style}\" class=\"fa fa-question-circle fa-fw fpcm-ui-shorthelp\" title=\"{$description}\"></span>";
+
+            if ($href) $html[] = "</a>";
+            
+            print implode('', $html).PHP_EOL;
+        }
+
+        /**
          * Liefert "Keine Einträge gefunden"-Zeile zurück
          * @param array $data
          * @param int $cols
