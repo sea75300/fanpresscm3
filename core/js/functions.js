@@ -229,11 +229,11 @@ var fpcmJs = function () {
                 jQuery('.fpcm-list-selectbox-draft').prop('checked', false);
         });
         jQuery('#fpcmselectalltrash').click(function(){
-            jQuery('.fpcm-select-allsub').prop('checked', false);
+            jQuery('.fpcm-select-allsub-trash').prop('checked', false);
             if (jQuery(this).prop('checked'))        
-                jQuery('.fpcm-list-selectbox').prop('checked', true);
+                jQuery('.fpcm-list-selectbox-trash').prop('checked', true);
             else
-                jQuery('.fpcm-list-selectbox').prop('checked', false);
+                jQuery('.fpcm-list-selectbox-trash').prop('checked', false);
         });
         jQuery('#fpcmselectallrevisions').click(function(){
             if (jQuery(this).prop('checked'))        
