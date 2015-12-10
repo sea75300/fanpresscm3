@@ -198,6 +198,13 @@
         public static $filemanagerRootPath;
         
         /**
+         * Pfad zu system-eigenen SQL-Dateien
+         * @var string
+         * @since FPCM 3.2.0
+         */
+        public static $dbStructPath;
+        
+        /**
          * auszuschließende Ordner
          * @var array
          */
@@ -287,6 +294,7 @@
             self::$tempDir             = self::$dataDir.'temp/';
             self::$uploadDir           = self::$dataDir.'uploads/';
             self::$dbdumpDir           = self::$dataDir.'dbdump/';
+            self::$dbStructPath        = self::$dataDir.'dbstruct/';
             
             self::$coreDir             = self::$baseDir.'/core/';
             self::$viewsDir            = self::$coreDir.'views/';

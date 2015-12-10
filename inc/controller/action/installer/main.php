@@ -134,7 +134,7 @@
         protected function runStep4() {
             $sqlFiles = array();
             
-            foreach (glob(\fpcm\classes\baseconfig::$configDir.'dbstruct/*.sql') as $value) {
+            foreach (glob(\fpcm\classes\baseconfig::$dbStructPath.'*.sql') as $value) {
                 $sqlFiles[substr(basename($value, '.sql'), 2)] = base64_encode(str_rot13(base64_encode($value)));
             }
             
@@ -308,7 +308,7 @@
             
             if ($this->afterStepResult) {
                 $res = \fpcm\classes\baseconfig::enableInstaller(false);
-                $res = $res && \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$configDir.'dbstruct');
+                $res = $res && \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dbStructPath);
             }
             
             $this->view->assign('disableInstallerMsg', !$res);

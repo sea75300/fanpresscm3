@@ -29,8 +29,9 @@
          */
         public function runUpdate() {
             $res = true &&
-                   $this->alterTables() &&
+                   $this->checkFilesystem() &&
                    $this->createTables() &&
+                   $this->alterTables() &&
                    $this->addSystemOptions() &&
                    $this->updateSystemOptions() &&
                    $this->updatePermissions() &&
@@ -148,6 +149,16 @@
         private function createTables() {
             $res = true;
             return $res;
+        }
+        
+        /**
+         * Prüfung von Dateisystem-Strukturen
+         * @return bool
+         */
+        private function checkFilesystem() {
+            \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$configDir.'dbstruct');
+            
+            return true;
         }
 
         /**
