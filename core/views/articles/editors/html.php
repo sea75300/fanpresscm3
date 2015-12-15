@@ -24,6 +24,7 @@
     <tr>
         <td class="ui-widget-content ui-corner-all ui-state-normal">
             <div class="fpcm-editor-selectboxes">
+                <?php if (count($editorStyles)) : ?>
                 <div class="fpcm-fpcm-editor-selectbox">
                     <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-styles"><?php $FPCM_LANG->write('EDITOR_SELECTSTYLES'); ?></button>
                     <div class="fpcm-editor-select">
@@ -34,6 +35,7 @@
                         </ul>              
                     </div>                
                 </div>
+                <?php endif; ?>
 
                 <div class="fpcm-fpcm-editor-selectbox">
                     <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-paragraphs"><?php $FPCM_LANG->write('EDITOR_PARAGRAPH'); ?></button>

@@ -304,13 +304,18 @@ img {
 }
 
 .fpcm-message-notice {
-    background:#CCE9F4;
+    background:rgba(204, 233, 244, 0.9);
     border: 1px solid #69BDDD;
 }
 
 .fpcm-message-neutral {
-    background: #FBEC88;
+    background: rgba(251, 236, 136, 0.9);
     border: 1px solid #FAD42E;
+}
+
+.fpcm-message-error {
+    border: 1px solid #cc0000;
+    background:rgba(230, 168, 168, 0.9);
 }
 
 ins,
@@ -361,11 +366,6 @@ del,
 table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments.fpcm-ui-important-text {
     font-weight: bold;
     font-size: 1.25em;
-}
-
-.fpcm-message-error {
-    border: 1px solid #cc0000;
-    background:#E6A8A8;
 }
 
 /* Formulare */
@@ -594,9 +594,12 @@ table.fpcm-ui-table th.fpcm-th-full {
     border: 1px solid #C5DBEC;
 }
 
-td,
-table.fpcm-ui-table tr td.fpcm-align-top {
+td {
     vertical-align: top;
+}
+
+table.fpcm-ui-table tr td.fpcm-align-top {
+    vertical-align: top !important;
 }
 
 table.fpcm-ui-table.fpcm-ui-modules tr th.fpcm-ui-modules-version,
@@ -608,7 +611,8 @@ table.fpcm-ui-table.fpcm-ui-options tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-logs-sessions tr td,
 table.fpcm-ui-table.fpcm-ui-logs tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-permissions th,
-table.fpcm-ui-table.fpcm-ui-permissions td {
+table.fpcm-ui-table.fpcm-ui-permissions td,
+table.fpcm-ui-table.fpcm-ui-options-twitter tr td:first-child {
     width: 25%;
 }
 
@@ -743,7 +747,6 @@ table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr td:first-child {
 }
 
 table.fpcm-ui-table.fpcm-ui-articles-search td,
-table.fpcm-ui-table.fpcm-ui-options-twitter tr td,
 table.fpcm-ui-table.fpcm-ui-articlelist-acp tr td {
     width: 33%;
 }
@@ -1307,8 +1310,13 @@ span.fpcm-ui-shorthelp {
     color: #0048A9;
 }
 
+span.fpcm-ui-shorthelp:hover {
+    color: #3399ff;
+}
+
 table.fpcm-ui-table.fpcm-ui-options tr td span.fpcm-ui-shorthelp.fpcm-options {
-    position:relative;bottom:0.8em;
+    position:relative;
+    bottom:0.8em;
 }
 
 .fpcm-ui-progressbar-label {

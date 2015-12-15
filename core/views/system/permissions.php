@@ -60,7 +60,7 @@
                     <?php foreach ($permissions as $group => $permissionData) : ?>
                     <?php if (!isset($userRolls[$group])) continue; ?>
                     <tr>
-                        <td><strong><?php print \fpcm\model\view\helper::escapeVal($userRolls[$group]); ?></strong></td>
+                        <td><?php print \fpcm\model\view\helper::escapeVal($userRolls[$group]); ?></td>
                         <td>
                             <div class="fpcm-ui-buttonset fpcm-ui-buttonset-permissions">
                             <?php foreach ($permissionData['system'] as $key => $value) : ?>

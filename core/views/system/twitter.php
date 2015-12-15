@@ -1,12 +1,13 @@
 <table class="fpcm-ui-table fpcm-ui-options fpcm-ui-options-twitter">
     <?php if ($twitterIsActive) : ?>
     <tr>
-        <th colspan="2" class="fpcm-th-full"><?php $FPCM_LANG->write('SYSTEM_OPTIONS_TWITTER_ACTIVE', array('{{screenname}}' => $twitterScreenName)); ?></th>
+        <th colspan="2"><?php $FPCM_LANG->write('SYSTEM_OPTIONS_TWITTER_ACTIVE', array('{{screenname}}' => $twitterScreenName)); ?></th>
     </tr>
     <tr class="fpcm-td-spacer" colspan="2"><td></td></tr>
     <?php endif; ?>
     <tr>
-        <td colspan="2" class="fpcm-ui-center">
+        <td></td>
+        <td>
             <?php if (!$globalConfig['twitter_data']['consumer_key'] || !$globalConfig['twitter_data']['consumer_secret'] || !$twitterIsActive) : ?>
                 <?php \fpcm\model\view\helper::linkButton('https://dev.twitter.com/', 'SYSTEM_OPTIONS_TWITTER_CONNECT', '', '', '_blank'); ?>
             <?php endif; ?>
