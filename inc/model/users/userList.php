@@ -120,7 +120,7 @@
          * @return int
          */
         public function getUserIdByUsername($username) {
-            $result = $this->dbcon->fetch($this->dbcon->select($this->table, "id", "username LIKE ?", array($username)));
+            $result = $this->dbcon->fetch($this->dbcon->select($this->table, "id", "username ".$this->dbcon->dbLike()." ?", array($username)));
             return isset($result->id) ? $result->id : false;
         }
 

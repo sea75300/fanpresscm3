@@ -217,7 +217,7 @@
          * @return int
          */
         public function getLastCommentTimeByIP(){            
-            $res = $this->dbcon->fetch($this->dbcon->select($this->table, 'createtime', 'ipaddress LIKE ?'.$this->dbcon->orderBy(array('createtime ASC')).$this->dbcon->limitQuery(0, 1), array(\fpcm\classes\http::getIp())));            
+            $res = $this->dbcon->fetch($this->dbcon->select($this->table, 'createtime', 'ipaddress '.$this->dbcon->dbLike().' ?'.$this->dbcon->orderBy(array('createtime ASC')).$this->dbcon->limitQuery(0, 1), array(\fpcm\classes\http::getIp())));            
             return isset($res->createtime) ? $res->createtime : 0;
         }
         
@@ -227,7 +227,7 @@
          * @return boolean true, wenn Anzahl größer als in FPCM_COMMENT_MARKSPAM_PASTCHECK definiert
          */
         public function spamExistsbyCommentData(comment $comment) {            
-            $where   = array('name LIKE ?', 'email LIKE ?', 'website LIKE ?', 'ipaddress LIKE ?');
+            $where   = array('name '.$this->dbcon->dbLike().' ?', 'email '.$this->dbcon->dbLike().' ?', 'website '.$this->dbcon->dbLike().' ?', 'ipaddress '.$this->dbcon->dbLike().' ?');
             $params = array($comment->getName(), '%'.$comment->getEmail().'%', '%'.$comment->getWebsite().'%', $comment->getIpaddress());
             $count = $this->dbcon->count($this->table, 'id', implode(' OR ', $where).' AND spammer = 1', $params);
             

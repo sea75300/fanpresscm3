@@ -57,12 +57,12 @@
             $adresses       = array();
             $adresses[]     = implode($delim, $ipAddress);
             
-            $where = array('ipaddress LIKE ?');
+            $where = array('ipaddress '.$this->dbcon->dbLike().' ?');
             $counts = count($ipAddress) - 1;
             for ($i = $counts; $i > 0; $i--) {
                 $ipAddress[$i]   = '*';
                 $adresses[]     = implode($delim, $ipAddress);
-                $where[] = 'ipaddress LIKE ?';
+                $where[] = 'ipaddress '.$this->dbcon->dbLike().' ?';
             }
             
             $where = "(".implode(' OR ', $where).") AND $lockType = 1";

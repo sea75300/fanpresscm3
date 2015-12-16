@@ -134,7 +134,7 @@
 
             foreach ($params as $key => $value) {
                 if (!isset($this->data[$key]) && !\fpcm\classes\baseconfig::installerEnabled()) continue;      
-                if (!$this->dbcon->update($this->table, array('config_value'), array($value, $key), "config_name LIKE ?")) {
+                if (!$this->dbcon->update($this->table, array('config_value'), array($value, $key), "config_name ".$this->dbcon->dbLike()." ?")) {
                     trigger_error('Unable to update config '.$key);
                 }
             }
@@ -169,7 +169,7 @@
         public function remove($keyname) {
             if (!isset($this->data[$keyname])) return false;
 
-            $res = $this->dbcon->delete($this->table, "config_name LIKE '$keyname'");
+            $res = $this->dbcon->delete($this->table, "config_name ".$this->dbcon->dbLike()." ?", array($keyname));
             
             $this->refresh();
             

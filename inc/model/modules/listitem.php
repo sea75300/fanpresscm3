@@ -52,7 +52,7 @@
          * @return bool
          */
         final public function update() {
-            $this->dbcon->update($this->table, array('version'), array($this->versionRemote, $this->modkey), 'modkey LIKE ?');
+            $this->dbcon->update($this->table, array('version'), array($this->versionRemote, $this->modkey), 'modkey '.$this->dbcon->dbLike().' ?');
         }
         
         /**

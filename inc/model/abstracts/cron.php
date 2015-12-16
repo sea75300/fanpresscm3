@@ -90,7 +90,7 @@
          */
         public function updateLastExecTime() { 
             $this->lastExecTime = time();
-            return $this->dbcon->update($this->table, array('lastexec'), array($this->lastExecTime, $this->cronName), 'cjname LIKE ?');
+            return $this->dbcon->update($this->table, array('lastexec'), array($this->lastExecTime, $this->cronName), 'cjname '.$this->dbcon->dbLike().' ?');
         }
         
         /**
@@ -145,7 +145,7 @@
          * Initialisiert
          */
         protected function init() {
-            $res = $this->dbcon->fetch($this->dbcon->select($this->table, 'lastexec', 'cjname LIKE ?', array($this->cronName)));            
+            $res = $this->dbcon->fetch($this->dbcon->select($this->table, 'lastexec', 'cjname '.$this->dbcon->dbLike().' ?', array($this->cronName)));            
             $this->lastExecTime = isset($res->lastexec) ? $res->lastexec : 0;
         }
         

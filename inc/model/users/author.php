@@ -426,7 +426,7 @@
          * @return bool
          */
         private function authorExists() {
-            $result = $this->dbcon->count($this->table,"id", "username like '{$this->username}' OR displayname LIKE '{$this->displayname}'");
+            $result = $this->dbcon->count($this->table,"id", "username ".$this->dbcon->dbLike()." ? OR displayname ".$this->dbcon->dbLike()." ?", array($this->username, $this->displayname));
             return ($result > 0) ? true : false;
         }
         

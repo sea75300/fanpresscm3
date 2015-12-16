@@ -51,7 +51,19 @@
          * @return array
          */
         public function getCategoriesByGroup($groupId) {
-            $list = $this->dbcon->fetch($this->dbcon->select($this->table,'*','groups LIKE ?', array($groupId)), true);
+            
+            $where = "groups = ? OR groups ".$this->dbcon->dbLike()." ? OR groups ".$this->dbcon->dbLike()." ? OR groups ".$this->dbcon->dbLike()." ?";
+            
+            $valueParams = array();
+            $valueParams[] = "{$groupId}";
+            $valueParams[] = "%;{$groupId};%";
+            $valueParams[] = "{$groupId};%";
+            $valueParams[] = "%;{$groupId}";
+            
+            $list = $this->dbcon->fetch(
+                    $this->dbcon->select($this->table, '*', $where, $valueParams),
+                    true
+            );            
             
             $res = array();
             
@@ -70,21 +82,9 @@
          * @return array
          */
         public function getCategoriesCurrentUser() {
-            
-            $currentUserGroup = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll();
-            
-            $list = $this->dbcon->fetch($this->dbcon->select($this->table,'*',"groups LIKE '%$currentUserGroup%'"), true);
-            
-            $res = array();
-            
-            foreach ($list as $listItem) {
-                $object = new category();
-                if ($object->createFromDbObject($listItem)) {
-                    $res[$object->getId()] = $object;
-                }
-            }
-            
-            return $res;
+            $groupId = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll();
+
+            return $this->getCategoriesByGroup($groupId);
         }
         
         /**
@@ -109,7 +109,7 @@
          * @return bool
          */
         public function categorieExists($name) {
-            $result = $this->dbcon->count($this->table,"id", "name LIKE ?", array($name));
+            $result = $this->dbcon->count($this->table,"id", "name ".$this->dbcon->dbLike()." ?", array($name));
             return ($result > 0) ? true : false;
         }
 

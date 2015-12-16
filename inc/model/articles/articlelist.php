@@ -159,12 +159,12 @@
             }
             
             if (isset($conditions['title'])) {
-                $where[] = "title LIKE ?";
+                $where[] = "title ".$this->dbcon->dbLike()." ?";
                 $valueParams[] = "%{$conditions['title']}%";
             }
             
             if (isset($conditions['content'])) {
-                $where[] = "content LIKE ?";
+                $where[] = "content ".$this->dbcon->dbLike()." ?";
                 $valueParams[] = "%{$conditions['content']}%";
             }
             
@@ -175,10 +175,11 @@
             
             if (isset($conditions['category'])) {
                 $conditions['category'] = (int )$conditions['category'];
-                $where[] = "(categories LIKE ? OR categories LIKE ? OR categories LIKE ?)";
-                $valueParams[] = "%{$conditions['category']}%";
-                $valueParams[] = "%{$conditions['category']},";
-                $valueParams[] = ",{$conditions['category']}%";
+                $where[] = "(categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ?)";
+                $valueParams[] = "[{$conditions['category']}]";
+                $valueParams[] = "%,{$conditions['category']},%";
+                $valueParams[] = "{$conditions['category']},%";
+                $valueParams[] = "%,{$conditions['category']}";
             }
             
             if (isset($conditions['datefrom'])) {
@@ -241,9 +242,9 @@
                 $where2[] = $this->dbcon->limitQuery($conditions['limit'][0], $conditions['limit'][1]);
             }
             unset($conditions['limit'], $conditions['orderby']);
-            
+
             $where .= ' '.implode(' ', $where2);
-            
+
             $list = $this->dbcon->fetch($this->dbcon->select($this->table, '*', $where, array_values($valueParams)), true);
 
             return $this->createListResult($list, $monthIndex);
@@ -389,9 +390,9 @@
             
             if (isset($condition['category'])) {
                 $condition['category'] = (int)$condition['category'];
-                $valueParams[] = "categories LIKE '{$condition['category']}'";
-                $valueParams[] = "categories LIKE '%;{$condition['category']}'";
-                $valueParams[] = "categories LIKE '{$condition['category']};%'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$condition['category']}'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '%;{$condition['category']}'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$condition['category']};%'";
                 
                 $where .= '('.implode(' OR ', $valueParams).')';
             }

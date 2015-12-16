@@ -118,8 +118,8 @@
          * @return bool
          */
         private function rollExists() {
-            $result = $this->dbcon->count($this->table,"id", "leveltitle LIKE '{$this->leveltitle}'");
-            return ($result > 0) ? true : false;
+            $result = $this->dbcon->count($this->table, "id", "leveltitle ".$this->dbcon->dbLike()." ?", array($this->leveltitle));
+            return ($result > 0 ? true : false);
         }
         
     }

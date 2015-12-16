@@ -34,9 +34,12 @@
          * @return void
          */
         protected function translateCategories() {
-            if (!count($this->articleItems) || !$this->session->exists()) return false;
             
-            $categories = $this->categoryList->getCategoriesCurrentUser();
+            if (!count($this->articleItems) || !$this->session->exists()) {
+                return false;
+            }
+
+            $categories = $this->categoryList->getCategoriesAll();
             foreach ($this->articleItems as $articles) {
                 foreach ($articles as &$article) {
                     $res = array();

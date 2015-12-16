@@ -83,7 +83,7 @@
             $remoteModules = array_keys($this->getModulesRemote(false));
 
             if (count($remoteModules)) {
-                $where = array_fill(0, count($remoteModules), 'modkey NOT LIKE ?');            
+                $where = array_fill(0, count($remoteModules), 'modkey NOT '.$this->dbcon->dbLike().' ?');            
                 $localModules = $this->dbcon->fetch($this->dbcon->select($this->table, '*', '('.implode(' OR ', $where).')', $remoteModules), true);
             } else {
                 $localModules = $this->dbcon->fetch($this->dbcon->select($this->table, '*'), true);
@@ -206,7 +206,7 @@
          */
         public function disableModules(array $keys) {
             $this->cache->cleanup('activeeventscache');
-            return $this->dbcon->reverseBool($this->table, 'status', "(modkey LIKE '".  implode("' OR modkey LIKE '", $keys)."') AND status = 1");
+            return $this->dbcon->reverseBool($this->table, 'status', "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", $keys)."') AND status = 1");
         }
         
         /**
@@ -226,7 +226,7 @@
             
             if (!count($keys)) return false;
             
-            return $this->dbcon->reverseBool($this->table, 'status', "(modkey LIKE '".  implode("' OR modkey LIKE '", $keys)."') AND status = 0");
+            return $this->dbcon->reverseBool($this->table, 'status', "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", $keys)."') AND status = 0");
         }
         
         /**
@@ -295,7 +295,7 @@
             $dependencies = $this->getConfigByModuleKey($moduleKey, 'dependencies');
             if (!count($dependencies)) return true;
 
-            $depencyModules = $this->dbcon->fetch($this->dbcon->select($this->table, "*", "(modkey LIKE '".  implode("' OR modkey LIKE '", array_keys($dependencies)).')'), true);
+            $depencyModules = $this->dbcon->fetch($this->dbcon->select($this->table, "*", "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", array_keys($dependencies)).')'), true);
             if (!count($depencyModules)) return false;
             
             $res = true;

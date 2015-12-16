@@ -147,7 +147,7 @@
         public function delete() {
             if (!$this->exists(true)) return false;
             
-            return $this->dbcon->delete($this->table, "smileycode LIKE ?", array($this->smileycode));
+            return $this->dbcon->delete($this->table, "smileycode = ?", array($this->smileycode));
         }
 
         /**
@@ -181,7 +181,7 @@
         public function exists($dbOnly = false) {
             if (!$this->smileycode) return false;
             
-            $count = $this->dbcon->count($this->table, '*', "smileycode LIKE '{$this->smileycode}'");
+            $count = $this->dbcon->count($this->table, '*', "smileycode = ?", array($this->smileycode));
             if ($dbOnly) {
                 return $count > 0 ? true : false;
             }
@@ -209,7 +209,7 @@
          */        
         protected function init($initDB) {
             if ($initDB) {
-                $dbData = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, smileycode, filename', "smileycode LIKE ?", array($this->smileycode)));
+                $dbData = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, smileycode, filename', "smileycode ".$this->dbcon->dbLike()." ?", array($this->smileycode)));
                 
                 if (!$dbData) return false;
                 

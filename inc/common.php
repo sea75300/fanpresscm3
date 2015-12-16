@@ -6,8 +6,8 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
-    ini_set('display_error', 0);
-    error_reporting(E_ALL);
+//    ini_set('display_error', 0);
+//    error_reporting(E_ALL);
 
     /**
      * FanPress CM internal checkpoint

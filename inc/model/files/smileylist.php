@@ -56,7 +56,7 @@
             foreach ($items as $item) {
                 $item = array_map('trim', array_map('strip_tags', $item));
                 
-                $where[] = "smileycode LIKE '{$item[1]}' AND filename LIKE '{$item[0]}' ";
+                $where[] = "smileycode = '{$item[1]}' AND filename = '{$item[0]}' ";
             }
             
             $where = implode(' OR ', $where);

@@ -254,7 +254,7 @@
             $params     = $this->events->runEvent('sessionUpdate', $params);
 
             $return = false;
-            if ($this->dbcon->update($this->table, $fields, array_values($params), 'sessionId LIKE ?')) {
+            if ($this->dbcon->update($this->table, $fields, array_values($params), 'sessionId '.$this->dbcon->dbLike().' ?')) {
                 $return = true;
             }
             
@@ -338,7 +338,7 @@
         public function getSessions() {
             $sessions = array();
             
-            $listItems = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionId NOT LIKE ?", array($this->sessionId)), true);
+            $listItems = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionId NOT ".$this->dbcon->dbLike()." ?", array($this->sessionId)), true);
             
             if (!$listItems) return $sessions;
             
@@ -357,7 +357,7 @@
          * @return bool
          */
         public function clearSessions() {
-            return $this->dbcon->delete($this->table, "sessionId NOT LIKE ? AND lastaction < ?", array($this->sessionId, time()));
+            return $this->dbcon->delete($this->table, "sessionId NOT ".$this->dbcon->dbLike()." ? AND lastaction < ?", array($this->sessionId, time()));
         }
 
         /**

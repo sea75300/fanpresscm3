@@ -191,7 +191,7 @@
          * @return boolean
          */
         public function check() {            
-            $count = $this->dbcon->count($this->table, 'id', "ipaddress LIKE '{$this->ipaddress}'");            
+            $count = $this->dbcon->count($this->table, 'id', "ipaddress = ?", array($this->ipaddress));
             if (!$count) return false;
             
             $delim = (strpos($this->ipaddress, ':') === true) ? ':' : '.';
@@ -201,12 +201,12 @@
             $adresses       = array();
             $adresses[]     = implode($delim, $ipAddress);
             
-            $where = array('ipaddress LIKE ?');
+            $where = array('ipaddress '.$this->dbcon->dbLike().' ?');
             $counts = count($ipAddress) - 1;
             for ($i = $counts; $i > 0; $i--) {
                 $ipAddress[$i]   = '*';
                 $adresses[]     = implode($delim, $ipAddress);
-                $where[] = 'ipaddress LIKE ?';
+                $where[] = 'ipaddress '.$this->dbcon->dbLike().' ?';
             }
             
             $where = "(".implode(' OR ', $where).") AND $lockType = 1";

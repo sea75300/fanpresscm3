@@ -89,6 +89,13 @@
          * @var \PDO
          */
         private $connection;
+        
+        /**
+         * Datenbank-Treiber
+         * @var \fpcm\drivers\sqlDriver
+         * @since FPCM 3.2
+         */
+        private $driver;
 
         /**
          * Tabellen-Prefix
@@ -114,15 +121,33 @@
          * @param bool $dieOnError wenn Verbindung fehlschlägt, soll Ausführung vollständig abgebrochen werden
          * @return void
          */
-        public function __construct($dbconfig = false, $dieOnError = true) {        
-            $dbconfig = is_array($dbconfig) ? $dbconfig : baseconfig::getDatabaseConfig();
+        public function __construct($dbconfig = false, $dieOnError = true) {   
+
+            $dbconfig   = (is_array($dbconfig)
+                        ? $dbconfig
+                        : baseconfig::getDatabaseConfig());
+
+            $driverClass = '\\fpcm\\drivers\\'.$dbconfig['DBTYPE'];
+
+            if (!class_exists($driverClass)) {
+                logs::sqllogWrite('SQL driver not found for '.$dbconfig['DBTYPE']);
+                $this->dieError();
+            }
+            
+            $this->driver = new $driverClass();
+            if (!is_a($this->driver, '\\fpcm\\drivers\\sqlDriver')) {
+                logs::sqllogWrite('SQL driver '.$driverClass.' must be an instance of "\\fpcm\\drivers\\sqlDriver"!');
+                $this->dieError();
+            }
 
             try {
-                $this->connection = new \PDO($dbconfig['DBTYPE'].':dbname='.$dbconfig['DBNAME'].';host='.$dbconfig['DBHOST'], $dbconfig['DBUSER'], $dbconfig['DBPASS']);
+                $this->connection = new \PDO($dbconfig['DBTYPE'].':'.$this->driver->getPdoDns($dbconfig), $dbconfig['DBUSER'], $dbconfig['DBPASS'], $this->driver->getPdoOptions());
             } catch(PDOException $e) {
                 logs::sqllogWrite($e->getMessage());
-                if (!$dieOnError) return;                
-                die('Connection to database failed!');
+                if (!$dieOnError) {
+                    return;
+                }
+                $this->dieError();
             }
 
             $this->dbprefix = $dbconfig['DBPREF'];
@@ -406,7 +431,7 @@
          * @return string
          */
         public function limitQuery($limit, $offset) {
-            return ' LIMIT '.(int) $limit.', '.(int) $offset;
+            return $this->driver->limitQuery($limit, $offset);
         }
         
         /**
@@ -415,7 +440,7 @@
          * @return string
          */
         public function orderBy(array $conditions) {
-            return ' ORDER BY '.implode(', ', array_map('trim', $conditions));
+            return $this->driver->orderBy($conditions);
         }
         
         /**
@@ -425,9 +450,18 @@
          * @since FPCM 3.1.0
          */
         public function concatString(array $fields) {
-            return ' CONCAT ('.implode(', ', array_map('trim', $fields)).') ';
+            return $this->driver->concatString($fields);
         }
         
+        /**
+         * Erzeugt LIKE-SQL-String
+         * @return string
+         * @since FPCM 3.2.0
+         */
+        public function dbLike() {
+            return $this->driver->getDbLike();
+        }
+
         /**
          * Tabelle-Prefix zurückgeben
          * @return string
@@ -443,6 +477,13 @@
          */
         public function getQueryCount() {
             return $this->queryCount;
+        }
+        
+        /**
+         * Error die
+         */
+        private function dieError() {
+            die('Connection to database failed!');
         }
 
     }
