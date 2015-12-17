@@ -5,7 +5,7 @@
         <table class="fpcm-ui-table fpcm-ui-middle fpcm-ui-left">
             <tr>
                 <td><?php $FPCM_LANG->write('INSTALLER_DBCONNECTION_TYPE'); ?>:</td>
-                <td><?php \fpcm\model\view\helper::select('database[DBTYPE]', array('MySQL/MariaDB' => 'mysql'), null, false, false, false, 'fpcm-installer-data'); ?></td>
+                <td><?php \fpcm\model\view\helper::select('database[DBTYPE]', $sqlDrivers, null, false, false, false, 'fpcm-installer-data'); ?></td>
             </tr>
             <tr>
                 <td><?php $FPCM_LANG->write('INSTALLER_DBCONNECTION_HOST'); ?>:</td>

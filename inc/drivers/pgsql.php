@@ -1,6 +1,6 @@
 <?php
     /**
-     * FanPress CM MySQL database driver class
+     * FanPress CM Postgres database driver class
      * 
      * @article Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2015, Stefan Seehafer
@@ -10,13 +10,13 @@
     namespace fpcm\drivers;
 
     /**
-     * MySQL database driver class
+     * Postgres database driver class
      * 
      * @package fpcm.drivers.database
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2
      */ 
-    final class mysql implements sqlDriver {
+    final class pgsql implements sqlDriver {
         
         /**
          * Erzeugt DNS-String für \PDO:__construct
@@ -61,7 +61,7 @@
          * @return string
          */
         public function limitQuery($limit, $offset) {
-            return ' LIMIT '.(int) $limit.', '.(int) $offset;
+            return ' LIMIT '.(int) $limit.' OFFSET '.(int) $offset;
         }
         
         /**

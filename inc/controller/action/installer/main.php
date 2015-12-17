@@ -129,12 +129,34 @@
         }
         
         /**
+         * Installer Step 2 after
+         */
+        protected function runAfterStep2() {
+            
+            $sqlDrivers = array();
+            
+            $availableDrivers = \PDO::getAvailableDrivers();
+            
+            if (in_array('mysql', $availableDrivers)) {
+                $sqlDrivers['MySQL/MariaDB'] = 'mysql';
+            }
+            if (in_array('pgsql', $availableDrivers)) {
+                $sqlDrivers['Postgres'] = 'pgsql';
+            }                
+
+            $this->view->assign('sqlDrivers', $sqlDrivers);
+        }
+        
+        /**
          * Installer Step 4
          */
         protected function runStep4() {
             $sqlFiles = array();
             
-            foreach (glob(\fpcm\classes\baseconfig::$dbStructPath.'*.sql') as $value) {
+            $dbconfig = \fpcm\classes\baseconfig::getDatabaseConfig();
+            $dbtype   = $dbconfig['DBTYPE'];
+            
+            foreach (glob(\fpcm\classes\baseconfig::$dbStructPath.$dbtype.'/*.sql') as $value) {
                 $sqlFiles[substr(basename($value, '.sql'), 2)] = base64_encode(str_rot13(base64_encode($value)));
             }
             
