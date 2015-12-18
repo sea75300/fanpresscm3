@@ -15,9 +15,7 @@ ALTER SEQUENCE {{dbpref}}_config_id_seq OWNED BY {{dbpref}}_config.id;
 
 ALTER TABLE ONLY {{dbpref}}_config ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_config_id_seq'::regclass);
 
-ALTER TABLE ONLY {{dbpref}}_config ADD CONSTRAINT {{dbpref}}_config_id PRIMARY KEY (id);
-
-INSERT INTO `{{dbpref}}_config` (`id`, `config_name`, `config_value`) VALUES
+INSERT INTO {{dbpref}}_config (id, config_name, config_value) VALUES
 (1, 'system_version', ''),
 (2, 'system_email', ''),
 (3, 'system_url', ''),
@@ -60,3 +58,5 @@ INSERT INTO `{{dbpref}}_config` (`id`, `config_name`, `config_value`) VALUES
 (40, 'file_uploader_new', '1'),
 (41, 'twitter_data', '{"consumer_key":"","consumer_secret":"","user_token":"","user_secret":""}'),
 (42, 'twitter_events', '{"create":0,"update":0}');
+
+ALTER TABLE ONLY {{dbpref}}_config ADD CONSTRAINT {{dbpref}}_config_id PRIMARY KEY (id);

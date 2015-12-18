@@ -15,9 +15,7 @@ ALTER SEQUENCE {{dbpref}}_smileys_id_seq OWNED BY {{dbpref}}_smileys.id;
 
 ALTER TABLE ONLY {{dbpref}}_smileys ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_smileys_id_seq'::regclass);
 
-ALTER TABLE ONLY {{dbpref}}_smileys ADD CONSTRAINT {{dbpref}}_smileys_id PRIMARY KEY (id);
-
-INSERT INTO `{{dbpref}}_smileys` (`id`, `smileycode`, `filename`) VALUES
+INSERT INTO {{dbpref}}_smileys (id, smileycode, filename) VALUES
 (1, ':annoyed:', 'annoyed.gif'),
 (2, ':D', 'biggrin.gif'),
 (3, ':blah:', 'blah.gif')
@@ -56,3 +54,5 @@ INSERT INTO `{{dbpref}}_smileys` (`id`, `smileycode`, `filename`) VALUES
 (36, ':whoohoo:', 'woohoo.gif'),
 (37, ':yeah:', 'yes.gif'),
 (38, ':yummy:', 'yum.gif');
+
+ALTER TABLE ONLY {{dbpref}}_smileys ADD CONSTRAINT {{dbpref}}_smileys_id PRIMARY KEY (id);

@@ -15,9 +15,7 @@ ALTER SEQUENCE {{dbpref}}_cronjobs_id_seq OWNED BY {{dbpref}}_cronjobs.id;
 
 ALTER TABLE ONLY {{dbpref}}_cronjobs ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_cronjobs_id_seq'::regclass);
 
-ALTER TABLE ONLY {{dbpref}}_cronjobs ADD CONSTRAINT {{dbpref}}_cronjobs_id PRIMARY KEY (id);
-
-INSERT INTO `{{dbpref}}_cronjobs` (`id`, `cjname`, `lastexec`) VALUES
+INSERT INTO {{dbpref}}_cronjobs (id, cjname, lastexec) VALUES
 (1, 'anonymizeIps', 0),
 (2, 'clearLogs', 0),
 (3, 'clearTemp', 0),
@@ -26,3 +24,5 @@ INSERT INTO `{{dbpref}}_cronjobs` (`id`, `cjname`, `lastexec`) VALUES
 (6, 'updateCheck', 0),
 (7, 'dbBackup', 0),
 (8, 'fileindex', 0);
+
+ALTER TABLE ONLY {{dbpref}}_cronjobs ADD CONSTRAINT {{dbpref}}_cronjobs_id PRIMARY KEY (id);

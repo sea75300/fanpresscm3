@@ -141,7 +141,7 @@
                 $sqlDrivers['MySQL/MariaDB'] = 'mysql';
             }
             if (in_array('pgsql', $availableDrivers)) {
-                $sqlDrivers['Postgres'] = 'pgsql';
+                $sqlDrivers['Postgres (experimental!)'] = 'pgsql';
             }                
 
             $this->view->assign('sqlDrivers', $sqlDrivers);
