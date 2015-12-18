@@ -1,7 +1,19 @@
-CREATE TABLE IF NOT EXISTS `{{dbpref}}_uploadfiles` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `filetime` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE {{dbpref}}_uploadfiles (
+    id integer NOT NULL,
+    userid bigint NOT NULL,
+    filename character varying(255) NOT NULL,
+    filetime bigint NOT NULL
+);
+
+CREATE SEQUENCE {{dbpref}}_uploadfiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE {{dbpref}}_uploadfiles_id_seq OWNED BY {{dbpref}}_uploadfiles.id;
+
+ALTER TABLE ONLY {{dbpref}}_uploadfiles ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_uploadfiles_id_seq'::regclass);
+
+ALTER TABLE ONLY {{dbpref}}_uploadfiles ADD CONSTRAINT {{dbpref}}_uploadfiles_id PRIMARY KEY (id);

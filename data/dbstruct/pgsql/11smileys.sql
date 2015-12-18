@@ -1,11 +1,23 @@
-CREATE TABLE IF NOT EXISTS `{{dbpref}}_smileys` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `smileycode` varchar(32) NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+CREATE TABLE {{dbpref}}_smileys (
+    id integer NOT NULL,
+    smileycode character varying(32) NOT NULL,
+    filename character varying(255) NOT NULL
+);
 
-INSERT INTO `fpcm_smileys` (`id`, `smileycode`, `filename`) VALUES
+CREATE SEQUENCE {{dbpref}}_smileys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE {{dbpref}}_smileys_id_seq OWNED BY {{dbpref}}_smileys.id;
+
+ALTER TABLE ONLY {{dbpref}}_smileys ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_smileys_id_seq'::regclass);
+
+ALTER TABLE ONLY {{dbpref}}_smileys ADD CONSTRAINT {{dbpref}}_smileys_id PRIMARY KEY (id);
+
+INSERT INTO `{{dbpref}}_smileys` (`id`, `smileycode`, `filename`) VALUES
 (1, ':annoyed:', 'annoyed.gif'),
 (2, ':D', 'biggrin.gif'),
 (3, ':blah:', 'blah.gif')

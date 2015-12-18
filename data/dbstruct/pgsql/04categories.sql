@@ -1,10 +1,22 @@
-CREATE TABLE IF NOT EXISTS `{{dbpref}}_categories` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `iconPath` text NOT NULL,
-  `groups` varchar(1024) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+CREATE TABLE {{dbpref}}_categories (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    iconPath text NOT NULL,
+    groups character varying(1024) NOT NULL
+);
+
+CREATE SEQUENCE {{dbpref}}_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE {{dbpref}}_categories_id_seq OWNED BY {{dbpref}}_categories.id;
+
+ALTER TABLE ONLY {{dbpref}}_categories ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_categories_id_seq'::regclass);
+
+ALTER TABLE ONLY {{dbpref}}_categories ADD CONSTRAINT {{dbpref}}_categories_id PRIMARY KEY (id);
 
 INSERT INTO `{{dbpref}}_categories` (`id`, `name`, `iconPath`, `groups`) VALUES
 (1, 'Allgemein', '', '1;2;3');

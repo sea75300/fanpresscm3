@@ -1,9 +1,21 @@
-CREATE TABLE IF NOT EXISTS `{{dbpref}}_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `config_name` varchar(255) NOT NULL,
-  `config_value` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE {{dbpref}}_config (
+    id integer NOT NULL,
+    config_name character varying(255) NOT NULL,
+    config_value text NOT NULL
+);
+
+CREATE SEQUENCE {{dbpref}}_config_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE {{dbpref}}_config_id_seq OWNED BY {{dbpref}}_config.id;
+
+ALTER TABLE ONLY {{dbpref}}_config ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_config_id_seq'::regclass);
+
+ALTER TABLE ONLY {{dbpref}}_config ADD CONSTRAINT {{dbpref}}_config_id PRIMARY KEY (id);
 
 INSERT INTO `{{dbpref}}_config` (`id`, `config_name`, `config_value`) VALUES
 (1, 'system_version', ''),

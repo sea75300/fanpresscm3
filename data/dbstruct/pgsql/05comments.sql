@@ -1,16 +1,28 @@
-CREATE TABLE IF NOT EXISTS `{{dbpref}}_comments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `articleid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `website` varchar(255) NOT NULL,
-  `text` text NOT NULL,
-  `private` tinyint(1) NOT NULL,
-  `approved` tinyint(1) NOT NULL,
-  `spammer` tinyint(1) NOT NULL,
-  `ipaddress` varchar(512) NOT NULL,
-  `createtime` bigint(20) NOT NULL,
-  `changetime` bigint(20) NOT NULL,
-  `changeuser` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE {{dbpref}}_comments (
+    id integer NOT NULL,
+    articleid bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    website character varying(255) NOT NULL,
+    text text NOT NULL,
+    private smallint NOT NULL,
+    approved smallint NOT NULL,
+    spammer smallint NOT NULL,
+    ipaddress character varying(512) NOT NULL,
+    createtime bigint NOT NULL,
+    changetime bigint NOT NULL,
+    changeuser bigint NOT NULL
+);
+
+CREATE SEQUENCE {{dbpref}}_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE {{dbpref}}_comments_id_seq OWNED BY {{dbpref}}_comments.id;
+
+ALTER TABLE ONLY {{dbpref}}_comments ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_comments_id_seq'::regclass);
+
+ALTER TABLE ONLY {{dbpref}}_comments ADD CONSTRAINT {{dbpref}}_comments_id PRIMARY KEY (id);

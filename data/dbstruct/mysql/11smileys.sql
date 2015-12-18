@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `{{dbpref}}_smileys` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
-INSERT INTO `fpcm_smileys` (`id`, `smileycode`, `filename`) VALUES
+INSERT INTO `{{dbpref}}_smileys` (`id`, `smileycode`, `filename`) VALUES
 (1, ':annoyed:', 'annoyed.gif'),
 (2, ':D', 'biggrin.gif'),
 (3, ':blah:', 'blah.gif')
