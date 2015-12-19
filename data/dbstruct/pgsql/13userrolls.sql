@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_userrolls (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     leveltitle character varying(255) NOT NULL
 );
 

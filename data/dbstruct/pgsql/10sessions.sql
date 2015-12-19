@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_sessions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     userId bigint NOT NULL,
     sessionId character varying(255) NOT NULL,
     login bigint NOT NULL,

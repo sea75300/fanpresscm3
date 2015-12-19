@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_cronjobs (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     cjname character varying(64) NOT NULL,
     lastexec bigint NOT NULL
 );

@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_smileys (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     smileycode character varying(32) NOT NULL,
     filename character varying(255) NOT NULL
 );

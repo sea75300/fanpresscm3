@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_blockedip (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     ipaddress character varying(512) NOT NULL,
     iptime bigint NOT NULL,
     userid bigint NOT NULL,

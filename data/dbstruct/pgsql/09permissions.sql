@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_permissions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     rollid bigint NOT NULL,
     permissionData bytea NOT NULL
 );

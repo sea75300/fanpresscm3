@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_authors (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     username character varying(255) NOT NULL,
     passwd character varying(255) NOT NULL,
     salt character varying(255) NOT NULL,

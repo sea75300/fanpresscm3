@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_comments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     articleid bigint NOT NULL,
     name character varying(255) NOT NULL,
     email character varying(255) NOT NULL,

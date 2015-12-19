@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_config (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     config_name character varying(255) NOT NULL,
     config_value text NOT NULL
 );

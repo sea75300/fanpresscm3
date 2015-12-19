@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_modules (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     modkey character varying(512) NOT NULL,
     version character varying(64) NOT NULL,
     status smallint NOT NULL

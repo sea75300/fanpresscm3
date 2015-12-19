@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_categories (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying(255) NOT NULL,
     iconPath text NOT NULL,
     groups character varying(1024) NOT NULL

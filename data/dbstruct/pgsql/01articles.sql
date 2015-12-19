@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_articles (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     title character varying(512) NOT NULL,
     content text NOT NULL,
     categories character varying(512) NOT NULL,

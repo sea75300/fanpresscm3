@@ -1,5 +1,5 @@
 CREATE TABLE {{dbpref}}_uploadfiles (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     userid bigint NOT NULL,
     filename character varying(255) NOT NULL,
     filetime bigint NOT NULL
