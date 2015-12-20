@@ -87,15 +87,15 @@
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTCOLOR_HEXCODE'); ?>:</label></td>
-            <td><input type="text" name="fpcm-editor-html-colorhexcode" id="fpcm-editor-html-colorhexcode" size="7" maxlength="5" value=""></td>
+            <td><?php \fpcm\model\view\helper::textInput('fpcm-editor-html-colorhexcode', '', '', false, 5); ?></td>
         </tr>   
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTCOLOR_TEXT'); ?>:</label></td>
-            <td><input type="radio" name="color_mode" id="color_mode1" class="color_mode" value="color" checked="checked"></td>
+            <td><?php fpcm\model\view\helper::radio('color_mode', 'color_mode', 'color', '', 'color_mode1'); ?></td>
         </tr>
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTCOLOR_BACKGROUND'); ?>:</label></td>
-            <td><input type="radio" name="color_mode" id="color_mode2" class="color_mode" value="background"></td>
+            <td><?php fpcm\model\view\helper::radio('color_mode', 'color_mode', 'background', '', 'color_mode2', false); ?></td>
         </tr>        
     </table>
 </div>
@@ -268,7 +268,7 @@
                             primary: "ui-icon-check"            
                         },                        
                         click: function() {
-                            fpcmEditor.insertColor(jQuery('#fpcm-editor-html-colorhexcode').val(), jQuery('.color_mode:checked').val());
+                            fpcmEditor.insertColor(jQuery('#fpcmeditorhtmlcolorhexcode').val(), jQuery('.color_mode:checked').val());
                             jQuery( this ).dialog( "close" );
                         }
                     },

@@ -148,7 +148,7 @@ var fpcmEditor = function () {
         color   = (color == '') ? '#000000' : color;    
         self.insert('<span style="' + mode + ':' + color + ';">', '</span>');
 
-        jQuery('#fpcm-editor-html-colorhexcode').val('');
+        jQuery('#fpcmeditorhtmlcolorhexcode').val('');
         jQuery('.color_mode:checked').removeAttr('checked');    
         jQuery('#color_mode1').prop( "checked", true );
     }
@@ -242,7 +242,7 @@ var fpcmEditor = function () {
     };
     
     this.initCodeMirror = function () {
-        jQuery('#fpcm-editor-html-colorhexcode').colorPicker({
+        jQuery('#fpcmeditorhtmlcolorhexcode').colorPicker({
             rows        : 5,
             cols        : 8,
             showCode    : 0,
@@ -252,7 +252,7 @@ var fpcmEditor = function () {
             left        : 0,
             colorData   : fpcmCmColors,            
             onSelect    : function(colorCode) {
-                jQuery('#fpcm-editor-html-colorhexcode').val(colorCode);
+                jQuery('#fpcmeditorhtmlcolorhexcode').val(colorCode);
             }
         });    
 
