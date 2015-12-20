@@ -315,14 +315,11 @@
             $return = false;
             $insertRes = $this->dbcon->insert($this->table, implode(',', array_keys($params)), implode(', ', $this->getPreparedValueParams()), array_values($params));
             if ($insertRes) {
-                \fpcm\classes\logs::syslogWrite(__FUNCTION__);
                 $return = true;
             }
             
             $this->cache->cleanup();
-            
-            \fpcm\classes\logs::syslogWrite('$return = '.$return);
-            
+
             return $return;            
         }
 

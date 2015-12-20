@@ -60,7 +60,7 @@
          * @param int $offset
          * @return string
          */
-        public function limitQuery($limit, $offset) {
+        public function limitQuery($offset, $limit) {
             return ' LIMIT '.(int) $limit.' OFFSET '.(int) $offset;
         }
         

@@ -102,6 +102,13 @@
          * @var string
          */
         private $dbprefix;
+
+        /**
+         * Datenbank-Typ
+         * @var string
+         * @since FPCM 3.2
+         */
+        private $dbtype;
         
         /**
          * letzter ausgeführter Datenbank-Querystring
@@ -151,6 +158,7 @@
             }
 
             $this->dbprefix = $dbconfig['DBPREF'];
+            $this->dbtype   = $dbconfig['DBTYPE'];
         }
 
         /**
@@ -361,7 +369,7 @@
             }
 
             try {
-                $res = $this->connection->exec($sql);
+                $res = $this->connection->exec($this->connection->quote($sql));
             } catch (\PDOException $e) {
                 logs::sqllogWrite($e);
             }            
@@ -449,7 +457,9 @@
             $this->queryCount++;
             
             $params = $this->driver->getLastInsertIdParams($table);
-            $return = $this->connection->lastInsertId($params);
+            $return = $params
+                    ? $this->connection->lastInsertId($params)
+                    : $this->connection->lastInsertId();
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
                 logs::sqllogWrite("Last insert id was: $return");
@@ -505,13 +515,22 @@
         }
 
         /**
-         * Tabelle-Prefix zurückgeben
+         * Tabellen-Prefix zurückgeben
          * @return string
          */
         public function getDbprefix() {
             return $this->dbprefix;
         }
         
+        /**
+         * Datenbank-Typ zurückgeben
+         * @return string
+         * @since FPCM 3.2
+         */
+        public function getDbtype() {
+            return $this->dbtype;
+        }
+                
         /**
          * Gibt Anzahl an ausgeführt Datenbank-Queries zurück
          * @return int

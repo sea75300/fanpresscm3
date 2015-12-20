@@ -367,14 +367,15 @@
             
             $lastaction = time() + $this->config->system_session_length;
             $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionId = ? AND logout = 0 AND lastaction <= ? ".$this->dbcon->limitQuery(0, 1), array($this->sessionId, $lastaction)));
-            
+
             if ($data === false) {
                 $this->sessionExists = false;
                 return;
             }
             foreach ($data as $key => $value) {
                 $this->$key = $value;
-            }            
+            }
+
             $this->sessionExists = true;
         }
         

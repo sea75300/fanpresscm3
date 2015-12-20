@@ -132,7 +132,7 @@
          * @return void
          */
         public function __construct($rollid = 0) {
-            
+
             $this->table    = \fpcm\classes\database::tablePermissions;            
             parent::__construct();
             
@@ -180,7 +180,7 @@
          */
         protected function init() {
             $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "rollid = ?", array($this->rollId)));
-            
+
             if (!is_object($data)) return false;
             
             foreach ($data as $key => $value) { $this->$key = $value; }

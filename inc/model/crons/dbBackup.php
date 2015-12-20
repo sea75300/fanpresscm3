@@ -28,6 +28,11 @@
          * Auszuführender Cron-Code
          */
         public function run() {
+
+            if (\fpcm\classes\baseconfig::$fpcmDatabase->getDbtype() == 'pgsql') {
+                $this->updateLastExecTime();
+                return true;
+            }
             
             include_once \fpcm\classes\loader::libGetFilePath('Ifsnop/Mysqldump', 'Mysqldump.php');
             
