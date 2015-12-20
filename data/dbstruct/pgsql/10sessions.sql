@@ -1,3 +1,10 @@
+CREATE SEQUENCE {{dbpref}}_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE {{dbpref}}_sessions (
     id bigint NOT NULL,
     userId bigint NOT NULL,
@@ -7,13 +14,6 @@ CREATE TABLE {{dbpref}}_sessions (
     lastaction bigint NOT NULL,
     ip character varying(512) NOT NULL
 );
-
-CREATE SEQUENCE {{dbpref}}_sessions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 ALTER SEQUENCE {{dbpref}}_sessions_id_seq OWNED BY {{dbpref}}_sessions.id;
 

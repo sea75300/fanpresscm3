@@ -311,6 +311,8 @@
             if (!isset($res)) {
                 $res = $user->save();
                 if ($res === true) {
+                    \fpcm\classes\logs::syslogWrite(__FUNCTION__.' A');
+                    
                     return true;
                 }
             }

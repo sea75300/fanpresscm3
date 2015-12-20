@@ -58,8 +58,14 @@
          * Erzeugt CONCAT SQl_String
          * @param array $fields
          * @return string
-         * @since FPCM 3.1.0
          */        
         public function concatString(array $fields);
+        
+        /**
+         * Erzeugt Parameter für @see \PDO::lastInsertId()
+         * @param string $table
+         * @return string
+         */
+        public function getLastInsertIdParams($table);
         
     }

@@ -47,12 +47,15 @@
          */
         public function process() {            
 
-            if (!file_exists($this->filename) || strpos($this->filename, '.sql') === false) die('0');
+            if (!file_exists($this->filename) || strpos($this->filename, '.sql') === false) {
+                die('0');
+            }
             
             $db = new \fpcm\classes\database(false, true);
-            
-            $sql = str_replace('{{dbpref}}', $db->getDbprefix(), file_get_contents($this->filename));            
-            if($db->exec($sql)) die('1');            
+            if($db->execSqlFile($this->filename)) {
+                die('1');
+            }
+
             die('0');
         }
 

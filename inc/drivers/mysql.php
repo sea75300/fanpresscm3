@@ -72,5 +72,14 @@
         public function orderBy(array $conditions) {
             return ' ORDER BY '.implode(', ', array_map('trim', $conditions));
         }
+        
+        /**
+         * Erzeugt Parameter für @see \PDO::lastInsertId()
+         * @param string $table
+         * @return string
+         */
+        public function getLastInsertIdParams($table) {
+            return null;
+        }
 
     }

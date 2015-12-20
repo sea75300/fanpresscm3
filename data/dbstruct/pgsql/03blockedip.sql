@@ -1,3 +1,10 @@
+CREATE SEQUENCE {{dbpref}}_blockedip_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE {{dbpref}}_blockedip (
     id bigint NOT NULL,
     ipaddress character varying(512) NOT NULL,
@@ -7,13 +14,6 @@ CREATE TABLE {{dbpref}}_blockedip (
     nologin smallint NOT NULL,
     noaccess smallint NOT NULL
 );
-
-CREATE SEQUENCE {{dbpref}}_blockedip_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 ALTER SEQUENCE {{dbpref}}_blockedip_id_seq OWNED BY {{dbpref}}_blockedip.id;
 

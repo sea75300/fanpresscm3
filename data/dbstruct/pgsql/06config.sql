@@ -1,9 +1,3 @@
-CREATE TABLE {{dbpref}}_config (
-    id bigint NOT NULL,
-    config_name character varying(255) NOT NULL,
-    config_value text NOT NULL
-);
-
 CREATE SEQUENCE {{dbpref}}_config_id_seq
     START WITH 1
     INCREMENT BY 1
@@ -11,9 +5,17 @@ CREATE SEQUENCE {{dbpref}}_config_id_seq
     NO MAXVALUE
     CACHE 1;
 
+CREATE TABLE {{dbpref}}_config (
+    id bigint NOT NULL,
+    config_name character varying(255) NOT NULL,
+    config_value text NOT NULL
+);
+
 ALTER SEQUENCE {{dbpref}}_config_id_seq OWNED BY {{dbpref}}_config.id;
 
 ALTER TABLE ONLY {{dbpref}}_config ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_config_id_seq'::regclass);
+
+ALTER TABLE ONLY {{dbpref}}_config ADD CONSTRAINT {{dbpref}}_config_id PRIMARY KEY (id);
 
 INSERT INTO {{dbpref}}_config (id, config_name, config_value) VALUES
 (1, 'system_version', ''),
@@ -58,5 +60,3 @@ INSERT INTO {{dbpref}}_config (id, config_name, config_value) VALUES
 (40, 'file_uploader_new', '1'),
 (41, 'twitter_data', '{"consumer_key":"","consumer_secret":"","user_token":"","user_secret":""}'),
 (42, 'twitter_events', '{"create":0,"update":0}');
-
-ALTER TABLE ONLY {{dbpref}}_config ADD CONSTRAINT {{dbpref}}_config_id PRIMARY KEY (id);

@@ -1,3 +1,10 @@
+CREATE SEQUENCE {{dbpref}}_articles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE {{dbpref}}_articles (
     id bigint NOT NULL,
     title character varying(512) NOT NULL,
@@ -17,13 +24,6 @@ CREATE TABLE {{dbpref}}_articles (
     approval smallint NOT NULL,
     imagepath smallint NOT NULL
 );
-
-CREATE SEQUENCE {{dbpref}}_articles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 ALTER SEQUENCE {{dbpref}}_articles_id_seq OWNED BY {{dbpref}}_articles.id;
 

@@ -26,6 +26,8 @@
                 die('0');
             }             
             
+            $tabName = \fpcm\classes\baseconfig::$fpcmDatabase->getDbprefix().'_'.\fpcm\classes\database::tableArticles;
+            
             $ids = array();            
             foreach ($data as $cat) {
                 
@@ -42,7 +44,7 @@
                     continue;
                 }
                 
-                $ids[$cat->id] = \fpcm\classes\baseconfig::$fpcmDatabase->getLastInsertId();
+                $ids[$cat->id] = \fpcm\classes\baseconfig::$fpcmDatabase->getLastInsertId($tabName);
             }
             
             if (!count($ids)) {

@@ -1,9 +1,3 @@
-CREATE TABLE {{dbpref}}_smileys (
-    id bigint NOT NULL,
-    smileycode character varying(32) NOT NULL,
-    filename character varying(255) NOT NULL
-);
-
 CREATE SEQUENCE {{dbpref}}_smileys_id_seq
     START WITH 1
     INCREMENT BY 1
@@ -11,14 +5,22 @@ CREATE SEQUENCE {{dbpref}}_smileys_id_seq
     NO MAXVALUE
     CACHE 1;
 
+CREATE TABLE {{dbpref}}_smileys (
+    id bigint NOT NULL,
+    smileycode character varying(32) NOT NULL,
+    filename character varying(255) NOT NULL
+);
+
 ALTER SEQUENCE {{dbpref}}_smileys_id_seq OWNED BY {{dbpref}}_smileys.id;
 
 ALTER TABLE ONLY {{dbpref}}_smileys ALTER COLUMN id SET DEFAULT nextval('{{dbpref}}_smileys_id_seq'::regclass);
 
+ALTER TABLE ONLY {{dbpref}}_smileys ADD CONSTRAINT {{dbpref}}_smileys_id PRIMARY KEY (id);
+
 INSERT INTO {{dbpref}}_smileys (id, smileycode, filename) VALUES
 (1, ':annoyed:', 'annoyed.gif'),
 (2, ':D', 'biggrin.gif'),
-(3, ':blah:', 'blah.gif')
+(3, ':blah:', 'blah.gif'),
 (4, ':|', 'blank.gif'),
 (5, ':blush:', 'blush.gif'),
 (6, ':bored:', 'bored.gif'),
@@ -54,5 +56,3 @@ INSERT INTO {{dbpref}}_smileys (id, smileycode, filename) VALUES
 (36, ':whoohoo:', 'woohoo.gif'),
 (37, ':yeah:', 'yes.gif'),
 (38, ':yummy:', 'yum.gif');
-
-ALTER TABLE ONLY {{dbpref}}_smileys ADD CONSTRAINT {{dbpref}}_smileys_id PRIMARY KEY (id);

@@ -1,3 +1,10 @@
+CREATE SEQUENCE {{dbpref}}_authors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE {{dbpref}}_authors (
     id bigint NOT NULL,
     username character varying(255) NOT NULL,
@@ -7,16 +14,9 @@ CREATE TABLE {{dbpref}}_authors (
     email character varying(255) NOT NULL,
     registertime bigint NOT NULL,
     roll integer NOT NULL,
-    usrmeta bytea NOT NULL,
+    usrmeta text,
     disabled smallint NOT NULL
 );
-
-CREATE SEQUENCE {{dbpref}}_authors_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 ALTER SEQUENCE {{dbpref}}_authors_id_seq OWNED BY {{dbpref}}_authors.id;
 

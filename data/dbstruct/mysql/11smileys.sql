@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `{{dbpref}}_smileys` (
 INSERT INTO `{{dbpref}}_smileys` (`id`, `smileycode`, `filename`) VALUES
 (1, ':annoyed:', 'annoyed.gif'),
 (2, ':D', 'biggrin.gif'),
-(3, ':blah:', 'blah.gif')
+(3, ':blah:', 'blah.gif'),
 (4, ':|', 'blank.gif'),
 (5, ':blush:', 'blush.gif'),
 (6, ':bored:', 'bored.gif'),

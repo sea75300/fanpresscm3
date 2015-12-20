@@ -189,7 +189,7 @@
             $sql = "INSERT INTO $table ($fields) VALUES ($values);";
 
             $this->exec($sql, $params);
-            return $this->getLastInsertId();
+            return $this->getLastInsertId($table);
         }
 
         /**
@@ -334,6 +334,47 @@
         }
 
         /**
+         * Führt SQL-Datei aus
+         * @param string $path
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        public function execSqlFile($path) {
+
+            if (substr($path, -4) != '.sql') {
+                trigger_error('Given file was not SQL file '.$path);
+                return false;
+            }
+            
+            if (!file_exists($path) || filesize($path) < 1) {
+                trigger_error('File not found or file is empty in '.$path);
+                return false;
+            }
+
+            $this->queryCount++;
+
+            $sql = str_replace('{{dbpref}}', $this->getDbprefix(), file_get_contents($path));
+            $this->lastQueryString = $sql;
+            
+            if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
+                logs::sqllogWrite($sql);
+            }
+
+            try {
+                $res = $this->connection->exec($sql);
+            } catch (\PDOException $e) {
+                logs::sqllogWrite($e);
+            }            
+            
+            if ($res === false) {
+                $this->getError();
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
          * Führt ein SQL Kommando aus und gibt Result-Set zurück
          * @param string $command SQL String
          * @param array $bindParams Paramater, welche gebunden werden sollen
@@ -403,11 +444,12 @@
          * Liefert ID des letzten Insert-Eintrags
          * @return string
          */
-        public function getLastInsertId() {
+        public function getLastInsertId($table = null) {
             
             $this->queryCount++;
             
-            $return = $this->connection->lastInsertId();
+            $params = $this->driver->getLastInsertIdParams($table);
+            $return = $this->connection->lastInsertId($params);
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
                 logs::sqllogWrite("Last insert id was: $return");

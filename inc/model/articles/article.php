@@ -486,7 +486,7 @@
                 return false;
             }
             
-            $this->id = $this->dbcon->getLastInsertId();
+            $this->id = $this->dbcon->getLastInsertId($this->table);
             
             $this->cache->cleanup();
 

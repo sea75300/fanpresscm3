@@ -1,3 +1,10 @@
+CREATE SEQUENCE {{dbpref}}_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE {{dbpref}}_comments (
     id bigint NOT NULL,
     articleid bigint NOT NULL,
@@ -13,13 +20,6 @@ CREATE TABLE {{dbpref}}_comments (
     changetime bigint NOT NULL,
     changeuser bigint NOT NULL
 );
-
-CREATE SEQUENCE {{dbpref}}_comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 ALTER SEQUENCE {{dbpref}}_comments_id_seq OWNED BY {{dbpref}}_comments.id;
 
