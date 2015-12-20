@@ -369,7 +369,7 @@
             }
 
             try {
-                $res = $this->connection->exec($this->connection->quote($sql));
+                $res = $this->connection->exec($sql);
             } catch (\PDOException $e) {
                 logs::sqllogWrite($e);
             }            
