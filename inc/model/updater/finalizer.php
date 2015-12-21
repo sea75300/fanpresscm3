@@ -118,15 +118,15 @@
         private function alterTables() {
             $res = true;
             
-            if (version_compare($this->config->system_version, '3.0.4', '<')) {
+            if ($this->checkVersion('3.0.4')) {
                 $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "7, 'dbBackup', 0");                
             }
             
-            if (version_compare($this->config->system_version, '3.1.4', '<')) {
+            if ($this->checkVersion('3.1.4')) {
                 $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "8, 'fileindex', 0");                
             }
             
-            if (version_compare($this->config->system_version, '3.1.0-rc1', '<')) {
+            if ($this->checkVersion('3.1.0-rc1')) {
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD', '`imagepath`', 'TEXT NOT NULL');
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `title` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `categories` )', '', false);
@@ -137,6 +137,24 @@
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `deleted` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `approval` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `draft` )', '', false);
+            }
+            
+            if ($this->checkVersion('3.2.0')) {
+                $res = $res && $this->dbcon->alter(
+                    \fpcm\classes\database::tablePermissions, 'CHANGE', '`permissionData`', '`permissiondata` BLOB NOT NULL', false
+                );
+                $res = $res && $this->dbcon->alter(
+                    \fpcm\classes\database::tablePermissions, 'CHANGE', '`rollId`', '`rollid` bigint(20) NOT NULL', false
+                );
+                $res = $res && $this->dbcon->alter(
+                    \fpcm\classes\database::tableCategories, 'CHANGE', '`iconPath`', '`iconpath` text NOT NULL', false
+                );
+                $res = $res && $this->dbcon->alter(
+                    \fpcm\classes\database::tableSessions, 'CHANGE', '`userId`', '`userid` BIGINT( 20 ) NOT NULL ', false
+                );
+                $res = $res && $this->dbcon->alter(
+                    \fpcm\classes\database::tableSessions, 'CHANGE', '`sessionId`', '`sessionid` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ', false
+                );
             }
 
             return $res;
@@ -159,6 +177,17 @@
             \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dbStructPath);
             
             return true;
+        }
+        
+        /**
+         * Prüft System-Version auf bestimmten Wert
+         * @param string $version
+         * @param string $option
+         * @return bool
+         * @since FPCM 3.2
+         */
+        private function checkVersion($version, $option = '<') {
+            return version_compare($this->config->system_version, $version, $option);
         }
 
         /**

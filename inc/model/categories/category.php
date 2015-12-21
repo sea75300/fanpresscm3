@@ -27,7 +27,7 @@
          * Kategorie-Icon-Pfad
          * @var string
          */
-        protected $iconPath;
+        protected $iconpath;
         
         /**
          * Gruppen, die diese Kategorie nutzen dürfen
@@ -64,7 +64,7 @@
          * @var string
          */
         function getIconPath() {
-            return $this->iconPath;
+            return $this->iconpath;
         }
         
         /**
@@ -85,10 +85,10 @@
 
         /**
          * Kategorie-Icon-Pfad setzten
-         * @param string $iconPath
+         * @param string $iconpath
          */
-        function setIconPath($iconPath) {
-            $this->iconPath = $iconPath;
+        function setIconPath($iconpath) {
+            $this->iconpath = $iconpath;
         }
         
         /**

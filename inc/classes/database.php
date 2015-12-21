@@ -121,6 +121,13 @@
          * @var int
          */
         private $queryCount = 0;
+        
+        /**
+         * Tabelle, in welcher zuletzt eine Aktion durchgeführt wurde
+         * @var string
+         * @since FPCM 3.2
+         */
+        private $lastTable = '';
 
         /**
          * Konstruktor
@@ -181,6 +188,7 @@
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = $distinct ? "SELECT DISTINCT $item FROM $table" : "SELECT $item FROM $table";
             if (!is_null($where)) $sql .= " WHERE $where";
+
             return $this->query($sql, $params);            
         }
 
@@ -196,8 +204,10 @@
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "INSERT INTO $table ($fields) VALUES ($values);";
 
+            $this->lastTable = $table;
+            
             $this->exec($sql, $params);
-            return $this->getLastInsertId($table);
+            return $this->getLastInsertId();
         }
 
         /**
@@ -241,11 +251,12 @@
          * @return bool
          */
         public function alter($table, $methode, $field, $where = "", $checkExists = true) {
-            
+
             if ($checkExists && $this->fetch($this->select($table, $field)) !== false) return true;
             
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "ALTER TABLE $table $methode $field $where";
+
             return $this->exec($sql);
         }
 
@@ -452,11 +463,11 @@
          * Liefert ID des letzten Insert-Eintrags
          * @return string
          */
-        public function getLastInsertId($table = null) {
+        public function getLastInsertId() {
             
             $this->queryCount++;
             
-            $params = $this->driver->getLastInsertIdParams($table);
+            $params = $this->driver->getLastInsertIdParams($this->lastTable);
             $return = $params
                     ? $this->connection->lastInsertId($params)
                     : $this->connection->lastInsertId();

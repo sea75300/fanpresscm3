@@ -7,8 +7,8 @@ CREATE SEQUENCE {{dbpref}}_sessions_id_seq
 
 CREATE TABLE {{dbpref}}_sessions (
     id bigint NOT NULL,
-    "userId" bigint NOT NULL,
-    "sessionId" character varying(255) NOT NULL,
+    userid bigint NOT NULL,
+    sessionid character varying(255) NOT NULL,
     login bigint NOT NULL,
     logout bigint NOT NULL,
     lastaction bigint NOT NULL,

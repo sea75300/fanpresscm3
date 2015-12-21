@@ -8,7 +8,7 @@ CREATE SEQUENCE {{dbpref}}_categories_id_seq
 CREATE TABLE {{dbpref}}_categories (
     id bigint NOT NULL,
     name character varying(255) NOT NULL,
-    "iconPath" text,
+    iconpath text,
     groups character varying(1024) NOT NULL
 );
 
@@ -18,5 +18,5 @@ ALTER TABLE ONLY {{dbpref}}_categories ALTER COLUMN id SET DEFAULT nextval('{{db
 
 ALTER TABLE ONLY {{dbpref}}_categories ADD CONSTRAINT {{dbpref}}_categories_id PRIMARY KEY (id);
 
-INSERT INTO {{dbpref}}_categories (id, name, "iconPath", groups) VALUES
+INSERT INTO {{dbpref}}_categories (id, name, iconpath, groups) VALUES
 (1, 'Allgemein', '', '1;2;3');

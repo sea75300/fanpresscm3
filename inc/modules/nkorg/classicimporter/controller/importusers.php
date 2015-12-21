@@ -28,7 +28,6 @@
                 die('0');
             }            
             
-            $tabName = \fpcm\classes\baseconfig::$fpcmDatabase->getDbprefix().'_'.\fpcm\classes\database::tableArticles;
             foreach ($data as $user) {
                 $author = new \fpcm\model\users\author();
                 
@@ -59,7 +58,7 @@
                     continue;
                 }
                 
-                $ids[$user->id] = \fpcm\classes\baseconfig::$fpcmDatabase->getLastInsertId($tabName);
+                $ids[$user->id] = \fpcm\classes\baseconfig::$fpcmDatabase->getLastInsertId();
             }
             
             if (!count($ids)) {

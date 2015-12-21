@@ -30,7 +30,8 @@
                 'current'   => phpversion(),
                 'recommend' => $phpVer,
                 'result'    => version_compare(phpversion(), $phpVer, '>='),
-                'helplink'  => 'http://php.net/'
+                'helplink'  => 'http://php.net/',
+                'optional'  => 0
             );
             
             $recomVal = 64;
@@ -39,7 +40,8 @@
                 'current'   => $curVal.' MiB',  
                 'recommend' => $recomVal.' MiB',
                 'result'    => ($curVal >= $recomVal ? true : false),
-                'helplink'  => 'http://php.net/manual/de/info.configuration.php'
+                'helplink'  => 'http://php.net/manual/de/info.configuration.php',
+                'optional'  => 1
             );
             
             $recomVal = 10;
@@ -48,15 +50,31 @@
                 'current'   => $curVal.' sec',
                 'recommend' => $recomVal.' sec',
                 'result'    => ($curVal >= $recomVal ? true : false),
-                'helplink'  => 'http://php.net/manual/de/info.configuration.php'
+                'helplink'  => 'http://php.net/manual/de/info.configuration.php',
+                'optional'  => 1
             );
 
-            $current = in_array('mysql', \PDO::getAvailableDrivers());
+            $dbDrivers   = \PDO::getAvailableDrivers();
+            $resultMySql = in_array('mysql', $dbDrivers);
+            $resultPgSql = in_array('pgsql', $dbDrivers);
+            $sqlhelp     = 'http://php.net/manual/de/pdo.getavailabledrivers.php';
+
+            $current = $resultMySql || $resultPgSql ? true : false;
+            
             $checkOptions['MySQL/MariaDB Database Driver']    = array(
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
-                'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/de/pdo.getavailabledrivers.php'
+                'result'    => $resultMySql,
+                'helplink'  => $sqlhelp,
+                'optional'  => (!$resultMySql && $resultPgSql ? 1 : 0)
+            );
+            
+            $checkOptions['Postgres Database Driver']    = array(
+                'current'   => $current ? 'true' : 'false',
+                'recommend' => 'true',
+                'result'    => $resultPgSql,
+                'helplink'  => $sqlhelp,
+                'optional'  => ($resultMySql ? 1 : 0)
             );
 
             $current = (CRYPT_SHA256 == 1 ? true : false);
@@ -65,7 +83,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/en/function.hash-algos.php'
+                'helplink'  => 'http://php.net/manual/en/function.hash-algos.php',
+                'optional'  => 0
             );
             
             $current = in_array('pdo', $loadedExtensions) && in_array('pdo_mysql', $loadedExtensions);
@@ -73,7 +92,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/en/class.pdo.php'
+                'helplink'  => 'http://php.net/manual/en/class.pdo.php',
+                'optional'  => 0
             );
             
             $current = in_array('gd', $loadedExtensions);
@@ -81,7 +101,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/en/book.image.php'
+                'helplink'  => 'http://php.net/manual/en/book.image.php',
+                'optional'  => 0
             );
             
             $current = in_array('json', $loadedExtensions);
@@ -89,7 +110,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/en/book.json.php'
+                'helplink'  => 'http://php.net/manual/en/book.json.php',
+                'optional'  => 0
             );
             
             $current = in_array('xml', $loadedExtensions) && in_array('simplexml', $loadedExtensions) && class_exists('DOMDocument');
@@ -97,7 +119,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/en/class.simplexmlelement.php'
+                'helplink'  => 'http://php.net/manual/en/class.simplexmlelement.php',
+                'optional'  => 0
             );
             
             $current = in_array('zip', $loadedExtensions);
@@ -105,7 +128,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/en/class.ziparchive.php'
+                'helplink'  => 'http://php.net/manual/en/class.ziparchive.php',
+                'optional'  => 0
             );
             
             $externalCon = \fpcm\classes\baseconfig::canConnect();
@@ -113,7 +137,8 @@
                 'current'   => $externalCon ? 'true' : false,
                 'recommend' => 'true',
                 'result'    => (true && $externalCon),
-                'helplink'  => 'http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen'
+                'helplink'  => 'http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen',
+                'optional'  => 1
             );
             
             $current = in_array('curl', $loadedExtensions);
@@ -121,7 +146,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (false || $current),
-                'helplink'  => 'http://php.net/manual/en/book.curl.php'
+                'helplink'  => 'http://php.net/manual/en/book.curl.php',
+                'optional'  => 1
             );            
             
             $current = in_array('phar', $loadedExtensions);
@@ -129,7 +155,8 @@
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (false || $current),
-                'helplink'  => 'http://php.net/manual/en/class.phar.php'
+                'helplink'  => 'http://php.net/manual/en/class.phar.php',
+                'optional'  => 1
             );
 
             foreach ($this->getCheckFolders() as $description => $folderPath) {

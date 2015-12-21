@@ -25,9 +25,7 @@
                 trigger_error('Unable to parse user roll mapping file');
                 die('0');
             }             
-            
-            $tabName = \fpcm\classes\baseconfig::$fpcmDatabase->getDbprefix().'_'.\fpcm\classes\database::tableArticles;
-            
+
             $ids = array();            
             foreach ($data as $cat) {
                 
@@ -44,7 +42,7 @@
                     continue;
                 }
                 
-                $ids[$cat->id] = \fpcm\classes\baseconfig::$fpcmDatabase->getLastInsertId($tabName);
+                $ids[$cat->id] = \fpcm\classes\baseconfig::$fpcmDatabase->getLastInsertId();
             }
             
             if (!count($ids)) {

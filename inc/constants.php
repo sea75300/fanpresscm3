@@ -111,3 +111,11 @@
          */
         define ('FPCM_DEFAULT_LANGUAGE_CODE', 'de');
     }
+    
+    if (!defined('FPCM_CACHE_DEBUG')) {
+        /**
+         * Cache-Datei-Namen nicht hashen
+         * @since FPCM 3.2
+         */
+        define ('FPCM_CACHE_DEBUG', false);
+    }

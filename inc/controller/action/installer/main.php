@@ -114,7 +114,7 @@
 
             $isOk = true;
             foreach ($sysCheckResults as $key => $value) {                    
-                if (strpos($key, 'optional') !== false || $value['result']) continue;
+                if ($value['optional'] || $value['result']) continue;
                 $isOk = false;
             }
 

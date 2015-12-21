@@ -321,7 +321,7 @@
             
             $this->cache->cleanup();
 
-            return $this->dbcon->getLastInsertId($this->table);
+            return $this->dbcon->getLastInsertId();
         }
         
         /**
