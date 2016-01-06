@@ -1,5 +1,5 @@
 CREATE SEQUENCE {{dbpref}}_userrolls_id_seq
-    START WITH 1
+    START WITH 4
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE

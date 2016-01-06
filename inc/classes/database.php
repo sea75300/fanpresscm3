@@ -5,7 +5,7 @@
      * Database abstraction layer
      * 
      * @article Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -290,7 +290,7 @@
          */
         public function reverseBool($table, $field, $where) {        
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
-            $sql = "UPDATE $table SET $field = NOT $field";
+            $sql = "UPDATE $table SET ".$this->driver->getNotQuery($field);
             if (!is_null($where)) $sql .= " WHERE $where";
             return $this->exec($sql);
         }        

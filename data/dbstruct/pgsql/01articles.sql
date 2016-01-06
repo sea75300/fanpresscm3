@@ -22,7 +22,7 @@ CREATE TABLE {{dbpref}}_articles (
     deleted smallint NOT NULL,
     comments smallint NOT NULL,
     approval smallint NOT NULL,
-    imagepath text NOT NULL
+    imagepath text
 );
 
 ALTER SEQUENCE {{dbpref}}_articles_id_seq OWNED BY {{dbpref}}_articles.id;

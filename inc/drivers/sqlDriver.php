@@ -3,7 +3,7 @@
      * FanPress CM MySQL database driver class
      * 
      * @article Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -67,5 +67,12 @@
          * @return string
          */
         public function getLastInsertIdParams($table);
+        
+        /**
+         * 
+         * @param string $field
+         * @return string
+         */
+        public function getNotQuery($field);
         
     }

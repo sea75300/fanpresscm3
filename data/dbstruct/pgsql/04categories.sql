@@ -1,5 +1,5 @@
 CREATE SEQUENCE {{dbpref}}_categories_id_seq
-    START WITH 1
+    START WITH 2
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE

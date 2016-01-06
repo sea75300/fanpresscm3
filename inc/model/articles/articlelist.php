@@ -3,7 +3,7 @@
      * FanPress CM Article List Model
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -36,9 +36,11 @@
          * @return array
          */
         public function getArticlesAll($monthIndex = false, array $limits = array(), $countOnly = false) {
-            $where = 'draft = 0 AND deleted = 0'.$this->dbcon->orderBy(array('createtime DESC'));
+            $where = 'draft = 0 AND deleted = 0';
             
             if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            
+            $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
             if (count($limits)) $where .= $this->dbcon->limitQuery($limits[0], $limits[1]);
             
@@ -54,9 +56,11 @@
          * @return array
          */        
         public function getArticlesActive($monthIndex = false, array $limits = array(), $countOnly = false) {
-            $where = 'draft = 0 AND archived = 0 AND deleted = 0'.$this->dbcon->orderBy(array('createtime DESC'));
+            $where = 'draft = 0 AND archived = 0 AND deleted = 0';
             
             if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            
+            $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
             if (count($limits)) $where .= $this->dbcon->limitQuery($limits[0], $limits[1]);
             
@@ -72,9 +76,11 @@
          * @return array
          */        
         public function getArticlesArchived($monthIndex = false, array $limits = array(), $countOnly = false) {
-            $where = 'archived = 1 AND deleted = 0'.$this->dbcon->orderBy(array('createtime DESC'));
+            $where = 'archived = 1 AND deleted = 0';
             
             if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            
+            $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
             if (count($limits)) $where .= $this->dbcon->limitQuery($limits[0], $limits[1]);
             

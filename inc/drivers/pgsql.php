@@ -3,7 +3,7 @@
      * FanPress CM Postgres database driver class
      * 
      * @article Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -79,6 +79,15 @@
          */
         public function getLastInsertIdParams($table) {
             return $table.'_id_seq';
+        }
+
+        /**
+         * 
+         * @param string $field
+         * @return string
+         */
+        public function getNotQuery($field) {
+            return "$field = (CASE $field WHEN 1 THEN 0 WHEN 0 THEN 1 END)";
         }
 
     }

@@ -1,5 +1,5 @@
 CREATE SEQUENCE {{dbpref}}_cronjobs_id_seq
-    START WITH 1
+    START WITH 9
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
