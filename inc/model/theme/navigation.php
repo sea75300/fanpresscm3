@@ -211,7 +211,7 @@
          * @return array
          */
         private function optionSubmenu() {
-            return array(
+            $data = array(
                 array(
                     'url'               => 'system/options',
                     'permission'        => array('system' => 'options'),
@@ -275,17 +275,21 @@
                     'class'             => '',
                     'id'                => '',
                     'icon'              => 'fa fa-exclamation-triangle fa-fw'
-                ),
-                array(
+                )
+            );
+            
+            if (\fpcm\classes\baseconfig::$fpcmDatabase->getDbtype() == 'mysql') {
+                $data[] = array(
                     'url'               => 'system/backups',
                     'permission'        => array('system' => 'options', 'system' => 'logs'),
                     'description'       => $this->language->translate('HL_BACKUPS'),
                     'class'             => '',
                     'id'                => '',
                     'icon'              => 'fa fa-life-ring fa-fw'
-                )
-
-            );
+                );
+            }
+            
+            return $data;
         }
 
         /**

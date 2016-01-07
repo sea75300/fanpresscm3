@@ -300,6 +300,15 @@ var fpcmJs = function () {
         });        
     };
     
+    this.assignOpenButton = function () {
+        jQuery('.fpcm-articlelist-openlink').button({
+            icons: {
+                primary:'ui-icon-circle-triangle-e'
+            },
+            text:false
+        });  
+    };
+    
     this.articleActionsOkButton = function () {
         if (noActionButtonAssign) return false;
         
@@ -423,12 +432,7 @@ var fpcmJs = function () {
         fpcmJs.assignHtml('#tabs-article-list', ajaxResult);
         noActionButtonAssign = true;
         fpcmJs.assignButtons();
-        jQuery('.fpcm-articlelist-openlink').button({
-            icons: {
-                primary:'ui-icon-circle-triangle-e'
-            },
-            text:false
-        });
+        fpcmJs.assignOpenButton();
     };
     
     this.addAjaxMassage = function (type, message, fadeOut) {

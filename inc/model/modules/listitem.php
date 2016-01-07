@@ -44,7 +44,7 @@
          * @return bool
          */
         final public function save() {
-            $this->dbcon->insert($this->table, 'modkey, version, status', '?, ?, ?', array($this->modkey, $this->versionRemote, $this->status));
+            $this->dbcon->insert($this->table, 'modkey, version, status', '?, ?, ?', array($this->modkey, $this->versionRemote, (int) $this->status));
         }
         
         /**

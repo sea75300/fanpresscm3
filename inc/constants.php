@@ -59,22 +59,6 @@
         define ('FPCM_CONTROLLER_SYSUPDATES', 'package/sysupdate');
     }
     
-    if (!defined('FPCM_ACP_ARTICLELIST_LIMIT')) {
-        /**
-         * Anzahl Elemente in ACP-Artikel-Liste
-         * @deprecated since FPCM 3.1.0, moved to system options
-         */        
-        define ('FPCM_ACP_ARTICLELIST_LIMIT', 100);
-    }
-    
-    if (!defined('FPCM_ACP_LOGINFAILED_LIMIT')) {
-        /**
-         * Anzahl an Fehlerlogins bis Sperre
-         * @deprecated since FPCM 3.1.0, moved to system options
-         */        
-        define ('FPCM_ACP_LOGINFAILED_LIMIT', 5);
-    }
-    
     if (!defined('FPCM_UPDATER_MANUALCHECK')) {
         /**
          * Interval für manuellen Update-Check
@@ -94,15 +78,6 @@
          * Timeout für Pagetoken-Cache
          */
         define ('FPCM_PAGETOKENCACHE_TIMEOUT', 3600 * 5);
-    }
-    
-    if (!defined('FPCM_COMMENT_MARKSPAM_PASTCHECK')) {
-        /**
-         * Anzahl an Spam deklarierter vorhandener Kommentare, wenn ein neuer Kommentar geschrieben wird
-         * Nutzung in Default-Captcha-Plugin
-         * @deprecated since FPCM 3.1.0, moved to system options
-         */
-        define ('FPCM_COMMENT_MARKSPAM_PASTCHECK', 2);
     }
     
     if (!defined('FPCM_DEFAULT_LANGUAGE_CODE')) {

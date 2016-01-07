@@ -113,7 +113,7 @@
          * @return int
          */
         public function getIntervalTime() {
-            return 86400 * 14;
+            return 86400 * 7;
         }
         
     }

@@ -63,7 +63,7 @@
          *
          * @var int
          */
-        protected $listShowLimit = \FPCM_ACP_ARTICLELIST_LIMIT;
+        protected $listShowLimit = 0;
         
         /**
          *

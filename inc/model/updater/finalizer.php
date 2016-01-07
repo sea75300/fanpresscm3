@@ -87,9 +87,12 @@
         private function addSystemOptions() {
             
             $res = true;
-            $res = $res && $this->config->add('comments_markspam_commentcount', FPCM_COMMENT_MARKSPAM_PASTCHECK);
-            $res = $res && $this->config->add('system_loginfailed_locked', FPCM_ACP_LOGINFAILED_LIMIT);
+
+            $res = $res && $this->config->add('comments_markspam_commentcount', 2);
+            $res = $res && $this->config->add('system_loginfailed_locked', 5);
             $res = $res && $this->config->add('system_editor_fontsize', '12pt');
+            $res = $res && $this->config->add('articles_acp_limit', 100);
+            
             return $res;
 
         }

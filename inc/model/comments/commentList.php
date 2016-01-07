@@ -224,7 +224,7 @@
         /**
          * Prüft ob für die in Daten eines neuen Kommentars bereits Kommentare als Spam markiert wurden
          * @param \fpcm\model\comments\comment $commentObj
-         * @return boolean true, wenn Anzahl größer als in FPCM_COMMENT_MARKSPAM_PASTCHECK definiert
+         * @return boolean true, wenn Anzahl größer als in $this->config->comments_markspam_commentcount definiert
          */
         public function spamExistsbyCommentData(comment $comment) {            
             $where   = array('name '.$this->dbcon->dbLike().' ?', 'email '.$this->dbcon->dbLike().' ?', 'website '.$this->dbcon->dbLike().' ?', 'ipaddress '.$this->dbcon->dbLike().' ?');
