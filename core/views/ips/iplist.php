@@ -20,10 +20,10 @@
                         <th class="fpcm-td-iplist-meta"></th>
                         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
                     </tr>
-                    <tr class="fpcm-td-spacer"><td></td></tr>
                     
                     <?php \fpcm\model\view\helper::notFoundContainer($ipList, 5); ?>
                     
+                    <tr class="fpcm-td-spacer"><td></td></tr>                    
                     <?php foreach ($ipList as $value) : ?>
                     <tr>
                         <td><?php print \fpcm\model\view\helper::escapeVal($value->getIpaddress()); ?></td>
