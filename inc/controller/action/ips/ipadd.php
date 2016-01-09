@@ -41,9 +41,9 @@
                 $this->ipaddress->setIpaddress($this->getRequestVar('ipaddress'));
                 $this->ipaddress->setIptime(time());
                 $this->ipaddress->setUserid($this->session->getUserId());
-                $this->ipaddress->setNoaccess(!is_null($this->getRequestVar('noaccess')));
-                $this->ipaddress->setNocomments(!is_null($this->getRequestVar('nocomments')));
-                $this->ipaddress->setNologin(!is_null($this->getRequestVar('nologin')));
+                $this->ipaddress->setNoaccess(is_null($this->getRequestVar('noaccess')) ? false : true);
+                $this->ipaddress->setNocomments(!is_null($this->getRequestVar('nocomments')) ? false : true);
+                $this->ipaddress->setNologin(!is_null($this->getRequestVar('nologin')) ? false : true);
 
                 if ($this->getRequestVar('ipaddress') && $this->ipaddress->save() && $this->getRequestVar('ipaddress') != \fpcm\classes\http::getIp()) {
                     $this->redirect ('ips/list', array('added' => 1));

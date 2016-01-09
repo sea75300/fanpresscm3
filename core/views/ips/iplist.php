@@ -41,7 +41,7 @@
                                     <span class="fa fa-sign-in fa-stack-1x fa-inverse"></span>
                                 </span>                                
                                 
-                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getPrivate(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOACCESS'); ?>">
+                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getNoaccess(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOACCESS'); ?>">
                                     <span class="fa fa-square fa-stack-2x"></span>
                                     <span class="fa fa-toggle-on fa-stack-1x fa-inverse"></span>
                                 </span>

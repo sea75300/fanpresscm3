@@ -123,7 +123,7 @@
          * @param int $iptime
          */
         public function setIptime($iptime) {
-            $this->iptime = $iptime;
+            $this->iptime = (int) $iptime;
         }
 
         /**
@@ -131,7 +131,7 @@
          * @param int $userid
          */
         public function setUserid($userid) {
-            $this->userid = $userid;
+            $this->userid = (int) $userid;
         }
 
         /**
@@ -139,7 +139,7 @@
          * @param bool $nocomments
          */
         public function setNocomments($nocomments) {
-            $this->nocomments = $nocomments;
+            $this->nocomments = (int) $nocomments;
         }
 
         /**
@@ -147,7 +147,7 @@
          * @param bool $nologin
          */
         public function setNologin($nologin) {
-            $this->nologin = $nologin;
+            $this->nologin = (int) $nologin;
         }
 
         /**
@@ -155,7 +155,7 @@
          * @param bool $noaccess
          */
         public function setNoaccess($noaccess) {
-            $this->noaccess = $noaccess;
+            $this->noaccess = (int) $noaccess;
         }
                         
         /**
@@ -163,10 +163,12 @@
          * @return boolean
          */        
         public function save() {
-            if ($this->check($this->ipaddress)) return false;
+            if ($this->check()) return false;
             
             $params = $this->getPreparedSaveParams();
             $params = $this->events->runEvent('ipaddressSave', $params);
+            
+            \fpcm\classes\logs::syslogWrite($params);
 
             $return = false;
             if ($this->dbcon->insert($this->table, implode(',', array_keys($params)), implode(', ', $this->getPreparedValueParams()), array_values($params))) {
@@ -191,15 +193,11 @@
          * @return boolean
          */
         public function check() {            
-            $count = $this->dbcon->count($this->table, 'id', "ipaddress = ?", array($this->ipaddress));
-            if (!$count) return false;
-            
+
             $delim = (strpos($this->ipaddress, ':') === true) ? ':' : '.';
-            
-            $ipAddress = explode($delim, $ipAddress);
-            
-            $adresses       = array();
-            $adresses[]     = implode($delim, $ipAddress);
+
+            $adresses  = array($this->ipaddress);
+            $ipAddress = explode($delim, $this->ipaddress);
             
             $where = array('ipaddress '.$this->dbcon->dbLike().' ?');
             $counts = count($ipAddress) - 1;
@@ -208,9 +206,8 @@
                 $adresses[]     = implode($delim, $ipAddress);
                 $where[] = 'ipaddress '.$this->dbcon->dbLike().' ?';
             }
-            
-            $where = "(".implode(' OR ', $where).") AND $lockType = 1";
 
+            $where = "(".implode(' OR ', $where).") AND (noaccess = 1 OR nocomments = 1 OR nologin = 1)";            
             $result = $this->dbcon->fetch($this->dbcon->select($this->table, 'count(id) AS counted', $where, $adresses));
             
             return $result->counted ? true : false;
