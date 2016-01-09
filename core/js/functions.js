@@ -198,7 +198,6 @@ var fpcmJs = function () {
         jQuery('.fpcm-ui-buttonset').buttonset();
         
         self.actionButtonsGenreal();
-        self.assignSaveButton();
         self.assignNewButton();
         self.assignEditButton();
         self.assignCheckboxes();
@@ -280,15 +279,6 @@ var fpcmJs = function () {
             },
             text: true
         });
-    };
-    
-    this.assignSaveButton = function () {
-        jQuery('.fpcm-save-btn').button({
-            icons: {
-                primary: "ui-icon-disk",
-            },
-            text: true
-        });        
     };
     
     this.assignEditButton = function () {
