@@ -37,7 +37,15 @@
                 <?php \fpcm\model\view\helper::select('roll', $userRolls, $author->getRoll(), false, false); ?>
             <?php endif; ?>                
         </td>
-    </tr>        
+    </tr>
+    <?php if ($showDisableButton) : ?>
+    <tr>
+        <td><?php $FPCM_LANG->write('GLOBAL_DISABLE'); ?>:</td>
+        <td>
+            <?php \fpcm\model\view\helper::boolSelect('disabled', $author->getDisabled()); ?>              
+        </td>
+    </tr>
+    <?php endif; ?>
 </table>            
 
 <?php if (!isset($externalSave)) : ?>

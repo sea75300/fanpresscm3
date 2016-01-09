@@ -43,7 +43,7 @@
             $this->author->setUserName($this->getRequestVar('username'));
             $this->author->setEmail($this->getRequestVar('email'));
             $this->author->setDisplayName($this->getRequestVar('displayname'));
-            $this->author->setRoll($this->getRequestVar('roll'));
+            $this->author->setRoll($this->getRequestVar('roll', array(9)));
             $this->author->setUserMeta(array());
             $this->author->setRegistertime(time());
 
@@ -78,6 +78,7 @@
             $userRolls = new \fpcm\model\users\userRollList();            
             $this->view->assign('userRolls', $userRolls->getUserRollsTranslated());            
             $this->view->assign('author', $this->author);
+            $this->view->assign('showDisableButton', false);
             
             $this->view->render();            
         }

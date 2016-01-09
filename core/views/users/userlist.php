@@ -17,22 +17,31 @@
                         <th></th>
                         <th><?php $FPCM_LANG->write('GLOBAL_USERNAME'); ?></th>
                         <th><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?></th>
-                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('USERS_ROLL'); ?></th>
                         <th class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php $FPCM_LANG->write('USERS_REGISTEREDTIME'); ?></th>           
                         <th class="fpcm-ui-center fpcm-ui-users-articlecount"><?php $FPCM_LANG->write('USERS_ARTICLE_COUNT'); ?></th>
                         <th class="fpcm-th-select-row"></th>         
                     </tr>
                     <tr class="fpcm-td-spacer"><td></td></tr>
-                    <?php foreach($usersActive AS $user) : ?>
-                    <tr>
-                        <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($user->getEditLink()); ?></td>
-                        <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
-                        <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
-                        <td class="fpcm-ui-center"><?php if (isset($usersRolls[$user->getRoll()])) : ?><?php print $usersRolls[$user->getRoll()]; ?><?php else : ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></td>
-                        <td class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php print date($FPCM_DATETIME_MASK, $user->getRegistertime()); ?></td>
-                        <td class="fpcm-ui-center fpcm-ui-users-articlecount"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
-                        <td class="fpcm-td-select-row"><input type="radio" name="useridsa" value="<?php print $user->getId(); ?>" <?php if ($user->getId() == $currentUser) : ?>readonly="readonly"<?php endif; ?>></td>      
-                    </tr>      
+                    
+                    <?php foreach($usersActive AS $rollId => $usersList) : ?>
+                        <tr>
+                            <th></th>
+                            <th colspan="6"><?php $FPCM_LANG->write('USERS_ROLL'); ?>: <?php if (isset($usersRolls[$rollId])) : ?><?php print $usersRolls[$rollId]; ?><?php else : ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></th>
+                        </tr>
+                        <?php if (count($usersList)) : ?><tr class="fpcm-td-spacer"><td></td></tr><?php endif; ?>
+                    
+                        <?php foreach($usersList AS $user) : ?>
+                        <tr>
+                            <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($user->getEditLink()); ?></td>
+                            <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
+                            <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
+                            <td class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php print date($FPCM_DATETIME_MASK, $user->getRegistertime()); ?></td>
+                            <td class="fpcm-ui-center fpcm-ui-users-articlecount"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
+                            <td class="fpcm-td-select-row"><input type="radio" name="useridsa" value="<?php print $user->getId(); ?>" <?php if ($user->getId() == $currentUser) : ?>readonly="readonly"<?php endif; ?>></td>      
+                        </tr>      
+                        <?php endforeach; ?>
+
+                        <?php if (count($usersList)) : ?><tr class="fpcm-td-spacer"><td></td></tr><?php endif; ?>
                     <?php endforeach; ?>
                 </table>
                 
@@ -51,6 +60,7 @@
             <div id="tabs-users-inactive">
                 <table class="fpcm-ui-table fpcm-ui-users">
                     <tr>
+                        <th></th>
                         <th><?php $FPCM_LANG->write('GLOBAL_USERNAME'); ?></th>
                         <th><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?></th>
                         <th class="fpcm-ui-center"><?php $FPCM_LANG->write('USERS_ROLL'); ?></th>
@@ -59,15 +69,27 @@
                         <th class="fpcm-th-select-row"></th>         
                     </tr>
                     <tr class="fpcm-td-spacer"><td></td></tr>
-                    <?php foreach($usersDisabled AS $user) : ?>
-                    <tr>
-                        <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
-                        <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
-                        <td class="fpcm-ui-center"><?php if (isset($usersRolls[$user->getRoll()])) : ?><?php print $usersRolls[$user->getRoll()]; ?><?php else : ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></td>
-                        <td class="fpcm-ui-center"><?php print date($FPCM_DATETIME_MASK, $user->getRegistertime()); ?></td>
-                        <td class="fpcm-ui-center"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
-                        <td class="fpcm-td-select-row"><input type="radio" name="useridsd" value="<?php print $user->getId(); ?>"></td>      
-                    </tr>      
+
+                    <?php foreach($usersDisabled AS $rollId => $usersList) : ?>
+                        <tr>
+                            <th></th>
+                            <th colspan="6"><?php $FPCM_LANG->write('USERS_ROLL'); ?>: <?php if (isset($usersRolls[$rollId])) : ?><?php print $usersRolls[$rollId]; ?><?php else : ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></th>
+                        </tr>
+                        <?php if (count($usersList)) : ?><tr class="fpcm-td-spacer"><td></td></tr><?php endif; ?>
+                    
+                        <?php foreach($usersList AS $user) : ?>
+                        <tr>
+                            <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($user->getEditLink()); ?></td>
+                            <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
+                            <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
+                            <td class="fpcm-ui-center"><?php if (isset($usersRolls[$user->getRoll()])) : ?><?php print $usersRolls[$user->getRoll()]; ?><?php else : ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></td>
+                            <td class="fpcm-ui-center"><?php print date($FPCM_DATETIME_MASK, $user->getRegistertime()); ?></td>
+                            <td class="fpcm-ui-center"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
+                            <td class="fpcm-td-select-row"><input type="radio" name="useridsd" value="<?php print $user->getId(); ?>"></td>
+                        </tr>      
+                        <?php endforeach; ?>
+
+                        <?php if (count($usersList)) : ?><tr class="fpcm-td-spacer"><td></td></tr><?php endif; ?>
                     <?php endforeach; ?>
                 </table>
                 

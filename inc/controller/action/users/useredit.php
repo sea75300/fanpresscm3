@@ -16,6 +16,12 @@
          * @var \fpcm\model\view\acp
          */
         protected $view;
+        
+        /**
+         *
+         * @var int
+         */
+        protected $userId;
 
         public function __construct() {
             parent::__construct();
@@ -31,7 +37,9 @@
                 $this->redirect('users/list');
             }
 
-            $author = new \fpcm\model\users\author($this->getRequestVar('userid'));            
+            $this->userId = $this->getRequestVar('userid', array(9));
+            
+            $author = new \fpcm\model\users\author($this->userId);
             
             if (!$author->exists()) {
                 $this->view->setNotFound('LOAD_FAILED_USER', 'users/list');                
@@ -47,8 +55,12 @@
                 $author->setUserName($this->getRequestVar('username'));
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
-                $author->setRoll($this->getRequestVar('roll'));
+                $author->setRoll($this->getRequestVar('roll', array(9)));
                 $author->setUserMeta($this->getRequestVar('usermeta'));
+                
+                if ($this->getRequestVar('disabled') !== null) {
+                    $author->setDisabled($this->getRequestVar('disabled', array(9)));
+                }
 
                 $newpass         = $this->getRequestVar('password');
                 $newpass_confirm = $this->getRequestVar('password_confirm');
@@ -122,6 +134,13 @@
                 250 => 250
             );
             $this->view->assign('articleLimitList', $articleLimitList);
+            
+            $userList = new \fpcm\model\users\userList();
+            $showDisableButton = ($this->userId == $this->session->getUserId() || $userList->countActiveUsers() == 1)
+                               ? false
+                               : true;
+            
+            $this->view->assign('showDisableButton', $showDisableButton);
             
             $this->view->render();            
         }

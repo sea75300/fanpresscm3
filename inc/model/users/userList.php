@@ -80,38 +80,31 @@
 
         /**
          * Liefert ein array aller aktiven Benutzer
-         * @return array
+         * @param bool $byGroup (@since FPCM 3.2.0)
+         * @return array of \fpcm\model\users\author
          */
-        public function getUsersActive() {
-            $users = $this->dbcon->fetch($this->dbcon->select($this->table,'*','disabled = 0'), true);
+        public function getUsersActive($byGroup = false) {
+            $users = $this->dbcon->fetch($this->dbcon->select($this->table,'*','disabled = 0'.$this->dbcon->orderBy(array('id ASC'))), true);
             
-            $res = array();
-            foreach ($users as $user) {
-                $author = new author();
-                if ($author->createFromDbObject($user)) {
-                    $res[$author->getId()] = $author;
-                }
+            if (!$users || !count($users)) {
+                return array();
             }
-            
-            return $res;
+
+            return $this->getUserListResult($users, $byGroup);
         }
 
         /**
          * Liefert ein array aller aktiven Benutzer
          * @return array
          */
-        public function getUsersDisabled() {
-            $users = $this->dbcon->fetch($this->dbcon->select($this->table,'*','disabled = 1'), true);
+        public function getUsersDisabled($byGroup = false) {
+            $users = $this->dbcon->fetch($this->dbcon->select($this->table,'*','disabled = 1'.$this->dbcon->orderBy(array('id ASC'))), true);
             
-            $res = array();
-            foreach ($users as $user) {
-                $author = new author();
-                if ($author->createFromDbObject($user)) {
-                    $res[$author->getId()] = $author;
-                }
+            if (!$users || !count($users)) {
+                return array();
             }
-            
-            return $res;
+
+            return $this->getUserListResult($users, $byGroup);
         }
 
         /**
@@ -132,15 +125,11 @@
         public function getUsersByIds(array $ids) {
             $users = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'id IN ('.implode(', ', $ids).') '), true);
             
-            $res = array();
-            foreach ($users as $user) {
-                $author = new author();
-                if ($author->createFromDbObject($user)) {
-                    $res[$author->getId()] = $author;
-                }
+            if (!$users || !count($users)) {
+                return array();
             }
-            
-            return $res;
+
+            return $this->getUserListResult($users);
         }
         
         /**
@@ -211,5 +200,60 @@
         public function delete() {
             return;
         }
+        
+        /**
+         * Erzeugt Array aus Benutzer-Liste
+         * @param array $users
+         * @param bool $byGroup
+         * @return array
+         * @since FPCM 3.2.0
+         */
+        private function getUserListResult(array $users, $byGroup = false) {
+            
+            $res = array();
+            
+            $functionName  = 'userListResultBy';
+            $functionName .= $byGroup ? 'Group' : 'Id';
+            
+            foreach ($users as $user) {
+                $author = new author();
+                if ($author->createFromDbObject($user) === false) {
+                    $author = null;
+                    continue;
+                }
 
+                $res = call_user_func(array($this, $functionName), $author, $res);
+            }
+            
+            
+            return $res;
+        }
+        
+        /**
+         * Fügt Eintrag aus Benutzer-Liste, gruppiert nach Gruppe, in Ergebnisliste ein
+         * @param \fpcm\model\users\author $author
+         * @param array $data
+         * @return array
+         * @since FPCM 3.2.0
+         */
+        private function userListResultByGroup(author $author, array $data) {
+
+            $data[$author->getRoll()][$author->getId()] = $author;
+            
+            return $data;
+        }
+        
+        /**
+         * Fügt Eintrag aus Benutzer-Liste in Ergebnisliste ein
+         * @param \fpcm\model\users\author $author
+         * @param array $data
+         * @return array
+         * @since FPCM 3.2.0
+         */
+        private function userListResultById(author $author, array $data) {
+
+            $data[$author->getId()] = $author;
+            
+            return $data;
+        }
     }

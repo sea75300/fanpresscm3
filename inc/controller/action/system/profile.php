@@ -123,6 +123,7 @@
                 250 => 250
             );
             $this->view->assign('articleLimitList', $articleLimitList);
+            $this->view->assign('showDisableButton', false);
             
             $this->view->render();            
         }

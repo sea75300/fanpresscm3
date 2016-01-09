@@ -103,8 +103,8 @@
             $translatedRolls = $this->rollList->getUserRollsTranslated();
             
             $this->view->assign('currentUser', $this->session->getUserId());
-            $this->view->assign('usersActive', $this->userList->getUsersActive());
-            $this->view->assign('usersDisabled', $this->userList->getUsersDisabled());
+            $this->view->assign('usersActive', $this->userList->getUsersActive(true));
+            $this->view->assign('usersDisabled', $this->userList->getUsersDisabled(true));
             $this->view->assign('usersRollList', $translatedRolls);
             $this->view->assign('usersRolls', array_flip($translatedRolls));
             $this->view->assign('articleCounts', $this->articleList->countArticlesByUsers());
