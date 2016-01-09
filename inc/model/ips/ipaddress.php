@@ -191,26 +191,20 @@
          * @return boolean
          */
         public function check() {            
-            $count = $this->dbcon->count($this->table, 'id', "ipaddress LIKE '{$this->ipaddress}'");            
-            if (!$count) return false;
-            
             $delim = (strpos($this->ipaddress, ':') === true) ? ':' : '.';
+
+            $adresses  = array($this->ipaddress);
+            $ipAddress = explode($delim, $this->ipaddress);
             
-            $ipAddress = explode($delim, $ipAddress);
-            
-            $adresses       = array();
-            $adresses[]     = implode($delim, $ipAddress);
-            
-            $where = array('ipaddress LIKE ?');
+            $where = array('ipaddress '.$this->dbcon->dbLike().' ?');
             $counts = count($ipAddress) - 1;
             for ($i = $counts; $i > 0; $i--) {
                 $ipAddress[$i]   = '*';
                 $adresses[]     = implode($delim, $ipAddress);
-                $where[] = 'ipaddress LIKE ?';
+                $where[] = 'ipaddress '.$this->dbcon->dbLike().' ?';
             }
-            
-            $where = "(".implode(' OR ', $where).") AND $lockType = 1";
 
+            $where = "(".implode(' OR ', $where).") AND (noaccess = 1 OR nocomments = 1 OR nologin = 1)";            
             $result = $this->dbcon->fetch($this->dbcon->select($this->table, 'count(id) AS counted', $where, $adresses));
             
             return $result->counted ? true : false;
