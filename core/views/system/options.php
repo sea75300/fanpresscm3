@@ -233,7 +233,7 @@
 </div>
 
 <?php if ($syscheck) : ?><script type="text/javascript">jQuery(document).ready(function(){
-    jQuery('.fpcm-tabs-general').tabs('option', 'active', 5);
+    jQuery('.fpcm-tabs-general').tabs('option', 'active', <?php if ($showTwitter) : ?>5<?php else : ?>4<?php endif; ?>);
     jQuery('#tabs-options-syscheck').trigger('click');
 });</script>
 <?php endif; ?>
