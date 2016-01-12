@@ -65,6 +65,7 @@
                 }                
                 $newconfig['twitter_events']                 = json_encode($newconfig['twitter_events']);
                 $newconfig['articles_limit']                 = (int) $newconfig['articles_limit'];
+                $newconfig['articles_acp_limit']             = (int) $newconfig['articles_acp_limit'];
                 $newconfig['system_cache_timeout']           = (int) $newconfig['system_cache_timeout'];
                 $newconfig['system_session_length']          = (int) $newconfig['system_session_length'];
                 $newconfig['comments_flood']                 = (int) $newconfig['comments_flood'];
@@ -74,6 +75,7 @@
                 $newconfig['files_img_thumb_minheight']      = (int) $newconfig['files_img_thumb_minheight'];
                 $newconfig['file_img_thumb_width']           = (int) $newconfig['file_img_thumb_width'];
                 $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
+                $newconfig['system_updates_devcheck']        = (int) $newconfig['system_updates_devcheck'];
                 
                 $this->config->setNewConfig($newconfig);
                 if (!$this->config->update()) {
@@ -218,6 +220,19 @@
                 50 => 50
             );
             $this->view->assign('articleLimitList', $articleLimitList);
+            
+            $articleLimitListAcp = array(
+                10 => 10,
+                25 => 25,
+                50 => 50,
+                75 => 75,
+                100 => 100,
+                125 => 125,
+                150 => 150,
+                200 => 200,
+                250 => 250
+            );
+            $this->view->assign('articleLimitListAcp', $articleLimitListAcp);
             
             $defaultFontsizes = array();
             for ($i=8; $i<=16;$i++) {

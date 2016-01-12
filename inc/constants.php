@@ -38,13 +38,6 @@
         define ('FPCM_IGNORE_INSTALLER_DISABLED', false);
     }
     
-    if (!defined('FPCM_UPDATER_DEVCHECK')) {
-        /**
-         * verfügbare Beta/ RC Versionen bei Update-Check anzeigen
-         */
-        define ('FPCM_UPDATER_DEVCHECK', false);
-    }
-    
     if (!defined('FPCM_UPDATE_CRONNOTIFY_EMAIL')) {        
         /**
          * Benachrichtigung über neue verfügbare Updates bei Cronjob-Ausführung verhindern

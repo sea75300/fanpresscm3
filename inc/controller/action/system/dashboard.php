@@ -14,12 +14,6 @@
          * @var \fpcm\model\view\acp
          */
         protected $view;
-        
-        /**
-         * Dashboard-Container-Array
-         * @var array
-         */
-        protected $containers = array();
 
         /**
          * Konstruktor
@@ -38,61 +32,7 @@
                 return false;
             }
 
-            if ($this->session->exists()) {
-                $this->getClasses();                
-            }
-            
-            $this->view->assign('containers', $this->containers);
             $this->view->render();            
-        }
-    
-        /**
-         * Container-Klassen ermitteln
-         */
-        protected function getClasses() {
-            $containers = array_map(array($this, 'parseClassname'), glob(\fpcm\classes\baseconfig::$dashcontainerDir.'*.php'));            
-            $containers = $this->events->runEvent('dashboardContainersLoad', $containers);
-            
-            $positions = array();
-            foreach ($containers as $container) {
-                
-                /* @var $containerObj \fpcm\model\abstracts\dashcontainer */
-                $containerObj = new $container();
-                
-                if (!is_a($containerObj, '\fpcm\model\abstracts\dashcontainer')) {
-                    trigger_error('Dashboard container class "'.$container.'" must be an instance of "\fpcm\model\abstracts\dashcontainer".');
-                    continue;
-                }
-                
-                if (count($containerObj->getPermissions()) && !$this->permissions->check($containerObj->getPermissions())) continue;
-                
-                $position = $containerObj->getPosition();
-                
-                $this->view->setViewJsFiles($containerObj->getJavascriptFiles());
-                $this->view->addJsVars($containerObj->getJavascriptVars());
-                
-                $containerViewVars = $containerObj->getControllerViewVars();
-                $viewVars          = $this->view->getViewVars();
-                $this->view->setViewVars($viewVars + $containerViewVars);
-                
-                if (!$position || isset($this->containers[$position])) {
-                    $this->containers[]  = $containerObj;
-                } else {
-                    $this->containers[$position]  = $containerObj;
-                }
-
-            }
-            
-            ksort($this->containers);
-        }
-        
-        /**
-         * Container-Klassen-Name parsen
-         * @param string $filename
-         * @return string
-         */
-        protected function parseClassname($filename) {            
-            return '\\fpcm\\model\\dashboard\\'.basename($filename, '.php');            
         }
     }
 ?>

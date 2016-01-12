@@ -167,8 +167,6 @@
             
             $params = $this->getPreparedSaveParams();
             $params = $this->events->runEvent('ipaddressSave', $params);
-            
-            \fpcm\classes\logs::syslogWrite($params);
 
             $return = false;
             if ($this->dbcon->insert($this->table, implode(',', array_keys($params)), implode(', ', $this->getPreparedValueParams()), array_values($params))) {

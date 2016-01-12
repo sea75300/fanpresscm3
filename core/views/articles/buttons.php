@@ -33,7 +33,7 @@
             </tr>
             <?php endif; ?>
             <tr>
-                <td><strong><span class="fa fa-comment-o fa-fw"></span> <?php $FPCM_LANG->write('EDITOR_COMMENTS'); ?></strong></td>
+                <td><strong><span class="fa fa-comments-o fa-fw"></span> <?php $FPCM_LANG->write('EDITOR_COMMENTS'); ?></strong></td>
                 <td class="fpcm-td-select-row fpcm-ui-center"><?php fpcm\model\view\helper::checkbox('article[comments]', '', 1, '', '', $article->getComments()); ?></td>
             </tr>
             <?php if ($editorMode) : ?>

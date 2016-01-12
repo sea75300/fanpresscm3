@@ -13,6 +13,7 @@
                 <?php if ($showTwitter) : ?> 
                 <li><a href="#tabs-options-twitter"><?php $FPCM_LANG->write('SYSTEM_HL_OPTIONS_TWITTER'); ?></a></li>
                 <?php endif; ?>
+                <li><a href="#tabs-options-extended"><?php $FPCM_LANG->write('GLOBAL_EXTENDED'); ?></a></li>
                 <li id="tabs-options-syscheck"><a href="#tabs-options-check"><?php $FPCM_LANG->write('SYSTEM_HL_OPTIONS_SYSCHECK'); ?></a></li>
             </ul>
 
@@ -135,6 +136,10 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWLIMIT'); ?>:</td>
                         <td><?php fpcm\model\view\helper::select('articles_limit', $articleLimitList, $globalConfig['articles_limit'], false, false); ?></td>
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ACPARTICLES_LIMIT'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::select('articles_acp_limit', $articleLimitListAcp, $globalConfig['articles_acp_limit'], false, false); ?></td>
                     </tr>				
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ACTIVENEWSTEMPLATE'); ?>:</td>
@@ -207,8 +212,19 @@
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENT_MARKSPAM_PASTCHECK'); ?>:</td>
                         <td><?php fpcm\model\view\helper::textInput('comments_markspam_commentcount', 'fpcm-ui-spinner', $globalConfig['comments_markspam_commentcount'], false, 5, false, false); ?></td>		
                    </tr>	
-               </table>                    
+               </table>
             </div>
+            
+            <div id="tabs-options-extended">
+                <table class="fpcm-ui-table fpcm-ui-options">
+                   <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('system_updates_devcheck', $globalConfig['system_updates_devcheck']); ?></td>		
+                   </tr>
+               </table>
+            </div>
+
+            <div id="tabs-options-check"></div>
 
             <?php if ($showTwitter) : ?>
             <div id="tabs-options-twitter">
@@ -233,7 +249,7 @@
 </div>
 
 <?php if ($syscheck) : ?><script type="text/javascript">jQuery(document).ready(function(){
-    jQuery('.fpcm-tabs-general').tabs('option', 'active', <?php if ($showTwitter) : ?>5<?php else : ?>4<?php endif; ?>);
+    jQuery('.fpcm-tabs-general').tabs('option', 'active', <?php if ($showTwitter) : ?>6<?php else : ?>5<?php endif; ?>);
     jQuery('#tabs-options-syscheck').trigger('click');
 });</script>
 <?php endif; ?>

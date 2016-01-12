@@ -103,6 +103,8 @@
         'SYSTEM_OPTIONS_NEWS_ENABLETRASH'           => 'Enabled article trash',
         'SYSTEM_OPTIONS_NEWS_ENABLEFEED'            => 'RSS feed is enabled',
         
+        'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Include developement relaeses in update check',
+        
         'SYSTEM_OPTIONS_TWITTER_CONNECTION'         => 'Twitter connection',
         'SYSTEM_OPTIONS_TWITTER_CONNECT'            => 'Request API key and/or token',
         'SYSTEM_OPTIONS_TWITTER_DISCONNECT'         => 'Disconnect',

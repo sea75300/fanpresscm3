@@ -48,12 +48,7 @@ var fpcmFilemanager = function () {
     };
     
     this.initActionButtons = function () {
-        jQuery('.fpcm-filemanager-buttons #btnRenameFiles').button({
-            icons: {
-                primary: "ui-icon-pencil",
-            },
-            text: true
-        }).click(function () {
+        jQuery('#btnRenameFiles').click(function () {
             if (typeof fpcmFmgrNewName != 'undefined') {
                 var newName = prompt(fpcmFmgrNewName, '');
                 if (!newName || newName == '') {
@@ -65,12 +60,7 @@ var fpcmFilemanager = function () {
             
         });
         
-        jQuery('.fpcm-filemanager-buttons #btnCreateThumbs').button({
-            icons: {
-                primary: "ui-icon-image",
-            },
-            text: true
-        }).click(function () {            
+        jQuery('#btnCreateThumbs').click(function () {            
             if (!confirm(fpcmConfirmMessage)) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;

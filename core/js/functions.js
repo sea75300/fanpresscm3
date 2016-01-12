@@ -150,12 +150,18 @@ var fpcmJs = function () {
         
         if (jQuery(window).width() <= 1040) {
             jQuery('.fpcm-menu').menu({
-                position: { my: "left top", at: "left+10 top" }
+                position: {
+                    my: "left top",
+                    at: "left+10 top"
+                }
             });
             jQuery('.fpcm-admin-navi .fpcm-submenu .ui-menu-item').width(jQuery('.fpcm-menu').width() - 40);
         } else {
             jQuery('.fpcm-menu').menu({
-                position: { my: "left top", at: "right-5 top" }
+                position: {
+                    my: "left top",
+                    at: "right-5 top"
+                }
             });            
         }
     };
@@ -198,7 +204,6 @@ var fpcmJs = function () {
         jQuery('.fpcm-ui-buttonset').buttonset();
         
         self.actionButtonsGenreal();
-        self.assignNewButton();
         self.assignEditButton();
         self.assignCheckboxes();
         self.assignCheckboxesSub();
@@ -256,12 +261,7 @@ var fpcmJs = function () {
         
         if (noDeleteButtonAssign) return false;
         
-        jQuery('.fpcm-delete-btn').button({
-            icons: {
-                primary: "ui-icon-trash",
-            },
-            text: true
-        }).click(function () {
+        jQuery('.fpcm-delete-btn').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
             if (!confirm(fpcmConfirmMessage)) {
                 jQuery(this).addClass('fpcm-noloader');
@@ -270,15 +270,6 @@ var fpcmJs = function () {
         });
         
         noDeleteButtonAssign = true;
-    };
-    
-    this.assignNewButton = function () {
-        jQuery('.fpcm-new-btn').button({
-            icons: {
-                primary: "ui-icon-document",
-            },
-            text: true
-        });
     };
     
     this.assignEditButton = function () {
@@ -302,12 +293,7 @@ var fpcmJs = function () {
     this.articleActionsOkButton = function () {
         if (noActionButtonAssign) return false;
         
-        jQuery('.fpcm-ui-articleactions-ok').button({
-            icons: {
-                primary: "ui-icon-check",
-            },
-            text: true
-        }).click(function () {
+        jQuery('.fpcm-ui-articleactions-ok').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
             if (!confirm(fpcmConfirmMessage)) {
                 jQuery(this).addClass('fpcm-noloader');
@@ -346,34 +332,10 @@ var fpcmJs = function () {
                 return false;
             }            
         });
-        
-        jQuery('.fpcm-ui-commentaction-spam').button({
-            icons: {
-                primary: "ui-icon-flag",
-            },
-            text: true
-        });
-        jQuery('.fpcm-ui-commentaction-approve').button({
-            icons: {
-                primary: "ui-icon-check",
-            },
-            text: true
-        });
-        jQuery('.fpcm-ui-commentaction-private').button({
-            icons: {
-                primary: "ui-icon-radio-off",
-            },
-            text: true
-        });
     };
     
     this.usersActionButtons = function () {
-        jQuery('.fpcm-ui-useractions-diable').button({
-            icons: {
-                primary: "ui-icon-radio-off",
-            },
-            text: true
-        }).click(function () {
+        jQuery('.fpcm-ui-useractions-diable').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
             if (!confirm(fpcmConfirmMessage)) {
                 jQuery(this).addClass('fpcm-noloader');
@@ -381,12 +343,7 @@ var fpcmJs = function () {
             }            
         });
                 
-        jQuery('.fpcm-ui-useractions-enable').button({
-            icons: {
-                primary: "ui-icon-radio-on",
-            },
-            text: true
-        }).click(function () {
+        jQuery('.fpcm-ui-useractions-enable').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
             if (!confirm(fpcmConfirmMessage)) {
                 jQuery(this).addClass('fpcm-noloader');
@@ -644,5 +601,28 @@ var fpcmJs = function () {
 
             self.confirmDialog('<p class="fpcm-ui-center">' + fpcmSessionCheckMsg + '</p>', buttons, '', 'sessioncheck');
         }        
+    };
+    
+    this.loadDashboardContainer = function() {
+        this.showLoader(true);
+        
+        fpcmAjax.action   = 'dashboard';
+        fpcmAjax.execDone = 'fpcmJs.loadDashboardContainerCallback(fpcmAjax.result);';
+        fpcmAjax.get();
+        
+    };
+    
+    this.loadDashboardContainerCallback = function(resultData) {
+        fpcmJs.assignHtml('#fpcm-dashboard-containers', resultData);
+        fpcmJs.assignButtons();
+        fpcmJs.assignOpenButton();
+        
+        var fpcmRFDinterval = setInterval(function(){
+            if (jQuery('#fpcm-dashboard-finished').length == 1) {
+                fpcmJs.showLoader(false);
+                clearInterval(fpcmRFDinterval);
+                return false;
+            }
+        }, 1000);
     };
 }

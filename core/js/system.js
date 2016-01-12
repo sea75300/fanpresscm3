@@ -108,12 +108,7 @@ jQuery(document).ready(function () {
     });
 
     if (typeof fpcmArticlesSearchHeadline != 'undefined') {
-        jQuery('#fpcmarticlesopensearch').button({
-            icons: {
-                primary: "ui-icon-search"
-            },
-            text: true
-        }).click(function () {
+        jQuery('#fpcmarticlesopensearch').click(function () {
             jQuery('.fpcm-ui-input-select-articlesearch').selectmenu({
                 width: '100%',
                 appendTo: '#fpcm-articles-search-dialog'
@@ -190,13 +185,6 @@ jQuery(document).ready(function () {
         },
         text: false
     });    
-
-    jQuery('.fpcm-clear-btn').button({
-        icons: {
-            primary: "ui-icon-trash",
-        },
-        text: true
-    });
         
     jQuery('.fpcm-external-btn').button({
         icons: {

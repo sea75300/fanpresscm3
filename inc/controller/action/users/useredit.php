@@ -22,6 +22,12 @@
          * @var int
          */
         protected $userId;
+        
+        /**
+         *
+         * @var bool
+         */
+        protected $userEnabled;
 
         public function __construct() {
             parent::__construct();
@@ -98,6 +104,8 @@
                 }                
             }
             
+            $this->userEnabled = $author->getDisabled();
+            
             $this->view->assign('author', $author);
             
             return true;
@@ -136,7 +144,7 @@
             $this->view->assign('articleLimitList', $articleLimitList);
             
             $userList = new \fpcm\model\users\userList();
-            $showDisableButton = ($this->userId == $this->session->getUserId() || $userList->countActiveUsers() == 1)
+            $showDisableButton = (!$this->userEnabled && ($this->userId == $this->session->getUserId() || $userList->countActiveUsers() == 1))
                                ? false
                                : true;
             

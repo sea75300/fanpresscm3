@@ -560,13 +560,6 @@ jQuery(document).ready(function() {
         text: false
     }).fancybox();
     
-    jQuery('.fpcm-ui-revision-restore').button({
-        icons: {
-            primary: "ui-icon-arrowreturn-1-w",
-        },
-        text: true
-    });
-    
     jQuery('#fpcmuieditoraimgfmg').button({
         icons: {
             primary: "ui-icon-folder-open",

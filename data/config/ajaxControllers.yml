@@ -11,6 +11,7 @@ ajax/articles/search: ajax/articles/search
 ajax/articles/tweet: ajax/articles/listnewtweets
 ajax/editor/cleartags: ajax/articles/removeeditortags
 ajax/editor/smileys: ajax/articles/smileys
+ajax/dashboard: ajax/system/dashboard
 ajax/syscheck: ajax/system/syscheck
 ajax/cronasync: ajax/system/cronasync
 ajax/packagemgr/sysupdater: ajax/packagemgr/sysupdater

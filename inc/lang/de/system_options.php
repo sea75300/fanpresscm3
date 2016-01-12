@@ -102,6 +102,8 @@
         'SYSTEM_OPTIONS_NEWS_ORDERDESC'             => 'Absteigend',
         'SYSTEM_OPTIONS_NEWS_ENABLETRASH'           => 'Papierkorb aktivieren',
         'SYSTEM_OPTIONS_NEWS_ENABLEFEED'            => 'RSS-Feed ist aktiv',
+
+        'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Entwickler-Versionen bei Update-Check anzeigen',
         
         'SYSTEM_OPTIONS_TWITTER_CONNECTION'         => 'Twitter-Verbindung',
         'SYSTEM_OPTIONS_TWITTER_CONNECT'            => 'API-Schlüssel und/oder Token anfordern',

@@ -29,6 +29,7 @@
      * @property int    $system_editor_fontsize Standard-Schriftgröße im Editor
      * @property bool   $system_maintenance Wartungsmodusaktiv
      * @property int    $system_loginfailed_locked Anzahl fehlgeschlagener Login-Versuche, nach denen Login temporär gesperrt wird
+     * @property int    $system_updates_devcheck Entwickler-Versionen bei Update-Prüfung anzeigen
      * 
      * @property bool   $articles_revisions Revisionen aktiv
      * @property bool   $articles_trash Papierkorb aktiv

@@ -49,7 +49,7 @@
                     <table>
                         <tr>
                             <td><?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/add', 'USERS_ADD', '', 'fpcm-loader fpcm-new-btn'); ?></td>
-                            <td><?php fpcm\model\view\helper::submitButton('disableUser', 'GLOBAL_DISABLE', 'fpcm-loader fpcm-ui-useractions-diable'); ?></td>
+                            <td><?php fpcm\model\view\helper::submitButton('disableUser', 'GLOBAL_DISABLE', 'fpcm-loader fpcm-ui-useractions-disable'); ?></td>
                             <td><?php fpcm\model\view\helper::deleteButton('deleteActive'); ?></td>
                         </tr>
                     </table>
