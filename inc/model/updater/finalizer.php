@@ -21,6 +21,8 @@
          */
         public function __construct() {
             parent::__construct();
+            
+            $this->config = new \fpcm\model\system\config(false, false);
         }
         
         /**
@@ -87,7 +89,6 @@
         private function addSystemOptions() {
             
             $res = true;
-
             $res = $res && $this->config->add('comments_markspam_commentcount', 2);
             $res = $res && $this->config->add('system_loginfailed_locked', 5);
             $res = $res && $this->config->add('system_editor_fontsize', '12pt');
