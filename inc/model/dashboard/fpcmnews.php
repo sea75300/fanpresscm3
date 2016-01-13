@@ -68,7 +68,7 @@
                 
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-articlelist-open" style="width:35px;">';
-                $content[] = '  <a class="fpcm-articlelist-openlink" href="'.\fpcm\model\view\helper::escapeVal(strip_tags($item->link)).'" target="_blank">'.$this->language->translate('GLOBAL_OPENNEWWIN').'</a>';
+                $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-openlink-btn" href="'.\fpcm\model\view\helper::escapeVal(strip_tags($item->link)).'" target="_blank">'.$this->language->translate('GLOBAL_OPENNEWWIN').'</a>';
                 $content[] = '  </td>';
                 $content[] = '  <td>';
                 $content[] = '  <strong>'.\fpcm\model\view\helper::escapeVal(strip_tags($item->title)).'</strong><br>';

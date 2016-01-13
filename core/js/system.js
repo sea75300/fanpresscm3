@@ -172,13 +172,6 @@ jQuery(document).ready(function () {
         text: false
     });
     
-    jQuery('.fpcm-articlelist-openlink').button({
-        icons: {
-            primary: "ui-icon-circle-triangle-e",
-        },
-        text: false
-    });
-    
     jQuery('.fpcm-reload-btn').button({
         icons: {
             primary: "ui-icon-refresh",

@@ -17,34 +17,34 @@
         <?php if ($module->isInstalled()) : ?>
             <?php if ($module->dependenciesOk() && $module->currentLanguageIncluded()) : ?>
                 <?php if ($module->getStatus()) : ?>
-                    <?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'modules/config&key='.$module->getkey(), 'MODULES_LIST_CONFIGURE', str_replace('/', '', $module->getKey()), 'fpcm-modules-configuremodule fpcm-loader'); ?>
+                    <?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'modules/config&key='.$module->getkey(), 'MODULES_LIST_CONFIGURE', str_replace('/', '', $module->getKey()), 'fpcm-ui-button-blank fpcm-modules-configuremodule fpcm-loader'); ?>
                     <?php if ($permissionEnable) : ?>
-                        <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_DISABLE', str_replace('/', '', $module->getKey()), 'fpcm-modulelist-singleaction-disable'); ?>
+                        <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_DISABLE', str_replace('/', '', $module->getKey()), 'fpcm-ui-button-blank fpcm-modulelist-singleaction-disable'); ?>
                     <?php endif; ?>
                 <?php else : ?>
-                    <?php \fpcm\model\view\helper::dummyButton('MODULES_LIST_CONFIGURE', 'fpcm-modules-configuremodule fpcm-ui-readonly'); ?>
+                    <?php \fpcm\model\view\helper::dummyButton('MODULES_LIST_CONFIGURE', 'fpcm-ui-button-blank fpcm-modules-configuremodule fpcm-ui-readonly'); ?>
                     <?php if ($permissionEnable) : ?>
-                        <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_ENABLE', str_replace('/', '', $module->getKey()), 'fpcm-modulelist-singleaction-enable'); ?>
+                        <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_ENABLE', str_replace('/', '', $module->getKey()), 'fpcm-ui-button-blank fpcm-modulelist-singleaction-enable'); ?>
                     <?php endif; ?>           
                 <?php endif; ?>
             <?php elseif (!$module->currentLanguageIncluded()) : ?>    
-                <?php \fpcm\model\view\helper::dummyButton('MODULES_FAILED_LANGUAGE', 'fpcm-modules-depencerror'); ?>
+                <?php \fpcm\model\view\helper::dummyButton('MODULES_FAILED_LANGUAGE', 'fpcm-ui-button-blank fpcm-modules-depencerror'); ?>
             <?php elseif (!$module->dependenciesOk()) : ?>    
-                <?php \fpcm\model\view\helper::dummyButton('MODULES_FAILED_DEPENCIES', 'fpcm-modules-depencerror'); ?>
+                <?php \fpcm\model\view\helper::dummyButton('MODULES_FAILED_DEPENCIES', 'fpcm-ui-button-blank fpcm-modules-depencerror'); ?>
             <?php endif; ?>
 
             <?php if ($permissionUninstall) : ?>
                 <?php if ($module->getStatus()) : ?>
-                    <?php \fpcm\model\view\helper::dummyButton('MODULES_LIST_UNINSTALL', 'fpcm-modulelist-singleaction-uninstall fpcm-ui-readonly'); ?>
+                    <?php \fpcm\model\view\helper::dummyButton('MODULES_LIST_UNINSTALL', 'fpcm-ui-button-blank fpcm-modulelist-singleaction-uninstall fpcm-ui-readonly'); ?>
                 <?php else : ?>
-                    <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_UNINSTALL', str_replace('/', '', $module->getKey()), 'fpcm-modulelist-singleaction-uninstall'); ?>
+                    <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_UNINSTALL', str_replace('/', '', $module->getKey()), 'fpcm-ui-button-blank fpcm-modulelist-singleaction-uninstall'); ?>
                 <?php endif; ?>
             <?php endif; ?>
             <?php if ($permissionInstall && $module->hasUpdates()) : ?>
-                <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_UPDATE', str_replace('/', '', $module->getKey()), 'fpcm-modulelist-singleaction-update'); ?>
+                <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_UPDATE', str_replace('/', '', $module->getKey()), 'fpcm-ui-button-blank fpcm-modulelist-singleaction-update'); ?>
             <?php endif; ?>
         <?php elseif (!$module->isInstalled() && $permissionInstall) : ?>
-            <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_INSTALL', str_replace('/', '', $module->getKey()), 'fpcm-modulelist-singleaction-install'); ?>
+            <?php \fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_INSTALL', str_replace('/', '', $module->getKey()), 'fpcm-ui-button-blank fpcm-modulelist-singleaction-install'); ?>
         <?php endif; ?>
         </td>
         <td><?php fpcm\model\view\helper::linkButton('', \fpcm\model\view\helper::escapeVal($module->getName()), str_replace('/', '', $module->getKey()), 'fpcm-module-openinfo-link'); ?></td>

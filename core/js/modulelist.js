@@ -13,68 +13,29 @@ var fpcmModulelist = function () {
         jQuery('.fpcm-module-openinfo-link').click(function () {
             self.showDetails(jQuery(this).attr('id'), jQuery(this).text());
             return false;
-        });        
-        
-        jQuery('.fpcm-modules-configuremodule').button({
-            icons: {
-                primary: "ui-icon-wrench",
-            },
-            text: false
         });
         
-        jQuery('.fpcm-modules-depencerror').button({
-            icons: {
-                primary: "ui-icon-alert",
-            },
-            text: false
-        });
-        
-        jQuery('.fpcm-modulelist-singleaction-install').button({
-            icons: {
-                primary: 'ui-icon-circle-plus',
-            },
-            text: false
-        }).click(function () {
+        jQuery('.fpcm-modulelist-singleaction-install').click(function () {
             self.doSingleAction(jQuery(this).attr('id'), 'install');
             return false;
         });
         
-        jQuery('.fpcm-modulelist-singleaction-update').button({
-            icons: {
-                primary: 'ui-icon-refresh',
-            },
-            text: false
-        }).click(function () {
+        jQuery('.fpcm-modulelist-singleaction-update').click(function () {
             self.doSingleAction(jQuery(this).attr('id'), 'update');
             return false;
         });
         
-        jQuery('.fpcm-modulelist-singleaction-enable').button({
-            icons: {
-                primary: 'ui-icon-radio-on',
-            },
-            text: false
-        }).click(function () {
+        jQuery('.fpcm-modulelist-singleaction-enable').click(function () {
             self.doSingleAction(jQuery(this).attr('id'), 'enable');
             return false;
         });
         
-        jQuery('.fpcm-modulelist-singleaction-disable').button({
-            icons: {
-                primary: 'ui-icon-radio-off',
-            },
-            text: false
-        }).click(function () {
+        jQuery('.fpcm-modulelist-singleaction-disable').click(function () {
             self.doSingleAction(jQuery(this).attr('id'), 'disable');
             return false;
         });
         
-        jQuery('.fpcm-modulelist-singleaction-uninstall').button({
-            icons: {
-                primary: 'ui-icon-trash',
-            },
-            text: false
-        }).click(function () {
+        jQuery('.fpcm-modulelist-singleaction-uninstall').click(function () {
             self.doSingleAction(jQuery(this).attr('id'), 'uninstall');
             return false;
         });

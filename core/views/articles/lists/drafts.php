@@ -22,7 +22,7 @@
         <?php foreach($articles AS $articleId => $article) : ?>
             <tr>
                 <td class="fpcm-ui-articlelist-open">
-                    <?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-articlelist-openlink'); ?>
+                    <?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-ui-button-blank fpcm-openlink-btn'); ?>
                     <?php \fpcm\model\view\helper::editButton($article->getEditLink(), $isAdmin || $permEditAll || ($permEditOwn && !$isAdmin && !$permEditAll && $currentUserId == $article->getCreateuser()) ); ?>
                 </td>
                 <td><strong title="<?php print substr(\fpcm\model\view\helper::escapeVal(strip_tags($article->getContent())), 0, 128); ?>..."><?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?></strong></td>

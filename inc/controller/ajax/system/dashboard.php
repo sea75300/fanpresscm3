@@ -56,7 +56,7 @@
             $containers = array_map(array($this, 'parseClassname'), glob(\fpcm\classes\baseconfig::$dashcontainerDir.'*.php'));            
             $containers = $this->events->runEvent('dashboardContainersLoad', $containers);
             
-            $positions = array();
+            $additional = array();
             foreach ($containers as $container) {
                 
                 /* @var $containerObj \fpcm\model\abstracts\dashcontainer */
@@ -70,21 +70,23 @@
                 if (count($containerObj->getPermissions()) && !$this->permissions->check($containerObj->getPermissions())) continue;
                 
                 $position = $containerObj->getPosition();
-                
+
                 $this->view->setViewJsFiles($containerObj->getJavascriptFiles());
                 $this->view->addJsVars($containerObj->getJavascriptVars());
-                
+
                 $containerViewVars = $containerObj->getControllerViewVars();
                 $viewVars          = $this->view->getViewVars();
                 $this->view->setViewVars($viewVars + $containerViewVars);
-                
+
                 if (!$position || isset($this->containers[$position])) {
-                    $this->containers[]  = $containerObj;
+                    $additional[]  = $containerObj;
                 } else {
                     $this->containers[$position]  = $containerObj;
                 }
 
             }
+            
+            $this->containers += $additional;
             
             ksort($this->containers);
         }

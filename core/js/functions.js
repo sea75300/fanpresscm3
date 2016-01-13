@@ -204,7 +204,7 @@ var fpcmJs = function () {
         jQuery('.fpcm-ui-buttonset').buttonset();
         
         self.actionButtonsGenreal();
-        self.assignEditButton();
+        self.assignBlankIconButton();
         self.assignCheckboxes();
         self.assignCheckboxesSub();
         self.articleActionsOkButton();
@@ -272,22 +272,13 @@ var fpcmJs = function () {
         noDeleteButtonAssign = true;
     };
     
-    this.assignEditButton = function () {
-        jQuery('.fpcm-ui-button-edit').button({
+    this.assignBlankIconButton = function () {
+        jQuery('.fpcm-ui-button-blank').button({
             icons: {
-                primary: "ui-icon-pencil",
+                primary: "ui-icon-blank",
             },
             text: false
         });        
-    };
-    
-    this.assignOpenButton = function () {
-        jQuery('.fpcm-articlelist-openlink').button({
-            icons: {
-                primary:'ui-icon-circle-triangle-e'
-            },
-            text:false
-        });  
     };
     
     this.articleActionsOkButton = function () {
@@ -379,7 +370,6 @@ var fpcmJs = function () {
         fpcmJs.assignHtml('#tabs-article-list', ajaxResult);
         noActionButtonAssign = true;
         fpcmJs.assignButtons();
-        fpcmJs.assignOpenButton();
     };
     
     this.addAjaxMassage = function (type, message, fadeOut) {
@@ -604,8 +594,6 @@ var fpcmJs = function () {
     };
     
     this.loadDashboardContainer = function() {
-        this.showLoader(true);
-        
         fpcmAjax.action   = 'dashboard';
         fpcmAjax.execDone = 'fpcmJs.loadDashboardContainerCallback(fpcmAjax.result);';
         fpcmAjax.get();
@@ -615,14 +603,13 @@ var fpcmJs = function () {
     this.loadDashboardContainerCallback = function(resultData) {
         fpcmJs.assignHtml('#fpcm-dashboard-containers', resultData);
         fpcmJs.assignButtons();
-        fpcmJs.assignOpenButton();
         
         var fpcmRFDinterval = setInterval(function(){
             if (jQuery('#fpcm-dashboard-finished').length == 1) {
-                fpcmJs.showLoader(false);
+                jQuery('#fpcm-dashboard-containers-loading').remove();
                 clearInterval(fpcmRFDinterval);
                 return false;
             }
-        }, 1000);
+        }, 250);
     };
 }

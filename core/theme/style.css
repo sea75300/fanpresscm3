@@ -1319,7 +1319,8 @@ table.fpcm-ui-table.fpcm-ui-options tr td span.fpcm-ui-shorthelp.fpcm-options {
 
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before,
 h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
-.fpcm-ui-button span.ui-button-text:before {
+.fpcm-ui-button span.ui-button-text:before,
+.fpcm-ui-button.fpcm-ui-button-blank span.ui-icon:before {
     font-family: 'FontAwesome';
 }
 
@@ -1331,7 +1332,6 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 .fpcm-ui-button.fpcm-back-button .ui-button-text:before,
 .fpcm-ui-button.fpcm-profile-btn .ui-button-text:before,
 .fpcm-ui-button.fpcm-new-btn span.ui-button-text:before,
-.fpcm-ui-button.fpcm-ui-button-edit span.ui-button-text:before,
 .fpcm-ui-button.fpcm-rename-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-articles-opensearch span.ui-button-text:before,
 .fpcm-ui-button.fpcm-delete-btn span.ui-button-text:before,
@@ -1352,18 +1352,33 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     margin: 0 0 0 -0.3em;
 }
 
+.fpcm-ui-button.fpcm-ui-button-blank span.ui-icon {
+    text-indent: 0;
+}
+
+.fpcm-ui-button.fpcm-ui-button-blank span.ui-icon:before {
+    font-weight: normal;
+    margin-left: 0.15em;
+    padding: 0;
+}
+
 .fpcm-ui-button.fpcm-new-btn span.ui-button-text:before {
     content: '\f016';
     font-size: 0.8em;
 }
 
-.fpcm-ui-button.fpcm-ui-button-edit span.ui-button-text:before,
+.fpcm-ui-button.fpcm-ui-button-edit span.ui-icon:before,
 .fpcm-ui-button.fpcm-rename-btn span.ui-button-text:before {
     content: '\f044';
 }
 
 .fpcm-ui-button.fpcm-save-btn span.ui-button-text:before {
     content: '\f0c7';
+}
+
+.fpcm-ui-button.fpcm-openlink-btn span.ui-icon:before,
+.fpcm-ui-button.fpcm-openlink-btn span.ui-button-text:before {
+    content: '\f144';
 }
 
 .fpcm-ui-button.fpcm-delete-btn span.ui-button-text:before,
@@ -1388,7 +1403,8 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     content: '\f137';
 }
 
-.fpcm-ui-button.fpcm-profile-btn .ui-button-text:before {
+.fpcm-ui-button.fpcm-profile-btn .ui-button-text:before,
+.fpcm-ui-button.fpcm-modules-configuremodule span.ui-icon:before {
     content: '\f0ad';
 }
 
@@ -1412,11 +1428,13 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     content: '\f070';
 }
 
-.fpcm-ui-button.fpcm-newthumb-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-newthumb-btn span.ui-button-text:before,
+.fpcm-ui-button.fpcm-filelist-articleimage span.ui-icon:before {
     content: '\f03e';
 }
 
-.fpcm-ui-button.fpcm-syscheck-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-syscheck-btn span.ui-button-text:before,
+.fpcm-ui-button.fpcm-modulelist-singleaction-update span.ui-icon:before {
     content: '\f021';
 }
 
@@ -1426,6 +1444,46 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 
 .fpcm-ui-button.fpcm-ui-useractions-enable span.ui-button-text:before {
     content: '\f205';
+}
+
+.fpcm-ui-button.fpcm-articlelist-shortlink span.ui-icon:before {
+    content: '\f08e';
+}
+
+.fpcm-ui-button.fpcm-filelist-link-thumb span.ui-icon:before {
+    content: '\f1c5';
+}
+
+.fpcm-ui-button.fpcm-filelist-link-full span.ui-icon:before {
+    content: '\f065';
+}
+
+.fpcm-ui-button.fpcm-filelist-tinymce-thumb span.ui-icon:before {
+    content: '\f123';
+}
+
+.fpcm-ui-button.fpcm-filelist-tinymce-full span.ui-icon:before {
+    content: '\f005';
+}
+
+.fpcm-ui-button.fpcm-modulelist-singleaction-enable span.ui-icon:before {
+    content: '\f01d';
+}
+
+.fpcm-ui-button.fpcm-modulelist-singleaction-disable span.ui-icon:before {
+    content: '\f011';
+}
+
+.fpcm-ui-button.fpcm-modulelist-singleaction-install span.ui-icon:before {
+    content: '\f0ed';
+}
+
+.fpcm-ui-button.fpcm-modulelist-singleaction-uninstall span.ui-icon:before {
+    content: '\f056';
+}
+
+.fpcm-ui-button.fpcm-modules-depencerror span.ui-icon:before {
+    content: '\f071';
 }
 
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before {

@@ -24,7 +24,7 @@
         <?php foreach($articles AS $articleId => $article) : ?>
             <tr>
                 <td class="fpcm-ui-articlelist-open">
-                    <?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-articlelist-openlink', '_blank'); ?>
+                    <?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-ui-button-blank fpcm-openlink-btn', '_blank'); ?>
                     <?php \fpcm\model\view\helper::editButton($article->getEditLink(), $isAdmin || $permEditAll || ($permEditOwn && !$isAdmin && !$permEditAll && $currentUserId == $article->getCreateuser()) ); ?>
                 </td>
                 <td>

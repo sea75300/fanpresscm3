@@ -111,11 +111,11 @@
         public static function editButton($href, $active = true, $class = '') {
             
             if (!$active) {
-                print "<span class=\"fpcm-ui-button fpcm-ui-button-edit fpcm-ui-readonly\">".self::$language->translate('GLOBAL_EDIT')."</span>\n";
+                print "<span class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly\">".self::$language->translate('GLOBAL_EDIT')."</span>\n";
                 return;
             }
             
-            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-loader fpcm-ui-button-edit $class\">".self::$language->translate('GLOBAL_EDIT')."</a>\n";
+            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-loader fpcm-ui-button-edit $class\">".self::$language->translate('GLOBAL_EDIT')."</a>\n";
         }
         
         /**

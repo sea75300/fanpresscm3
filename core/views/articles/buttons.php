@@ -60,7 +60,7 @@
             <?php if ($isRevision) : ?>
                 <td>
                     <?php if ($revisionPermission) : ?><?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?><?php endif; ?>
-                    <td><?php \fpcm\model\view\helper::linkButton($article->getEditLink(), 'EDITOR_BACKTOCURRENT'); ?></td>
+                    <td><?php \fpcm\model\view\helper::linkButton($article->getEditLink(), 'EDITOR_BACKTOCURRENT', '', 'fpcm-back-button'); ?></td>
             <?php else : ?>
                 <td><?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', ''); ?></td>
                 <td><?php fpcm\model\view\helper::saveButton('articleSave'); ?></td>

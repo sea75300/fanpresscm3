@@ -514,12 +514,7 @@ jQuery(document).ready(function() {
         jQuery('.fpcm-editor-select').fadeOut();
     });
     
-    jQuery('.fpcm-articlelist-shortlink').button({
-        icons: {
-            primary: "ui-icon-extlink",
-        },
-        text: false
-    }).click(function () {
+    jQuery('.fpcm-articlelist-shortlink').click(function () {
         var text = jQuery(this).text();
         var link = jQuery(this).attr('href');
         

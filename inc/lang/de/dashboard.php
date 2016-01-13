@@ -7,6 +7,8 @@
      */
 
     $lang = array(
+        'DASHBOARD_LOADING' => 'Dashboard-Container werden geladen',
+        
         'WELCOME_HEADLINE'  => '<span class="fa fa-fw fa-user"></span> Willkommen {{username}}! <span class="fa fa-fw fa-smile-o"></span>',
         'WELCOME_CONTENT'   => 'Du befindest dich im Dashboard von FanPress CM, dem News-System speziell für Fanseiten.<br>Über die '.
                                'Navigation links kannst du in die verschiedenen Bereiche gelangen.<br><br>Nachfolgend findet du einige '.

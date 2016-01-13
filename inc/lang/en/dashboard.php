@@ -7,6 +7,8 @@
      */
 
     $lang = array(
+        'DASHBOARD_LOADING' => 'Loading dashboard container',
+        
         'WELCOME_HEADLINE'  => '<span class="fa fa-fw fa-user"></span> Welcome {{username}}! <span class="fa fa-fw fa-smile-o"></span>',
         'WELCOME_CONTENT'   => 'You are in the FanPress CM dashboard. Choose an area using the navigation at the left site. '.
                                'Below you\'ll find additional information about you system including statistics. '.

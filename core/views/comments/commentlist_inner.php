@@ -14,7 +14,7 @@
     <?php foreach($comments AS $comment) : ?>
     <tr>
         <td <?php if ($commentsMode == 1) : ?>class="fpcm-ui-articlelist-open"<?php endif; ?>>
-            <?php if ($commentsMode == 1) : ?><?php \fpcm\model\view\helper::linkButton($comment->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-articlelist-openlink', '_blank'); ?><?php endif; ?>
+            <?php if ($commentsMode == 1) : ?><?php \fpcm\model\view\helper::linkButton($comment->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-openlink-btn', '_blank'); ?><?php endif; ?>
             <?php \fpcm\model\view\helper::editButton($comment->getEditLink().'&mode='.$commentsMode, $isAdmin || $permEditAll || ($permEditOwn && !$isAdmin && !$permEditAll && in_array($comment->getArticleid(), $ownArticleIds)), $commentsMode == 2 ? 'fpcm-ui-commentlist-link': ''); ?>
         </td>
         <td><strong title="<?php print substr(\fpcm\model\view\helper::escapeVal($comment->getText()), 0, 100); ?>..."><?php print \fpcm\model\view\helper::escapeVal($comment->getName()); ?></strong></td>
