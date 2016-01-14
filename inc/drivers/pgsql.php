@@ -82,12 +82,30 @@
         }
 
         /**
-         * 
+         * Query-String um Wert in angegebener Spalte zu negieren
          * @param string $field
          * @return string
          */
         public function getNotQuery($field) {
             return "$field = (CASE $field WHEN 1 THEN 0 WHEN 0 THEN 1 END)";
+        }
+
+        /**
+         * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
+         * @return array
+         */
+        public function getYaTDLDataTypes() {
+
+            return array(
+                'int'       => 'int',
+                'bigint'    => 'bigint',
+                'varchar'   => 'character varying',
+                'text'      => 'text',
+                'mtext'     => 'mediumtext',
+                'bool'      => 'smallint',
+                'bin'       => 'text',
+            );
+
         }
 
     }

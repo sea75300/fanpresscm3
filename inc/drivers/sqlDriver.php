@@ -69,10 +69,16 @@
         public function getLastInsertIdParams($table);
         
         /**
-         * 
+         * Query-String um Wert in angegebener Spalte zu negieren
          * @param string $field
          * @return string
          */
         public function getNotQuery($field);
+        
+        /**
+         * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
+         * @return array
+         */
+        public function getYaTDLDataTypes();
         
     }
