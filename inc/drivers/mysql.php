@@ -98,12 +98,12 @@
         public function getYaTDLDataTypes() {
 
             return array(
-                'int'       => 'int(10)',
-                'bigint'    => 'bigint(20)',
+                'int'       => 'int',
+                'bigint'    => 'bigint',
                 'varchar'   => 'varchar',
                 'text'      => 'text',
                 'mtext'     => 'mediumtext',
-                'bool'      => 'tinyint(4)',
+                'bool'      => 'tinyint',
                 'bin'       => 'blob',
             );
 

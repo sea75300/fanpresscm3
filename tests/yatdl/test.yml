@@ -1,0 +1,27 @@
+## YAML Template.
+---
+name: sample
+primarykey: id
+engine: InnoDB
+charset: utf8
+autoincrement:
+    colname: id
+    start: 1
+cols:
+    id:
+        name: id
+        type: bigint
+        length: 20
+        params: NOT NULL
+    config_name:
+        name: col1
+        type: varchar
+        length: 255
+        params: NOT NULL
+    config_value:
+        name: col2
+        type: text
+        length: -1
+        params: NOT NULL
+indices:
+    

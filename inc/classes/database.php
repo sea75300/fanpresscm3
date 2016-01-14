@@ -552,6 +552,15 @@
         }
         
         /**
+         * Gibt Datentypen-Map zurück für YATDL
+         * @return array
+         * @since FPCM 3.2.0
+         */
+        public function getYaTDLDataTypes() {
+            return $this->driver->getYaTDLDataTypes();
+        }
+
+        /**
          * Error die
          */
         private function dieError() {
