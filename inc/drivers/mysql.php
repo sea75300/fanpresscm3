@@ -105,6 +105,9 @@
                 'mtext'     => 'mediumtext',
                 'bool'      => 'tinyint',
                 'bin'       => 'blob',
+                'float'     => 'float',
+                'double'    => 'decimal',
+                'char'      => 'char'
             );
 
         }

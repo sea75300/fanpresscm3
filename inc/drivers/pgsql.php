@@ -101,9 +101,12 @@
                 'bigint'    => 'bigint',
                 'varchar'   => 'character varying',
                 'text'      => 'text',
-                'mtext'     => 'mediumtext',
+                'mtext'     => 'text',
                 'bool'      => 'smallint',
                 'bin'       => 'text',
+                'float'     => 'real',
+                'double'    => 'decimal',
+                'char'      => 'char'
             );
 
         }
