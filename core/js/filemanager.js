@@ -15,37 +15,6 @@ var fpcmFilemanager = function () {
         self.initSelectionCheckboxes();
     };
     
-    this.initButtonIcons = function () {
-        jQuery('.fpcm-filelist-link-thumb').button({
-            icons: {
-                primary: "ui-icon-newwin"
-            },
-            text: false        
-        }).next().button({
-            icons: {
-                primary: "ui-icon-arrow-4-diag"
-            },
-            text: false        
-        }).next().button({
-            icons: {
-                primary: "ui-icon-circle-zoomin"
-            },
-            text: false        
-        }).next().button({
-            icons: {
-                primary: "ui-icon-image"
-            },
-            text: false        
-        });
-        
-        jQuery('.fpcm-filelist-articleimage').button({
-            icons: {
-                primary: "ui-icon-image"
-            },
-            text: false        
-        });
-    };
-    
     this.initActionButtons = function () {
         jQuery('#btnRenameFiles').click(function () {
             if (typeof fpcmFmgrNewName != 'undefined') {
