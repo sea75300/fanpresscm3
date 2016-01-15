@@ -4,7 +4,7 @@
             <tr>
                 <td><strong><span class="fa fa-picture-o fa-fw"></span> <?php $FPCM_LANG->write('TEMPLATE_ARTICLE_ARTICLEIMAGE'); ?></strong></td>
                 <td class="fpcm-td-select-row"><?php fpcm\model\view\helper::textInput('article[imagepath]', '', $article->getImagepath()); ?></td>
-                <td><?php \fpcm\model\view\helper::linkButton('', 'HL_FILES_MNG', 'fpcmuieditoraimgfmg'); ?></td>
+                <td><?php \fpcm\model\view\helper::linkButton('', 'HL_FILES_MNG', 'fpcmuieditoraimgfmg', 'fpcm-ui-button-blank fpcm-folderopen-btn'); ?></td>
             </tr>
             <?php if (!$editorMode || $article->getPostponed()) : ?>
             <tr>
@@ -13,9 +13,9 @@
             </tr>
             <tr class="fpcm-ui-editor-postponed <?php if (!$article->getPostponed()) : ?>fpcm-hidden<?php endif; ?>">
                 <td colspan="2" class="fpcm-ui-options fpcm-ui-editor-postpone fpcm-ui-center">
-                    <?php fpcm\model\view\helper::textInput('article[postponedate]', 'fpcm-ui-datepicker', date('Y-m-d', $postponedTimer)); ?>
-                    <?php fpcm\model\view\helper::textInput('article[postponehour]', 'fpcm-ui-spinner-hour', date('H', $postponedTimer), false, 2, false, false); ?>
-                    <?php fpcm\model\view\helper::textInput('article[postponeminute]', 'fpcm-ui-spinner-minutes', date('i', $postponedTimer), false, 2, false, false); ?>
+                    <?php fpcm\model\view\helper::textInput('article[postponedate]', 'fpcm-ui-datepicker', fpcm\model\view\helper::dateText($postponedTimer, 'Y-m-d', true)); ?>
+                    <?php fpcm\model\view\helper::textInput('article[postponehour]', 'fpcm-ui-spinner-hour', fpcm\model\view\helper::dateText($postponedTimer, 'H', true), false, 2, false, false); ?>
+                    <?php fpcm\model\view\helper::textInput('article[postponeminute]', 'fpcm-ui-spinner-minutes', fpcm\model\view\helper::dateText($postponedTimer, 'i', true), false, 2, false, false); ?>
                 </td>
             </tr>
             <?php endif; ?>

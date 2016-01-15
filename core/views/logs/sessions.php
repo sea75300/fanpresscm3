@@ -15,8 +15,8 @@
     <tr>
         <td><?php print isset($userList[$sessionItem->getUserId()]) ? $userList[$sessionItem->getUserId()]->getDisplayName() : $FPCM_LANG->translate('GLOBAL_NOTFOUND'); ?></td>
         <td><?php print $sessionItem->getIp(); ?></td>
-        <td><?php print date($FPCM_DATETIME_MASK, $sessionItem->getLogin()); ?></td>
-        <td><?php print $sessionItem->getLogout() > 0 ? date($FPCM_DATETIME_MASK, $sessionItem->getLogout()) : $FPCM_LANG->translate('LOGS_LIST_TIMEOUT'); ?></td>
+        <td><?php \fpcm\model\view\helper::dateText($sessionItem->getLogin()); ?></td>
+        <td><?php print $sessionItem->getLogout() > 0 ? \fpcm\model\view\helper::dateText($sessionItem->getLogout()) : $FPCM_LANG->translate('LOGS_LIST_TIMEOUT'); ?></td>
     </tr>
     <?php endforeach; ?>
 </table>

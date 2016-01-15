@@ -498,12 +498,7 @@ jQuery(document).ready(function() {
         dayNamesMin: fpcmPostponeDatePicker['daysshort']
     });     
     
-    jQuery('.fp-ui-button-restore').button({
-        icons: {
-            primary: "ui-icon-arrowreturnthick-1-w"
-        },
-        text: false
-    }).click(function() {
+    jQuery('.fp-ui-button-restore').click(function() {
         if(!confirm(fpNewsListActionConfirmMsg)) {
             fpcmJs.showLoader(true);
             return false;
@@ -548,19 +543,9 @@ jQuery(document).ready(function() {
          return false;
     });
     
-    jQuery('.fpcm-articlelist-articleimage').button({
-        icons: {
-            primary: "ui-icon-image",
-        },
-        text: false
-    }).fancybox();
+    jQuery('.fpcm-articlelist-articleimage').fancybox();
     
-    jQuery('#fpcmuieditoraimgfmg').button({
-        icons: {
-            primary: "ui-icon-folder-open",
-        },
-        text: false
-    }).click(function () {
+    jQuery('#fpcmuieditoraimgfmg').click(function () {
         fpcmFileManagerUrlMode = 3;
         fpcmEditor.showFileManager();
         fpcmFileManagerUrlMode = 2;

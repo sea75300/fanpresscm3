@@ -165,33 +165,7 @@ jQuery(document).ready(function () {
         });
     }
 
-    jQuery('#fpcmopennews').button({
-        icons: {
-            primary: "ui-icon-circle-triangle-e",
-        },
-        text: false
-    });
-    
-    jQuery('.fpcm-reload-btn').button({
-        icons: {
-            primary: "ui-icon-refresh",
-        },
-        text: false
-    });    
-        
-    jQuery('.fpcm-external-btn').button({
-        icons: {
-            primary: "ui-icon-extlink",
-        },
-        text: true
-    });
-
-    jQuery('#fpcm-clear-cache').button({
-        icons: {
-            primary: "ui-icon-arrowrefresh-1-e",
-        },
-        text: false
-    }).click(function () {
+    jQuery('#fpcm-clear-cache').click(function () {
         return fpcmJs.clearCache();
     });
 

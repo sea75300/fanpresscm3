@@ -14,7 +14,7 @@
         <tr class="fpcm-td-spacer" colspan="6"><td></td></tr>
         <tr>
             <th></th>
-            <th><?php $FPCM_LANG->writeMonth(date('n', $articleMonth)); ?> <?php print date('Y', $articleMonth); ?> (<?php print count($articles); ?>)</th> 
+            <th><?php $FPCM_LANG->writeMonth(fpcm\model\view\helper::dateText($articleMonth, 'n', true)); ?> <?php print fpcm\model\view\helper::dateText($articleMonth, 'Y', true); ?> (<?php print count($articles); ?>)</th> 
             <th></th>
             <th class="fpcm-ui-center fpcm-ui-articlelist-comments"></th>
             <th class="fpcm-td-articlelist-meta"></th>
@@ -53,9 +53,9 @@
     <tr>
         <td class="fpcm-ui-center">
             <?php if ($backBtn) : ?>
-                <?php \fpcm\model\view\helper::linkButton($backBtn > 1 ? $FPCM_SELF.'?module='.$listAction.'&page='.$backBtn : $FPCM_SELF.'?module='.$listAction, 'GLOBAL_BACK', '', 'fpcm-ui-pager-buttons fpcm-ui-pager-prev'); ?>
+                <?php \fpcm\model\view\helper::linkButton($backBtn > 1 ? $FPCM_SELF.'?module='.$listAction.'&page='.$backBtn : $FPCM_SELF.'?module='.$listAction, 'GLOBAL_BACK', '', 'fpcm-ui-pager-buttons fpcm-back-button'); ?>
             <?php else : ?>            
-                <?php \fpcm\model\view\helper::dummyButton('GLOBAL_BACK', 'fpcm-ui-pager-buttons fpcm-ui-pager-prev fpcm-ui-readonly'); ?>            
+                <?php \fpcm\model\view\helper::dummyButton('GLOBAL_BACK', 'fpcm-ui-pager-buttons fpcm-back-button fpcm-ui-readonly'); ?>            
             <?php endif; ?>
         </td>
         <td class="fpcm-ui-center">            
@@ -63,9 +63,9 @@
         </td class="fpcm-ui-center">
         <td class="fpcm-ui-center">
             <?php if ($nextBtn) : ?>
-                <?php \fpcm\model\view\helper::linkButton($FPCM_SELF.'?module='.$listAction.'&page='.$nextBtn, 'GLOBAL_NEXT', '', 'fpcm-ui-pager-buttons fpcm-ui-pager-next'); ?>
+                <?php \fpcm\model\view\helper::linkButton($FPCM_SELF.'?module='.$listAction.'&page='.$nextBtn, 'GLOBAL_NEXT', '', 'fpcm-ui-pager-buttons fpcm-forward-button'); ?>
             <?php else : ?>            
-                <?php \fpcm\model\view\helper::dummyButton('GLOBAL_NEXT', 'fpcm-ui-pager-buttons fpcm-ui-pager-next fpcm-ui-readonly'); ?>            
+                <?php \fpcm\model\view\helper::dummyButton('GLOBAL_NEXT', 'fpcm-ui-pager-buttons fpcm-forward-button fpcm-ui-readonly'); ?>            
             <?php endif; ?>
         </td>
     </tr>    

@@ -16,8 +16,7 @@
                     <?php foreach ($folderList as $value) : ?>
                     <tr>
                         <td class="fpcm-ui-editbutton-col">
-                            <?php \fpcm\model\view\helper::linkButton(fpcm\classes\baseconfig::$rootPath.'index.php?module=system/backups&save='.str_rot13(base64_encode($value)), 'GLOBAL_DOWNLOAD', '', 'fpcm-backuplist-save', '_blank'); ?>
-                        </td>
+                            <?php \fpcm\model\view\helper::linkButton(fpcm\classes\baseconfig::$rootPath.'index.php?module=system/backups&save='.str_rot13(base64_encode($value)), 'GLOBAL_DOWNLOAD', '', 'fpcm-ui-button-blank fpcm-save-btn', '_blank'); ?>                        </td>
                         <td>
                             <?php print basename($value); ?>
                         </td>

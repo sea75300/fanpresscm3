@@ -28,7 +28,7 @@
                     <tr>
                         <td><?php print \fpcm\model\view\helper::escapeVal($value->getIpaddress()); ?></td>
                         <td><?php print isset($users[$value->getUserid()]) ? $users[$value->getUserid()]->getDisplayName() : $FPCM_LANG->translate('GLOBAL_NOTFOUND'); ?></td>
-                        <td><?php print date($FPCM_DATETIME_MASK, $value->getIptime()); ?></td>
+                        <td><?php \fpcm\model\view\helper::dateText($value->getIptime()); ?></td>
                         <td class="fpcm-td-iplist-meta">
                             <div class="fpcm-ui-editor-metabox-right fpcm-ui-iplist-metabox-right">
                                 <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $value->getNocomments(); ?>" title="<?php $FPCM_LANG->write('IPLIST_NOCOMMENTS'); ?>">

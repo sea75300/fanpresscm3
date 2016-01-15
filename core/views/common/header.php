@@ -38,8 +38,8 @@
                         <span class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></span>
                     </span>
                     <?php endif; ?>
-                    <?php \fpcm\model\view\helper::linkButton($FPCM_FRONTEND_LINK, 'GLOBAL_FRONTEND_OPEN', 'fpcm-open-news', '', '_blank') ?>
-                    <button id="fpcm-clear-cache"><?php $FPCM_LANG->write('GLOBAL_CACHE_CLEAR'); ?></button>
+                    <?php \fpcm\model\view\helper::linkButton($FPCM_FRONTEND_LINK, 'GLOBAL_FRONTEND_OPEN', 'fpcm-open-news', 'fpcm-ui-button-blank fpcm-openlink-btn', '_blank') ?>
+                    <button class="fpcm-ui-button fpcm-ui-button-blank fpcm-clearcache-btn" id="fpcm-clear-cache"><?php $FPCM_LANG->write('GLOBAL_CACHE_CLEAR'); ?></button>
                     <button id="fpcm-profile-menu-open" class="fpcm-ui-button"><?php print $FPCM_USER; ?></button>
                 </div>
                  <?php endif; ?>                    

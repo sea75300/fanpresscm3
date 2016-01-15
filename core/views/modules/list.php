@@ -18,9 +18,9 @@
                 <table>
                     <tr>
                         <?php if ($moduleManagerMode) : ?>
-                        <td><?php fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_RELOADPKGLIST', 'fpcm-ui-reloadpkglist', 'fpcm-reload-btn'); ?></td>
+                        <td><?php fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_RELOADPKGLIST', 'fpcm-ui-reloadpkglist', 'fpcm-ui-button-blank fpcm-reload-btn'); ?></td>
                         <?php else : ?>
-                        <td><?php fpcm\model\view\helper::linkButton(\fpcm\classes\baseconfig::$moduleServerManualLink, 'MODULES_LIST_EXTERNALLIST', 'fpcm-ui-externalpkglist', 'fpcm-external-btn', '_blank'); ?></td>
+                        <td><?php fpcm\model\view\helper::linkButton(\fpcm\classes\baseconfig::$moduleServerManualLink, 'MODULES_LIST_EXTERNALLIST', 'fpcm-ui-externalpkglist', 'fpcm-externallink-btn', '_blank'); ?></td>
                         <?php endif; ?>
                         <td><?php fpcm\model\view\helper::select('moduleActions', $moduleActions, '', false, true, false, 'fpcm-ui-input-select-moduleactions'); ?></td>
                         <td><?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-actions-modules fpcm-loader'); ?></td>

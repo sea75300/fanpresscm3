@@ -13,7 +13,7 @@
         <tr class="fpcm-td-spacer"><td></td></tr>
         <tr>
             <th></th>
-            <th><?php $FPCM_LANG->writeMonth(date('n', $articleMonth)); ?> <?php print date('Y', $articleMonth); ?></th> 
+            <th><?php $FPCM_LANG->writeMonth(fpcm\model\view\helper::dateText($articleMonth, 'n', true)); ?> <?php print fpcm\model\view\helper::dateText($articleMonth, 'Y', true); ?></th> 
             <th class="fpcm-td-articlelist-times"></th>
             <th class="fpcm-td-articlelist-meta"></th>
             <th class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-allsub', 'fpcm-select-allsub', '-draft'.$articleMonth, '', 'fpcm-select-allsub', false); ?></th>

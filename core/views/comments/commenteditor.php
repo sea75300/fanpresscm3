@@ -3,7 +3,7 @@
         <td colspan="2">
             <div class="fpcm-ui-editor-metabox">
                 <div class="fpcm-ui-editor-metabox-left">
-                    <strong><?php $FPCM_LANG->write('COMMMENT_CREATEDATE'); ?>:</strong> <?php print date($FPCM_DATETIME_MASK, $comment->getCreatetime()); ?><br>
+                    <strong><?php $FPCM_LANG->write('COMMMENT_CREATEDATE'); ?>:</strong> <?php \fpcm\model\view\helper::dateText($comment->getCreatetime()); ?><br>
                     <?php print $changeInfo; ?><br>
                     <strong><?php $FPCM_LANG->write('COMMMENT_IPADDRESS'); ?>:</strong> <?php print $comment->getIpaddress(); ?><br>                    
                 </div>                

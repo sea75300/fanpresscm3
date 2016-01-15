@@ -8,8 +8,8 @@
     <?php foreach ($cronjobList as $cronjob) : ?>
     <tr <?php if ($currentTime > ($cronjob->getNextExecTime() - 60)) : ?>class="fpcm-ui-important-text"<?php endif; ?>>
         <td><?php $FPCM_LANG->write('CRONJOB_'.strtoupper($cronjob->getCronName())); ?></td>
-        <td class="fpcm-ui-center"><?php print date($FPCM_DATETIME_MASK, $cronjob->getLastExecTime()); ?></td>
-        <td class="fpcm-ui-center"><?php print date($FPCM_DATETIME_MASK, $cronjob->getNextExecTime()); ?></td>
+        <td class="fpcm-ui-center"><?php \fpcm\model\view\helper::dateText($cronjob->getLastExecTime()); ?></td>
+        <td class="fpcm-ui-center"><?php \fpcm\model\view\helper::dateText($cronjob->getNextExecTime()); ?></td>
     </tr>
     <?php endforeach; ?>
 </table>

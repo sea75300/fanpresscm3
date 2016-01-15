@@ -1320,7 +1320,8 @@ table.fpcm-ui-table.fpcm-ui-options tr td span.fpcm-ui-shorthelp.fpcm-options {
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before,
 h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 .fpcm-ui-button span.ui-button-text:before,
-.fpcm-ui-button.fpcm-ui-button-blank span.ui-icon:before {
+.fpcm-ui-button.fpcm-ui-button-blank span.ui-icon:before,
+.fpcm-ui-button.fpcm-forward-button .ui-button-text:after {
     font-family: 'FontAwesome';
 }
 
@@ -1345,9 +1346,10 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 .fpcm-ui-button.fpcm-cacheclear-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-open-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-useractions-disable span.ui-button-text:before,
-.fpcm-ui-button.fpcm-ui-useractions-enable span.ui-button-text:before
+.fpcm-ui-button.fpcm-ui-useractions-enable span.ui-button-text:before,
+.fpcm-ui-button.fpcm-externallink-btn span.ui-button-text:before
 {
-    font-weight: normal;
+    font-weight: normal !important;
     padding-right: 0.65em;
     margin: 0 0 0 -0.3em;
 }
@@ -1357,8 +1359,8 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 }
 
 .fpcm-ui-button.fpcm-ui-button-blank span.ui-icon:before {
-    font-weight: normal;
-    margin-left: 0.15em;
+    font-weight: normal !important;
+    margin-left: 0;
     padding: 0;
 }
 
@@ -1399,6 +1401,13 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     content: '\f00c';
 }
 
+.fpcm-ui-button.fpcm-forward-button .ui-button-text:after {
+    content: '\f138';
+    font-weight: normal !important;
+    padding-left: 0.65em;
+    margin: 0 -0.3em 0 0;
+}
+
 .fpcm-ui-button.fpcm-back-button .ui-button-text:before {
     content: '\f137';
 }
@@ -1434,7 +1443,8 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 }
 
 .fpcm-ui-button.fpcm-syscheck-btn span.ui-button-text:before,
-.fpcm-ui-button.fpcm-modulelist-singleaction-update span.ui-icon:before {
+.fpcm-ui-button.fpcm-modulelist-singleaction-update span.ui-icon:before,
+.fpcm-ui-button.fpcm-reload-btn span.ui-icon:before {
     content: '\f021';
 }
 
@@ -1446,7 +1456,8 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     content: '\f205';
 }
 
-.fpcm-ui-button.fpcm-articlelist-shortlink span.ui-icon:before {
+.fpcm-ui-button.fpcm-articlelist-shortlink span.ui-icon:before,
+.fpcm-ui-button.fpcm-externallink-btn span.ui-button-text:before {
     content: '\f08e';
 }
 
@@ -1484,6 +1495,18 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 
 .fpcm-ui-button.fpcm-modules-depencerror span.ui-icon:before {
     content: '\f071';
+}
+
+.fpcm-ui-button.fpcm-clearcache-btn span.ui-icon:before {
+    content: '\f1b8';
+}
+
+.fpcm-ui-button.fpcm-folderopen-btn span.ui-icon:before {
+    content: '\f07c';
+}
+
+.fpcm-ui-button.fpcm-folderopen-btn span.ui-icon:before {
+    content: '\f07c';
 }
 
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before {

@@ -180,6 +180,7 @@
          */
         private function checkFilesystem() {
             \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dbStructPath);
+            unlink(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js');
             
             return true;
         }

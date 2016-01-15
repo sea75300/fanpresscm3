@@ -35,7 +35,7 @@
                             <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($user->getEditLink()); ?></td>
                             <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
                             <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
-                            <td class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php print date($FPCM_DATETIME_MASK, $user->getRegistertime()); ?></td>
+                            <td class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php \fpcm\model\view\helper::dateText($user->getRegistertime()); ?></td>
                             <td class="fpcm-ui-center fpcm-ui-users-articlecount"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
                             <td class="fpcm-td-select-row"><input type="radio" name="useridsa" value="<?php print $user->getId(); ?>" <?php if ($user->getId() == $currentUser) : ?>readonly="readonly"<?php endif; ?>></td>      
                         </tr>      
@@ -83,7 +83,7 @@
                             <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
                             <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
                             <td class="fpcm-ui-center"><?php if (isset($usersRolls[$user->getRoll()])) : ?><?php print $usersRolls[$user->getRoll()]; ?><?php else : ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></td>
-                            <td class="fpcm-ui-center"><?php print date($FPCM_DATETIME_MASK, $user->getRegistertime()); ?></td>
+                            <td class="fpcm-ui-center"><?php \fpcm\model\view\helper::dateText($user->getRegistertime()); ?></td>
                             <td class="fpcm-ui-center"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
                             <td class="fpcm-td-select-row"><input type="radio" name="useridsd" value="<?php print $user->getId(); ?>"></td>
                         </tr>      

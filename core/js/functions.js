@@ -492,20 +492,6 @@ var fpcmJs = function () {
     
     this.pagerButtons = function() {
         
-        jQuery('.fpcm-ui-pager-buttons.fpcm-ui-pager-prev').button({
-            icons: {
-                primary: "ui-icon-circle-triangle-w"
-            },
-            text: true
-        });
-        
-        jQuery('.fpcm-ui-pager-buttons.fpcm-ui-pager-next').button({
-            icons: {
-                secondary: "ui-icon-circle-triangle-e"
-            },
-            text: true
-        });
-        
         jQuery('#pageSelect').selectmenu({
             select: function( event, ui ) {
                 if (ui.item.value == '1') {

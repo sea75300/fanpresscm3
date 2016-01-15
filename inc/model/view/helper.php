@@ -347,6 +347,27 @@
         }
         
         /**
+         * Vier-Helper für einheitliche Ausgabe von Datumsangaben
+         * @param int $timespan
+         * @param string $format
+         * @since FPCM 3.2.0
+         */
+        public static function dateText($timespan, $format = false, $return = false) {
+            
+            if (!$format) {
+                $format = \fpcm\classes\baseconfig::$fpcmConfig->system_dtmask;
+            }
+
+            $timespan = date($format, $timespan); 
+            
+            if ($return) {
+                return $timespan;
+            }
+            
+            print $timespan;
+        }
+
+        /**
          * CSS-Klassen-Containter für Button-Toolbar
          * @return void
          */
