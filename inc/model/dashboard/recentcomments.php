@@ -97,6 +97,10 @@
                     '{{time}}'     => date($this->config->system_dtmask, $comment->getChangetime())
                 ));
                 
+                if (!$comment->getChangeuser() && !$comment->getChangetime()) {
+                    $createInfo = '';
+                }
+
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-articlelist-open">';
                 $content[] = '  <a class="fpcm-articlelist-openlink" href="'.$comment->getArticleLink().'" target="_blank">'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'</a>';
