@@ -64,8 +64,12 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $folderList = new \fpcm\model\files\backuplist();
-            $this->view->assign('folderList', $folderList->getFolderList());
+            $folderList = new \fpcm\model\files\backuplist();            
+            $files      = $folderList->getFolderList();
+
+            rsort($files);
+            
+            $this->view->assign('folderList', $files);
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js'));
             $this->view->render();
         }

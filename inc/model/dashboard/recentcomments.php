@@ -96,6 +96,10 @@
                     '{{username}}' => isset($users[$comment->getChangeuser()]) ? $users[$comment->getChangeuser()] : $this->language->translate('GLOBAL_NOTFOUND'),
                     '{{time}}'     => date($this->config->system_dtmask, $comment->getChangetime())
                 ));
+
+                if (!$comment->getChangeuser() && !$comment->getChangetime()) {
+                    $createInfo = '';
+                }
                 
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-articlelist-open">';

@@ -49,12 +49,7 @@ var fpcmModulelist = function () {
         
         if (noActionButtonAssign) return false;
         
-        jQuery('.fpcm-ui-actions-modules').button({
-            icons: {
-                primary: "ui-icon-check",
-            },
-            text: true
-        }).click(function () {
+        jQuery('.fpcm-ui-actions-modules').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
             var buttons = [
                 {

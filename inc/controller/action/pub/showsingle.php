@@ -294,7 +294,9 @@
             $users = $this->userList->getUsersByIds(array($this->article->getCreateuser(), $this->article->getChangeuser()));
             
             $commentCounts = $this->commentList->countComments(array($this->article->getId()), 0, 1, 0);            
-            $commentCount  = $this->config->system_comments_enabled && $this->article->getComments() ? (isset($commentCounts[$this->article->getId()]) ? (int) $commentCounts[$this->article->getId()] : 0) : '';
+            $commentCount  = $this->config->system_comments_enabled && $this->article->getComments()
+                           ? (isset($commentCounts[$this->article->getId()]) ? (int) $commentCounts[$this->article->getId()] : 0)
+                           : '';
             
             $this->articleTemplate->setCommentsEnabled($this->config->system_comments_enabled && $this->article->getComments());
             
