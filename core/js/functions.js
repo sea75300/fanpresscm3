@@ -141,29 +141,7 @@ var fpcmJs = function () {
     
     this.windowResize = function () {        
         self.messagesCenter();
-        self.initMenu();
-        
         jQuery('#fpcm-ui-errorbox').css('top', jQuery(window).height() / 2 - jQuery('#fpcm-ui-errorbox').height() / 2);
-    };
-    
-    this.initMenu = function () {
-        
-        if (jQuery(window).width() <= 1040) {
-            jQuery('.fpcm-menu').menu({
-                position: {
-                    my: "left top",
-                    at: "left+10 top"
-                }
-            });
-            jQuery('.fpcm-admin-navi .fpcm-submenu .ui-menu-item').width(jQuery('.fpcm-menu').width() - 40);
-        } else {
-            jQuery('.fpcm-menu').menu({
-                position: {
-                    my: "left top",
-                    at: "right-5 top"
-                }
-            });            
-        }
     };
     
     this.windowLoginResize = function () {
@@ -181,22 +159,6 @@ var fpcmJs = function () {
             jQuery('#fpcm-header').removeClass('fpcm-header-fixed');
             jQuery('#fpcm-header-fixed-spacer').removeClass('fpcm-header-fixed');
         }
-    };
-    
-    this.hideNavigation = function () {
-        if (jQuery('.fpcm-menu').hasClass('fpcm-navigation-small')) {
-            jQuery('.fpcm-navigation-hide span').removeClass('fa-rotate-180');
-            jQuery('.fpcm-menu').removeClass('fpcm-navigation-small');
-            jQuery('.fpcm-admin-navi').removeClass('fpcm-navigation-small');
-            jQuery('.fpcm-wrapper').removeClass('fpcm-wrapper-small-navigation');
-            jQuery('.fpcm-menu .fpcm-nav-link-descr-main').show();
-        } else {
-            jQuery('.fpcm-menu .fpcm-nav-link-descr-main').hide();
-            jQuery('.fpcm-menu').addClass('fpcm-navigation-small');
-            jQuery('.fpcm-admin-navi').addClass('fpcm-navigation-small');
-            jQuery('.fpcm-wrapper').addClass('fpcm-wrapper-small-navigation');
-            jQuery('.fpcm-navigation-hide span').addClass('fa-rotate-180');
-        }        
     };
     
     this.assignButtons = function () {

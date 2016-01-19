@@ -122,17 +122,26 @@ img {
 
 .fpcm-wrapper {
     padding:0;
-    margin: 0.8em 0 4em 0;
+    margin: 0.8em 0 4.5em 0;
     float: left;
     display: block;
     width: 85%;
 }
 
-.fpcm-quarter-width     { width: 25%; }
-.fpcm-half-width        { width: 50%; }
-.fpcm-full-width-date   { width: 85%; }
-.fpcm-wrapper.fpcm-wrapper-full, .fpcm-full-width { width: 100%; }
-.fpcm-wrapper.fpcm-wrapper-small-navigation { width: 95%; }
+.fpcm-quarter-width     {
+    width: 25%;
+}
+.fpcm-half-width        {
+    width: 50%;
+}
+.fpcm-full-width-date   {
+    width: 85%;
+}
+
+.fpcm-wrapper.fpcm-wrapper-full,
+.fpcm-full-width {
+    width: 100%;
+}
 
 .fpcm-content-wrapper   { margin: 0 0.8em; }
 .fpcm-inner-wrapper     { margin: 0.4em 0.4em 55px 0.4em; }
@@ -239,10 +248,6 @@ img {
 }
 
 .fpcm-debug-data {
-    position:fixed;
-    left: 0px;
-    bottom: 31px;
-    width: 15%;
     font-size: 0.85em;
     background: rgba(200,200,200,0.5);
 }
@@ -430,79 +435,102 @@ textarea.fpcm-options-cssclasses {
 
 /* Admin-Bereich Navigation */
 
-.fpcm-admin-navi {
+div.fpcm-navigation {
     float: left;
     display: block;
     width: 15%;
-    background: rgba(255,255,255,0.85);
-    box-shadow: 2px 2px 2px #cccccc;
+    margin-bottom: 3em;
 }
 
-.fpcm-admin-navi .ui-menu {
-    border-bottom: 1px solid #ffffff;
-    border-top: 0px;
-    border-left: 0px;
+div.fpcm-navigation,
+div.fpcm-navigation li {
+    font-weight: normal !important;
 }
 
-.fpcm-admin-navi .ui-menu-item a {
-    font-weight: normal;
+div.fpcm-navigation ul.fpcm-menu {
+    list-style:none;
+    margin: 0;
+    padding: 0;
 }
 
-.fpcm-admin-navi .ui-menu .fpcm-submenu {
-    border: inherit;
+div.fpcm-navigation ul.fpcm-menu li {
+    display: block;
+    padding: 0.6em 0;
+    margin: 0px;
+    background: rgba(255,255,255,0.65);
 }
 
-.fpcm-admin-navi .fpcm-submenu .ui-menu-item {
-    min-width: 200px;
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1:last-child {
+    width: auto;
+    padding: 0.6em 0.8em;
 }
 
-.fpcm-admin-navi .ui-menu-icons .ui-menu-item {
-    padding-left: 0.4em;
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1,
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navicon {
+    text-align: center !important;
 }
 
-.fpcm-admin-navi.fpcm-navigation-small {
-    width: 5%;
-    font-size: 1.5em;
-    text-align: center;
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navigation-descr {
+    font-size: 0.85em;
 }
 
-.fpcm-admin-navi.fpcm-navigation-small .fpcm-submenu .ui-menu-item {
-    min-width: 250px;
-    text-align: left;
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navicon {
+    width: 100%;
+    display: block;
+    padding: 0.1em 0;
+    font-size: 1.75em;
+    text-shadow: 1px 1px 1px #cccccc;
 }
 
-.fpcm-admin-navi .fpcm-navigation-hide {
-    font-size: 1.1em;
-    text-align: center; 
-    padding: 0.3em 0;
-    border-right: 1px solid #A6C9E2;
-    border-bottom: 1px solid #A6C9E2;
+div.fpcm-navigation ul.fpcm-menu li ul.fpcm-submenu li.fpcm-menu-level2,
+div.fpcm-navigation ul.fpcm-menu li ul.fpcm-submenu li.fpcm-menu-level2 span.fpcm-navicon {
+    text-align: left !important;
 }
 
-@media (max-width: 65em) {
-    .fpcm-admin-navi, .fpcm-wrapper {
-        float: none;
+div.fpcm-navigation ul.fpcm-menu li ul.fpcm-submenu li.fpcm-menu-level2 span.fpcm-navicon,
+div.fpcm-navigation ul.fpcm-menu li ul.fpcm-submenu li.fpcm-menu-level2 span.fpcm-navigation-descr {
+    display: initial;
+    font-size: 0.95em;
+}
+
+div.fpcm-navigation ul.fpcm-menu li ul {
+    margin: 0.3em 0;
+    padding: 0;
+    display: none;
+    height: auto;
+    z-index: 200;
+    border-left: 5px solid #00aded;
+    background: rgba(255,255,255,0.5);
+}
+
+div.fpcm-navigation ul.fpcm-menu li:hover ul {
+    display: block;
+}
+
+div.fpcm-navigation ul.fpcm-menu li li {
+    display:block;
+    float:none;
+    padding: 0.5em 0.3em;
+    min-width: 15%;
+}
+
+@media (max-width: 768px) {
+    div.fpcm-navigation,
+    div.fpcm-navigation ul.fpcm-menu li li {
         width: 100%;
     }
     
-    .fpcm-admin-navi {
-        width: 50%;
-        margin: 0 auto 1.2em auto;
-    } 
+    div.fpcm-navigation ul.fpcm-menu li ul {
+        margin: 0.3em 1.8em;
+        border: 1px solid #00aded;
+    }
     
-    .fpcm-admin-navi .ui-menu {
-        border-bottom: 1px solid #A6C9E2;
-    }    
+    .fpcm-wrapper {
+        width: 100%;
+    }
     
-    .fpcm-admin-navi .fpcm-navigation-hide {
-        display: none;
-    }    
-}
-
-@media (max-width: 45em) {
-    .fpcm-admin-navi {
-        width: 75%;
-        margin: 0 auto 1.2em auto;
+    div.fpcm-navigation {
+        margin-bottom: 0.8em;
     }
 }
 

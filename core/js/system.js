@@ -64,10 +64,6 @@ jQuery(document).ready(function () {
         if (jQuery(this).hasClass('fpcm-noloader')) return false;        
         fpcmJs.showLoader(true);
     });
-    
-    jQuery('.fpcm-navigation-hide').click(function () {
-        fpcmJs.hideNavigation();
-    });
 
     jQuery('.fpcm-navigation-noclick').click(function () {
         fpcmJs.showLoader(false);

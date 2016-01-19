@@ -46,7 +46,6 @@
         'PROFILE_MENU_LOGGEDINSINCE'    => 'Logged in since',
         'PROFILE_MENU_YOURIP'           => 'Your ip address',
         
-        'NAVIGATION_HIDE'               => 'Hide menu',
         'HELP_SELECT'                   => 'Click on headline to open help entry',
         'HELP_BTN_OPEN'                 => 'Open help chapter',
         'HL_HELP_CACHE'                 => 'Cache',

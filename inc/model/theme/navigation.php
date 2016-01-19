@@ -85,7 +85,7 @@
                     array(
                         'url'               => 'system/dashboard',
                         'description'       => $this->language->translate('HL_DASHBOARD'),
-                        'icon'              => 'fa fa-home fa-fw',
+                        'icon'              => 'fa fa-home',
                         'class'             => '',
                         'id'                => ''                        
                     )
@@ -95,7 +95,7 @@
                         'url'               => 'articles/add',
                         'permission'        => array('article' => 'add'),
                         'description'       => $this->language->translate('HL_ARTICLE_ADD'),
-                        'icon'              => 'fa fa-pencil fa-fw',
+                        'icon'              => 'fa fa-pencil',
                         'class'             => '',
                         'id'                => ''                        
                     )
@@ -105,7 +105,7 @@
                         'url'               => '#',
                         'permission'        => array('article' => 'edit'),
                         'description'       => $this->language->translate('HL_ARTICLE_EDIT'),
-                        'icon'              => 'fa fa-book fa-fw',
+                        'icon'              => 'fa fa-book',
                         'submenu'           => self::editorSubmenu(),
                         'class'             => 'fpcm-navigation-noclick',
                         'id'                => 'nav-id-editnews'                        
@@ -116,7 +116,7 @@
                         'url'               => 'comments/list',
                         'permission'        => array('article' => array('editall', 'edit'), 'comment' => array('editall', 'edit')),
                         'description'       => $this->language->translate('HL_COMMENTS_MNG'),
-                        'icon'              => 'fa fa-comments fa-fw',
+                        'icon'              => 'fa fa-comments',
                         'class'             => '',
                         'id'                => ''                        
                     )
@@ -126,7 +126,7 @@
                         'url'               => 'files/list&mode=1',
                         'permission'        => array('article' => 'add', 'article' => 'edit'),
                         'description'       => $this->language->translate('HL_FILES_MNG'),
-                        'icon'              => 'fa fa-folder-open fa-fw',
+                        'icon'              => 'fa fa-folder-open',
                         'class'             => '',
                         'id'                => ''                        
                     )
@@ -136,7 +136,7 @@
                         'url'               => '#',
                         'permission'        => array('system' => 'options'),
                         'description'       => $this->language->translate('HL_OPTIONS'),
-                        'icon'              => 'fa fa-cog fa-fw',
+                        'icon'              => 'fa fa-cog',
                         'class'             => 'fpcm-navigation-noclick',
                         'id'                => '',
                         'submenu'           => $this->optionSubmenu()
@@ -147,7 +147,7 @@
                         'url'               => '#',
                         'permission'        => array('system' => 'options', 'modules' => 'configure'),
                         'description'       => $this->language->translate('HL_MODULES'),
-                        'icon'              => 'fa fa-plug fa-fw',
+                        'icon'              => 'fa fa-plug',
                         'class'             => 'fpcm-navigation-noclick',
                         'id'                => '',
                         'submenu'           => $this->modulesSubmenu()                     
@@ -157,7 +157,7 @@
                     array(
                         'url'               => 'system/help',
                         'description'       => $this->language->translate('HL_HELP'),
-                        'icon'              => 'fa fa-question-circle fa-fw',
+                        'icon'              => 'fa fa-question-circle',
                         'class'             => '',
                         'id'                => ''                        
                     )
