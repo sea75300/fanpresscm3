@@ -160,6 +160,25 @@
                 $res = $res && $this->dbcon->alter(
                     \fpcm\classes\database::tableSessions, 'CHANGE', '`sessionId`', '`sessionid` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ', false
                 );
+                $res = $res && $this->dbcon->alter(
+                    \fpcm\classes\database::tableCronjobs, 'ADD', '`execinterval`', '  BIGINT( 20 ) NOT NULL', false
+                );
+                
+                $rows = array(
+                    'anonymizeIps'      => 2419200,
+                    'clearLogs'         => 2419200,
+                    'clearTemp'         => 604800,
+                    'fmThumbs'          => 604800,
+                    'postponedArticles' => 600,
+                    'updateCheck'       => 86400,
+                    'dbBackup'          => 604800,
+                    'fileindex'         => 86400
+                );
+                
+                foreach ($rows as $key => $value) {
+                    $res = $res && $this->dbcon->update(\fpcm\classes\database::tableCronjobs, array('execinterval'), array($value, $key), "cjname = ?");
+                }
+                
             }
 
             return $res;

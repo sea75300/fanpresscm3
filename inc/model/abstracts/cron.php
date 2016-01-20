@@ -33,6 +33,13 @@
          * @var int
          */
         protected $lastExecTime;
+        
+        /**
+         * Interval der Ausführung
+         * @var int
+         * @since FPCM 3.2.0
+         */
+        protected $execinterval;
 
         /**
          * asynchrone Ausführung über cronasync-AJAX-Controller deaktivieren
@@ -73,6 +80,8 @@
          * @return boolean
          */
         public function checkTime() {
+            if (time() > $this->getNextExecTime()) return false;            
+
             return true;
         }
         
@@ -90,7 +99,8 @@
          */
         public function updateLastExecTime() { 
             $this->lastExecTime = time();
-            return $this->dbcon->update($this->table, array('lastexec'), array($this->lastExecTime, $this->cronName), 'cjname '.$this->dbcon->dbLike().' ?');
+            $Res = $this->dbcon->update($this->table, array('lastexec'), array($this->lastExecTime, $this->cronName), 'cjname '.$this->dbcon->dbLike().' ?');
+            return $Res;
         }
         
         /**
@@ -124,7 +134,7 @@
         public function getCronName() {
             return $this->cronName;
         }
-        
+                
         /**
          * Gibt Status zurück, ob Cronjob aktuell asynchron ausgführt wird
          * @return bool
@@ -145,7 +155,7 @@
          * Initialisiert
          */
         protected function init() {
-            $res = $this->dbcon->fetch($this->dbcon->select($this->table, 'lastexec', 'cjname '.$this->dbcon->dbLike().' ?', array($this->cronName)));            
+            $res = $this->dbcon->fetch($this->dbcon->select($this->table, 'lastexec, execinterval', 'cjname '.$this->dbcon->dbLike().' ?', array($this->cronName)));            
             $this->lastExecTime = isset($res->lastexec) ? $res->lastexec : 0;
         }
         
@@ -155,6 +165,14 @@
          */
         public function createFromDbObject($data) {
             $this->lastExecTime = $data->lastexec;
+            
+            if (isset($data->cjname)) {
+                $this->cronName = $data->cjname;
+            }
+
+            if (isset($data->execinterval)) {
+                $this->execinterval = $data->execinterval;
+            }
         }
         
         /**
@@ -168,7 +186,7 @@
                 return time();
             }
             
-            return $this->lastExecTime + $this->getIntervalTime();
+            return $this->getLastExecTime() + $this->getIntervalTime();
         }
 
         /**
@@ -176,7 +194,7 @@
          * @return int
          */
         public function getIntervalTime() {
-            return 3600;
+            return (int) $this->execinterval;
         }
         
     }

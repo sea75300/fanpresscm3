@@ -36,11 +36,17 @@
         public function process() {
 
             $cronlist = new \fpcm\model\crons\cronlist();
-            $crons = $cronlist->getCrons();
+            $crons    = $cronlist->getExecutableCrons();
+            
+            if (!count($crons)) {
+                return true;
+            }
 
             foreach ($crons as $cron) {
-                $cronlist->registerCron($cron, true);
-            }            
+                $cronlist->registerCronAjax($cron);
+            }
+            
+            return true;
         }
         
     }

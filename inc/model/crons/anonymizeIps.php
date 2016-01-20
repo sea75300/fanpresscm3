@@ -48,23 +48,4 @@
             return true;
         }
         
-        /**
-         * Häufigkeit der Ausführung einschränken
-         * @return boolean
-         */        
-        public function checkTime() {
-            
-            if (time() < $this->getNextExecTime()) return false;            
-
-            return true;
-        }
-        
-        /**
-         * Interval-Dauer zurückgeben
-         * @return int
-         */
-        public function getIntervalTime() {
-            return 3600 * 24 * 28;
-        }
-        
     }
