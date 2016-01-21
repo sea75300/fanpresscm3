@@ -494,13 +494,19 @@ div.fpcm-navigation ul.fpcm-menu li ul.fpcm-submenu li.fpcm-menu-level2 span.fpc
 }
 
 div.fpcm-navigation ul.fpcm-menu li ul {
-    margin: 0.3em 0;
+    position: absolute;
+    margin: -4em 0 0 15%;
     padding: 0;
     display: none;
     height: auto;
     z-index: 200;
     border-left: 5px solid #00aded;
     background: rgba(255,255,255,0.5);
+    min-width: 15%;
+}
+
+div.fpcm-navigation ul.fpcm-menu li:hover {
+    background: rgba(223, 239, 252, 0.75);
 }
 
 div.fpcm-navigation ul.fpcm-menu li:hover ul {
@@ -514,23 +520,59 @@ div.fpcm-navigation ul.fpcm-menu li li {
     min-width: 15%;
 }
 
-@media (max-width: 768px) {
+div.fpcm-navigation #fpcm-ui-showmenu-li {
+    display: none !important;
+}
+
+@media (max-width: 800px) {
+    
+    .fpcm-wrapper {
+        width: 75%;
+    }
+    
+    div.fpcm-navigation {
+        width: 25%;
+    }
+    
+    div.fpcm-navigation ul.fpcm-menu li ul {
+        min-width: 25%;
+        margin: -4em 0 0 25%;
+    }
+    
+    div.fpcm-navigation {
+        margin-bottom: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .fpcm-wrapper,
     div.fpcm-navigation,
     div.fpcm-navigation ul.fpcm-menu li li {
         width: 100%;
     }
     
     div.fpcm-navigation ul.fpcm-menu li ul {
-        margin: 0.3em 1.8em;
-        border: 1px solid #00aded;
-    }
-    
-    .fpcm-wrapper {
-        width: 100%;
+        min-width: 100%;
+        margin: 0;
+        border-top: 1px solid #00aded;
+        border-left: 0;
     }
     
     div.fpcm-navigation {
         margin-bottom: 0.8em;
+    }
+    
+    div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 {
+        display: none;
+    }
+    
+    div.fpcm-navigation #fpcm-ui-showmenu-li {
+        display: block !important;
+    }
+    
+    div.fpcm-debug-data {
+        display: none;
     }
 }
 
@@ -921,11 +963,11 @@ h3, .fpcm-dashboard-container h3 {
 }
 
 .fpcm-dashboard-container.fpcm-dashboard-container-width-small {
-    width: 33%;
+    width: 33.33333%;
 }
 
 .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
-    width: 66%;
+    width: 66.66666%;
 }
 
 @media (max-width: 50em) {

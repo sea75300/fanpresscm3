@@ -69,6 +69,10 @@ jQuery(document).ready(function () {
         fpcmJs.showLoader(false);
         return false;
     });
+    
+    jQuery('#fpcm-ui-showmenu-li').click(function () {
+        jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').fadeToggle();
+    });
 
     jQuery('#fpcm-profile-menu-open').button({
         icons: {

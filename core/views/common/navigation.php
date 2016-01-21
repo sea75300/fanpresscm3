@@ -1,9 +1,15 @@
 <?php if (isset($FPCM_NAVIGATION) && $FPCM_LOGGEDIN) : ?>
 <div class="fpcm-navigation">
     <ul id="fpcm-navigation-ul" class="fpcm-menu">
+        <li class="fpcm-menu-level1" id="fpcm-ui-showmenu-li">
+            <a href="#" id="fpcm-ui-showmenu">
+                <span class="fpcm-navicon fa fa-bars"></span>
+                <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('NAVIGATION_SHOW'); ?></span>
+            </a>
+        </li>
 <?php foreach ($FPCM_NAVIGATION as $navigationGroup) : ?>            
     <?php foreach ($navigationGroup as $groupName => $navigationItem) : ?>     
-        <li class="fpcm-menu-level1">
+        <li class="fpcm-menu-level1 fpcm-menu-level1-show">
             <a href="<?php print $FPCM_BASEMODULELINK.$navigationItem['url']; ?>" title="<?php $navigationItem['description']; ?>" class="<?php print $navigationItem['class']; ?> fpcm-loader" id="<?php print $navigationItem['id']; ?>">
                 <span class="fpcm-navicon <?php print $navigationItem['icon']; ?>"></span>
                 <span class="fpcm-navigation-descr"><?php print $navigationItem['description']; ?></span>

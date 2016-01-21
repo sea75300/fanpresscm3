@@ -51,6 +51,7 @@
         'LOGIN_NEWPASSWORD'             => 'Neues Passwort anfordern',
         'LOGOUT_BTN'                    => 'Ausloggen',
         
+        'NAVIGATION_SHOW'               => 'Menü öffnen',
         'PROFILE_MENU_OPENPROFILE'      => 'Profil aufrufen',
         
         'ARTICLES_EDITOR'               => 'Artikel-Editor',
