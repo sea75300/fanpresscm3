@@ -9,8 +9,8 @@ CREATE SEQUENCE {{dbpref}}_cronjobs_id_seq
 CREATE TABLE {{dbpref}}_cronjobs (
     id bigint NOT NULL,
     cjname character varying(64) NOT NULL,
-    lastexec bigint NOT NULL
-    execinterval bigint NOT NULL,
+    lastexec bigint NOT NULL,
+    execinterval bigint NOT NULL
 );
 
 ALTER SEQUENCE {{dbpref}}_cronjobs_id_seq OWNED BY {{dbpref}}_cronjobs.id;
