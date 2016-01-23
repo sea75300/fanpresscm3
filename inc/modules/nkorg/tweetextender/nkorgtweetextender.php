@@ -18,12 +18,16 @@
         const NKORGTWEETEXTENDER_TABLE_NAME = 'nkorgtweetextender_terms';
         
         public function runInstall() {
-            
-            $dbStruct = file_get_contents(__DIR__.'/data/table.sql');            
-            $dbStruct = str_replace(array('{{dbpref}}', '{{tablename}}'), array($this->dbcon->getDbprefix(), self::NKORGTWEETEXTENDER_TABLE_NAME), $dbStruct);
-            
-            $this->dbcon->exec($dbStruct);
-            
+
+            if (method_exists($this->dbcon, 'execYaTdl')) {
+                $this->dbcon->execYaTdl(__DIR__.'/data/table.yml');
+            }
+            else {
+                $dbStruct = file_get_contents(__DIR__.'/data/table.sql');
+                $dbStruct = str_replace(array('{{dbpref}}', '{{tablename}}'), array($this->dbcon->getDbprefix(), self::NKORGTWEETEXTENDER_TABLE_NAME), $dbStruct);
+                $this->dbcon->exec($dbStruct);                
+            }
+
             return true;
         }
 

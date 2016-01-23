@@ -1,6 +1,6 @@
-## YAML Template.
+## nkorg tweetextender Table definition
 ---
-name: sample
+name: nkorgtweetextender_terms
 primarykey: id
 engine: InnoDB
 charset: utf8
@@ -12,13 +12,13 @@ cols:
         type: bigint
         length: 20
         params: NOT NULL
-    config_name:
+    searchterm:
         type: varchar
         length: 255
         params: NOT NULL
-    config_value:
-        type: text
-        length: -1
+    replaceterm:
+        type: varchar
+        length: 255
         params: NOT NULL
 indices:
     

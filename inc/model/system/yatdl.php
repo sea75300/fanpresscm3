@@ -190,14 +190,14 @@
                 $lenghtTypes += array('int', 'bigint', 'bool');
             }
             
-            foreach ($this->yamlArray['cols'] as $row) {
+            foreach ($this->yamlArray['cols'] as $rowName => $row) {
                 
-                if (!$this->checkYamlColRow($row)) {
+                if (!$this->checkYamlColRow($rowName, $row)) {
                     return false;
                 }
 
-                $row['name'] = strtolower($row['name']);
-                $sql = $this->isPg ? "{$row['name']}" : "`{$row['name']}`";
+                $rowName = strtolower($rowName);
+                $sql = $this->isPg ? "{$rowName}" : "`{$rowName}`";
                 
                 $sql .= " {$this->colTypes[$row['type']]}";
                 $sql .= ($row['length'] && in_array($row['type'], $lenghtTypes))
@@ -208,7 +208,7 @@
                     $sql .= $row['params'];
                 }
                 
-                $this->sqlArray['cols'][$row['name']] = $sql;
+                $this->sqlArray['cols'][$rowName] = $sql;
                 
             }
             
@@ -285,19 +285,19 @@
                 return true;
             }
             
-            foreach ($this->yamlArray['indices'] as $row) {
+            foreach ($this->yamlArray['indices'] as $rowName => $row) {
                 
-                if (!$this->checkYamlIndiceRow($row)) {
+                if (!$this->checkYamlIndiceRow($rowName, $row)) {
                     return false;
                 }
                 
                 if ($this->isPg) {
                     $index = ($row['isUnqiue'] ? 'UNIQUE INDEX' : 'INDEX');
-                    $sql   = "CREATE {$index} {{dbpref}}_{$this->yamlArray['name']}_{$row['name']} ON {{dbpref}}_{$this->yamlArray['col']} USING btree ({$row['col']});";
+                    $sql   = "CREATE {$index} {{dbpref}}_{$this->yamlArray['name']}_{$rowName} ON {{dbpref}}_{$this->yamlArray['col']} USING btree ({$row['col']});";
                 }
                 else {
                     $index = ($row['isUnqiue'] ? 'UNIQUE' : 'INDEX');
-                    $sql   = "ALTER TABLE {{dbpref}}_{$this->yamlArray['name']} ADD {$index} `{$row['name']}` ( `{$row['col']}` ) ";
+                    $sql   = "ALTER TABLE {{dbpref}}_{$this->yamlArray['name']} ADD {$index} `{$rowName}` ( `{$row['col']}` ) ";
                 }
               
                 $this->sqlArray[] = $sql;
@@ -309,13 +309,14 @@
 
         /**
          * Spalten-Zeile prüfen, ob alle nötigen Daten vorhanden sind
+         * @param string $rowName
          * @param array $row
          * @return boolean
          */
-        private function checkYamlColRow(array $row) {
+        private function checkYamlColRow($rowName, array $row) {
             
-            if (!isset($row['name']) || !trim($row['name'])) {
-                trigger_error('Invalid YAML col data, no "name" property found!');
+            if (!$rowName) {
+                trigger_error('Invalid YAML col data, key must include column name!');
                 return false;
             }
 
@@ -345,18 +346,19 @@
 
         /**
          * Index-Zeile prüfen, ob alle nötigen Daten vorhanden sind
+         * @param string $rowName
          * @param array $row
          * @return boolean
          */
-        private function checkYamlIndiceRow(array $row) {
+        private function checkYamlIndiceRow($rowName, array $row) {
             
             if (!isset($row['col']) || !trim($row['col'])) {
                 trigger_error('Invalid YAML indice row data, no "col" property found!');
                 return false;
             }
 
-            if (!isset($row['name']) || !trim($row['name'])) {
-                trigger_error('Invalid YAML indice row data, no "name" property found!');
+            if (!$rowName) {
+                trigger_error('Invalid YAML indice row data, key must include column name!');
                 return false;
             }
 

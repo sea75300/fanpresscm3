@@ -394,6 +394,40 @@
         }
 
         /**
+         * Parst YaTDL-Datei und führt SQL-Statement aus
+         * @param string $path
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        public function execYaTdl($path) {
+
+            $yatdl = new \fpcm\model\system\yatdl($path);
+            if ($yatdl->parse() !== true) {
+                return false;
+            }
+            
+            $sql = str_replace('{{dbpref}}', $this->getDbprefix(), $yatdl->getSqlString());
+            $this->lastQueryString = $sql;
+            
+            if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
+                logs::sqllogWrite($sql);
+            }
+
+            try {
+                $res = $this->connection->exec($sql);
+            } catch (\PDOException $e) {
+                logs::sqllogWrite($e);
+            }            
+            
+            if ($res === false) {
+                $this->getError();
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
          * Führt ein SQL Kommando aus und gibt Result-Set zurück
          * @param string $command SQL String
          * @param array $bindParams Paramater, welche gebunden werden sollen

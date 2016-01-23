@@ -4,7 +4,7 @@
      *
      * nkorg/inactivity_manager event class: navigationAdd
      * 
-     * @version 1.0.0
+     * @version 1.1.0
      * @author Stefan <Stefan@yourdomain.xyz>
      * @copyright (c) 2015, Stefan
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3

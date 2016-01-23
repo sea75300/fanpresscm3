@@ -4,7 +4,7 @@
      *
      * nkorg/inactivity_manager class: nkorginactivity_manager
      * 
-     * @version 1.0.0
+     * @version 1.1.0
      * @author Stefan <Stefan@yourdomain.xyz>
      * @copyright (c) 2015, Stefan
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
@@ -19,10 +19,14 @@
         
         public function runInstall() {
             
-            $dbStruct = file_get_contents(__DIR__.'/data/table.sql');            
-            $dbStruct = str_replace(array('{{dbpref}}', '{{tablename}}'), array($this->dbcon->getDbprefix(), self::NKORGINACTIVITY_MANAGER_TABLE_NAME), $dbStruct);
-            
-            $this->dbcon->exec($dbStruct);
+            if (method_exists($this->dbcon, 'execYaTdl')) {
+                $this->dbcon->execYaTdl(__DIR__.'/data/table.yml');
+            }
+            else {
+                $dbStruct = file_get_contents(__DIR__.'/data/table.sql');
+                $dbStruct = str_replace(array('{{dbpref}}', '{{tablename}}'), array($this->dbcon->getDbprefix(), self::NKORGINACTIVITY_MANAGER_TABLE_NAME), $dbStruct);
+                $this->dbcon->exec($dbStruct);                
+            }
             
             return true;
         }
