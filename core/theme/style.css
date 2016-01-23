@@ -442,6 +442,13 @@ div.fpcm-navigation {
     margin-bottom: 3em;
 }
 
+div.fpcm-navigation a:visited,
+div.fpcm-navigation a:hover,
+div.fpcm-navigation a:active,
+div.fpcm-navigation a:focus {
+    color: #0048a9;
+}
+
 div.fpcm-navigation,
 div.fpcm-navigation li {
     font-weight: normal !important;
@@ -457,7 +464,7 @@ div.fpcm-navigation ul.fpcm-menu li {
     display: block;
     padding: 0.6em 0;
     margin: 0px;
-    background: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.75);
 }
 
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1:last-child {
@@ -506,7 +513,7 @@ div.fpcm-navigation ul.fpcm-menu li ul {
 }
 
 div.fpcm-navigation ul.fpcm-menu li:hover {
-    background: rgba(223, 239, 252, 0.75);
+    background: rgba(195, 235, 251, 0.75);
 }
 
 div.fpcm-navigation ul.fpcm-menu li:hover ul {
@@ -550,6 +557,15 @@ div.fpcm-navigation #fpcm-ui-showmenu-li {
     div.fpcm-navigation,
     div.fpcm-navigation ul.fpcm-menu li li {
         width: 100%;
+    }
+    
+    div.fpcm-navigation-wrapper {
+        min-height: 5em;
+    }
+    
+    div.fpcm-navigation {
+        position: absolute;
+        z-index: 100;
     }
     
     div.fpcm-navigation ul.fpcm-menu li ul {

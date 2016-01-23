@@ -81,8 +81,17 @@ jQuery(document).ready(function () {
         },
         text: true
     }).click(function () {
+        
+        if (jQuery(window).width() >= 600) {
+            dialogWidth = 500;
+        } else if (jQuery(window).width() >= 480) {
+            dialogWidth = '75%';
+        } else if (jQuery(window).width() <= 480) {
+            dialogWidth = '95%';
+        }
+        
         jQuery('#fpcm-profile-dialog-layer').dialog({
-            width: 500,
+            width: dialogWidth,
             modal: true,
             resizable: false,
             title: fpcmQuickLinks,

@@ -199,10 +199,17 @@ var fpcmEditor = function () {
     };
     
     this.showCommentLayer = function (layerUrl) {
+        
+        if (jQuery(window).width() >= 600) {
+            dialogWidth = 900;
+        } else {
+            dialogWidth = '95%';
+        }
+        
         fpcmJs.appendHtml('#fpcm-editor-comments', '<iframe id="fpcm-editor-comment-frame" name="fpcmeditorcommentframe" class="fpcm-full-width" src="' + layerUrl + '"></iframe>');
         jQuery('.fpcm-ui-commentaction-buttons').fadeOut();
         jQuery('#fpcm-editor-comments').dialog({
-            width    : 900,
+            width    : dialogWidth,
             modal    : true,
             resizable: true,
             title    : fpcmEditorCommentLayerHeader,
@@ -431,8 +438,17 @@ jQuery(document).ready(function() {
         },
         text: false,
     }).click(function() {
+        
+        if (jQuery(window).width() >= 800) {
+            dialogWidth = 900;
+        } else if (jQuery(window).width() >= 480) {
+            dialogWidth = '75%';
+        } else if (jQuery(window).width() <= 480) {
+            dialogWidth = '95%';
+        }
+        
         jQuery('#fpcm-extended-dialog').dialog({
-            width: 500,
+            width: dialogWidth,
             resizable: false,
             modal: true,
             title: fpcmExtended,
@@ -513,8 +529,16 @@ jQuery(document).ready(function() {
         var text = jQuery(this).text();
         var link = jQuery(this).attr('href');
         
+        if (jQuery(window).width() >= 600) {
+            dialogWidth = 900;
+        } else if (jQuery(window).width() >= 480) {
+            dialogWidth = '75%';
+        } else if (jQuery(window).width() <= 480) {
+            dialogWidth = '95%';
+        } 
+        
         jQuery('#fpcm-editor-shortlink').dialog({
-             width: 400,
+             width: dialogWidth,
              resizable: false,
              modal: true,
              title: text,
