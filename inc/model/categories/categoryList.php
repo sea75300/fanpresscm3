@@ -12,7 +12,6 @@
      * Kategorie-Listen-Objekt
      * 
      * @package fpcm.model.categories
-     * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class categoryList extends \fpcm\model\abstracts\model {

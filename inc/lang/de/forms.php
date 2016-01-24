@@ -143,6 +143,11 @@
         'IPLIST_NOLOGIN'                => 'Kein ACP-Login',
         'IPLIST_NOACCESS'               => 'Kein Frontend-Zugriff',
         
+        'WORDBAN_ADD'                   => 'Text-Sperre hinzufügen',
+        'WORDBAN_EDIT'                  => 'Text-Sperre bearbeiten',
+        'WORDBAN_NAME'                  => 'Zu sperrender Text',
+        'WORDBAN_ICON_PATH'             => 'Ersetzen mit',
+        
         'PACKAGES_UPDATE'                 => 'Aktualisierung starten',
         'PACKAGES_UPDATE_CURRENT_VERSION' => 'Aktuelle Version',
         'PACKAGES_UPDATE_CURRENT_LANG'    => 'Aktuelle Sprache',

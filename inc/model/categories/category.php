@@ -12,7 +12,6 @@
      * Kategorie-Objekt
      * 
      * @package fpcm.model.categories
-     * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class category extends \fpcm\model\abstracts\model {
@@ -42,11 +41,19 @@
         protected $editAction = 'categories/edit&categoryid=';
         
         /**
+         * Wortsperren-Liste
+         * @var \fpcm\model\wordban\items
+         * @since FPCM 3.2.0
+         */
+        protected $wordbanList;
+        
+        /**
          * Konstruktor
          * @param int $id
          */
         public function __construct($id = null) {
-            $this->table = 'categories';
+            $this->table = \fpcm\classes\database::tableCategories;
+            $this->wordbanList = new \fpcm\model\wordban\items();
             
             parent::__construct($id);
         }
@@ -106,6 +113,8 @@
         public function save() {
             if ($this->categoryExists($this->name)) return false;
             
+            $this->removeBannedTexts();
+            
             $params = $this->getPreparedSaveParams();
             $params = $this->events->runEvent('categorySave', $params);
 
@@ -124,6 +133,9 @@
          * @return bool
          */        
         public function update() {
+            
+            $this->removeBannedTexts();
+            
             $params     = $this->getPreparedSaveParams();
             $fields     = array_keys($params);
             
@@ -159,6 +171,19 @@
          */
         public function getCategoryImage() {           
             return '<img src="'.$this->getIconPath().'" alt="'.$this->getName().'" title="'.$this->getName().'" class="fpcm-pub-category-icon">';
+        }
+        
+        /**
+         * Führt Ersetzung von gesperrten Texten in Kommentar-Daten durch
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        private function removeBannedTexts() {
+
+            $this->name  = $this->wordbanList->replaceItems($this->name);
+            $this->iconpath  = $this->wordbanList->replaceItems($this->iconpath);
+            
+            return true;
         }
         
     }

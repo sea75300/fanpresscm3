@@ -239,7 +239,6 @@
             $this->cache->cleanup('activeeventscache');
             
             $keys = array_intersect($keys, $this->getDisabledInstalledModules());
-            
             if (!count($keys)) return false;
 
             $res = true;
@@ -259,7 +258,10 @@
                 $res = $res && \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$moduleDir.$key);
                 
                 $folders = glob(\fpcm\classes\baseconfig::$moduleDir.dirname($key).'/*', GLOB_ONLYDIR);
-                if (count($folders)) continue;
+                if (count($folders)) {
+                    trigger_error('Unable to delete module folder data in '.\fpcm\classes\baseconfig::$moduleDir.$key);
+                    continue;
+                }
 
                 $res = $res && \fpcm\model\files\ops::deleteRecursive();
             }

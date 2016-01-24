@@ -245,6 +245,14 @@
                     'icon'              => 'fa fa-unlock fa-fw'
                 ),
                 array(
+                    'url'               => 'wordban/list',
+                    'permission'        => array('system' => 'options'),
+                    'description'       => $this->language->translate('HL_OPTIONS_WORDBAN'),
+                    'class'             => '',
+                    'id'                => '',
+                    'icon'              => 'fa fa-ban fa-fw'
+                ),
+                array(
                     'url'               => 'categories/list',
                     'permission'        => array('system' => 'categories'),
                     'description'       => $this->language->translate('HL_CATEGORIES_MNG'),

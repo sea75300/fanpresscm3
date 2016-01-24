@@ -143,6 +143,11 @@
         'IPLIST_NOLOGIN'                => 'No login access',
         'IPLIST_NOACCESS'               => 'No frontend access',
         
+        'WORDBAN_ADD'                   => 'Add banned text',
+        'WORDBAN_EDIT'                  => 'Edit banned text',
+        'WORDBAN_NAME'                  => 'Text to ban',
+        'WORDBAN_ICON_PATH'             => 'Replace string with',
+        
         'PACKAGES_UPDATE'                 => 'Start update',
         'PACKAGES_UPDATE_CURRENT_VERSION' => 'Current version',
         'PACKAGES_UPDATE_CURRENT_LANG'    => 'Current language',

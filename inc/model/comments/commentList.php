@@ -11,7 +11,6 @@
      * Kommentar-Listen-Objekt
      * 
      * @package fpcm.model.comments
-     * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class commentList extends \fpcm\model\abstracts\model {

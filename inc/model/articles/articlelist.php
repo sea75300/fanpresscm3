@@ -13,7 +13,6 @@
      * Artikelliste
      * 
      * @package fpcm.model.articles
-     * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class articlelist extends \fpcm\model\abstracts\model {

@@ -145,24 +145,32 @@
             }
             
             if ($this->checkVersion('3.2.0')) {
-                $res = $res && $this->dbcon->alter(
-                    \fpcm\classes\database::tablePermissions, 'CHANGE', '`permissionData`', '`permissiondata` BLOB NOT NULL', false
-                );
-                $res = $res && $this->dbcon->alter(
-                    \fpcm\classes\database::tablePermissions, 'CHANGE', '`rollId`', '`rollid` bigint(20) NOT NULL', false
-                );
-                $res = $res && $this->dbcon->alter(
-                    \fpcm\classes\database::tableCategories, 'CHANGE', '`iconPath`', '`iconpath` text NOT NULL', false
-                );
-                $res = $res && $this->dbcon->alter(
-                    \fpcm\classes\database::tableSessions, 'CHANGE', '`userId`', '`userid` BIGINT( 20 ) NOT NULL ', false
-                );
-                $res = $res && $this->dbcon->alter(
-                    \fpcm\classes\database::tableSessions, 'CHANGE', '`sessionId`', '`sessionid` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ', false
-                );
-                $res = $res && $this->dbcon->alter(
-                    \fpcm\classes\database::tableCronjobs, 'ADD', '`execinterval`', '  BIGINT( 20 ) NOT NULL', false
-                );
+                
+                if ($this->dbcon->getDbtype() == 'pgsql') {
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableCronjobs, 'ADD', '"execinterval"', '  BIGINT', false
+                    );                    
+                }
+                else {
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tablePermissions, 'CHANGE', '`permissionData`', '`permissiondata` BLOB NOT NULL', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tablePermissions, 'CHANGE', '`rollId`', '`rollid` bigint(20) NOT NULL', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableCategories, 'CHANGE', '`iconPath`', '`iconpath` text NOT NULL', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableSessions, 'CHANGE', '`userId`', '`userid` BIGINT( 20 ) NOT NULL ', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableSessions, 'CHANGE', '`sessionId`', '`sessionid` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableCronjobs, 'ADD', '`execinterval`', '  BIGINT( 20 ) NOT NULL', false
+                    );
+                }
                 
                 $rows = array(
                     'anonymizeIps'      => 2419200,
@@ -176,7 +184,7 @@
                 );
                 
                 foreach ($rows as $key => $value) {
-                    $res = $res && $this->dbcon->update(\fpcm\classes\database::tableCronjobs, array('execinterval'), array($value, $key), "cjname = ?");
+                    $res = $res && $this->dbcon->update(\fpcm\classes\database::tableCronjobs, array('execinterval'), array($value, $key), "cjname = ? AND execinterval = 0");
                 }
                 
             }
@@ -190,6 +198,10 @@
          */
         private function createTables() {
             $res = true;
+            
+            $path = \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql';
+            $res  = $res && $this->dbcon->execSqlFile($path);
+            
             return $res;
         }
         

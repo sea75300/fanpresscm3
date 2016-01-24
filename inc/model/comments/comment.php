@@ -12,7 +12,6 @@
      * Kommentar-Objekt
      * 
      * @package fpcm.model.comments
-     * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */    
     class comment extends \fpcm\model\abstracts\model {
@@ -104,6 +103,13 @@
          * @var string
          */        
         protected $editAction = 'comments/edit&commentid=';
+        
+        /**
+         * Wortsperren-Liste
+         * @var \fpcm\model\wordban\items
+         * @since FPCM 3.2.0
+         */
+        protected $wordbanList;
 
         /**
          * Konstruktor
@@ -111,8 +117,10 @@
          */
         public function __construct($id = null) {
             $this->table = \fpcm\classes\database::tableComments;
+            $this->wordbanList = new \fpcm\model\wordban\items();
             
             parent::__construct($id);
+            
         }
 
         /**
@@ -312,6 +320,9 @@
          * @return int
          */        
         public function save() {
+            
+            $this->removeBannedTexts();
+            
             $params = $this->getPreparedSaveParams();
             $params = $this->events->runEvent('commentSave', $params);
 
@@ -329,6 +340,9 @@
          * @return boolean
          */        
         public function update() {
+
+            $this->removeBannedTexts();
+
             $params     = $this->getPreparedSaveParams();
             $fields     = array_keys($params);
             
@@ -353,6 +367,20 @@
          */
         public function getArticleLink() {
             return $this->config->system_url.'?module=fpcm/article&id='.$this->articleid.'#comments';
+        }
+        
+        /**
+         * Führt Ersetzung von gesperrten Texten in Kommentar-Daten durch
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        private function removeBannedTexts() {
+            $this->name  = $this->wordbanList->replaceItems($this->name);
+            $this->email  = $this->wordbanList->replaceItems($this->email);
+            $this->website  = $this->wordbanList->replaceItems($this->website);
+            $this->text  = $this->wordbanList->replaceItems($this->text);
+            
+            return true;
         }
         
     }

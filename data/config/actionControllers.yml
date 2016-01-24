@@ -18,6 +18,9 @@ users/editroll: action/users/rolledit
 categories/add: action/categories/categoryadd
 categories/edit: action/categories/categoryedit
 categories/list: action/categories/categorylist
+wordban/add: action/wordban/itemadd
+wordban/edit: action/wordban/itemedit
+wordban/list: action/wordban/itemlist
 files/list: action/files/filelist
 smileys/list: action/smileys/smileylist
 smileys/add: action/smileys/smileyadd

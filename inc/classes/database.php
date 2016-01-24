@@ -83,6 +83,12 @@
          * Smiley-Tabelle
          */
         const tableSmileys      = 'smileys';
+        
+        /**
+         * Wordsperre-Tabelle
+         * @since FPCM 3.2.0
+         */
+        const tableTexts  = 'texts';
 
         /**
          * Datenbank-Verbindung

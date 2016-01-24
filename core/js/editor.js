@@ -440,7 +440,7 @@ jQuery(document).ready(function() {
     }).click(function() {
         
         if (jQuery(window).width() >= 800) {
-            dialogWidth = 900;
+            dialogWidth = 600;
         } else if (jQuery(window).width() >= 480) {
             dialogWidth = '75%';
         } else if (jQuery(window).width() <= 480) {

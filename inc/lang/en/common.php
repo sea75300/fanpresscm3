@@ -24,6 +24,7 @@
         'HL_OPTIONS_USERS'              => 'User and rolls',
         'HL_OPTIONS_PERMISSIONS'        => 'Permissions',
         'HL_OPTIONS_IPBLOCKING'         => 'IP addresses',
+        'HL_OPTIONS_WORDBAN'            => 'Banned texts',
         'HL_OPTIONS_TEMPLATES'          => 'Templates',
         'HL_OPTIONS_SMILEYS'            => 'Smileys',
         'HL_MODULES'                    => 'Modules',
