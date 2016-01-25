@@ -131,15 +131,15 @@
                     if ($this->canConnect) {
                         $pkg->cleanup();
                         $versionDataFile->delete();
-                        \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
-                        $filelistoutput = new \fpcm\model\files\tempfile('filelistOuput');
-                        die($filelistoutput->getContent());
+                        $filelistoutput = new \fpcm\model\files\tempfile('filelistOuput');                        
+                        \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $filelistoutput->getContent());
                     }
                     
                     \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                     $this->cache->cleanup();
-                    die();
-                    
+
+                    $res = true;
+
                     break;                
                 default:
                     $res = false;

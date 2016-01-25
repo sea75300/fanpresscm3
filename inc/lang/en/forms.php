@@ -143,16 +143,16 @@
         'IPLIST_NOLOGIN'                => 'No login access',
         'IPLIST_NOACCESS'               => 'No frontend access',
         
-        'WORDBAN_ADD'                   => 'Add banned text',
-        'WORDBAN_EDIT'                  => 'Edit banned text',
-        'WORDBAN_NAME'                  => 'Text to ban',
-        'WORDBAN_ICON_PATH'             => 'Replace string with',
+        'WORDBAN_ADD'                   => 'Add censored text',
+        'WORDBAN_EDIT'                  => 'Edit censored text',
+        'WORDBAN_NAME'                  => 'Text',
+        'WORDBAN_ICON_PATH'             => 'Replacement',
         
         'PACKAGES_UPDATE'                 => 'Start update',
         'PACKAGES_UPDATE_CURRENT_VERSION' => 'Current version',
         'PACKAGES_UPDATE_CURRENT_LANG'    => 'Current language',
         'PACKAGES_UPDATE_NEW_VERSION'     => 'New version',
-        'PACKAGES_FILE_LIST'              => '<span class="fa fa-files-o fpcm-ui-booltext-yes fpcm-ui-pkg-filelist-icon"></span> <strong>Package file list<strong> <a href="#" class="fpcm-updater-list-files-show fpcm-buttons">Show</a>',
+        'PACKAGES_FILE_LIST'              => '<span class="fa fa-file-text fpcm-ui-booltext-yes"></span> Update package manager log...',
         'PACKAGES_PROCESS_TIME'           => '<span class="fa fa-clock-o fpcm-ui-booltext-yes"></span> <strong>Required time</strong>',
         
         'SYSCHECK_FOLDER_DATA'          => 'Data folder',

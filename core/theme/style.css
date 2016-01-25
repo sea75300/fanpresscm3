@@ -173,10 +173,8 @@ img {
 .fpcm-header     {
     width: 100%;
     z-index: 250;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.75);
     overflow: hidden;
-    border-bottom: 2px solid #c3ebfb;
-    box-shadow: 2px 0px 2px #999999;
 }
 
 .fpcm-header.fpcm-header-fixed {
@@ -442,14 +440,18 @@ div.fpcm-navigation {
     margin-bottom: 3em;
 }
 
+div.fpcm-navigation a,
+div.fpcm-navigation a:link,
 div.fpcm-navigation a:visited,
 div.fpcm-navigation a:hover,
 div.fpcm-navigation a:active,
 div.fpcm-navigation a:focus {
-    color: #0048a9;
+    color: #000;
 }
 
 div.fpcm-navigation,
+div.fpcm-navigation a,
+div.fpcm-navicon span.fpcm-navicon,
 div.fpcm-navigation li {
     font-weight: normal !important;
 }
@@ -911,12 +913,6 @@ table.fpcm-ui-table.fpcm-ui-modules tr.fpcm-ui-modules-updates1 {
     z-index: 500;
 }
 
-.fpcm-buttons-inline {
-    float: left;
-    display: block;
-    padding-left: 0.3em;
-}
-
 .fpcm-buttons.fpcm-ui-articlelist-buttons {
     padding-bottom: 1px;
 }
@@ -1046,21 +1042,6 @@ h3, .fpcm-dashboard-container h3 {
     padding: 0.2em 1.3em;
 }
 
-.editor-textarea {
-    width:99%;
-    height:500px;
-    margin: 0 auto;
-    border-radius: 0 !important;
-}
-
-.editor-textarea-classic, .CodeMirror {
-    font-family: 'Courier New', sans-serif !important;
-}
-
-.editor-textarea-classic, .CodeMirror, .CodeMirror textarea {
-    height:500px !important;
-}
-
 .cm-s-mdn-like.CodeMirror {
     color: #000000 !important;
 }
@@ -1164,9 +1145,13 @@ table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
     margin-bottom: 0.3em;
 }
 
-.fpcm-editor-selectboxes div.fpcm-fpcm-editor-selectbox { display: inline-block; }
+.fpcm-editor-selectboxes div.fpcm-fpcm-editor-selectbox {
+    display: inline-block;
+}
 
-.fpcm-editor-select-button { min-width: 125px; }
+.fpcm-editor-select-button {
+    min-width: 125px;
+}
 
 .fpcm-editor-select {
     min-width: 125px !important;
@@ -1266,10 +1251,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     padding-right: 0.4em;
     width: 35px;
     text-align: center;    
-}
-
-.fpcm-updater-list span.fpcm-ui-pkg-filelist-icon {
-    margin-top: 0.5em;
 }
 
 /* jQuery UI Hooks */

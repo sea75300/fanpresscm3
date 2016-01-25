@@ -11,7 +11,8 @@
                 <li><a href="#tabs-logs-systemlog" id="fpcm-logs-reload_1" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_SYSTEM'); ?></a></li>
                 <li><a href="#tabs-logs-phplog" id="fpcm-logs-reload_2" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_ERROR'); ?></a></li>
                 <li><a href="#tabs-logs-sqllog" id="fpcm-logs-reload_3" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_DATABASE'); ?></a></li>
-                <li><a href="#tabs-logs-cronjobs" id="fpcm-logs-reload_4" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_CRONJOBS'); ?></a></li>
+                <li><a href="#tabs-logs-packages" id="fpcm-logs-reload_4" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_PACKAGES'); ?></a></li>
+                <li><a href="#tabs-logs-cronjobs" id="fpcm-logs-reload_5" class="fpcm-logs-reload"><?php $FPCM_LANG->write('HL_LOGS_CRONJOBS'); ?></a></li>
             </ul>
             <div id="tabs-logs-sessionlog">
                 <div id="fpcm-logcontent0">
@@ -61,11 +62,23 @@
                     </table>
                 </div> 
             </div>             
-            <div id="tabs-logs-cronjobs">
+            <div id="tabs-logs-packages">
                 <div id="fpcm-logcontent4">
+                    <?php include __DIR__.'/packages.php'; ?>
+                </div>
+                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+                    <table>
+                        <tr>
+                            <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_4', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
+                        </tr>
+                    </table>
+                </div> 
+            </div>
+            <div id="tabs-logs-cronjobs">
+                <div id="fpcm-logcontent5">
                     <?php include __DIR__.'/cronjobs.php'; ?>
                 </div>
-            </div>
+            </div>             
         </div>    
     </form>
 </div>

@@ -233,6 +233,14 @@ Help language file
                         <li><b>Twitter connection:</b><br>
                             If you see this tab, got to the Twitter connection chapter below.
                         </li>
+                        <li><b>Extended:</b><br>
+                            All options on the "Extended" register should be used carefully.
+                            <ul>
+                                <li><em>Include developement relaeses in update check:</em> This option allows you to include test- and
+                                    developement versions when FanPress CM executes and update check. <b>Important: test- and developement
+                                    may include failures, unfinished functions which can cause problems!</b></li>
+                            </ul>
+                        </li>
                         <li><b>System check and updates:</b><br>
                             This tab give you a detailed overview about your systems status and may indicate problems with your webspace.
                             Any <i>non optional</i> should contain a blue check symbol like <span class="fa fa-check-square fpcm-ui-booltext-yes"></span>.
@@ -249,6 +257,10 @@ Help language file
                 </li>
                 <li><b>IP addresses:</b><br>
                     Here you can lock IP addresses to prohibit access to FanPress CM because of spam comments, many login failures, etc.
+                </li>
+                <li><b>Censored texts:</b><br>
+                    Censored texts prevent certain words, texts, text groups and strings from beeing used in comments, articles,
+                    categories, users and user rolls. Censored texts will be replaced by the "Replacement" text.
                 </li>
                 <li><b>Categories:</b><br>
                     The area to manage article categories, depending on given permissions.

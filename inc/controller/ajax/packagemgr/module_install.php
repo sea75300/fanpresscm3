@@ -140,25 +140,22 @@
                 case 5 :
                     if ($this->canConnect) {
                         $pkg->loadPackageFileListFromTemp();
-                        $files = $pkg->getFiles();
+                        \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
                         $pkg->cleanup();
-                        $this->cache->cleanup();
-                        \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
-                        die('<ul class="fpcm-updater-list-files-'.$this->midx.' fpcm-hidden"><li>'.implode('</li><li>', $files).'</li></ul>');
                     }
                     
                     \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                     $this->cache->cleanup();
-                    die();
+                    
+                    $res = true;
                     
                     break;                
                 default:
                     $res = false;
                     break;
             }
-            
+
             die($this->step.'_'.(int) $res);
-            
         }
 
     }

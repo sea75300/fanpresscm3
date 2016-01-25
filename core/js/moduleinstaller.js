@@ -54,16 +54,14 @@ var fpcmModuleInstaller = function () {
             if (skipRest) continue;
             
             scode = idx + '_START';
-            
+
             var msgText = fpcmUpdaterMessages[scode];
             
             if (idx == 1) {
                 msgText = msgText.replace('{{pkglink}}', fpcmModuleUrl.replace('{{pkgkey}}', key));
             }
             
-            content = (idx == 5)
-                    ? '<p class="fpcm-updater-list-with-button-' + moduleIndex + '">' + msgText + '</p>'
-                    : '<p>' + msgText + '</p>';
+            content = '<p>' + msgText + '</p>';
             
             jQuery('#fpcm-ui-headspinner').addClass('fa-spin');
             fpcmJs.appendHtml(moduleListClass, content);
@@ -73,23 +71,12 @@ var fpcmModuleInstaller = function () {
             fpcmAjax.execDone   = "fpcmModuleInstaller.code=jQuery.trim(fpcmAjax.result);";
             fpcmAjax.async      = false;
             fpcmAjax.post();
-            fpcmAjax.reset();            
+            fpcmAjax.reset();     
 
             if (idx < fpcmUpdaterMaxStep && self.code != idx + '_' +1) {
                 fpcmJs.showLoader(false);
                 fpcmJs.appendHtml(moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.code] + '</p>');
                 skipRest = true;
-            } else if (idx == 5) {
-                jQuery('.fpcm-updater-list-files-show').button({
-                    icons: {
-                        primary: "ui-icon-info"
-                    },
-                    text: true
-                }).click(function () {
-                    jQuery('.fpcm-updater-list-files-' + moduleIndex).fadeToggle();
-                    return false;
-                });                
-                fpcmJs.appendHtml(moduleListClass, '<p>' + self.code + '</p>');
             } else {
                 fpcmJs.appendHtml(moduleListClass, '<p><strong> ' + fpcmUpdaterMessages[self.code] + '</strong></p>');
             }

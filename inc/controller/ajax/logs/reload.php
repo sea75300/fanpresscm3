@@ -106,6 +106,16 @@
          * Lädt Cronjob-Log (Typ 4)
          */
         private function loadLog4() {
+            $view = new \fpcm\model\view\ajax('packages', 'logs');
+            $view->assign('packagesLogs', array_map('json_decode', \fpcm\classes\logs::pkglogRead()));
+            $view->initAssigns();
+            $view->render();   
+        }
+        
+        /**
+         * Lädt Cronjob-Log (Typ 5)
+         */
+        private function loadLog5() {
             $cronlist = new \fpcm\model\crons\cronlist();
             $view = new \fpcm\model\view\ajax('cronjobs', 'logs');
             $view->assign('cronjobList', $cronlist->getCronsData());

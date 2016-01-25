@@ -143,16 +143,16 @@
         'IPLIST_NOLOGIN'                => 'Kein ACP-Login',
         'IPLIST_NOACCESS'               => 'Kein Frontend-Zugriff',
         
-        'WORDBAN_ADD'                   => 'Text-Sperre hinzufügen',
-        'WORDBAN_EDIT'                  => 'Text-Sperre bearbeiten',
-        'WORDBAN_NAME'                  => 'Zu sperrender Text',
-        'WORDBAN_ICON_PATH'             => 'Ersetzen mit',
+        'WORDBAN_ADD'                   => 'Begriff hinzufügen',
+        'WORDBAN_EDIT'                  => 'Begriff bearbeiten',
+        'WORDBAN_NAME'                  => 'Begriff',
+        'WORDBAN_ICON_PATH'             => 'Ersetzung',
         
         'PACKAGES_UPDATE'                 => 'Aktualisierung starten',
         'PACKAGES_UPDATE_CURRENT_VERSION' => 'Aktuelle Version',
         'PACKAGES_UPDATE_CURRENT_LANG'    => 'Aktuelle Sprache',
         'PACKAGES_UPDATE_NEW_VERSION'     => 'Neue Version',
-        'PACKAGES_FILE_LIST'              => '<span class="fa fa-files-o fpcm-ui-booltext-yes fpcm-ui-pkg-filelist-icon"></span> <strong>Paket-Dateiliste<strong> <a href="#" class="fpcm-updater-list-files-show fpcm-buttons">Anzeigen</a>',
+        'PACKAGES_FILE_LIST'              => '<span class="fa fa-file-text fpcm-ui-booltext-yes"></span> Paket-Manager-Log aktualisieren...',
         'PACKAGES_PROCESS_TIME'           => '<span class="fa fa-clock-o fpcm-ui-booltext-yes"></span> <strong>Benötigte Zeit</strong>',
         
         'SYSCHECK_FOLDER_DATA'          => 'Data-Ordner',

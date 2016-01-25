@@ -226,6 +226,8 @@ Help language file
                             Der Tab enthält verschiedene Einstellungen zur Artikel-Ausgabe.
                             <ul>
                                 <li><em>max. News pro Seite:</em> Anzahl an Artikeln, die im Frontend ausgegeben werden sollen.</li>
+                                <li><em>Anzahl an Artikeln im ACP:</em> Anzahl an Artikeln, die im ACP ausgegeben werden sollen,
+                                    kann durch Benutzer-Einstellung überschrieben werden</li>
                                 <li><em>Template für Artikel-Liste::</em> Template, welches für Artikel-Liste genutzt werden soll.</li>
                                 <li><em>Template für einzelnen Artikel:</em> Template, welches für die Anzeige eines einzelnen Artikels
                                 genutzt werden soll.</li>
@@ -257,6 +259,15 @@ Help language file
                         <li><b>Twitter-Verbindung:</b><br>
                             Sofern dieser Tab angezeigt wird, siehe letzter Hilfe-Abschnitt ganz unten.
                         </li>
+                        <li><b>Erweitert:</b><br>
+                            Der "Erweitert"-Tab enthält verschiedene Einstellungen, welche nur mit Bedacht geändert werden sollten.
+                            <ul>
+                                <li><em>Entwickler-Versionen bei Update-Check anzeigen:</em> Neben den offizielle Releases gibt es immer
+                                    wieder Entwickler- und Test-Versionen. Aktivieren diese Option, um solche Versionen beim Update-Check
+                                    ebenfalls anzuzeigen. <b>Achtung: Entwickler- und Test-Versionen können Fehler enthalten oder
+                                    unvollständige Änderungen enthalten, welche zu Problemen führen können!</b></li>
+                            </ul>
+                        </li>
                         <li><b>System-Überprüfung & Updates:</b><br>
                             Auf diesem Tab erhältst du eine Übersicht über den aktuelle Update-Status deines FanPress CM-Systems sowie
                             der verfügbaren Funktionen, etc. deines Servers. Bei allen <i>nicht-optionalen</i> Werten sollte ein blauer
@@ -277,6 +288,11 @@ Help language file
                     Benutzer mit Rechten zur Änderung der Systemeinstellungen können hier IP-Adressen sperren oder Sperren wieder aufheben.
                     (z. B. wegen Spam) Pro Eintrag kann festgelegt werden, für welchen Bereich von FanPress CM die Sperren gelten soll:
                     keine Kommentare, kein Login, überhaupt kein Zugriff
+                </li>
+                <li><b>Textzensur:</b><br>
+                    Die Textzensur ermöglicht es, bestimmte Wörter, Textgruppen oder Zeichenketten für die Verwendung zu sperren. Diese
+                    Textstellen werden durch den angegeben Text ersetzt. Die Textzensur wird beim Erstellen von Kommentaren, Artikeln,
+                    Kategorien, Benutzern und Benutzer-Rollen ausgeführt.
                 </li>
                 <li><b>Kategorien:</b><br>
                     Benutzer mit entsprechenden Rechten können hier neue Kategorien, sowie bestehende ändern oder löschen.

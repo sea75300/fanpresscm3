@@ -44,6 +44,7 @@
                     '3_0' => $this->lang->translate('PACKAGES_FAILED_GENERAL'),
                     '4_1' => $this->lang->translate('PACKAGES_SUCCESS_ADDITIONAL'),
                     '4_0' => $this->lang->translate('UPDATES_FAILED'),
+                    '5_1' => $this->lang->translate('PACKAGES_SUCCESS_LOGDONE'),
                     
                     '1_'.\fpcm\model\packages\package::FPCMPACKAGE_REMOTEFILE_ERROR  => $this->lang->translate('PACKAGES_FAILED_REMOTEFILE'),
                     '1_'.\fpcm\model\packages\package::FPCMPACKAGE_LOCALFILE_ERROR   => $this->lang->translate('PACKAGES_FAILED_LOCALFILE'),

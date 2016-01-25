@@ -58,16 +58,6 @@ var fpcmUpdater = function () {
                 fpcmJs.showLoader(false);
                 fpcmJs.addAjaxMassage('error', fpcmUpdaterMessages[self.code], false);
                 skipRest = true;
-            } else if (idx == 5) {
-                jQuery('.fpcm-updater-list-files-show').button({
-                    icons: {
-                        primary: "ui-icon-info"
-                    },
-                    text: true
-                }).click(function () {
-                    jQuery('.fpcm-updater-list-files').fadeToggle();
-                });                
-                fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + self.code + '</p>');
             } else {
                 fpcmJs.appendHtml('.fpcm-updater-list', '<p><strong> ' + fpcmUpdaterMessages[self.code] + '</strong></p>');
             }            
