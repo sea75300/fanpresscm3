@@ -31,12 +31,12 @@
          */
         public function runUpdate() {
             $res = true &&
-                   $this->checkFilesystem() &&
                    $this->createTables() &&
                    $this->alterTables() &&
                    $this->addSystemOptions() &&
                    $this->updateSystemOptions() &&
                    $this->updatePermissions() &&
+                   $this->checkFilesystem() &&
                    $this->updateVersion();
             
             $this->config->setMaintenanceMode(false);
