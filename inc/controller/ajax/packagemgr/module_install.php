@@ -56,7 +56,7 @@
          */ 
         public function request() {
             
-            $this->step = (int) $this->getRequestVar('step');
+            $this->step = $this->getRequestVar('step', array(9));
             $this->key  = $this->getRequestVar('key');
             $this->midx = $this->getRequestVar('midx');            
             
@@ -79,14 +79,18 @@
                 die($this->step.'_0');
             }
             
+            $this->returnData['current'] = $this->step;
+            
             switch ($this->step) {
                 case 1 :
                     $res = $pkg->download();
                     $from = $pkg->getRemoteFile();
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Downloaded module package successfully from '.$from);
+                        $this->returnData['nextstep'] = 2;
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while downloading module package from'.$from);
+                        $this->returnData['nextstep'] = 5;
                     }
                     break;
                 case 2 :
@@ -94,8 +98,10 @@
                     $from = \fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile());
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Extracted module package successfully from '.$from);
+                        $this->returnData['nextstep'] = 3;
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while extracting module package from '.$from);
+                        $this->returnData['nextstep'] = 5;
                     }
                     break;
                 case 3 :
@@ -104,9 +110,11 @@
                     $from = \fpcm\model\files\ops::removeBaseDir($pkg->getExtractPath().basename($pkg->getKey()));
                     if ($res === true) {                        
                         \fpcm\classes\logs::syslogWrite('Moved module package content successfully from '.$from.' to '.$dest);
+                        $this->returnData['nextstep'] = 4;
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while moving module package content from '.$from.' to '.$dest);
                         \fpcm\classes\logs::syslogWrite($pkg->getCopyErrorPaths());
+                        $this->returnData['nextstep'] = 5;
                     }
                     break;
                 case 4 :
@@ -117,6 +125,7 @@
                     if (!file_exists($moduleClassPath)) {
                         $res = false;
                         trigger_error('Module class '.$moduleClass.' not found in "'.$moduleClassPath.'"!');
+                        $this->returnData['nextstep'] = 5;
                         break;
                     }
 
@@ -130,6 +139,8 @@
                         
                         $res = $modObj->runInstall();
                     }
+                    
+                    $this->returnData['nextstep'] = 5;
 
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Run final module install steps successfully for '.$pkg->getKey());
@@ -155,7 +166,8 @@
                     break;
             }
 
-            die($this->step.'_'.(int) $res);
+            $this->returnCode = $this->step.'_'.(int) $res;
+            $this->getResponse();
         }
 
     }

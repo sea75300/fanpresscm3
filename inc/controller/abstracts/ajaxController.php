@@ -18,10 +18,38 @@
     class ajaxController extends controller {
 
         /**
+         * Rückgabe-Code
+         * @var string
+         */
+        protected $returnCode;
+
+        /**
+         * Rückgabe-Daten
+         * @var mixed
+         */
+        protected $returnData;
+
+        /**
          * Update-Check de/aktivieren
          * @var bool
          */
         protected $updateCheckEnabled = false;
+     
+        /**
+         * JSON-codiertes Array mit Rückgabe-Code und ggf. Rückgabe-Daten erzeugen
+         * @return void
+         * @since FPCM 3.2.0
+         */
+        protected function getResponse() {
+            
+            $data = array(
+                'code' => $this->returnCode,
+                'data' => $this->returnData
+            );
+            
+            die(json_encode($data));
+            
+        }
         
     }
 ?>

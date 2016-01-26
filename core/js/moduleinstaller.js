@@ -1,7 +1,7 @@
 /**
  * FanPress CM javascript module installer functions
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2015, Stefan Seehafer
+ * @copyright (c) 2015, 2016, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  */
 
@@ -9,7 +9,15 @@ var fpcmModuleInstaller = function () {
     
     var self = this;
     
-    this.code = '';
+    this.responseData = '';    
+    this.startTime = 0;    
+    this.moduleListClass = '';    
+    this.idx = 0;
+    this.key = '';
+    this.type = '';
+    this.moduleIndex = '';
+    this.ajaxHandler;
+    this.moduleKeyCount = 0;
     
     this.init = function (type) {
 
@@ -19,76 +27,100 @@ var fpcmModuleInstaller = function () {
             self.progressbar(0);            
         }
 
-        var updateStart = (new Date().getTime());
+        self.ajaxHandler = new fpcmAjaxHandler();
+        self.startTime   = (new Date().getTime());
+        self.moduleKeyCount = fpcmModuleKeys.length;
 
         jQuery('.fpcm-updater-list').empty();
         fpcmJs.showLoader(true);
 
-        var x = 1;
-        jQuery.each(fpcmModuleKeys, function(idx, modKey) {
-            self.progressbar(x);           
-            result = self.runInstall(modKey, idx, type);
-            x++;
-        });
-        
-        var updateTimer = ((new Date().getTime()) - updateStart) / 1000;
-        fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
-        fpcmJs.showLoader(false);
+        self.idx = 1;
+        self.progressbar(1);           
+        self.runInstall(fpcmModuleKeys[0], 1, type);
         
         return false;
     };
     
     this.runInstall = function (key, moduleIndex, type) {
+        self.moduleListClass = 'fpcm-updater-list-'+ moduleIndex;
+        fpcmJs.appendHtml('.fpcm-updater-list', '<div class="' + self.moduleListClass + ' fpcm-ui-modules-installerbox"></div>');
+        self.moduleListClass = '.' + self.moduleListClass;
 
-        var idx      = 0;
-        var skipRest = false;
+        self.key = key;
+        self.type = type;
+        self.moduleIndex = moduleIndex;
+        
+        self.execRequest(fpcmUpdaterStartStep);
+
+        return true;
+    };
+    
+    this.execRequest = function(idx) {
+
         var scode    = '';
         var content  = '';
 
-        var moduleListClass = 'fpcm-updater-list-'+ moduleIndex;
-        fpcmJs.appendHtml('.fpcm-updater-list', '<div class="' + moduleListClass + ' fpcm-ui-modules-installerbox"></div>');
-        moduleListClass = '.' + moduleListClass;
+        if (idx > fpcmUpdaterMaxStep) {
+            return false;
+        }
+
+        scode = idx + '_START';
+
+        var msgText = fpcmUpdaterMessages[scode];
+
+        if (idx == 1) {
+            msgText = msgText.replace('{{pkglink}}', fpcmModuleUrl.replace('{{pkgkey}}', self.key));
+        }
+
+        content = '<p>' + msgText + '</p>';
+
+        jQuery('#fpcm-ui-headspinner').addClass('fa-spin');
+        fpcmJs.appendHtml(self.moduleListClass, content);
+
+        self.ajaxHandler.action     = 'packagemgr/mod' + self.type;
+        self.ajaxHandler.data       = {step:idx,key:self.key,midx:self.moduleIndex};
+        self.ajaxHandler.execDone   = "fpcmModuleInstaller.responseData=fpcmModuleInstaller.ajaxHandler.result;fpcmModuleInstaller.ajaxCallback();";
+        self.ajaxHandler.post();
         
-        for (idx = fpcmUpdaterStartStep;idx <= fpcmUpdaterMaxStep; idx++) {
-            
-            if (skipRest) continue;
-            
-            scode = idx + '_START';
+        return true;
+    };
+    
+    this.ajaxCallback = function() {
 
-            var msgText = fpcmUpdaterMessages[scode];
-            
-            if (idx == 1) {
-                msgText = msgText.replace('{{pkglink}}', fpcmModuleUrl.replace('{{pkgkey}}', key));
-            }
-            
-            content = '<p>' + msgText + '</p>';
-            
-            jQuery('#fpcm-ui-headspinner').addClass('fa-spin');
-            fpcmJs.appendHtml(moduleListClass, content);
-            
-            fpcmAjax.action     = 'packagemgr/mod' + type;
-            fpcmAjax.data       = {step:idx,key:key,midx:moduleIndex};
-            fpcmAjax.execDone   = "fpcmModuleInstaller.code=jQuery.trim(fpcmAjax.result);";
-            fpcmAjax.async      = false;
-            fpcmAjax.post();
-            fpcmAjax.reset();     
+        self.responseData = JSON.parse(self.responseData);
 
-            if (idx < fpcmUpdaterMaxStep && self.code != idx + '_' +1) {
-                fpcmJs.showLoader(false);
-                fpcmJs.appendHtml(moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.code] + '</p>');
-                skipRest = true;
-            } else {
-                fpcmJs.appendHtml(moduleListClass, '<p><strong> ' + fpcmUpdaterMessages[self.code] + '</strong></p>');
-            }
-            
-            jQuery('#fpcm-ui-headspinner').removeClass('fa-spin');
+        if (self.responseData.code != self.responseData.data.current + '_' +1) {
+            fpcmJs.showLoader(false);
+            fpcmJs.appendHtml(self.moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
+            return false;
         }
 
-        if (!skipRest) {
-            fpcmJs.appendHtml(moduleListClass, '<p>' + fpcmUpdaterMessages['EXIT_1'] + '</p>');   
+        fpcmJs.appendHtml(self.moduleListClass, '<p><strong> ' + fpcmUpdaterMessages[self.responseData.code] + '</strong></p>');
+
+        if (self.responseData.code && self.responseData.data.current == fpcmUpdaterMaxStep) {
+            fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages['EXIT_1'] + '</p>');
+            
+            if (self.moduleKeyCount > self.idx) {
+                self.idx++;
+                self.progressbar(self.idx);           
+                self.runInstall(fpcmModuleKeys[(self.idx-1)], self.idx, self.type);            
+                return true;
+            }
+            
+            self.addTimer();
+            return true;
         }
 
-        return skipRest ? false : true;
+        self.execRequest(self.responseData.data.nextstep);
+
+        return true;
+    };
+    
+    this.addTimer = function() {
+
+        var updateTimer = ((new Date().getTime()) - self.startTime) / 1000;
+        fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
+        fpcmJs.showLoader(false);  
 
     };
     
