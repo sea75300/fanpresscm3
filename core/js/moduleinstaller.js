@@ -117,11 +117,9 @@ var fpcmModuleInstaller = function () {
     };
     
     this.addTimer = function() {
-
         var updateTimer = ((new Date().getTime()) - self.startTime) / 1000;
         fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
-        fpcmJs.showLoader(false);  
-
+        fpcmJs.showLoader(false);
     };
     
     this.progressbar = function (pgValue) {

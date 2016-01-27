@@ -76,7 +76,8 @@
             }            
             
             if (!isset($keyData[0]) || !isset($keyData[1])) {
-                die($this->step.'_0');
+                $this->returnCode = $this->step.'_0';
+                $this->getResponse();
             }
             
             $this->returnData['current'] = $this->step;

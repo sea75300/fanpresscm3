@@ -40,7 +40,7 @@
          */
         public function request() {
             
-            $this->step = (int) $this->getRequestVar('step');
+            $this->step = $this->getRequestVar('step', array(9));          
             
             return true;
         }
@@ -78,15 +78,19 @@
 
                 $signature = isset($remoteData['signature']) ? $remoteData['signature'] : '';
                 $pkg = new \fpcm\model\packages\update('update', $fileInfo, '', $signature);
-            }            
+            }
+
+            $this->returnData['current'] = $this->step;
             
             switch ($this->step) {
                 case 1 :
                     $res = $pkg->download();
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Downloaded update package successfully from '.$pkg->getRemoteFile());
+                        $this->returnData['nextstep'] = 2;
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while downloading update package from '.$pkg->getRemoteFile());
+                        $this->returnData['nextstep'] = 5;
                     }
                     break;
                 case 2 :
@@ -94,8 +98,10 @@
                     $from = \fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile());
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Extracted update package successfully from '.$from);
+                        $this->returnData['nextstep'] = 3;
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while extracting update package from '.$from);
+                        $this->returnData['nextstep'] = 5;
                     }
                     break;
                 case 3 :
@@ -104,9 +110,11 @@
                     $from = \fpcm\model\files\ops::removeBaseDir($pkg->getExtractPath());
                     if ($res === true) {                        
                         \fpcm\classes\logs::syslogWrite('Moved update package content successfully from '.$from.' to '.$dest);
+                        $this->returnData['nextstep'] = 4;
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while moving update package content from '.$from.' to '.$dest);
                         \fpcm\classes\logs::syslogWrite($pkg->getCopyErrorPaths());
+                        $this->returnData['nextstep'] = 5;
                     }
                     
                     if ($this->canConnect) {
@@ -121,6 +129,7 @@
                 case 4 :
                     $finalizer = new \fpcm\model\updater\finalizer();
                     $res = $finalizer->runUpdate();
+                    $this->returnData['nextstep'] = 5;
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Run final update steps successfully!');
                     } else {
@@ -146,8 +155,8 @@
                     break;
             }
 
-            die($this->step.'_'.(int) $res);
-            
+            $this->returnCode = $this->step.'_'.(int) $res;
+            $this->getResponse();
         }
     }
 ?>

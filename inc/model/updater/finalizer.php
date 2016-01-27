@@ -210,8 +210,14 @@
          * @return bool
          */
         private function checkFilesystem() {
-            \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dbStructPath);
-            unlink(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js');
+            
+            if (is_dir(\fpcm\classes\baseconfig::$dbStructPath)) {
+                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dbStructPath);
+            }
+            
+            if (file_exists(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js')) {
+                unlink(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js');
+            }
             
             return true;
         }

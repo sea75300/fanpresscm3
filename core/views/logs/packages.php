@@ -11,6 +11,7 @@
     <?php if (!is_object($value)) continue; ?>
     <tr>
         <td><?php print $value->time?></td>
+        <?php if (!is_array($value->text)) continue; ?>
         <td><strong><?php print $value->pkgname; ?>:</strong>
             <ul>
                 <?php foreach ($value->text as $line) : ?>
