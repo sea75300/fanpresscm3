@@ -18,6 +18,18 @@ body {
     background-attachment: fixed;
 }
 
+@media (max-width: 800px) {
+    body {
+        font-size: 9pt;
+    }
+}
+
+@media (min-width: 1920px) {
+    body {
+        font-size: 12pt;
+    }
+}
+
 body,
 label,
 table,
@@ -610,6 +622,7 @@ table.fpcm-ui-table.fpcm-ui-options tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-syscheck tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-permissions tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-backups tr:nth-child(odd),
+table.fpcm-ui-table.fpcm-ui-rssnews tr:nth-child(odd),
 div.fpcm-filelist-thumb-box:nth-child(odd) div.fpcm-filelist-thumb-box-inner
 {
     background: #f8f8f8;
@@ -632,6 +645,7 @@ table.fpcm-ui-table.fpcm-ui-options tr:hover,
 table.fpcm-ui-table.fpcm-ui-syscheck tr:hover,
 table.fpcm-ui-table.fpcm-ui-permissions tr:hover,
 table.fpcm-ui-table.fpcm-ui-backups tr:hover,
+table.fpcm-ui-table.fpcm-ui-rssnews tr:hover,
 div.fpcm-filelist-thumb-box:hover div.fpcm-filelist-thumb-box-inner
 {
     background: #DFEFFC;
@@ -729,29 +743,26 @@ table.fpcm-ui-table.fpcm-ui-permissions td .ui-selectmenu-button {
 table.fpcm-ui-table.fpcm-ui-comments th:first-child,
 table.fpcm-ui-table.fpcm-ui-comments tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-article-revisions th:first-child,
-table.fpcm-ui-table.fpcm-ui-article-revisions tr td:first-child
+table.fpcm-ui-table.fpcm-ui-article-revisions tr td:first-child,
+table.fpcm-ui-table.fpcm-ui-rssnews tr td:first-child
 {
-    width: 35px;
+    width: 3em;
 }
 
 table.fpcm-ui-table.fpcm-ui-articles th:first-child,
 table.fpcm-ui-table.fpcm-ui-articles tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-comments th.fpcm-ui-articlelist-open,
-table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-ui-articlelist-open
-{
-    width: 70px;
-}
-
+table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-ui-articlelist-open,
 table.fpcm-ui-table.fpcm-ui-smileys tr td.fpcm-ui-smiley-listimg,
 table.fpcm-ui-table.fpcm-ui-editor-smileys td
 {
-    width: 50px;    
+    width: 6em;
 }
 
 table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-td-commentlist-meta,
 table.fpcm-ui-table.fpcm-ui-modules th:first-child,
 table.fpcm-ui-table.fpcm-ui-modules tr td:first-child {
-    width: 125px;
+    width: 9em;
 }
 
 table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-ui-articlelist-comments,

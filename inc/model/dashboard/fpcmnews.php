@@ -60,14 +60,14 @@
             $idx = 0;
             
             $content    = array();
-            $content[]  = '<table class="fpcm-ui-table fpcm-ui-articles fpcm-ui-large-td">';
+            $content[]  = '<table class="fpcm-ui-table fpcm-ui-rssnews fpcm-ui-large-td">';
             foreach ($items as $item) {
                 if ($idx >= 8) {
                     break;
                 }
                 
                 $content[] = '<tr class="fpcm-small-text">';
-                $content[] = '  <td class="fpcm-ui-articlelist-open" style="width:35px;">';
+                $content[] = '  <td class="fpcm-ui-articlelist-open">';
                 $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-openlink-btn" href="'.\fpcm\model\view\helper::escapeVal(strip_tags($item->link)).'" target="_blank">'.$this->language->translate('GLOBAL_OPENNEWWIN').'</a>';
                 $content[] = '  </td>';
                 $content[] = '  <td>';

@@ -144,7 +144,7 @@
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `draft` )', '', false);
             }
             
-            if ($this->checkVersion('3.2.0')) {
+            if ($this->checkVersion('3.2.0-dev')) {
                 
                 if ($this->dbcon->getDbtype() == 'pgsql') {
                     $res = $res && $this->dbcon->alter(
