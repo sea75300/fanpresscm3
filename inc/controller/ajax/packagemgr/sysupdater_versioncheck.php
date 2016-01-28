@@ -28,7 +28,7 @@
          */
         public function process() {
             if (!parent::process()) return false;
-            
+
             die($this->config->system_version);
         }
     }

@@ -183,7 +183,9 @@
 
             if (!is_object($data)) return false;
             
-            foreach ($data as $key => $value) { $this->$key = $value; }
+            foreach ($data as $key => $value) {
+                $this->$key = $value;
+            }
             
             $this->permissiondata = json_decode($this->permissiondata, true);
         }

@@ -132,8 +132,7 @@
                     $this->returnData['nextstep'] = 5;
 
                     if ($res === true) {
-                        include \fpcm\classes\baseconfig::$versionFile;
-                        \fpcm\classes\logs::syslogWrite('Run final update steps successfully! New version: '.$fpcmVersion);
+                        \fpcm\classes\logs::syslogWrite('Run final update steps successfully!');
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while running final update steps!');
                     }
