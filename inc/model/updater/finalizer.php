@@ -199,8 +199,10 @@
         private function createTables() {
             $res = true;
             
-            $path = \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql';
-            $res  = $res && $this->dbcon->execSqlFile($path);
+            if ($this->checkVersion('3.2.0-dev')) {
+                $path = \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql';
+                $res  = $res && $this->dbcon->execSqlFile($path);
+            }
             
             return $res;
         }

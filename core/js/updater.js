@@ -67,6 +67,7 @@ var fpcmUpdater = function () {
         if (self.responseData.code != self.responseData.data.current + '_' +1) {
             fpcmJs.showLoader(false);
             fpcmJs.appendHtml('.fpcm-updater-list', '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
+            return false;
         }
 
         fpcmJs.appendHtml('.fpcm-updater-list', '<p><strong> ' + fpcmUpdaterMessages[self.responseData.code] + '</strong></p>');

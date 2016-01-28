@@ -39,6 +39,7 @@
             $this->view->assign('systemLogs', array());
             $this->view->assign('databaseLogs', array());
             $this->view->assign('cronjobList', array());
+            $this->view->assign('packagesLogs', array());
             
             $this->view->render();
         }

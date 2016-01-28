@@ -130,8 +130,10 @@
                     $finalizer = new \fpcm\model\updater\finalizer();
                     $res = $finalizer->runUpdate();
                     $this->returnData['nextstep'] = 5;
+
                     if ($res === true) {
-                        \fpcm\classes\logs::syslogWrite('Run final update steps successfully!');
+                        include \fpcm\classes\baseconfig::$versionFile;
+                        \fpcm\classes\logs::syslogWrite('Run final update steps successfully! New version: '.$fpcmVersion);
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while running final update steps!');
                     }
