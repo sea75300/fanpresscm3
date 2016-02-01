@@ -65,7 +65,7 @@
                 $this->article->setComments(isset($data['comments']) ? 1 : 0);
                 $this->article->setDraft(isset($data['draft']) ? 1 : 0);
                 $this->article->setApproval($this->permissions->check(array('article' => 'approve')) ? 1 : 0);
-                $this->article->setImagepath($data['imagepath']);
+                $this->article->setImagepath(isset($data['imagepath']) ? $data['imagepath'] : '');
 
                 if (!$this->article->getTitle() || !$this->article->getContent()) {
                     $this->view->addErrorMessage('SAVE_FAILED_ARTICLE_EMPTY');
