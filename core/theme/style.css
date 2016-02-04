@@ -18,18 +18,6 @@ body {
     background-attachment: fixed;
 }
 
-@media (max-width: 800px) {
-    body {
-        font-size: 9pt;
-    }
-}
-
-@media (min-width: 1920px) {
-    body {
-        font-size: 12pt;
-    }
-}
-
 body,
 label,
 table,
