@@ -212,13 +212,18 @@
          * @return bool
          */
         private function checkFilesystem() {
-            
+
             if (is_dir(\fpcm\classes\baseconfig::$dbStructPath)) {
                 \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dbStructPath);
             }
             
             if (file_exists(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js')) {
                 unlink(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js');
+            }
+            
+            $libPath = \fpcm\classes\loader::libGetFilePath('jquery', 'jquery-2.1.4.min.js');
+            if (file_exists($libPath)) {
+                unlink($libPath);
             }
             
             return true;

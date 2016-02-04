@@ -750,7 +750,7 @@ table.fpcm-ui-table.fpcm-ui-editor-smileys td
 table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-td-commentlist-meta,
 table.fpcm-ui-table.fpcm-ui-modules th:first-child,
 table.fpcm-ui-table.fpcm-ui-modules tr td:first-child {
-    width: 9em;
+    width: 10em;
 }
 
 table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-ui-articlelist-comments,

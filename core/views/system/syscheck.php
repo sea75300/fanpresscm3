@@ -8,7 +8,7 @@
     </tr>
 <?php foreach ($checkOptions as $checkOption => $checkResult) : ?>
     <tr>
-        <td><?php if (isset($checkResult['helplink'])) : ?><?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('GLOBAL_INFO'), '', $checkResult['helplink'], '_blank'); ?><?php endif; ?></td>
+        <td class="fpcm-ui-center"><?php if (isset($checkResult['helplink'])) : ?><?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('GLOBAL_INFO'), '', $checkResult['helplink'], '_blank'); ?><?php endif; ?></td>
         <td>
             <spam><?php print $checkOption; ?></spam>
             <?php if (isset($checkResult['actionbtn']) && !$checkResult['result']) : ?>
