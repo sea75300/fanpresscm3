@@ -146,7 +146,7 @@
             
             if ($this->checkVersion('3.2.0-dev')) {
                 
-                if ($this->dbcon->getDbtype() == 'pgsql') {
+                if (method_exists($this->dbcon, 'getDbtype') && $this->dbcon->getDbtype() == 'pgsql') {
                     $res = $res && $this->dbcon->alter(
                         \fpcm\classes\database::tableCronjobs, 'ADD', '"execinterval"', '  BIGINT', false
                     );                    
@@ -200,8 +200,19 @@
             $res = true;
             
             if ($this->checkVersion('3.2.0-dev')) {
-                $path = \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql';
-                $res  = $res && $this->dbcon->execSqlFile($path);
+                
+                $path = (method_exists($this->dbcon, 'getDbtype')
+                      ? \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql'
+                      : \fpcm\classes\baseconfig::$dataDir.'dbstruct/mysql/14texts.sql');                
+                
+                if (method_exists($this->dbcon, 'execSqlFile')) {
+                    $res  = $res && $this->dbcon->execSqlFile($path);
+                } else {
+                    $sql = file_get_contents($path);
+                    $sql = str_replace('{{dbpref}}', $this->dbcon->getDbprefix(), $sql);
+                    $res = $res && $this->dbcon->exec($sql);
+                }
+
             }
             
             return $res;
@@ -213,8 +224,8 @@
          */
         private function checkFilesystem() {
 
-            if (is_dir(\fpcm\classes\baseconfig::$dbStructPath)) {
-                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dbStructPath);
+            if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
+                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
             }
             
             if (file_exists(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js')) {
