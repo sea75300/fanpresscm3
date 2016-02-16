@@ -7,14 +7,14 @@
         
         <div class="fpcm-tabs-general">
             <ul>
-                <li><a href="#tabs-templates-articles"><?php $FPCM_LANG->write('TEMPLATE_HL_ARTICLES'); ?></a></li>
+                <li><a href="#tabs-templates-articles" class="fpcm-template-tab" data-tpl="1"><?php $FPCM_LANG->write('TEMPLATE_HL_ARTICLES'); ?></a></li>
                 <?php if (isset($contentArticleSingle) && isset($replacementsArticleSingle)) : ?>
-                <li><a href="#tabs-templates-article"><?php $FPCM_LANG->write('TEMPLATE_HL_ARTICLE_SINGLE'); ?></a></li>
+                <li><a href="#tabs-templates-article" class="fpcm-template-tab" data-tpl="2"><?php $FPCM_LANG->write('TEMPLATE_HL_ARTICLE_SINGLE'); ?></a></li>
                 <?php endif; ?>
-                <li><a href="#tabs-templates-comments"><?php $FPCM_LANG->write('TEMPLATE_HL_COMMENTS'); ?></a></li>
-                <li><a href="#tabs-templates-commentform"><?php $FPCM_LANG->write('TEMPLATE_HL_COMMENTFORM'); ?></a></li>
-                <li><a href="#tabs-templates-latestnews"><?php $FPCM_LANG->write('TEMPLATE_HL_LATESTNEWS'); ?></a></li>
-                <li><a href="#tabs-templates-tweet"><?php $FPCM_LANG->write('TEMPLATE_HL_TWEET'); ?></a></li>
+                <li><a href="#tabs-templates-comments" class="fpcm-template-tab" data-tpl="3"><?php $FPCM_LANG->write('TEMPLATE_HL_COMMENTS'); ?></a></li>
+                <li><a href="#tabs-templates-commentform" class="fpcm-template-tab" data-tpl="4"><?php $FPCM_LANG->write('TEMPLATE_HL_COMMENTFORM'); ?></a></li>
+                <li><a href="#tabs-templates-latestnews" class="fpcm-template-tab" data-tpl="5"><?php $FPCM_LANG->write('TEMPLATE_HL_LATESTNEWS'); ?></a></li>
+                <li><a href="#tabs-templates-tweet"class="fpcm-template-tab" data-tpl="6"><?php $FPCM_LANG->write('TEMPLATE_HL_TWEET'); ?></a></li>
             </ul>
             <div id="tabs-templates-articles">
                 <?php include __DIR__.'/articles.php'; ?>
@@ -41,9 +41,18 @@
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
             <table>
                 <tr>
+                    <td><?php \fpcm\model\view\helper::linkButton('#', 'GLOBAL_PREVIEW', 'showpreview', 'fpcm-ui-preview'); ?></td>
                     <td><?php \fpcm\model\view\helper::saveButton('saveTemplates'); ?></td>
                 </tr>
             </table>
         </div>         
     </form>
 </div>
+
+<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-templatepreview-layer"></div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        fpcmJs.showTemplatePreview();
+    });
+</script>

@@ -1413,7 +1413,8 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 .fpcm-ui-button.fpcm-open-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-useractions-disable span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-useractions-enable span.ui-button-text:before,
-.fpcm-ui-button.fpcm-externallink-btn span.ui-button-text:before
+.fpcm-ui-button.fpcm-externallink-btn span.ui-button-text:before,
+.fpcm-ui-button.fpcm-ui-preview span.ui-button-text:before
 {
     font-weight: normal !important;
     padding-right: 0.65em;
@@ -1573,8 +1574,8 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     content: '\f07c';
 }
 
-.fpcm-ui-button.fpcm-folderopen-btn span.ui-icon:before {
-    content: '\f07c';
+.fpcm-ui-button.fpcm-ui-preview span.ui-button-text:before {
+    content: '\f06e';
 }
 
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before {

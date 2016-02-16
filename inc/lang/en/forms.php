@@ -46,6 +46,7 @@
         'GLOBAL_OPENNEWWIN'             => 'Open in new window',
         'GLOBAL_PAGER'                  => 'Page {{current}} of {{total}}',
         'GLOBAL_DOWNLOAD'               => 'Download',
+        'GLOBAL_PREVIEW'                => 'Show preview',
 
         'LOGIN_BTN'                     => 'Login',
         'LOGIN_NEWPASSWORD'             => 'Request new password',

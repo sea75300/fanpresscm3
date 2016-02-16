@@ -8,6 +8,7 @@ system/profile: action/system/profile
 system/permissions: action/system/permissions
 system/logs: action/system/logs
 system/templates: action/system/templates
+system/templatepreview: action/system/templatepreview
 system/help: action/system/help
 system/backups: action/system/backups
 users/add: action/users/useradd

@@ -560,4 +560,50 @@ var fpcmJs = function () {
             }
         }, 250);
     };
+    
+    this.showTemplatePreview = function() {
+        
+        jQuery('.fpcm-template-tab').click(function () {
+            fpcmTemplateId = jQuery(this).data('tpl');
+            
+            if (fpcmTemplateId == 6) {
+                jQuery('#showpreview').hide();
+            }
+            else {
+                jQuery('#showpreview').show();
+            }
+            
+            return false;
+        });
+        
+        jQuery('#showpreview').click(function () {
+
+            fpcmJs.appendHtml('#fpcm-templatepreview-layer', '<iframe id="fpcm-templatepreview-layer-frame" class="fpcm-full-width" src="' + fpcmActionPath + 'system/templatepreview&tid=' + fpcmTemplateId + '"></iframe>');
+
+            jQuery('#fpcm-templatepreview-layer').dialog({
+                width    : '75%',
+                modal    : true,
+                resizable: true,
+                title    : fpcmPreviewHeadline,
+                buttons  : [
+                    {
+                        text: fpcmClose,
+                        icons: {
+                            primary: "ui-icon-closethick"            
+                        },                    
+                        click: function() {
+                            jQuery(this).dialog('close');
+                            jQuery('.fpcm-templatepreview-layer-frame').remove();
+                        }
+                    }                            
+                ],
+                close: function( event, ui ) {
+                    jQuery(this).empty();
+                }
+            });
+            
+            return false;
+        })
+        
+    };
 }
