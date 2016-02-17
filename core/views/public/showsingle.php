@@ -13,6 +13,6 @@
     <?php print $commentform; ?>
 <?php endif; ?>
 
-<?php fpcmDebugOutput(); ?>
+<?php if (!$hideDebug) : ?><?php fpcmDebugOutput(); ?><?php endif; ?>
 
 <!-- Powered by FanPress CM News System version <?php print $FPCM_VERSION; ?> -->

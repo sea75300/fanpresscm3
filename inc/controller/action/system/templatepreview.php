@@ -11,7 +11,7 @@
         
         /**
          *
-         * @var \fpcm\model\view\acp
+         * @var \fpcm\model\view\pub
          */
         protected $view;
 
@@ -84,9 +84,11 @@
                     return false;
             }
 
+            $this->view->assign('hideDebug', true);
             $this->view->assign('systemMode', 1);
             $this->view->setShowHeader(true);
             $this->view->setShowFooter(true);
+            $this->view->setForceCss(true);
             $this->view->render();
 
         }        

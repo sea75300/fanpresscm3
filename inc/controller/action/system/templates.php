@@ -148,7 +148,7 @@
             $this->view->assign('allowedTags', htmlentities($this->articleTemplate->getAllowedTags(', ')));
             
             $this->view->addJsVars(array(
-                'fpcmPreviewHeadline' => $this->lang->translate('GLOBAL_PREVIEW'),
+                'fpcmPreviewHeadline' => $this->lang->translate('HL_TEMPLATE_PREVIEW'),
                 'fpcmTemplateId'      => 1
             ));
             

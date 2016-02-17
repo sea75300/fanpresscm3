@@ -43,6 +43,7 @@
         'HL_BACKUPS'                    => 'Backup manager',
         'HL_HELP'                       => 'Help',
         'HL_PACKAGEMGR_SYSUPDATES'      => 'Update FanPress CM',
+        'HL_TEMPLATE_PREVIEW'           => 'Template preview',
         
         'HL_PROFILE'                    => 'Profile',
         'PROFILE_MENU_LOGGEDINSINCE'    => 'Logged in since',
