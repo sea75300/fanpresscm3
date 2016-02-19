@@ -305,7 +305,7 @@ Help language file
             and usable. The button <span class="fpcm-ui-button"><span class="ui-icon ui-icon-alert"></span></span> at the beginning of a
             module line informs you about dependency errors. See module description for further information.</p>
             <p>In case you want to create an own module, check the <a href="http://nobody-knows.org/download/fanpress-cm/tutorial-zum-schreiben-eines-moduls/">Tutorial</a>
-            and our <a href="http://nobody-knows.org/fpupdate/doku/">class documentation</a>.
+            and our <a href="http://updates.nobody-knows.org/fanpress/docs_fpcm3/">class documentation</a>.
             </p>
         ]]>
         </text>

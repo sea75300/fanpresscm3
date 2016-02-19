@@ -339,7 +339,7 @@ Help language file
             andere Module installiert sind. Wird dir vor einem Modul der Button <span class="fpcm-ui-button"><span class="ui-icon ui-icon-alert"></span></span> angezeigt,
             so wurden für dieses Modul nicht-erfüllte Abhängigkeiten festgestellt. Werde in diesem Fall einen Blick in die Modul-Informationen.</p>
             <p>Wenn du selbst ein Modul erstellen willst, schau am Besten in das <a href="http://nobody-knows.org/download/fanpress-cm/tutorial-zum-schreiben-eines-moduls/">Tutorial</a>
-            und besuche die <a href="http://nobody-knows.org/fpupdate/doku/">Klassen-Doku</a>.</p>
+            und besuche die <a href="http://updates.nobody-knows.org/fanpress/docs_fpcm3/">Klassen-Doku</a>.</p>
         ]]>
         </text>
     </chapter>
