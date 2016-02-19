@@ -194,7 +194,7 @@ Help language file
                                 <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
                                 <li><em>Revisions enabled:</em> Enabled revision function to save changes on articles and make them
                                 restorable.</li>
-                                <li><em>Article trash is enabled:</em> Enable article trash to and be able to restore deleted articles.</li>
+                                <li><em>Enabled article trash:</em> Enable article trash to and be able to restore deleted articles.</li>
                                 <li><em>Create thumbnail if image is bigger than:</em> Setting to automatically create thumbnails if
                                 images are bigger the then amount of pixel.</li>
                                 <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnails.</li>

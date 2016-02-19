@@ -214,7 +214,7 @@ Help language file
                                 <li><em>jQuery Dateiupload verwenden:</em> Soll der moderne AJAX-Uploader genutzt werden, mit dem
                                 mehrere Dateien auf einmal hochgeladen werden können. Oder den klassischen PHP-Uploader nutzten.</li>
                                 <li><em>Revisionen aktivieren:</em> Soll FanPress CM Revisionen beim Speichern eines Artikels anlegen.</li>
-                                <li><em>Artikel vor dem Löschen in Papierkorb verschieben:</em> Artikel nicht direkt löschen sondern
+                                <li><em>Papierkorb aktivieren:</em> Artikel nicht direkt löschen sondern
                                 zuerst in Papierkorb verschieben. Hier kannst du sie ggf. wiederherstellen.</li>
                                 <li><em>Vorschaubild erzeugen wenn Bild größer ist als:</em> Automatisches Erzeugen von Thumbnails, wenn
                                 hochgeladene Bilder größer als die eingestellten Werte sind.</li>
