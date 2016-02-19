@@ -366,7 +366,7 @@
          * @return bool
          */
         final public function disable() {
-            return $this->dbcon->reverseBool($this->table, 'status', "modkey LIKE ? and status = 1", array($this->modkey));
+            return $this->dbcon->reverseBool($this->table, 'status', "modkey ".$this->dbcon->dbLike()." ? and status = 1", array($this->modkey));
         }
         
         /**
@@ -374,7 +374,7 @@
          * @return bool
          */
         final public function enable() {
-            $this->dbcon->reverseBool($this->table, 'status', "modkey LIKE ? and status = 0", array($this->modkey));
+            $this->dbcon->reverseBool($this->table, 'status', "modkey ".$this->dbcon->dbLike()." ? and status = 0", array($this->modkey));
         }
 
         /**
@@ -409,7 +409,7 @@
          * Inittiert Objekt mit Daten aus der Datenbank, sofern ID vergeben wurde
          */
         protected function init() {
-            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "modkey LIKE ?", array($this->modkey)));
+            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "modkey ".$this->dbcon->dbLike()." ?", array($this->modkey)));
             if (!$data) {
                 return false;
             }

@@ -5,7 +5,7 @@
      * Database abstraction layer
      * 
      * @article Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -83,18 +83,38 @@
          * Smiley-Tabelle
          */
         const tableSmileys      = 'smileys';
+        
+        /**
+         * Wordsperre-Tabelle
+         * @since FPCM 3.2.0
+         */
+        const tableTexts  = 'texts';
 
         /**
          * Datenbank-Verbindung
          * @var \PDO
          */
         private $connection;
+        
+        /**
+         * Datenbank-Treiber
+         * @var \fpcm\drivers\sqlDriver
+         * @since FPCM 3.2
+         */
+        private $driver;
 
         /**
          * Tabellen-Prefix
          * @var string
          */
         private $dbprefix;
+
+        /**
+         * Datenbank-Typ
+         * @var string
+         * @since FPCM 3.2
+         */
+        private $dbtype;
         
         /**
          * letzter ausgeführter Datenbank-Querystring
@@ -107,6 +127,13 @@
          * @var int
          */
         private $queryCount = 0;
+        
+        /**
+         * Tabelle, in welcher zuletzt eine Aktion durchgeführt wurde
+         * @var string
+         * @since FPCM 3.2
+         */
+        private $lastTable = '';
 
         /**
          * Konstruktor
@@ -114,18 +141,37 @@
          * @param bool $dieOnError wenn Verbindung fehlschlägt, soll Ausführung vollständig abgebrochen werden
          * @return void
          */
-        public function __construct($dbconfig = false, $dieOnError = true) {        
-            $dbconfig = is_array($dbconfig) ? $dbconfig : baseconfig::getDatabaseConfig();
+        public function __construct($dbconfig = false, $dieOnError = true) {   
+
+            $dbconfig   = (is_array($dbconfig)
+                        ? $dbconfig
+                        : baseconfig::getDatabaseConfig());
+
+            $driverClass = '\\fpcm\\drivers\\'.$dbconfig['DBTYPE'];
+
+            if (!class_exists($driverClass)) {
+                logs::sqllogWrite('SQL driver not found for '.$dbconfig['DBTYPE']);
+                $this->dieError();
+            }
+            
+            $this->driver = new $driverClass();
+            if (!is_a($this->driver, '\\fpcm\\drivers\\sqlDriver')) {
+                logs::sqllogWrite('SQL driver '.$driverClass.' must be an instance of "\\fpcm\\drivers\\sqlDriver"!');
+                $this->dieError();
+            }
 
             try {
-                $this->connection = new \PDO($dbconfig['DBTYPE'].':dbname='.$dbconfig['DBNAME'].';host='.$dbconfig['DBHOST'], $dbconfig['DBUSER'], $dbconfig['DBPASS']);
+                $this->connection = new \PDO($dbconfig['DBTYPE'].':'.$this->driver->getPdoDns($dbconfig), $dbconfig['DBUSER'], $dbconfig['DBPASS'], $this->driver->getPdoOptions());
             } catch(PDOException $e) {
                 logs::sqllogWrite($e->getMessage());
-                if (!$dieOnError) return;                
-                die('Connection to database failed!');
+                if (!$dieOnError) {
+                    return;
+                }
+                $this->dieError();
             }
 
             $this->dbprefix = $dbconfig['DBPREF'];
+            $this->dbtype   = $dbconfig['DBTYPE'];
         }
 
         /**
@@ -148,6 +194,7 @@
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = $distinct ? "SELECT DISTINCT $item FROM $table" : "SELECT $item FROM $table";
             if (!is_null($where)) $sql .= " WHERE $where";
+
             return $this->query($sql, $params);            
         }
 
@@ -163,6 +210,8 @@
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "INSERT INTO $table ($fields) VALUES ($values);";
 
+            $this->lastTable = $table;
+            
             $this->exec($sql, $params);
             return $this->getLastInsertId();
         }
@@ -208,11 +257,12 @@
          * @return bool
          */
         public function alter($table, $methode, $field, $where = "", $checkExists = true) {
-            
+
             if ($checkExists && $this->fetch($this->select($table, $field)) !== false) return true;
             
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "ALTER TABLE $table $methode $field $where";
+
             return $this->exec($sql);
         }
 
@@ -246,7 +296,7 @@
          */
         public function reverseBool($table, $field, $where) {        
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
-            $sql = "UPDATE $table SET $field = NOT $field";
+            $sql = "UPDATE $table SET ".$this->driver->getNotQuery($field);
             if (!is_null($where)) $sql .= " WHERE $where";
             return $this->exec($sql);
         }        
@@ -302,6 +352,81 @@
             
             if (!$res) {
                 $this->getStatementError($statement);
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
+         * Führt SQL-Datei aus
+         * @param string $path
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        public function execSqlFile($path) {
+
+            if (substr($path, -4) != '.sql') {
+                trigger_error('Given file was not SQL file '.$path);
+                return false;
+            }
+            
+            if (!file_exists($path) || filesize($path) < 1) {
+                trigger_error('File not found or file is empty in '.$path);
+                return false;
+            }
+
+            $this->queryCount++;
+
+            $sql = str_replace('{{dbpref}}', $this->getDbprefix(), file_get_contents($path));
+            $this->lastQueryString = $sql;
+            
+            if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
+                logs::sqllogWrite($sql);
+            }
+
+            try {
+                $res = $this->connection->exec($sql);
+            } catch (\PDOException $e) {
+                logs::sqllogWrite($e);
+            }            
+            
+            if ($res === false) {
+                $this->getError();
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
+         * Parst YaTDL-Datei und führt SQL-Statement aus
+         * @param string $path
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        public function execYaTdl($path) {
+
+            $yatdl = new \fpcm\model\system\yatdl($path);
+            if ($yatdl->parse() !== true) {
+                return false;
+            }
+            
+            $sql = str_replace('{{dbpref}}', $this->getDbprefix(), $yatdl->getSqlString());
+            $this->lastQueryString = $sql;
+            
+            if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
+                logs::sqllogWrite($sql);
+            }
+
+            try {
+                $res = $this->connection->exec($sql);
+            } catch (\PDOException $e) {
+                logs::sqllogWrite($e);
+            }            
+            
+            if ($res === false) {
+                $this->getError();
                 return false;
             }
 
@@ -382,7 +507,10 @@
             
             $this->queryCount++;
             
-            $return = $this->connection->lastInsertId();
+            $params = $this->driver->getLastInsertIdParams($this->lastTable);
+            $return = $params
+                    ? $this->connection->lastInsertId($params)
+                    : $this->connection->lastInsertId();
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
                 logs::sqllogWrite("Last insert id was: $return");
@@ -406,7 +534,7 @@
          * @return string
          */
         public function limitQuery($limit, $offset) {
-            return ' LIMIT '.(int) $limit.', '.(int) $offset;
+            return $this->driver->limitQuery($limit, $offset);
         }
         
         /**
@@ -415,7 +543,7 @@
          * @return string
          */
         public function orderBy(array $conditions) {
-            return ' ORDER BY '.implode(', ', array_map('trim', $conditions));
+            return $this->driver->orderBy($conditions);
         }
         
         /**
@@ -425,11 +553,20 @@
          * @since FPCM 3.1.0
          */
         public function concatString(array $fields) {
-            return ' CONCAT ('.implode(', ', array_map('trim', $fields)).') ';
+            return $this->driver->concatString($fields);
         }
         
         /**
-         * Tabelle-Prefix zurückgeben
+         * Erzeugt LIKE-SQL-String
+         * @return string
+         * @since FPCM 3.2.0
+         */
+        public function dbLike() {
+            return $this->driver->getDbLike();
+        }
+
+        /**
+         * Tabellen-Prefix zurückgeben
          * @return string
          */
         public function getDbprefix() {
@@ -437,12 +574,37 @@
         }
         
         /**
+         * Datenbank-Typ zurückgeben
+         * @return string
+         * @since FPCM 3.2
+         */
+        public function getDbtype() {
+            return $this->dbtype;
+        }
+                
+        /**
          * Gibt Anzahl an ausgeführt Datenbank-Queries zurück
          * @return int
          * @since FPCM 3.1.0
          */
         public function getQueryCount() {
             return $this->queryCount;
+        }
+        
+        /**
+         * Gibt Datentypen-Map zurück für YATDL
+         * @return array
+         * @since FPCM 3.2.0
+         */
+        public function getYaTDLDataTypes() {
+            return $this->driver->getYaTDLDataTypes();
+        }
+
+        /**
+         * Error die
+         */
+        private function dieError() {
+            die('Connection to database failed!');
         }
 
     }

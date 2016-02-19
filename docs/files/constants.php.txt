@@ -38,13 +38,6 @@
         define ('FPCM_IGNORE_INSTALLER_DISABLED', false);
     }
     
-    if (!defined('FPCM_UPDATER_DEVCHECK')) {
-        /**
-         * verfügbare Beta/ RC Versionen bei Update-Check anzeigen
-         */
-        define ('FPCM_UPDATER_DEVCHECK', false);
-    }
-    
     if (!defined('FPCM_UPDATE_CRONNOTIFY_EMAIL')) {        
         /**
          * Benachrichtigung über neue verfügbare Updates bei Cronjob-Ausführung verhindern
@@ -57,22 +50,6 @@
          * System-Update-Controller-Action
          */
         define ('FPCM_CONTROLLER_SYSUPDATES', 'package/sysupdate');
-    }
-    
-    if (!defined('FPCM_ACP_ARTICLELIST_LIMIT')) {
-        /**
-         * Anzahl Elemente in ACP-Artikel-Liste
-         * @deprecated since FPCM 3.1.0, moved to system options
-         */        
-        define ('FPCM_ACP_ARTICLELIST_LIMIT', 100);
-    }
-    
-    if (!defined('FPCM_ACP_LOGINFAILED_LIMIT')) {
-        /**
-         * Anzahl an Fehlerlogins bis Sperre
-         * @deprecated since FPCM 3.1.0, moved to system options
-         */        
-        define ('FPCM_ACP_LOGINFAILED_LIMIT', 5);
     }
     
     if (!defined('FPCM_UPDATER_MANUALCHECK')) {
@@ -96,18 +73,17 @@
         define ('FPCM_PAGETOKENCACHE_TIMEOUT', 3600 * 5);
     }
     
-    if (!defined('FPCM_COMMENT_MARKSPAM_PASTCHECK')) {
-        /**
-         * Anzahl an Spam deklarierter vorhandener Kommentare, wenn ein neuer Kommentar geschrieben wird
-         * Nutzung in Default-Captcha-Plugin
-         * @deprecated since FPCM 3.1.0, moved to system options
-         */
-        define ('FPCM_COMMENT_MARKSPAM_PASTCHECK', 2);
-    }
-    
     if (!defined('FPCM_DEFAULT_LANGUAGE_CODE')) {
         /**
          * Standard-Sprachcode
          */
         define ('FPCM_DEFAULT_LANGUAGE_CODE', 'de');
+    }
+    
+    if (!defined('FPCM_CACHE_DEBUG')) {
+        /**
+         * Cache-Datei-Namen nicht hashen
+         * @since FPCM 3.2
+         */
+        define ('FPCM_CACHE_DEBUG', false);
     }

@@ -13,7 +13,7 @@
      * @package fpcm.model.system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
-    class iplist extends \fpcm\model\abstracts\model {
+    class iplist extends \fpcm\model\abstracts\tablelist {
        
         /**
          * Konstruktor
@@ -79,30 +79,6 @@
          */
         public function deleteIpAdresses(array $ids) {
             return $this->dbcon->delete($this->table, 'id IN ('.implode(',', $ids).')');
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */       
-        public function delete() {
-            return;
         }
         
     }

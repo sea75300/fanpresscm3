@@ -13,7 +13,7 @@
      * @package fpcm.model.comments
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
-    class commentList extends \fpcm\model\abstracts\model {
+    class commentList extends \fpcm\model\abstracts\tablelist {
         
         /**
          * Konstruktor
@@ -250,30 +250,6 @@
             }
             
             return $res;            
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function delete() {
-            return;
         }
 
     }

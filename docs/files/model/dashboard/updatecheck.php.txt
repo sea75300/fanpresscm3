@@ -60,7 +60,7 @@
 
             $this->headline = $this->language->translate('SYSTEM_UPDATE');
             $this->content  = implode(PHP_EOL, array('<table class="fpcm-ui-table fpcm-dashboard-updates">', implode(PHP_EOL, $this->tableContent),'</table>'));
-            $this->name     = 'syscheck';            
+            $this->name     = 'updatecheck';            
             $this->position = 3;
             $this->height   = 0;
         }

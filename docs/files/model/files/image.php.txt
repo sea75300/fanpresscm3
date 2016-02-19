@@ -239,7 +239,7 @@
             $saveValues = $this->getSaveValues();
             $params = $this->events->runEvent('imageUpdate', $saveValues);
             
-            return $this->dbcon->update($this->table, $this->dbParams, array_values($saveValues), "filename LIKE {$this->filename}");
+            return $this->dbcon->update($this->table, $this->dbParams, array_values($saveValues), "filename ".$this->dbcon->dbLike()." {$this->filename}");
         }
         
         /**
@@ -250,7 +250,7 @@
             parent::delete();            
             if (file_exists($this->getFileManagerThumbnail())) unlink ($this->getFileManagerThumbnail());
             if (file_exists(\fpcm\classes\baseconfig::$uploadDir.$this->getThumbnail())) unlink (\fpcm\classes\baseconfig::$uploadDir.$this->getThumbnail());
-            return $this->dbcon->delete($this->table, 'filename LIKE ?', array($this->filename));
+            return $this->dbcon->delete($this->table, 'filename '.$this->dbcon->dbLike().' ?', array($this->filename));
             
             return false;
         }
@@ -271,7 +271,7 @@
 
             $this->filetime = time();
             $this->userid   = $userId;
-            $res = $this->dbcon->update($this->table, $this->dbParams, array_values($this->getSaveValues()), "filename LIKE '{$oldname}'");
+            $res = $this->dbcon->update($this->table, $this->dbParams, array_values($this->getSaveValues()), "filename ".$this->dbcon->dbLike()." '{$oldname}'");
             
             if (!$res) {
                 trigger_error('Unable to update database file info for '.$oldname);
@@ -299,7 +299,7 @@
                 return false;
             }
             
-            $count = $this->dbcon->count($this->table, '*', "filename LIKE '{$this->filename}'");
+            $count = $this->dbcon->count($this->table, '*', "filename ".$this->dbcon->dbLike()." '{$this->filename}'");
             if ($dbOnly) {
                 return $count > 0 ? true : false;
             }
@@ -365,7 +365,7 @@
          */
         protected function init($initDB) {
             if ($initDB) {
-                $dbData = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, userid, filetime', 'filename LIKE ?', array($this->filename)));
+                $dbData = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, userid, filetime', 'filename '.$this->dbcon->dbLike().' ?', array($this->filename)));
                 
                 if (!$dbData) return false;
                 

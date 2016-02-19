@@ -15,7 +15,7 @@
      * @package fpcm.model.articles
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
-    class articlelist extends \fpcm\model\abstracts\model {
+    class articlelist extends \fpcm\model\abstracts\tablelist {
 
         /**
          * Konstruktor
@@ -457,28 +457,4 @@
             return $res;             
         }
 
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */        
-        public function delete() {
-            return;
-        }
-        
     }

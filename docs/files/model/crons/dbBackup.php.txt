@@ -28,6 +28,11 @@
          * Auszuführender Cron-Code
          */
         public function run() {
+
+            if (\fpcm\classes\baseconfig::$fpcmDatabase->getDbtype() == 'pgsql') {
+                $this->updateLastExecTime();
+                return true;
+            }
             
             include_once \fpcm\classes\loader::libGetFilePath('Ifsnop/Mysqldump', 'Mysqldump.php');
             
@@ -91,25 +96,5 @@
             
             return true;
         }
-
-        /**
-         * Häufigkeit der Ausführung einschränken
-         * @return boolean
-         */        
-        public function checkTime() {
-            
-            if (time() < $this->getNextExecTime()) return false;            
-
-            return true;
-        }
-        
-        /**
-         * Interval-Dauer zurückgeben
-         * @return int
-         */
-        public function getIntervalTime() {
-            return 86400 * 14;
-        }
-        
     }
 

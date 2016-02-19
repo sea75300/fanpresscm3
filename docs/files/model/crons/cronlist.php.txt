@@ -24,7 +24,7 @@
         }
         
         /**
-         * Cronjov zur Ausführung registrieren
+         * Cronjob zur Ausführung registrieren
          * @param string $cronName
          * @param bool $async
          * @return boolean
@@ -67,6 +67,29 @@
         }
         
         /**
+         * Cronjob zur Ausführung via AJAX registrieren
+         * @param \fpcm\model\abstracts\cron $cron
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        public function registerCronAjax(\fpcm\model\abstracts\cron $cron) {
+
+            if (!is_a($cron, '\fpcm\model\abstracts\cron')) {
+                trigger_error("Cronjob class {$cronName} must be an instance of \"\fpcm\model\abstracts\cron\"!");
+                return false;                
+            }
+            
+            if (!$cron->getRunAsync()) {
+                return false;
+            }
+
+            $cron->run();
+            $cron->updateLastExecTime();
+            
+            return true;            
+        }
+        
+        /**
          * Cron-Klassen-Liste
          * @return array
          */
@@ -85,6 +108,51 @@
         }
         
         /**
+         * Liefert Liste von Cronjobs, deren letzte Ausführung + Interval <= aktuellen Zeit ist
+         * @return array
+         * @since FPCM 3.2.0
+         */
+        public function getExecutableCrons() {
+            
+            $res = \fpcm\classes\baseconfig::$fpcmDatabase->fetch(
+                    \fpcm\classes\baseconfig::$fpcmDatabase->select(
+                        \fpcm\classes\database::tableCronjobs,
+                        '*',
+                        '(lastexec+execinterval) < ?',
+                        array(time())
+                    ),
+                    true
+            );
+
+            $list = array();
+            
+            if (!count($res)) return $list;
+
+            foreach ($res as $value) {
+                $cronName = "\\fpcm\\model\\crons\\{$value->cjname}";
+
+                if (!class_exists($cronName)) continue;
+
+                /**
+                 * @var \fpcm\model\abstracts\cron
+                 */
+                $cron = new $cronName($value->cjname, false);
+
+                if (!is_a($cron, '\fpcm\model\abstracts\cron')) {
+                    trigger_error("Cronjob class {$cronName} must be an instance of \"\fpcm\model\abstracts\cron\"!");
+                    return false;                
+                }
+
+                $cron->createFromDbObject($value);
+                
+                $list[] = $cron;
+            }
+            
+            return $list;
+            
+        }
+        
+        /**
          * Cron-Klassen-Liste, wird im Cache vorgehalten
          * @return array
          */
@@ -96,6 +164,7 @@
             if (!count($res)) return $list;
             
             foreach ($res as $value) {
+
                 $cronName = "\\fpcm\\model\\crons\\{$value->cjname}";
 
                 if (!class_exists($cronName)) continue;
@@ -119,4 +188,3 @@
             
         }
     }
-

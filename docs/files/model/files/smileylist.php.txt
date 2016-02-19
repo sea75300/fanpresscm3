@@ -56,7 +56,7 @@
             foreach ($items as $item) {
                 $item = array_map('trim', array_map('strip_tags', $item));
                 
-                $where[] = "smileycode LIKE '{$item[1]}' AND filename LIKE '{$item[0]}' ";
+                $where[] = "smileycode = '{$item[1]}' AND filename = '{$item[0]}' ";
             }
             
             $where = implode(' OR ', $where);
@@ -64,28 +64,5 @@
             return $this->dbcon->delete($this->table, $where);            
         }
 
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function delete() {
-            return;
-        }
     }
 ?>

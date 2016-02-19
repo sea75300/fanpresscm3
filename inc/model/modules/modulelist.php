@@ -13,7 +13,7 @@
      * @package fpcm.model.system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
-    class modulelist extends \fpcm\model\abstracts\model {
+    class modulelist extends \fpcm\model\abstracts\tablelist {
 
         /**
          * Konstruktor
@@ -309,27 +309,4 @@
             
         }
 
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return false;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return false;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */        
-        public function delete() {
-            return false;
-        }
     }

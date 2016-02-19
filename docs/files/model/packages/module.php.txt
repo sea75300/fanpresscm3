@@ -51,7 +51,7 @@
                 \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                 return false;
             }
-            
+
             $res = true;
             foreach ($this->files as $zipFile) {
                 $source = $this->extractPath.$zipFile;

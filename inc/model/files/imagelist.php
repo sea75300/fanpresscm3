@@ -121,30 +121,6 @@
         public function getUploadFolderSize() {     
             return array_sum(array_map('filesize', $this->getFolderList()));
         }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function delete() {
-            return;
-        }
         
     }
 ?>

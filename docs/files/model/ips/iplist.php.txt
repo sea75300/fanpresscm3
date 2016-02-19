@@ -13,7 +13,7 @@
      * @package fpcm.model.system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
-    class iplist extends \fpcm\model\abstracts\model {
+    class iplist extends \fpcm\model\abstracts\tablelist {
        
         /**
          * Konstruktor
@@ -57,12 +57,12 @@
             $adresses       = array();
             $adresses[]     = implode($delim, $ipAddress);
             
-            $where = array('ipaddress LIKE ?');
+            $where = array('ipaddress '.$this->dbcon->dbLike().' ?');
             $counts = count($ipAddress) - 1;
             for ($i = $counts; $i > 0; $i--) {
                 $ipAddress[$i]   = '*';
                 $adresses[]     = implode($delim, $ipAddress);
-                $where[] = 'ipaddress LIKE ?';
+                $where[] = 'ipaddress '.$this->dbcon->dbLike().' ?';
             }
             
             $where = "(".implode(' OR ', $where).") AND $lockType = 1";
@@ -79,30 +79,6 @@
          */
         public function deleteIpAdresses(array $ids) {
             return $this->dbcon->delete($this->table, 'id IN ('.implode(',', $ids).')');
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */       
-        public function delete() {
-            return;
         }
         
     }

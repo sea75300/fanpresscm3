@@ -15,7 +15,7 @@
      * @package fpcm.model.user
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
-    class userList extends \fpcm\model\abstracts\model {
+    class userList extends \fpcm\model\abstracts\tablelist {
         
         /**
          * Konstruktor
@@ -175,30 +175,6 @@
          */
         public function countActiveUsers() {
             return $this->dbcon->count($this->table, '*', 'disabled = 0');
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function delete() {
-            return;
         }
         
         /**

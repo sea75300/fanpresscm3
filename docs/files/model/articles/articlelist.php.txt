@@ -3,7 +3,7 @@
      * FanPress CM Article List Model
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -13,10 +13,9 @@
      * Artikelliste
      * 
      * @package fpcm.model.articles
-     * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
-    class articlelist extends \fpcm\model\abstracts\model {
+    class articlelist extends \fpcm\model\abstracts\tablelist {
 
         /**
          * Konstruktor
@@ -36,9 +35,11 @@
          * @return array
          */
         public function getArticlesAll($monthIndex = false, array $limits = array(), $countOnly = false) {
-            $where = 'draft = 0 AND deleted = 0'.$this->dbcon->orderBy(array('createtime DESC'));
+            $where = 'draft = 0 AND deleted = 0';
             
             if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            
+            $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
             if (count($limits)) $where .= $this->dbcon->limitQuery($limits[0], $limits[1]);
             
@@ -54,9 +55,11 @@
          * @return array
          */        
         public function getArticlesActive($monthIndex = false, array $limits = array(), $countOnly = false) {
-            $where = 'draft = 0 AND archived = 0 AND deleted = 0'.$this->dbcon->orderBy(array('createtime DESC'));
+            $where = 'draft = 0 AND archived = 0 AND deleted = 0';
             
             if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            
+            $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
             if (count($limits)) $where .= $this->dbcon->limitQuery($limits[0], $limits[1]);
             
@@ -72,9 +75,11 @@
          * @return array
          */        
         public function getArticlesArchived($monthIndex = false, array $limits = array(), $countOnly = false) {
-            $where = 'archived = 1 AND deleted = 0'.$this->dbcon->orderBy(array('createtime DESC'));
+            $where = 'archived = 1 AND deleted = 0';
             
             if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            
+            $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
             if (count($limits)) $where .= $this->dbcon->limitQuery($limits[0], $limits[1]);
             
@@ -159,12 +164,12 @@
             }
             
             if (isset($conditions['title'])) {
-                $where[] = "title LIKE ?";
+                $where[] = "title ".$this->dbcon->dbLike()." ?";
                 $valueParams[] = "%{$conditions['title']}%";
             }
             
             if (isset($conditions['content'])) {
-                $where[] = "content LIKE ?";
+                $where[] = "content ".$this->dbcon->dbLike()." ?";
                 $valueParams[] = "%{$conditions['content']}%";
             }
             
@@ -175,10 +180,11 @@
             
             if (isset($conditions['category'])) {
                 $conditions['category'] = (int )$conditions['category'];
-                $where[] = "(categories LIKE ? OR categories LIKE ? OR categories LIKE ?)";
-                $valueParams[] = "%{$conditions['category']}%";
-                $valueParams[] = "%{$conditions['category']},";
-                $valueParams[] = ",{$conditions['category']}%";
+                $where[] = "(categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ?)";
+                $valueParams[] = "[{$conditions['category']}]";
+                $valueParams[] = "%,{$conditions['category']},%";
+                $valueParams[] = "{$conditions['category']},%";
+                $valueParams[] = "%,{$conditions['category']}";
             }
             
             if (isset($conditions['datefrom'])) {
@@ -241,9 +247,9 @@
                 $where2[] = $this->dbcon->limitQuery($conditions['limit'][0], $conditions['limit'][1]);
             }
             unset($conditions['limit'], $conditions['orderby']);
-            
+
             $where .= ' '.implode(' ', $where2);
-            
+
             $list = $this->dbcon->fetch($this->dbcon->select($this->table, '*', $where, array_values($valueParams)), true);
 
             return $this->createListResult($list, $monthIndex);
@@ -255,6 +261,11 @@
          * @return bool
          */
         public function deleteArticles(array $ids) {   
+            
+            if (!count($ids)) {
+                return false;
+            }
+            
             $where = 'id IN ('.implode(', ', $ids).')';
             
             if ($this->config->articles_trash) {
@@ -263,7 +274,7 @@
                 $res = $this->dbcon->delete($this->table, $where);
             }
 
-            if ($res) {
+            if ($res && !$this->config->articles_trash) {
                 $commentList = new \fpcm\model\comments\commentList();
                 $commentList->deleteCommentsByArticle($ids);
             }
@@ -384,9 +395,9 @@
             
             if (isset($condition['category'])) {
                 $condition['category'] = (int)$condition['category'];
-                $valueParams[] = "categories LIKE '{$condition['category']}'";
-                $valueParams[] = "categories LIKE '%;{$condition['category']}'";
-                $valueParams[] = "categories LIKE '{$condition['category']};%'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$condition['category']}'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '%;{$condition['category']}'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$condition['category']};%'";
                 
                 $where .= '('.implode(' OR ', $valueParams).')';
             }
@@ -446,29 +457,5 @@
             return $res;             
         }
 
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */        
-        public function delete() {
-            return;
-        }
-        
     }
 

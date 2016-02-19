@@ -64,28 +64,5 @@
             return $this->dbcon->delete($this->table, $where);            
         }
 
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function delete() {
-            return;
-        }
     }
 ?>

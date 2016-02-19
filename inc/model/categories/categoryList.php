@@ -14,7 +14,7 @@
      * @package fpcm.model.categories
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
-    class categoryList extends \fpcm\model\abstracts\model {
+    class categoryList extends \fpcm\model\abstracts\tablelist {
         
         /**
          * Konstruktor
@@ -110,30 +110,6 @@
         public function categorieExists($name) {
             $result = $this->dbcon->count($this->table,"id", "name ".$this->dbcon->dbLike()." ?", array($name));
             return ($result > 0) ? true : false;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function delete() {
-            return;
         }
 
     }

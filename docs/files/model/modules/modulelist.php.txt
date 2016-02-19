@@ -13,7 +13,7 @@
      * @package fpcm.model.system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
-    class modulelist extends \fpcm\model\abstracts\model {
+    class modulelist extends \fpcm\model\abstracts\tablelist {
 
         /**
          * Konstruktor
@@ -83,7 +83,7 @@
             $remoteModules = array_keys($this->getModulesRemote(false));
 
             if (count($remoteModules)) {
-                $where = array_fill(0, count($remoteModules), 'modkey NOT LIKE ?');            
+                $where = array_fill(0, count($remoteModules), 'modkey NOT '.$this->dbcon->dbLike().' ?');            
                 $localModules = $this->dbcon->fetch($this->dbcon->select($this->table, '*', '('.implode(' OR ', $where).')', $remoteModules), true);
             } else {
                 $localModules = $this->dbcon->fetch($this->dbcon->select($this->table, '*'), true);
@@ -206,7 +206,7 @@
          */
         public function disableModules(array $keys) {
             $this->cache->cleanup('activeeventscache');
-            return $this->dbcon->reverseBool($this->table, 'status', "(modkey LIKE '".  implode("' OR modkey LIKE '", $keys)."') AND status = 1");
+            return $this->dbcon->reverseBool($this->table, 'status', "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", $keys)."') AND status = 1");
         }
         
         /**
@@ -226,7 +226,7 @@
             
             if (!count($keys)) return false;
             
-            return $this->dbcon->reverseBool($this->table, 'status', "(modkey LIKE '".  implode("' OR modkey LIKE '", $keys)."') AND status = 0");
+            return $this->dbcon->reverseBool($this->table, 'status', "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", $keys)."') AND status = 0");
         }
         
         /**
@@ -239,7 +239,6 @@
             $this->cache->cleanup('activeeventscache');
             
             $keys = array_intersect($keys, $this->getDisabledInstalledModules());
-            
             if (!count($keys)) return false;
 
             $res = true;
@@ -259,7 +258,10 @@
                 $res = $res && \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$moduleDir.$key);
                 
                 $folders = glob(\fpcm\classes\baseconfig::$moduleDir.dirname($key).'/*', GLOB_ONLYDIR);
-                if (count($folders)) continue;
+                if (count($folders)) {
+                    trigger_error('Unable to delete module folder data in '.\fpcm\classes\baseconfig::$moduleDir.$key);
+                    continue;
+                }
 
                 $res = $res && \fpcm\model\files\ops::deleteRecursive();
             }
@@ -295,7 +297,7 @@
             $dependencies = $this->getConfigByModuleKey($moduleKey, 'dependencies');
             if (!count($dependencies)) return true;
 
-            $depencyModules = $this->dbcon->fetch($this->dbcon->select($this->table, "*", "(modkey LIKE '".  implode("' OR modkey LIKE '", array_keys($dependencies)).')'), true);
+            $depencyModules = $this->dbcon->fetch($this->dbcon->select($this->table, "*", "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", array_keys($dependencies)).')'), true);
             if (!count($depencyModules)) return false;
             
             $res = true;
@@ -307,28 +309,5 @@
             
         }
 
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return false;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return false;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */        
-        public function delete() {
-            return false;
-        }
     }
 

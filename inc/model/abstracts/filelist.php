@@ -15,7 +15,7 @@
      * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
-    abstract class filelist extends model {
+    abstract class filelist extends tablelist {
         
         /**
          * erlaute Dateierweiterungen

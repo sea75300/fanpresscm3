@@ -22,6 +22,13 @@
          * @var string
          */
         protected $leveltitle = '';
+        
+        /**
+         * Wortsperren-Liste
+         * @var \fpcm\model\wordban\items
+         * @since FPCM 3.2.0
+         */
+        protected $wordbanList;
 
         /**
          * Konstruktor
@@ -29,6 +36,7 @@
          */
         public function __construct($id = null) {
             $this->table = \fpcm\classes\database::tableRoll;
+            $this->wordbanList = new \fpcm\model\wordban\items();
             
             parent::__construct($id);
         }
@@ -54,7 +62,10 @@
          * @return boolean
          */         
         public function save() {
-            if ($this->rollExists()) return false;            
+            if ($this->rollExists()) return false;
+            
+            $this->removeBannedTexts();
+            
             $this->leveltitle = $this->events->runEvent('userrollSave', $this->leveltitle);
             
             $newId = $this->dbcon->insert($this->table, 'leveltitle', '?', array($this->leveltitle));
@@ -97,7 +108,9 @@
             if ($this->id <= 3) {
                 trigger_error('Tried to delete system roll with: '.$this->id);
                 return false;
-            }             
+            }
+            
+            $this->removeBannedTexts();
             
             $return = false;
             
@@ -118,8 +131,20 @@
          * @return bool
          */
         private function rollExists() {
-            $result = $this->dbcon->count($this->table,"id", "leveltitle LIKE '{$this->leveltitle}'");
-            return ($result > 0) ? true : false;
+            $result = $this->dbcon->count($this->table, "id", "leveltitle ".$this->dbcon->dbLike()." ?", array($this->leveltitle));
+            return ($result > 0 ? true : false);
+        }
+        
+        /**
+         * Führt Ersetzung von gesperrten Texten in Kommentar-Daten durch
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        private function removeBannedTexts() {
+
+            $this->leveltitle  = $this->wordbanList->replaceItems($this->leveltitle);
+            
+            return true;
         }
         
     }

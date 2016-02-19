@@ -65,7 +65,7 @@
             
             $files = array();
             foreach ($smileyList->getFolderList() as $file) {
-                $files[basename($file)] = basename($file);
+                $files[] = basename($file);
             }
 
             $this->view->assign('smiley', $this->smiley);

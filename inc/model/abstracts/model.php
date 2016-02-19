@@ -107,8 +107,8 @@
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $this->config   =& \fpcm\classes\baseconfig::$fpcmConfig;
-            $this->language =& \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
 
             if (is_object($this->config)) $this->config->setUserSettings();
             

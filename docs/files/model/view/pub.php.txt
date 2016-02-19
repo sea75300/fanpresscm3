@@ -17,6 +17,13 @@
     final class pub extends \fpcm\model\abstracts\view {
 
         /**
+         * Laden von CSS-Dateien erzwingen
+         * @var bool
+         * @since FPCM 3.2.0
+         */
+        private $forceCss = false;
+
+        /**
          * Konstruktor
          * @param string $viewName View-Name, ohne Endung .php
          * @param string $viewPath View-Pfad unterhalb von core/views/
@@ -40,7 +47,17 @@
         public function getShowFooter() {
             return $this->showFooter;
         }
+        
+        /**
+         * Status vom Laden von CSS-Dateien erzwingen abrufen
+         * @return bool
+         * @since FPCM 3.2.0
+         */
+        public function getForceCss() {
+            return $this->forceCss;
+        }
 
+        
         /**
          * Header angezeigen Status setzten
          * @param bool $showHeader
@@ -72,6 +89,15 @@
         }
 
         /**
+         * Laden von CSS-Dateien erzwingen aktivieren
+         * @param bool $forceCss
+         * @since FPCM 3.2.0
+         */
+        public function setForceCss($forceCss) {
+            $this->forceCss = (bool) $forceCss;
+        }
+                
+        /**
          * Lädt Datei, fügt View-Element, Header & Footer zusammen und erstellt Variablen für View
          * @see view
          * @return void
@@ -82,6 +108,10 @@
                 
                 $viewVars = $this->getViewVars();                
                 $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
+                
+                if (!isset($viewVars['hideDebug'])) {
+                    $viewVars['hideDebug'] = false;
+                }
                 
                 foreach ($viewVars as $key => $value) { $$key = $value; }
 
@@ -105,7 +135,7 @@
             /**
              * CSS und JS Files
              */
-            $this->assign('FPCM_CSS_FILES', $this->config->system_mode ? array() : $this->getViewCssFiles());
+            $this->assign('FPCM_CSS_FILES', $this->config->system_mode && !$this->forceCss ? array() : $this->getViewCssFiles());
             
             $jsFiles = $this->getViewJsFiles();
 

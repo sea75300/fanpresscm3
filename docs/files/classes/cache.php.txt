@@ -141,6 +141,10 @@
             
             if (is_null($cacheName)) return null;
 
+            if (defined('FPCM_CACHE_DEBUG') && FPCM_CACHE_DEBUG) {
+                return strtolower($cacheName);
+            }
+            
             return md5(strtolower($cacheName));
         }
 

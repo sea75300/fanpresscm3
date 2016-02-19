@@ -29,6 +29,7 @@
      * @property int    $system_editor_fontsize Standard-Schriftgröße im Editor
      * @property bool   $system_maintenance Wartungsmodusaktiv
      * @property int    $system_loginfailed_locked Anzahl fehlgeschlagener Login-Versuche, nach denen Login temporär gesperrt wird
+     * @property int    $system_updates_devcheck Entwickler-Versionen bei Update-Prüfung anzeigen
      * 
      * @property bool   $articles_revisions Revisionen aktiv
      * @property bool   $articles_trash Papierkorb aktiv
@@ -134,7 +135,7 @@
 
             foreach ($params as $key => $value) {
                 if (!isset($this->data[$key]) && !\fpcm\classes\baseconfig::installerEnabled()) continue;      
-                if (!$this->dbcon->update($this->table, array('config_value'), array($value, $key), "config_name LIKE ?")) {
+                if (!$this->dbcon->update($this->table, array('config_value'), array($value, $key), "config_name ".$this->dbcon->dbLike()." ?")) {
                     trigger_error('Unable to update config '.$key);
                 }
             }
@@ -169,7 +170,7 @@
         public function remove($keyname) {
             if (!isset($this->data[$keyname])) return false;
 
-            $res = $this->dbcon->delete($this->table, "config_name LIKE '$keyname'");
+            $res = $this->dbcon->delete($this->table, "config_name ".$this->dbcon->dbLike()." ?", array($keyname));
             
             $this->refresh();
             
@@ -193,10 +194,6 @@
                 $userData = json_decode($userData->usrmeta, true);
 
                 if (!is_array($userData)) return false;                    
-
-                if (!isset($userData['articles_acp_limit'])) {
-                    $userData['articles_acp_limit'] = FPCM_ACP_ARTICLELIST_LIMIT;
-                }
                 
                 $cache2->write($userData, $this->system_cache_timeout);
             }

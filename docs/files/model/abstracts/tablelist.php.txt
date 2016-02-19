@@ -1,0 +1,85 @@
+<?php
+    /**
+     * FanPress CM table model object
+     * 
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @since FPCM 3.2.0
+     */
+    namespace fpcm\model\abstracts;
+
+    /**
+     * Table model object
+     * 
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @since FPCM 3.2.0
+     */ 
+    abstract class tablelist {
+
+        /**
+         * DB-Verbindung
+         * @var \fpcm\classes\database
+         */
+        protected $dbcon;
+
+        /**
+         * Konstruktor
+         * @param int $id
+         * @return void
+         */
+        public function __construct() {
+ 
+            $this->dbcon    = \fpcm\classes\baseconfig::$fpcmDatabase;
+            $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
+
+            if (\fpcm\classes\baseconfig::installerEnabled()) return false;
+            
+            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
+
+            if (is_object($this->config)) {
+                $this->config->setUserSettings();
+            }
+
+        }
+        
+        /**
+         * Magische Methode für nicht vorhandene Methoden
+         * @param string $name
+         * @param mixed $arguments
+         * @return boolean
+         */
+        public function __call($name, $arguments) {
+            print "Function not found! {$name}";
+            return false;
+        }
+
+        /**
+         * Magische Methode für nicht vorhandene, statische Methoden
+         * @param string $name
+         * @param mixed $arguments
+         * @return boolean
+         */        
+        public static function __callStatic($name, $arguments) {
+            print "Function not found! {$name}";
+            return false;
+        }
+
+        /**
+         * Konstruktor
+         * @return void
+         */
+        public function __destruct() {
+            $this->dbcon  = false;
+            $this->data   = null;
+            $this->cache  = null;
+            $this->events = null;
+            
+            return;
+        }
+
+    }
+

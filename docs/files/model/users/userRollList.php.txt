@@ -15,7 +15,7 @@
      * @package fpcm.model.user
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
-    class userRollList extends \fpcm\model\abstracts\model {
+    class userRollList extends \fpcm\model\abstracts\tablelist {
 
         /**
          * Konstruktor
@@ -96,30 +96,6 @@
             }
             
             return $rollList;         
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */        
-        public function delete() {
-            return;
         }
 
     }

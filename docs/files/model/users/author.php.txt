@@ -98,11 +98,19 @@
         protected $editAction = 'users/edit&userid=';
         
         /**
+         * Wortsperren-Liste
+         * @var \fpcm\model\wordban\items
+         * @since FPCM 3.2.0
+         */
+        protected $wordbanList;
+        
+        /**
          * Konstruktor
          * @param int $id
          */
         public function __construct($id = null) {
             $this->table = \fpcm\classes\database::tableAuthors;
+            $this->wordbanList = new \fpcm\model\wordban\items();
             
             if (!is_null($id)) $this->cacheName = 'author'.$id;
             
@@ -213,13 +221,9 @@
             $userMeta = json_decode($this->usrmeta, true);
             
             if (is_null($valueName))          {
-                
-                if (!isset($userMeta['articles_acp_limit'])) {
-                    $userMeta['articles_acp_limit'] = FPCM_ACP_ARTICLELIST_LIMIT;
-                }
-                
                 return $userMeta;                
             }
+
             if (isset($userMeta[$valueName])) {
                 return $userMeta[$valueName];
             }
@@ -235,7 +239,7 @@
                     return $this->config->system_timezone;
                 break;
                 case 'articles_acp_limit' :
-                    return FPCM_ACP_ARTICLELIST_LIMIT;
+                    return $this->config->articles_acp_limit;
                 break;
             }
         }
@@ -293,7 +297,9 @@
          * @return boolean
          */
         public function save() {
-            
+
+            $this->removeBannedTexts();
+
             if (!$this->username) {
                 trigger_error('Username cannot be blank.');
                 return false;
@@ -313,12 +319,13 @@
             $this->events->runEvent('authorSave', $params);
 
             $return = false;
-            if ($this->dbcon->insert($this->table, implode(',', array_keys($params)), implode(', ', $this->getPreparedValueParams()), array_values($params))) {
+            $insertRes = $this->dbcon->insert($this->table, implode(',', array_keys($params)), implode(', ', $this->getPreparedValueParams()), array_values($params));
+            if ($insertRes) {
                 $return = true;
             }
             
             $this->cache->cleanup();
-            
+
             return $return;            
         }
 
@@ -327,6 +334,9 @@
          * @return boolean
          */
         public function update() {
+
+            $this->removeBannedTexts();
+
             if (!$this->passwordSecCheckDisabled()) {
                 if (!$this->checkPasswordSecure()) return self::AUTHOR_ERROR_PASSWORDINSECURE;                
                 $this->passwd = \fpcm\classes\security::createPasswordHash($this->passwd, $this->salt);
@@ -401,7 +411,7 @@
          * @return boolean
          */
         public function resetPassword() {
-            
+
             $this->disablePasswordSecCheck();
             
             $password       = substr(str_shuffle(ucfirst(sha1($this->username).uniqid())), 0, rand(10,16));
@@ -426,7 +436,7 @@
          * @return bool
          */
         private function authorExists() {
-            $result = $this->dbcon->count($this->table,"id", "username like '{$this->username}' OR displayname LIKE '{$this->displayname}'");
+            $result = $this->dbcon->count($this->table,"id", "username ".$this->dbcon->dbLike()." ? OR displayname ".$this->dbcon->dbLike()." ?", array($this->username, $this->displayname));
             return ($result > 0) ? true : false;
         }
         
@@ -436,6 +446,20 @@
          */
         private function checkPasswordSecure() {
             return (preg_match(\fpcm\classes\security::regexPasswordCkeck, $this->passwd)) ? true : false;
+        }
+        
+        /**
+         * Führt Ersetzung von gesperrten Texten in Benutzer-Daten durch
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        private function removeBannedTexts() {
+
+            $this->username     = $this->wordbanList->replaceItems($this->username);
+            $this->displayname   = $this->wordbanList->replaceItems($this->displayname);
+            $this->email = $this->wordbanList->replaceItems($this->email);
+            
+            return true;
         }
         
     }

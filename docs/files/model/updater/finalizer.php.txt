@@ -21,6 +21,8 @@
          */
         public function __construct() {
             parent::__construct();
+            
+            $this->config = new \fpcm\model\system\config(false, false);
         }
         
         /**
@@ -29,11 +31,12 @@
          */
         public function runUpdate() {
             $res = true &&
-                   $this->alterTables() &&
                    $this->createTables() &&
+                   $this->alterTables() &&
                    $this->addSystemOptions() &&
                    $this->updateSystemOptions() &&
                    $this->updatePermissions() &&
+                   $this->checkFilesystem() &&
                    $this->updateVersion();
             
             $this->config->setMaintenanceMode(false);
@@ -86,9 +89,12 @@
         private function addSystemOptions() {
             
             $res = true;
-            $res = $res && $this->config->add('comments_markspam_commentcount', FPCM_COMMENT_MARKSPAM_PASTCHECK);
-            $res = $res && $this->config->add('system_loginfailed_locked', FPCM_ACP_LOGINFAILED_LIMIT);
+            $res = $res && $this->config->add('comments_markspam_commentcount', 2);
+            $res = $res && $this->config->add('system_loginfailed_locked', 5);
             $res = $res && $this->config->add('system_editor_fontsize', '12pt');
+            $res = $res && $this->config->add('articles_acp_limit', 100);
+            $res = $res && $this->config->add('system_updates_devcheck', 0);
+            
             return $res;
 
         }
@@ -117,15 +123,15 @@
         private function alterTables() {
             $res = true;
             
-            if (version_compare($this->config->system_version, '3.0.4', '<')) {
+            if ($this->checkVersion('3.0.4')) {
                 $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "7, 'dbBackup', 0");                
             }
             
-            if (version_compare($this->config->system_version, '3.1.4', '<')) {
+            if ($this->checkVersion('3.1.4')) {
                 $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "8, 'fileindex', 0");                
             }
             
-            if (version_compare($this->config->system_version, '3.1.0-rc1', '<')) {
+            if ($this->checkVersion('3.1.0-rc1')) {
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD', '`imagepath`', 'TEXT NOT NULL');
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `title` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `categories` )', '', false);
@@ -137,6 +143,51 @@
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `approval` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `draft` )', '', false);
             }
+            
+            if ($this->checkVersion('3.2.0-dev')) {
+                
+                if (method_exists($this->dbcon, 'getDbtype') && $this->dbcon->getDbtype() == 'pgsql') {
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableCronjobs, 'ADD', '"execinterval"', '  BIGINT', false
+                    );                    
+                }
+                else {
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tablePermissions, 'CHANGE', '`permissionData`', '`permissiondata` BLOB NOT NULL', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tablePermissions, 'CHANGE', '`rollId`', '`rollid` bigint(20) NOT NULL', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableCategories, 'CHANGE', '`iconPath`', '`iconpath` text NOT NULL', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableSessions, 'CHANGE', '`userId`', '`userid` BIGINT( 20 ) NOT NULL ', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableSessions, 'CHANGE', '`sessionId`', '`sessionid` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ', false
+                    );
+                    $res = $res && $this->dbcon->alter(
+                        \fpcm\classes\database::tableCronjobs, 'ADD', '`execinterval`', '  BIGINT( 20 ) NOT NULL', false
+                    );
+                }
+                
+                $rows = array(
+                    'anonymizeIps'      => 2419200,
+                    'clearLogs'         => 2419200,
+                    'clearTemp'         => 604800,
+                    'fmThumbs'          => 604800,
+                    'postponedArticles' => 600,
+                    'updateCheck'       => 86400,
+                    'dbBackup'          => 604800,
+                    'fileindex'         => 86400
+                );
+                
+                foreach ($rows as $key => $value) {
+                    $res = $res && $this->dbcon->update(\fpcm\classes\database::tableCronjobs, array('execinterval'), array($value, $key), "cjname = ? AND execinterval = 0");
+                }
+                
+            }
 
             return $res;
         }
@@ -147,7 +198,57 @@
          */
         private function createTables() {
             $res = true;
+            
+            if ($this->checkVersion('3.2.0-dev')) {
+                
+                $path = (method_exists($this->dbcon, 'getDbtype')
+                      ? \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql'
+                      : \fpcm\classes\baseconfig::$dataDir.'dbstruct/mysql/14texts.sql');                
+                
+                if (method_exists($this->dbcon, 'execSqlFile')) {
+                    $res  = $res && $this->dbcon->execSqlFile($path);
+                } else {
+                    $sql = file_get_contents($path);
+                    $sql = str_replace('{{dbpref}}', $this->dbcon->getDbprefix(), $sql);
+                    $res = $res && $this->dbcon->exec($sql);
+                }
+
+            }
+            
             return $res;
+        }
+        
+        /**
+         * Prüfung von Dateisystem-Strukturen
+         * @return bool
+         */
+        private function checkFilesystem() {
+
+            if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
+                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
+            }
+            
+            if (file_exists(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js')) {
+                unlink(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js');
+            }
+            
+            $libPath = \fpcm\classes\loader::libGetFilePath('jquery', 'jquery-2.1.4.min.js');
+            if (file_exists($libPath)) {
+                unlink($libPath);
+            }
+            
+            return true;
+        }
+        
+        /**
+         * Prüft System-Version auf bestimmten Wert
+         * @param string $version
+         * @param string $option
+         * @return bool
+         * @since FPCM 3.2
+         */
+        private function checkVersion($version, $option = '<') {
+            return version_compare($this->config->system_version, $version, $option);
         }
 
         /**

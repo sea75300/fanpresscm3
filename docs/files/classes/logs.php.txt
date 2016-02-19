@@ -54,6 +54,22 @@
             
             return false;
         }
+
+        /**
+         * Schreibt Daten in SQL-Log
+         * @param string $packageName
+         * @param array $data
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        public static function pkglogWrite($packageName, array $data) {
+            if (file_put_contents(baseconfig::$logFiles['pkglog'], json_encode(array('time' => date('Y-m-d H:i:s'), 'pkgname' => $packageName, 'text' => $data)).PHP_EOL, FILE_APPEND) === false) {
+                trigger_error('Unable to write data to db log');
+                return false;
+            }
+            
+            return false;
+        }
         
         /**
          * Ließt Daten aus System-Log
@@ -110,11 +126,31 @@
         }
         
         /**
+         * Ließt Daten aus SQL-Log
+         * @return array
+         * @since FPCM 3.2.0
+         */
+        public static function pkglogRead() {
+            if (!file_exists(baseconfig::$logFiles['pkglog'])) return array();
+            
+            $content = file(baseconfig::$logFiles['pkglog'], FILE_SKIP_EMPTY_LINES);
+
+            if ($content === false) {
+                trigger_error('Unable to read data to package manager log');
+                return array();
+            }
+
+            return $content;
+            
+        }
+        
+        /**
          * Leer System-Log
          * @param int $log
          * * 1 => System-Log
          * * 2 => PHP Error Log
          * * 3 => Datenbank-Log
+         * * 4 => Paket-Manager-Log
          * * default: Session-Log
          * @return boolean
          */
@@ -128,6 +164,9 @@
                     break;
                 case 3 :
                     $file = baseconfig::$logFiles['dblog'];
+                    break;
+                case 4 :
+                    $file = baseconfig::$logFiles['pkglog'];
                     break;
                 default:
                     return baseconfig::$fpcmSession->clearSessions();

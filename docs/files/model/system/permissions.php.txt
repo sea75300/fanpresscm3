@@ -20,13 +20,13 @@
          * Rollen-ID
          * @var int
          */
-        protected $rollId;
+        protected $rollid;
 
         /**
          * Berechtigungsdaten
          * @var array
          */
-        protected $permissionData = array();
+        protected $permissiondata = array();
         
         /**
          * Nicht in Datenbank zu speichernde Daten
@@ -132,13 +132,13 @@
          * @return void
          */
         public function __construct($rollid = 0) {
-            
+
             $this->table    = \fpcm\classes\database::tablePermissions;            
             parent::__construct();
             
             if (!$rollid) return;
             
-            $this->rollId   = $rollid;            
+            $this->rollid   = $rollid;            
             $this->init();
         }
         
@@ -147,7 +147,7 @@
          * @return int
          */
         function getRollId() {
-            return $this->rollId;
+            return $this->rollid;
         }
 
         /**
@@ -155,23 +155,23 @@
          * @return array
          */
         function getPermissionData() {
-            return json_decode($this->permissionData, true);
+            return json_decode($this->permissiondata, true);
         }
 
         /**
          * Rollen-ID setzten
-         * @param array $rollId
+         * @param array $rollid
          */
-        function setRollId($rollId) {
-            $this->rollId = $rollId;
+        function setRollId($rollid) {
+            $this->rollid = $rollid;
         }
 
         /**
          * Berechtigungsdaten setzten
-         * @param array $permissionData
+         * @param array $permissiondata
          */
-        function setPermissionData(array $permissionData) {
-            $this->permissionData = json_encode($permissionData);
+        function setPermissionData(array $permissiondata) {
+            $this->permissiondata = json_encode($permissiondata);
         }
 
         /**
@@ -179,13 +179,15 @@
          * @return void
          */
         protected function init() {
-            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "rollid = ?", array($this->rollId)));
-            
+            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "rollid = ?", array($this->rollid)));
+
             if (!is_object($data)) return false;
             
-            foreach ($data as $key => $value) { $this->$key = $value; }
+            foreach ($data as $key => $value) {
+                $this->$key = $value;
+            }
             
-            $this->permissionData = json_decode($this->permissionData, true);
+            $this->permissiondata = json_decode($this->permissiondata, true);
         }
         
         /**
@@ -216,7 +218,7 @@
             $params[]   = $this->getRollId();
 
             $return     = false;
-            if ($this->dbcon->update($this->table, $fields, array_values($params), 'rollId = ?')) {
+            if ($this->dbcon->update($this->table, $fields, array_values($params), 'rollid = ?')) {
                 $return = true;
             }            
             
@@ -231,7 +233,7 @@
          * @return boolean
          */
         public function delete() {
-            $this->dbcon->delete($this->table, 'rollid = ?', array($this->rollId));            
+            $this->dbcon->delete($this->table, 'rollid = ?', array($this->rollid));            
             $this->cache->cleanup();
             
             return true;
@@ -248,21 +250,21 @@
             $permissionArray = $this->events->runEvent('permissionsCheck', $permissionArray);
 
             foreach ($permissionArray as $module => $permission) {
-                if (!isset($this->permissionData[$module])) {
+                if (!isset($this->permissiondata[$module])) {
                     trigger_error("No permissions available  for module \"$module\"!");
                     return false;
                 }
                 
                 if (is_array($permission)) {
                     foreach ($permission as $permissionItem) {
-                        $itemCheck = isset($this->permissionData[$module][$permissionItem]) ? $this->permissionData[$module][$permissionItem] : false;
+                        $itemCheck = isset($this->permissiondata[$module][$permissionItem]) ? $this->permissiondata[$module][$permissionItem] : false;
                                                 
                         $check = isset($check)
                                ? ($check || $itemCheck)
                                : $itemCheck;
                     }
                 } else {
-                    $check  = isset($this->permissionData[$module][$permission]) ? $this->permissionData[$module][$permission] : false;                    
+                    $check  = isset($this->permissiondata[$module][$permission]) ? $this->permissiondata[$module][$permission] : false;                    
                 }
                 
                 $res    = $res && $check;
@@ -273,11 +275,11 @@
         
         /**
          * Initialisiert Berechtigungen mit Standardwerten
-         * @param int $rollId
+         * @param int $rollid
          * @return bool
          */
-        public function addDefault($rollId) {            
-            $this->setRollId($rollId);
+        public function addDefault($rollid) {            
+            $this->setRollId($rollid);
             $this->setPermissionData($this->defaultPermissions);
 
             return $this->save();            
@@ -296,11 +298,11 @@
          * @return array
          */
         public function getPermissionsAll() {           
-            $datasets = $this->dbcon->fetch($this->dbcon->select($this->table, 'rollid, permissionData'));
+            $datasets = $this->dbcon->fetch($this->dbcon->select($this->table, 'rollid, permissiondata'));
             
             $res = array();
             foreach ($datasets as $dataset) {
-                $res[$dataset->rollid] = json_decode($dataset->permissionData, true);
+                $res[$dataset->rollid] = json_decode($dataset->permissiondata, true);
             }
             
             $res = $this->events->runEvent('permissionsGetAll', $res);
@@ -309,5 +311,23 @@
             
         }
         
+        public function __get($name) {
+
+            if ($name == 'permissionData') {
+                return $this->permissiondata;
+            }         
+            
+            parent::__get($name);
+        }
+
+        public function __set($name, $value) {
+            
+            if ($name == 'permissionData') {
+                $this->permissiondata = $value;
+                return true;
+            }
+            
+            parent::__set($name, $value);
+        }
     }
 

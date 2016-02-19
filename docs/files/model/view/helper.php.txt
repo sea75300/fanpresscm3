@@ -111,11 +111,11 @@
         public static function editButton($href, $active = true, $class = '') {
             
             if (!$active) {
-                print "<span class=\"fpcm-ui-button fpcm-ui-button-edit fpcm-ui-readonly\">".self::$language->translate('GLOBAL_EDIT')."</span>\n";
+                print "<span class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly\">".self::$language->translate('GLOBAL_EDIT')."</span>\n";
                 return;
             }
             
-            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-loader fpcm-ui-button-edit $class\">".self::$language->translate('GLOBAL_EDIT')."</a>\n";
+            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-loader fpcm-ui-button-edit $class\">".self::$language->translate('GLOBAL_EDIT')."</a>\n";
         }
         
         /**
@@ -347,6 +347,27 @@
         }
         
         /**
+         * Vier-Helper für einheitliche Ausgabe von Datumsangaben
+         * @param int $timespan
+         * @param string $format
+         * @since FPCM 3.2.0
+         */
+        public static function dateText($timespan, $format = false, $return = false) {
+            
+            if (!$format) {
+                $format = \fpcm\classes\baseconfig::$fpcmConfig->system_dtmask;
+            }
+
+            $timespan = date($format, $timespan); 
+            
+            if ($return) {
+                return $timespan;
+            }
+            
+            print $timespan;
+        }
+
+        /**
          * CSS-Klassen-Containter für Button-Toolbar
          * @return void
          */
@@ -381,6 +402,27 @@
         public static function helpButton($entry) {
             $href = \fpcm\classes\baseconfig::$rootPath.'index.php?module=system/help&ref='.base64_encode(strtolower($entry));
             print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-helpbutton\" id=\"fpcmuihelpbutton\" target=\"_self\" title=\"".self::$language->translate('HELP_BTN_OPEN')."\"></a>\n";
+        }
+
+        /**
+         * Erzeugt einen "Hilfe"/"Information"-Fragezeichen-Button, wie in System-Optionen, System-Check, etc genutzt.
+         * @param type $description Beschreibung für Tooltip
+         * @param type $style
+         * @param type $href Ziel-Link, false, wenn kein Link erzeugt werden soll
+         * @param type $target Link in gleichem/ neuen Fenster öffnen
+         * @since FPCM 3.1.6
+         */
+        public static function shortHelpButton($description, $style = '', $href = false, $target = '_self') {
+            
+            $html   = array();
+            
+            if ($href) $html[] = "<a href=\"{$href}\" target=\"{$target}\">";
+
+            $html[] = "<span style=\"{$style}\" class=\"fa fa-question-circle fa-fw fpcm-ui-shorthelp\" title=\"{$description}\"></span>";
+
+            if ($href) $html[] = "</a>";
+            
+            print implode('', $html).PHP_EOL;
         }
 
         /**

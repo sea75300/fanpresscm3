@@ -17,7 +17,7 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2.0
      */ 
-    class items extends \fpcm\model\abstracts\model {
+    class items extends \fpcm\model\abstracts\tablelist {
         
         /**
          * Konstruktor
@@ -95,30 +95,6 @@
 
             return str_replace($data['search'], $data['replace'], $text);
 
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function save() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function update() {
-            return;
-        }
-
-        /**
-         * nicht verwendet
-         * @return void
-         */
-        public function delete() {
-            return;
         }
 
     }

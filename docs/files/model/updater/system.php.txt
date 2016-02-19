@@ -51,7 +51,7 @@
             $this->remoteUrl = \fpcm\classes\baseconfig::$updateServer.'server3.php?data=';
             $this->checkParams  = array('version' => $this->config->system_version);
             
-            if (defined('FPCM_UPDATER_DEVCHECK') && FPCM_UPDATER_DEVCHECK) {
+            if ($this->config->system_updates_devcheck) {
                 $this->checkParams['dev'] = 1;
             }
             

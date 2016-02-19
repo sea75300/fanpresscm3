@@ -13,7 +13,6 @@
      * Artikel Objekt
      * 
      * @package fpcm.model.articles
-     * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class article extends \fpcm\model\abstracts\model {
@@ -132,6 +131,13 @@
          * @var string
          */        
         protected $editAction = 'articles/edit&articleid=';
+        
+        /**
+         * Wortsperren-Liste
+         * @var \fpcm\model\wordban\items
+         * @since FPCM 3.2.0
+         */
+        protected $wordbanList;
 
         /**
          * Konstruktor
@@ -139,6 +145,7 @@
          */
         public function __construct($id = null) {
             $this->table = \fpcm\classes\database::tableArticles;
+            $this->wordbanList = new \fpcm\model\wordban\items();
             
             parent::__construct($id);
         }
@@ -479,6 +486,9 @@
          * @return int
          */        
         public function save() {
+
+            $this->removeBannedTexts();
+
             $params = $this->getPreparedSaveParams();
             $params = $this->events->runEvent('articleSave', $params);
 
@@ -504,6 +514,9 @@
          * @return boolean
          */        
         public function update() {            
+
+            $this->removeBannedTexts();
+
             $params     = $this->getPreparedSaveParams();
             $fields     = array_keys($params);
             
@@ -728,5 +741,19 @@
             
             $search = array("</{$htmlTag}><br>", "</{$htmlTag}><br/>", "</{$htmlTag}><br />");
             $this->content = str_replace($search, "</{$htmlTag}>", $this->content);
+        }
+        
+        /**
+         * Führt Ersetzung von gesperrten Texten in Artikel-Daten durch
+         * @return boolean
+         * @since FPCM 3.2.0
+         */
+        private function removeBannedTexts() {
+
+            $this->title     = $this->wordbanList->replaceItems($this->title);
+            $this->content   = $this->wordbanList->replaceItems($this->content);
+            $this->imagepath = $this->wordbanList->replaceItems($this->imagepath);
+            
+            return true;
         }
     }

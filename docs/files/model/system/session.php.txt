@@ -20,13 +20,13 @@
          * Session-ID
          * @var string
          */
-        protected $sessionId;
+        protected $sessionid;
         
         /**
          * Benutzer-ID
          * @var int
          */
-        protected $userId;
+        protected $userid;
 
         /**
          * Login-Zeit
@@ -84,7 +84,7 @@
             }
 
             if ($init && !is_null(\fpcm\classes\security::getSessionCookieValue())) {                
-                $this->sessionId = \fpcm\classes\security::getSessionCookieValue();            
+                $this->sessionid = \fpcm\classes\security::getSessionCookieValue();            
                 $this->init();
                 
                 if ($this->sessionExists) {                    
@@ -92,10 +92,10 @@
                         /**
                          * ID des aktuellen Benutzers, nur verfügbar wenn Session existiert
                          */
-                        define('FPCM_USERID', $this->userId);
+                        define('FPCM_USERID', $this->userid);
                     }
                     
-                    $this->currentUser = new \fpcm\model\users\author($this->userId);
+                    $this->currentUser = new \fpcm\model\users\author($this->userid);
                     if ($this->lastaction <= time() - 60) {
                         $this->lastaction  = time();
                         $this->update();
@@ -109,7 +109,7 @@
          * @return string
          */
         public function getSessionId() {
-            return $this->sessionId;
+            return $this->sessionid;
         }
 
         /**
@@ -117,7 +117,7 @@
          * @return int
          */
         public function getUserId() {
-            return (int) $this->userId;
+            return (int) $this->userid;
         }
 
         /**
@@ -154,18 +154,18 @@
 
         /**
          * Session-ID-String setzten
-         * @param string $sessionId
+         * @param string $sessionid
          */
-        public function setSessionId($sessionId) {
-            $this->sessionId = $sessionId;
+        public function setSessionId($sessionid) {
+            $this->sessionid = $sessionid;
         }
 
         /**
          * Benutzer-ID setzten
-         * @param int $userId
+         * @param int $userid
          */
-        public function setUserId($userId) {
-            $this->userId = (int) $userId;
+        public function setUserId($userid) {
+            $this->userid = (int) $userid;
         }
 
         /**
@@ -254,7 +254,7 @@
             $params     = $this->events->runEvent('sessionUpdate', $params);
 
             $return = false;
-            if ($this->dbcon->update($this->table, $fields, array_values($params), 'sessionId LIKE ?')) {
+            if ($this->dbcon->update($this->table, $fields, array_values($params), 'sessionid '.$this->dbcon->dbLike().' ?')) {
                 $return = true;
             }
             
@@ -280,13 +280,13 @@
         public function checkUser($username, $password) {
             $userList = new \fpcm\model\users\userList();            
 
-            $userId = $userList->getUserIdByUsername($username);
-            if (!$userId) {
+            $userid = $userList->getUserIdByUsername($username);
+            if (!$userid) {
                 trigger_error('Login failed for username '.$username.'! User not found. Request was made by '.\fpcm\classes\http::getIp());
                 return false;
             }
             
-            $user = new \fpcm\model\users\author($userId);
+            $user = new \fpcm\model\users\author($userid);
             if ($user->getDisabled()) {
                 trigger_error('Login failed for username '.$username.'! User is disabled. Request was made by '.\fpcm\classes\http::getIp());
                 return \fpcm\model\users\author::AUTHOR_ERROR_DISABLED;
@@ -299,8 +299,8 @@
                 $this->login         = $timer;
                 $this->lastaction    = $timer;
                 $this->logout        = 0;
-                $this->userId        = $userId;
-                $this->sessionId     = \fpcm\classes\security::createSessionId();
+                $this->userid        = $userid;
+                $this->sessionid     = \fpcm\classes\security::createSessionId();
                 $this->ip            = \fpcm\classes\http::getIp();
                 $this->sessionExists = true;
                 
@@ -319,7 +319,7 @@
          */
         public function setCookie() {       
             $expire = $this->getLogin() + $this->config->system_session_length;
-            return setcookie(\fpcm\classes\security::getSessionCookieName(),$this->sessionId,$expire,'/','',false,true);
+            return setcookie(\fpcm\classes\security::getSessionCookieName(),$this->sessionid,$expire,'/','',false,true);
         }
                 
         /**
@@ -338,7 +338,7 @@
         public function getSessions() {
             $sessions = array();
             
-            $listItems = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionId NOT LIKE ?", array($this->sessionId)), true);
+            $listItems = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionid NOT ".$this->dbcon->dbLike()." ?", array($this->sessionid)), true);
             
             if (!$listItems) return $sessions;
             
@@ -357,7 +357,7 @@
          * @return bool
          */
         public function clearSessions() {
-            return $this->dbcon->delete($this->table, "sessionId NOT LIKE ? AND lastaction < ?", array($this->sessionId, time()));
+            return $this->dbcon->delete($this->table, "sessionid NOT ".$this->dbcon->dbLike()." ? AND lastaction < ?", array($this->sessionid, time()));
         }
 
         /**
@@ -366,17 +366,45 @@
         protected function init() {
             
             $lastaction = time() + $this->config->system_session_length;
-            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionId = ? AND logout = 0 AND lastaction <= ? ".$this->dbcon->limitQuery(0, 1), array($this->sessionId, $lastaction)));
-            
+            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionid = ? AND logout = 0 AND lastaction <= ? ".$this->dbcon->limitQuery(0, 1), array($this->sessionid, $lastaction)));
+
             if ($data === false) {
                 $this->sessionExists = false;
                 return;
             }
             foreach ($data as $key => $value) {
                 $this->$key = $value;
-            }            
+            }
+
             $this->sessionExists = true;
         }
         
+        public function __get($name) {
+            
+            if ($name == 'sessionId') {
+                return $this->sessionid;
+            }
+            
+            if ($name == 'userId') {
+                return $this->userid;
+            }            
+            
+            parent::__get($name);
+        }
+
+        public function __set($name, $value) {
+            
+            if ($name == 'sessionId') {
+                $this->sessionid = $value;
+                return true;
+            }
+            
+            if ($name == 'userId') {
+                $this->userid = $value;
+            }            
+            
+            parent::__set($name, $value);
+        }
+
     }
 ?>
