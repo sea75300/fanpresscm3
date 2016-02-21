@@ -424,14 +424,14 @@ Help language file
             <p>FanPress CM bietet dir die Möglichkeit, beim schreiben/aktualisieren eines Artikels automatisch einen Tweet bei Twitter
             erzeugen zu lassen.</p>
             <p>Um die Verbindung zu Twitter herzustellen, folge einfach der Anleitung.</p>
-            <ol>
+            <ol class="list-large">
+                <li>Logge dich zuerst über die Twitter-Webseite ganz normal ein. <a href="https://twitter.com/login" class="fpcm-ui-button">zum Login</a></li>
                 <li>Öffne die Einstellungen der Twitter-Verbindungen über <strong>Optionen &rarr; Systemeinstellungen &rarr;
                 Twitter-Verbindung</strong>.</li>
                 <li><strong>API-Schlüssel:</strong> Klicke auf den Button <span class="fpcm-ui-button">API-Schlüssel
-                anzufordern</span> und logge dich auf der Entwickler-Webseite von Twitter mit deinen normalen Zugangsdaten ein.</li>
-                <li>Scrolle auf der folgenden Seite ganz nach unten bis du im Footer den Punkt "Manage Your Apps" siehst und klicke
-                diesen an. Wählen den Button <span class="fpcm-ui-button">Create new app</span>, fülle das Formular aus und bestätige mit
-                <span class="fpcm-ui-button">Create your Twitter application</span>.</li>
+                anzufordern</span>, du wirst zur AppVerwaltung von Twitter weitergeleitet.</li>
+                <li>Wähle den Button <span class="fpcm-ui-button">Create new app</span>.</li>
+                <li>Fülle das angezeigte Formular aus und bestätige mit <span class="fpcm-ui-button">Create your Twitter application</span>.</li>
                 <li>Öffne den Tab <strong>Keys and Access Tokens</strong> und kopiere von dort <strong>Consumer Key (API Key)</strong>
                     und <strong>Consumer Secret (API Secret)</strong> in die Felder in den Systemeinstellungen.</li>
                 <li>Um Tweets erzeugen zu können, stelle den <strong>Access Level</strong> über den Reiter <strong>Permissions</strong>

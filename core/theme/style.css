@@ -118,6 +118,11 @@ img {
     border:0;
 }
 
+ul.list-large li,
+ol.list-large li {
+    padding: 0.5em 0;
+}
+
 /* .CSS-Klassen und #IDs */
 
 .fpcm-wrapper {

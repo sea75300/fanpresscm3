@@ -385,14 +385,14 @@ Help language file
         <![CDATA[
             <p>FanPress CM includes a twitter connection interface, so you can directly connect to Twitter and create tweets when
             publishing and/or updating an article.</p>
-            <p>Follow the following steps to initialize the connection.</p>
-            <ol>
+            <p>Execute the following steps to initialize the connection.</p>
+            <ol class="list-large">
+                <li>Open Twitter.com and sign in with your credentials. <a href="https://twitter.com/login" class="fpcm-ui-button">Open login</a></li>
                 <li>Head to <strong>Options &rarr; System settings &rarr; Twitter connection</strong>.</li>
-                <li><strong>API key:</strong> Click the  <span class="fpcm-ui-button">Request API key and/or token</span> button
-                and log into Twitters developer page with your account data.</li>
-                <li>Scroll down to a page footer until you see a link called "Manage Your Apps" and click to it. Next select the
-                <span class="fpcm-ui-button">Create new app</span> button. Insert the requested data into the form and click the 
-                <span class="fpcm-ui-button">Create your Twitter application</span> button.</li>
+                <li><strong>API key:</strong> Click the  <span class="fpcm-ui-button">Request API key and/or token</span>, you well be redirected to
+                    Twitters app mangement site.</li>
+                <li>Select the <span class="fpcm-ui-button">Create new app</span> button.</li>
+                <li>Insert the requested data into the form and click <span class="fpcm-ui-button">Create your Twitter application</span>.</li>
                 <li>Now open tab <strong>Keys and Access Tokens</strong> and copy <strong>Consumer Key (API Key)</strong> and
                     <strong>Consumer Secret (API Secret)</strong> into the same-named fields in system settings.</li>
                 <li>To create tweets select the <strong>Permissions</strong> tab and change <strong>Access Level</strong> to

@@ -38,11 +38,14 @@
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
 
+            $this->view->assign('reloadSite', false);
+            
             if ($this->buttonClicked('profileSave') && $pageTokenCheck) {
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
-                $author->setUserMeta($this->getRequestVar('usermeta'));
                 
+                $metaData = $this->getRequestVar('usermeta');
+                $author->setUserMeta($metaData);
 
                 $newpass         = $this->getRequestVar('password');
                 $newpass_confirm = $this->getRequestVar('password_confirm');
@@ -67,6 +70,8 @@
                         $this->view->addErrorMessage('SAVE_FAILED_USER_PROFILE');
                     }
                     elseif ($res === true) {
+                        $reloadSite = ($metaData['system_lang'] != $this->config->system_lang ? true : false);
+                        $this->view->assign('reloadSite', $reloadSite);
                         $this->view->addNoticeMessage('SAVE_SUCCESS_EDITUSER_PROFILE');
                     }
                     elseif ($res === \fpcm\model\users\author::AUTHOR_ERROR_PASSWORDINSECURE) {

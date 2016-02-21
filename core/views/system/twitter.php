@@ -9,7 +9,7 @@
         <td></td>
         <td>
             <?php if (!$globalConfig['twitter_data']['consumer_key'] || !$globalConfig['twitter_data']['consumer_secret'] || !$twitterIsActive) : ?>
-                <?php \fpcm\model\view\helper::linkButton('https://dev.twitter.com/', 'SYSTEM_OPTIONS_TWITTER_CONNECT', '', '', '_blank'); ?>
+                <?php \fpcm\model\view\helper::linkButton('https://apps.twitter.com/', 'SYSTEM_OPTIONS_TWITTER_CONNECT', '', '', '_blank'); ?>
             <?php endif; ?>
             
             <?php if ($globalConfig['twitter_data']['user_token'] && $globalConfig['twitter_data']['user_secret'] && $twitterIsActive) : ?>
