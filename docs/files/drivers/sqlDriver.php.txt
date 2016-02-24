@@ -1,6 +1,6 @@
 <?php
     /**
-     * FanPress CM MySQL database driver class
+     * FanPress CM Database driver base class
      * 
      * @article Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2016, Stefan Seehafer
@@ -10,7 +10,7 @@
     namespace fpcm\drivers;
 
     /**
-     * MySQL database driver class
+     * Database driver base class
      * 
      * @package fpcm.drivers.database
      * @author Stefan Seehafer <sea75300@yahoo.de>

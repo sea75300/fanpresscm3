@@ -38,13 +38,13 @@
         const ERROR_YAMLPARSER_INDICES = -4;
         
         /**
-         *
+         * In Array geparstes YAML-String
          * @var array
          */
         protected $yamlArray;
         
         /**
-         *
+         * Dateipfad zur YAML-Datei
          * @var string
          */
         protected $filePath;

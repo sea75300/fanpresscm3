@@ -95,6 +95,7 @@
 
         /**
          * Liefert ein array aller aktiven Benutzer
+         * @param bool $byGroup (@since FPCM 3.2.0)
          * @return array
          */
         public function getUsersDisabled($byGroup = false) {

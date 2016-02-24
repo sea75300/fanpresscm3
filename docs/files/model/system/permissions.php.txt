@@ -311,6 +311,11 @@
             
         }
         
+        /**
+         * Magic get
+         * @param string $name
+         * @return mixed
+         */
         public function __get($name) {
 
             if ($name == 'permissionData') {
@@ -320,6 +325,11 @@
             parent::__get($name);
         }
 
+        /**
+         * Magic set
+         * @param mixed $name
+         * @param mixed $value
+         */
         public function __set($name, $value) {
             
             if ($name == 'permissionData') {

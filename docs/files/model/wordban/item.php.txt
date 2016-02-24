@@ -39,6 +39,7 @@
 
         /**
          * Konstruktor
+         * @param int $id
          */
         public function __construct($id = null) {
 

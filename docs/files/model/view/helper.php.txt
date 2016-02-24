@@ -348,8 +348,9 @@
         
         /**
          * Vier-Helper für einheitliche Ausgabe von Datumsangaben
-         * @param int $timespan
-         * @param string $format
+         * @param int $timespan Zeitstempel
+         * @param string $format Datumsformat, überschreibt "system_dtmask"
+         * @param strig $return Datum-String zurückgeben und nicht in Ausgabe schreiben
          * @since FPCM 3.2.0
          */
         public static function dateText($timespan, $format = false, $return = false) {

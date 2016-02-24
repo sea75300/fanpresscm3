@@ -24,6 +24,42 @@
          * @var \fpcm\classes\database
          */
         protected $dbcon;
+        
+        /**
+         * Tabellen-Name
+         * @var string
+         */
+        protected $table;
+        
+        /**
+         * System-Cache
+         * @var \fpcm\classes\cache
+         */
+        protected $cache;
+        
+        /**
+         * Event-Liste
+         * @var \fpcm\model\events\eventList 
+         */
+        protected $events;
+        
+        /**
+         * System-Config-Objekt
+         * @var \fpcm\model\system\config
+         */
+        protected $config;
+        
+        /**
+         * System-Sprachen-Objekt
+         * @var \fpcm\classes\language
+         */
+        protected $language;
+        
+        /**
+         * Cache name
+         * @var string
+         */
+        protected $cacheName    = false;
 
         /**
          * Konstruktor
@@ -34,6 +70,7 @@
  
             $this->dbcon    = \fpcm\classes\baseconfig::$fpcmDatabase;
             $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
+            $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)));
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             

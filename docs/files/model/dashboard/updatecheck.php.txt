@@ -130,6 +130,7 @@
         }
         
         /**
+         * Gibt benötigte Javascript-Variablen zurück
          * @see \fpcm\model\interfaces\dashcontainer::getJavascriptVars()
          * @return array
          */
@@ -146,6 +147,7 @@
         }
         
         /**
+         * Gibt Liste mit zu Variablen zurück, welche an Dashboard-Controller-View übergeben werden sollen
          * @see \fpcm\model\interfaces\dashcontainer::getControllerViewVars()
          * @return array
          */

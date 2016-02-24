@@ -75,6 +75,7 @@
         
         /**
          * Erzeugt Parameter für @see \PDO::lastInsertId()
+         * @param string $table
          * @return string
          */
         public function getLastInsertIdParams($table) {
