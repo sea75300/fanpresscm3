@@ -51,62 +51,6 @@
         }
         
         /**
-         * Löscht Verzeichnis-Inhalt rekursiv
-         * @param string $path
-         * @return bool
-         */
-        public static function deleteRecursive($path) {
-
-            if (!$path || !file_exists($path) || !is_dir($path)) return false;
-
-            $res = true;
-            
-            $pathFiles  = glob($path.'/*');
-
-            if (is_array($pathFiles)) {
-                $hfPath = realpath($path.'/.*');
-                if ($hfPath) {
-                    $pathFilesHidden = glob($hfPath);
-                    if (is_array($pathFilesHidden)) {
-                        $pathFiles += $pathFilesHidden;
-                    }
-                }
-
-                $htaPath = realpath($path.'/.htaccess');
-                if ($htaPath) {
-                    $pathFilesHtAccess = glob($htaPath);
-                    if (is_array($pathFilesHtAccess)) {
-                        $pathFiles += $pathFilesHtAccess;
-                    }
-                }
-
-                foreach ($pathFiles as $pathFile) {
-
-                    if (!file_exists($pathFile) ||
-                        !is_writable($pathFile) ||
-                        (substr($pathFile, -2) == '/.' && !substr($pathFile, -5) == '/.hta') ||
-                        substr($pathFile, -3) == '/..') {
-                        continue;
-                    }
-                    
-                    if (is_dir($pathFile)) {
-                        $res = $res && self::deleteRecursive($pathFile);
-                        if (file_exists($pathFile)) {
-                            $res = $res && rmdir($pathFile);                            
-                        }
-                        continue;
-                    }
-
-                    $res = $res && unlink($pathFile);
-                }   
-            }
-            
-            clearstatcache();
-            
-            return $res && rmdir($path);
-        }
-        
-        /**
          * Entfernt FanPress CM baseDir-String aus einer Pfadangabe
          * @param string $path
          * @param bool $keepFanPress
@@ -121,5 +65,96 @@
             }
             
             return str_replace($replacePath, '', $path);
+        }
+        
+        /**
+         * Löscht Verzeichnis-Inhalt rekursiv
+         * @param string $path
+         * @return bool
+         */
+        public static function deleteRecursive($path) {
+
+            if (!$path || !file_exists($path) || !is_dir($path)) {
+                return false;
+            }
+
+            $res = self::deleteRecursiveExec($path);
+            
+            clearstatcache();
+
+            if ($res < 0) {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        /**
+         * Interne Funktion, welche Löschvorgang durchführt
+         * @param string $path
+         * @return int
+         * @since FPCM 3.2.0
+         */
+        private static function deleteRecursiveExec($path) {
+
+            if (!is_dir($path)) {
+                return -1;
+            }
+
+            $dir = opendir($path);           
+            if (!$dir) {
+                return -2;
+            }
+
+            while (($entry = readdir($dir)) !== false) {
+
+                if ($entry == '.' || $entry == '..') {
+                    continue;
+                }
+
+                $entryPath = $path.DIRECTORY_SEPARATOR.$entry;
+                
+                if (is_dir($entryPath)) {
+                    $res = self::deleteRecursiveExec($entryPath);
+                    
+                    switch ($res) {
+                        case -1 :
+                        case -2 :
+                            closedir($dir);
+                            return -2;
+                            break;
+                        case -3 :
+                            closedir($dir);
+                            return -3;
+                            break;
+                    }
+                    
+                    if ($res != 0) {
+                        closedir($dir);
+                        return -2;
+                    }
+           
+            
+                } elseif (is_file($entryPath) || is_link($entryPath)) {
+                    $res = unlink ($entryPath);
+                   
+                    if (!$res) {
+                        closedir($dir);
+                        return -2;
+                    }
+                } else {
+                    closedir($dir);
+                    return -3;
+                }
+            }
+
+            closedir($dir);
+            $res = rmdir($path);
+
+            if (!$res) {
+                return -2;
+            }
+
+            return 0;
         }
     }

@@ -247,25 +247,29 @@
                 if (!class_exists($moduleClass)) continue;
                 
                 $modObj = new $moduleClass($key, '', '');
-
-                if (!is_a($modObj, '\fpcm\model\abstracts\module')) continue;
+                if (!is_a($modObj, '\fpcm\model\abstracts\module')) {
+                    continue;
+                }
                 
                 $res = $res && $modObj->runUninstall();                
             }
             
-            $res = $res && $this->dbcon->delete($this->table, "(modkey = '".  implode("' OR modkey = '", $keys)."') AND status = 0");
+            $res     = $res && $this->dbcon->delete($this->table, "(modkey = '".  implode("' OR modkey = '", $keys)."') AND status = 0");
+            $lastKey = false;
             foreach ($keys as $key) {
                 $res = $res && \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$moduleDir.$key);
-                
-                $folders = glob(\fpcm\classes\baseconfig::$moduleDir.dirname($key).'/*', GLOB_ONLYDIR);
-                if (count($folders)) {
-                    trigger_error('Unable to delete module folder data in '.\fpcm\classes\baseconfig::$moduleDir.$key);
-                    continue;
-                }
-
-                $res = $res && \fpcm\model\files\ops::deleteRecursive();
+                $lastKey = $key;
             }
             
+            if (!$lastKey) {
+                return $res;
+            }
+
+            $folders = glob(\fpcm\classes\baseconfig::$moduleDir.dirname($lastKey).'/*', GLOB_ONLYDIR);
+            if (!count($folders)) {
+                $res = $res && \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$moduleDir.dirname($lastKey));                    
+            }
+
             return $res;
         }
 

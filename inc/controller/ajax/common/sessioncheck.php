@@ -23,11 +23,11 @@
          */
         public function process() {
             
-            if ($this->session->exists()) {
-                die('1');
+            if (!is_object($this->session) || !$this->session->exists()) {
+                die('0');
             }
             
-            die('0');
+            die('1');
             
         }
 
