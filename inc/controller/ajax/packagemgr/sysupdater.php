@@ -116,15 +116,6 @@
                         \fpcm\classes\logs::syslogWrite($pkg->getCopyErrorPaths());
                         $this->returnData['nextstep'] = 5;
                     }
-                    
-                    if ($this->canConnect) {
-                        $pkg->loadPackageFileListFromTemp();
-
-                        $filelistoutput = new \fpcm\model\files\tempfile('filelistOuput');
-                        $filelistoutput->setContent('<ul class="fpcm-updater-list-files fpcm-hidden"><li>'.implode('</li><li>', $pkg->getFiles()).'</li></ul>');
-                        $filelistoutput->save();                        
-                    }                    
-                    
                     break;
                 case 4 :
                     $finalizer = new \fpcm\model\updater\finalizer();
@@ -139,10 +130,10 @@
                     break;
                 case 5 :
                     if ($this->canConnect) {
+                        $pkg->loadPackageFileListFromTemp();
+                        \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
                         $pkg->cleanup();
                         $versionDataFile->delete();
-                        $filelistoutput = new \fpcm\model\files\tempfile('filelistOuput');                        
-                        \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $filelistoutput->getContent());
                     }
                     
                     \fpcm\classes\baseconfig::enableAsyncCronjobs(true);

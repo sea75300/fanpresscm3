@@ -45,10 +45,12 @@
      * @return boolean
      */
     function fpcmErrorHandler($ecode, $etext, $efile, $eline) {        
+
         $errorLog = dirname(__DIR__).'/data/logs/phplog.txt';
         
-        if (!is_writable($errorLog)) {            
-            return true;
+        if (file_exists($errorLog) && !is_writable($errorLog)) {
+            trigger_error($errorLog.' is not writable', E_USER_ERROR);
+            return false;
         }
         
         $text = array($etext, 'in file '.$efile.', line '.$eline, 'ERROR CODE: '.$ecode);
@@ -56,7 +58,7 @@
         $LogLine = json_encode(array('time' => date('Y-m-d H:i:s'), 'text' => implode(PHP_EOL, $text)));
         file_put_contents($errorLog, $LogLine.PHP_EOL, FILE_APPEND);
 
-        return (defined('FPCM_DEBUG' && FPCM_DEBUG) ? false : true);
+        return true;
     }
     
     /**
