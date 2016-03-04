@@ -1,6 +1,6 @@
 <?php
     $newversion    = '3.1.7';
-    $newversionDev = '3.2.0-b2';
+    $newversionDev = '3.2.0-b3';
     
     $installfile   = 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress3.1.7_full.zip';
     
@@ -19,7 +19,7 @@
         ),
 
         '3.1.7dev' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
             'force'     => 0,
             'message'   => 'FanPress CM 3.2 beta1',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-4-veroeffentlicht/',
@@ -27,7 +27,7 @@
         ),
 
         '3.1.7dev' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
             'force'     => 0,
             'message'   => 'FanPress CM 3.2 beta1',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-4-veroeffentlicht/',
@@ -35,7 +35,7 @@
         ),
 
         '3.2.0-devdev' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
             'force'     => 0,
             'message'   => 'FanPress CM 3.2 beta1',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-4-veroeffentlicht/',
@@ -43,7 +43,7 @@
         ),
 
         '3.2.0-a1' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
             'force'     => 0,
             'message'   => 'FanPress CM 3.2 beta1',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-4-veroeffentlicht/',
@@ -51,7 +51,7 @@
         ),
 
         '3.2.0-a1dev' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
             'force'     => 0,
             'message'   => 'FanPress CM 3.2 beta1',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-4-veroeffentlicht/',
@@ -59,7 +59,7 @@
         ),
 
         '3.2.0-b1' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
             'force'     => 0,
             'message'   => 'FanPress CM 3.2 beta1',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-4-veroeffentlicht/',
@@ -67,10 +67,26 @@
         ),
 
         '3.2.0-b1dev' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
             'force'     => 0,
             'message'   => 'FanPress CM 3.2 beta1',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-4-veroeffentlicht/',
+            'signature' => ''
+        ),
+
+        '3.2.0-b2' => array(
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
+            'force'     => 0,
+            'message'   => 'FanPress CM 3.2 beta3',
+            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-2-0-veroeffentlicht/',
+            'signature' => ''
+        ),
+
+        '3.2.0-b2dev' => array(
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-b3.zip',
+            'force'     => 0,
+            'message'   => 'FanPress CM 3.2 beta3',
+            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-2-0-veroeffentlicht/',
             'signature' => ''
         )
     );
