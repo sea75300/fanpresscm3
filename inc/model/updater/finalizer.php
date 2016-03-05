@@ -93,7 +93,7 @@
             $res = $res && $this->config->add('system_loginfailed_locked', 5);
             $res = $res && $this->config->add('system_editor_fontsize', '12pt');
             $res = $res && $this->config->add('articles_acp_limit', 100);
-            $res = $res && $this->config->add('system_updates_devcheck', 0);
+            $res = $res && $this->config->add('system_updates_devcheck', (defined('FPCM_UPDATER_DEVCHECK') ? (int) FPCM_UPDATER_DEVCHECK : 0) );
             
             return $res;
 
