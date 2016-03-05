@@ -84,6 +84,8 @@
                     return false;
             }
 
+            $this->view->assign('showToolbars', false);
+            $this->view->assign('commentform', '');
             $this->view->assign('hideDebug', true);
             $this->view->assign('systemMode', 1);
             $this->view->setShowHeader(true);
