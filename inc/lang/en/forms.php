@@ -47,6 +47,7 @@
         'GLOBAL_PAGER'                  => 'Page {{current}} of {{total}}',
         'GLOBAL_DOWNLOAD'               => 'Download',
         'GLOBAL_PREVIEW'                => 'Show preview',
+        'GLOBAL_WRITEMAIL'              => 'Write an e-mail',
 
         'LOGIN_BTN'                     => 'Login',
         'LOGIN_NEWPASSWORD'             => 'Request new password',

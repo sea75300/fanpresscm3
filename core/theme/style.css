@@ -986,13 +986,6 @@ h3, .fpcm-dashboard-container h3 {
     width: 66.66666%;
 }
 
-@media (max-width: 50em) {
-    .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
-    .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
-        width: 100%;
-    }
-}
-
 .fpcm-dashboard-container.fpcm-dashboard-container-height-small .fpcm-dashboard-container-inner {
     height: 250px;
 }
@@ -1002,14 +995,30 @@ h3, .fpcm-dashboard-container h3 {
 }
 
 .fpcm-dashboard-container.fpcm-dashboard-container-height-big .fpcm-dashboard-container-inner {
-    height: 600px;
+    height: 500px;
+}
+
+.fpcm-dashboard-container.fpcm-dashboard-container-height-small .fpcm-dashboard-container-content-wrapper {
+    height: 190px;
+}
+
+.fpcm-dashboard-container.fpcm-dashboard-container-height-middle .fpcm-dashboard-container-content-wrapper {
+    height: 315px;
+}
+
+.fpcm-dashboard-container.fpcm-dashboard-container-height-big .fpcm-dashboard-container-content-wrapper {
+    height: 440px;
+}
+
+.fpcm-dashboard-container .fpcm-dashboard-container-content-wrapper {
+    padding: 0.3em 0.4em;
+    margin: 0.4em 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content {
-    padding: 0.3em 0.4em;
-    margin: 0.4em 0;
     line-height: 1.5em;
-    overflow-y: auto;
     height: 100%;
 }
 
@@ -1026,14 +1035,25 @@ h3, .fpcm-dashboard-container h3 {
     padding: 0em;
 }
 
-.fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content .fpcm-ui-button-bottom {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
+.fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content .fpcm-profile-btn {
+    display: block;
+    max-width: 50%;
+    margin: 1.5em auto 0 auto;
 }
 
 .fpcm-dashboard-container table.fpcm-ui-table.fpcm-ui-large-td td {
     padding: 0.4em 0.3em !important;
+}
+
+@media (max-width: 50em) {
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
+        width: 100%;
+    }
+    
+    .fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content .fpcm-profile-btn {
+        margin-bottom: 0.7em;
+    }
 }
 
 .fpcm-dashboard-message-box {
@@ -1577,6 +1597,10 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 
 .fpcm-ui-button.fpcm-folderopen-btn span.ui-icon:before {
     content: '\f07c';
+}
+
+.fpcm-ui-button.fpcm-email-btn span.ui-icon:before {
+    content: '\f003';
 }
 
 .fpcm-ui-button.fpcm-ui-preview span.ui-button-text:before {

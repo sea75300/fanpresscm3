@@ -47,6 +47,7 @@
         'GLOBAL_PAGER'                  => 'Seite {{current}} von {{total}}',
         'GLOBAL_DOWNLOAD'               => 'Herunterladen',
         'GLOBAL_PREVIEW'                => 'Vorschau anzeigen',
+        'GLOBAL_WRITEMAIL'              => 'E-Mail verfassen',
 
         'LOGIN_BTN'                     => 'Einloggen',
         'LOGIN_NEWPASSWORD'             => 'Neues Passwort anfordern',

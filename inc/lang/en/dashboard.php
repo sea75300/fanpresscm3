@@ -12,7 +12,7 @@
         'WELCOME_HEADLINE'  => '<span class="fa fa-fw fa-user"></span> Welcome {{username}}! <span class="fa fa-fw fa-smile-o"></span>',
         'WELCOME_CONTENT'   => 'You are in the FanPress CM dashboard. Choose an area using the navigation at the left site. '.
                                'Below you\'ll find additional information about you system including statistics. '.
-                               '<a class="fpcm-ui-button fpcm-ui-button-bottom fpcm-profile-btn fpcm-loader" href="{{profilelink}}">Open profile</a>',
+                               '<a class="fpcm-ui-button fpcm-profile-btn fpcm-loader" href="{{profilelink}}">Open profile</a>',
         
         'RECENT_ARTICLES'       => '<span class="fa fa-fw fa-pencil"></span> Recent articles',
         
@@ -40,7 +40,8 @@
         'SYSTEM_STATS_UPLOAD_SIZE'          => 'Upload folder size',
         'SYSTEM_STATS_CACHE_SIZE'           => 'Cache size',
         
-        'RECENT_ARTICLES'                   => '<span class="fa fa-fw fa-rss"></span> Recent FanPress CM news'
+        'RECENT_FPCMNEWS'                   => '<span class="fa fa-fw fa-rss"></span> Recent FanPress CM news',        
+        'DASHBOARD_USERLIST'                => '<span class="fa fa-fw fa-users"></span> Team contacts'
     );
     
 ?>

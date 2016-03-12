@@ -12,7 +12,7 @@
         'WELCOME_HEADLINE'  => '<span class="fa fa-fw fa-user"></span> Willkommen {{username}}! <span class="fa fa-fw fa-smile-o"></span>',
         'WELCOME_CONTENT'   => 'Du befindest dich im Dashboard von FanPress CM, dem News-System speziell für Fanseiten.<br>Über die '.
                                'Navigation links kannst du in die verschiedenen Bereiche gelangen.<br><br>Nachfolgend findet du einige '.
-                               'Statistiken und weitere Informationen zum aktuellen System. <a class="fpcm-ui-button fpcm-ui-button-bottom fpcm-profile-btn fpcm-loader" href="{{profilelink}}">Profil aufrufen</a>',
+                               'Statistiken und weitere Informationen zum aktuellen System. <a class="fpcm-ui-button fpcm-profile-btn fpcm-loader" href="{{profilelink}}">Profil aufrufen</a>',
         
         'RECENT_ARTICLES'       => '<span class="fa fa-fw fa-pencil"></span> Zuletzt geschriebene News',
         
@@ -40,7 +40,8 @@
         'SYSTEM_STATS_UPLOAD_SIZE'          => 'Größe des Upload-Ordners',
         'SYSTEM_STATS_CACHE_SIZE'           => 'Größe des Caches',
         
-        'RECENT_FPCMNEWS'                   => '<span class="fa fa-fw fa-rss"></span> Aktuelle FanPress CM News'
+        'RECENT_FPCMNEWS'                   => '<span class="fa fa-fw fa-rss"></span> Aktuelle FanPress CM News',        
+        'DASHBOARD_USERLIST'                => '<span class="fa fa-fw fa-users"></span> Team-Kontakte'
     );
     
 ?>

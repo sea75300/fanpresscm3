@@ -84,7 +84,7 @@
             $commenList  = new \fpcm\model\comments\commentList();
             $userlist    = new \fpcm\model\users\userList();
 
-            $comments = $commenList->getCommentsByLimit(0, 5);
+            $comments = $commenList->getCommentsByLimit(0, 10);
 
             $users    = array_flip($userlist->getUsersNameList());
             

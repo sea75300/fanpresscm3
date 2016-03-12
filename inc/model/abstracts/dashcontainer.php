@@ -156,8 +156,12 @@
             $html   = array();
             $html[] = '<div class="fpcm-dashboard-container fpcm-dashboard-container-'.$this->getName().' fpcm-dashboard-container-width-'.$this->getWidth().' fpcm-dashboard-container-height-'.$this->getHeight().'">';
             $html[] = ' <div class="fpcm-dashboard-container-inner ui-widget-content ui-corner-all ui-state-normal">';
-            $html[] = '     <h3 class="fpcm-dashboard-container-headline ui-corner-top ui-corner-all">'.$this->getHeadline().'</h3>';
-            $html[] = '     <div class="fpcm-dashboard-container-content">'.$this->getContent().'</div>';
+            $html[] = '     <div class="fpcm-dashboard-container-header">';
+            $html[] = '         <h3 class="fpcm-dashboard-container-headline ui-corner-top ui-corner-all">'.$this->getHeadline().'</h3>';
+            $html[] = '     </div>';
+            $html[] = '     <div class="fpcm-dashboard-container-content-wrapper">';
+            $html[] = '         <div class="fpcm-dashboard-container-content">'.$this->getContent().'</div>';
+            $html[] = '     </div>';
             $html[] = ' </div>';
             $html[] = '</div>';
             

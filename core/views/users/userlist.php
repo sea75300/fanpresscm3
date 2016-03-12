@@ -34,7 +34,7 @@
                         <tr>
                             <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($user->getEditLink()); ?></td>
                             <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
-                            <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
+                            <td><a href="mailto:<?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?>"><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></a></td>
                             <td class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php \fpcm\model\view\helper::dateText($user->getRegistertime()); ?></td>
                             <td class="fpcm-ui-center fpcm-ui-users-articlecount"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
                             <td class="fpcm-td-select-row"><input type="radio" name="useridsa" value="<?php print $user->getId(); ?>" <?php if ($user->getId() == $currentUser) : ?>readonly="readonly"<?php endif; ?>></td>      
@@ -63,9 +63,8 @@
                         <th></th>
                         <th><?php $FPCM_LANG->write('GLOBAL_USERNAME'); ?></th>
                         <th><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?></th>
-                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('USERS_ROLL'); ?></th>
-                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('USERS_REGISTEREDTIME'); ?></th>           
-                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('USERS_ARTICLE_COUNT'); ?></th>
+                        <th class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php $FPCM_LANG->write('USERS_REGISTEREDTIME'); ?></th>           
+                        <th class="fpcm-ui-center fpcm-ui-users-articlecount"><?php $FPCM_LANG->write('USERS_ARTICLE_COUNT'); ?></th>
                         <th class="fpcm-th-select-row"></th>         
                     </tr>
                     <tr class="fpcm-td-spacer"><td></td></tr>
@@ -81,10 +80,9 @@
                         <tr>
                             <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($user->getEditLink()); ?></td>
                             <td><strong><?php print \fpcm\model\view\helper::escapeVal($user->getUserName()); ?></strong></td>
-                            <td><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></td>
-                            <td class="fpcm-ui-center"><?php if (isset($usersRolls[$user->getRoll()])) : ?><?php print $usersRolls[$user->getRoll()]; ?><?php else : ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></td>
-                            <td class="fpcm-ui-center"><?php \fpcm\model\view\helper::dateText($user->getRegistertime()); ?></td>
-                            <td class="fpcm-ui-center"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
+                            <td><a href="mailto:<?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?>"><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></a></td>
+                            <td class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php \fpcm\model\view\helper::dateText($user->getRegistertime()); ?></td>
+                            <td class="fpcm-ui-center fpcm-ui-users-articlecount"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
                             <td class="fpcm-td-select-row"><input type="radio" name="useridsd" value="<?php print $user->getId(); ?>"></td>
                         </tr>      
                         <?php endforeach; ?>
