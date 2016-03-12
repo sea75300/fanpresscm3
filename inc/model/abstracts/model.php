@@ -194,7 +194,7 @@
             $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "id = ?", array($this->id)));
             
             if (!$data) {
-                trigger_error('Failed to load data for object of type "'.get_class($this).'"!');
+                trigger_error('Failed to load data for object of type "'.get_class($this).'" with given id '.$this->id.'!');
                 return false;
             }
             
