@@ -62,7 +62,7 @@
             $content    = array();
             $content[]  = '<table class="fpcm-ui-table fpcm-ui-rssnews fpcm-ui-large-td">';
             foreach ($items as $item) {
-                if ($idx >= 8) {
+                if ($idx >= 10) {
                     break;
                 }
                 

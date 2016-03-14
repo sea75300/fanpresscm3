@@ -21,10 +21,10 @@
          * Konstruktor
          * @param int $id
          */
-        public function __construct($id = null) {
+        public function __construct() {
             $this->table = \fpcm\classes\database::tableAuthors;
             
-            parent::__construct($id);
+            parent::__construct();
         }
         
         /**

@@ -87,7 +87,7 @@
             $conditions = array(
                 'draft'     => -1,
                 'approval'  => -1,
-                'limit'     => array('0','5'),
+                'limit'     => array('0','10'),
                 'orderby'   => array('createtime DESC')
             );
             $articles = $articleList->getArticlesByCondition($conditions);

@@ -6,8 +6,7 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
-    ini_set('display_error', 0);
-    error_reporting(E_ALL | E_STRICT);
+    error_reporting(E_ALL);
 
     /**
      * FanPress CM internal checkpoint
@@ -25,7 +24,7 @@
     include __DIR__.'/functions.php';
     
     spl_autoload_register('fpcmAutoLoader');
-    set_error_handler("fpcmErrorHandler");   
+    set_error_handler("fpcmErrorHandler");
     
     \fpcm\classes\baseconfig::init();
     

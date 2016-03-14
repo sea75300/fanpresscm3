@@ -53,6 +53,10 @@
                 $dest   = is_dir($source) ? dirname($dest).'/'.basename($dest) : $dest;                
                 $dest   = $this->replaceFanpressDirString($dest);
 
+                if (substr($dest, -8) === 'fanpress') {
+                    continue;
+                }
+                
                 if (is_dir($source)) {
                     if (!file_exists($dest) && !mkdir($dest, 0777)) {
                         if (!is_array($res)) $res = array();
