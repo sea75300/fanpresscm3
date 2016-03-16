@@ -1255,9 +1255,17 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     border: 0px;
 }
 
-.fpcm-updater-programmbar {
-    width: 400px;
+.fpcm-ui-progressbar {
+    width: 75%;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+.fpcm-ui-progressbar-label {
+    float: left;
+    display: block;
+    color: #ffffff;
+    margin: 0.3em 0.8em;
 }
 
 .fpcm-updater-list p {
@@ -1398,14 +1406,6 @@ span.fpcm-ui-shorthelp:hover {
 table.fpcm-ui-table.fpcm-ui-options tr td span.fpcm-ui-shorthelp.fpcm-options {
     position:relative;
     bottom:0.8em;
-}
-
-.fpcm-ui-progressbar-label {
-    float: left;
-    display: block;
-    color: #000000;
-    text-shadow: 1px 1px 0px #dddddd;
-    margin: 0.3em 0.8em;
 }
 
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before,

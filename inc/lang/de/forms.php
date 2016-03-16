@@ -154,7 +154,7 @@
         'PACKAGES_UPDATE_CURRENT_VERSION' => 'Aktuelle Version',
         'PACKAGES_UPDATE_CURRENT_LANG'    => 'Aktuelle Sprache',
         'PACKAGES_UPDATE_NEW_VERSION'     => '<span class="fa fa-arrow-circle-right fpcm-ui-booltext-yes"></span> Neue Version',
-        'PACKAGES_FILE_LIST'              => '<span class="fa fa-file-text fpcm-ui-booltext-yes"></span> Paket-Manager-Log aktualisieren...',
+        'PACKAGES_FILE_LIST'              => 'Paket-Manager-Log aktualisieren...',
         'PACKAGES_PROCESS_TIME'           => '<span class="fa fa-clock-o fpcm-ui-booltext-yes"></span> <strong>Benötigte Zeit</strong>',
         
         'SYSCHECK_FOLDER_DATA'          => 'Data-Ordner',

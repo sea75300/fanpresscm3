@@ -30,19 +30,11 @@ var fpcmUpdater = function () {
     
     this.execRequest = function(idx) {
 
-        var scode    = '';
-        var content  = '';
-
         if (idx > fpcmUpdaterMaxStep) {
             return false;
         }
 
-        scode = idx + '_START';
-
-        content = '<p>' + fpcmUpdaterMessages[scode] + '</p>';
-
-        jQuery('#fpcm-ui-headspinner').addClass('fa-spin');            
-        fpcmJs.appendHtml('.fpcm-updater-list', content);
+        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', fpcmUpdaterMessages[idx + '_START']);
 
         self.ajaxHandler.action     = 'packagemgr/sysupdater';
         self.ajaxHandler.data       = {step:idx};
@@ -62,7 +54,7 @@ var fpcmUpdater = function () {
             fpcmJs.appendHtml('.fpcm-updater-list', '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
             return false;
         } else {
-            fpcmJs.appendHtml('.fpcm-updater-list', '<p><strong> ' + fpcmUpdaterMessages[self.responseData.code] + '</strong></p>');
+            fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
         }
 
         if (self.responseData.data.current == 4) {
@@ -93,6 +85,7 @@ var fpcmUpdater = function () {
     this.addTimer = function() {
         var updateTimer = ((new Date().getTime()) - self.startTime) / 1000;
         fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
+        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', '');
         fpcmJs.showLoader(false);
     };
     

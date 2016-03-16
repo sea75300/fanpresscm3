@@ -103,6 +103,7 @@
         'SYSTEM_OPTIONS_NEWS_ENABLETRASH'           => 'Enabled article trash',
         'SYSTEM_OPTIONS_NEWS_ENABLEFEED'            => 'RSS feed is enabled',
         
+        'SYSTEM_OPTIONS_EXTENDED_EMAILUPDATES'      => 'Email notification when updates are available',
         'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Include developement relaeses in update check',
         
         'SYSTEM_OPTIONS_TWITTER_CONNECTION'         => 'Twitter connection',

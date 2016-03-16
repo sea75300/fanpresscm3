@@ -6,7 +6,7 @@
         </ul>
 
         <div id="tabs-updater-general">
-            <div class="fpcm-updater-programmbar"></div>
+            <?php fpcm\model\view\helper::progressBar('fpcm-updater-programmbar'); ?>
             
             <p><strong><?php $FPCM_LANG->write('PACKAGES_UPDATE_CURRENT_VERSION'); ?>:</strong> <?php print $FPCM_VERSION; ?></p>
             <p><strong><?php $FPCM_LANG->write('PACKAGES_UPDATE_CURRENT_LANG'); ?>:</strong> <?php print $FPCM_LANG->getLangCode(); ?></p>

@@ -41,6 +41,7 @@
     if (!defined('FPCM_UPDATE_CRONNOTIFY_EMAIL')) {        
         /**
          * Benachrichtigung über neue verfügbare Updates bei Cronjob-Ausführung verhindern
+         * @deprecated since FPCM 3.2.0, moved system options
          */
         define ('FPCM_UPDATE_CRONNOTIFY_EMAIL', true);
     }

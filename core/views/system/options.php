@@ -218,6 +218,10 @@
             <div id="tabs-options-extended">
                 <table class="fpcm-ui-table fpcm-ui-options">
                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_EMAILUPDATES'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('system_updates_emailnotify', $globalConfig['system_updates_emailnotify']); ?></td>		
+                   </tr>
+                   <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('system_updates_devcheck', $globalConfig['system_updates_devcheck']); ?></td>		
                    </tr>

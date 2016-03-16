@@ -438,6 +438,16 @@
         }
 
         /**
+         * Progressbar-DIV
+         * @param string $progressbarName
+         * @since FPCM 3.2.0
+         */
+        public static function progressBar($progressbarName) {            
+            if (!$progressbarName) return;
+            include_once \fpcm\classes\baseconfig::$viewsDir.'components/progress.php';
+        }
+
+        /**
          * IDs aufräumen
          * @param string $text ID-String
          * @return string

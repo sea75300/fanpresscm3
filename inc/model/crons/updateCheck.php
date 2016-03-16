@@ -26,14 +26,16 @@
             $res = $updater->checkUpdates();
             $this->setReturnData($res);
             
-            if (!$res && $this->getAsyncCurrent() && FPCM_UPDATE_CRONNOTIFY_EMAIL) {
+            /* @var $config \fpcm\model\system\config */
+            $config = \fpcm\classes\baseconfig::$fpcmConfig;
+            
+            if (!$res && $this->getAsyncCurrent() && $config->system_updates_emailnotify) {
                 
                 $replacements = array(
                     '{{version}}' => $updater->getRemoteData('version'),
                     '{{acplink}}' => \fpcm\classes\baseconfig::$rootPath
                 );
                 
-                $config   = \fpcm\classes\baseconfig::$fpcmConfig;
                 $language = \fpcm\classes\baseconfig::$fpcmLanguage;
                 $email = new \fpcm\classes\email($config->system_email,
                                                  $language->translate('CRONJOB_UPDATES_NEWVERSION'),
