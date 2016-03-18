@@ -276,6 +276,15 @@
         }
 
         /**
+         * Force to load jQuery in Pub-Controllers before other JS-Files if not already done
+         * @since FPCM 3.2.0
+         */
+        public function prependjQuery() {
+            if ($this->config->system_loader_jquery) return false;
+            array_unshift($this->viewJsFiles, \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-2.2.0.min.js'));
+        }
+
+        /**
          * JS-Variable zur Nutzung abrufen
          * @return array
          */

@@ -85,7 +85,12 @@
             if ($this->systemCheckresult === false || $this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FORCE_UPDATE) {
                 $iconClass   = 'fa-cloud-download';
                 $statusClass = 'fpcm-dashboard-updates-outdated';
-                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));                
+                
+                $replace = array(
+                    '{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES,
+                    '{{version}}'     => $this->systemUpdates->getRemoteData('version')
+                );
+                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', $replace);
             } elseif ($this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {
                 $iconClass   = 'fa-exclamation-triangle';
                 $statusClass = 'fpcm-dashboard-updates-checkerror';

@@ -131,7 +131,7 @@
         'LOAD_FAILED_CATEGORY'          => 'The requested category was not found.',
         'LOAD_FAILED_WORDBAN'           => 'The requested censored text was not found.',
         
-        'UPDATE_VERSIONCHECK_NEW'       => 'A new version of FanPress CM is available! <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to start update process.',
+        'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM version <i>{{version}}</i> is available! <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to start update process.',
         'UPDATE_VERSIONCHECK_CURRENT'   => 'Your version of FanPress CM is up to date!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
         'UPDATE_NOTAUTOCHECK'           => 'Automatic update check failed! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Check manually</a>',
         'UPDATE_WRITEERROR'             => 'The <strong>version.php</strong> file in FanPress CM root folder is not writable. This may affect other files of your installation too.<br>'.
@@ -159,10 +159,10 @@
         'PACKAGES_SUCCESS_ADDITIONAL'   => '<span class="fa fa-refresh fpcm-ui-booltext-yes"></span> Execution of additional package steps has been successful!',
         'PACKAGES_SUCCESS_LOGDONE'      => '<span class="fa fa-file-text-o fpcm-ui-booltext-yes"></span> Update of package manager log successfully!',
         
-        'PACKAGES_RUN_DOWNLOAD'         => '<span class="fa fa-cloud-download fpcm-ui-booltext-yes"></span> Start download of package {{pkglink}}...',
-        'PACKAGES_RUN_EXTRACT'          => '<span class="fa fa-file-archive-o fpcm-ui-booltext-yes"></span> Extracting package...',
-        'PACKAGES_RUN_COPY'             => '<span class="fa fa-random fpcm-ui-booltext-yes"></span> Copy package content to destination folder...',
-        'PACKAGES_RUN_ADDITIONAL'       => '<span class="fa fa-refresh fpcm-ui-booltext-yes"></span> Processing additional package steps...',
+        'PACKAGES_RUN_DOWNLOAD'         => 'Download of package {{pkglink}}...',
+        'PACKAGES_RUN_EXTRACT'          => 'Extracting package...',
+        'PACKAGES_RUN_COPY'             => 'Copy package content to destination folder...',
+        'PACKAGES_RUN_ADDITIONAL'       => 'Processing additional package steps...',
         
         'UPDATES_SUCCESS'               => 'The update of FanPress CM has been successful!',
         'UPDATES_FAILED'                => '<span class="fa fa-minus-square fpcm-ui-booltext-no"></span> The update of FanPress CM was NOT successful!',

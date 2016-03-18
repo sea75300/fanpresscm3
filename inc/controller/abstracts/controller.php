@@ -219,7 +219,13 @@
                 $this->redirect(FPCM_CONTROLLER_SYSUPDATES);
                 return;
             } elseif ($res === false) {
-                $this->view->addErrorMessage('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => $this->getControllerLink(FPCM_CONTROLLER_SYSUPDATES)));
+
+                $systemUpdates = new \fpcm\model\updater\system();
+                $replace = array(
+                    '{{versionlink}}' => $this->getControllerLink(FPCM_CONTROLLER_SYSUPDATES),
+                    '{{version}}'     => $systemUpdates->getRemoteData('version')
+                );
+                $this->view->addErrorMessage('UPDATE_VERSIONCHECK_NEW', $replace);
             }
         }
         

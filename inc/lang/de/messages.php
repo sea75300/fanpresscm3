@@ -131,7 +131,7 @@
         'LOAD_FAILED_CATEGORY'          => 'Die gesuchte Kategorie wurde nicht gefunden.',
         'LOAD_FAILED_WORDBAN'           => 'Der Begriff wurde nicht gefunden.',
         
-        'UPDATE_VERSIONCHECK_NEW'       => 'Eine neue FanPress CM Version ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
+        'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM Version <i>{{version}}</i> ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
         'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM aktuell!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
         'UPDATE_NOTAUTOCHECK'           => 'Es konnte automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
         'UPDATE_WRITEERROR'             => 'Die Datei <strong>version.php</strong> im FanPress CM-Verzeichnis ist nicht beschreibbar, was u. U. auch auf andere Dateien deiner Installation zutrifft.<br>'.
@@ -159,7 +159,7 @@
         'PACKAGES_SUCCESS_ADDITIONAL'   => '<span class="fa fa-refresh fpcm-ui-booltext-yes"></span> Das Ausführen der abschließenden Paket-Aktionen war erfolgreich!',
         'PACKAGES_SUCCESS_LOGDONE'      => '<span class="fa fa-file-text-o fpcm-ui-booltext-yes"></span> Aktualisierung des Paketmanager-Log war erfolgreich!',
         
-        'PACKAGES_RUN_DOWNLOAD'         => 'Starte Download von Paket {{pkglink}}...',
+        'PACKAGES_RUN_DOWNLOAD'         => 'Paket-Datei {{pkglink}} wird geladen...',
         'PACKAGES_RUN_EXTRACT'          => 'Paket wird entpackt...',
         'PACKAGES_RUN_COPY'             => 'Paket-Inhalt wird an Ziel kopiert...',
         'PACKAGES_RUN_ADDITIONAL'       => 'Führe abschließende Paket-Aktionen durch...',

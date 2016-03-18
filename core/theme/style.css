@@ -1264,7 +1264,8 @@ table.fpcm-module-manager td.module-manager-list-td7 {
 .fpcm-ui-progressbar-label {
     float: left;
     display: block;
-    color: #ffffff;
+    color: #000000;
+    text-shadow: 0px 0px 2px #ececec;
     margin: 0.3em 0.8em;
 }
 

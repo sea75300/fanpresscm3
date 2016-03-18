@@ -91,7 +91,7 @@
             $this->view->setShowHeader(true);
             $this->view->setShowFooter(true);
             $this->view->setForceCss(true);
-            $this->view->setViewJsFiles(array(\fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-2.2.0.min.js')));
+            $this->view->prependjQuery();
             $this->view->render();
 
         }        

@@ -78,6 +78,7 @@ var fpcmUpdater = function () {
         fpcmJs.addAjaxMassage('notice', fpcmUpdaterMessages['EXIT_1'], false);
         fpcmJs.showLoader(false);
         self.addTimer();
+        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', '');
 
         return true;
     };
@@ -85,7 +86,6 @@ var fpcmUpdater = function () {
     this.addTimer = function() {
         var updateTimer = ((new Date().getTime()) - self.startTime) / 1000;
         fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
-        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', '');
         fpcmJs.showLoader(false);
     };
     
