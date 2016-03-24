@@ -1,21 +1,21 @@
 <?php 
-    include "versionlist3.php";
 
     $data       = json_decode(base64_decode(str_rot13($_GET['data'])), TRUE);
 
+    $filename = (isset($data['dev']) ? "versionlist3dev.php" : "versionlist3.php");
+    require_once $filename;
+    
     if (isset($data['webinstaller'])) {
         die(base64_encode(str_rot13(base64_encode($installfile))));
     }
     
-    $version    = trim(strip_tags($data['version']));
-    $version   .= isset($data['dev']) ? 'dev' : '';
-    
+    $version = trim(strip_tags($data['version']));
     if (!isset($versions[$version])) {
         $version = 'default';
     }
     
     $updateData             = array();
-    $updateData['version']  = isset($data['dev']) ? $newversionDev : $newversion;
+    $updateData['version']  = $newversion;
     
     $updateData['filepath'] = $versions[$version]['file'];
     

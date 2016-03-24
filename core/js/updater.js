@@ -67,6 +67,10 @@ var fpcmUpdater = function () {
         if (self.responseData.data.current < fpcmUpdaterMaxStep) {
             self.execRequest(self.responseData.data.nextstep);
         }
+        
+        if (self.responseData.data.current == fpcmUpdaterMaxStep) {
+            fpcmJs.assignText('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', '');
+        }
 
         return true;
     };
@@ -78,7 +82,6 @@ var fpcmUpdater = function () {
         fpcmJs.addAjaxMassage('notice', fpcmUpdaterMessages['EXIT_1'], false);
         fpcmJs.showLoader(false);
         self.addTimer();
-        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', '');
 
         return true;
     };

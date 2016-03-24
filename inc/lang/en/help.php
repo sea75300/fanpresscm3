@@ -236,7 +236,7 @@ Help language file
                         <li><b>Extended:</b><br>
                             All options on the "Extended" register should be used carefully.
                             <ul>
-                                <li><em>Include developement relaeses in update check:</em> This option allows you to include test- and
+                                <li><em>Include developement releases in update check:</em> This option allows you to include test- and
                                     developement versions when FanPress CM executes and update check. <b>Important: test- and developement
                                     may include failures, unfinished functions which can cause problems!</b></li>
                             </ul>
