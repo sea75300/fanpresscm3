@@ -85,7 +85,7 @@
             }
 
             $this->view->assign('showToolbars', false);
-            $this->view->assign('commentform', '');
+            $this->view->assign('hideDebug', true);
             $this->view->assign('hideDebug', true);
             $this->view->assign('systemMode', 1);
             $this->view->setShowHeader(true);
@@ -150,6 +150,7 @@
             $parsed[] = $this->template->parse();
 
             $this->view->assign('content', implode(PHP_EOL, $parsed));
+            $this->view->assign('commentform', '');
 
         }
 
@@ -183,6 +184,7 @@
 
             $this->view->assign('article', $this->template->parse());
             $this->view->assign('comments', '');
+            $this->view->assign('commentform', '');
         }
         
         private function getCommentPreview() {
@@ -204,6 +206,7 @@
 
             $this->template->setReplacementTags($replacements);
             $this->view->assign('comments', $this->template->parse());
+            $this->view->assign('commentform', '');
         }
         
         private function getCommentFormPreview() {
