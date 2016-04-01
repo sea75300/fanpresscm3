@@ -133,7 +133,7 @@
         
         'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM Version <i>{{version}}</i> ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
         'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM aktuell!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
-        'UPDATE_NOTAUTOCHECK'           => 'Es konnte automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
+        'UPDATE_NOTAUTOCHECK'           => 'Es konnte keine automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
         'UPDATE_WRITEERROR'             => 'Die Datei <strong>version.php</strong> im FanPress CM-Verzeichnis ist nicht beschreibbar, was u. U. auch auf andere Dateien deiner Installation zutrifft.<br>'.
                                            'Dies kann durch falsche Dateirechte verursacht werden. Prüfe/ ändere die Rechte der - am Besten aller - Dateien via FTP, bis diese Meldung verschwindet.<br>'.
                                            'Sollte dies nicht gelingen, wende dich bitte an deinen Host für weitere Hilfe.',

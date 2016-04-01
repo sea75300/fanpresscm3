@@ -271,11 +271,6 @@ jQuery(document).ready(function () {
         fpcmJs.systemCheck();
     });
     
-    jQuery('.fpcm-updatecheck-manual').click(function () {
-        fpcmJs.openManualCheckFrame();
-        return false;
-    });
-    
     jQuery('#fpcm-messages').find('.fpcm-msg-close').click(function () {
         var closeId = jQuery(this).attr('id');
         jQuery('#msgbox-' + closeId.substring(9)).fadeOut('slow');

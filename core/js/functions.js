@@ -377,9 +377,13 @@ var fpcmJs = function () {
     };
     
     this.openManualCheckFrame = function () {
+        
+        var iframeWidth  = jQuery(window).width() * 0.5;
+        var iframeHeight = jQuery(window).height() * 0.75;
+        
         jQuery('#fpcm-manualupdate-check').dialog({
-            width    : 500,
-            height   : 500,
+            width    : iframeWidth,
+            height   : iframeHeight,
             modal    : true,
             resizable: true,
             title    : fpcmManualCheckHeadline,
@@ -551,6 +555,11 @@ var fpcmJs = function () {
     this.loadDashboardContainerCallback = function(resultData) {
         fpcmJs.assignHtml('#fpcm-dashboard-containers', resultData);
         fpcmJs.assignButtons();
+    
+        jQuery('.fpcm-updatecheck-manual').click(function () {
+            fpcmJs.openManualCheckFrame();
+            return false;
+        });
         
         var fpcmRFDinterval = setInterval(function(){
             if (jQuery('#fpcm-dashboard-finished').length == 1) {
