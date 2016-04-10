@@ -47,6 +47,11 @@ var fpcmUpdater = function () {
     this.ajaxCallback = function() {
 
         self.responseData = JSON.parse(self.responseData);
+        if (self.responseData.data === undefined) {
+            alert(fpcmAjaxResponseErrorMessage);
+            return false;
+        }
+
         fpcmUpdater.progressbar(self.responseData.data.current);
         
         if (self.responseData.data.current < fpcmUpdaterMaxStep && self.responseData.code != self.responseData.data.current + '_' + 1) {

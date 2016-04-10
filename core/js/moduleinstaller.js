@@ -80,6 +80,10 @@ var fpcmModuleInstaller = function () {
     this.ajaxCallback = function() {
 
         self.responseData = JSON.parse(self.responseData);
+        if (self.responseData.data === undefined) {
+            alert(fpcmAjaxResponseErrorMessage);
+            return false;
+        }
 
         if (self.responseData.code != self.responseData.data.current + '_' +1) {
             fpcmJs.showLoader(false);

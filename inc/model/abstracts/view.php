@@ -120,6 +120,7 @@
                     'fpcmLogout'           => $this->language->translate('LOGOUT_BTN'),
                     'fpcmConfirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
                     'fpcmAjaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
+                    'fpcmAjaxResponseErrorMessage' => $this->language->translate('AJAX_REPONSE_ERROR'),
                     'fpcmClose'            => $this->language->translate('GLOBAL_CLOSE'),
                     'fpcmYes'              => $this->language->translate('GLOBAL_YES'),
                     'fpcmNo'               => $this->language->translate('GLOBAL_NO'),
