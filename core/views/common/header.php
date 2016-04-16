@@ -5,7 +5,7 @@
         <meta http-equiv="content-type" content= "text/html; charset=utf-8">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="<?php print $FPCM_THEMEPATH; ?>favicon32.png" type="image/png" /> 
+        <link rel="shortcut icon" href="<?php print $FPCM_THEMEPATH; ?>favicon.png" type="image/png" /> 
         <?php include_once 'includefiles.php'; ?>
     </head>    
 
@@ -20,9 +20,10 @@
         <div id="fpcm-header" class="fpcm-header">
             <div class="fpcm-header-inner">
                 <div class="fpcm-header-td1">
-                    <div class="fpcm-logo-img"><img class="fpcm-logo" src="<?php print $FPCM_THEMEPATH; ?>logo32.svg" alt="FanPress CM"></div>
-                    <div class="fpcm-logo-text"><span>FanPress CM</span> <span>News System</span></div>
-                    <div class="fpcm-clear"></div>
+                    <img class="fpcm-logo" src="<?php print $FPCM_THEMEPATH; ?>logo.svg" alt="FanPress CM">
+                </div>
+                <div class="fpcm-header-td2">
+                    <span>FanPress CM</span> <span>News System</span>
                 </div>
                 <?php if ($FPCM_LOGGEDIN) : ?>
                 <div class="fpcm-header-td3">

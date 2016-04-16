@@ -150,14 +150,14 @@ var fpcmJs = function () {
     };
     
     this.fixedHeader = function () {
-        if (jQuery(window).scrollTop() > 60) {
+        if (jQuery(window).scrollTop() > 50) {
             jQuery('#fpcm-header').addClass('fpcm-header-fixed');
-            jQuery('#fpcm-header-fixed-spacer').addClass('fpcm-header-fixed');
+            jQuery('#fpcm-header-fixed-spacer').show();
         }
         
         if (jQuery(window).scrollTop() < 30) {
             jQuery('#fpcm-header').removeClass('fpcm-header-fixed');
-            jQuery('#fpcm-header-fixed-spacer').removeClass('fpcm-header-fixed');
+            jQuery('#fpcm-header-fixed-spacer').hide();
         }
     };
     
