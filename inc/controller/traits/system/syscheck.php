@@ -159,14 +159,16 @@
                 'optional'  => 1
             );
 
-            foreach ($this->getCheckFolders() as $description => $folderPath) {
+            $checkFolders = $this->getCheckFolders();
+            foreach ($checkFolders as $description => $folderPath) {
                 $current = is_writable($folderPath);
                 
                 $pathOutput = \fpcm\model\files\ops::removeBaseDir($folderPath, true);
                 $checkOptions['<i>'.$pathOutput.'</i> '.$this->lang->translate('GLOBAL_WRITABLE')]    = array(
                     'current'   => $current ? 'true' : 'false',
                     'recommend' => 'true',
-                    'result'    => (true && $current)
+                    'result'    => (true && $current),
+                    'optional'  => 0
                 );                
             }
             
