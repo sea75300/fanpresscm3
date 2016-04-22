@@ -1,19 +1,19 @@
 <?php
-    $newversion    = '3.1.7';
+    $newversion    = '3.2.0';
     
-    $installfile   = 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress3.1.7_full.zip';
+    $installfile   = 'http://updates.nobody-knows.org/fanpress/system/packages/fanpress3.2.0_full.zip';
     
-    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.1.7.zip')
-               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.1.7.zip').'_'
-                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.1.7.zip').'$sig$'
+    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.2.0.zip')
+               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.2.0.zip').'_'
+                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.2.0.zip').'$sig$'
                : '');
 
     $versions = array(
         'default' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.1.7.zip',
+            'file'      => 'http://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.2.0.zip',
             'force'     => 0,
-            'message'   => 'Third bugfix release of FanPress CM 3.1.x!',
-            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-1-5-veroeffentlicht/',
+            'message'   => 'Next minor release of FanPress CM 3.x!',
+            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-2-0-veroeffentlicht/',
             'signature' => $signature
         )
     );

@@ -1,13 +1,13 @@
 <?php
-    $newversion = '3.2.0-rc2';
+    $newversion = '3.2.0';
     
-    $installfile   = 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress3.2.0-rc2_full.zip';
+    $installfile   = 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress3.2.0_full.zip';
 
     $versions = array(
         'default' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0-rc2.zip',
+            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.0.zip',
             'force'     => 0,
-            'message'   => 'Second release candidate of FPCM 3.2.0!',
+            'message'   => 'Next minor release of FanPress CM 3.x!',
             'notice'    => 'http://nobody-knows.org/fanpress-cm-3-2-0-veroeffentlicht/',
             'signature' => ''
         )
