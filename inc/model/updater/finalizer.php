@@ -234,8 +234,48 @@
             }
             
             $libPath = \fpcm\classes\loader::libGetFilePath('jquery', 'jquery-2.1.4.min.js');
-            if (file_exists($libPath)) {
+            if ($libPath) {
                 unlink($libPath);
+            }
+            
+            $libPath = dirname(\fpcm\classes\loader::libGetFilePath('tinymce4', 'tinymce.min.js')).'/';
+            if ($libPath === '/') {
+                return true;
+            }
+
+            $paths = array(
+                '/themes',
+                '/plugins/advlist',
+                '/plugins/anchor',
+                '/plugins/autolink',
+                '/plugins/autorsize',
+                '/plugins/charmap',
+                '/plugins/code',
+                '/plugins/colorpiker',
+                '/plugins/fullscreen',
+                '/plugins/hr',
+                '/plugins/image',
+                '/plugins/imagetools',
+                '/plugins/importcss',
+                '/plugins/insertdatetime',
+                '/plugins/link',
+                '/plugins/lists',
+                '/plugins/media',
+                '/plugins/nonbreaking',
+                '/plugins/searchreplace',
+                '/plugins/table',
+                '/plugins/textcolor',
+                '/plugins/textpattern',
+                '/plugins/visualchars',
+                '/plugins/wordcount',
+            );
+            
+            foreach ($paths as $path) {
+                if (is_dir($libPath.$path)) \fpcm\model\files\ops::deleteRecursive($libPath.$path);
+            }
+
+            if (is_dir($libPath.'/readme.md')) {
+                unlink($libPath.'/readme.md');
             }
             
             return true;
