@@ -5,6 +5,6 @@ vendor: nkorg
 key: langeditor
 author: Stefan
 link: http://nobody-knows.org
-version: 1.0.0
+version: 3.2.0
 sysversion: 3.1.0
 description: "The "Language editor" module offers you an way to easily edit language files included in FanPress CM as is and installed modules."

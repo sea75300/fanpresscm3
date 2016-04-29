@@ -33,7 +33,7 @@
                             <?php fpcm\model\view\helper::textInput('langitems['.$hash.'][value]', $class, str_replace(PHP_EOL, '\\n', $lineValue), false, 2048); ?>
                         </td>
                         <td class="fpcm-td-select-row fpcm-ui-center">
-                            <?php \fpcm\model\view\helper::checkbox('deleteitems[]', '', $hash, '', '', $selected); ?>
+                            <?php \fpcm\model\view\helper::checkbox('deleteitems[]', '', $hash, '', '', false); ?>
                         </td>
                     </tr>
                     <?php $unique = uniqid(); ?>

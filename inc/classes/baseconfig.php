@@ -446,11 +446,16 @@
          * @return bool
          */
         public static function enableAsyncCronjobs($status) {
+
             if (self::asyncCronjobsEnabled() && !$status) {
                 logs::syslogWrite('Asynchronous cron job execution disabled.');
                 return file_put_contents(self::$cronAsyncFile, '');
             }
 
+            if (!file_exists(self::$cronAsyncFile)) {
+                return false;
+            }
+            
             logs::syslogWrite('Asynchronous cron job execution enabled.');
             return unlink(self::$cronAsyncFile);            
         }

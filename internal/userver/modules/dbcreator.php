@@ -6,6 +6,10 @@ $table = 'modules';
 
 $db_file = 'srvdat.sqlite';
 
+if (!is_writable($db_file)) {
+    die('db file not writable!');
+}
+
 $db_sql = 'DROP TABLE IF EXISTS "modules";
 CREATE TABLE "modules" (
   "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -27,6 +31,15 @@ if (!filesize(__DIR__.'/'.$db_file)) {
 	$pdo->exec($db_sql);
 }
 
+/* @var $result PDOStatement */
+$result = $pdo->query('SELECT key, version, minsysversion FROM modules ORDER BY key');
+$rows = $result->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($rows as $row) {
+    print "{$row['key']} :: {$row['version']} (min. {$row['minsysversion']})<br>";
+}
+
+print "<br>";
 
 foreach($modulesServer as $key => $data) {
 
@@ -50,8 +63,8 @@ foreach($modulesServer as $key => $data) {
 
 	if (!$statement->execute($val)) {
 
-		$err = $pdo->errorInfo();
-		print 'ERROR: '.$err[2].'<br><br>';
+		$err = $statement->errorInfo();
+		print 'ERROR: '.print_r($err, true).'<br><br>';
 		continue;
 	};
 
