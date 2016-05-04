@@ -1349,6 +1349,10 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     opacity: 1;
 }
 
+div.fpcm-accordion-pkgmanager ul {
+    padding-left: 1.2em;
+}
+
 div.fpcm-filelist-thumb-box {
     float: left;
     text-align: center;
