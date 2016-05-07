@@ -8,7 +8,7 @@
                     <?php print $changeInfo; ?><br>
                     <strong><?php $FPCM_LANG->write('COMMMENT_IPADDRESS'); ?>:</strong>
                     <?php print $comment->getIpaddress(); ?>                    
-                    <?php if ($ipWhoisLink) : ?>(<a href="http://www.whois.com/whois/<?php print $comment->getIpaddress(); ?>" target="_blank"><?php endif; ?>Whois<?php if ($ipWhoisLink) : ?></a>)<?php endif; ?>
+                    <?php if ($ipWhoisLink) : ?>(<a href="http://www.whois.com/whois/<?php print $comment->getIpaddress(); ?>" target="_blank">Whois</a>)<?php endif; ?>
                 </div>                
                 <?php include __DIR__.'/metainfo.php'; ?>
                 <div class="fpcm-clear"></div>

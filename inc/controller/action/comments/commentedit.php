@@ -119,7 +119,7 @@
                 $this->view->assign('changeInfo', $this->lang->translate('GLOBAL_NOCHANGE'));
             }
             
-            $this->view->assign('ipWhoisLink', substr($this->comment->getIpaddress(), 0, -1) === '*' ? false : true);
+            $this->view->assign('ipWhoisLink', substr($this->comment->getIpaddress(), -1) === '*' ? false : true);
             $this->view->assign('comment', $this->comment);
             $this->view->assign('commentsMode', $mode);
             $this->view->assign('permApprove', $this->approve);
