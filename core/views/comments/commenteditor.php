@@ -3,9 +3,12 @@
         <td colspan="2">
             <div class="fpcm-ui-editor-metabox">
                 <div class="fpcm-ui-editor-metabox-left">
-                    <strong><?php $FPCM_LANG->write('COMMMENT_CREATEDATE'); ?>:</strong> <?php \fpcm\model\view\helper::dateText($comment->getCreatetime()); ?><br>
+                    <strong><?php $FPCM_LANG->write('COMMMENT_CREATEDATE'); ?>:</strong>
+                    <?php \fpcm\model\view\helper::dateText($comment->getCreatetime()); ?><br>
                     <?php print $changeInfo; ?><br>
-                    <strong><?php $FPCM_LANG->write('COMMMENT_IPADDRESS'); ?>:</strong> <?php print $comment->getIpaddress(); ?><br>                    
+                    <strong><?php $FPCM_LANG->write('COMMMENT_IPADDRESS'); ?>:</strong>
+                    <?php print $comment->getIpaddress(); ?>                    
+                    <?php if ($ipWhoisLink) : ?>(<a href="http://www.whois.com/whois/<?php print $comment->getIpaddress(); ?>" target="_blank"><?php endif; ?>Whois<?php if ($ipWhoisLink) : ?></a>)<?php endif; ?>
                 </div>                
                 <?php include __DIR__.'/metainfo.php'; ?>
                 <div class="fpcm-clear"></div>
