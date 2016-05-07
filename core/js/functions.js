@@ -97,6 +97,10 @@ var fpcmJs = function () {
         fpcmJs.showLoader(false);
         fpcmJs.assignHtml('#fpcm-logcontent'+ workData, ajaxResult);
 
+        if (workData == 4) {
+            self.initAccordion('.fpcm-accordion-pkgmanager');
+        }
+
     };
     
     this.reloadFiles = function () {
@@ -484,6 +488,13 @@ var fpcmJs = function () {
     this.appendHtml = function(elemId, data) {
         jQuery(elemId).append(data);
     };
+    
+    this.initAccordion = function(elemId) {
+        jQuery(elemId).accordion({
+            header: "h2",
+            heightStyle: "content"
+        });  
+    }
     
     this.initInputShadow = function() {
         jQuery('.fpcm-ui-input-wrapper input[type=text]').focus(function () {

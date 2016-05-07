@@ -38,8 +38,10 @@
     </tr>
     <?php endif; ?>
     <tr>
-         <td><strong><?php $FPCM_LANG->write('COMMMENT_TEXT'); ?></strong>:</td>
-        <td><?php \fpcm\model\view\helper::textArea('comment[text]', 'fpcm-full-width', stripslashes($comment->getText()), false, false); ?></td>
+        <td colspan="2"><strong><?php $FPCM_LANG->write('COMMMENT_TEXT'); ?></strong>:</td>
+    </tr>
+    <tr>
+        <td colspan="2"><?php \fpcm\model\view\helper::textArea('comment[text]', 'fpcm-full-width', stripslashes($comment->getText()), false, false); ?></td>
     </tr>
 </table>
 

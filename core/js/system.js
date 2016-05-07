@@ -32,11 +32,8 @@ jQuery(document).ready(function () {
     jQuery(document).tooltip();
     jQuery('.fpcm-link-fancybox').fancybox();    
     jQuery('input.fpcm-ui-spinner').spinner();    
-    jQuery('.fpcm-tabs-general').tabs();
-    jQuery('.fpcm-tabs-accordion').accordion({
-        header: "h2",
-        heightStyle: "content"
-    });    
+    jQuery('.fpcm-tabs-general').tabs();    
+    fpcmJs.initAccordion('.fpcm-tabs-accordion');
     
     jQuery('.fpcm-ui-input-select').selectmenu({
         width: 200
