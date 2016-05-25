@@ -1,0 +1,10 @@
+## Module list config file
+---
+name: RSS Importer
+vendor: nkorg
+key: rssimport
+author: imagine
+link: http://nobody-knows.org
+version: 0.0.1
+sysversion: 3.2.0
+description: "Importer für RSS feeds."

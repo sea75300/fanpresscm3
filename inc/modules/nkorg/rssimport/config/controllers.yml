@@ -1,0 +1,4 @@
+## Module Controller list file
+---
+ajax/nkorg/rssimport/checkpath: fpcm/modules/nkorg/rssimport/controller/checkpath
+ajax/nkorg/rssimport/runimport: fpcm/modules/nkorg/rssimport/controller/runimport
