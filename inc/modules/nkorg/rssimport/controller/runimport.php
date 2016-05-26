@@ -2,7 +2,7 @@
 
 namespace fpcm\modules\nkorg\rssimport\controller;
     
-class checkpath extends \fpcm\controller\abstracts\ajaxController {
+class runimport extends \fpcm\controller\abstracts\ajaxController {
 
     private $feedPath = '';
 
@@ -23,27 +23,24 @@ class checkpath extends \fpcm\controller\abstracts\ajaxController {
 
     public function process() {
 
-        $failed  = array('code' => 0, 'msg' => 'nkorg_rssimport_checkfailed');
-        $success = array('code' => 1, 'msg' => 'nkorg_rssimport_checkok');
-        
+        $failed = array('code' => 0, 'msg' => 'NKORG_RSSIMPORT_IMPORTFAILED');
+        $success = array('code' => 1, 'msg' => 'NKORG_RSSIMPORT_IMPORTSUCCESS');
+
         try {
-            $xml = simplexml_load_file($this->feedPath);
+            $xmlObj = simplexml_load_file($this->feedPath);
         } catch (Exception $e) {
             $this->response($failed);
         }
 
-        if (!is_a($xml, 'SimpleXMLElement')) {
+        if (!is_a($xmlObj, 'SimpleXMLElement')) {
             $this->response($failed);
         }
 
-        $rss20 = new \fpcm\modules\nkorg\rssimport\model\rss20($xml);
-        if (!$rss20->check()) {
-            $this->response($failed);
+        $rss20 = new \fpcm\modules\nkorg\rssimport\model\rss20($xmlObj);
+        if ($rss20->check() && $rss20->import()) {
+            $this->response($success);
         }
-        
-        $success['list'] = $rss20->getList();
-        
-        $this->response($success);
+
     }
 
     private function response($msgArray) {

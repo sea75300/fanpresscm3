@@ -31,7 +31,7 @@
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
             <table>
                 <tr>
-                    <td><?php \fpcm\model\view\helper::button('submit', 'checkPath', 'NKORG_RSSIMPORT_START', 'fpcm-rssimport-check'); ?></td>
+                    <td><?php \fpcm\model\view\helper::button('submit', 'startImport', 'NKORG_RSSIMPORT_START', 'fpcm-rssimport-check'); ?></td>
                 </tr>
             </table>
         </div>
