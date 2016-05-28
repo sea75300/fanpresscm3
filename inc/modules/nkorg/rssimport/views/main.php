@@ -7,7 +7,7 @@
         </ul>
         
         <div id="fpcm-rssimport-general">
-            <table class="fpcm-ui-table fpcm-ui-options">
+            <table class="fpcm-ui-table" id="feed-articles-list">
                 <tr>
                     <td colspan="2">
                         <p><?php $FPCM_LANG->write('NKORG_RSSIMPORT_NOTES'); ?></p>
@@ -23,8 +23,17 @@
                 </tr>
                 <tr>
                     <td><?php $FPCM_LANG->write('NKORG_RSSIMPORT_DEFAULTCATEGORY'); ?>:</td>
-                    <td><?php fpcm\model\view\helper::select('categoryid', $categoryids, $selectedCategory, false, false); ?></td>
+                    <td><div class="fpcm-ui-buttonset">
+                        <?php foreach ($categoryids as $key => $value) : ?>
+                            <?php fpcm\model\view\helper::checkbox('categories', 'fpcm-rssimport-catids', $value, $key, 'cat'.$value, ($value === $selectedCategory ? true : false) ); ?>
+                        <?php endforeach; ?>    
+                    </div></td>
                 </tr>
+                <tr class="fpcm-td-spacer" colspan="2"><td></td></tr>
+                <tr>
+                    <th colspan="2"><?php $FPCM_LANG->write('NKORG_RSSIMPORT_FOUND'); ?></th>
+                </tr>
+                <tr class="fpcm-td-spacer" colspan="6"><td></td></tr>
             </table>
         </div>
         

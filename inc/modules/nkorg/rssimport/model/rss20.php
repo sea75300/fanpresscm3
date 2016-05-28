@@ -9,15 +9,38 @@ class rss20 extends \fpcm\model\abstracts\staticModel {
      * @var \SimpleXMLElement
      */
     private $xmlObj;
-
-    public function __construct(\SimpleXMLElement $xmlObj) {
-        $this->xmlObj = $xmlObj;
-    }
     
+    /**
+     *
+     * @var array
+     */
+    private $feedIds = array();
+    
+    /**
+     *
+     * @var int
+     */
+    private $userId = 0;
+    
+    /**
+     *
+     * @var array
+     */
+    private $categories = array();
+
+    function __construct(\SimpleXMLElement $xmlObj, array $feedIds = array(), $userId = 0, array $categories = array()) {
+
+        parent::__construct();
+        
+        $this->xmlObj     = $xmlObj;
+        $this->feedIds    = $feedIds;
+        $this->userId     = $userId;
+        $this->categories = $categories;
+    }
+
     public function check() {
         $success = $this->xmlObj->xpath('channel/item');
-        
-        return is_array($success) ? true : false;
+        return is_array($success) && count($success) ? true : false;
     }
     
     public function getList() {
@@ -39,17 +62,27 @@ class rss20 extends \fpcm\model\abstracts\staticModel {
     public function import() {
 
         $items = $this->getItems();
-        
-        foreach ($items as $item) {
 
-            \fpcm\classes\logs::syslogWrite(array(
-                utf8_encode((string) $item->title),
-                (string) $item->pubDate,
-                (string) $item->category,
-                (string) $item->description,
-                (string) $item->creator,
-                (string) $item->author
-            ));
+        foreach ($items as $item) {
+            
+            if (!in_array(md5($item->guid), $this->feedIds)) {
+                continue;
+            }
+            
+            $article = new \fpcm\model\articles\article();
+            $article->setTitle((string) $item->title);
+            $article->setContent((string) $item->description);
+            $article->setCreatetime(strtotime((string) $item->pubDate));
+            $article->setChangetime(time());
+            $article->setChangeuser($this->session->getUserId());
+            $article->setCreateuser($this->userId);
+            $article->setCategories($this->categories);
+            $res = $article->save();
+            
+            if ($res === false) {
+                trigger_error("Error while import of article with title '{$article->getTitle()}'. Cancel import process.");
+                return false;
+            }
 
         }
         

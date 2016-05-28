@@ -25,9 +25,26 @@ var nkorgRssImport = function () {
 
         fpcmJs.showLoader(true);
 
+        var selectedIds = jQuery('.fpcm-rssimport-artids:checked');
+        var ids         = [];
+        jQuery.each(selectedIds, function( key, obj ) {
+            ids.push(jQuery(obj).val());
+        });
+
+        var selectedCatIds = jQuery('.fpcm-rssimport-catids:checked');
+        var categoryIds    = [];
+        jQuery.each(selectedCatIds, function( key, obj ) {
+            categoryIds.push(jQuery(obj).val());
+        });
+
+        if (ids.length == 0 || categoryIds.length == 0) {
+            fpcmJs.addAjaxMassage('error', 'SELECT_ITEMS_MSG');
+            return false;
+        }
+
         var ajaxHandler   = new fpcmAjaxHandler();
         fpcmAjax.action   = 'nkorg/rssimport/runimport';
-        fpcmAjax.data     = { feedPath: feedPath };
+        fpcmAjax.data     = { feedPath: feedPath, feedIds: ids, userid: jQuery('#userid').val(), categories: categoryIds };
         fpcmAjax.execDone = 'nkorgRssImportObj.ajaxCallBack(fpcmAjax.result);';
         fpcmAjax.get();
     };
@@ -49,7 +66,27 @@ var nkorgRssImport = function () {
         if (res.list === undefined) {
             return false;
         }
+        
+        self.processList(res.list);
     }
+    
+    this.processList = function(list) {
+
+        jQuery('.fpcm-rssimport-artids-row').remove();
+
+        var content = '';
+        for (i = 0; i< list.length; i++) {
+            var elem = list[i];
+            
+            content = '<tr class="fpcm-rssimport-artids-row">';         
+            content += '<td>' + elem.title + '</td>';
+            content += '<td><input class="fpcm-ui-input-checkbox fpcm-rssimport-artids" name="fpcm-rssimport-artids[]" value="' + elem.id + '" type="checkbox"></td>';
+            content += '</tr>';
+            jQuery('#feed-articles-list').append(content);
+
+        }
+
+    };
 };
 
 var nkorgRssImportObj = new nkorgRssImport();
