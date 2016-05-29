@@ -20,7 +20,5 @@
         'NKORG_RSSIMPORT_IMPORTFAILED'    => 'Beim Import ist ein Fehler aufgetreten! Weitere Informationen findest du im Fehler-Log.',
         'NKORG_RSSIMPORT_NOTES'           => 'Der RSS Import Assistent ermöglichst es dir, Daten aus anderen Content Management Systemen ('
         . 'ältere FanPress CM Versionen, Wordpress, Joomla, Drupal), Foren (phpBB, etc.) oder ähnliches zu importieren. Der Assistent'
-        . 'versucht dabei, die Daten so gut es geht zu übernehmen. Dies betrifft Daten von Artikeln (Forum-Posts, Blog-Artikel bspw.'
-        . 'aus Wordpress, Benutzer und Kategorien). Es kann jedoch vorkommen, dass bestimmte Daten nicht verfügbar sind,'
-        . 'in diesem Fall werden die Standardangaben unten verwendet.',
+        . ' versucht dabei, die Daten so gut es geht zu übernehmen. Es kann jedoch vorkommen, dass bestimmte Daten nicht verfügbar sind,',
     );

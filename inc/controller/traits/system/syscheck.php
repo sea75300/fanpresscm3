@@ -76,6 +76,16 @@
                 'helplink'  => $sqlhelp,
                 'optional'  => ($resultMySql ? 1 : 0)
             );
+    
+            if (is_object(\fpcm\classes\baseconfig::$fpcmDatabase)) {
+                $checkOptions['Database driver in use']    = array(
+                    'current'   => \fpcm\classes\baseconfig::$fpcmDatabase->getDbtype(),
+                    'recommend' => implode(', ', $dbDrivers),
+                    'result'    => true,
+                    'helplink'  => '',
+                    'optional'  => 0
+                );                
+            }
 
             $current = (CRYPT_SHA256 == 1 ? true : false);
             $current = $current && in_array('sha256', hash_algos());            
