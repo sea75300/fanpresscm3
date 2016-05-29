@@ -37,13 +37,18 @@ class checkpath extends \fpcm\controller\abstracts\ajaxController {
         }
 
         $rss20 = new \fpcm\modules\nkorg\rssimport\model\rss20($xml);
-        if (!$rss20->check()) {
-            $this->response($failed);
+        if ($rss20->check()) {
+            $success['list'] = $rss20->getList();
+            $this->response($success);
         }
         
-        $success['list'] = $rss20->getList();
-        
-        $this->response($success);
+        $atom = new \fpcm\modules\nkorg\rssimport\model\atom($xml);
+        if ($atom->check()) {
+            $success['list'] = $atom->getList();
+            $this->response($success);
+        }
+
+        $this->response($failed);
     }
 
     private function response($msgArray) {

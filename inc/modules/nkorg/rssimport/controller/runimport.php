@@ -51,7 +51,12 @@ class runimport extends \fpcm\controller\abstracts\ajaxController {
         if ($rss20->check() && $rss20->import()) {
             $this->response($success);
         }
-        
+
+        $atom = new \fpcm\modules\nkorg\rssimport\model\atom($xmlObj, $this->feedIds, $this->userId, $this->categories);
+        if ($atom->check() && $atom->import()) {
+            $this->response($success);
+        }
+
         $this->response($failed);
 
     }

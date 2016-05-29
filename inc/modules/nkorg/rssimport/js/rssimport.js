@@ -4,6 +4,8 @@ var nkorgRssImport = function () {
 
     this.checkPath = function(feedPath) {
 
+        jQuery('.fpcm-rssimport-artids-row').remove();
+
         if (feedPath == '' || feedPath == 'http://' || feedPath == 'https://') {
             return true;
         }
@@ -71,20 +73,20 @@ var nkorgRssImport = function () {
     }
     
     this.processList = function(list) {
-
-        jQuery('.fpcm-rssimport-artids-row').remove();
-
         var content = '';
         for (i = 0; i< list.length; i++) {
             var elem = list[i];
             
-            content = '<tr class="fpcm-rssimport-artids-row">';         
+            content = '<tr class="fpcm-rssimport-artids-row">';
+            content += '<td class="fpcm-ui-articlelist-open"><a href="' + elem.link + '" target="_blank" class="fpcm-ui-button fpcm-ui-button-blank fpcm-openlink-btn"></a></td>';
             content += '<td>' + elem.title + '</td>';
-            content += '<td><input class="fpcm-ui-input-checkbox fpcm-rssimport-artids" name="fpcm-rssimport-artids[]" value="' + elem.id + '" type="checkbox"></td>';
+            content += '<td class="fpcm-td-select-row"><input class="fpcm-ui-input-checkbox fpcm-rssimport-artids" name="fpcm-rssimport-artids[]" value="' + elem.id + '" type="checkbox"></td>';
             content += '</tr>';
             jQuery('#feed-articles-list').append(content);
 
         }
+        
+        fpcmJs.assignButtons();
 
     };
 };

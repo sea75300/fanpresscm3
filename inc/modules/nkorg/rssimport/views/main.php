@@ -7,7 +7,7 @@
         </ul>
         
         <div id="fpcm-rssimport-general">
-            <table class="fpcm-ui-table" id="feed-articles-list">
+            <table class="fpcm-ui-table">
                 <tr>
                     <td colspan="2">
                         <p><?php $FPCM_LANG->write('NKORG_RSSIMPORT_NOTES'); ?></p>
@@ -29,11 +29,14 @@
                         <?php endforeach; ?>    
                     </div></td>
                 </tr>
-                <tr class="fpcm-td-spacer" colspan="2"><td></td></tr>
+            </table>
+            
+            <table id="feed-articles-list" class="fpcm-ui-table fpcm-ui-articles">
+                <tr class="fpcm-td-spacer" colspan="3"><td></td></tr>
                 <tr>
                     <th colspan="2"><?php $FPCM_LANG->write('NKORG_RSSIMPORT_FOUND'); ?></th>
                 </tr>
-                <tr class="fpcm-td-spacer" colspan="6"><td></td></tr>
+                <tr class="fpcm-td-spacer" colspan="3"><td></td></tr>
             </table>
         </div>
         
