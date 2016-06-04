@@ -304,11 +304,16 @@ Help language file
                 <li><b>Smileys:</b><br>
                     Benutzer mit den entsprechenden Rechten können die nutzbaren Smileys verwalten.
                 </li>
-                <li><b>Logs & Cronjob:</b><br>
+                <li><b>Cronjobs:</b><br>
+                    Cronjobs sind Aufgaben, welche in regelmäßgen Abständen automatisch durch FanPress CM im Hintergrund
+                    ausgeführt werden. Die Cronjob-Übersicht zeigt die eine Liste von verfügbaren Cronjobs, wenn sie zuletzt
+                    ausgeführt wurden sowie den Zeitpunkt der nächsten Ausführung. Das Zeit-Interval der Ausführung kannst du
+                    anpassen, in dem du die Interval-zeit änderst.
+                </li>  
+                <li><b>System-LOgs:</b><br>
                     Im Bereich der Systemlogs findest du eine Auflistung aller bisherigen Benutzer-Logins, System-Meldungen von FanPress und
                     Fehlermeldungen durch PHP selbst oder der Datenbank. Über den Button <i>Log-Datei leeren</i> kannst du Meldungen, etc. löschen
-                    lassen. Außerdem findest du hier eine Liste von verfügbaren Cronjobs (regelmäßig, automatisch ausgeführten Aufgaben)
-                    und deren Status.
+                    lassen.
                 </li>
                 <li><b>Backupmanager:</b><br>
                     Im Bereich "Backupmanager" kannst du ab Version 3.1 die automatisch erzeugten Datenbank-Backups herunterladen.

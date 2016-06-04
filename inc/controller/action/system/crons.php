@@ -1,13 +1,13 @@
 <?php
     /**
-     * Log view controller
+     * Cronjob manager controller
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2015, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\controller\action\system;
     
-    class logs extends \fpcm\controller\abstracts\controller {
+    class crons extends \fpcm\controller\abstracts\controller {
         
         /**
          * Controller-View
@@ -20,10 +20,10 @@
          */
         public function __construct() {
             parent::__construct();
-            
-            $this->checkPermission = array('system' => 'logs');
 
-            $this->view   = new \fpcm\model\view\acp('overview', 'logs');
+            $this->checkPermission = array('system' => 'logs');
+            $this->view   = new \fpcm\model\view\acp('cronjobs', 'system');
+
         }
         
         /**
@@ -32,13 +32,10 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $userList = new \fpcm\model\users\userList();
-            $this->view->assign('userList', $userList->getUsersAll());            
-            $this->view->assign('sessionList', $this->session->getSessions());
-            $this->view->assign('errorLogs', array());
-            $this->view->assign('systemLogs', array());
-            $this->view->assign('databaseLogs', array());
-            $this->view->assign('packagesLogs', array());
+            $cronlist = new \fpcm\model\crons\cronlist();
+            $this->view->assign('cronjobList', $cronlist->getCronsData());
+            $this->view->assign('currentTime', time());
+            $this->view->render();
             
             $this->view->render();
         }

@@ -272,10 +272,14 @@ Help language file
                 <li><b>Smileys:</b><br>
                     Manage smileys available in articles and comments.
                 </li>
-                <li><b>Logs and Cronjob:</b><br>
+                <li><b>Cronjobs:</b><br>
+                    Cronjobs are tasks, executed automatically and regularly by FanPress CM in background. The cronjob list
+                    shows you when a cronjob was executed last, when it's next execution is planned. You can modfify the
+                    execution interval by changed the interval time.
+                </li>                                
+                <li><b>System Logs:</b><br>
                     This area shows you the system logs of FanPress CM for sessions, system messages, errors and database errors.
-                    You can clear the logs in case they are to large. You'll also find a list of cronjobs (tasks which are
-                    automatically executed regularly)
+                    You can clear the logs in case they are to large.
                 </li>
                 <li><b>Backup manager:</b><br>
                     The "Backup manager" allows you to download the database backups created by the FanPress CM cronjob.

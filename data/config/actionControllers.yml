@@ -11,6 +11,7 @@ system/templates: action/system/templates
 system/templatepreview: action/system/templatepreview
 system/help: action/system/help
 system/backups: action/system/backups
+system/crons: action/system/crons
 users/add: action/users/useradd
 users/edit: action/users/useredit
 users/list: action/users/userlist

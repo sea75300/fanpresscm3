@@ -277,6 +277,14 @@
                     'icon'              => 'fa fa-smile-o fa-fw'
                 ),
                 array(
+                    'url'               => 'system/crons',
+                    'permission'        => array('system' => 'options'),
+                    'description'       => $this->language->translate('HL_CRONJOBS'),
+                    'class'             => '',
+                    'id'                => '',
+                    'icon'              => 'fa fa-history fa-fw'
+                ),
+                array(
                     'url'               => 'system/logs',
                     'permission'        => array('system' => 'logs'),
                     'description'       => $this->language->translate('HL_LOGS'),

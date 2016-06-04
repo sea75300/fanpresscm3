@@ -225,6 +225,18 @@
          */
         private function checkFilesystem() {
 
+            if (file_exists(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php')) {
+                unlink(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php');
+            }
+
+            if ($this->checkVersion('3.2.0', '>=')) {
+                return true;
+            }
+
+            if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
+                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
+            }
+            
             if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
                 \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
             }
