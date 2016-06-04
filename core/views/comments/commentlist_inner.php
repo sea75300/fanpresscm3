@@ -32,21 +32,12 @@
     <?php endforeach; ?>
 </table>
 
-<?php if ($permApprove || $permPrivate || $deleteCommentsPermissions) : ?>
+<?php if (count($commentActions)) : ?>
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-commentaction-buttons">
     <table>
         <tr>
-        <?php if ($permApprove) : ?>
-            <td><?php fpcm\model\view\helper::submitButton('spammerComments', 'COMMMENT_SPAM_BTN', 'fpcm-loader fpcm-ui-commentaction fpcm-ui-commentaction-spam'); ?></td>
-            <td><?php fpcm\model\view\helper::submitButton('approveComments', 'COMMMENT_APPROVE_BTN', 'fpcm-loader fpcm-ui-commentaction fpcm-ui-commentaction-approve'); ?></td>
-        <?php endif; ?>
-        <?php if ($permPrivate) : ?>
-            <td><?php fpcm\model\view\helper::submitButton('privateComments', 'COMMMENT_PRIVATE_BTN', 'fpcm-loader fpcm-ui-commentaction fpcm-ui-commentaction-private'); ?></td>
-        <?php endif; ?>
-
-        <?php if ($deleteCommentsPermissions) : ?>
-            <td><?php fpcm\model\view\helper::deleteButton('deleteComments'); ?></td>
-        <?php endif; ?>
+            <td><?php \fpcm\model\view\helper::select('commentAction', $commentActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?></td>
+            <td><?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?></td>
         </tr>
     </table>
 </div>

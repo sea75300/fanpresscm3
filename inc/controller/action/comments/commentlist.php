@@ -9,6 +9,8 @@
     
     class commentlist extends \fpcm\controller\abstracts\controller {
         
+        use \fpcm\controller\traits\comments\lists;
+        
         /**
          *
          * @var \fpcm\model\view\acp
@@ -44,50 +46,18 @@
          * @see \fpcm\controller\abstracts\controller::request()
          * @return boolean
          */
-        public function request() {        
+        public function request() {
+            
+            if (!$this->buttonClicked('doAction')) {
+                return true;
+            }
 
-            if ($this->buttonClicked('deleteComments') && !$this->checkPageToken()) {
+            if (!$this->checkPageToken()) {
                 $this->view->addErrorMessage('CSRF_INVALID');
                 return true;
             }
-            
-            if ($this->buttonClicked('deleteComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->list->deleteComments($ids)) {
-                    $this->view->addNoticeMessage('DELETE_SUCCESS_COMMENTS');
-                } else {
-                    $this->view->addErrorMessage('DELETE_FAILED_COMMENTS');
-                }
-            }  
-            
-            if ($this->buttonClicked('approveComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->list->toggleApprovement($ids)) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_APPROVEMENT');
-                } else {
-                    $this->view->addErrorMessage('SAVE_FAILED_APPROVEMENT');
-                }
-            }
-            
-            if ($this->buttonClicked('privateComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->list->togglePrivate($ids)) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_PRIVATE');
-                } else {
-                    $this->view->addErrorMessage('SAVE_FAILED_PRIVATE');
-                }
-            }
-            
-            if ($this->buttonClicked('spammerComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->list->toggleSpammer($ids)) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_SPAMMER');
-                } else {
-                    $this->view->addErrorMessage('SAVE_FAILED_SPAMMER');
-                }
-            }
-            
-            return true;            
+           
+            return $this->processCommentActions($this->list);
         }
         
         /**
@@ -95,28 +65,15 @@
          * @return mixed
          */        
         public function process() {
+
             if (!parent::process()) return false;
 
-            $this->initPermissions();
+            $this->initCommentPermissions();
 
             $this->view->assign('ownArticleIds', $this->articleList->getArticleIDsByUser($this->session->getUserId()));
             $this->view->assign('comments', $this->list->getCommentsAll());
             $this->view->assign('commentsMode', 1);
             $this->view->render();
-        }
-        
-        /**
-         * Initialisiert Berechtigungen
-         */
-        protected function initPermissions() {
-            if (!$this->permissions) return false;
-            
-            $this->view->assign('deleteCommentsPermissions', $this->permissions->check(array('comment' => 'delete')));            
-            $this->view->assign('permApprove', $this->permissions->check(array('comment' => 'approve')));
-            $this->view->assign('permPrivate', $this->permissions->check(array('comment' => 'private')));
-            $this->view->assign('permEditOwn', $this->permissions->check(array('comment' => 'edit')));
-            $this->view->assign('permEditAll', $this->permissions->check(array('comment' => 'editall')));
-            $this->view->assign('isAdmin', $this->session->getCurrentUser()->isAdmin());
         }
 
     }

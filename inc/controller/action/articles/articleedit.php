@@ -9,6 +9,8 @@
     
     class articleedit extends articlebase {
         
+        use \fpcm\controller\traits\comments\lists;
+        
         /**
          *
          * @var \fpcm\model\users\userList
@@ -280,6 +282,9 @@
             $this->view->assign('permEditAll', $this->permissions->check(array('comment' => 'editall')));
             $this->view->assign('currentUserId', $this->session->getUserId());
             $this->view->assign('isAdmin', $this->session->getCurrentUser()->isAdmin());
+
+            $this->initCommentPermissions();
+            
         }
         
         /**
@@ -290,42 +295,9 @@
             if (!$this->checkPageToken) {
                 return false;
             }
-            
-            if ($this->buttonClicked('deleteComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->commentList->deleteComments($ids)) {
-                    $this->view->addNoticeMessage('DELETE_SUCCESS_COMMENTS');
-                } else {
-                    $this->view->addErrorMessage('DELETE_FAILED_COMMENTS');
-                }
-            }  
-            
-            if ($this->buttonClicked('approveComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->commentList->toggleApprovement($ids)) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_APPROVEMENT');
-                } else {
-                    $this->view->addErrorMessage('SAVE_FAILED_APPROVEMENT');
-                }
-            }
-            
-            if ($this->buttonClicked('privateComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->commentList->togglePrivate($ids)) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_PRIVATE');
-                } else {
-                    $this->view->addErrorMessage('SAVE_FAILED_PRIVATE');
-                }
-            }
-            
-            if ($this->buttonClicked('spammerComments') && !is_null($this->getRequestVar('ids'))) {                
-                $ids = $this->getRequestVar('ids');
-                if ($this->commentList->toggleSpammer($ids)) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_SPAMMER');
-                } else {
-                    $this->view->addErrorMessage('SAVE_FAILED_SPAMMER');
-                }
-            }
+
+            $this->processCommentActions($this->commentList);
+
         }
     }
 ?>
