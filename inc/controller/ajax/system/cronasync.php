@@ -35,6 +35,25 @@
          */
         public function process() {
 
+            $cjId = $this->getRequestVar('cjId');
+            if ($cjId) {
+                
+                $cjClassName = "\\fpcm\\model\\crons\\{$cjId}";
+
+                /* @var $cronjob \fpcm\model\abstracts\cron */
+                $cronjob = new $cjClassName($cjId);
+                
+                if (!is_a($cronjob, '\fpcm\model\abstracts\cron')) {
+                    trigger_error("Cronjob class {$cjId} must be an instance of \"\fpcm\model\abstracts\cron\"!");
+                    return false;                
+                }
+
+                $cronjob->run();                
+                $cronjob->updateLastExecTime();
+
+                return true;
+            }
+
             $cronlist = new \fpcm\model\crons\cronlist();
             $crons    = $cronlist->getExecutableCrons();
             

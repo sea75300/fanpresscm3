@@ -105,9 +105,12 @@
         'LOGS_LIST_LOGOUT'              => 'Logout am',
         'LOGS_LIST_TIME'                => 'Zeit',
         'LOGS_LIST_TEXT'                => 'Log-Eintrag',
-        'LOGS_LIST_CRONJOB_NAME'        => 'Cronjob-Name',
-        'LOGS_LIST_CRONJOB_LASTEXEC'    => 'Zuletzt ausgeführt',
-        'LOGS_LIST_CRONJOB_NEXTEXEC'    => 'nächste Ausführung',
+
+        'CRONJOB_LIST_NAME'             => 'Cronjob-Name',
+        'CRONJOB_LIST_LASTEXEC'         => 'Zuletzt ausgeführt',
+        'CRONJOB_LIST_NEXTEXEC'         => 'nächste Ausführung',
+        'CRONJOB_LIST_EXECDEMAND'       => 'Cronjob jetzt ausführen',
+        'CRONJOB_LIST_INTERVAL'         => 'Zeit-Interval',
 
         'BACKUPS_TAB_DATABASE'          => 'Datenbank',
         

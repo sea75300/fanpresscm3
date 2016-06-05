@@ -13,14 +13,18 @@
 
                 <table class="fpcm-ui-table fpcm-ui-logs fpcm-ui-logs-cronjobs">
                     <tr>
-                        <th><?php $FPCM_LANG->write('LOGS_LIST_CRONJOB_NAME'); ?></th>
-                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('LOGS_LIST_CRONJOB_LASTEXEC'); ?></th>
-                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('LOGS_LIST_CRONJOB_NEXTEXEC'); ?></th>
+                        <th></th>
+                        <th class="fpcm-cronjob-name"><?php $FPCM_LANG->write('CRONJOB_LIST_NAME'); ?></th>
+                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('CRONJOB_LIST_INTERVAL'); ?></th>
+                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('CRONJOB_LIST_LASTEXEC'); ?></th>
+                        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('CRONJOB_LIST_NEXTEXEC'); ?></th>
                     </tr>
                     <tr class="fpcm-td-spacer"><td></td></tr>   
                     <?php foreach ($cronjobList as $cronjob) : ?>
                     <tr <?php if ($currentTime > ($cronjob->getNextExecTime() - 60)) : ?>class="fpcm-ui-important-text"<?php endif; ?>>
-                        <td><?php $FPCM_LANG->write('CRONJOB_'.strtoupper($cronjob->getCronName())); ?></td>
+                        <td class="fpcm-ui-center"><?php \fpcm\model\view\helper::linkButton('#', 'CRONJOB_LIST_EXECDEMAND', $cronjob->getCronName(), 'fpcm-ui-button-blank fpcm-cronjoblist-exec'); ?></td>
+                        <td class="fpcm-cronjob-name"><?php $FPCM_LANG->write('CRONJOB_'.strtoupper($cronjob->getCronName())); ?></td>
+                        <td class="fpcm-cronjob-interval fpcm-ui-center"><?php fpcm\model\view\helper::select('intervals_'.$cronjob->getCronName(), $conjobIntervals, $cronjob->getIntervalTime(), false, false, false, 'fpcm-cronjoblist-intervals'); ?></td>
                         <td class="fpcm-ui-center"><?php \fpcm\model\view\helper::dateText($cronjob->getLastExecTime()); ?></td>
                         <td class="fpcm-ui-center"><?php \fpcm\model\view\helper::dateText($cronjob->getNextExecTime()); ?></td>
                     </tr>
@@ -28,6 +32,8 @@
                 </table>
 
             </div>
+            
+        </div>
         
     </form> 
 </div>

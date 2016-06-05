@@ -293,6 +293,22 @@ jQuery(document).ready(function () {
 
         return false;
     });
+    
+    jQuery('.fpcm-cronjoblist-exec').click(function () {
+        var cjId = jQuery(this).attr('id');
+        fpcmJs.execCronjobDemand(cjId);
+        return false;
+    });
+
+    jQuery(".fpcm-cronjoblist-intervals" ).on("selectmenuchange", function(event, ui) {
+
+        var cronjob  = jQuery(this).attr('id').split('_');
+        var interval = jQuery(this).val();
+
+        fpcmJs.setCronjobInterval(cronjob[1], interval);
+        return false;
+    });
+
 });
 
 function initCodeMirrorTemplates(id) {

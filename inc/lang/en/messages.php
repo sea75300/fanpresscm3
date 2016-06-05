@@ -133,7 +133,7 @@
         'LOAD_FAILED_WORDBAN'           => 'The requested censored text was not found.',
         
         'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM version <i>{{version}}</i> is available! <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to start update process.',
-        'UPDATE_VERSIONCHECK_CURRENT'   => 'Your version of FanPress CM is up to date!<br><span class="fpcm-small-text">{{releasmsg}} ({{releaseinfo}})</span>',
+        'UPDATE_VERSIONCHECK_CURRENT'   => 'Your version of FanPress CM is up to date! Release notes and further information can be found in "Recent FanPress CM news".',
         'UPDATE_NOTAUTOCHECK'           => 'Automatic update check failed! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Check manually</a>',
         'UPDATE_WRITEERROR'             => 'The <strong>version.php</strong> file in FanPress CM root folder is not writable. This may affect other files of your installation too.<br>'.
                                            'This can be caused by wrong file permissions. Please check/change permissions of - in case - all files until this message disppears on reload.<br>'.

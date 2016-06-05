@@ -70,7 +70,6 @@
             rsort($files);
             
             $this->view->assign('folderList', $files);
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js'));
             $this->view->render();
         }
         

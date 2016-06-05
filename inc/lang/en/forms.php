@@ -105,9 +105,12 @@
         'LOGS_LIST_LOGOUT'              => 'Logout on',
         'LOGS_LIST_TIME'                => 'Time',
         'LOGS_LIST_TEXT'                => 'Log entry',
-        'LOGS_LIST_CRONJOB_NAME'        => 'Cronjob name',
-        'LOGS_LIST_CRONJOB_LASTEXEC'    => 'Last execution',
-        'LOGS_LIST_CRONJOB_NEXTEXEC'    => 'Next execution',
+        
+        'CRONJOB_LIST_NAME'             => 'Cronjob name',
+        'CRONJOB_LIST_LASTEXEC'         => 'Last execution',
+        'CRONJOB_LIST_NEXTEXEC'         => 'Next execution',
+        'CRONJOB_LIST_EXECDEMAND'       => 'Execute cronjob now',
+        'CRONJOB_LIST_INTERVAL'         => 'Execution interval',
         
         'BACKUPS_TAB_DATABASE'          => 'Database',
         

@@ -559,8 +559,7 @@ var fpcmJs = function () {
     this.loadDashboardContainer = function() {
         fpcmAjax.action   = 'dashboard';
         fpcmAjax.execDone = 'fpcmJs.loadDashboardContainerCallback(fpcmAjax.result);';
-        fpcmAjax.get();
-        
+        fpcmAjax.get();        
     };
     
     this.loadDashboardContainerCallback = function(resultData) {
@@ -625,5 +624,21 @@ var fpcmJs = function () {
             return false;
         })
         
+    };
+    
+    this.execCronjobDemand = function(cronjobId) {
+        self.showLoader(true);
+        fpcmAjax.action = 'cronasync';
+        fpcmAjax.data   = {cjId:cronjobId};
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);';
+        fpcmAjax.get();
+    };
+    
+    this.setCronjobInterval = function(cronjobId, cronjobInterval) {
+        self.showLoader(true);
+        fpcmAjax.action = 'croninterval';
+        fpcmAjax.data   = {cjId:cronjobId,interval:cronjobInterval};
+        fpcmAjax.execDone = 'fpcmJs.showLoader(false);';
+        fpcmAjax.get();
     };
 }

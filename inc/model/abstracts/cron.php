@@ -150,7 +150,15 @@
         public function setAsyncCurrent($asyncCurrent) {
             $this->asyncCurrent = $asyncCurrent;
         }
-                
+
+        /**
+         * Setzt Interval des Cronjobs
+         * @param int $execinterval
+         */
+        function setExecinterval($execinterval) {
+            $this->execinterval = (int) $execinterval;
+        }
+                        
         /**
          * Initialisiert
          */
@@ -195,6 +203,14 @@
          */
         public function getIntervalTime() {
             return (int) $this->execinterval;
+        }
+
+        /**
+         * Aktualisiert einen Artikel in der Datenbank
+         * @return boolean
+         */        
+        public function update() {
+            return $this->dbcon->update($this->table, array('execinterval'), array($this->execinterval, $this->cronName), 'cjname '.$this->dbcon->dbLike().' ?');
         }
         
     }

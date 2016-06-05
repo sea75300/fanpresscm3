@@ -124,5 +124,24 @@
         'SYSTEM_OPTIONS_SYSCHECK_FPCMVERSION'       => 'FanPress CM Version',
         'SYSTEM_OPTIONS_SYSCHECK_PHPVERSION'        => 'PHP Version',
         'SYSTEM_OPTIONS_SYSCHECK_PHPMEMLIMIT'       => 'PHP Speicherlimit',
-        'SYSTEM_OPTIONS_SYSCHECK_PHPMAXEXECTIME'    => 'Maximale Ausführungszeit für PHP'
+        'SYSTEM_OPTIONS_SYSCHECK_PHPMAXEXECTIME'    => 'Maximale Ausführungszeit für PHP',
+
+        'SYSTEM_OPTIONS_INTERVAL_0'          => 'bei jedem Aufruf',
+        'SYSTEM_OPTIONS_INTERVAL_60'         => 'minütlich',
+        'SYSTEM_OPTIONS_INTERVAL_90'         => '90 Sekunden',
+        'SYSTEM_OPTIONS_INTERVAL_120'        => 'aller 2 Minuten',
+        'SYSTEM_OPTIONS_INTERVAL_300'        => 'aller 5 Minuten',
+        'SYSTEM_OPTIONS_INTERVAL_600'        => 'aller 10 Minuten',
+        'SYSTEM_OPTIONS_INTERVAL_900'        => 'aller 15 Minuten',
+        'SYSTEM_OPTIONS_INTERVAL_1800'       => 'halbstündlich',
+        'SYSTEM_OPTIONS_INTERVAL_3600'       => 'stündlich',
+        'SYSTEM_OPTIONS_INTERVAL_7200'       => 'aller 2 Stunden',
+        'SYSTEM_OPTIONS_INTERVAL_10800'      => 'aller 3 Stunden',
+        'SYSTEM_OPTIONS_INTERVAL_21600'      => 'aller 6 Stunden',
+        'SYSTEM_OPTIONS_INTERVAL_43200'      => 'aller 12 Stunden',
+        'SYSTEM_OPTIONS_INTERVAL_86400'      => 'täglich',
+        'SYSTEM_OPTIONS_INTERVAL_172800'     => 'aller 2 Tage',
+        'SYSTEM_OPTIONS_INTERVAL_604800'     => 'wöchentlich',
+        'SYSTEM_OPTIONS_INTERVAL_1209600'    => '14-tägig',
+        'SYSTEM_OPTIONS_INTERVAL_2419200'    => 'monatlich'
     );
