@@ -21,5 +21,6 @@
         'USERS_EDIT'             => 'Edit user',
         'USERS_ROLL_ADD'         => 'Create user roll',
         'USERS_ROLL_EDIT'        => 'Edit user roll',
-        'USERS_META_OPTIONS'     => 'User settings'
+        'USERS_META_OPTIONS'     => 'User settings',
+        'USERS_PASSGEN'          => 'Generate password'
     );

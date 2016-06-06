@@ -12,13 +12,14 @@
     <tr>
         <td><?php $FPCM_LANG->write('GLOBAL_PASSWORD'); ?>:</td>
         <td>
-            <?php \fpcm\model\view\helper::passwordInput('password', 'fpcm-usereditor-password') ?>
+            <?php \fpcm\model\view\helper::textInput('password', 'fpcm-usereditor-password') ?>
+            <?php \fpcm\model\view\helper::linkButton('button', 'USERS_PASSGEN', 'generatepasswd', 'fpcm-ui-button-blank fpcm-passgen-btn'); ?>
             <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('USERS_REQUIREMENTS')); ?>
         </td>
     </tr>
     <tr>
         <td><?php $FPCM_LANG->write('USERS_PASSWORD_CONFIRM'); ?>:</td>
-        <td><?php \fpcm\model\view\helper::passwordInput('password_confirm'); ?></td>
+        <td><?php \fpcm\model\view\helper::textInput('password_confirm'); ?></td>
     </tr>                
     <tr>
         <td><?php $FPCM_LANG->write('USERS_DISPLAYNAME'); ?>:</td>

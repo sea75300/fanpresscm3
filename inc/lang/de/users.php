@@ -21,5 +21,6 @@
         'USERS_EDIT'             => 'Benutzer bearbeiten',
         'USERS_ROLL_ADD'         => 'Benutzerrolle anlegen',
         'USERS_ROLL_EDIT'        => 'Benutzerrolle bearbeiten',
-        'USERS_META_OPTIONS'     => 'Benutzereinstellungen'
+        'USERS_META_OPTIONS'     => 'Benutzereinstellungen',
+        'USERS_PASSGEN'          => 'Passwort generieren'
     );

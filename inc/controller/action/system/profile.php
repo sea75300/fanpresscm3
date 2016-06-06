@@ -129,6 +129,7 @@
             );
             $this->view->assign('articleLimitList', $articleLimitList);
             $this->view->assign('showDisableButton', false);
+            $this->view->setViewJsFiles(array(\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')));
             
             $this->view->render();            
         }

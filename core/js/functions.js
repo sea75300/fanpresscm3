@@ -641,4 +641,14 @@ var fpcmJs = function () {
         fpcmAjax.execDone = 'fpcmJs.showLoader(false);';
         fpcmAjax.get();
     };
+
+    this.generatePasswdString = function() {
+      
+        var passwd = generatePassword(12, false);
+        jQuery('#password').val(passwd);
+        jQuery('#password_confirm').val(passwd);
+        
+        return false;
+
+    };
 }

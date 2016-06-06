@@ -1502,12 +1502,12 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     content: '\f090';
 }
 
-.fpcm-ui-button.fpcm-passreset-btn .ui-button-text:before {
+.fpcm-ui-button.fpcm-passreset-btn span.ui-button-text:before {
     content: '\f145';
 }
 
 .fpcm-ui-button.fpcm-ui-articleactions-ok .ui-button-text:before,
-.fpcm-ui-button.fpcm-ok-button .ui-button-text:before,
+.fpcm-ui-button.fpcm-ok-button span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ok-button span.ui-icon:before {
     content: '\f00c';
 }
@@ -1632,4 +1632,8 @@ div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before {
 
 h1 a.fpcm-ui-helpbutton span.ui-button-text:before {
     content: '\f059';
+}
+
+.fpcm-ui-button.fpcm-passgen-btn span.ui-icon:before {
+    content: '\f069';
 }

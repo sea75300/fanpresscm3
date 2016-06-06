@@ -309,6 +309,11 @@ jQuery(document).ready(function () {
         return false;
     });
 
+    jQuery("#generatepasswd" ).click(function () {
+        fpcmJs.generatePasswdString();
+        return false;
+    });
+
 });
 
 function initCodeMirrorTemplates(id) {
