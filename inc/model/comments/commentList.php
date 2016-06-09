@@ -79,6 +79,94 @@
         }
         
         /**
+         * Liefert ein array der Kommentare, welcher mit der Bedingung übereinstimmen
+         * @param array $conditions
+         * * title => via Title-Inhalt
+         * * content => via content-Inhalt
+         * * user => via Benutzer
+         * * category => via Category
+         * * datefrom => seit Datum X.Y.Z
+         * * dateto => bis Datum X.Y.Z
+         * * postponed => nur geplante Artikel
+         * * archived => nur archivierte Artikel
+         * * pinned => nur gepinnte Artikel
+         * * comment => commentare sind aktiv
+         * * deleted => nur gelöschte Artikel
+         * * draft => nur Entwürfe
+         * * orderby => Array von Sortierungen in SQL-Syntax
+         * * limit => Abfrage einschränken
+         * @return array
+         */
+        public function getCommentsBySearchCondition(array $conditions) {
+            
+            $where = array();
+            $valueParams = array();
+
+            if (isset($conditions['text']) && $conditions['searchtype'] == 0) {
+                $where[] = "name ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+
+            if (isset($conditions['text']) && $conditions['searchtype'] == 0) {
+                $where[] = "email ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+
+            if (isset($conditions['text']) && $conditions['searchtype'] == 0) {
+                $where[] = "website ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+            
+            if (isset($conditions['text'])) {
+                $where[] = "text ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+            
+            if ($conditions['searchtype'] == 0) {
+                $textWhere = array();
+                $textWhere[] = '('.implode(' OR ', $where).')';
+                $where = $textWhere;
+            }
+            
+            if (isset($conditions['datefrom'])) {
+                $where[] = "createtime >= ?";
+                $valueParams[] = $conditions['datefrom'];
+            }
+            
+            if (isset($conditions['dateto'])) {
+                $where[] = "createtime <= ?";
+                $valueParams[] = $conditions['dateto'];
+            }
+            
+            if (isset($conditions['spam']) && $conditions['spam'] > -1) {
+                $where[] = "spammer = ?";
+                $valueParams[] = $conditions['spam'];
+            }
+            
+            if (isset($conditions['private']) && $conditions['private'] > -1) {
+                $where[] = "private = ?";
+                $valueParams[] = $conditions['private'];
+            }
+            
+            if (isset($conditions['approved']) && $conditions['approved'] > -1) {
+                $where[] = "approved = ?";
+                $valueParams[] = $conditions['approved'];
+            }
+            
+            $where = implode(' AND ', $where);
+
+            $list = $this->dbcon->fetch(
+                    $this->dbcon->select(
+                        $this->table, '*', $where.$this->dbcon->orderBy(array('createtime ASC')),
+                        $valueParams
+                    ),
+                    true
+            );
+
+            return $this->createCommentResult($list);
+        }
+        
+        /**
          * Liefert ein Array mit Kommentaren zurück
          * @param int $offset
          * @param int $limit

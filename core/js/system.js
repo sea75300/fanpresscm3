@@ -19,6 +19,7 @@ jQuery(document).ready(function () {
     
     fpcmJs.windowResize();
     fpcmJs.assignButtons();
+    fpcmJs.assignSelectmenu();
     fpcmJs.initInputShadow();
     
     jQuery(window).resize(function () {
@@ -32,30 +33,8 @@ jQuery(document).ready(function () {
     jQuery(document).tooltip();
     jQuery('.fpcm-link-fancybox').fancybox();    
     jQuery('input.fpcm-ui-spinner').spinner();    
-    jQuery('.fpcm-tabs-general').tabs();    
+    jQuery('.fpcm-tabs-general').tabs();
     fpcmJs.initAccordion('.fpcm-tabs-accordion');
-    
-    jQuery('.fpcm-ui-input-select').selectmenu({
-        width: 200
-    });    
-    
-    jQuery('.fpcm-ui-input-select-articleactions').selectmenu({
-        width: 200,
-        position: {
-            my: 'left top',
-            at: 'left bottom+5',
-            offset: null
-        }
-    });    
-    
-    jQuery('.fpcm-ui-input-select-moduleactions').selectmenu({
-        width: 200,
-        position: {
-            my: 'left top',
-            at: 'left bottom+5',
-            offset: null
-        }
-    });
     
     jQuery('.fpcm-loader').click(function () {
         if (jQuery(this).hasClass('fpcm-noloader')) return false;        
@@ -113,7 +92,7 @@ jQuery(document).ready(function () {
         });
     });
 
-    if (typeof fpcmArticlesSearchHeadline != 'undefined') {
+    if (typeof fpcmSearchHeadline != 'undefined') {
         jQuery('#fpcmarticlesopensearch').click(function () {
             jQuery('.fpcm-ui-input-select-articlesearch').selectmenu({
                 width: '100%',
@@ -129,10 +108,10 @@ jQuery(document).ready(function () {
                 height: 350,
                 modal    : true,
                 resizable: true,
-                title    : fpcmArticlesSearchHeadline,
+                title    : fpcmSearchHeadline,
                 buttons  : [
                     {
-                        text: fpcmArticlesSearchStart,
+                        text: fpcmSearchStart,
                         icons: {
                             primary: "ui-icon-check"            
                         },                        
@@ -169,6 +148,8 @@ jQuery(document).ready(function () {
             });
             return false;
         });
+        
+        fpcmJs.initCommentSearch();
     }
 
     jQuery('#fpcm-clear-cache').click(function () {

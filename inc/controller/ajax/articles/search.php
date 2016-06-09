@@ -82,7 +82,7 @@
             
             $this->articleList  = new \fpcm\model\articles\articlelist();
             $this->categoryList = new \fpcm\model\categories\categoryList();
-            $this->commentList      = new \fpcm\model\comments\commentList();
+            $this->commentList  = new \fpcm\model\comments\commentList();
             $this->userList     = new \fpcm\model\users\userList();
 
             $this->view         = new \fpcm\model\view\ajax('articles', 'articles/lists');

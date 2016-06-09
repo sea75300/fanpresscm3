@@ -96,6 +96,8 @@
         
         'COMMENTS_EDIT'                 => 'Kommentar bearbeiten',
         'COMMENTS_PUBLIC_FORMHEADLINE'  => 'Hinterlasse einen Kommentar',
+        'COMMENTS_SEARCH_TYPE_TEXT'     => 'nur Text durchsuchen',
+        'COMMENTS_SEARCH_TYPE_ALL'      => 'Alles durchsuchen',
         
         'LOGS_CLEARLOG'                 => 'Leeren',
         'LOGS_LIST_TIMEOUT'             => 'Session-Timeout',

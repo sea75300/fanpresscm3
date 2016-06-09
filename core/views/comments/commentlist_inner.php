@@ -36,6 +36,7 @@
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-commentaction-buttons">
     <table>
         <tr>
+            <?php if ($commentsMode == 1) : ?><td><?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcmcommentsopensearch', 'fpcm-articles-opensearch'); ?></td><?php endif; ?>
             <td><?php \fpcm\model\view\helper::select('commentAction', $commentActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?></td>
             <td><?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?></td>
         </tr>

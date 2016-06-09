@@ -408,10 +408,10 @@
             ));
 
             $this->view->addJsVars(array(
-                'fpcmArticlesSearchWaitMsg'  => $this->lang->translate('SEARCH_WAITMSG'),
-                'fpcmArticlesSearchHeadline' => $this->lang->translate('ARTICLES_SEARCH'),
-                'fpcmArticlesSearchStart'    => $this->lang->translate('ARTICLE_SEARCH_START'),
-                'fpcmArticlesLastSearch'     => 0
+                'fpcmSearchWaitMsg'      => $this->lang->translate('SEARCH_WAITMSG'),
+                'fpcmSearchHeadline'     => $this->lang->translate('ARTICLES_SEARCH'),
+                'fpcmSearchStart'        => $this->lang->translate('ARTICLE_SEARCH_START'),
+                'fpcmArticlesLastSearch' => 0
             ));
         }
         

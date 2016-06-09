@@ -183,6 +183,30 @@ var fpcmJs = function () {
         noActionButtonAssign = false;
     };
     
+    this.assignSelectmenu = function () {
+        jQuery('.fpcm-ui-input-select').selectmenu({
+            width: 200
+        });
+
+        jQuery('.fpcm-ui-input-select-articleactions').selectmenu({
+            width: 200,
+            position: {
+                my: 'left top',
+                at: 'left bottom+5',
+                offset: null
+            }
+        });    
+
+        jQuery('.fpcm-ui-input-select-moduleactions').selectmenu({
+            width: 200,
+            position: {
+                my: 'left top',
+                at: 'left bottom+5',
+                offset: null
+            }
+        });
+    };
+    
     this.assignCheckboxes = function () {
         jQuery('#fpcmselectall').click(function(){
             jQuery('.fpcm-select-allsub').prop('checked', false);
@@ -336,6 +360,32 @@ var fpcmJs = function () {
         fpcmJs.assignHtml('#tabs-article-list', ajaxResult);
         noActionButtonAssign = true;
         fpcmJs.assignButtons();
+    };
+    
+    this.startCommentSearch = function (sParams) {
+        if (((new Date()).getTime() - fpcmCommentsLastSearch) < 10000) {
+            self.addAjaxMassage('error', fpcmSearchWaitMsg);            
+            return false;
+        }
+
+        self.showLoader(true);
+        
+        fpcmAjax.action     = 'comments/search';
+        fpcmAjax.data       = sParams;
+        fpcmAjax.execDone   = 'fpcmJs.startCommentSearchDone(fpcmAjax.result)';
+        fpcmAjax.post();
+
+        fpcmCommentsLastSearch = (new Date()).getTime();
+    };
+    
+    this.startCommentSearchDone = function (ajaxResult) {
+        
+        fpcmJs.showLoader(false);
+        fpcmJs.assignHtml('#tabs-comments-active', ajaxResult);
+        noActionButtonAssign = true;
+        fpcmJs.assignButtons();
+        fpcmJs.initCommentSearch();
+        fpcmJs.assignSelectmenu();
     };
     
     this.addAjaxMassage = function (type, message, fadeOut) {
@@ -649,6 +699,66 @@ var fpcmJs = function () {
         jQuery('#password_confirm').val(passwd);
         
         return false;
+    };
+    
+    this.initCommentSearch = function() {
+
+        jQuery('#fpcmcommentsopensearch').click(function () {
+
+            jQuery('.fpcm-ui-input-select-commentsearch').selectmenu({
+                width: '100%',
+                appendTo: '#fpcm-comments-search-dialog'
+            });
+
+            jQuery('.fpcm-full-width-date').datepicker({
+                dateFormat: "yy-mm-dd",
+                firstDay: 1
+            });               
+
+            jQuery('#fpcm-comments-search-dialog').dialog({
+                width: 700,
+                height: 350,
+                modal    : true,
+                resizable: true,
+                title    : fpcmSearchHeadline,
+                buttons  : [
+                    {
+                        text: fpcmSearchStart,
+                        icons: {
+                            primary: "ui-icon-check"            
+                        },                        
+                        click: function() {                            
+                            var sfields = jQuery('.fpcm-comments-search-input');
+                            var sParams = {
+                                filter: {}
+                            };
+                            
+                            jQuery.each(sfields, function( key, obj ) {
+                                var objVal  = jQuery(obj).val();
+                                var objName = jQuery(obj).attr('name');                                
+                                sParams.filter[objName] = objVal;
+                            });
+
+                            fpcmJs.startCommentSearch(sParams);
+                            jQuery(this).dialog('close');
+                        }
+                    },                    
+                    {
+                        text: fpcmClose,
+                        icons: {
+                            primary: "ui-icon-closethick"            
+                        },                        
+                        click: function() {
+                            jQuery(this).dialog('close');
+                        }
+                    }                            
+                ],
+                open: function( event, ui ) {
+                    jQuery('#text').focus();
+                }
+            });
+            return false;
+        });
 
     };
 }

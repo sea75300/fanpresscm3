@@ -69,11 +69,49 @@
             if (!parent::process()) return false;
 
             $this->initCommentPermissions();
+            $this->initSearchForm();
 
             $this->view->assign('ownArticleIds', $this->articleList->getArticleIDsByUser($this->session->getUserId()));
             $this->view->assign('comments', $this->list->getCommentsAll());
             $this->view->assign('commentsMode', 1);
             $this->view->render();
+        }
+        
+        /**
+         * Initialisiert Suchformular-Daten
+         * @param array $users
+         */
+        private function initSearchForm() {
+
+            $this->view->assign('searchTypes', array(
+                $this->lang->translate('COMMENTS_SEARCH_TYPE_ALL')  => 0,
+                $this->lang->translate('COMMENTS_SEARCH_TYPE_TEXT') => 1
+            ));
+
+            $this->view->assign('searchApproval', array(
+                $this->lang->translate('COMMMENT_APPROVE') => -1,
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ));
+
+            $this->view->assign('searchSpam', array(
+                $this->lang->translate('COMMMENT_SPAM') => -1,
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ));
+
+            $this->view->assign('searchPrivate', array(
+                $this->lang->translate('COMMMENT_PRIVATE') => -1,
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ));
+
+            $this->view->addJsVars(array(
+                'fpcmSearchWaitMsg'      => $this->lang->translate('SEARCH_WAITMSG'),
+                'fpcmSearchHeadline'     => $this->lang->translate('ARTICLES_SEARCH'),
+                'fpcmSearchStart'        => $this->lang->translate('ARTICLE_SEARCH_START'),
+                'fpcmCommentsLastSearch' => 0
+            ));
         }
 
     }
