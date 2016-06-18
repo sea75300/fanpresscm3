@@ -54,14 +54,15 @@
             $params = array(
                 'fpcmTinyMceLang'        => $this->config->system_lang,
                 'fpcmTinyMceElements'     => '~readmore',
-                'fpcmTinyMcePlugins'     => 'advlist anchor autolink autoresize charmap code colorpicker fullscreen hr image importcss insertdatetime link lists media nonbreaking searchreplace table textcolor textpattern visualblocks visualchars wordcount fpcm_emoticons fpcm_readmore',
-                'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime | undo redo removeformat searchreplace fullscreen code',
+                'fpcmTinyMcePlugins'     => 'advlist anchor autolink autoresize charmap code colorpicker fullscreen hr image importcss insertdatetime link lists media nonbreaking searchreplace table textcolor textpattern visualblocks visualchars wordcount template fpcm_emoticons fpcm_readmore',
+                'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime template | undo redo removeformat searchreplace fullscreen code',
                 'fpcmTinyMceCssClasses'  => array_merge($editorStyles, $this->getEditorStyles()),
                 'fpcmTinyMceLinkList'    => $this->getEditorLinks(),
                 'fpcmTinyMceImageList'   => $this->getFileList(),
                 'fpcmTinyMceTextpattern' => $this->getTextPatterns(),
                 'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize,
-                'fpcmTinyMceReadmoreBlockHL' => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE')
+                'fpcmTinyMceReadmoreBlockHL' => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE'),
+                'fpcmTinyMceTemplatesList'   => $this->getTemplateDrafts()
             );
             
             return $this->events->runEvent('editorInitTinymce', $params);
@@ -116,6 +117,34 @@
             $res = $this->events->runEvent('editorGetFileList', array('label' => 'title', 'files' => $data));
             
             return isset($res['files']) && count($res['files']) ? $res['files'] : array();
+        }
+
+        /**
+         * @see \fpcm\model\abstracts\articleEditor::getTemplateDrafts()
+         * @return array
+         * @since FPCM 3.3
+         */
+        public function getTemplateDrafts() {
+            
+            $files = glob(\fpcm\classes\baseconfig::$draftsDir.'*.html');
+            
+            $ret = array();
+            foreach ($files as $file) {
+                
+                $basename = basename($file);
+                
+                if ($basename === 'index.html') {
+                    continue;;
+                }
+                    
+                $ret[] = array(
+                    "title" => $basename,
+                    "url"   => \fpcm\model\files\ops::removeBaseDir($file, true)
+                );
+                
+            }
+            
+            return $ret;
         }
         
     }

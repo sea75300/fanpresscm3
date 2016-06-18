@@ -77,6 +77,7 @@
         'EDITOR_HTML_BUTTONS_IFRAME'    => 'Insert iframe',
         'EDITOR_HTML_BUTTONS_READMORE'  => 'Insert <readmore> block',
         'EDITOR_HTML_BUTTONS_SYMBOL'    => 'Insert Symbol',
+        'EDITOR_HTML_BUTTONS_DRAFT'     => 'Insert draft',
         'EDITOR_HTML_BUTTONS_REMOVESTYLE' => 'Remove HTML and style tags',
         'EDITOR_HTML_BUTTONS_LITEXT'      => 'Element text:'
     );

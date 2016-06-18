@@ -310,6 +310,7 @@ var fpcmEditor = function () {
             link_list             : fpcmTinyMceLinkList,
             image_list            : fpcmTinyMceImageList,
             textpattern_patterns  : fpcmTinyMceTextpattern,
+            templates             : fpcmTinyMceTemplatesList,
             menubar               : false,
             relative_urls         : false,
             image_advtab          : true,
@@ -357,6 +358,16 @@ var fpcmEditor = function () {
             }                
         });    
     };
+    
+    this.htmlInserTemplateCallback = function(responseData) {
+
+        var responseData = JSON.parse(responseData);
+
+        window.editor.doc.setValue(responseData.data);
+        jQuery('#fpcm-editor-html-insertdraft').dialog('close');
+
+        return true;
+    }
 };
 
 jQuery(document).ready(function() {

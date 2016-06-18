@@ -72,6 +72,13 @@
          * @return array
          */
         abstract public function getViewVars();
+
+        /**
+         * Arary mit Informationen u. a. für template-Plugin von TinyMCE
+         * @return array
+         * @since FPCM 3.3
+         */
+        abstract public function getTemplateDrafts();
         
         /**
          * Editor-Styles initialisieren

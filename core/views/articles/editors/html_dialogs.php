@@ -38,7 +38,7 @@
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_IMGALIGN'); ?>:</label></td>
             <td>
-                <?php \fpcm\model\view\helper::select('images[align]', $aligns, ''); ?>              
+                <?php \fpcm\model\view\helper::select('images[align]', $aligns, ''); ?>
             </td>
         </tr>         
         <tr>
@@ -113,6 +113,15 @@
             <?php if ($i % 20 == 0) : ?></tr><tr><?php endif; ?>            
         <?php endfor;  ?>            
         </tr>        
+    </table>
+</div>
+
+<!-- Vorlage einfügen -->
+<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertdraft">
+    <table class="fpcm-ui-table">
+        <tr>
+            <td><?php \fpcm\model\view\helper::select('tpldraft', $editorTemplatesList, ''); ?></td>
+        </tr>
     </table>
 </div>
 
@@ -316,7 +325,7 @@
                 ]        
             });
             return false;
-        });         
+        });
         
         jQuery('#fpcm-editor-html-insertsmiley-btn').click(function() {
             jQuery('#fpcm-editor-html-insertsmileys').dialog({
@@ -374,5 +383,88 @@
             });
             return false;
         });
+        
+        jQuery('#fpcm-editor-html-insertsmiley-btn').click(function() {
+            jQuery('#fpcm-editor-html-insertsmileys').dialog({
+                width: 350,
+                resizable: false,
+                modal: true,
+                title: "<?php $FPCM_LANG->write('EDITOR_INSERTSMILEY'); ?>",
+                buttons: [
+                    {
+                        text: "<?php $FPCM_LANG->printClose(); ?>",
+                        icons: {
+                            primary: "ui-icon-closethick"            
+                        },                        
+                        click: function() {
+                            jQuery( this ).dialog( "close" );
+                        }
+                    }
+                ],
+                open: function (event, ui) {
+                    fpcmAjax.action     = 'editor/smileys';
+                    fpcmAjax.execDone   = "jQuery('#fpcm-editor-html-insertsmileys').append(fpcmAjax.result);";
+                    fpcmAjax.async      = false;
+                    fpcmAjax.post();
+                    fpcmAjax.reset();                
+
+                    jQuery('.fpcm-editor-htmlsmiley').click(function() {
+                        fpcmEditor.insertSmilies(jQuery(this).attr('smileycode'));
+                    });
+                },
+                close: function( event, ui ) {
+                    jQuery(this).empty();
+                }
+            });
+            return false;
+        }); 
+
+        jQuery('#fpcm-editor-html-insertdraft-btn').click(function() {
+
+            jQuery('#fpcm-editor-html-insertdraft').dialog({
+                width: 350,
+                height: 250,
+                resizable: false,
+                modal: true,
+                title: "<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_DRAFT'); ?>",
+                buttons: [
+                    {
+                        text: "<?php $FPCM_LANG->printClose(); ?>",
+                        icons: {
+                            primary: "ui-icon-closethick"            
+                        },                        
+                        click: function() {
+                            jQuery( this ).dialog( "close" );
+                        }
+                    }
+                ],
+                open: function (event, ui) {
+
+                    jQuery('#tpldraft').selectmenu({
+
+                        appendTo: '#fpcm-editor-html-insertdraft',
+
+                        change: function( event, ui ) {
+
+                            fpcmAjax.action     = 'editor/draft';
+                            fpcmAjax.data       = {path: jQuery(this).val()};
+                            fpcmAjax.execDone   = 'fpcmEditor.htmlInserTemplateCallback(fpcmAjax.result)';
+                            fpcmAjax.post();
+
+                            return false;
+
+                        }
+                        
+                    });
+
+                },
+                close: function( event, ui ) {
+                    jQuery(this).empty();
+                }
+            });
+
+            return false;
+
+        }); 
     });    
 </script>

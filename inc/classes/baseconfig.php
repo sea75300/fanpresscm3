@@ -156,6 +156,13 @@
         public static $dbdumpDir;
         
         /**
+         * Verzeichnis für Template-Vorlagen für Editor
+         * @var string
+         * @since FPCM 3.3
+         */
+        public static $draftsDir;
+        
+        /**
          * root-URL
          * @var string
          */
@@ -295,6 +302,7 @@
             self::$uploadDir           = self::$dataDir.'uploads/';
             self::$dbdumpDir           = self::$dataDir.'dbdump/';
             self::$dbStructPath        = self::$dataDir.'dbstruct/';
+            self::$draftsDir           = self::$dataDir.'drafts/';
             
             self::$coreDir             = self::$baseDir.'/core/';
             self::$viewsDir            = self::$coreDir.'views/';

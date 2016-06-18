@@ -107,13 +107,40 @@
                     $this->language->translate('EDITOR_PRE')                     => 'pre',
                     $this->language->translate('EDITOR_CODE')                    => 'code',
                 ),
-                'editorDefaultFontsize' => $this->config->system_editor_fontsize
+                'editorDefaultFontsize' => $this->config->system_editor_fontsize,
+                'editorTemplatesList'   => $this->getTemplateDrafts()
             );
 
             $vars = $this->events->runEvent('editorInitHtml', $vars);
             array_shift($vars['extraButtons']);
             
             return $vars;
+        }
+
+        /**
+         * @see \fpcm\model\abstracts\articleEditor::getTemplateDrafts()
+         * @return array
+         * @since FPCM 3.3
+         */
+        public function getTemplateDrafts() {
+
+            $files = glob(\fpcm\classes\baseconfig::$draftsDir.'*.html');
+            
+            $ret = array();
+            foreach ($files as $file) {
+                
+                $basename = basename($file);
+                
+                if ($basename === 'index.html') {
+                    continue;
+                }
+                    
+                $ret[$basename] = $basename;
+                
+            }
+
+            return $ret;
+
         }
         
     }
