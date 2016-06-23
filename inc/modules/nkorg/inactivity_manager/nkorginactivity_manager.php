@@ -19,14 +19,7 @@
         
         public function runInstall() {
             
-            if (method_exists($this->dbcon, 'execYaTdl')) {
-                $this->dbcon->execYaTdl(__DIR__.'/data/table.yml');
-            }
-            else {
-                $dbStruct = file_get_contents(__DIR__.'/data/table.sql');
-                $dbStruct = str_replace(array('{{dbpref}}', '{{tablename}}'), array($this->dbcon->getDbprefix(), self::NKORGINACTIVITY_MANAGER_TABLE_NAME), $dbStruct);
-                $this->dbcon->exec($dbStruct);                
-            }
+            $this->dbcon->execYaTdl(__DIR__.'/data/table.yml');
             
             return true;
         }
