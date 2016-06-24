@@ -152,12 +152,9 @@
          */
         protected function runStep4() {
             $sqlFiles = array();
-            
-            $dbconfig = \fpcm\classes\baseconfig::getDatabaseConfig();
-            $dbtype   = $dbconfig['DBTYPE'];
-            
-            foreach (glob(\fpcm\classes\baseconfig::$dbStructPath.$dbtype.'/*.sql') as $value) {
-                $sqlFiles[substr(basename($value, '.sql'), 2)] = base64_encode(str_rot13(base64_encode($value)));
+
+            foreach (glob(\fpcm\classes\baseconfig::$dbStructPath.'/*.yml') as $value) {
+                $sqlFiles[substr(basename($value, '.yml'), 2)] = base64_encode(str_rot13(base64_encode($value)));
             }
             
             $this->view->addJsVars(array(

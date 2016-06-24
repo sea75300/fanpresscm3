@@ -21,3 +21,9 @@ cols:
         length: 
         params: NOT NULL
 indices:
+defaultvalues:
+    rows:
+        1:
+            id: 1
+            config_name: ""
+            config_value: ""

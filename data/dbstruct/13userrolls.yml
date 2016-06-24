@@ -16,4 +16,15 @@ cols:
         type: varchar
         length: 255
         params: NOT NULL
-indices:     
+indices:
+defaultvalues:
+    rows:
+        1:
+            id: 1
+            leveltitle: "GLOBAL_ADMINISTRATOR"
+        2:
+            id: 2
+            leveltitle: "GLOBAL_EDITOR"
+        3:
+            id: 3
+            leveltitle: "GLOBAL_AUTHOR"

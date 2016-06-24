@@ -409,12 +409,13 @@
 
             $yatdl = new \fpcm\model\system\yatdl($path);
             if ($yatdl->parse() !== true) {
+                trigger_error('An YaTDL parser error occurred!');
                 return false;
             }
             
             $sql = str_replace('{{dbpref}}', $this->getDbprefix(), $yatdl->getSqlString());
             $this->lastQueryString = $sql;
-            
+
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
                 logs::sqllogWrite($sql);
             }

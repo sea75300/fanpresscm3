@@ -47,12 +47,12 @@
          */
         public function process() {            
 
-            if (!file_exists($this->filename) || strpos($this->filename, '.sql') === false) {
+            if (!file_exists($this->filename) || strpos($this->filename, '.yml') === false) {
                 die('0');
             }
-            
+
             $db = new \fpcm\classes\database(false, true);
-            if($db->execSqlFile($this->filename)) {
+            if($db->execYaTdl($this->filename)) {
                 die('1');
             }
 

@@ -20,4 +20,10 @@ cols:
         type: varchar
         length: 255
         params: NOT NULL
-indices:     
+indices:
+defaultvalues:
+    rows:
+        1:
+            id: 1
+            smileycode: ""
+            filename: ""

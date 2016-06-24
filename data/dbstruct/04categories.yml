@@ -12,9 +12,9 @@ cols:
         type: bigint
         length: 20
         params: NOT NULL
-    ipaddress:
+    name:
         type: varchar
-        length: 512
+        length: 255
         params: NOT NULL
     iconpath:
         type: text
@@ -25,3 +25,10 @@ cols:
         length: 1024
         params: NOT NULL
 indices:
+defaultvalues:
+    rows:
+        1:
+            id: 1
+            name: "Allgemein"
+            iconpath: ""
+            groups: "1;2;3"

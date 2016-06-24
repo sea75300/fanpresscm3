@@ -91,12 +91,13 @@
          */
         public function __construct($filePath) {
 
-            $this->db   = \fpcm\classes\baseconfig::$fpcmDatabase;
-            $this->isPg = ($this->db->getDbtype() == 'pgsql' ? true : false);
+            $this->db       = \fpcm\classes\baseconfig::$fpcmDatabase;
+            $this->isPg     = ($this->db->getDbtype() == 'pgsql' ? true : false);
             $this->colTypes = $this->db->getYaTDLDataTypes();
 
             include_once \fpcm\classes\loader::libGetFilePath('spyc', 'Spyc.php');
             $this->yamlArray = \Spyc::YAMLLoad($filePath);
+
         }
         
         /**
@@ -127,9 +128,11 @@
                 return self::ERROR_YAMLPARSER_INDICES;
             }
             
+            $this->createDefaultInsert();
+
             $this->sqlArray['cols'] = implode(','.PHP_EOL, $this->sqlArray['cols']);
             $this->sqlString        = implode(PHP_EOL, $this->sqlArray);
-            
+
             $this->parsingOk = true;
             
             return true;
@@ -190,25 +193,25 @@
                 $lenghtTypes += array('int', 'bigint', 'bool');
             }
             
-            foreach ($this->yamlArray['cols'] as $rowName => $row) {
+            foreach ($this->yamlArray['cols'] as $colName => $col) {
                 
-                if (!$this->checkYamlColRow($rowName, $row)) {
+                if (!$this->checkYamlColRow($colName, $col)) {
                     return false;
                 }
 
-                $rowName = strtolower($rowName);
-                $sql = $this->isPg ? "{$rowName}" : "`{$rowName}`";
+                $colName = strtolower($colName);
+                $sql = $this->isPg ? "{$colName}" : "`{$colName}`";
                 
-                $sql .= " {$this->colTypes[$row['type']]}";
-                $sql .= ($row['length'] && in_array($row['type'], $lenghtTypes))
-                      ? "({$row['length']}) " 
+                $sql .= " {$this->colTypes[$col['type']]}";
+                $sql .= ($col['length'] && in_array($col['type'], $lenghtTypes))
+                      ? "({$col['length']}) " 
                       : " ";
 
-                if ($row['params']) {
-                    $sql .= $row['params'];
+                if ($col['params']) {
+                    $sql .= $col['params'];
                 }
                 
-                $this->sqlArray['cols'][$rowName] = $sql;
+                $this->sqlArray['cols'][$colName] = $sql;
                 
             }
             
@@ -297,7 +300,7 @@
                 }
                 else {
                     $index = ($row['isUnqiue'] ? 'UNIQUE' : 'INDEX');
-                    $sql   = "ALTER TABLE {{dbpref}}_{$this->yamlArray['name']} ADD {$index} `{$rowName}` ( `{$row['col']}` ) ";
+                    $sql   = "ALTER TABLE {{dbpref}}_{$this->yamlArray['name']} ADD {$index} `{$rowName}` ( `{$row['col']}` );";
                 }
               
                 $this->sqlArray[] = $sql;
@@ -306,36 +309,70 @@
             
             return true;
         }
+        
+        /**
+         * Standard-Werte-Einfügen erzeugen
+         * @return boolean
+         * @since FPCM 3.3
+         */
+        private function createDefaultInsert() {
+
+            if (!isset($this->yamlArray['defaultvalues']) || !is_array($this->yamlArray['defaultvalues']['rows']) || !count($this->yamlArray['defaultvalues']['rows']) ) {
+                return true;
+            }
+           
+            $textTypes = array('varchar', 'text', 'mtext');
+
+            $values = array();
+            foreach ($this->yamlArray['defaultvalues']['rows'] as $row) {
+
+                $rowVal = array();
+                foreach ($row as $col => $colval) {
+                    $rowVal[] = (in_array($this->yamlArray['cols'][$col]['type'], $textTypes) ? "'{$colval}'" : $colval);                    
+                }
+
+                $values[] = implode(', ', $rowVal);
+                
+            }
+            
+            $cols   = implode('`, `', array_keys($this->yamlArray['cols']));
+            $values = implode('), (', $values);
+
+            $this->sqlArray['defaultinsert'] = "INSERT INTO {{dbpref}}_{$this->yamlArray['name']} (`{$cols}`) VALUES ($values);";
+
+            return true;
+
+        }
 
         /**
          * Spalten-Zeile prüfen, ob alle nötigen Daten vorhanden sind
-         * @param string $rowName
-         * @param array $row
+         * @param string $colName
+         * @param array $col
          * @return boolean
          */
-        private function checkYamlColRow($rowName, array $row) {
+        private function checkYamlColRow($colName, array $col) {
             
-            if (!$rowName) {
+            if (!$colName) {
                 trigger_error('Invalid YAML col data, key must include column name!');
                 return false;
             }
 
-            if (!isset($row['type']) || !count($row['type'])) {
+            if (!isset($col['type']) || !count($col['type'])) {
                 trigger_error('Invalid YAML col data, no "cols" property found!');
                 return false;
             }
 
-            if (!isset($this->colTypes[$row['type']])) {
+            if (!isset($this->colTypes[$col['type']])) {
                 trigger_error('Invalid YAML col data, undefined col type found!');
                 return false;
             }
 
-            if (!isset($row['length'])) {
+            if (!isset($col['length'])) {
                 trigger_error('Invalid YAML col data, no "isNull" property found!');
                 return false;
             }
 
-            if (!isset($row['params'])) {
+            if (!isset($col['params'])) {
                 trigger_error('Invalid YAML col data, no "params" property found!');
                 return false;
             }
