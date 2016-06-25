@@ -296,7 +296,7 @@
                 
                 if ($this->isPg) {
                     $index = ($row['isUnqiue'] ? 'UNIQUE INDEX' : 'INDEX');
-                    $sql   = "CREATE {$index} {{dbpref}}_{$this->yamlArray['name']}_{$rowName} ON {{dbpref}}_{$this->yamlArray['col']} USING btree ({$row['col']});";
+                    $sql   = "CREATE {$index} {{dbpref}}_{$this->yamlArray['name']}_{$rowName} ON {{dbpref}}_{$this->yamlArray['name']} USING btree ({$row['col']});";
                 }
                 else {
                     $index = ($row['isUnqiue'] ? 'UNIQUE' : 'INDEX');
@@ -321,7 +321,7 @@
                 return true;
             }
            
-            $textTypes = array('varchar', 'text', 'mtext');
+            $textTypes = array('varchar', 'text', 'mtext', 'bin');
 
             $values = array();
             foreach ($this->yamlArray['defaultvalues']['rows'] as $row) {
@@ -335,10 +335,10 @@
                 
             }
             
-            $cols   = implode('`, `', array_keys($this->yamlArray['cols']));
+            $cols   = implode(', ', array_keys($this->yamlArray['cols']));
             $values = implode('), (', $values);
 
-            $this->sqlArray['defaultinsert'] = "INSERT INTO {{dbpref}}_{$this->yamlArray['name']} (`{$cols}`) VALUES ($values);";
+            $this->sqlArray['defaultinsert'] = "INSERT INTO {{dbpref}}_{$this->yamlArray['name']} ({$cols}) VALUES ($values);";
 
             return true;
 

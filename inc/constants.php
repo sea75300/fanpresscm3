@@ -14,14 +14,14 @@
         /**
          * Debug-Modus aktivieren
          */
-        define ('FPCM_DEBUG', true);
+        define ('FPCM_DEBUG', false);
     }
     
     if (!defined('FPCM_DEBUG_SQL')) {
         /**
          * SQL-Debug-Modus aktivieren
          */
-        define ('FPCM_DEBUG_SQL', true);
+        define ('FPCM_DEBUG_SQL', false);
     }
     
     if (!defined('FPCM_MODULE_IGNORE_DEPENDENCIES')) {

@@ -90,7 +90,11 @@
             $this->view->assign('step', $this->step + 1);
             $this->view->assign('showNextButton', true);
             $this->view->assign('showReload', false);
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'installer.js'));
+            $this->view->setViewJsFiles(array(
+                \fpcm\classes\baseconfig::$jsPath.'installer.js',
+                \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')
+            ));
+            
             $this->view->addJsVars(array(
                 'fpcmInstallerDBTestFailed' => $this->lang->translate('INSTALLER_DBCONNECTION_FAILEDMSG')
             ));
@@ -141,7 +145,7 @@
                 $sqlDrivers['MySQL/MariaDB'] = 'mysql';
             }
             if (in_array('pgsql', $availableDrivers)) {
-                $sqlDrivers['Postgres (experimental!)'] = 'pgsql';
+                $sqlDrivers['Postgres'] = 'pgsql';
             }                
 
             $this->view->assign('sqlDrivers', $sqlDrivers);

@@ -68,7 +68,7 @@ cols:
         type: bool
         length: 20
         params: NOT NULL
-    comments:
+    approval:
         type: bool
         length: 20
         params: NOT NULL

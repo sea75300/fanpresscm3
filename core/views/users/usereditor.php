@@ -13,7 +13,7 @@
         <td><?php $FPCM_LANG->write('GLOBAL_PASSWORD'); ?>:</td>
         <td>
             <?php \fpcm\model\view\helper::textInput('password', 'fpcm-usereditor-password') ?>
-            <?php \fpcm\model\view\helper::linkButton('button', 'USERS_PASSGEN', 'generatepasswd', 'fpcm-ui-button-blank fpcm-passgen-btn'); ?>
+            <?php \fpcm\model\view\helper::linkButton('#', 'USERS_PASSGEN', 'generatepasswd', 'fpcm-ui-button-blank fpcm-passgen-btn'); ?>
             <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('USERS_REQUIREMENTS')); ?>
         </td>
     </tr>
