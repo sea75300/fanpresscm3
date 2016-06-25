@@ -3,7 +3,7 @@
      * System check trait
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\controller\traits\system;
@@ -174,7 +174,7 @@
                 $current = is_writable($folderPath);
                 
                 $pathOutput = \fpcm\model\files\ops::removeBaseDir($folderPath, true);
-                $checkOptions['<i>'.$pathOutput.'</i> '.$this->lang->translate('GLOBAL_WRITABLE')]    = array(
+                $checkOptions['<i>'.$description.' '.$pathOutput.'</i> '.$this->lang->translate('GLOBAL_WRITABLE')]    = array(
                     'current'   => $current ? 'true' : 'false',
                     'recommend' => 'true',
                     'result'    => (true && $current),
@@ -186,20 +186,22 @@
         }
         
         public function getCheckFolders() {
+            
             $checkFolders = array(
-                \fpcm\classes\baseconfig::$dataDir,
-                \fpcm\classes\baseconfig::$cacheDir,
-                \fpcm\classes\baseconfig::$configDir,
-                \fpcm\classes\baseconfig::$filemanagerTempDir,
-                \fpcm\classes\baseconfig::$logDir,
-                \fpcm\classes\baseconfig::$moduleDir,
-                \fpcm\classes\baseconfig::$revisionDir,
-                \fpcm\classes\baseconfig::$smileyDir,
-                \fpcm\classes\baseconfig::$uploadDir,
-                \fpcm\classes\baseconfig::$stylesDir,
-                \fpcm\classes\baseconfig::$tempDir,
-                \fpcm\classes\baseconfig::$shareDir,
-                \fpcm\classes\baseconfig::$dbdumpDir
+                $this->lang->translate('SYSCHECK_FOLDER_DATA')          => \fpcm\classes\baseconfig::$dataDir,
+                $this->lang->translate('SYSCHECK_FOLDER_CACHE')         => \fpcm\classes\baseconfig::$cacheDir,
+                $this->lang->translate('SYSCHECK_FOLDER_CONFIG')        => \fpcm\classes\baseconfig::$configDir,
+                $this->lang->translate('SYSCHECK_FOLDER_FILEMANAGER')   => \fpcm\classes\baseconfig::$filemanagerTempDir,
+                $this->lang->translate('SYSCHECK_FOLDER_LOGS')          => \fpcm\classes\baseconfig::$logDir,
+                $this->lang->translate('SYSCHECK_FOLDER_MODULES')       => \fpcm\classes\baseconfig::$moduleDir,
+                $this->lang->translate('SYSCHECK_FOLDER_REVISIONS')     => \fpcm\classes\baseconfig::$revisionDir,
+                $this->lang->translate('SYSCHECK_FOLDER_SHARE')         => \fpcm\classes\baseconfig::$shareDir,
+                $this->lang->translate('SYSCHECK_FOLDER_SMILEYS')       => \fpcm\classes\baseconfig::$smileyDir,
+                $this->lang->translate('SYSCHECK_FOLDER_STYLES')        => \fpcm\classes\baseconfig::$stylesDir,
+                $this->lang->translate('SYSCHECK_FOLDER_TEMP')          => \fpcm\classes\baseconfig::$tempDir,
+                $this->lang->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir,
+                $this->lang->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir,
+                $this->lang->translate('SYSCHECK_FOLDER_DRAFTS')        => \fpcm\classes\baseconfig::$draftsDir
             );
             
             natsort($checkFolders);

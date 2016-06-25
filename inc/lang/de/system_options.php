@@ -54,7 +54,6 @@
         'SYSTEM_OPTIONS_ACTIVENEWSTEMPLATESINGLE'   => 'Template für einzelnen Artikel',
         'SYSTEM_OPTIONS_LATESTNEWSTEMPLATE'         => '&quot;Lastest News&quot; Template',
         'SYSTEM_OPTIONS_NEWSSHOWSHARELINKS'         => 'Share-Buttons anzeigen',
-        'SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZE'         => 'Vorschaubild erzeugen ab',
         'SYSTEM_OPTIONS_NEWSSHOWIMGTHUMBSIZE'       => 'Vorschaubild-Größe', 
         'SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZEPIXELS'   => 'Pixel',
         'SYSTEM_OPTIONS_NEWS_EDITOR'                => 'Editor auswählen',

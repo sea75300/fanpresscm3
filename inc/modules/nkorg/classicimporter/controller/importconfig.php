@@ -29,8 +29,6 @@
 
             $newconfig['comments_antispam_question'] = $combined['anti_spam_question'];
             $newconfig['comments_antispam_answer']   = $combined['anti_spam_answer'];            
-            $newconfig['files_img_thumb_minwidth']   = $combined['max_img_thumb_size_x'];
-            $newconfig['files_img_thumb_minheight']  = $combined['max_img_thumb_size_y'];
             $newconfig['file_img_thumb_width']       = $combined['max_img_size_x'];
             $newconfig['file_img_thumb_height']      = $combined['max_img_size_y'];
                 

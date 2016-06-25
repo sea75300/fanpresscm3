@@ -52,8 +52,6 @@
      * @property int    $comments_notify wohin sollen Benachrichtigung bei neuem Kommentar gehen (0 = nur globale E-MailAdresse, 1 = nur Author, 2 = beide)
      * @property int    $comments_markspam_commentcount Anzahl an Spam deklarierter vorhandener Kommentare, über der ein ein neuer Kommentar automatisch als Spam markiert wird
      * 
-     * @property int    $files_img_thumb_minwidth Bildbreite, ab der automatisch Thumbnails erzeugt werden
-     * @property int    $files_img_thumb_minheight Bildhöhe, ab der automatisch Thumbnails erzeugt werden
      * @property int    $file_img_thumb_width Breite der Thumbnails
      * @property int    $file_img_thumb_height Höhe der Thumbnails
      * @property bool   $file_uploader_new jQuery-Uploader aktiv

@@ -63,11 +63,15 @@
                 $this->language->translate('SYSCHECK_FOLDER_STYLES')        => \fpcm\classes\baseconfig::$stylesDir,
                 $this->language->translate('SYSCHECK_FOLDER_TEMP')          => \fpcm\classes\baseconfig::$tempDir,
                 $this->language->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir,
-                $this->language->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir
+                $this->language->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir,
+                $this->language->translate('SYSCHECK_FOLDER_DRAFTS')       => \fpcm\classes\baseconfig::$draftsDir
             );
             
             natcasesort($checkFolders);
             
+            $this->tableContent[] = '<tr colspan="2"><td class="fpcm-ui-center"><a class="fpcm-ui-button fpcm-syscheck-btn" href="index.php?module=system/options&syscheck=1">'.$this->language->translate('SYSCHECK_COMPLETE').'</a></td></tr>';
+            $this->tableContent[] = '<tr><td colspan="2" class="fpcm-td-spacer" style="padding-bottom:0.5em;"></td></tr>';
+
             foreach ($checkFolders as $description => $folderPath) {
                 $checkres = $this->boolToText(is_writable($folderPath));
                 $linePath = \fpcm\model\files\ops::removeBaseDir($folderPath, true);
@@ -75,8 +79,6 @@
             }
             
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_CHECK_CONNECT').':</strong></td><td class="fpcm-ui-center">'.$this->boolToText2(\fpcm\classes\baseconfig::canConnect()).'</td></tr>';
-            $this->tableContent[] = '<tr><td colspan="2" class="fpcm-td-spacer" style="padding-bottom:0.5em;"></td></tr>';
-            $this->tableContent[] = '<tr colspan="2"><td class="fpcm-ui-center"><a class="fpcm-ui-button fpcm-syscheck-btn" href="index.php?module=system/options&syscheck=1">'.$this->language->translate('SYSCHECK_COMPLETE').'</a></td></tr>';
         }
         
         /**

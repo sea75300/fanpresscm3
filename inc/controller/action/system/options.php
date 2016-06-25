@@ -71,8 +71,6 @@
                 $newconfig['comments_flood']                 = (int) $newconfig['comments_flood'];
                 $newconfig['system_loginfailed_locked']      = (int) $newconfig['system_loginfailed_locked'];
                 $newconfig['comments_markspam_commentcount'] = (int) $newconfig['comments_markspam_commentcount'];
-                $newconfig['files_img_thumb_minwidth']       = (int) $newconfig['files_img_thumb_minwidth'];
-                $newconfig['files_img_thumb_minheight']      = (int) $newconfig['files_img_thumb_minheight'];
                 $newconfig['file_img_thumb_width']           = (int) $newconfig['file_img_thumb_width'];
                 $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
                 $newconfig['system_updates_devcheck']        = (int) $newconfig['system_updates_devcheck'];

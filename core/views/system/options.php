@@ -104,16 +104,7 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_NEWUPLOADER'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('file_uploader_new', $globalConfig['file_uploader_new']); ?></td>		
-                    </tr>
-                    <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZE'); ?>:</td>
-                        <td>
-                            <?php fpcm\model\view\helper::textInput('files_img_thumb_minwidth', 'fpcm-ui-spinner', $globalConfig['files_img_thumb_minwidth'], false, 5, false, false); ?> <span class="fa fa-times fa-fw"></span>
-                            <?php fpcm\model\view\helper::textInput('files_img_thumb_minheight', 'fpcm-ui-spinner', $globalConfig['files_img_thumb_minheight'], false, 5, false, false); ?>
-                            <?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZEPIXELS'); ?>
-                        </td>
-                    </tr>	                        
-
+                    </tr>                       
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWIMGTHUMBSIZE'); ?>:</td>
                         <td>
