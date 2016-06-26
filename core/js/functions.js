@@ -633,15 +633,23 @@ var fpcmJs = function () {
     this.showTemplatePreview = function() {
         
         jQuery('.fpcm-template-tab').click(function () {
+
             fpcmTemplateId = jQuery(this).data('tpl');
             
-            if (fpcmTemplateId == 6) {
-                jQuery('#showpreview').hide();
-            }
-            else {
-                jQuery('#showpreview').show();
+            if (fpcmTemplateId == 7) {
+                jQuery('#template_buttons').hide();
+                jQuery('#article_template_buttons').show();
+                return false;
             }
             
+            jQuery('#article_template_buttons').hide();
+            
+            if (fpcmTemplateId > 5) {
+                jQuery('#showpreview').hide();
+                return false;
+            }
+            
+            jQuery('#showpreview').show();
             return false;
         });
         

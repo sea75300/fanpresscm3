@@ -426,7 +426,7 @@
                 height: 250,
                 resizable: false,
                 modal: true,
-                title: "<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_DRAFT'); ?>",
+                title: "<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_ARTICLETPL'); ?>",
                 buttons: [
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",

@@ -2,7 +2,7 @@
     /**
      * PHP file uploader model
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\files;
@@ -88,6 +88,7 @@
          * @return boolean
          */
         public function processModuleUpload() {
+
             $tempNames = $this->uploader['tmp_name'];
             $fileNames = $this->uploader['name'];
             $fileTypes = $this->uploader['type'];
@@ -136,6 +137,42 @@
                     
                     if ($res !== true) return $res;
                 }
+            }
+            
+            return true;
+        }
+        
+        /**
+         * Führt Upload von HTML-Template für Artikle-Editor via HTML-Form + PHP durch
+         * @since FPCM 3.3
+         * @return boolean
+         */
+        public function processArticleTemplateUpload() {
+
+            $tempNames = $this->uploader['tmp_name'];
+            $fileNames = $this->uploader['name'];
+            $fileTypes = $this->uploader['type'];
+
+            foreach ($tempNames as $key => $value) {               
+
+                if (!is_uploaded_file($value) || !isset($fileNames[$key]) || !isset($fileTypes[$key]) || $this->uploader['name'] == 'index.html' || $this->uploader['name'] == 'index.htm') {
+                    return false;
+                }
+                
+                $ext = pathinfo($fileNames[$key], PATHINFO_EXTENSION);
+                $ext = ($ext) ? strtolower($ext) : '';
+                
+                if ((isset($fileTypes[$key]) && !in_array($fileTypes[$key], templatefilelist::$allowedTypes)) || !in_array($ext, templatefilelist::$allowedExts)) {
+                    trigger_error('Unsupported filetype in '.$fileNames[$key]);
+                    return false;
+                }
+                
+                $fileName = \fpcm\classes\baseconfig::$articleTemplatesDir.$fileNames[$key];
+                if (!move_uploaded_file($value, $fileName)) {
+                    trigger_error('Unable to move uploaded to to uploader folder! '.$fileNames[$key]);
+                    return false;
+                }
+
             }
             
             return true;

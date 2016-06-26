@@ -13,6 +13,7 @@
         'TEMPLATE_HL_COMMENTFORM'           => 'Kommentar-Formular',
         'TEMPLATE_HL_LATESTNEWS'            => 'Latest News',
         'TEMPLATE_HL_TWEET'                 => 'Tweet',
+        'TEMPLATE_HL_DRAFTS'                => 'Vorlagen',
         
         'TEMPLATE_REPLACEMENTS'             => 'Verwendbare Platzhalter',
         'TEMPLATE_EDITOR'                   => 'Template-Editor',

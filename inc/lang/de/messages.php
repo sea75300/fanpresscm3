@@ -57,6 +57,7 @@
         'SAVE_SUCCESS_PRIVATE'          => 'Der Privat-Status des/r Kommentars/e wurde geändert!',
         'SAVE_SUCCESS_SPAMMER'          => 'Die Spam-Markierung der Kommentars/e wurde geändert!',
         'SAVE_SUCCESS_UPLOADMODULE'     => 'Die Modul-Paket-Datei wurde hochgeladen!',
+        'SAVE_SUCCESS_UPLOADTPLFILE'    => 'Die Vorlage wurde hochgeladen!',
         
         'SAVE_FAILED_USER'              => 'Der Benutzer konnte nicht gespeichert werden!',
         'SAVE_FAILED_USER_PROFILE'      => 'Die Änderung am Profil konnten nicht gespeichert werden!',
@@ -94,6 +95,7 @@
         'SAVE_FAILED_PRIVATE'           => 'Der Privat-Status der Kommentare konnte nicht geändert werden!',
         'SAVE_FAILED_SPAMMER'           => 'Die Spam-Markierung der Kommentare konnte nicht geändert werden!',
         'SAVE_FAILED_UPLOADMODULE'      => 'Beim Hochladen der Modul-Paket-Datei ist ein Fehler aufgetreten!',
+        'SAVE_FAILED_UPLOADTPLFILE'     => 'Beim Hochladen der Vorlage ist ein Fehler aufgetreten!',
         
         'DELETE_SUCCESS_USERS'          => 'Der Benutzer wurden gelöscht!',
         'DELETE_SUCCESS_ROLL'           => 'Die Benutzerrolle wurden gelöscht!',

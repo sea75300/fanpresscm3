@@ -3,7 +3,7 @@
         <span class="fa fa-code"></span> <?php $FPCM_LANG->write('HL_OPTIONS_TEMPLATES'); ?>
         <?php \fpcm\model\view\helper::helpButton('hl_options'); ?>
     </h1>
-    <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/templates">
+    <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/templates" enctype="multipart/form-data">
         
         <div class="fpcm-tabs-general">
             <ul>
@@ -14,7 +14,8 @@
                 <li><a href="#tabs-templates-comments" class="fpcm-template-tab" data-tpl="3"><?php $FPCM_LANG->write('TEMPLATE_HL_COMMENTS'); ?></a></li>
                 <li><a href="#tabs-templates-commentform" class="fpcm-template-tab" data-tpl="4"><?php $FPCM_LANG->write('TEMPLATE_HL_COMMENTFORM'); ?></a></li>
                 <li><a href="#tabs-templates-latestnews" class="fpcm-template-tab" data-tpl="5"><?php $FPCM_LANG->write('TEMPLATE_HL_LATESTNEWS'); ?></a></li>
-                <li><a href="#tabs-templates-tweet"class="fpcm-template-tab" data-tpl="6"><?php $FPCM_LANG->write('TEMPLATE_HL_TWEET'); ?></a></li>
+                <li><a href="#tabs-templates-tweet" class="fpcm-template-tab" data-tpl="6"><?php $FPCM_LANG->write('TEMPLATE_HL_TWEET'); ?></a></li>
+                <li><a href="#tabs-templates-articletpl" class="fpcm-template-tab" data-tpl="7"><?php $FPCM_LANG->write('TEMPLATE_HL_DRAFTS'); ?></a></li>
             </ul>
             <div id="tabs-templates-articles">
                 <?php include __DIR__.'/articles.php'; ?>
@@ -35,17 +36,20 @@
             </div>             
             <div id="tabs-templates-tweet">
                 <?php include __DIR__.'/tweet.php'; ?>
+            </div>             
+            <div id="tabs-templates-articletpl">
+                <?php include __DIR__.'/article_templates.php'; ?>
             </div>
         </div>
         
-        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>" id="template_buttons">
             <table>
                 <tr>
                     <td><?php \fpcm\model\view\helper::linkButton('#', 'GLOBAL_PREVIEW', 'showpreview', 'fpcm-ui-preview'); ?></td>
                     <td><?php \fpcm\model\view\helper::saveButton('saveTemplates'); ?></td>
                 </tr>
             </table>
-        </div>         
+        </div>
     </form>
 </div>
 

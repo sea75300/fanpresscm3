@@ -8,11 +8,12 @@
 
     $lang = array(
         'TEMPLATE_HL_ARTICLES'              => 'Article list',
-        'TEMPLATE_HL_ARTICLE_SINGLE'        => 'Sinmgle article view',
+        'TEMPLATE_HL_ARTICLE_SINGLE'        => 'Single article view',
         'TEMPLATE_HL_COMMENTS'              => 'Comment',
         'TEMPLATE_HL_COMMENTFORM'           => 'Comment form',
         'TEMPLATE_HL_LATESTNEWS'            => 'Latest News',
         'TEMPLATE_HL_TWEET'                 => 'Tweet',
+        'TEMPLATE_HL_DRAFTS'                => 'Article templates',
         
         'TEMPLATE_REPLACEMENTS'             => 'Available replacements',
         'TEMPLATE_EDITOR'                   => 'Template-Editor',

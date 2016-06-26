@@ -2,7 +2,7 @@
     /**
      * Recent articles Dashboard Container
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -124,10 +124,10 @@
          */
         public function getTemplateDrafts() {
 
-            $files = glob(\fpcm\classes\baseconfig::$draftsDir.'*.html');
-            
+            $templatefilelist = new \fpcm\model\files\templatefilelist();
+
             $ret = array();
-            foreach ($files as $file) {
+            foreach ($templatefilelist->getFolderList() as $file) {
                 
                 $basename = basename($file);
                 

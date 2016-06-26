@@ -3,7 +3,7 @@
      * Base config class
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -160,7 +160,7 @@
          * @var string
          * @since FPCM 3.3
          */
-        public static $draftsDir;
+        public static $articleTemplatesDir;
         
         /**
          * root-URL
@@ -302,7 +302,7 @@
             self::$uploadDir           = self::$dataDir.'uploads/';
             self::$dbdumpDir           = self::$dataDir.'dbdump/';
             self::$dbStructPath        = self::$dataDir.'dbstruct/';
-            self::$draftsDir           = self::$dataDir.'drafts/';
+            self::$articleTemplatesDir           = self::$dataDir.'drafts/';
             
             self::$coreDir             = self::$baseDir.'/core/';
             self::$viewsDir            = self::$coreDir.'views/';

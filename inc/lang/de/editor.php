@@ -77,7 +77,7 @@
         'EDITOR_HTML_BUTTONS_IFRAME'    => 'iFrame einfügen',
         'EDITOR_HTML_BUTTONS_READMORE'  => '<readmore>-Block einfügen',
         'EDITOR_HTML_BUTTONS_SYMBOL'    => 'Symbol einfügen',
-        'EDITOR_HTML_BUTTONS_DRAFT'     => 'Vorlage einfügen',
+        'EDITOR_HTML_BUTTONS_ARTICLETPL'     => 'Vorlage einfügen',
         'EDITOR_HTML_BUTTONS_REMOVESTYLE' => 'HTML-Tags entfernen',
         'EDITOR_HTML_BUTTONS_LITEXT'      => 'Element-Text:'
     );

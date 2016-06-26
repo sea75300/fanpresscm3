@@ -82,7 +82,7 @@
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_READMORE'); ?> (Ctrl + M)" id="fpcm-editor-html-insertmore-btn"><span class="fa fa-plus-square"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_INSERTTABLE'); ?> (Ctrl + Shift + T)" id="fpcm-editor-html-inserttable-btn"><span class="fa fa-table"></span></button>
                 <button title="<?php $FPCM_LANG->write('HL_OPTIONS_SMILEYS'); ?> (Ctrl + Shift + E)" id="fpcm-editor-html-insertsmiley-btn"><span class="fa fa-smile-o"></span></button>
-                <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_DRAFT'); ?> (Ctrl + Shift + D)" id="fpcm-editor-html-insertdraft-btn"><span class="fa fa-file-text-o"></span></button>
+                <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_ARTICLETPL'); ?> (Ctrl + Shift + D)" id="fpcm-editor-html-insertdraft-btn"><span class="fa fa-file-text-o"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_SYMBOL'); ?> (Ctrl + Shift + I)" id="fpcm-editor-html-insertsymbol-btn"><span class="fa fa-font"></span></button>
             <?php if (count($extraButtons)) : ?>
                 <?php foreach ($extraButtons as $extraButton)  : ?>

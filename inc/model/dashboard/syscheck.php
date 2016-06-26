@@ -2,7 +2,7 @@
     /**
      * System check Dashboard Container
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -64,7 +64,7 @@
                 $this->language->translate('SYSCHECK_FOLDER_TEMP')          => \fpcm\classes\baseconfig::$tempDir,
                 $this->language->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir,
                 $this->language->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir,
-                $this->language->translate('SYSCHECK_FOLDER_DRAFTS')       => \fpcm\classes\baseconfig::$draftsDir
+                $this->language->translate('SYSCHECK_FOLDER_DRAFTS')       => \fpcm\classes\baseconfig::$articleTemplatesDir
             );
             
             natcasesort($checkFolders);

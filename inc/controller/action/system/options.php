@@ -2,7 +2,7 @@
     /**
      * Option edit controller
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\controller\action\system;
@@ -58,12 +58,18 @@
             
             if ($this->buttonClicked('configSave')) {                
                 $newconfig = $this->getRequestVar();
-                $newconfig['twitter_data'] = json_encode($newconfig['twitter_data']);
                 
-                foreach ($this->config->twitter_events as $key => $value) {
-                    $newconfig['twitter_events'][$key] = isset($newconfig['twitter_events'][$key]) ? 1 : 0;
-                }                
-                $newconfig['twitter_events']                 = json_encode($newconfig['twitter_events']);
+                if (isset($newconfig['twitter_data']) && isset($newconfig['twitter_events'])) {
+
+                    foreach ($this->config->twitter_events as $key => $value) {
+                        $newconfig['twitter_events'][$key] = isset($newconfig['twitter_events'][$key]) ? 1 : 0;
+                    }
+
+                    $newconfig['twitter_data']              = json_encode($newconfig['twitter_data']);
+                    $newconfig['twitter_events']            = json_encode($newconfig['twitter_events']);
+
+                }
+                
                 $newconfig['articles_limit']                 = (int) $newconfig['articles_limit'];
                 $newconfig['articles_acp_limit']             = (int) $newconfig['articles_acp_limit'];
                 $newconfig['system_cache_timeout']           = (int) $newconfig['system_cache_timeout'];

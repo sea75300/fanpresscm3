@@ -170,7 +170,7 @@
         'SYSCHECK_FOLDER_REVISIONS'     => 'Revisionen-Order',
         'SYSCHECK_FOLDER_SMILEYS'       => 'Smiley-Order',
         'SYSCHECK_FOLDER_STYLES'        => 'Template-Order',
-        'SYSCHECK_FOLDER_TEMP'          => 'globaler temp-Order',
+        'SYSCHECK_FOLDER_TEMP'          => 'Temporäre Dateien Order',
         'SYSCHECK_FOLDER_SHARE'         => 'Share-Button-Order',
         'SYSCHECK_FOLDER_MODULES'       => 'Module-Order',
         'SYSCHECK_FOLDER_UPLOADS'       => 'Upload-Order',

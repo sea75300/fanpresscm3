@@ -92,6 +92,16 @@
         }
 
         /**
+         * @see sqlDriver::optimize()
+         * @param string $table
+         * @return string
+         * @since FPCM 3.3.0
+         */
+        public function optimize($table) {
+            return "OPTIMIZE $table";
+        }
+
+        /**
          * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
          * @return array
          */

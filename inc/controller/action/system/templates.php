@@ -2,7 +2,7 @@
     /**
      * Template controller
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\controller\action\system;
@@ -83,6 +83,50 @@
          */
         public function request() {
 
+            if ($this->buttonClicked('uploadFile') && !is_null(\fpcm\classes\http::getFiles())) {
+                $uploader = new \fpcm\model\files\fileuploader(\fpcm\classes\http::getFiles());
+                $res = $uploader->processArticleTemplateUpload();
+                
+                if ($res == true) {
+                    $this->view->addNoticeMessage('SAVE_SUCCESS_UPLOADTPLFILE');
+                } else {
+                    $this->view->addErrorMessage('SAVE_FAILED_UPLOADTPLFILE');
+                }
+                
+                return true;
+            }
+            
+            $delFiles = $this->getRequestVar('deltplfiles');
+            if ($this->buttonClicked('fileDelete') && is_array($delFiles) && count($delFiles)) {
+                
+                $delFiles = array_map('base64_decode', $delFiles);
+
+                $deletedOk = array();
+                $deletedFailed = array();
+
+                foreach ($delFiles as $delFile) {
+                    
+                    $delFilePath = \fpcm\classes\baseconfig::$articleTemplatesDir.$delFile;
+                    
+                    if (!file_exists($delFilePath) || !unlink($delFilePath)) {
+                        $deletedFailed[] = \fpcm\model\files\ops::removeBaseDir($delFile);
+                        continue;
+                    }
+                    
+                    $deletedOk[] = \fpcm\model\files\ops::removeBaseDir($delFile);
+                    
+                }
+                
+                if (count($deletedOk)) {
+                    $this->view->addNoticeMessage('DELETE_SUCCESS_FILES', array('{{filenames}}' => implode(', ', $deletedOk)));                                    
+                }
+                if (count($deletedFailed)) {
+                    $this->view->addErrorMessage('DELETE_FAILED_FILES', array('{{filenames}}' => implode(', ', $deletedFailed)));                    
+                }  
+                
+                return true;
+            }
+
             if ($this->buttonClicked('saveTemplates') && !is_null($this->getRequestVar('template'))) {
                 
                 $this->cache->cleanup();
@@ -143,7 +187,7 @@
             $this->view->assign('contentLatestNews', $this->latestNewsTemplate->getContent());
             
             $this->view->assign('replacementsTweet', $this->getReplacementTranslations('TEMPLATE_ARTICLE_', $this->tweetTemplate->getReplacementTags()));
-            $this->view->assign('contentTweet', $this->tweetTemplate->getContent());            
+            $this->view->assign('contentTweet', $this->tweetTemplate->getContent());
             
             $this->view->assign('allowedTags', htmlentities($this->articleTemplate->getAllowedTags(', ')));
             
@@ -151,6 +195,9 @@
                 'fpcmPreviewHeadline' => $this->lang->translate('HL_TEMPLATE_PREVIEW'),
                 'fpcmTemplateId'      => 1
             ));
+            
+            $tplfilelist = new \fpcm\model\files\templatefilelist();
+            $this->view->assign('templateFiles', $tplfilelist->getFolderList());
             
             $this->view->render();
         }

@@ -33,11 +33,13 @@
             $res = true &&
                    $this->createTables() &&
                    $this->alterTables() &&
+                   $this->removeSystemOptions() &&
                    $this->addSystemOptions() &&
                    $this->updateSystemOptions() &&
                    $this->updatePermissions() &&
                    $this->checkFilesystem() &&
-                   $this->updateVersion();
+                   $this->updateVersion() &&
+                   $this->optimizeTables();
             
             $this->config->setMaintenanceMode(false);
 
@@ -59,6 +61,7 @@
          * @return boolean
          */
         private function updatePermissions() {
+
             $res = true;
             
             $permission = new \fpcm\model\system\permissions();
@@ -113,6 +116,23 @@
                 $this->config->setNewConfig($newconf);
                 $res = $res && $this->config->update();
             }
+            
+            return $res;
+        }
+        
+        /**
+         * System-Optionen bei Update aktualisieren
+         * @return bool
+         */
+        private function removeSystemOptions() {
+            
+            if ($this->config->files_img_thumb_minwidth === false && $this->config->files_img_thumb_minheight === false) {
+                return true;
+            }
+            
+            $res = true;
+            $res = $res && $this->config->remove('files_img_thumb_minwidth');
+            $res = $res && $this->config->remove('files_img_thumb_minheight');
             
             return $res;
         }
@@ -306,6 +326,35 @@
             return true;
         }
         
+        /**
+         * Führt Optimierung der Datenbank-Tabellen durch
+         * @since FPCM 3.3
+         * @return boolean
+         */
+        private function optimizeTables() {
+
+            if (!method_exists($this->dbcon, 'optimize')) {
+                return true;
+            }
+            
+            $this->dbcon->optimize(\fpcm\classes\database::tableArticles);
+            $this->dbcon->optimize(\fpcm\classes\database::tableAuthors);
+            $this->dbcon->optimize(\fpcm\classes\database::tableCategories);
+            $this->dbcon->optimize(\fpcm\classes\database::tableComments);
+            $this->dbcon->optimize(\fpcm\classes\database::tableConfig);
+            $this->dbcon->optimize(\fpcm\classes\database::tableCronjobs);
+            $this->dbcon->optimize(\fpcm\classes\database::tableFiles);
+            $this->dbcon->optimize(\fpcm\classes\database::tableIpAdresses);
+            $this->dbcon->optimize(\fpcm\classes\database::tableModules);
+            $this->dbcon->optimize(\fpcm\classes\database::tablePermissions);
+            $this->dbcon->optimize(\fpcm\classes\database::tableRoll);
+            $this->dbcon->optimize(\fpcm\classes\database::tableSessions);
+            $this->dbcon->optimize(\fpcm\classes\database::tableSmileys);
+            $this->dbcon->optimize(\fpcm\classes\database::tableTexts);
+
+            return true; 
+        }
+
         /**
          * Prüft System-Version auf bestimmten Wert
          * @param string $version

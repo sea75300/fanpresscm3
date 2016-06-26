@@ -565,6 +565,15 @@
         public function dbLike() {
             return $this->driver->getDbLike();
         }
+        
+        /**
+         * Erzeugt Query für Optimierungsvorgang auf Datenbank-Tabellen
+         * @return string
+         * @since FPCM 3.3.0
+         */
+        public function optimize($table) {
+            return $this->driver->optimize($this->dbprefix.'_'.$table);
+        }
 
         /**
          * Tabellen-Prefix zurückgeben

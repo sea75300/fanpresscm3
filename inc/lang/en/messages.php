@@ -57,6 +57,7 @@
         'SAVE_SUCCESS_PRIVATE'          => 'The private status for comments were changed!',
         'SAVE_SUCCESS_SPAMMER'          => 'The spam status for comments were changed!',
         'SAVE_SUCCESS_UPLOADMODULE'     => 'The module package file has been uploaded!',
+        'SAVE_SUCCESS_UPLOADTPLFILE'    => 'The template file has been uploaded!',
         
         'SAVE_FAILED_USER'              => 'Unable to save the user!',
         'SAVE_FAILED_USER_PROFILE'      => 'Unable to save the user profile settings!',
@@ -94,6 +95,7 @@
         'SAVE_FAILED_PRIVATE'           => 'Unable to change comment private status!',
         'SAVE_FAILED_SPAMMER'           => 'Unable to change comment spam status!',
         'SAVE_FAILED_UPLOADMODULE'      => 'An error occurred while uploading module package file!',
+        'SAVE_FAILED_UPLOADTPLFILE'     => 'An error occurred while uploading the template file!',
         
         'DELETE_SUCCESS_USERS'          => 'The users were deleted!',
         'DELETE_SUCCESS_ROLL'           => 'The user rolls were deleted!',
