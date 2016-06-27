@@ -151,4 +151,15 @@
             return false;
         }
         
+        /**
+         * Liefert Array mit Event-Klassen in installierten Modulen zurück
+         * @return array
+         * @since FPCM 3.3
+         */
+        protected function getEventClasses() {
+
+            return glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/'.str_replace('fpcm\\model\\events\\', '', get_class($this)).'.php');
+
+        }
+        
     }

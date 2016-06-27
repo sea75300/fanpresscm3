@@ -29,7 +29,7 @@
     final class cronjobDbDumpIncludeTables extends \fpcm\model\abstracts\event {
 
         /**
-         * wird ausgeführt, wenn Systemcheck durchgführt wird
+         * wird ausgeführt, wenn Cronjob für automatische Datenbank-Sicherung läuft
          * @param array $data
          * @return array
          */

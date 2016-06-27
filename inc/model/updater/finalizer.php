@@ -336,21 +336,27 @@
             if (!method_exists($this->dbcon, 'optimize')) {
                 return true;
             }
+
+            $tables   = array();
+            $tables[] = \fpcm\classes\database::tableArticles;
+            $tables[] = \fpcm\classes\database::tableAuthors;
+            $tables[] = \fpcm\classes\database::tableCategories;
+            $tables[] = \fpcm\classes\database::tableComments;
+            $tables[] = \fpcm\classes\database::tableConfig;
+            $tables[] = \fpcm\classes\database::tableCronjobs;
+            $tables[] = \fpcm\classes\database::tableFiles;
+            $tables[] = \fpcm\classes\database::tableIpAdresses;
+            $tables[] = \fpcm\classes\database::tableModules;
+            $tables[] = \fpcm\classes\database::tablePermissions;
+            $tables[] = \fpcm\classes\database::tableRoll;
+            $tables[] = \fpcm\classes\database::tableSessions;
+            $tables[] = \fpcm\classes\database::tableSmileys;
+            $tables[] = \fpcm\classes\database::tableTexts;
             
-            $this->dbcon->optimize(\fpcm\classes\database::tableArticles);
-            $this->dbcon->optimize(\fpcm\classes\database::tableAuthors);
-            $this->dbcon->optimize(\fpcm\classes\database::tableCategories);
-            $this->dbcon->optimize(\fpcm\classes\database::tableComments);
-            $this->dbcon->optimize(\fpcm\classes\database::tableConfig);
-            $this->dbcon->optimize(\fpcm\classes\database::tableCronjobs);
-            $this->dbcon->optimize(\fpcm\classes\database::tableFiles);
-            $this->dbcon->optimize(\fpcm\classes\database::tableIpAdresses);
-            $this->dbcon->optimize(\fpcm\classes\database::tableModules);
-            $this->dbcon->optimize(\fpcm\classes\database::tablePermissions);
-            $this->dbcon->optimize(\fpcm\classes\database::tableRoll);
-            $this->dbcon->optimize(\fpcm\classes\database::tableSessions);
-            $this->dbcon->optimize(\fpcm\classes\database::tableSmileys);
-            $this->dbcon->optimize(\fpcm\classes\database::tableTexts);
+            $tables = $this->events->runEvent('updaterAddOptimizeTables', $tables);
+            foreach ($tables as $table) {
+                $this->dbcon->optimize($table);
+            }
 
             return true; 
         }
