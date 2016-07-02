@@ -1282,10 +1282,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     margin: 0.3em 0.8em;
 }
 
-.fpcm-updater-list p {
-    line-height: 1.5em;
-}
-
 .fpcm-updater-list p.fpcm-updater-list-with-button span.fa {
     margin-top: 0.5em;
 }
@@ -1293,10 +1289,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
 .fpcm-updater-list span.fa {
     float: left;
     display: block;
-    font-size: 1.5em;
-    padding-right: 0.4em;
-    width: 35px;
-    text-align: center;    
 }
 
 /* jQuery UI Hooks */

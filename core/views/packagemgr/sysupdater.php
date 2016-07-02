@@ -8,8 +8,8 @@
         <div id="tabs-updater-general">
             <?php fpcm\model\view\helper::progressBar('fpcm-updater-programmbar'); ?>
             
-            <p><strong><?php $FPCM_LANG->write('PACKAGES_UPDATE_CURRENT_VERSION'); ?>:</strong> <?php print $FPCM_VERSION; ?></p>
-            <p><strong><?php $FPCM_LANG->write('PACKAGES_UPDATE_CURRENT_LANG'); ?>:</strong> <?php print $FPCM_LANG->getLangCode(); ?></p>
+            <p><span class="fa fa-arrow-circle-right fa-lg fa-fw"></span> <strong><?php $FPCM_LANG->write('PACKAGES_UPDATE_CURRENT_VERSION'); ?>:</strong> <?php print $FPCM_VERSION; ?></p>
+            <p><span class="fa fa-arrow-circle-right fa-lg fa-fw"></span> <strong><?php $FPCM_LANG->write('PACKAGES_UPDATE_CURRENT_LANG'); ?>:</strong> <?php print $FPCM_LANG->getLangCode(); ?></p>
             
             <div class="fpcm-updater-list"></div>
         </div>        

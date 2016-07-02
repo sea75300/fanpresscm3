@@ -37,7 +37,10 @@ var fpcmUpdater = function () {
         fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', fpcmUpdaterMessages[idx + '_START']);
 
         self.ajaxHandler.action     = 'packagemgr/sysupdater';
-        self.ajaxHandler.data       = {step:idx};
+        self.ajaxHandler.data       = {
+            step:idx,
+            force: (fpcmUpdaterStartStep ? 1 : 0)
+        };
         self.ajaxHandler.execDone   = "fpcmUpdater.responseData=fpcmUpdater.ajaxHandler.result;fpcmUpdater.ajaxCallback();";
         self.ajaxHandler.post();
         
@@ -58,15 +61,13 @@ var fpcmUpdater = function () {
             fpcmJs.showLoader(false);
             fpcmJs.appendHtml('.fpcm-updater-list', '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
             return false;
-        } else {
-            fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
         }
-
-        if (self.responseData.data.current == 4) {
-            self.ajaxHandler.action     = 'packagemgr/sysupdatervc';
-            self.ajaxHandler.execDone   = "fpcmUpdater.ajaxCallbackFinal(fpcmUpdater.ajaxHandler.result);";
-            self.ajaxHandler.async      = false;
-            self.ajaxHandler.get();
+        else if (self.responseData.data.current == 6) {
+            fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterMessages[self.responseData.code] + ': ' + self.responseData.data.newver + '</p>');
+            fpcmUpdater.ajaxCallbackFinal(fpcmUpdater.responseData);
+        }
+        else {
+            fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
         }
 
         if (self.responseData.data.current < fpcmUpdaterMaxStep) {
@@ -83,7 +84,6 @@ var fpcmUpdater = function () {
     this.ajaxCallbackFinal = function(result) {
 
         jQuery('#fpcm-ui-headspinner').removeClass('fa-spin');
-        fpcmJs.appendHtml('.fpcm-updater-list', '<p><strong>' + fpcmUpdaterNewVersion + ':</strong> ' + result + '</p>');
         fpcmJs.addAjaxMassage('notice', fpcmUpdaterMessages['EXIT_1'], false);
         fpcmJs.showLoader(false);
         self.addTimer();
