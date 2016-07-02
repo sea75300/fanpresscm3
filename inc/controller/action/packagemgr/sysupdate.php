@@ -80,15 +80,13 @@
             $remoteFilePath = $updater->getRemoteData('filepath');
             
             $params     = $this->initPkgManagerData();
+            $params['fpcmUpdaterMaxStep']             = 6;
             $params['fpcmUpdaterStartStep']           = ($this->forceStep ? $this->forceStep : (\fpcm\classes\baseconfig::canConnect() ? 1 : 4));
-            $params['fpcmUpdaterNewVersion']          = $this->lang->translate('PACKAGES_UPDATE_NEW_VERSION');
             $params['fpcmUpdaterMessages']['1_START'] = $this->lang->translate('PACKAGES_RUN_DOWNLOAD', array('{{pkglink}}' => is_array($remoteFilePath) ? '' : $remoteFilePath));
             $params['fpcmUpdaterMessages']['EXIT_1']  = $this->lang->translate('UPDATES_SUCCESS');
             
             $this->view->addJsVars($params);
-            
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'updater.js'));
-            
             $this->view->render();
         }
 

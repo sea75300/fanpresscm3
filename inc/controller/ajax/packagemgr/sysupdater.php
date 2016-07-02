@@ -22,6 +22,12 @@
         protected $step;
         
         /**
+         * bestimmten Schritt erzwingen
+         * @var int
+         */
+        protected $forceStep;
+        
+        /**
          * allow_url_fopen = 1
          * @var bool
          */
@@ -41,6 +47,7 @@
         public function request() {
             
             $this->step = $this->getRequestVar('step', array(9));          
+            $this->forceStep = $this->getRequestVar('force', array(9));
             
             return true;
         }
@@ -120,7 +127,7 @@
                 case 4 :
                     $finalizer = new \fpcm\model\updater\finalizer();
                     $res = $finalizer->runUpdate();
-                    $this->returnData['nextstep'] = 5;
+                    $this->returnData['nextstep'] = $this->forceStep ? 6 : 5;
 
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Run final update steps successfully!');
@@ -140,8 +147,15 @@
                     $this->cache->cleanup();
 
                     $res = true;
+                    $this->returnData['nextstep'] = 6;
 
                     break;                
+                case 6 :
+                    
+                    $this->returnData['newver'] = $this->config->system_version;
+                    $res = true;
+
+                    break;
                 default:
                     $res = false;
                     break;
