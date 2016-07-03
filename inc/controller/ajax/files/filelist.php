@@ -60,7 +60,10 @@
             if (!parent::process()) return false;
             
             $fileList = new \fpcm\model\files\imagelist();
-            $fileList->updateFileIndex($this->session->getUserId());
+            if ($this->config->file_uploader_new) {
+                $fileindex = new \fpcm\model\crons\fileindex('fileindex');
+                $fileindex->run();
+            }
 
             $list = $fileList->getDatabaseList();            
             $list = $this->events->runEvent('reloadFileList', $list);

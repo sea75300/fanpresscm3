@@ -9,29 +9,16 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @package fpcm.model.files
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @since FPCM 3.3.0
+     * @since FPCM 3.3
      */    
     final class templatefilelist extends \fpcm\model\abstracts\filelist {
-
-        /**
-         * Erlaubte Dateierweiterungen
-         * @var array
-         */
-        public static $allowedExts  = array('html', 'htm');
-
-        /**
-         * Erlaubte Dateitypen
-         * @var array
-         */
-        public static $allowedTypes = array('application/xhtml+xml', 'text/html');
-
 
         /**
          * Konstruktor
          */
         public function __construct() {
             $this->basepath = \fpcm\classes\baseconfig::$articleTemplatesDir;
-            $this->exts     = static::$allowedExts;
+            $this->exts     = templatefile::$allowedExts;
             parent::__construct();
         }
         
@@ -43,9 +30,8 @@
             return array_sum(array_map('filesize', $this->getFolderList()));
         }
 
-
         /**
-         * Gibt Liste von Dateien mit den erlaubten Dateierweiterungen zurück
+         * Gibt Liste von Dateien zurück
          * @return array
          */
         public function getFolderList() {            
@@ -56,6 +42,23 @@
             unset($files[$idxkey]);
 
             return $files;
+        }
+
+        /**
+         * Gibt Liste von Dateiobjekte zurück
+         * @return array
+         * @since FPCM 3.3
+         */
+        public function getFolderObjectList() {            
+
+            $files = $this->getFolderList();
+            
+            $ret = array();
+            foreach ($files as $file) {
+                $ret[] = new templatefile(basename($file));
+            }
+
+            return $ret;
         }
         
     }

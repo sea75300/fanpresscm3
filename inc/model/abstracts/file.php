@@ -309,5 +309,14 @@
         public function escapeFileName(&$filename) {
             $filename = preg_replace('/[^A-Za-z0-9_.\-]/', '', htmlentities($filename, ENT_COMPAT | ENT_HTML401));
         }
-        
+
+        /**
+         * Verschiebt via PHP Upload hochgeladene Datei von tmp-Pfad nach Zielpfad
+         * @param string $uploadedPath
+         * @return bool
+         * @since FPCM 3.3
+         */
+        public function moveUploadedFile($uploadedPath) {
+            return move_uploaded_file($uploadedPath, $this->fullpath);
+        }
     }

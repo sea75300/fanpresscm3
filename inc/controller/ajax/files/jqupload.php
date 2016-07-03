@@ -53,6 +53,7 @@
                     )
                 )
             );
+
             $handler = new \UploadHandler($options);
 
         }

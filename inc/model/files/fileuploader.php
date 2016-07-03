@@ -59,13 +59,13 @@
                 }
                 
                 $fileName = \fpcm\classes\baseconfig::$uploadDir.$fileNames[$key];
-                if (!move_uploaded_file($value, $fileName)) {
+                $image = new image($fileNames[$key]);
+                if (!$image->moveUploadedFile($value)) {
                     trigger_error('Unable to move uploaded to to uploader folder! '.$fileNames[$key]);
                     $res['error'][$key] = $fileNames[$key];
                     continue;
                 }
 
-                $image = new image($fileNames[$key]);
                 $image->createThumbnail();
                 $image->setFiletime(time());
                 $image->setUserid($userId);
@@ -74,6 +74,9 @@
                     $res['error'][$key] = $fileNames[$key];
                     continue;
                 }
+
+                $fmThumbs = new \fpcm\model\crons\fmThumbs('fmThumbs');
+                $fmThumbs->run();
                 
                 $res['success'][$key] = $fileNames[$key];
             }
@@ -162,13 +165,13 @@
                 $ext = pathinfo($fileNames[$key], PATHINFO_EXTENSION);
                 $ext = ($ext) ? strtolower($ext) : '';
                 
-                if ((isset($fileTypes[$key]) && !in_array($fileTypes[$key], templatefilelist::$allowedTypes)) || !in_array($ext, templatefilelist::$allowedExts)) {
+                if ((isset($fileTypes[$key]) && !in_array($fileTypes[$key], templatefile::$allowedTypes)) || !in_array($ext, templatefile::$allowedExts)) {
                     trigger_error('Unsupported filetype in '.$fileNames[$key]);
                     return false;
                 }
-                
-                $fileName = \fpcm\classes\baseconfig::$articleTemplatesDir.$fileNames[$key];
-                if (!move_uploaded_file($value, $fileName)) {
+
+                $file = new articledraft($fileNames[$key]);
+                if (!$file->moveUploadedFile($value)) {
                     trigger_error('Unable to move uploaded to to uploader folder! '.$fileNames[$key]);
                     return false;
                 }

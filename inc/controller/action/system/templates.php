@@ -106,9 +106,8 @@
 
                 foreach ($delFiles as $delFile) {
                     
-                    $delFilePath = \fpcm\classes\baseconfig::$articleTemplatesDir.$delFile;
-                    
-                    if (!file_exists($delFilePath) || !unlink($delFilePath)) {
+                    $articleTplFile = new \fpcm\model\files\templatefile($delFile);
+                    if (!$articleTplFile->delete()) {
                         $deletedFailed[] = \fpcm\model\files\ops::removeBaseDir($delFile);
                         continue;
                     }
@@ -197,7 +196,7 @@
             ));
             
             $tplfilelist = new \fpcm\model\files\templatefilelist();
-            $this->view->assign('templateFiles', $tplfilelist->getFolderList());
+            $this->view->assign('templateFiles', $tplfilelist->getFolderObjectList());
             
             $this->view->render();
         }
