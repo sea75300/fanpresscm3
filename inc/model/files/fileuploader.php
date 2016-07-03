@@ -170,7 +170,7 @@
                     return false;
                 }
 
-                $file = new articledraft($fileNames[$key]);
+                $file = new templatefile($fileNames[$key]);
                 if (!$file->moveUploadedFile($value)) {
                     trigger_error('Unable to move uploaded to to uploader folder! '.$fileNames[$key]);
                     return false;
