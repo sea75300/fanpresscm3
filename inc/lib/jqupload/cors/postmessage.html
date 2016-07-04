@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!--
 /*
- * jQuery File Upload Plugin postMessage API 1.2.1
+ * jQuery File Upload Plugin postMessage API
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2011, Sebastian Tschan
@@ -24,10 +24,10 @@
 'use strict';
 var origin = /^http:\/\/example.org/,
     target = new RegExp('^(http(s)?:)?\\/\\/' + location.host + '\\/');
-$(window).on('message', function (e) {
+jQuery(window).on('message', function (e) {
     e = e.originalEvent;
     var s = e.data,
-        xhr = $.ajaxSettings.xhr(),
+        xhr = jQuery.ajaxSettings.xhr(),
         f;
     if (!origin.test(e.origin)) {
         throw new Error('Origin "' + e.origin + '" does not match ' + origin);
@@ -35,7 +35,7 @@ $(window).on('message', function (e) {
     if (!target.test(e.data.url)) {
         throw new Error('Target "' + e.data.url + '" does not match ' + target);
     }
-    $(xhr.upload).on('progress', function (ev) {
+    jQuery(xhr.upload).on('progress', function (ev) {
         ev = ev.originalEvent;
         e.source.postMessage({
             id: s.id,
@@ -51,12 +51,12 @@ $(window).on('message', function (e) {
     };
     if (!(s.data instanceof Blob)) {
         f = new FormData();
-        $.each(s.data, function (i, v) {
+        jQuery.each(s.data, function (i, v) {
             f.append(v.name, v.value);
         });
         s.data = f;
     }
-    $.ajax(s).always(function (result, statusText, jqXHR) {
+    jQuery.ajax(s).always(function (result, statusText, jqXHR) {
         if (!jqXHR.done) {
             jqXHR = result;
             result = null;
