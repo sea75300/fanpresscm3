@@ -292,7 +292,7 @@
          */
         protected function handleCommentActions() {
 
-            if (!$this->checkPageToken) {
+            if (!$this->checkPageToken || !$this->buttonClicked('DoAction')) {
                 return false;
             }
 
