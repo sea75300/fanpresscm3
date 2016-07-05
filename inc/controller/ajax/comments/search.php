@@ -74,6 +74,8 @@
             if ($filter['private'] > -1)    $sparams['private']  = (int) $filter['private'];
             if ($filter['approved'] > -1)   $sparams['approved']   = (int) $filter['approved'];
 
+            $sparams['combination'] = $filter['combination'] ? 'OR' : 'AND';
+
             $sparams = $this->events->runEvent('commentsPrepareSearch', $sparams);
 
             $list = (count($sparams) > 1

@@ -87,6 +87,8 @@
         'ARTICLE_SEARCH_DATE_FROM'      => 'Datum von',
         'ARTICLE_SEARCH_DATE_TO'        => 'Datum bis',
         'ARTICLE_SEARCH_START'          => 'Suche starten...',
+        'ARTICLE_SEARCH_LOGICAND'       => 'Werte UND verknüpfen',
+        'ARTICLE_SEARCH_LOGICOR'        => 'Werte ODER verknüpfen',
         
         'CATEGORIES_ADD'                => 'Kategorie hinzufügen',
         'CATEGORIES_EDIT'               => 'Kategorie bearbeiten',

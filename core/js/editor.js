@@ -8,8 +8,8 @@
 var fpcmEditor = function () {
     
     var self = this;    
-    var filemanagerWidth  = jQuery(window).width() * 0.75;
-    var filemanagerHeight = jQuery(window).height() * 0.75;
+    var filemanagerWidth  = jQuery(top).width() * 0.75;
+    var filemanagerHeight = jQuery(top).height() * 0.75;
 
     /**
      * Author: DDogg, http://www.php.de/html-usability-und-barrierefreiheit/34508-onclick-input-text-area.html
@@ -321,7 +321,10 @@ var fpcmEditor = function () {
             default_link_target   : "_blank",
             autoresize_min_height : '500',
             image_caption         : true,
-            file_picker_callback  : function(callback, value, meta) {                
+            file_picker_callback  : function(callback, value, meta) {
+                
+                debugger;
+                
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
                     title           : fpcmFileManagerHeadline,

@@ -35,7 +35,7 @@
             '{{commentCount}}'                  => '',
             '{{permaLink}}:{{/permaLink}}'      => '',
             '{{commentLink}}:{{/commentLink}}'  => '',
-            '{{articleImage}}'                  => ''             
+            '{{articleImage}}'                  => ''
         );
         
         /**

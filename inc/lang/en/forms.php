@@ -87,6 +87,8 @@
         'ARTICLE_SEARCH_DATE_FROM'      => 'Date from',
         'ARTICLE_SEARCH_DATE_TO'        => 'Date to',
         'ARTICLE_SEARCH_START'          => 'Start search...',
+        'ARTICLE_SEARCH_LOGICAND'       => 'combine values by AND',
+        'ARTICLE_SEARCH_LOGICOR'        => 'combine values by OR',
         
         'CATEGORIES_ADD'                => 'Add category',
         'CATEGORIES_EDIT'               => 'Edit category',

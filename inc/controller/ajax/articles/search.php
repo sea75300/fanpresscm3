@@ -125,7 +125,8 @@
             if ($filter['comments'] > -1)   $sparams['comments']   = (int) $filter['comments'];            
             if ($this->mode != -1)          $sparams['archived']   = (int) $this->mode;
             
-            $sparams['approval']   = (int) $filter['approval'];
+            $sparams['approval']    = (int) $filter['approval'];
+            $sparams['combination'] = $filter['combination'] ? 'OR' : 'AND';
             
             $sparams = $this->events->runEvent('articlesPrepareSearch', $sparams);
             

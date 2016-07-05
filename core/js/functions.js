@@ -642,6 +642,7 @@ var fpcmJs = function () {
                 return false;
             }
             
+            jQuery('#template_buttons').show();            
             jQuery('#article_template_buttons').hide();
             
             if (fpcmTemplateId > 5) {

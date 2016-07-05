@@ -153,7 +153,8 @@
                 $valueParams[] = $conditions['approved'];
             }
             
-            $where = implode(' AND ', $where);
+            $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
+            $where = implode(" {$combination} ", $where);
 
             $list = $this->dbcon->fetch(
                     $this->dbcon->select(

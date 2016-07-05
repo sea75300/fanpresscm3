@@ -1,18 +1,13 @@
 <?php
+    namespace fpcm\model\pubtemplates;
+
     /**
      * Public comment template file object
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     */
-    namespace fpcm\model\pubtemplates;
-
-    /**
-     * Kommentar Template Objekt
-     * 
      * @package fpcm.model.system
-     * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class comment extends template {
 
@@ -28,8 +23,8 @@
             '{{date}}'                      => '',
             '{{number}}'                    => '',
             '{{id}}'                        => '',
-            '{{mention}}:{{/mention}}'      => '',
-            '{{mentionid}}:{{/mentionid}}'  => ''
+            '{{mentionid}}'                 => '',
+            '{{mention}}:{{/mention}}'      => ''
         );
         
         /**

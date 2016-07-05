@@ -257,6 +257,11 @@
          * @return bool
          */
         private function checkFilesystem() {
+            
+            if (!is_dir(\fpcm\classes\baseconfig::$dataDir.'drafts') &&
+                !mkdir(\fpcm\classes\baseconfig::$dataDir.'drafts', 0777)) {
+                return false;
+            }
 
             if (file_exists(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php')) {
                 unlink(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php');
@@ -281,46 +286,6 @@
             $libPath = \fpcm\classes\loader::libGetFilePath('jquery', 'jquery-2.1.4.min.js');
             if ($libPath) {
                 unlink($libPath);
-            }
-            
-            $libPath = dirname(\fpcm\classes\loader::libGetFilePath('tinymce4', 'tinymce.min.js')).'/';
-            if ($libPath === '/') {
-                return true;
-            }
-
-            $paths = array(
-                '/themes',
-                '/plugins/advlist',
-                '/plugins/anchor',
-                '/plugins/autolink',
-                '/plugins/autoresize',
-                '/plugins/charmap',
-                '/plugins/code',
-                '/plugins/colorpicker',
-                '/plugins/fullscreen',
-                '/plugins/hr',
-                '/plugins/image',
-                '/plugins/imagetools',
-                '/plugins/importcss',
-                '/plugins/insertdatetime',
-                '/plugins/link',
-                '/plugins/lists',
-                '/plugins/media',
-                '/plugins/nonbreaking',
-                '/plugins/searchreplace',
-                '/plugins/table',
-                '/plugins/textcolor',
-                '/plugins/textpattern',
-                '/plugins/visualchars',
-                '/plugins/wordcount',
-            );
-            
-            foreach ($paths as $path) {
-                if (is_dir($libPath.$path)) \fpcm\model\files\ops::deleteRecursive($libPath.$path);
-            }
-
-            if (is_dir($libPath.'/readme.md')) {
-                unlink($libPath.'/readme.md');
             }
             
             return true;

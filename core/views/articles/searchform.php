@@ -17,8 +17,7 @@
         <tr>
             <td><?php \fpcm\model\view\helper::select('approval', $searchApproval, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-articlesearch'); ?></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td><?php \fpcm\model\view\helper::select('combination', $searchCombination, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-articlesearch'); ?></td>
         </tr>
         <tr>    
             <td><?php \fpcm\model\view\helper::textInput('datefrom', 'fpcm-articles-search-input fpcm-full-width-date', '', false, 10, $FPCM_LANG->translate('ARTICLE_SEARCH_DATE_FROM'), 'fpcm-full-width'); ?></td>

@@ -238,7 +238,8 @@
                 $where[] = "approval = 0";
             }
             
-            $where = implode(' AND ', $where);
+            $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
+            $where = implode(" {$combination} ", $where);
 
             $where2 = array();
             $where2[] = $this->dbcon->orderBy( ((isset($conditions['orderby'])) ? $conditions['orderby'] : array($this->config->articles_sort.' '.$this->config->articles_sort_order)) );

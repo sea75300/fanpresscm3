@@ -406,6 +406,10 @@
                 $this->lang->translate('GLOBAL_YES')  => 1,
                 $this->lang->translate('GLOBAL_NO') => 0
             ));
+            $this->view->assign('searchCombination', array(
+                $this->lang->translate('ARTICLE_SEARCH_LOGICAND') => 0,
+                $this->lang->translate('ARTICLE_SEARCH_LOGICOR')  => 1
+            ));
 
             $this->view->addJsVars(array(
                 'fpcmSearchWaitMsg'      => $this->lang->translate('SEARCH_WAITMSG'),
