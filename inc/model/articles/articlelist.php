@@ -1,28 +1,31 @@
 <?php
+    namespace fpcm\model\articles;
+
     /**
      * FanPress CM Article List Model
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
      * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     */
-
-    namespace fpcm\model\articles;
-
-    /**
-     * Artikelliste
-     * 
      * @package fpcm.model.articles
-     * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class articlelist extends \fpcm\model\abstracts\tablelist {
+
+        /**
+         * Permission Object
+         * @var \fpcm\model\system\permissions
+         * @since FPCM 3.3
+         */
+        protected $permissions;
 
         /**
          * Konstruktor
          * @param int $id
          */
         public function __construct($id = null) {
+
             $this->table = \fpcm\classes\database::tableArticles;
+            $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
             
             parent::__construct($id);
         }
@@ -434,6 +437,33 @@
         }
 
         /**
+         * Führt Prüfung durch, ob Artikel bearbeitet werden kann
+         * @param \fpcm\model\articles\article $article
+         * @return boolean
+         */
+        public function checkEditPermissions(article &$article) {
+            
+            $isAdmin     = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin();
+            $permEditAll = $this->permissions->check(array('article' => 'editall'));            
+            $permEditOwn = $this->permissions->check(array('article' => 'edit'));
+            
+            if ($isAdmin || $permEditAll) {
+                $article->setEditPermission(true);
+                return true;
+            }
+            
+            if (!$isAdmin && !$permEditAll && $permEditOwn &&
+                 $article->getCreateuser() == \fpcm\classes\baseconfig::$fpcmSession->getUserId()) {
+                $article->setEditPermission(true);
+                return true;                
+            }
+
+            $article->setEditPermission(false);
+            return true;
+
+        }
+
+        /**
          * Erzeugt Listen-Result-Array
          * @param array $list
          * @param bool $monthIndex
@@ -443,16 +473,18 @@
             $res = array();
             foreach ($list as $item) {
                 $article = new article();
-                if ($article->createFromDbObject($item)) {                    
-                    if ($monthIndex) {
-                        $index = mktime(0, 0, 0, date('m', $article->getCreatetime()), 1, date('Y', $article->getCreatetime()));
-                        $res[$index][$article->getId()] = $article;
-                    } else {
-                        $res[$article->getId()] = $article;
-                    }
-                    
-                    
-                }                
+                if (!$article->createFromDbObject($item)) {
+                    continue;
+                }
+
+                $this->checkEditPermissions($article);
+
+                if ($monthIndex) {
+                    $index = mktime(0, 0, 0, date('m', $article->getCreatetime()), 1, date('Y', $article->getCreatetime()));
+                    $res[$index][$article->getId()] = $article;
+                } else {
+                    $res[$article->getId()] = $article;
+                }
             }
             
             return $res;             

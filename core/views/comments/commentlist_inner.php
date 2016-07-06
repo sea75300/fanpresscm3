@@ -22,7 +22,7 @@
         <td><?php \fpcm\model\view\helper::dateText($comment->getCreatetime()); ?></td>
         <td class="fpcm-td-commentlist-meta"><?php include __DIR__.'/metainfo.php'; ?></td>
         <td class="fpcm-td-select-row">
-        <?php if ($isAdmin || $permEditAll || ($permEditOwn && !$isAdmin && !$permEditAll && in_array($comment->getArticleid(), $ownArticleIds))) : ?>                    
+        <?php if ($isAdmin || $permEditAll || ($permEditOwn && !$isAdmin && !$permEditAll && in_array($comment->getArticleid(), $ownArticleIds))) : ?>
             <?php fpcm\model\view\helper::checkbox('ids[]', 'fpcm-list-selectbox', $comment->getId(), '', '', false); ?>
         <?php else : ?>
             <?php fpcm\model\view\helper::checkbox('ids[ro]', 'fpcm-list-selectbox', '', '', '', false, true); ?>

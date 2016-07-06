@@ -124,7 +124,7 @@
          * Auszuschließende Elemente beim in save/update
          * @var array
          */
-        protected $dbExcludes = array('defaultPermissions', 'forceDelete');
+        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission');
         
         /**
          * Action-String für edit-Action
@@ -138,6 +138,13 @@
          * @since FPCM 3.2.0
          */
         protected $wordbanList;
+
+        /**
+         * Status ob Artikel bearbeitet werden kann
+         * @var bool
+         * @since FPCM 3.3
+         */
+        protected $editPermission = true;
 
         /**
          * Konstruktor
@@ -282,7 +289,16 @@
         public function getImagepath() {
             return $this->imagepath;
         }
-                
+
+        /**
+         * Liefert Status, ob Artikel bearbeitet werden kann zurück
+         * @return bool
+         * @since FPCM 3.3
+         */
+        function getEditPermission() {
+            return $this->editPermission;
+        }
+                        
         /**
          * Ttiel setzten
          * @param string $title
@@ -402,6 +418,15 @@
          */
         public function setImagepath($imagepath) {
             $this->imagepath = $imagepath;
+        }
+
+        /**
+         * Setzt Status, ob Artikel bearbeitet werden kann
+         * @param bool $editPermission
+         * @since FPCM 3.3
+         */
+        function setEditPermission($editPermission) {
+            $this->editPermission = $editPermission;
         }
         
         /**

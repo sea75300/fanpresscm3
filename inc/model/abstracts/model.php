@@ -151,7 +151,7 @@
          * @return boolean
          */
         public function __call($name, $arguments) {
-            print "Function not found! {$name}";
+            print "Function '{$name}' not found in ".get_class($this).'<br>';
             return false;
         }
 
@@ -162,7 +162,7 @@
          * @return boolean
          */        
         public static function __callStatic($name, $arguments) {
-            print "Function not found! {$name}";
+            print "Static function '{$name}' not found in ".get_class($this).'<br>';
             return false;
         }
 
