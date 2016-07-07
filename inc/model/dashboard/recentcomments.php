@@ -83,11 +83,7 @@
             
             $commenList  = new \fpcm\model\comments\commentList();
             $userlist    = new \fpcm\model\users\userList();            
-            $articleList = new \fpcm\model\articles\articlelist();
-
-            $ownArticleIds = $articleList->getArticleIDsByUser(\fpcm\classes\baseconfig::$fpcmSession->getUserId());
-
-            $comments = $commenList->getCommentsByLimit(0, 10);
+            $comments    = $commenList->getCommentsByLimit(0, 10);
 
             $users    = array_flip($userlist->getUsersNameList());
             
@@ -107,7 +103,7 @@
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-articlelist-open">';
                 $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-openlink-btn" href="'.$comment->getArticleLink().'" target="_blank">'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'</a>';
-                if ($this->isAdmin || $allPermissions || ($ownPermissions && !$this->isAdmin && !$allPermissions && in_array($comment->getArticleid(), $ownArticleIds) )) {
+                if ($comment->getEditPermission()) {
                     $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-loader" href="'.$comment->getEditLink().'&amp;mode=1">'.$this->language->translate('GLOBAL_EDIT').'</a>';
                 } else {
                     $content[] = '  <span class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly">'.$this->language->translate('GLOBAL_EDIT').'</span>';

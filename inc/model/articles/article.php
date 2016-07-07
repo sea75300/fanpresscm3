@@ -295,7 +295,7 @@
          * @return bool
          * @since FPCM 3.3
          */
-        function getEditPermission() {
+        public function getEditPermission() {
             return $this->editPermission;
         }
                         
@@ -425,7 +425,7 @@
          * @param bool $editPermission
          * @since FPCM 3.3
          */
-        function setEditPermission($editPermission) {
+        public function setEditPermission($editPermission) {
             $this->editPermission = $editPermission;
         }
         

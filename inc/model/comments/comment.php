@@ -112,6 +112,13 @@
         protected $wordbanList;
 
         /**
+         * Status ob Kommentar bearbeitet werden kann
+         * @var bool
+         * @since FPCM 3.3
+         */
+        protected $editPermission = true;
+
+        /**
          * Konstruktor
          * @param int $id
          */
@@ -220,6 +227,15 @@
         }
 
         /**
+         * Liefert Status, ob Kommentar bearbeitet werden kann zurück
+         * @return bool
+         * @since FPCM 3.3
+         */
+        public function getEditPermission() {
+            return $this->editPermission;
+        }
+
+        /**
          * Setzt Artikel-ID
          * @param int $articleid
          */
@@ -313,7 +329,16 @@
          */
         public function setChangeuser($changeuser) {
             $this->changeuser = (int) $changeuser;
-        }        
+        }
+
+        /**
+         * Setzt Status, ob Kommentar bearbeitet werden kann
+         * @param bool $editPermission
+         * @since FPCM 3.3
+         */
+        public function setEditPermission($editPermission) {
+            $this->editPermission = $editPermission;
+        }
         
         /**
          * Speichert einen neuen Kommentar in der Datenbank

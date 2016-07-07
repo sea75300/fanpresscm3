@@ -14,12 +14,34 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class commentList extends \fpcm\model\abstracts\tablelist {
+
+        /**
+         *
+         * @var \fpcm\model\articles\articlelist
+         * @since FPCM 3.3
+         */
+        protected $articleList;
+
+        /**
+         *
+         * @var array
+         * @since FPCM 3.3
+         */
+        protected $ownArticleIds = false;
+
+        /**
+         * Permission Object
+         * @var \fpcm\model\system\permissions
+         * @since FPCM 3.3
+         */
+        protected $permissions;
         
         /**
          * Konstruktor
          */
         public function __construct() {
             $this->table = \fpcm\classes\database::tableComments;
+            $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
             
             parent::__construct();
         }
@@ -324,6 +346,37 @@
         }
 
         /**
+         * Führt Prüfung durch, ob Artikel bearbeitet werden kann
+         * @param \fpcm\model\comments\comment $comment
+         * @return boolean
+         */
+        public function checkEditPermissions(comment &$comment) {
+            
+            if (!is_array($this->ownArticleIds)) {                
+                $this->articleList   = new \fpcm\model\articles\articlelist();
+                $this->ownArticleIds = $this->articleList->getArticleIDsByUser(\fpcm\classes\baseconfig::$fpcmSession->getUserId());
+            }
+
+            $isAdmin     = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin();
+            $permEditAll = $this->permissions->check(array('comment' => 'editall'));            
+            $permEditOwn = $this->permissions->check(array('comment' => 'edit'));
+            
+            if ($isAdmin || $permEditAll) {
+                $comment->setEditPermission(true);
+                return true;
+            }
+            
+            if (!$isAdmin && !$permEditAll && $permEditOwn && in_array($comment->getArticleid(), $this->ownArticleIds)) {
+                $comment->setEditPermission(true);
+                return true;                
+            }
+
+            $comment->setEditPermission(false);
+            return true;
+
+        }
+
+        /**
          * Erzeugt Listen-Result-Array
          * @param array $list
          * @return array
@@ -333,9 +386,11 @@
             
             foreach ($list as $listItem) {
                 $object = new comment();
-                if ($object->createFromDbObject($listItem)) {
-                    $res[$object->getId()] = $object;
+                if (!$object->createFromDbObject($listItem)) {
+                    continue;
                 }
+                $this->checkEditPermissions($object);
+                $res[$object->getId()] = $object;
             }
             
             return $res;            

@@ -197,6 +197,7 @@
             $this->view->assign('drafts', $this->articleList->getArticlesDraft(true));
 
             $commentCounts = $this->commentList->countComments($this->getArticleListIds());
+
             $this->view->assign('commentCount', $commentCounts);
             $this->view->assign('commentPrivateUnapproved', $this->commentList->countUnapprovedPrivateComments($this->getArticleListIds()));            
             $this->view->assign('commentSum', $commentCounts && $this->articleCount ? array_sum($commentCounts) : 0);

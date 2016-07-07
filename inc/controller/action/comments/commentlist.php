@@ -71,7 +71,6 @@
             $this->initCommentPermissions();
             $this->initSearchForm();
 
-            $this->view->assign('ownArticleIds', $this->articleList->getArticleIDsByUser($this->session->getUserId()));
             $this->view->assign('comments', $this->list->getCommentsAll());
             $this->view->assign('commentsMode', 1);
             $this->view->render();

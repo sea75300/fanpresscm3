@@ -44,9 +44,6 @@
             }
             
             $this->view->assign('commentActions', $commentActions);
-            $this->view->assign('permEditOwn', $this->permissions->check(array('comment' => 'edit')));
-            $this->view->assign('permEditAll', $this->permissions->check(array('comment' => 'editall')));
-            $this->view->assign('isAdmin', $this->session->getCurrentUser()->isAdmin());
         }
         
         protected function processCommentActions(\fpcm\model\comments\commentList $commentList) {
