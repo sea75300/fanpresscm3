@@ -119,6 +119,12 @@
         protected $editPermission = true;
 
         /**
+         * Auszuschließende Elemente beim in save/update
+         * @var array
+         */
+        protected $dbExcludes = array('editPermission');
+
+        /**
          * Konstruktor
          * @param int $id
          */
