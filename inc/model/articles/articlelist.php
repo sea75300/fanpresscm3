@@ -26,7 +26,7 @@
 
             $this->table = \fpcm\classes\database::tableArticles;
             
-            if (\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+            if (is_object(\fpcm\classes\baseconfig::$fpcmSession) && \fpcm\classes\baseconfig::$fpcmSession->exists()) {
                 $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
             }
 

@@ -257,11 +257,6 @@
          * @return bool
          */
         private function checkFilesystem() {
-            
-            if (!is_dir(\fpcm\classes\baseconfig::$dataDir.'drafts') &&
-                !mkdir(\fpcm\classes\baseconfig::$dataDir.'drafts', 0777)) {
-                return false;
-            }
 
             if (file_exists(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php')) {
                 unlink(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php');

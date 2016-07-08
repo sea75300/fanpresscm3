@@ -34,15 +34,18 @@
          * @var \fpcm\model\system\permissions
          * @since FPCM 3.3
          */
-        protected $permissions;
+        protected $permissions = false;
         
         /**
          * Konstruktor
          */
         public function __construct() {
             $this->table = \fpcm\classes\database::tableComments;
-            $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
-            
+
+            if (is_object(\fpcm\classes\baseconfig::$fpcmSession) && \fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
+            }
+
             parent::__construct();
         }
         
@@ -351,7 +354,11 @@
          * @return boolean
          */
         public function checkEditPermissions(comment &$comment) {
-            
+
+            if ($this->permissions === false) {
+                return true;
+            }
+
             if (!is_array($this->ownArticleIds)) {                
                 $this->articleList   = new \fpcm\model\articles\articlelist();
                 $this->ownArticleIds = $this->articleList->getArticleIDsByUser(\fpcm\classes\baseconfig::$fpcmSession->getUserId());
