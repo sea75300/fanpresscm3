@@ -16,7 +16,7 @@
          * @var \fpcm\model\system\permissions
          * @since FPCM 3.3
          */
-        protected $permissions;
+        protected $permissions = false;
 
         /**
          * Konstruktor
@@ -25,8 +25,11 @@
         public function __construct($id = null) {
 
             $this->table = \fpcm\classes\database::tableArticles;
-            $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
             
+            if (\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
+            }
+
             parent::__construct($id);
         }
         
@@ -443,6 +446,10 @@
          */
         public function checkEditPermissions(article &$article) {
             
+            if ($this->permissions === false) {
+                return true;
+            }
+
             $isAdmin     = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin();
             $permEditAll = $this->permissions->check(array('article' => 'editall'));            
             $permEditOwn = $this->permissions->check(array('article' => 'edit'));
