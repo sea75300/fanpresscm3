@@ -1,14 +1,14 @@
 <?php
-    $newversion = '3.2.1';
+    $newversion = '3.3.0-a4';
     
-    $installfile   = 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress3.2.1_full.zip';
+    $installfile   = 'http://updates.nobody-knows.org/fanpress/system/packages/fanpress3.3.0-a4_full.zip';
 
     $versions = array(
         'default' => array(
-            'file'      => 'http://nobody-knows.org/updatepools/fanpress/system/packages/fanpress_update_version3.2.1.zip',
+            'file'      => 'http://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.3.0-a4.zip',
             'force'     => 0,
-            'message'   => 'Next minor release of FanPress CM 3.x!',
-            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-2-1-veroeffentlicht/',
+            'message'   => 'Fourth alpha release of FanPress CM 3.3. Article revision storage movde to database!',
+            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-3-0-veroeffentlicht/',
             'signature' => ''
         )
     );

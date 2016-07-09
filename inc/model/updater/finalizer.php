@@ -231,22 +231,16 @@
          * @return bool
          */
         private function createTables() {
+
             $res = true;
             
+            if ($this->checkVersion('3.3.0-a4')) {
+                $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'15revisions.yml');
+                $this->convertRevisions();
+            }
+            
             if ($this->checkVersion('3.2.0-dev')) {
-                
-                $path = (method_exists($this->dbcon, 'getDbtype')
-                      ? \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql'
-                      : \fpcm\classes\baseconfig::$dataDir.'dbstruct/mysql/14texts.sql');                
-                
-                if (method_exists($this->dbcon, 'execSqlFile')) {
-                    $res  = $res && $this->dbcon->execSqlFile($path);
-                } else {
-                    $sql = file_get_contents($path);
-                    $sql = str_replace('{{dbpref}}', $this->dbcon->getDbprefix(), $sql);
-                    $res = $res && $this->dbcon->exec($sql);
-                }
-
+                $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'14texts.yml');
             }
             
             return $res;
@@ -332,7 +326,40 @@
             return version_compare($this->config->system_version, $version, $option);
         }
 
-        /**
+        private function convertRevisions() {
+
+            $revsPath = \fpcm\classes\baseconfig::$revisionDir.'article';
+            $revisionFiles = glob($revsPath.'*/*.php');
+            
+            if (!$revisionFiles || !count($revisionFiles)) {
+                return true;
+            }
+
+            foreach ($revisionFiles as $revisionFile) {
+                
+                $articleId   = (int) substr(basename(dirname($revisionFile)), 7);
+                $revisionIdx = (int) substr(basename($revisionFile), 3, -4);
+                $revision    = new \fpcm\model\files\revision($revisionIdx, $revsPath.$articleId.'/');
+
+                if (!$revision->exists()) {
+                    continue;;
+                }
+
+                $newRevision = new \fpcm\model\articles\revision();
+                $newRevision->setArticleId($articleId);
+                $newRevision->setRevisionIdx($revisionIdx);
+                $newRevision->setContent($revision->getContent());
+                if (!$newRevision->save()) {
+                    trigger_error("Revision conversion failure for revision {$revisionIdx} of article {$articleId}");
+                    continue;
+                }
+            }
+            
+            return true;
+
+        }
+
+                /**
          * nicht genutzt
          * @return void
          */

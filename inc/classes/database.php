@@ -89,6 +89,12 @@
          * @since FPCM 3.2.0
          */
         const tableTexts  = 'texts';
+        
+        /**
+         * Tabelle für revisionen
+         * @since FPCM 3.3.0
+         */
+        const tableRevisions  = 'revisions';
 
         /**
          * Datenbank-Verbindung
@@ -407,6 +413,10 @@
          */
         public function execYaTdl($path) {
 
+            if (substr($path, -4) !== '.yml') {
+                $path .= '.yml';
+            }
+            
             $yatdl = new \fpcm\model\system\yatdl($path);
             if ($yatdl->parse() !== true) {
                 trigger_error('An YaTDL parser error occurred!');
