@@ -39,7 +39,7 @@ var fpcmUpdater = function () {
         self.ajaxHandler.action     = 'packagemgr/sysupdater';
         self.ajaxHandler.data       = {
             step:idx,
-            force: (fpcmUpdaterStartStep ? 1 : 0)
+            force: (fpcmUpdaterStartStep > 1 ? 1 : 0)
         };
         self.ajaxHandler.execDone   = "fpcmUpdater.responseData=fpcmUpdater.ajaxHandler.result;fpcmUpdater.ajaxCallback();";
         self.ajaxHandler.post();

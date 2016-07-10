@@ -151,7 +151,7 @@
 
                     break;                
                 case 6 :
-                    
+
                     $this->returnData['newver'] = $this->config->system_version;
                     $res = true;
 
