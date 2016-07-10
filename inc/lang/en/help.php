@@ -105,6 +105,7 @@ Help language file
                 <li><em>Comment is spam:</em> Comments marks as spam won't be displayed to your visitors. They will be used to improve
                     spam detection if you don't delete them.</li>
             </ul>
+            <p>The <span class="fpcm-ui-button">Search & filter</span> button allows you to search or filter you articles by various conditions.</p>
         ]]>
         </text>
     </chapter>
@@ -195,8 +196,6 @@ Help language file
                                 <li><em>Revisions enabled:</em> Enabled revision function to save changes on articles and make them
                                 restorable.</li>
                                 <li><em>Enabled article trash:</em> Enable article trash to and be able to restore deleted articles.</li>
-                                <li><em>Create thumbnail if image is bigger than:</em> Setting to automatically create thumbnails if
-                                images are bigger the then amount of pixel.</li>
                                 <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnails.</li>
                                 <li><em>CSS classes in editor:</em> CSS classes with can be used in article editor.</li>
                             </ul>
@@ -236,6 +235,8 @@ Help language file
                         <li><b>Extended:</b><br>
                             All options on the "Extended" register should be used carefully.
                             <ul>
+                                <li><em>Email notification when updates are available:</em> Enable or disable the e-mail notification if a new version
+                                    of FanPress CM was detected by the update cronjob.</li>
                                 <li><em>Include developement releases in update check:</em> This option allows you to include test- and
                                     developement versions when FanPress CM executes and update check. <b>Important: test- and developement
                                     may include failures, unfinished functions which can cause problems!</b></li>
@@ -267,7 +268,18 @@ Help language file
                 </li>
                 <li><b>Templates:</b><br>
                     Edit templates to display articles, comments, the latest news, etc. in front end. The template editor includes
-                    syntaxhighlighting and a list of allowed replacements.
+                    syntax highlighting and a list of allowed replacements.
+                    <ul>
+                        <li><em>Article list:</em> Template used for a single article in article lists.</li>
+                        <li><em>Single article view:</em> Template used for a single article opened in frontend including
+                            comments and so on. Tab is invisible if <em>Article list</em> and <em>Single article view</em>
+                            are the same value.</li>
+                        <li><em>Comment:</em> Template used for a single comment</li>
+                        <li><em>Comment form:</em> Template used for formular to create a comment</li>
+                        <li><em>Latest News:</em> Template used for a single line of the "Latest News" widget</li>
+                        <li><em>Tweet:</em> Template used for generation of a Tweet on Twitter! No HTML code allowed.</li>
+                        <li><em>Article templates:</em> HTML files which can be used are template in TinyMCE or HTML editor view.</li>
+                    </ul>
                 </li>
                 <li><b>Smileys:</b><br>
                     Manage smileys available in articles and comments.

@@ -115,6 +115,8 @@ Help language file
                 <li><em>Kommentar ist Spam:</em> Kommentare, welche als Spam markiert wurden, werden nicht öffentlich angezeigt. Ihre Daten
                     werden zur Verbesserung der Spam-Erkennung genutzt, sofern du sie nicht löscht.</li>
             </ul>
+             <p>Über den Button <span class="fpcm-ui-button">Suche & Filter</span> kannst du mithilfe eines Dialogs die angezeigten Kommentare anhand verschiedener Kriterien
+                weiter eingrenzen.</p>
         ]]>
         </text>
     </chapter>
@@ -216,8 +218,6 @@ Help language file
                                 <li><em>Revisionen aktivieren:</em> Soll FanPress CM Revisionen beim Speichern eines Artikels anlegen.</li>
                                 <li><em>Papierkorb aktivieren:</em> Artikel nicht direkt löschen sondern
                                 zuerst in Papierkorb verschieben. Hier kannst du sie ggf. wiederherstellen.</li>
-                                <li><em>Vorschaubild erzeugen wenn Bild größer ist als:</em> Automatisches Erzeugen von Thumbnails, wenn
-                                hochgeladene Bilder größer als die eingestellten Werte sind.</li>
                                 <li><em>Maximale Größe des Vorschaubildes:</em> Größe der von FanPress CM erzeugten Thumbnails.</li>
                                 <li><em>CSS-Klassen im Editor:</em> CSS-Klassen zur Nutzung im FanPress CM Editor.</li>
                             </ul>
@@ -262,6 +262,8 @@ Help language file
                         <li><b>Erweitert:</b><br>
                             Der "Erweitert"-Tab enthält verschiedene Einstellungen, welche nur mit Bedacht geändert werden sollten.
                             <ul>
+                                <li><em>E-Mail-Benachrichtigung, wenn Updates verfügbar:</em> Diese Option ermöglicht es, die Benachrichtigung über
+                                    verfügbare Updates durch den Update-Cronjob zu de/aktivieren.</li>
                                 <li><em>Entwickler-Versionen bei Update-Check anzeigen:</em> Neben den offizielle Releases gibt es immer
                                     wieder Entwickler- und Test-Versionen. Aktivieren diese Option, um solche Versionen beim Update-Check
                                     ebenfalls anzuzeigen. <b>Achtung: Entwickler- und Test-Versionen können Fehler enthalten oder
@@ -300,6 +302,17 @@ Help language file
                 <li><b>Templates:</b><br>
                     Benutzer mit entsprechenden Rechten können die Templates zur Ausgabe von Artikeln, Kommentaren, etc. bearbeiten.
                     Für eine bessere Übersicht bietet der Template-Editor Syntax-Highlighting und eine Liste der verfügbaren Platzhalter.
+                    <ul>
+                        <li><em>Artikel-Liste:</em> Template für Anzeige von Artikeln in der Artikel-Liste</li>
+                        <li><em>Artikel-Einzel-Ansicht:</em> Template für Anzeige eines einzelnen Artikels inkl.
+                            dessen Kommentaren, dem Kommentar-Formular, etc. Dieser Tab wird nicht angezeigt, wenn für
+                            <em>Artikel-Liste</em> und <em>Artikel-Einzel-Ansicht</em> das gleiche Template genutzt wird.</li>
+                        <li><em>Kommentar:</em> Template für einen einzelnen Kommentar</li>
+                        <li><em>Kommentar-Formular:</em> Template für das Formular zum Verfassen eines Kommentars</li>
+                        <li><em>Latest News:</em> Template für die einzelnen Zeilen in den "Latest News"</li>
+                        <li><em>Tweet:</em> HTML-freies Template für automatisch erzeugte Einträge bei Twitter (Tweets).</li>
+                        <li><em>Vorlagen:</em> HTML-Vorlagen zu Nutzung im Artikel-Editor. (TinyMCE bzw. HTML-Ansicht)</li>
+                    </ul>
                 </li>
                 <li><b>Smileys:</b><br>
                     Benutzer mit den entsprechenden Rechten können die nutzbaren Smileys verwalten.
@@ -310,7 +323,7 @@ Help language file
                     ausgeführt wurden sowie den Zeitpunkt der nächsten Ausführung. Das Zeit-Interval der Ausführung kannst du
                     anpassen, in dem du die Interval-zeit änderst.
                 </li>  
-                <li><b>System-LOgs:</b><br>
+                <li><b>System-Logs:</b><br>
                     Im Bereich der Systemlogs findest du eine Auflistung aller bisherigen Benutzer-Logins, System-Meldungen von FanPress und
                     Fehlermeldungen durch PHP selbst oder der Datenbank. Über den Button <i>Log-Datei leeren</i> kannst du Meldungen, etc. löschen
                     lassen.
