@@ -41,7 +41,7 @@ cols:
         length: 11
         params: NOT NULL
     usrmeta:
-        type: bin
+        type: mtext
         length: 
         params: NOT NULL
     disabled:

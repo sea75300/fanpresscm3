@@ -113,8 +113,10 @@
                 'varchar'   => 'character varying',
                 'text'      => 'text',
                 'mtext'     => 'text',
+                'ltext'     => 'text',
                 'bool'      => 'smallint',
-                'bin'       => 'text',
+                'bin'       => 'bytea',
+                'lbin'      => 'bytea',
                 'float'     => 'real',
                 'double'    => 'decimal',
                 'char'      => 'char'

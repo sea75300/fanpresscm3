@@ -293,6 +293,10 @@
                 if (!$this->checkYamlIndiceRow($rowName, $row)) {
                     return false;
                 }
+
+                if (is_array($row['col'])) {
+                    $row['col'] = $this->isPg ? implode(',', $row['col']) : implode('`,`', $row['col']);
+                }
                 
                 if ($this->isPg) {
                     $index = ($row['isUnqiue'] ? 'UNIQUE INDEX' : 'INDEX');
@@ -302,7 +306,7 @@
                     $index = ($row['isUnqiue'] ? 'UNIQUE' : 'INDEX');
                     $sql   = "ALTER TABLE {{dbpref}}_{$this->yamlArray['name']} ADD {$index} `{$rowName}` ( `{$row['col']}` );";
                 }
-              
+
                 $this->sqlArray[] = $sql;
                 
             }
@@ -389,7 +393,7 @@
          */
         private function checkYamlIndiceRow($rowName, array $row) {
             
-            if (!isset($row['col']) || !trim($row['col'])) {
+            if (!isset($row['col']) || (is_array($row['col']) && !count($row['col'])) || (!is_array($row['col']) && !trim($row['col']))) {
                 trigger_error('Invalid YAML indice row data, no "col" property found!');
                 return false;
             }

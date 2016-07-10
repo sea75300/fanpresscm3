@@ -17,7 +17,7 @@ cols:
         length: 20
         params: NOT NULL
     permissiondata:
-        type: bin
+        type: mtext
         length: 
         params: NOT NULL
 indices:

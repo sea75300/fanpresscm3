@@ -113,8 +113,10 @@
                 'varchar'   => 'varchar',
                 'text'      => 'text',
                 'mtext'     => 'mediumtext',
+                'ltext'     => 'longtext',
                 'bool'      => 'tinyint',
                 'bin'       => 'blob',
+                'lbin'      => 'longblob',
                 'float'     => 'float',
                 'double'    => 'decimal',
                 'char'      => 'char'

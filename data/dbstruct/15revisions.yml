@@ -21,7 +21,7 @@ cols:
         length: 20
         params: NOT NULL
     content:
-        type: bin
+        type: ltext
         length: 
         params: NOT NULL
 indices:
@@ -31,3 +31,8 @@ indices:
     revision_idx:
         col: revision_idx
         isUnqiue: false
+    article_id_revision_idx:
+        col:
+            article_id
+            revision_idx
+        isUnqiue: true
