@@ -35,7 +35,7 @@
             );
             
             $recomVal = 64;
-            $curVal   = substr(ini_get('memory_limit'), 0, -1);
+            $curVal   = \fpcm\classes\baseconfig::memoryLimit();
             $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_PHPMEMLIMIT')]    = array(
                 'current'   => $curVal.' MiB',  
                 'recommend' => $recomVal.' MiB',

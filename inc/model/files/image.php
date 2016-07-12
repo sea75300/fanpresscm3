@@ -321,13 +321,14 @@
          * @return boolean
          */
         public function createThumbnail() {
+
             include_once \fpcm\classes\loader::libGetFilePath('PHPImageWorkshop', 'ImageWorkshop.php');
-            
+
             $phpImgWsp = \PHPImageWorkshop\ImageWorkshop::initFromPath($this->getFullpath());
-            
-            if ($this->getWidth() <= 1500 || $this->getHeight() <= 1500) {
+            if (memory_get_usage(true) < \fpcm\classes\baseconfig::memoryLimit(true) * 0.5) {
                 $phpImgWsp->cropMaximumInPixel(0, 0, 'MM');
             }
+
             $phpImgWsp->resizeInPixel(100, 100);
             $phpImgWsp->save($this->getFilepath().dirname($this->getThumbnail()),
                              basename($this->getThumbnail()),
@@ -336,12 +337,11 @@
                              85);
 
             $this->events->runEvent('thumbnailCreate', $this);
-            
             if (!file_exists($this->getFilepath().$this->getThumbnail())) {
                 trigger_error('Unable to create filemanager thumbnail: '.$this->getThumbnail());
                 return false;
             }
-            
+
             return true;
         }
 

@@ -377,6 +377,21 @@
         }
         
         /**
+         * PHP Memory Limit
+         * @return int
+         * @since FPCM 3.3
+         */
+        public static function memoryLimit($inByte = false) {
+            $limit = (int) substr(ini_get('memory_limit'), 0, -1);
+            
+            if (!$inByte) {
+                return $limit;
+            }
+            
+            return $limit * 1024 * 1024;
+        }
+
+        /**
          * Controller abrufen
          * @return array
          */

@@ -838,7 +838,8 @@ table.fpcm-ui-table.fpcm-ui-editor-extended tr td,
 table.fpcm-ui-table.fpcm-dashboard-updates tr td,
 table.fpcm-ui-table.fpcm-ui-backups tr td,
 table.fpcm-module-manager td.module-manager-list-buttons,
-table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr td {
+table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr td,
+table.fpcm-ui-table.fpcm-ui-uploadlist tr td {
     vertical-align: middle;
 }
 

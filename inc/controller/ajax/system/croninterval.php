@@ -39,9 +39,9 @@
         public function process() {
 
             $cronjobId = $this->getRequestVar('cjId');
-            $interval  = $this->getRequestVar('interval', array(9));
+            $interval  = $this->getRequestVar('interval');
             
-            if (!$cronjobId || !$interval) {
+            if (!$cronjobId || $interval ===null) {
                 return false;
             }
                 

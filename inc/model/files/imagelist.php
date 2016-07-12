@@ -96,21 +96,38 @@
         public function createFilemanagerThumbs($folderFiles = null) {            
             $folderFiles = is_null($folderFiles) ? $this->getFolderList() : $folderFiles;
             include_once \fpcm\classes\loader::libGetFilePath('PHPImageWorkshop', 'ImageWorkshop.php');
-            
-            foreach ($folderFiles as $folderFile) {    
-                $phpImgWsp = \PHPImageWorkshop\ImageWorkshop::initFromPath($folderFile);
-                $image = new \fpcm\model\files\image(basename($folderFile), '', '');                
-                if (!file_exists($image->getFileManagerThumbnail())) { 
-                    if ($image->getWidth() <= 1500 || $image->getHeight() <= 1500) {
-                        $phpImgWsp->cropMaximumInPixel(0, 0, "MM");
-                    }
-                    $phpImgWsp->resizeInPixel(100, 100);
-                    $phpImgWsp->save(dirname($image->getFileManagerThumbnail()), basename($image->getFileManagerThumbnail()));
 
-                    if (!file_exists($image->getFileManagerThumbnail())) {
-                        trigger_error('Unable to create filemanager thumbnail: '.$image->getFileManagerThumbnail());
-                    }
-                }                
+            $filesizeLimit   = \fpcm\classes\baseconfig::memoryLimit(true) * 0.025;
+            $memoryWorkLimit = \fpcm\classes\baseconfig::memoryLimit(true) * 0.5;
+            foreach ($folderFiles as $folderFile) {
+
+                if (filesize($folderFile) >= $filesizeLimit) {
+                    $msgPath = ops::removeBaseDir($folderFile);
+                    \fpcm\classes\logs::syslogWrite("Skip filemanager thumbnail generation for {$msgPath} because of image dimension. You may reduce file size?");
+                    continue;
+                }
+                
+                $phpImgWsp = \PHPImageWorkshop\ImageWorkshop::initFromPath($folderFile);
+                $image     = new \fpcm\model\files\image(basename($folderFile), '', '');
+                if (file_exists($image->getFileManagerThumbnail())) {
+                    $image     = null;
+                    $phpImgWsp = null;
+                    continue;
+                }
+
+                if (memory_get_usage(true) < $memoryWorkLimit) {
+                    $phpImgWsp->cropMaximumInPixel(0, 0, "MM");
+                }
+
+                $phpImgWsp->resizeInPixel(100, 100);
+                $phpImgWsp->save(dirname($image->getFileManagerThumbnail()), basename($image->getFileManagerThumbnail()));
+
+                if (!file_exists($image->getFileManagerThumbnail())) {
+                    trigger_error('Unable to create filemanager thumbnail: '.$image->getFileManagerThumbnail());
+                }
+
+                $image     = null;
+                $phpImgWsp = null;
             }
         }
         
