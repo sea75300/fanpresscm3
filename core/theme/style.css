@@ -952,7 +952,7 @@ td.fpcm-td-spacer {
     min-height: 450px;
 }
 
-#fpcm-editor-shortlink iframe {
+#fpcm-dialog-editor-shortlink iframe {
     height:50px;
     min-height:50px;
 }
@@ -1088,7 +1088,7 @@ h3, .fpcm-dashboard-container h3 {
     margin:0px 0px 5px 0px;
 }
 
-#fpcm-extended-dialog.fpcm-editor-dialog .fpcm-ui-editor-postpone div.fpcm-ui-input-wrapper {
+#fpcm-dialog-editor-extended.fpcm-editor-dialog .fpcm-ui-editor-postpone div.fpcm-ui-input-wrapper {
     width:50% !important;
 }
 
@@ -1209,7 +1209,7 @@ table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
     text-align: right;
 }
 
-#fpcm-editor-html-insertsmileys {
+#fpcm-dialog-editor-html-insertsmileys {
     line-height: 25px;
 }
 

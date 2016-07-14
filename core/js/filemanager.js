@@ -53,8 +53,8 @@ var fpcmFilemanager = function () {
                     parent.document.getElementById('imagesalt').value  = title;                
                 }
 
-                window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
-                window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
+                window.parent.jQuery("#fpcm-dialog-editor-html-filemanager").dialog('close');
+                window.parent.jQuery('#fpcm-dialog-editor-html-filemanager').empty();
             } else {
                 top.tinymce.activeEditor.windowManager.getParams().oninsert(url, { alt: title, text: title });
                 top.tinymce.activeEditor.windowManager.close();
@@ -77,8 +77,8 @@ var fpcmFilemanager = function () {
                     parent.document.getElementById('imagesalt').value  = title;
                 }
 
-                window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
-                window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
+                window.parent.jQuery("#fpcm-dialog-editor-html-filemanager").dialog('close');
+                window.parent.jQuery('#fpcm-dialog-editor-html-filemanager').empty();
             } else {
                 top.tinymce.activeEditor.windowManager.getParams().oninsert(url, { alt: title, text: title });
                 top.tinymce.activeEditor.windowManager.close();
@@ -91,8 +91,8 @@ var fpcmFilemanager = function () {
             var url   = jQuery(this).attr('href');
 
             parent.document.getElementById('articleimagepath').value  = url;
-            window.parent.jQuery("#fpcm-editor-html-filemanager").dialog('close');
-            window.parent.jQuery('#fpcm-editor-html-filemanager').empty();
+            window.parent.jQuery("#fpcm-dialog-editor-html-filemanager").dialog('close');
+            window.parent.jQuery('#fpcm-dialog-editor-html-filemanager').empty();
 
             return false;
         });

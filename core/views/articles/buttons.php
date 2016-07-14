@@ -1,5 +1,5 @@
 <?php if (!$isRevision) : ?>
-    <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-extended-dialog">  
+    <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-extended">  
         <table class="fpcm-ui-table fpcm-ui-editor-extended">
             <tr>
                 <td><strong><span class="fa fa-picture-o fa-fw"></span> <?php $FPCM_LANG->write('TEMPLATE_ARTICLE_ARTICLEIMAGE'); ?></strong></td>

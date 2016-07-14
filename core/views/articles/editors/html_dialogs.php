@@ -1,5 +1,5 @@
 <!-- Link einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertlink">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertlink">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_LINKURL'); ?>:</label></td>
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Bild einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertimage">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertimage">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_IMGPATH'); ?>:</label></td>
@@ -51,7 +51,7 @@
 </div>
 
 <!-- Tabelle einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-inserttable">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-inserttable">  
     <table class="fpcm-ui-table fpcm-ui-table-insert">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTTABLE_ROWS'); ?>:</label></td>
@@ -65,7 +65,7 @@
 </div>
 
 <!-- Player einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertmedia">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertmedia">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_IMGPATH'); ?>:</label></td>
@@ -83,11 +83,11 @@
 </div>
 
 <!-- Tabelle einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertcolor">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertcolor">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTCOLOR_HEXCODE'); ?>:</label></td>
-            <td><?php \fpcm\model\view\helper::textInput('fpcm-editor-html-colorhexcode', '', '', false, 5); ?></td>
+            <td><?php \fpcm\model\view\helper::textInput('fpcm-dialog-editor-html-colorhexcode', '', '', false, 5); ?></td>
         </tr>   
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTCOLOR_TEXT'); ?>:</label></td>
@@ -102,10 +102,10 @@
 
 <?php $count = 1; ?>
 <!-- Smiley einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertsmileys"></div>
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertsmileys"></div>
 
 <!-- Symbol einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertsymbol">
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertsymbol">
     <table class="fpcm-ui-table fpcm-ui-editor-smileys">
         <tr>
         <?php for($i=161;$i<=450;$i++) : ?>
@@ -117,7 +117,7 @@
 </div>
 
 <!-- Vorlage einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertdraft">
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertdraft">
     <table class="fpcm-ui-table">
         <tr>
             <td><?php \fpcm\model\view\helper::select('tpldraft', $editorTemplatesList, ''); ?></td>
@@ -129,14 +129,13 @@
     var editor = null;    
     
     jQuery(document).ready(function() {        
-        jQuery('#fpcm-editor-html-insertlink-btn').click(function() {
-            jQuery('#fpcm-editor-html-insertlink').dialog({
-                width: 500,
-                height: 300,
-                resizable: false,
-                modal: true,
+        jQuery('#fpcm-dialog-editor-html-insertlink-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-insertlink',
+                dlWidth: 500,
+                dlHeight: 300,
                 title: "<?php $FPCM_LANG->write('EDITOR_INSERTLINK'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
                         icons: {
@@ -167,24 +166,23 @@
                         }
                     }
                 ],
-                open: function (event, ui) {
+                dlOnOpen: function () {
                     fpcmEditor.setSelectToDialog(this);
                 },
-                close: function(event, ui) {
+                dlOnClose: function () {
                     fpcmEditor.clearPathTextValuesLink();
                 }
             });
             return false;
         });        
         
-        jQuery('#fpcm-editor-html-insertimage-btn').click(function() {
-            jQuery('#fpcm-editor-html-insertimage').dialog({
-                width: 500,
-                height: 300,
-                resizable: false,
-                modal: true,
+        jQuery('#fpcm-dialog-editor-html-insertimage-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-insertimage',
+                dlWidth: 500,
+                dlHeight: 300,
                 title: "<?php $FPCM_LANG->write('EDITOR_INSERTPIC'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
                         icons: {
@@ -215,24 +213,23 @@
                         }
                     }
                 ],
-                open: function (event, ui) {
+                dlOnOpen: function () {
                     fpcmEditor.setSelectToDialog(this);
                 },
-                close: function( event, ui ) {
+                dlOnClose: function() {
                     fpcmEditor.clearPathTextValuesImg();
                 }
             });
             return false;
         });        
         
-        jQuery('#fpcm-editor-html-inserttable-btn').click(function() {
-            jQuery('#fpcm-editor-html-inserttable').dialog({
-                width: 300,
-                height: 250,
-                resizable: false,
-                modal: true,
+        jQuery('#fpcm-dialog-editor-html-inserttable-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-inserttable',
+                dlWidth: 300,
+                dlHeight: 250,
                 title: "<?php $FPCM_LANG->write('EDITOR_INSERTTABLE'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
                         icons: {
@@ -253,31 +250,30 @@
                         }
                     }
                 ],
-                open: function (event, ui) {
+                dlOnOpen: function () {
                     fpcmEditor.setSelectToDialog(this);
                 },
-                close: function( event, ui ) {
+                dlOnClose: function() {
                     fpcmEditor.clearTableForm();
                 }
             });
             return false;
         });   
         
-        jQuery('#fpcm-editor-html-insertcolor-btn').click(function() {
-            jQuery('#fpcm-editor-html-insertcolor').dialog({
-                width: 500,
-                height: 250,
-                resizable: false,
-                modal: true,
+        jQuery('#fpcm-dialog-editor-html-insertcolor-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-insertcolor',
+                dlWidth: 500,
+                dlHeight: 250,
                 title: "<?php $FPCM_LANG->write('EDITOR_INSERTCOLOR'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
                         icons: {
                             primary: "ui-icon-check"            
                         },                        
                         click: function() {
-                            fpcmEditor.insertColor(jQuery('#fpcmeditorhtmlcolorhexcode').val(), jQuery('.color_mode:checked').val());
+                            fpcmEditor.insertColor(jQuery('#fpcmdialogeditorhtmlcolorhexcode').val(), jQuery('.color_mode:checked').val());
                             jQuery( this ).dialog( "close" );
                         }
                     },
@@ -295,14 +291,13 @@
             return false;
         });   
         
-        jQuery('#fpcm-editor-html-insertmedia-btn').click(function() {
-            jQuery('#fpcm-editor-html-insertmedia').dialog({
-                width: 500,
-                height: 250,
-                resizable: false,
-                modal: true,
+        jQuery('#fpcm-dialog-editor-html-insertmedia-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-insertmedia',
+                dlWidth: 500,
+                dlHeight: 250,
                 title: "<?php $FPCM_LANG->write('EDITOR_INSERTMEDIA'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
                         icons: {
@@ -327,13 +322,12 @@
             return false;
         });
         
-        jQuery('#fpcm-editor-html-insertsmiley-btn').click(function() {
-            jQuery('#fpcm-editor-html-insertsmileys').dialog({
-                width: 350,
-                resizable: false,
-                modal: true,
+        jQuery('#fpcm-dialog-editor-html-insertsmiley-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-insertsmileys',
+                dlWidth: 350,
                 title: "<?php $FPCM_LANG->write('EDITOR_INSERTSMILEY'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
                         icons: {
@@ -344,9 +338,9 @@
                         }
                     }
                 ],
-                open: function (event, ui) {
+                dlOnOpen: function () {
                     fpcmAjax.action     = 'editor/smileys';
-                    fpcmAjax.execDone   = "jQuery('#fpcm-editor-html-insertsmileys').append(fpcmAjax.result);";
+                    fpcmAjax.execDone   = "jQuery('#fpcm-dialog-editor-html-insertsmileys').append(fpcmAjax.result);";
                     fpcmAjax.async      = false;
                     fpcmAjax.post();
                     fpcmAjax.reset();                
@@ -355,21 +349,20 @@
                         fpcmEditor.insertSmilies(jQuery(this).attr('smileycode'));
                     });
                 },
-                close: function( event, ui ) {
+                dlOnClose: function() {
                     jQuery(this).empty();
                 }
             });
             return false;
         });         
         
-        jQuery('#fpcm-editor-html-insertsymbol-btn').click(function() {
-            jQuery('#fpcm-editor-html-insertsymbol').dialog({
-                width: 600,
-                height: 500,
-                resizable: false,
-                modal: true,
+        jQuery('#fpcm-dialog-editor-html-insertsymbol-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-insertsymbol',
+                dlWidth: 600,
+                dlHeight: 500,
                 title: "<?php $FPCM_LANG->write('EDITOR_INSERTSYMBOL'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
                         icons: {
@@ -383,51 +376,14 @@
             });
             return false;
         });
-        
-        jQuery('#fpcm-editor-html-insertsmiley-btn').click(function() {
-            jQuery('#fpcm-editor-html-insertsmileys').dialog({
-                width: 350,
-                resizable: false,
-                modal: true,
-                title: "<?php $FPCM_LANG->write('EDITOR_INSERTSMILEY'); ?>",
-                buttons: [
-                    {
-                        text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                        
-                        click: function() {
-                            jQuery( this ).dialog( "close" );
-                        }
-                    }
-                ],
-                open: function (event, ui) {
-                    fpcmAjax.action     = 'editor/smileys';
-                    fpcmAjax.execDone   = "jQuery('#fpcm-editor-html-insertsmileys').append(fpcmAjax.result);";
-                    fpcmAjax.async      = false;
-                    fpcmAjax.post();
-                    fpcmAjax.reset();                
-
-                    jQuery('.fpcm-editor-htmlsmiley').click(function() {
-                        fpcmEditor.insertSmilies(jQuery(this).attr('smileycode'));
-                    });
-                },
-                close: function( event, ui ) {
-                    jQuery(this).empty();
-                }
-            });
-            return false;
-        }); 
-
-        jQuery('#fpcm-editor-html-insertdraft-btn').click(function() {
-
-            jQuery('#fpcm-editor-html-insertdraft').dialog({
-                width: 350,
-                height: 250,
-                resizable: false,
-                modal: true,
+ 
+        jQuery('#fpcm-dialog-editor-html-insertdraft-btn').click(function() {
+            fpcm.ui.dialog({
+                id: 'editor-html-insertdraft',
+                dlWidth: 350,
+                dlHeight: 250,
                 title: "<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_ARTICLETPL'); ?>",
-                buttons: [
+                dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
                         icons: {
@@ -438,11 +394,11 @@
                         }
                     }
                 ],
-                open: function (event, ui) {
+                dlOnOpen: function () {
 
                     jQuery('#tpldraft').selectmenu({
 
-                        appendTo: '#fpcm-editor-html-insertdraft',
+                        appendTo: '#fpcm-dialog-editor-html-insertdraft',
                         change: function( event, ui ) {
 
                             fpcmAjax.action     = 'editor/draft';
@@ -457,7 +413,7 @@
                     });
 
                 },
-                close: function( event, ui ) {
+                dlOnClose: function() {
                     jQuery(this).empty();
                 }
             });
