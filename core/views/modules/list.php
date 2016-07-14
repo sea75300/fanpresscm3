@@ -50,33 +50,33 @@
     </div>
 </div>
 
-<div class="fpcm-ui-dialog-layer" id="fpcm-modulelist-infos">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden" id="fpcm-dialog-modulelist-infos">  
     <table class="fpcm-ui-table">
         <tr>
             <td class="fpcm-quarter-width"><label><?php $FPCM_LANG->write('MODULES_LIST_KEY'); ?>:</label></td>
-            <td colspan="3" id="fpcm-modulelist-infos-key"></td>            
+            <td colspan="3" id="fpcm-dialog-modulelist-infos-key"></td>            
         </tr>
         <tr>
             <td class="fpcm-quarter-width"><label><?php $FPCM_LANG->write('MODULES_LIST_DESCRIPTION'); ?>:</label></td>
-            <td colspan="3" id="fpcm-modulelist-infos-description"></td>
+            <td colspan="3" id="fpcm-dialog-modulelist-infos-description"></td>
         </tr>
         <tr>
             <td class="fpcm-quarter-width"><label><?php $FPCM_LANG->write('MODULES_LIST_AUTHOR'); ?>:</label></td>
-            <td colspan="3" id="fpcm-modulelist-infos-author"></td>
+            <td colspan="3" id="fpcm-dialog-modulelist-infos-author"></td>
         </tr>
         <tr>
             <td class="fpcm-quarter-width"><label><?php $FPCM_LANG->write('MODULES_LIST_LINK'); ?>:</label></td>
-            <td colspan="3" id="fpcm-modulelist-infos-link"></td>
+            <td colspan="3" id="fpcm-dialog-modulelist-infos-link"></td>
         </tr>
         <tr>
             <td class="fpcm-quarter-width"><label><?php $FPCM_LANG->write('MODULES_LIST_VERSION_LOCAL'); ?>:</label></td>
-            <td id="fpcm-modulelist-infos-version" class="fpcm-quarter-width"></td>
+            <td id="fpcm-dialog-modulelist-infos-version" class="fpcm-quarter-width"></td>
             <td class="fpcm-quarter-width"><label><?php $FPCM_LANG->write('MODULES_LIST_VERSION_REMOTE'); ?>:</label></td>
-            <td id="fpcm-modulelist-infos-versionrem" class="fpcm-quarter-width"></td>            
+            <td id="fpcm-dialog-modulelist-infos-versionrem" class="fpcm-quarter-width"></td>            
         </tr>
         <tr>
             <td class="fpcm-quarter-width"><label><?php $FPCM_LANG->write('MODULES_LIST_DEPENCIES'); ?>:</label></td>
-            <td colspan="3" id="fpcm-modulelist-infos-dependencies"></td>
+            <td colspan="3" id="fpcm-dialog-modulelist-infos-dependencies"></td>
         </tr>
     </table>
 </div>

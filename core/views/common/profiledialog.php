@@ -1,5 +1,5 @@
 <?php if ($FPCM_LOGGEDIN) : ?>
-<div class="fpcm-ui-dialog-layer" id="fpcm-profile-dialog-layer">
+<div class="fpcm-ui-dialog-layer fpcm-hidden" id="fpcm-dialog-profile">
     <table>
         <tr>
             <td rowspan="2" class="fpcm-profile-info-icon">

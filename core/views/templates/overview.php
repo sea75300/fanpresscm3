@@ -53,7 +53,7 @@
     </form>
 </div>
 
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-templatepreview-layer"></div>
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-templatepreview-layer"></div>
 
 <script type="text/javascript">
     jQuery(document).ready(function() {

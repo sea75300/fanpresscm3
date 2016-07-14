@@ -35,5 +35,5 @@
 
 <?php if (!$timesMode) : ?>
 <!-- SHortlink layer -->  
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-shortlink"></div>
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-shortlink"></div>
 <?php endif; ?>

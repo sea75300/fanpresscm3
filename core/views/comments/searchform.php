@@ -1,4 +1,4 @@
-<div class="fpcm-ui-dialog-layer" id="fpcm-comments-search-dialog">
+<div class="fpcm-ui-dialog-layer fpcm-hidden" id="fpcm-dialog-comments-search">
     <table class="fpcm-ui-table fpcm-ui-comments-search">
         <tr>
             <td colspan="2"><?php \fpcm\model\view\helper::textInput('text', 'fpcm-comments-search-input', '', false, 255, $FPCM_LANG->translate('ARTICLE_SEARCH_TEXT'), 'fpcm-full-width'); ?></td>

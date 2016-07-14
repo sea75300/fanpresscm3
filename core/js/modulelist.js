@@ -51,61 +51,64 @@ var fpcmModulelist = function () {
         
         jQuery('.fpcm-ui-actions-modules').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            var buttons = [
-                {
-                    text: fpcmYes,
-                    icons: { primary: "ui-icon-check" },                    
-                    click: function() {
-                        var moduleKeys = [];
-                        jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
-                            moduleKeys.push(jQuery(item).val());
-                        });
+            fpcm.ui.dialog({
+                content: fpcmConfirmMessage,
+                dlButtons: [
+                    {
+                        text: fpcmYes,
+                        icons: { primary: "ui-icon-check" },                    
+                        click: function() {
+                            var moduleKeys = [];
+                            jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
+                                moduleKeys.push(jQuery(item).val());
+                            });
 
-                        if (moduleKeys.length == 0 || !jQuery('#moduleActions').val()) {
+                            if (moduleKeys.length == 0 || !jQuery('#moduleActions').val()) {
+                                fpcmJs.showLoader(false);
+                                fpcmJs.addAjaxMassage('error', 'SELECT_ITEMS_MSG');
+                                return false;
+                            }
+
+                            var moduleAction = jQuery('#moduleActions').val();
+                            if (moduleAction == 'install') {
+                                self.runInstall(moduleKeys);
+                            } else if (moduleAction == 'update') {
+                                self.runUpdate(moduleKeys);
+                            } else {
+                                self.runActions(moduleAction, moduleKeys);
+                            }
+
+                            jQuery(this).dialog('close');
+                        }
+                    },
+                    {
+                        text: fpcmNo,
+                        icons: { primary: "ui-icon-closethick" },
+                        click: function() {
+                            jQuery(this).addClass('fpcm-noloader');
+                            jQuery('#moduleActions option:selected').prop('selected', false);
+                            jQuery('#moduleActions').selectmenu('refresh');
+                            jQuery('.fpcm-list-selectbox:checked').prop('checked', false);
+                            jQuery(this).dialog('close');
                             fpcmJs.showLoader(false);
-                            fpcmJs.addAjaxMassage('error', 'SELECT_ITEMS_MSG');
-                            return false;
                         }
-
-                        var moduleAction = jQuery('#moduleActions').val();
-                        if (moduleAction == 'install') {
-                            self.runInstall(moduleKeys);
-                        } else if (moduleAction == 'update') {
-                            self.runUpdate(moduleKeys);
-                        } else {
-                            self.runActions(moduleAction, moduleKeys);
-                        }
-                        
-                        jQuery(this).dialog('close');
                     }
-                },
-                {
-                    text: fpcmNo,
-                    icons: { primary: "ui-icon-closethick" },
-                    click: function() {
-                        jQuery(this).addClass('fpcm-noloader');
-                        jQuery('#moduleActions option:selected').prop('selected', false);
-                        jQuery('#moduleActions').selectmenu('refresh');
-                        jQuery('.fpcm-list-selectbox:checked').prop('checked', false);
-                        jQuery(this).dialog('close');
-                    }
-                }
-            ];
-            fpcmJs.confirmDialog('<p class="fpcm-ui-center">' + fpcmConfirmMessage + '</p>', buttons);
+                ]
+            });
         });
         
         return false;  
     };
     
     this.showDetails = function (moduleKey, moduleName) {
+
         var details = fpcmModuleLayerInfos[moduleKey];
-        
-        jQuery('#fpcm-modulelist-infos').dialog({
-            width: 550,
-            resizable: false,
-            modal: true,
-            title: fpcmDetailsHeadline + ' « ' + moduleName + ' »',
-            buttons: [
+        fpcm.ui.dialog({
+            id         : 'modulelist-infos',
+            dlWidth    : 550,
+            resizable  : true,
+            title      : fpcmDetailsHeadline + ' « ' + moduleName + ' »',
+            dlButtons  : [
                 {
                     text: fpcmClose,
                     icons: {
@@ -116,14 +119,14 @@ var fpcmModulelist = function () {
                     }
                 }
             ],
-            open: function (event, ui) {
+            dlOnOpen: function (event, ui) {
                 jQuery.each(details, function(key, val) {
-                    fpcmJs.appendHtml('#fpcm-modulelist-infos-' + key, '<span>' + val + '</span>');
+                    fpcmJs.appendHtml('#fpcm-dialog-modulelist-infos-' + key, '<span>' + val + '</span>');
                 });
             },
-            close: function(event, ui) {
+            dlOnClose: function(event, ui) {
                 jQuery.each(details, function(key, val) {
-                    jQuery('#fpcm-modulelist-infos-' + key).empty();
+                    jQuery('#fpcm-dialog-modulelist-infos-' + key).empty();
                 });
             }
         });

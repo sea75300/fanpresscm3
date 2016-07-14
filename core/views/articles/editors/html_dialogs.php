@@ -1,5 +1,5 @@
 <!-- Link einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertlink">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertlink">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_LINKURL'); ?>:</label></td>
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Bild einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertimage">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertimage">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_IMGPATH'); ?>:</label></td>
@@ -51,7 +51,7 @@
 </div>
 
 <!-- Tabelle einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-inserttable">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-inserttable">  
     <table class="fpcm-ui-table fpcm-ui-table-insert">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTTABLE_ROWS'); ?>:</label></td>
@@ -65,7 +65,7 @@
 </div>
 
 <!-- Player einfügen -->  
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertmedia">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertmedia">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_IMGPATH'); ?>:</label></td>
@@ -83,7 +83,7 @@
 </div>
 
 <!-- Tabelle einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertcolor">  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertcolor">  
     <table class="fpcm-ui-table">
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTCOLOR_HEXCODE'); ?>:</label></td>
@@ -102,10 +102,10 @@
 
 <?php $count = 1; ?>
 <!-- Smiley einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertsmileys"></div>
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertsmileys"></div>
 
 <!-- Symbol einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertsymbol">
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertsymbol">
     <table class="fpcm-ui-table fpcm-ui-editor-smileys">
         <tr>
         <?php for($i=161;$i<=450;$i++) : ?>
@@ -117,7 +117,7 @@
 </div>
 
 <!-- Vorlage einfügen -->
-<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-html-insertdraft">
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-html-insertdraft">
     <table class="fpcm-ui-table">
         <tr>
             <td><?php \fpcm\model\view\helper::select('tpldraft', $editorTemplatesList, ''); ?></td>
@@ -443,7 +443,6 @@
                     jQuery('#tpldraft').selectmenu({
 
                         appendTo: '#fpcm-editor-html-insertdraft',
-
                         change: function( event, ui ) {
 
                             fpcmAjax.action     = 'editor/draft';

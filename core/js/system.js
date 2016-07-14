@@ -66,18 +66,17 @@ jQuery(document).ready(function () {
             dialogWidth = '95%';
         }
         
-        jQuery('#fpcm-profile-dialog-layer').dialog({
-            width: dialogWidth,
-            modal: true,
-            resizable: false,
+        fpcm.ui.dialog({
+            id: 'profile',
             title: fpcmQuickLinks,
-            buttons: [
+            dlWidth: dialogWidth,
+            dlButtons: [
                 {
                     text: fpcmOpenProfile,
                     icons: { primary: "ui-icon-wrench" },                  
                     click: function () {
                         fpcmJs.showLoader(true);
-                        window.location.href = fpcmActionPath + 'system/profile';
+                        fpcmJs.relocate(fpcmActionPath + 'system/profile');
                     }
                 },
                 {
@@ -85,71 +84,20 @@ jQuery(document).ready(function () {
                     icons: { primary: "ui-icon-power" },
                     click: function () {
                         fpcmJs.showLoader(true);
-                        window.location.href = fpcmActionPath + 'system/logout';
+                        fpcmJs.relocate(fpcmActionPath + 'system/logout');
                     }
                 }
-            ]
+            ],
+            dlOnClose: null
         });
+
     });
 
     if (typeof fpcmSearchHeadline != 'undefined') {
-        jQuery('#fpcmarticlesopensearch').click(function () {
-            jQuery('.fpcm-ui-input-select-articlesearch').selectmenu({
-                width: '100%',
-                appendTo: '#fpcm-articles-search-dialog'
-            });
-            jQuery('.fpcm-full-width-date').datepicker({
-                dateFormat: "yy-mm-dd",
-                firstDay: 1
-            });               
 
-            jQuery('#fpcm-articles-search-dialog').dialog({
-                width: 700,
-                height: 350,
-                modal    : true,
-                resizable: true,
-                title    : fpcmSearchHeadline,
-                buttons  : [
-                    {
-                        text: fpcmSearchStart,
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
-                        click: function() {                            
-                            var sfields = jQuery('.fpcm-articles-search-input');
-                            var sParams = {
-                                mode: fpcmArticleSearchMode,
-                                filter: {}
-                            };
-                            
-                            jQuery.each(sfields, function( key, obj ) {
-                                var objVal  = jQuery(obj).val();
-                                var objName = jQuery(obj).attr('name');                                
-                                sParams.filter[objName] = objVal;
-                            });
-
-                            fpcmJs.startSearch(sParams);
-                            jQuery(this).dialog('close');
-                        }
-                    },                    
-                    {
-                        text: fpcmClose,
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                        
-                        click: function() {
-                            jQuery(this).dialog('close');
-                        }
-                    }                            
-                ],
-                open: function( event, ui ) {
-                    jQuery('#text').focus();
-                }
-            });
-            return false;
-        });
-        
+        fpcmJs.initArticleSearch();        
         fpcmJs.initCommentSearch();
+
     }
 
     jQuery('#fpcm-clear-cache').click(function () {
@@ -167,24 +115,27 @@ jQuery(document).ready(function () {
     
     jQuery('.fpcm-logs-clear').click(function () {
         var logId = jQuery(this).attr('id');
-        var buttons = [
-            {
-                text: fpcmYes,
-                icons: { primary: "ui-icon-check" },                    
-                click: function() {
-                    fpcmJs.clearLogs(logId); 
-                    jQuery(this).dialog('close');
+        fpcm.ui.dialog({
+            content: fpcmConfirmMessage,
+            dlButtons: [
+                {
+                    text: fpcmYes,
+                    icons: { primary: "ui-icon-check" },                    
+                    click: function() {
+                        fpcmJs.clearLogs(logId); 
+                        jQuery(this).dialog('close');
+                    }
+                },
+                {
+                    text: fpcmNo,
+                    icons: { primary: "ui-icon-closethick" },
+                    click: function() {
+                        jQuery(this).dialog('close');
+                    }
                 }
-            },
-            {
-                text: fpcmNo,
-                icons: { primary: "ui-icon-closethick" },
-                click: function() {
-                    jQuery(this).dialog('close');
-                }
-            }
-        ];
-        fpcmJs.confirmDialog('<p class="fpcm-ui-center">' + fpcmConfirmMessage + '</p>', buttons);
+            ]
+        });
+        
         return false;
     });
     

@@ -78,7 +78,7 @@ Event wird ausgeführt, wenn
                     }
                 }
             ];
-            fpcmJs.confirmDialog('<p class="fpcm-ui-center">' + fpcmConfirmMessage + '</p>', buttons);
+            fpcm.ui.dialog('<p class="fpcm-ui-center">' + fpcmConfirmMessage + '</p>', buttons);
             
             
             

@@ -4,7 +4,7 @@
         <?php \fpcm\model\view\helper::helpButton('articles_editor'); ?>
     </h1>
     
-    <div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="fpcm-editor-comments"></div>
+    <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-editor-comments"></div>
     
     <?php include __DIR__.'/articleeditor.php'; ?>
 </div>

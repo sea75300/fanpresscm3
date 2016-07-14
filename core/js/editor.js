@@ -164,8 +164,10 @@ var fpcmEditor = function () {
     };
 
     this.showFileManager = function() {
-        fpcmJs.appendHtml('#fpcm-editor-html-filemanager', '<iframe id="fpcm-editor-html-filemanager-frame" class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
-        jQuery('#fpcm-editor-html-filemanager').dialog({
+
+        fpcmJs.appendHtml('#fpcm-dialog-editor-html-filemanager', '<iframe id="fpcm-editor-html-filemanager-frame" class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
+        fpcm.ui.dialog({
+            id       : 'editor-html-filemanager',
             minWidth : filemanagerWidth,
             minHeight: filemanagerHeight,
             modal    : true,
@@ -195,7 +197,7 @@ var fpcmEditor = function () {
             close: function( event, ui ) {
                 jQuery(this).empty();
             }
-        });    
+        });   
     };
     
     this.showCommentLayer = function (layerUrl) {
@@ -322,9 +324,6 @@ var fpcmEditor = function () {
             autoresize_min_height : '500',
             image_caption         : true,
             file_picker_callback  : function(callback, value, meta) {
-                
-                debugger;
-                
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
                     title           : fpcmFileManagerHeadline,

@@ -818,7 +818,7 @@ table.fpcm-ui-table.fpcm-ui-permissions td {
 
 .fpcm-message-box .fpcm-msg-icon,
 .fpcm-message-box .fpcm-msg-text,
-#fpcm-profile-dialog-layer table td,
+#fpcm-dialog-profile table td,
 table.fpcm-ui-table.fpcm-ui-options tr td,
 table.fpcm-ui-table.fpcm-ui-articles tr td,
 table.fpcm-ui-table.fpcm-ui-comments tr td,
@@ -957,7 +957,7 @@ td.fpcm-td-spacer {
     min-height:50px;
 }
 
-#fpcm-manualupdate-check iframe {
+#fpcm-dialog-manualupdate-check iframe {
     height:110px;
     min-height:110px;
 }
@@ -1260,11 +1260,7 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     border-top: 1px dotted #000000;
 }
 
-.fpcm-ui-dialog-layer {
-    display: none;
-}
-
-#fpcm-profile-dialog-layer table {
+#fpcm-dialog-profile table {
     width: 100%;
     border: 0px;
 }
