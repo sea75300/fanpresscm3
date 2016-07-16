@@ -99,6 +99,7 @@ var fpcmFilemanager = function () {
     };
     
     this.initSelectionCheckboxes = function() {
+
         jQuery('.fpcm-filemanager-buttons #fpcmselectall').button({
             icons: {
                 primary: "ui-icon-circle-check"

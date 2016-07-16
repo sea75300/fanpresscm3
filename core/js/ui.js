@@ -30,8 +30,8 @@ fpcm.ui = {
         });
     },
     
-    assignBlankIconButton: function() {
-        jQuery('.fpcm-ui-button-blank').button({
+    assignBlankIconButton: function() {        
+        this.button('.fpcm-ui-button-blank', {
             icons: {
                 primary: "ui-icon-blank",
             },
@@ -194,6 +194,26 @@ fpcm.ui = {
         }
 
         jQuery(elemClassId).selectmenu(params);
+
+    },
+    
+//    checkboxradio: function(elemClassId, params) {
+//
+//        if (params === undefined) {
+//            params = {};
+//        }
+//
+//        jQuery(elemClassId).checkboxradio(params);
+//
+//    },
+    
+    button: function(elemClassId, params) {
+
+        if (params === undefined) {
+            params = {};
+        }
+
+        jQuery(elemClassId).button(params);
 
     },
     
