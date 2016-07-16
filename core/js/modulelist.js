@@ -135,7 +135,7 @@ var fpcmModulelist = function () {
     this.runActions = function (moduleAction, moduleKeys) {
         fpcmJs.showLoader(true);
         fpcmAjax.action     = 'modules/actions';
-        fpcmAjax.data       = {keys:JSON.stringify(moduleKeys),action:moduleAction};
+        fpcmAjax.data       = {keys:fpcmAjax.toJSON(moduleKeys),action:moduleAction};
         fpcmAjax.execDone   = "fpcmJs.showLoader(false);fpcmJs.assignHtml('#modules-list-content', fpcmAjax.result);noActionButtonAssign=true;fpcmJs.assignButtons();fpcmJs.messagesCenter();jQuery('#moduleActions').prop('selectedIndex',0);jQuery('#moduleActions').selectmenu('refresh');";
         fpcmAjax.post();       
     };

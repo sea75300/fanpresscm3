@@ -98,6 +98,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        fpcmJs.permissionButtonIcons();
+        fpcm.ui.permissionButtonIcons();
     });
 </script>

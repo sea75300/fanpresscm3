@@ -247,7 +247,7 @@ var fpcmEditor = function () {
     this.setSelectToDialog = function (obj) {
         jQuery(obj).find('.fpcm-ui-input-select').selectmenu({
             appendTo: "#" + jQuery(obj).attr('id')
-        });        
+        });
     };
     
     this.initCodeMirror = function () {
@@ -366,7 +366,7 @@ var fpcmEditor = function () {
     
     this.htmlInserTemplateCallback = function(responseData) {
 
-        var responseData = JSON.parse(responseData);
+        var responseData = fpcmAjax.fromJSON(responseData);
 
         window.editor.doc.setValue(responseData.data);
         jQuery('#fpcm-dialog-editor-html-insertdraft').dialog('close');
@@ -506,18 +506,17 @@ jQuery(document).ready(function() {
         jQuery(this).removeClass('active').fadeToggle();
     });
     
-    jQuery('input.fpcm-ui-spinner-hour').spinner({
+    fpcm.ui.spinner('input.fpcm-ui-spinner-hour', {
         min: 0,
         max: 23
     });
-    jQuery('input.fpcm-ui-spinner-minutes').spinner({
+
+    fpcm.ui.spinner('input.fpcm-ui-spinner-minutes', {
         min: 0,
         max: 59
     });
     
-    jQuery('input.fpcm-ui-datepicker').datepicker({
-        dateFormat: "yy-mm-dd",
-        firstDay: 1,
+    fpcm.ui.datepicker('input.fpcm-ui-datepicker', {
         maxDate: "+2m",
         minDate: "-0d",
         showButtonPanel: true,
@@ -527,7 +526,7 @@ jQuery(document).ready(function() {
         dayNames: fpcmPostponeDatePicker['daysfull'],
         dayNamesShort: fpcmPostponeDatePicker['daysshort'],
         dayNamesMin: fpcmPostponeDatePicker['daysshort']
-    });     
+    });   
     
     jQuery('.fp-ui-button-restore').click(function() {
         if(!confirm(fpNewsListActionConfirmMsg)) {

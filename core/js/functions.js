@@ -153,26 +153,14 @@ var fpcmJs = function () {
         jQuery('.fpcm-login-form').css('margin-top', loginTopPos);      
     };
     
-    this.fixedHeader = function () {
-        if (jQuery(window).scrollTop() > 50) {
-            jQuery('#fpcm-header').addClass('fpcm-header-fixed');
-            jQuery('#fpcm-header-fixed-spacer').show();
-        }
-        
-        if (jQuery(window).scrollTop() < 30) {
-            jQuery('#fpcm-header').removeClass('fpcm-header-fixed');
-            jQuery('#fpcm-header-fixed-spacer').hide();
-        }
-    };
-    
     this.assignButtons = function () {
         jQuery('.fpcm-ui-button').button();
         jQuery('.fpcm-ui-buttonset').buttonset();
         
-        self.actionButtonsGenreal();
-        self.assignBlankIconButton();
-        self.assignCheckboxes();
-        self.assignCheckboxesSub();
+        fpcm.ui.actionButtonsGenreal();
+        fpcm.ui.assignBlankIconButton();
+        fpcm.ui.assignCheckboxes();
+        fpcm.ui.assignCheckboxesSub();
         self.articleActionsOkButton();
         self.commentActionButtons();
         self.usersActionButtons();
@@ -181,70 +169,6 @@ var fpcmJs = function () {
         self.pagerButtons();
         
         noActionButtonAssign = false;
-    };
-    
-    this.assignSelectmenu = function () {
-        jQuery('.fpcm-ui-input-select').selectmenu({
-            width: 200
-        });
-
-        jQuery('.fpcm-ui-input-select-articleactions').selectmenu({
-            width: 200,
-            position: {
-                my: 'left top',
-                at: 'left bottom+5',
-                offset: null
-            }
-        });    
-
-        jQuery('.fpcm-ui-input-select-moduleactions').selectmenu({
-            width: 200,
-            position: {
-                my: 'left top',
-                at: 'left bottom+5',
-                offset: null
-            }
-        });
-    };
-    
-    this.assignCheckboxes = function () {
-        jQuery('#fpcmselectall').click(function(){
-            jQuery('.fpcm-select-allsub').prop('checked', false);
-            if (jQuery(this).prop('checked'))        
-                jQuery('.fpcm-list-selectbox').prop('checked', true);
-            else
-                jQuery('.fpcm-list-selectbox').prop('checked', false);
-        });
-        jQuery('#fpcmselectalldraft').click(function(){
-            jQuery('.fpcm-select-allsub-draft').prop('checked', false);
-            if (jQuery(this).prop('checked'))        
-                jQuery('.fpcm-list-selectbox-draft').prop('checked', true);
-            else
-                jQuery('.fpcm-list-selectbox-draft').prop('checked', false);
-        });
-        jQuery('#fpcmselectalltrash').click(function(){
-            jQuery('.fpcm-select-allsub-trash').prop('checked', false);
-            if (jQuery(this).prop('checked'))        
-                jQuery('.fpcm-list-selectbox-trash').prop('checked', true);
-            else
-                jQuery('.fpcm-list-selectbox-trash').prop('checked', false);
-        });
-        jQuery('#fpcmselectallrevisions').click(function(){
-            if (jQuery(this).prop('checked'))        
-                jQuery('.fpcm-list-selectboxrevisions').prop('checked', true);
-            else
-                jQuery('.fpcm-list-selectboxrevisions').prop('checked', false);
-        });
-    };
-    
-    this.assignCheckboxesSub = function () {
-        jQuery('.fpcm-select-allsub').click(function(){
-            var subValue = jQuery(this).val();
-            if (jQuery(this).prop('checked'))        
-                jQuery('.fpcm-list-selectbox-sub' + subValue).prop('checked', true);
-            else
-                jQuery('.fpcm-list-selectbox-sub' + subValue).prop('checked', false);
-        });
     };
 
     this.assignDeleteButton = function () {
@@ -262,17 +186,27 @@ var fpcmJs = function () {
         noDeleteButtonAssign = true;
     };
     
-    this.assignBlankIconButton = function () {
-        jQuery('.fpcm-ui-button-blank').button({
-            icons: {
-                primary: "ui-icon-blank",
-            },
-            text: false
-        });        
-    };
-    
     this.articleActionsOkButton = function () {
+
         if (noActionButtonAssign) return false;
+
+        var articleActions = {
+            newtweet: 'newtweet',
+            doActionBtn: '#btnDoAction'
+        }
+        
+        fpcm.ui.selectmenu('#actionsaction', {
+            change: function( event, ui ) {
+
+                if (ui.item.value == articleActions.newtweet) {
+                    jQuery(articleActions.doActionBtn).removeClass('fpcm-loader');
+                }
+                else if (!jQuery(articleActions.doActionBtn).hasClass('fpcm-loader')) {
+                    jQuery(articleActions.doActionBtn).addClass('fpcm-loader');
+                }
+
+            }
+        });
         
         jQuery('.fpcm-ui-articleactions-ok').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
@@ -280,29 +214,50 @@ var fpcmJs = function () {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }
-            
-            if (jQuery('#actionsaction').val() == 'newtweet') {
-                
-                var articleIds = [];
-                jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
-                    articleIds.push(jQuery(item).val());
-                });
 
-                if (articleIds.length == 0) {
-                    fpcmJs.showLoader(false);
-                    return false;
-                }
-
-                fpcmAjax.action     = 'articles/tweet';
-                fpcmAjax.data       = {ids: JSON.stringify(articleIds)};
-                fpcmAjax.execDone   = "fpcmJs.showLoader(false);result = JSON.parse(fpcmAjax.result);if (result.notice != 0) {fpcmJs.addAjaxMassage('notice', result.notice);}if (result.error != 0) {fpcmJs.addAjaxMassage('error', result.error);}jQuery('#actionsaction').prop('selectedIndex',0);jQuery('#actionsaction').selectmenu('refresh');";
-                fpcmAjax.async      = false;
-                fpcmAjax.post();
-                fpcmAjax.reset();
-
+            if (jQuery('#actionsaction').val() == articleActions.newtweet) {
+                self.articleActionsTweet();
                 return false;
             }
         });
+    };
+
+    this.articleActionsTweet = function() {
+        var articleIds = [];
+        jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
+            articleIds.push(jQuery(item).val());
+        });
+
+        if (articleIds.length == 0) {
+            fpcmJs.showLoader(false);
+            return false;
+        }
+
+        fpcmAjax.action     = 'articles/tweet';
+        fpcmAjax.data       = {ids: fpcmAjax.toJSON(articleIds)};
+        fpcmAjax.execDone   = "fpcmJs.articleActionsTweetCallback(fpcmAjax.result);";
+        fpcmAjax.async      = false;
+        fpcmAjax.post();
+        fpcmAjax.reset();  
+
+    };
+
+    this.articleActionsTweetCallback = function(result) {
+
+        jQuery('#actionsaction').prop('selectedIndex',0);
+        jQuery('#actionsaction').selectmenu('refresh');
+
+        self.showLoader(false);
+        
+        result = fpcmAjax.fromJSON(result);
+        if (result.notice != 0) {
+            fpcmJs.addAjaxMassage('notice', result.notice);
+        }
+
+        if (result.error != 0) {
+            fpcmJs.addAjaxMassage('error', result.error);
+        }
+
     };
     
     this.commentActionButtons = function () {        
@@ -385,7 +340,7 @@ var fpcmJs = function () {
         noActionButtonAssign = true;
         fpcmJs.assignButtons();
         fpcmJs.initCommentSearch();
-        fpcmJs.assignSelectmenu();
+        fpcm.ui.assignSelectmenu();
     };
     
     this.addAjaxMassage = function (type, message, fadeOut) {
@@ -418,16 +373,6 @@ var fpcmJs = function () {
     this.systemCheckDone = function (ajaxResult) {       
         fpcmJs.showLoader(false);
         fpcmJs.assignHtml("#tabs-options-check", ajaxResult);
-    };
-    
-    this.actionButtonsGenreal = function () {
-        jQuery('.fpcm-ui-actions-genreal').click(function () {
-            if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcmConfirmMessage)) {
-                jQuery(this).addClass('fpcm-noloader');
-                return false;
-            }            
-        });
     };
     
     this.openManualCheckFrame = function () {
@@ -476,18 +421,9 @@ var fpcmJs = function () {
         fpcmAjax.reset();
     };
     
-    this.permissionButtonIcons = function() {
-        jQuery('.fpcm-ui-buttonset-permissions').find('input[type="checkbox"]').button({
-            icons: {
-                primary: "ui-icon-check"
-            },
-            text: false
-        });
-    };
-    
     this.pagerButtons = function() {
         
-        jQuery('#pageSelect').selectmenu({
+        fpcm.ui.selectmenu('#pageSelect', {
             select: function( event, ui ) {
                 if (ui.item.value == '1') {
                     window.location.href = fpcmActionPath + fpcmCurrentModule;
@@ -496,6 +432,7 @@ var fpcmJs = function () {
                 window.location.href = fpcmActionPath + fpcmCurrentModule + '&page=' + ui.item.value;
             }
         });
+        
     };
     
     this.setFocus = function(elemId) {
@@ -512,33 +449,6 @@ var fpcmJs = function () {
     
     this.appendHtml = function(elemId, data) {
         jQuery(elemId).append(data);
-    };
-    
-    this.initAccordion = function(elemId) {
-        jQuery(elemId).accordion({
-            header: "h2",
-            heightStyle: "content"
-        });  
-    }
-    
-    this.initInputShadow = function() {
-        jQuery('.fpcm-ui-input-wrapper input[type=text]').focus(function () {
-            jQuery(this).parent().parent().addClass('fpcm-ui-input-wrapper-hover');
-        }).blur(function () {
-            jQuery(this).parent().parent().removeClass('fpcm-ui-input-wrapper-hover');
-        });
-
-        jQuery('.fpcm-ui-input-wrapper input[type=password]').focus(function () {
-            jQuery(this).parent().parent().addClass('fpcm-ui-input-wrapper-hover');
-        }).blur(function () {
-            jQuery(this).parent().parent().removeClass('fpcm-ui-input-wrapper-hover');
-        });
-
-        jQuery('.fpcm-ui-input-wrapper textarea').focus(function () {
-            jQuery(this).parent().parent().addClass('fpcm-ui-input-wrapper-hover');
-        }).blur(function () {
-            jQuery(this).parent().parent().removeClass('fpcm-ui-input-wrapper-hover');
-        });  
     };
     
     this.checkSession = function() {
@@ -689,15 +599,13 @@ var fpcmJs = function () {
     this.initArticleSearch = function() {
 
         jQuery('#fpcmarticlesopensearch').click(function () {
-            jQuery('.fpcm-ui-input-select-articlesearch').selectmenu({
+
+            fpcm.ui.selectmenu('.fpcm-ui-input-select-articlesearch', {
                 width: '100%',
                 appendTo: '#fpcm-dialog-articles-search'
             });
 
-            jQuery('.fpcm-full-width-date').datepicker({
-                dateFormat: "yy-mm-dd",
-                firstDay: 1
-            });               
+            fpcm.ui.datepicker('.fpcm-full-width-date');
 
             fpcm.ui.dialog({
                 id      : 'articles-search',
@@ -752,16 +660,13 @@ var fpcmJs = function () {
 
         jQuery('#fpcmcommentsopensearch').click(function () {
 
-            jQuery('.fpcm-ui-input-select-commentsearch').selectmenu({
+            fpcm.ui.selectmenu('.fpcm-ui-input-select-commentsearch', {
                 width: '100%',
                 appendTo: '#fpcm-dialog-comments-search'
             });
 
-            jQuery('.fpcm-full-width-date').datepicker({
-                dateFormat: "yy-mm-dd",
-                firstDay: 1
-            });
-            
+            fpcm.ui.datepicker('.fpcm-full-width-date');
+
             fpcm.ui.dialog({
                 id      : 'comments-search',
                 dlWidth: 700,

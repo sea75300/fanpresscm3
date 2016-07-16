@@ -17,24 +17,16 @@ jQuery(document).ready(function () {
     fpcmJs = new fpcmJs();
     fpcmJs.runCronsAsync();
     
+    fpcm.ui.load();
     fpcmJs.windowResize();
-    fpcmJs.assignButtons();
-    fpcmJs.assignSelectmenu();
-    fpcmJs.initInputShadow();
     
     jQuery(window).resize(function () {
         fpcmJs.windowResize();
     });
     
     jQuery(window).scroll(function () {
-       fpcmJs.fixedHeader();
+       fpcm.ui.fixedHeader();
     });
-    
-    jQuery(document).tooltip();
-    jQuery('.fpcm-link-fancybox').fancybox();    
-    jQuery('input.fpcm-ui-spinner').spinner();    
-    jQuery('.fpcm-tabs-general').tabs();
-    fpcmJs.initAccordion('.fpcm-tabs-accordion');
     
     jQuery('.fpcm-loader').click(function () {
         if (jQuery(this).hasClass('fpcm-noloader')) return false;        

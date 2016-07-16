@@ -10,7 +10,7 @@ var fpcmFilemanager = function () {
     var self = this;
 
     this.assignButtons = function () {
-        fpcmJs.assignCheckboxes();
+        fpcm.ui.assignCheckboxes();
         self.initInsertButtons();
         self.initSelectionCheckboxes();
     };

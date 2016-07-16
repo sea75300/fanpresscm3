@@ -62,5 +62,20 @@ var fpcmAjaxHandler = function () {
         self.execDone       = false;
         self.execFail       = false;            
     };
+    
+    this.fromJSON = function(data) {
+        return JSON.parse(data);
+    };
+    
+    this.toJSON = function(data) {
+        
+        var isArray = data instanceof Array ? true : false;
+        var isObject = data instanceof Object ? true : false;
+        if (!isArray || !isObject) {
+            return '';
+        }
+        
+        return JSON.stringify(data);
+    };
 
 }

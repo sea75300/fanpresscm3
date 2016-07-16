@@ -166,6 +166,7 @@
                     }   
                     
                     $this->article->setPostponed($postpone);
+                    $this->article->setCreatetime($timer);
                 } else {
                     if ($this->article->getPostponed()) {
                         $this->article->setCreatetime($allTimer);

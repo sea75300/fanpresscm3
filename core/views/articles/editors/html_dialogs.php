@@ -396,7 +396,7 @@
                 ],
                 dlOnOpen: function () {
 
-                    jQuery('#tpldraft').selectmenu({
+                    fpcm.ui.selectmenu('#tpldraft',{
 
                         appendTo: '#fpcm-dialog-editor-html-insertdraft',
                         change: function( event, ui ) {
