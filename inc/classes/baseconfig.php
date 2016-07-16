@@ -302,7 +302,7 @@
             self::$uploadDir           = self::$dataDir.'uploads/';
             self::$dbdumpDir           = self::$dataDir.'dbdump/';
             self::$dbStructPath        = self::$dataDir.'dbstruct/';
-            self::$articleTemplatesDir           = self::$dataDir.'drafts/';
+            self::$articleTemplatesDir = self::$dataDir.'drafts/';
             
             self::$coreDir             = self::$baseDir.'/core/';
             self::$viewsDir            = self::$coreDir.'views/';
@@ -405,7 +405,7 @@
                     return $controllerList;
                 }                
             }
-            
+
             include_once loader::libGetFilePath('spyc', 'Spyc.php');
 
             if (!file_exists(self::$controllerFiles['actions']) || !file_exists(self::$controllerFiles['ajax'])) {

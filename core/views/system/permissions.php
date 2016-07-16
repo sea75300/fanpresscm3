@@ -95,9 +95,3 @@
         
     </form> 
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcm.ui.permissionButtonIcons();
-    });
-</script>

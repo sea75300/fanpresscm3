@@ -42,13 +42,14 @@ jQuery(document).ready(function () {
         jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').fadeToggle();
     });
 
-    jQuery('#fpcm-profile-menu-open').button({
+    fpcm.ui.button('#fpcm-profile-menu-open', {
         icons: {
             primary: "ui-icon-info",
             secondary: "ui-icon-triangle-1-s"
         },
         text: true
-    }).click(function () {
+    },
+    function () {
         
         if (jQuery(window).width() >= 600) {
             dialogWidth = 500;
@@ -155,37 +156,6 @@ jQuery(document).ready(function () {
             jQuery('#fpcmarticlesopensearch').show();
             jQuery('#fpcmarticleslistaddnew').show();
         }
-    });
-                
-    jQuery('.fpcm-ui-fileinput-php a').button({
-        icons: {
-            primary: "ui-icon-plusthick",
-        },
-        text: true
-    }).click(function () {
-        jQuery('#fpcm-ui-phpupload-filelist').empty();
-        jQuery(this).parent().find('.fpcm-ui-fileinput-select').trigger('click');
-        jQuery('.fpcm-ui-fileinput-select').change(function () {
-            var uploads = jQuery(this);            
-            for (var i=0;i<uploads[0].files.length;i++) {
-                fpcmJs.appendHtml('#fpcm-ui-phpupload-filelist', '<tr><td>' + uploads[0].files[i].name +'</td></tr>')
-            }
-        });
-        return false;
-    }).parent().children('button.start-upload').button({
-        icons: {
-            primary: "ui-icon-circle-arrow-e",
-        },
-        text: true
-    }).click(function () {
-    }).next('button.cancel-upload').button({
-        icons: {
-            primary: "ui-icon-cancel",
-        },
-        text: true
-    }).click(function () {
-        jQuery('#fpcm-ui-phpupload-filelist').empty();
-        jQuery('.fpcm-ui-fileinput-select').empty();
     });
 
     jQuery('#tabs-options-syscheck').click(function () {

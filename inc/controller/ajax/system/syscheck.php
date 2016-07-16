@@ -24,6 +24,12 @@
         protected $view;
 
         /**
+         *
+         * @var bool
+         */
+        protected $installer;
+
+        /**
          * Konstruktor
          */
         public function __construct() {
@@ -31,6 +37,7 @@
         }
 
         public function request() {
+
             if (!\fpcm\classes\baseconfig::installerEnabled() && \fpcm\classes\baseconfig::dbConfigExists() && !$this->session->exists()) {
                 return false;
             }
@@ -48,6 +55,7 @@
             $view->initAssigns();
 
             $view->assign('checkOptions', $this->getCheckOptions());
+            $view->assign('installer', false);
             $view->render();
 
         }

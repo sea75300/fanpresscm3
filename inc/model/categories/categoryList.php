@@ -43,6 +43,24 @@
             
             return $res;
         }
+        
+        /**
+         * Liefert ein array aller Kategorien
+         * @return array
+         * @since FPCM 3.3
+         */
+        public function getCategoriesNameListAll() {
+
+            $categories = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, name'), true);
+
+            $res = array();
+            foreach ($categories as $category) {
+                $res[$category->name] = $category->id;
+            }
+
+            return $res;
+
+        }
 
         /**
          * Liefert ein array aller Kategorien, auf welche die angegebene Gruppe zugreifen darf
@@ -91,11 +109,11 @@
          * @return array
          */
         public function getCategoriesNameListCurrent() {
-            $categoryies = $this->getCategoriesCurrentUser();
+            $categories = $this->getCategoriesCurrentUser();
             
             $res = array();
 
-            foreach ($categoryies as $category) {
+            foreach ($categories as $category) {
                 $res[$category->getName()] = $category->getId();
             }
             

@@ -87,6 +87,8 @@
 
             $this->view->assign('permissions', $this->permissionData->getPermissionsAll());            
             $this->view->assign('hideTitle', false);
+
+            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'permissions.js'));
             
             $this->view->render();            
         }

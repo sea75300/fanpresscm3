@@ -100,12 +100,13 @@ var fpcmFilemanager = function () {
     
     this.initSelectionCheckboxes = function() {
 
-        jQuery('.fpcm-filemanager-buttons #fpcmselectall').button({
+        fpcm.ui.button('.fpcm-filemanager-buttons #fpcmselectall', {
             icons: {
                 primary: "ui-icon-circle-check"
             },
             text: false
-        }).click(function() {
+        },
+        function() {
             self.refreshSingleCheckboxes();
         });
         
@@ -123,3 +124,54 @@ var fpcmFilemanager = function () {
 }
 
 var fpcmFilemgr = new fpcmFilemanager();
+
+jQuery(document).ready(function () {
+
+    fpcm.ui.button('#btnAddFile', {
+        icons: {
+            primary: "ui-icon-plusthick",
+        },
+        text: true
+    },
+    function () {
+
+        jQuery('#fpcm-ui-phpupload-filelist').empty();
+        jQuery(this).parent().find('.fpcm-ui-fileinput-select').trigger('click');
+        jQuery('.fpcm-ui-fileinput-select').change(function () {
+
+            jQuery('#fpcm-ui-phpupload-filelist').empty();
+            
+            var fileList = jQuery(this)[0].files;
+            if (fileList === undefined) {
+                return false;
+            }
+
+            for (var i=0;i<fileList.length;i++) {
+                fpcmJs.appendHtml('#fpcm-ui-phpupload-filelist', '<tr><td>' + fileList[i].name +'</td></tr>')
+            }
+            return false;
+        });
+
+        return false;
+
+    });
+
+    fpcm.ui.button('#btnUploadFile', {
+        icons: {
+            primary: "ui-icon-circle-arrow-e",
+        },
+        text: true
+    });
+
+    fpcm.ui.button('#btnCancelUpload', {
+        icons: {
+            primary: "ui-icon-cancel",
+        },
+        text: true
+    },
+    function () {
+        jQuery('#fpcm-ui-phpupload-filelist').empty();
+        jQuery('.fpcm-ui-fileinput-select').empty();
+    });
+
+});

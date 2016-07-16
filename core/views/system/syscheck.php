@@ -22,8 +22,10 @@
 <?php endforeach; ?>    
 </table>
 
+<?php if ($installer) : ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('.fpcm-ui-button').button();
+        fpcm.ui.button('.fpcm-ui-button');
     });
 </script>
+<?php endif; ?>

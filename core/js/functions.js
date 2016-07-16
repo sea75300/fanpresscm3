@@ -98,7 +98,7 @@ var fpcmJs = function () {
         fpcmJs.assignHtml('#fpcm-logcontent'+ workData, ajaxResult);
 
         if (workData == 4) {
-            self.initAccordion('.fpcm-accordion-pkgmanager');
+            fpcm.ui.accordion('.fpcm-accordion-pkgmanager');
         }
 
     };
@@ -154,9 +154,10 @@ var fpcmJs = function () {
     };
     
     this.assignButtons = function () {
-        jQuery('.fpcm-ui-button').button();
+
         jQuery('.fpcm-ui-buttonset').buttonset();
         
+        fpcm.ui.button('.fpcm-ui-button');
         fpcm.ui.actionButtonsGenreal();
         fpcm.ui.assignBlankIconButton();
         fpcm.ui.assignCheckboxes();

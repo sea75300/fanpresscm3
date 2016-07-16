@@ -5,10 +5,10 @@
     
     <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-filemanager-buttons">
         <span class="fpcm-ui-fileinput-php">
-            <?php fpcm\model\view\helper::linkButton('#', 'FILE_FORM_FILEADD') ?>
+            <?php fpcm\model\view\helper::linkButton('#', 'FILE_FORM_FILEADD', 'btnAddFile') ?>
             <?php fpcm\model\view\helper::submitButton('uploadFile', 'FILE_FORM_UPLOADSTART', 'start-upload fpcm-loader'); ?>
             
-            <button type="reset" class="cancel-upload" id="fpcm-ui-phpupload-cancel"><?php $FPCM_LANG->write('FILE_FORM_UPLOADCANCEL'); ?></button>
+            <button type="reset" class="cancel-upload" id="btnCancelUpload"><?php $FPCM_LANG->write('FILE_FORM_UPLOADCANCEL'); ?></button>
 
             <input type="file" name="files[]" multiple class="fpcm-ui-fileinput-select fpcm-hidden">
         </span>

@@ -102,15 +102,6 @@ fpcm.ui = {
 
     },
     
-    permissionButtonIcons: function() {
-        jQuery('.fpcm-ui-buttonset-permissions').find('input[type="checkbox"]').button({
-            icons: {
-                primary: "ui-icon-check"
-            },
-            text: false
-        });
-    },
-    
     fixedHeader: function() {
         if (jQuery(window).scrollTop() > 50) {
             jQuery('#fpcm-header').addClass('fpcm-header-fixed');
@@ -207,13 +198,19 @@ fpcm.ui = {
 //
 //    },
     
-    button: function(elemClassId, params) {
+    button: function(elemClassId, params, onClick) {
 
         if (params === undefined) {
             params = {};
         }
 
         jQuery(elemClassId).button(params);
+        
+        if (onClick === undefined) {
+            return;
+        }
+        
+        jQuery(elemClassId).click(onClick);
 
     },
     

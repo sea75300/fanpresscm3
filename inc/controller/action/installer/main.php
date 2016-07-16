@@ -129,6 +129,7 @@
                 $this->view->assign('nofade', true);
             }
 
+            $this->view->assign('installer', true);
             $this->view->assign('checkOptions', $sysCheckResults);           
         }
         
@@ -136,17 +137,18 @@
          * Installer Step 2 after
          */
         protected function runAfterStep2() {
-            
-            $sqlDrivers = array();
-            
+
             $availableDrivers = \PDO::getAvailableDrivers();
             
-            if (in_array('mysql', $availableDrivers)) {
-                $sqlDrivers['MySQL/MariaDB'] = 'mysql';
-            }
-            if (in_array('pgsql', $availableDrivers)) {
-                $sqlDrivers['Postgres'] = 'pgsql';
-            }                
+            $sqlDrivers = array();
+            foreach (\fpcm\classes\database::supportedDBMS as $driver => $name) {
+             
+                if (!in_array($driver, $availableDrivers)) {
+                    continue;
+                }
+
+                $sqlDrivers[$name] = $driver;
+            }               
 
             $this->view->assign('sqlDrivers', $sqlDrivers);
         }

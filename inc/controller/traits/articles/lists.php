@@ -39,15 +39,12 @@
                 return false;
             }
 
-            $categories = $this->categoryList->getCategoriesAll();
+            $categories = $this->categoryList->getCategoriesNameListAll();
             foreach ($this->articleItems as $articles) {
+
+                /* @var $article \fpcm\model\articles\article */
                 foreach ($articles as &$article) {
-                    $res = array();
-                    foreach ($article->getCategories() as $categoryId) {                    
-                        if (!isset($categories[$categoryId])) continue;                    
-                        $res[] = $categories[$categoryId]->getName();
-                    }
-                    $article->setCategories($res);                    
+                    $article->setCategories( array_keys( array_intersect( $categories, $article->getCategories() ) ) );
                 }
             }
         }        

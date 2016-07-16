@@ -86,15 +86,26 @@
         
         /**
          * Wordsperre-Tabelle
-         * @since FPCM 3.2.0
+         * @since FPCM 3.2
          */
         const tableTexts  = 'texts';
         
         /**
          * Tabelle für revisionen
-         * @since FPCM 3.3.0
+         * @since FPCM 3.3
          */
         const tableRevisions  = 'revisions';
+
+        /**
+         * Liste mit unterstützten Datenbanksystemen
+         * @since FPCM 3.3
+         * mysql => MySQL 5.5 + oder MariaDB 10 +
+         * pgsql => Postgres 9 +
+         */
+        const supportedDBMS = array(
+            'mysql' => 'MySQL/ MariaDB',
+            'pgsql' => 'Postgres'
+        );
 
         /**
          * Datenbank-Verbindung

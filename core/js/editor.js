@@ -447,14 +447,15 @@ jQuery(document).ready(function() {
         jQuery('.fpcm-ui-editor-postponed').fadeToggle();
     });
 
-    jQuery('#fpcmeditorextended').button({
+    fpcm.ui.button('#fpcmeditorextended', {
         icons: {
             primary: "ui-icon-wrench",
             secondary: "ui-icon-triangle-1-n"
         },
         text: false,
-    }).click(function() {
-        
+    },
+    function() {
+
         if (jQuery(window).width() >= 800) {
             dialogWidth = 600;
         } else if (jQuery(window).width() >= 480) {
@@ -488,12 +489,18 @@ jQuery(document).ready(function() {
         return false;
     });
     
-    jQuery('.fpcm-editor-select-button').button({
+    fpcm.ui.button('.fpcm-editor-select-button', {
         icons: {
             secondary: "ui-icon-triangle-1-s"
         },
         text: true,
-    }).click(function() {
+    },
+    function() {
+        
+        jQuery(this).parent().children('.fpcm-editor-select').click(function() {
+            jQuery(this).removeClass('active').fadeToggle();
+        })
+        
         var topPos  = jQuery(this).position().top + jQuery(this).parent().height() - 7;
         var topLeft = jQuery(this).position().left - 6;
         
@@ -502,8 +509,6 @@ jQuery(document).ready(function() {
         jQuery(this).parent().children('.fpcm-editor-select').css('top', topPos).css('left', topLeft).css('min-width', jQuery(this).parent().width()).toggleClass('active').fadeToggle().children('.fpcm-editor-smenu').menu();
         
         return false;
-    }).parent().children('.fpcm-editor-select').click(function() {
-        jQuery(this).removeClass('active').fadeToggle();
     });
     
     fpcm.ui.spinner('input.fpcm-ui-spinner-hour', {
