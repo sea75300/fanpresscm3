@@ -21,7 +21,7 @@ var fpcmUpdater = function () {
         fpcmJs.showLoader(true);
         
         if (!fpcmUpdaterProgressbar) {
-            jQuery('.fpcm-updater-programmbar').remove();
+            jQuery('.fpcm-updater-progressbar').remove();
         }
 
         self.progressbar(0);
@@ -34,7 +34,7 @@ var fpcmUpdater = function () {
             return false;
         }
 
-        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', fpcmUpdaterMessages[idx + '_START']);
+        fpcmJs.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', fpcmUpdaterMessages[idx + '_START']);
 
         self.ajaxHandler.action     = 'packagemgr/sysupdater';
         self.ajaxHandler.data       = {
@@ -75,7 +75,7 @@ var fpcmUpdater = function () {
         }
         
         if (self.responseData.data.current == fpcmUpdaterMaxStep) {
-            fpcmJs.assignText('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', '');
+            fpcmJs.assignText('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', '');
         }
 
         return true;
@@ -100,11 +100,12 @@ var fpcmUpdater = function () {
     this.progressbar = function (pgValue) {
         
         if (!fpcmUpdaterProgressbar) return false;  
-        
-        jQuery('.fpcm-updater-programmbar').progressbar({
+
+        fpcm.ui.progressbar('.fpcm-updater-progressbar', {
             max: fpcmUpdaterMaxStep,
             value: pgValue
         });
+
     };
     
 }

@@ -9,7 +9,7 @@
         <?php if (isset($nokeys)) : ?>
             <?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?>
         <?php else : ?>
-            <?php fpcm\model\view\helper::progressBar('fpcm-updater-programmbar'); ?>
+            <?php fpcm\model\view\helper::progressBar('fpcm-updater-progressbar'); ?>
             <div class="fpcm-updater-list"></div>
         <?php endif; ?>
         </div>

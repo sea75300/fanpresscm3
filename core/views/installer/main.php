@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
             </ul>
 
             <div id="tabs-installer-general">
-                <div class="fpcm-installer-programmbar fpcm-half-width fpcm-ui-margin-center"></div>
+                <div class="fpcm-installer-progressbar fpcm-half-width fpcm-ui-margin-center"></div>
                 
                 <?php if (file_exists(__DIR__.'/'.$subTemplate.'.php')) : ?>                
                     <?php include_once __DIR__.'/'.$subTemplate.'.php'; ?>

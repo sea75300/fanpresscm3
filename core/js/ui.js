@@ -214,6 +214,15 @@ fpcm.ui = {
 
     },
     
+    progressbar: function(elemClassId, params){
+
+        if (params === undefined) {
+            params = {};
+        }
+
+        jQuery(elemClassId).progressbar(params);
+    },
+    
     dialog: function(params) {
 
         if (params.title === undefined) {

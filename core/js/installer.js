@@ -50,7 +50,7 @@ var fpcmInstaller = function () {
     };
     
     this.progressbar = function (pgMaxValue, pgValue) {
-        jQuery('.fpcm-installer-programmbar').progressbar({
+        fpcm.ui.progressbar('.fpcm-installer-progressbar', {
             max: pgMaxValue,
             value: pgValue
         });

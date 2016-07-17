@@ -22,7 +22,7 @@ var fpcmModuleInstaller = function () {
     this.init = function (type) {
 
         if (typeof fpcmUpdaterProgressbar == 'undefined') {
-            jQuery('.fpcm-updater-programmbar').remove();
+            jQuery('.fpcm-updater-progressbar').remove();
         } else {
             self.progressbar(0);            
         }
@@ -67,7 +67,7 @@ var fpcmModuleInstaller = function () {
             msgText = msgText.replace('{{pkglink}}', fpcmModuleUrl.replace('{{pkgkey}}', self.key));
         }
 
-        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', msgText);
+        fpcmJs.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', msgText);
 
         self.ajaxHandler.action     = 'packagemgr/mod' + self.type;
         self.ajaxHandler.data       = {step:idx,key:self.key,midx:self.moduleIndex};
@@ -115,18 +115,19 @@ var fpcmModuleInstaller = function () {
     this.addTimer = function() {
         var updateTimer = ((new Date().getTime()) - self.startTime) / 1000;
         fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
-        fpcmJs.assignHtml('div.fpcm-updater-programmbar div.fpcm-ui-progressbar-label', '');
+        fpcmJs.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', '');
         fpcmJs.showLoader(false);
     };
     
     this.progressbar = function (pgValue) {
         
         if (typeof fpcmUpdaterProgressbar == 'undefined') return false;  
-        
-        jQuery('.fpcm-updater-programmbar').progressbar({
+
+        fpcm.ui.progressbar('.fpcm-updater-progressbar', {
             max: fpcmProgressbarMax,
             value: pgValue
         });
+
     };
     
 }
