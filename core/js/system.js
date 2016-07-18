@@ -42,13 +42,7 @@ jQuery(document).ready(function () {
         jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').fadeToggle();
     });
 
-    fpcm.ui.button('#fpcm-profile-menu-open', {
-        icons: {
-            primary: "ui-icon-info",
-            secondary: "ui-icon-triangle-1-s"
-        },
-        text: true
-    },
+    fpcm.ui.button('#fpcm-profile-menu-open', {},
     function () {
         
         if (jQuery(window).width() >= 600) {
@@ -66,7 +60,7 @@ jQuery(document).ready(function () {
             dlButtons: [
                 {
                     text: fpcmOpenProfile,
-                    icons: { primary: "ui-icon-wrench" },                  
+                    icon: "ui-icon-wrench",                  
                     click: function () {
                         fpcmJs.showLoader(true);
                         fpcmJs.relocate(fpcmActionPath + 'system/profile');
@@ -74,7 +68,7 @@ jQuery(document).ready(function () {
                 },
                 {
                     text: fpcmLogout,
-                    icons: { primary: "ui-icon-power" },
+                    icon: "ui-icon-power",
                     click: function () {
                         fpcmJs.showLoader(true);
                         fpcmJs.relocate(fpcmActionPath + 'system/logout');
@@ -113,7 +107,7 @@ jQuery(document).ready(function () {
             dlButtons: [
                 {
                     text: fpcmYes,
-                    icons: { primary: "ui-icon-check" },                    
+                    icon: "ui-icon-check",                    
                     click: function() {
                         fpcmJs.clearLogs(logId); 
                         jQuery(this).dialog('close');
@@ -121,7 +115,7 @@ jQuery(document).ready(function () {
                 },
                 {
                     text: fpcmNo,
-                    icons: { primary: "ui-icon-closethick" },
+                    icon: "ui-icon-closethick",
                     click: function() {
                         jQuery(this).dialog('close');
                     }

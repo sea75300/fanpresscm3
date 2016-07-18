@@ -100,11 +100,9 @@ var fpcmFilemanager = function () {
     
     this.initSelectionCheckboxes = function() {
 
-        fpcm.ui.button('.fpcm-filemanager-buttons #fpcmselectall', {
-            icons: {
-                primary: "ui-icon-circle-check"
-            },
-            text: false
+        fpcm.ui.checkboxradio('.fpcm-filemanager-buttons #fpcmselectall', {
+            icon: "ui-icon-circle-check",
+            showLabel: false
         },
         function() {
             self.refreshSingleCheckboxes();
@@ -114,12 +112,10 @@ var fpcmFilemanager = function () {
     };
     
     this.refreshSingleCheckboxes = function() {
-        jQuery('.fpcm-filelist-actions-checkbox').find('input[type="checkbox"]').button({
-            icons: {
-                primary: "ui-icon-check"
-            },
-            text: false
-        }).button('refresh');  
+        jQuery('.fpcm-filelist-actions-checkbox').find('input[type="checkbox"]').checkboxradio({
+            icon: "ui-icon-check",
+            showLabel: false
+        });  
     };
 }
 
@@ -128,10 +124,7 @@ var fpcmFilemgr = new fpcmFilemanager();
 jQuery(document).ready(function () {
 
     fpcm.ui.button('#btnAddFile', {
-        icons: {
-            primary: "ui-icon-plusthick",
-        },
-        text: true
+        icon: "ui-icon-plusthick"
     },
     function () {
 
@@ -157,17 +150,11 @@ jQuery(document).ready(function () {
     });
 
     fpcm.ui.button('#btnUploadFile', {
-        icons: {
-            primary: "ui-icon-circle-arrow-e",
-        },
-        text: true
+        icon: "ui-icon-circle-arrow-e"
     });
 
     fpcm.ui.button('#btnCancelUpload', {
-        icons: {
-            primary: "ui-icon-cancel",
-        },
-        text: true
+        icon: "ui-icon-cancel"
     },
     function () {
         jQuery('#fpcm-ui-phpupload-filelist').empty();

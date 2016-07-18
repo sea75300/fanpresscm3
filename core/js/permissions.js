@@ -9,10 +9,8 @@ fpcm.permissions = {
 
     initButtonIcons: function() {
         jQuery('.fpcm-ui-buttonset-permissions').find('input[type="checkbox"]').button({
-            icons: {
-                primary: "ui-icon-check"
-            },
-            text: false
+            icon: "ui-icon-check",
+            showLabel: false
         });
     }
     

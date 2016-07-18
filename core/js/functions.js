@@ -155,8 +155,8 @@ var fpcmJs = function () {
     
     this.assignButtons = function () {
 
-        jQuery('.fpcm-ui-buttonset').buttonset();
-        
+        fpcm.ui.controlgroup('.fpcm-ui-buttonset');
+        fpcm.ui.checkboxradio('.fpcm-ui-input-checkbox');
         fpcm.ui.button('.fpcm-ui-button');
         fpcm.ui.actionButtonsGenreal();
         fpcm.ui.assignBlankIconButton();
@@ -386,9 +386,7 @@ var fpcmJs = function () {
             dlButtons  : [
                 {
                     text: fpcmNewWindow,
-                    icons: {
-                        primary: "ui-icon-extlink"            
-                    },                    
+                    icon: "ui-icon-extlink",                    
                     click: function() {
                         window.open(fpcmManualCheckUrl);
                         jQuery(this).dialog('close');
@@ -396,9 +394,7 @@ var fpcmJs = function () {
                 },
                 {
                     text: fpcmClose,
-                    icons: {
-                        primary: "ui-icon-closethick"            
-                    },                    
+                    icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
                     }
@@ -474,7 +470,7 @@ var fpcmJs = function () {
                 dlButtons: buttons = [
                     {
                         text: fpcmYes,
-                        icons: { primary: "ui-icon-check" },                    
+                        icon: "ui-icon-check",
                         click: function() {
                             fpcmJs.relocate(fpcmActionPath + 'system/login');
                             jQuery(this).dialog('close');
@@ -482,7 +478,7 @@ var fpcmJs = function () {
                     },
                     {
                         text: fpcmNo,
-                        icons: { primary: "ui-icon-closethick" },
+                        icon: "ui-icon-closethick",
                         click: function() {
                             fpcmSessionCheckEnabled = true;
                             jQuery(this).dialog('close');
@@ -553,9 +549,7 @@ var fpcmJs = function () {
                 dlButtons  : [
                     {
                         text: fpcmClose,
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                    
+                        icon: "ui-icon-closethick",                    
                         click: function() {
                             jQuery(this).dialog('close');
                             jQuery('.fpcm-dialog-templatepreview-layer-frame').remove();
@@ -617,9 +611,7 @@ var fpcmJs = function () {
                 dlButtons  : [
                     {
                         text: fpcmSearchStart,
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
+                        icon: "ui-icon-check",
                         click: function() {                            
                             var sfields = jQuery('.fpcm-articles-search-input');
                             var sParams = {
@@ -639,9 +631,7 @@ var fpcmJs = function () {
                     },                    
                     {
                         text: fpcmClose,
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                        
+                        icon: "ui-icon-closethick" ,                        
                         click: function() {
                             jQuery(this).dialog('close');
                         }
@@ -677,9 +667,7 @@ var fpcmJs = function () {
                 dlButtons  : [
                     {
                         text: fpcmSearchStart,
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
+                        icon: "ui-icon-check",                        
                         click: function() {                            
                             var sfields = jQuery('.fpcm-comments-search-input');
                             var sParams = {
@@ -698,9 +686,7 @@ var fpcmJs = function () {
                     },                    
                     {
                         text: fpcmClose,
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                        
+                        icon: "ui-icon-closethick",                        
                         click: function() {
                             jQuery(this).dialog('close');
                         }

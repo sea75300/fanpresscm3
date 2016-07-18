@@ -176,19 +176,14 @@ var fpcmEditor = function () {
             buttons  : [
                 {
                     text: fpcmExtended,
-                    icons: {
-                        primary: "ui-icon-wrench",
-                        secondary: "ui-icon-triangle-1-n"
-                    },                    
+                    icon: "ui-icon-wrench",                    
                     click: function() {
                         jQuery(this).children('#fpcm-dialog-editor-html-filemanager-frame').contents().find('.fpcm-filemanager-buttons').fadeToggle();
                     }
                 },
                 {
                     text: fpcmClose,
-                    icons: {
-                        primary: "ui-icon-closethick"            
-                    },                    
+                    icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
                     }
@@ -218,18 +213,14 @@ var fpcmEditor = function () {
             dlButtons  : [
                 {
                     text: fpcmEditorCommentLayerSave,
-                    icons: {
-                        primary: "ui-icon-disk"
-                    },                        
+                    icon: "ui-icon-disk",                        
                     click: function() {
                         jQuery(this).children('#fpcm-editor-comment-frame').contents().find('#btnCommentSave').trigger('click');
                     }
                 },
                 {
                     text: fpcmClose,
-                    icons: {
-                        primary: "ui-icon-closethick"            
-                    },                    
+                    icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
                         jQuery('.fpcm-ui-commentaction-buttons').fadeIn();
@@ -447,13 +438,7 @@ jQuery(document).ready(function() {
         jQuery('.fpcm-ui-editor-postponed').fadeToggle();
     });
 
-    fpcm.ui.button('#fpcmeditorextended', {
-        icons: {
-            primary: "ui-icon-wrench",
-            secondary: "ui-icon-triangle-1-n"
-        },
-        text: false,
-    },
+    fpcm.ui.button('#fpcmeditorextended', {},
     function() {
 
         if (jQuery(window).width() >= 800) {
@@ -471,9 +456,7 @@ jQuery(document).ready(function() {
             dlButtons: [
                 {
                     text: fpcmClose,
-                    icons: {
-                        primary: "ui-icon-closethick"            
-                    },                        
+                    icon: "ui-icon-closethick",
                     click: function() {
                         jQuery(this).dialog('close');
                     }
@@ -490,9 +473,8 @@ jQuery(document).ready(function() {
     });
     
     fpcm.ui.button('.fpcm-editor-select-button', {
-        icons: {
-            secondary: "ui-icon-triangle-1-s"
-        },
+        icon: "ui-icon-triangle-1-s",
+        iconPosition: "end",
         text: true,
     },
     function() {
@@ -563,9 +545,7 @@ jQuery(document).ready(function() {
             dlButtons: [
                 {
                     text: fpcmClose,
-                    icons: {
-                        primary: "ui-icon-closethick"            
-                    },                        
+                    icon: "ui-icon-closethick",                        
                     click: function() {
                         jQuery( this ).dialog( "close" );
                     }

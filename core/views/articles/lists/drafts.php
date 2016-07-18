@@ -30,9 +30,9 @@
                 <td class="fpcm-td-articlelist-meta"><?php include dirname(__DIR__).'/metainfo.php'; ?></td>
                 <td class="fpcm-td-select-row">
                 <?php if ($article->getEditPermission()) : ?>                    
-                    <?php fpcm\model\view\helper::checkbox('actions[ids][]', 'fpcm-list-selectbox-draft fpcm-list-selectbox-sub-draft'.$articleMonth, $articleId, '', '', false); ?>
+                    <?php fpcm\model\view\helper::checkbox('actions[ids][]', 'fpcm-list-selectbox-draft fpcm-list-selectbox-sub-draft'.$articleMonth, $articleId, '', 'chbx'.$articleId, false); ?>
                 <?php else : ?>
-                    <?php fpcm\model\view\helper::checkbox('actions[ro][]', 'fpcm-list-selectbox-draft fpcm-list-selectbox-sub-draft'.$articleMonth, $articleId, '', '', false, true); ?>
+                    <?php fpcm\model\view\helper::checkbox('actions[ro][]', 'fpcm-list-selectbox-draft fpcm-list-selectbox-sub-draft'.$articleMonth, $articleId, '', 'chbx'.$articleId, false, true); ?>
                 <?php endif; ?>
                 </td>
             </tr>

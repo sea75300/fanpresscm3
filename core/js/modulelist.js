@@ -56,7 +56,7 @@ var fpcmModulelist = function () {
                 dlButtons: [
                     {
                         text: fpcmYes,
-                        icons: { primary: "ui-icon-check" },                    
+                        icon: "ui-icon-check",                    
                         click: function() {
                             var moduleKeys = [];
                             jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
@@ -83,7 +83,7 @@ var fpcmModulelist = function () {
                     },
                     {
                         text: fpcmNo,
-                        icons: { primary: "ui-icon-closethick" },
+                        icon: "ui-icon-closethick",
                         click: function() {
                             jQuery(this).addClass('fpcm-noloader');
                             jQuery('#moduleActions option:selected').prop('selected', false);
@@ -111,9 +111,7 @@ var fpcmModulelist = function () {
             dlButtons  : [
                 {
                     text: fpcmClose,
-                    icons: {
-                        primary: "ui-icon-closethick"            
-                    },                        
+                    icon: "ui-icon-closethick",
                     click: function() {
                         jQuery( this ).dialog( "close" );
                     }

@@ -32,10 +32,8 @@ fpcm.ui = {
     
     assignBlankIconButton: function() {        
         this.button('.fpcm-ui-button-blank', {
-            icons: {
-                primary: "ui-icon-blank",
-            },
-            text: false
+            icon: "ui-icon-blank",
+            showLabel: false
         });        
     },
     
@@ -188,15 +186,25 @@ fpcm.ui = {
 
     },
     
-//    checkboxradio: function(elemClassId, params) {
-//
-//        if (params === undefined) {
-//            params = {};
-//        }
-//
-//        jQuery(elemClassId).checkboxradio(params);
-//
-//    },
+    checkboxradio: function(elemClassId, params) {
+
+        if (params === undefined) {
+            params = {};
+        }
+
+        jQuery(elemClassId).checkboxradio(params);
+
+    },
+    
+    controlgroup: function(elemClassId, params) {
+      
+        if (params === undefined) {
+            params = {};
+        }
+
+        jQuery(elemClassId).controlgroup(params);
+
+    },
     
     button: function(elemClassId, params, onClick) {
 

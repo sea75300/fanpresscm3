@@ -32,7 +32,7 @@
          * @var array
          */
         private $jslib = array(
-            'inc/lib/jquery/jquery-2.2.0.min.js',
+            'inc/lib/jquery/jquery-3.1.0.min.js',
             'inc/lib/jquery-ui/jquery-ui.min.js',
             'inc/lib/fancybox/jquery.fancybox.pack.js',
             'inc/lib/spinjs/spin.min.js',
@@ -132,7 +132,7 @@
             
             return array_merge(
                 array(
-                    \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-2.2.0.min.js'),
+                    \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-3.1.0.min.js'),
                     \fpcm\classes\baseconfig::$rootPath.'js/fpcm.js'
                 ),
                 $modulesFiles

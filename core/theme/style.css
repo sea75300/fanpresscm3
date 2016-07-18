@@ -61,15 +61,12 @@ h1 a.fpcm-ui-helpbutton {
     display: block;
     font-size: 0.9em;
     opacity: 0.5;
+    display: inline;
+    padding: 0.1em 0.25em;
 }
 
 h1 a.fpcm-ui-helpbutton:hover {
     opacity: 1;
-}
-
-h1 a.fpcm-ui-helpbutton span.ui-button-text {
-    display: inline;
-    padding: 0.25em;
 }
 
 h2 {
@@ -1308,10 +1305,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     border-radius: 5px;
 }
 
-.ui-button {
-    padding: 1px 0;
-}
-
 .mce-fpcm-emoticons {    
     padding: 0.3em !important;
     width: 350px !important;
@@ -1416,10 +1409,11 @@ table.fpcm-ui-table.fpcm-ui-options tr td span.fpcm-ui-shorthelp.fpcm-options {
 }
 
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before,
-h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
+h1 a.fpcm-ui-helpbutton:before,
 .fpcm-ui-button span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-button-blank span.ui-icon:before,
-.fpcm-ui-button.fpcm-forward-button .ui-button-text:after {
+.fpcm-ui-button.fpcm-forward-button .ui-button-text:after,
+.fpcm-ui-button:before {
     font-family: 'FontAwesome';
 }
 
@@ -1446,7 +1440,8 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-useractions-disable span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-useractions-enable span.ui-button-text:before,
 .fpcm-ui-button.fpcm-externallink-btn span.ui-button-text:before,
-.fpcm-ui-button.fpcm-ui-preview span.ui-button-text:before
+.fpcm-ui-button.fpcm-ui-preview span.ui-button-text:before,
+.fpcm-ui-button.fpcm-ui-margin-icon:before
 {
     font-weight: normal !important;
     padding-right: 0.65em;
@@ -1461,6 +1456,10 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     font-weight: normal !important;
     margin-left: 0;
     padding: 0;
+}
+
+.fpcm-ui-button.fpcm-ui-button-blank span.ui-icon {
+    background: none;
 }
 
 .fpcm-ui-button.fpcm-new-btn span.ui-button-text:before {
@@ -1487,11 +1486,11 @@ h1 a.fpcm-ui-helpbutton span.ui-button-text:before,
     content: '\f014';
 }
 
-.fpcm-ui-button.fpcm-login-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-login-btn:before {
     content: '\f090';
 }
 
-.fpcm-ui-button.fpcm-passreset-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-passreset-btn:before {
     content: '\f145';
 }
 
@@ -1619,10 +1618,14 @@ div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before {
     content: '\f0fe';
 }
 
-h1 a.fpcm-ui-helpbutton span.ui-button-text:before {
+h1 a.fpcm-ui-helpbutton:before {
     content: '\f059';
 }
 
 .fpcm-ui-button.fpcm-passgen-btn span.ui-icon:before {
     content: '\f069';
+}
+
+.fpcm-ui-button.fpcm-button-extended:before {
+    content: '\f0ad';
 }

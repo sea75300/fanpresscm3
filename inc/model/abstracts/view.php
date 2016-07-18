@@ -282,7 +282,7 @@
          */
         public function prependjQuery() {
             if ($this->config->system_loader_jquery) return false;
-            array_unshift($this->viewJsFiles, \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-2.2.0.min.js'));
+            array_unshift($this->viewJsFiles, \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-3.1.0.min.js'));
         }
 
         /**

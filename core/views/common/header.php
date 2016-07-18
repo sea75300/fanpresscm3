@@ -41,7 +41,7 @@
                     <?php endif; ?>
                     <?php \fpcm\model\view\helper::linkButton($FPCM_FRONTEND_LINK, 'GLOBAL_FRONTEND_OPEN', 'fpcm-open-news', 'fpcm-ui-button-blank fpcm-openlink-btn', '_blank') ?>
                     <button class="fpcm-ui-button fpcm-ui-button-blank fpcm-clearcache-btn" id="fpcm-clear-cache"><?php $FPCM_LANG->write('GLOBAL_CACHE_CLEAR'); ?></button>
-                    <button id="fpcm-profile-menu-open" class="fpcm-ui-button"><?php print $FPCM_USER; ?></button>
+                    <button id="fpcm-profile-menu-open" class="fpcm-ui-button"><span class="fa fa-info-circle fa-fw"></span> <?php print $FPCM_USER; ?> <span class="fa fa-chevron-down"></span></button>
                 </div>
                  <?php endif; ?>                    
                 <div class="fpcm-clear"></div>
