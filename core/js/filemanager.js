@@ -100,12 +100,9 @@ var fpcmFilemanager = function () {
     
     this.initSelectionCheckboxes = function() {
 
-        fpcm.ui.checkboxradio('.fpcm-filemanager-buttons #fpcmselectall', {
-            icon: "ui-icon-circle-check",
-            showLabel: false
-        },
-        function() {
-            self.refreshSingleCheckboxes();
+        fpcm.ui.checkboxradio(
+            '.fpcm-filemanager-buttons #fpcmselectall', {}, function() {
+                self.refreshSingleCheckboxes();
         });
         
         self.refreshSingleCheckboxes();
@@ -113,9 +110,8 @@ var fpcmFilemanager = function () {
     
     this.refreshSingleCheckboxes = function() {
         jQuery('.fpcm-filelist-actions-checkbox').find('input[type="checkbox"]').checkboxradio({
-            icon: "ui-icon-check",
             showLabel: false
-        });  
+        }).checkboxradio('refresh');  
     };
 }
 

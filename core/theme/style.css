@@ -1462,27 +1462,27 @@ h1 a.fpcm-ui-helpbutton:before,
     background: none;
 }
 
-.fpcm-ui-button.fpcm-new-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-new-btn:before {
     content: '\f016';
     font-size: 0.8em;
 }
 
 .fpcm-ui-button.fpcm-ui-button-edit span.ui-icon:before,
-.fpcm-ui-button.fpcm-rename-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-rename-btn:before {
     content: '\f044';
 }
 
-.fpcm-ui-button.fpcm-save-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-save-btn:before {
     content: '\f0c7';
 }
 
 .fpcm-ui-button.fpcm-openlink-btn span.ui-icon:before,
-.fpcm-ui-button.fpcm-openlink-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-openlink-btn:before {
     content: '\f144';
 }
 
-.fpcm-ui-button.fpcm-delete-btn span.ui-button-text:before,
-.fpcm-ui-button.fpcm-clear-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-delete-btn:before,
+.fpcm-ui-button.fpcm-clear-btn:before {
     content: '\f014';
 }
 
@@ -1494,8 +1494,8 @@ h1 a.fpcm-ui-helpbutton:before,
     content: '\f145';
 }
 
-.fpcm-ui-button.fpcm-ui-articleactions-ok .ui-button-text:before,
-.fpcm-ui-button.fpcm-ok-button span.ui-button-text:before,
+.fpcm-ui-button.fpcm-ui-articleactions-ok:before,
+.fpcm-ui-button.fpcm-ok-button:before,
 .fpcm-ui-button.fpcm-ok-button span.ui-icon:before {
     content: '\f00c';
 }
@@ -1507,56 +1507,56 @@ h1 a.fpcm-ui-helpbutton:before,
     margin: 0 -0.3em 0 0;
 }
 
-.fpcm-ui-button.fpcm-back-button .ui-button-text:before {
+.fpcm-ui-button.fpcm-back-button:before {
     content: '\f137';
 }
 
-.fpcm-ui-button.fpcm-profile-btn .ui-button-text:before,
+.fpcm-ui-button.fpcm-profile-btn:before,
 .fpcm-ui-button.fpcm-modules-configuremodule span.ui-icon:before {
     content: '\f0ad';
 }
 
-.fpcm-ui-button.fpcm-articles-opensearch span.ui-button-text:before{
+.fpcm-ui-button.fpcm-articles-opensearch:before{
     content: '\f002';
 }
 
-.fpcm-ui-button.fpcm-ui-revision-restore span.ui-button-text:before {
+.fpcm-ui-button.fpcm-ui-revision-restore:before {
     content: '\f0e2';
 }
 
-.fpcm-ui-button.fpcm-ui-commentaction-spam span.ui-button-text:before {
+.fpcm-ui-button.fpcm-ui-commentaction-spam:before {
     content: '\f024';
 }
 
-.fpcm-ui-button.fpcm-ui-commentaction-approve span.ui-button-text:before {
+.fpcm-ui-button.fpcm-ui-commentaction-approve:before {
     content: '\f05d';
 }
 
-.fpcm-ui-button.fpcm-ui-commentaction-private span.ui-button-text:before {
+.fpcm-ui-button.fpcm-ui-commentaction-private:before {
     content: '\f070';
 }
 
-.fpcm-ui-button.fpcm-newthumb-btn span.ui-button-text:before,
+.fpcm-ui-button.fpcm-newthumb-btn:before,
 .fpcm-ui-button.fpcm-filelist-articleimage span.ui-icon:before {
     content: '\f03e';
 }
 
-.fpcm-ui-button.fpcm-syscheck-btn span.ui-button-text:before,
+.fpcm-ui-button.fpcm-syscheck-btn:before,
 .fpcm-ui-button.fpcm-modulelist-singleaction-update span.ui-icon:before,
 .fpcm-ui-button.fpcm-reload-btn span.ui-icon:before {
     content: '\f021';
 }
 
-.fpcm-ui-button.fpcm-ui-useractions-disable span.ui-button-text:before {
+.fpcm-ui-button.fpcm-ui-useractions-disable:before {
     content: '\f204';
 }
 
-.fpcm-ui-button.fpcm-ui-useractions-enable span.ui-button-text:before {
+.fpcm-ui-button.fpcm-ui-useractions-enable:before {
     content: '\f205';
 }
 
 .fpcm-ui-button.fpcm-articlelist-shortlink span.ui-icon:before,
-.fpcm-ui-button.fpcm-externallink-btn span.ui-button-text:before {
+.fpcm-ui-button.fpcm-externallink-btn:before {
     content: '\f08e';
 }
 
@@ -1610,7 +1610,7 @@ h1 a.fpcm-ui-helpbutton:before,
     content: '\f003';
 }
 
-.fpcm-ui-button.fpcm-ui-preview span.ui-button-text:before {
+.fpcm-ui-button.fpcm-ui-preview:before {
     content: '\f06e';
 }
 

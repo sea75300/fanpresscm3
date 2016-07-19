@@ -156,7 +156,6 @@ var fpcmJs = function () {
     this.assignButtons = function () {
 
         fpcm.ui.controlgroup('.fpcm-ui-buttonset');
-        fpcm.ui.checkboxradio('.fpcm-ui-input-checkbox');
         fpcm.ui.button('.fpcm-ui-button');
         fpcm.ui.actionButtonsGenreal();
         fpcm.ui.assignBlankIconButton();

@@ -186,7 +186,7 @@ fpcm.ui = {
 
     },
     
-    checkboxradio: function(elemClassId, params) {
+    checkboxradio: function(elemClassId, params, onClick) {
 
         if (params === undefined) {
             params = {};
@@ -194,6 +194,11 @@ fpcm.ui = {
 
         jQuery(elemClassId).checkboxradio(params);
 
+        if (onClick === undefined) {
+            return;
+        }
+        
+        jQuery(elemClassId).click(onClick);
     },
     
     controlgroup: function(elemClassId, params) {

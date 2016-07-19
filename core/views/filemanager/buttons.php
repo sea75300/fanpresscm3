@@ -2,7 +2,7 @@
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-filemanager-buttons <?php if ($mode > 1) : ?>fpcm-hidden<?php endif; ?>">
     <table>
         <tr>
-            <td><?php fpcm\model\view\helper::checkbox('fpcm-select-all', 'fpcm-select-all-checkbutton', '', 'GLOBAL_SELECTALL', 'fpcm-select-all', false); ?></td>
+            <td><?php fpcm\model\view\helper::checkbox('fpcm-select-all', 'fpcm-select-all-checkbutton', '', '', 'fpcm-select-all', false); ?></td>
             <?php if ($permRename) : ?>
                 <td><?php fpcm\model\view\helper::submitButton('renameFiles', 'FILE_LIST_RENAME', 'fpcm-loader fpcm-rename-btn'); ?> 
                 <input type="hidden" name="newfilename" id="newfilename" value=""><td>

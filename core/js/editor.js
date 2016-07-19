@@ -370,7 +370,9 @@ jQuery(document).ready(function() {
     
     fpcmJs.setFocus('articletitle');
     
-    fpcmEditor = new fpcmEditor(); 
+    fpcmEditor = new fpcmEditor();
+    
+    fpcm.ui.checkboxradio('.fpcm-ui-editor-categories .fpcm-ui-input-checkbox', { icon: false });
 
     jQuery('.fpcm-editor-htmlclick').click(function() {        
         var tag = jQuery(this).attr('htmltag');

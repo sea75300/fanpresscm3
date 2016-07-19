@@ -69,7 +69,7 @@
             
             natcasesort($checkFolders);
             
-            $this->tableContent[] = '<tr colspan="2"><td class="fpcm-ui-center"><a class="fpcm-ui-button fpcm-syscheck-btn" href="index.php?module=system/options&syscheck=1">'.$this->language->translate('SYSCHECK_COMPLETE').'</a></td></tr>';
+            $this->tableContent[] = '<tr colspan="2"><td class="fpcm-ui-center"><a class="fpcm-ui-button fpcm-ui-margin-icon fpcm-syscheck-btn" href="index.php?module=system/options&syscheck=1">'.$this->language->translate('SYSCHECK_COMPLETE').'</a></td></tr>';
             $this->tableContent[] = '<tr><td colspan="2" class="fpcm-td-spacer" style="padding-bottom:0.5em;"></td></tr>';
 
             foreach ($checkFolders as $description => $folderPath) {

@@ -8,9 +8,8 @@ if (fpcm === undefined) {
 fpcm.permissions = {
 
     initButtonIcons: function() {
-        jQuery('.fpcm-ui-buttonset-permissions').find('input[type="checkbox"]').button({
-            icon: "ui-icon-check",
-            showLabel: false
+        jQuery('.fpcm-ui-buttonset-permissions').find('input[type="checkbox"]').checkboxradio({
+            icon : false
         });
     }
     

@@ -62,7 +62,7 @@
                     <?php if ($revisionPermission) : ?><?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?><?php endif; ?>
                     <td><?php \fpcm\model\view\helper::linkButton($article->getEditLink(), 'EDITOR_BACKTOCURRENT', '', 'fpcm-back-button'); ?></td>
             <?php else : ?>
-                <td><?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', 'fpcm-button-extended fpcm-ui-margin-icon'); ?></td>
+                <td><?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', 'fpcm-button-extended'); ?></td>
                 <td><?php fpcm\model\view\helper::saveButton('articleSave'); ?></td>
                 <?php if ($editorMode) : ?><td><?php fpcm\model\view\helper::deleteButton('articleDelete'); ?></td><?php endif; ?>
             <?php endif; ?>

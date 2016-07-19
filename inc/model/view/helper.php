@@ -76,7 +76,7 @@
         public static function button($type, $name, $descr, $class = '') {            
             $name = ucfirst($name);            
             $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;
-            print "<button type=\"$type\" class=\"fpcm-ui-button $class\" name=\"btn{$name}\" id=\"btn".self::cleanIdName($name)."\">$descr</button>";
+            print "<button type=\"$type\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" name=\"btn{$name}\" id=\"btn".self::cleanIdName($name)."\">$descr</button>";
         }
         
         /**
@@ -89,7 +89,7 @@
          */
         public static function linkButton($href, $descr, $id = '', $class = '', $target = '_self') {
             $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;            
-            print "<a href=\"$href\" class=\"fpcm-ui-button $class\" id=\"".self::cleanIdName($id)."\" target=\"$target\">$descr</a>\n";
+            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" id=\"".self::cleanIdName($id)."\" target=\"$target\">$descr</a>\n";
         }
         
         /**
@@ -99,7 +99,7 @@
          */
         public static function dummyButton($descr, $class = '') {
             $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;            
-            print "<span class=\"fpcm-ui-button $class\">$descr</span>\n";
+            print "<span class=\"fpcm-ui-button fpcm-ui-margin-icon $class\">$descr</span>\n";
         }        
         
         /**
