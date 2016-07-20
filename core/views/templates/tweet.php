@@ -20,5 +20,3 @@
         </td>
     </tr>                    
 </table>
-
-<script type="text/javascript">initCodeMirrorTemplates('templatetweet');</script>

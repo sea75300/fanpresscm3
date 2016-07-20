@@ -42,7 +42,7 @@
             </div>
         </div>
         
-        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>" id="template_buttons">
+        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons" id="template_buttons">
             <table>
                 <tr>
                     <td><?php \fpcm\model\view\helper::linkButton('#', 'GLOBAL_PREVIEW', 'showpreview', 'fpcm-ui-preview'); ?></td>
@@ -54,9 +54,3 @@
 </div>
 
 <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-templatepreview-layer"></div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmJs.showTemplatePreview();
-    });
-</script>

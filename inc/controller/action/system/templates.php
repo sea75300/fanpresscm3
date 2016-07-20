@@ -198,6 +198,8 @@
             $tplfilelist = new \fpcm\model\files\templatefilelist();
             $this->view->assign('templateFiles', $tplfilelist->getFolderObjectList());
             
+            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'templates.js'));
+            
             $this->view->render();
         }
         

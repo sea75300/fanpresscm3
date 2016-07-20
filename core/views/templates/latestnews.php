@@ -21,5 +21,3 @@
         </td>
     </tr>                    
 </table>
-
-<script type="text/javascript">initCodeMirrorTemplates('templatelatestNews');</script>

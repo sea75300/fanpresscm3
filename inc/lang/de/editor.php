@@ -22,7 +22,7 @@
         'EDITOR_LINKTARGET'             => 'Ziel', 
         'EDITOR_INSERTLINK'             => 'Link einfügen',     
         'EDITOR_PARAGRAPH'              => 'Absatz',
-        'EDITOR_PRE'                    => 'Vorvormatierter Text',
+        'EDITOR_PRE'                    => 'Vorformatierter Text',
         'EDITOR_CODE'                   => 'Code',
         'EDITOR_PARAGRAPH_HEADLINE'     => 'Überschrift',
         'EDITOR_SELECTSTYLES'           => 'Styles',

@@ -279,17 +279,18 @@ var fpcmEditor = function () {
             matchBrackets   : true,
             lineWrapping    : true,
             autoCloseTags   : true,
-            id              : 'idtest',
+            id              : 'htmleditor',
             mode            : "text/html",
-            matchTags       : {bothTags: true},
-            extraKeys       : {"Ctrl-Space": "autocomplete"},
+            matchTags       : {
+                bothTags: true
+            },
+            extraKeys       : {
+                "Ctrl-Space": "autocomplete"
+            },
             value           : document.documentElement.innerHTML
         });
 
         editor.setOption('theme', 'mdn-like');
-//        editor.on('paste', function(cm, ev) {
-//            return true;
-//        });
     };
     
     this.initTinyMce = function() {
@@ -363,7 +364,8 @@ var fpcmEditor = function () {
         jQuery('#fpcm-dialog-editor-html-insertdraft').dialog('close');
 
         return true;
-    }
+    };
+
 };
 
 jQuery(document).ready(function() {
@@ -374,27 +376,57 @@ jQuery(document).ready(function() {
     
     fpcm.ui.checkboxradio('.fpcm-ui-editor-categories .fpcm-ui-input-checkbox', { icon: false });
 
+    fpcm.ui.selectmenu('#fpcm-editor-paragraphs', {
+        select: function( event, ui ) {
+            if (!ui.item.value) {
+                return false;
+            }
+
+            fpcmEditor.insert('<' + ui.item.value + '>', '</' + ui.item.value + '>');
+        },
+        change: function( event, ui ) {            
+            this.selectedIndex = 0;
+            this.value = '';
+            jQuery(this).selectmenu("refresh");
+        }
+    });
+
+    fpcm.ui.selectmenu('#fpcm-editor-styles', {
+        select: function( event, ui ) {
+            if (!ui.item.value) {
+                return false;
+            }
+
+            fpcmEditor.insert(' class="' + ui.item.value + '"', '');
+        },
+        change: function( event, ui ) {            
+            this.selectedIndex = 0;
+            this.value = '';
+            jQuery(this).selectmenu("refresh");
+        }
+    });
+
+    fpcm.ui.selectmenu('#fpcm-editor-fontsizes', {
+        select: function( event, ui ) {
+            if (!ui.item.value) {
+                return false;
+            }
+
+            fpcmEditor.insertFontsize(ui.item.value);
+        },
+        change: function( event, ui ) {            
+            this.selectedIndex = 0;
+            this.value = '';
+            jQuery(this).selectmenu("refresh");
+        }
+    });
+
     jQuery('.fpcm-editor-htmlclick').click(function() {        
         var tag = jQuery(this).attr('htmltag');
         fpcmEditor.insert('<' + tag + '>', '</' + tag + '>');
-        jQuery(this).parent().parent().trigger('click');
         return false;
     });
-    
-    jQuery('.fpcm-editor-cssclick').click(function() {        
-        var tag = jQuery(this).attr('htmltag');
-        fpcmEditor.insert(' class="' + tag + '"', '');
-        jQuery(this).parent().parent().trigger('click');
-        return false;
-    });    
-    
-    jQuery('.fpcm-editor-htmlfontsize').click(function() {        
-        var tag = jQuery(this).attr('htmltag');
-        fpcmEditor.insertFontsize(tag);
-        jQuery(this).parent().parent().trigger('click');
-        return false;
-    });
-    
+
     jQuery('.fpcm-editor-htmlsymbol').click(function() {
         fpcmEditor.insert(jQuery(this).attr('symbolcode'), '');
         return false;
@@ -471,27 +503,6 @@ jQuery(document).ready(function() {
                 jQuery(this).dialog('destroy');
             }
         });
-        return false;
-    });
-    
-    fpcm.ui.button('.fpcm-editor-select-button', {
-        icon: "ui-icon-triangle-1-s",
-        iconPosition: "end",
-        text: true,
-    },
-    function() {
-        
-        jQuery(this).parent().children('.fpcm-editor-select').click(function() {
-            jQuery(this).removeClass('active').fadeToggle();
-        })
-        
-        var topPos  = jQuery(this).position().top + jQuery(this).parent().height() - 7;
-        var topLeft = jQuery(this).position().left - 6;
-        
-        jQuery('.fpcm-editor-select.active').fadeOut();
-        
-        jQuery(this).parent().children('.fpcm-editor-select').css('top', topPos).css('left', topLeft).css('min-width', jQuery(this).parent().width()).toggleClass('active').fadeToggle().children('.fpcm-editor-smenu').menu();
-        
         return false;
     });
     

@@ -513,58 +513,6 @@ var fpcmJs = function () {
         }, 250);
     };
     
-    this.showTemplatePreview = function() {
-        
-        jQuery('.fpcm-template-tab').click(function () {
-
-            fpcmTemplateId = jQuery(this).data('tpl');
-            
-            if (fpcmTemplateId == 7) {
-                jQuery('#template_buttons').hide();
-                jQuery('#article_template_buttons').show();
-                return false;
-            }
-            
-            jQuery('#template_buttons').show();            
-            jQuery('#article_template_buttons').hide();
-            
-            if (fpcmTemplateId > 5) {
-                jQuery('#showpreview').hide();
-                return false;
-            }
-            
-            jQuery('#showpreview').show();
-            return false;
-        });
-        
-        jQuery('#showpreview').click(function () {
-
-            fpcmJs.appendHtml('#fpcm-dialog-templatepreview-layer', '<iframe id="fpcm-dialog-templatepreview-layer-frame" class="fpcm-full-width" src="' + fpcmActionPath + 'system/templatepreview&tid=' + fpcmTemplateId + '"></iframe>');
-            fpcm.ui.dialog({
-                id         : 'templatepreview-layer',
-                dlWidth    : '75%',
-                resizable  : true,
-                title      : fpcmPreviewHeadline,
-                dlButtons  : [
-                    {
-                        text: fpcmClose,
-                        icon: "ui-icon-closethick",                    
-                        click: function() {
-                            jQuery(this).dialog('close');
-                            jQuery('.fpcm-dialog-templatepreview-layer-frame').remove();
-                        }
-                    }                            
-                ],
-                dlOnClose: function( event, ui ) {
-                    jQuery(this).empty();
-                }
-            });
-            
-            return false;
-        })
-        
-    };
-    
     this.execCronjobDemand = function(cronjobId) {
         self.showLoader(true);
         fpcmAjax.action = 'cronasync';

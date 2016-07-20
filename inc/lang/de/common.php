@@ -25,7 +25,7 @@
         'HL_OPTIONS_PERMISSIONS'        => 'Berechtigungen',
         'HL_OPTIONS_IPBLOCKING'         => 'IP-Adressen',
         'HL_OPTIONS_WORDBAN'            => 'Textzensur',
-        'HL_OPTIONS_TEMPLATES'          => 'Templates & Vorlagen',
+        'HL_OPTIONS_TEMPLATES'          => 'Templates',
         'HL_OPTIONS_SMILEYS'            => 'Smileys',
         'HL_MODULES'                    => 'Module',
         'HL_MODULES_MNG'                => 'Module verwalten',

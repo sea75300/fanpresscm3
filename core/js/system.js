@@ -203,19 +203,3 @@ jQuery(document).ready(function () {
     });
 
 });
-
-function initCodeMirrorTemplates(id) {
-    var editor = CodeMirror.fromTextArea(document.getElementById(id), {
-        lineNumbers: true,
-        matchBrackets: true,
-        lineWrapping: true,
-        autoCloseTags: true,
-        id: 'idtest',
-        mode: "text/html",
-        matchTags: {bothTags: true},
-        extraKeys: {"Ctrl-Space": "autocomplete"},
-        value: document.documentElement.innerHTML
-    });
-
-    editor.setOption('theme', 'mdn-like');
-};

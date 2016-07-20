@@ -17,5 +17,3 @@
         </td>
     </tr>                    
 </table>
-
-<script type="text/javascript">initCodeMirrorTemplates('templatearticleSingle');</script>
