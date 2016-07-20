@@ -23,44 +23,32 @@
     </tr>
     <tr>
         <td class="ui-widget-content ui-corner-all ui-state-normal">
-            <div class="fpcm-editor-selectboxes">
-                <?php if (count($editorStyles)) : ?>
-                <div class="fpcm-fpcm-editor-selectbox">
-                    <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-styles"><?php $FPCM_LANG->write('EDITOR_SELECTSTYLES'); ?></button>
-                    <div class="fpcm-editor-select">
-                        <ul class="fpcm-editor-smenu">
-                            <?php foreach ($editorStyles as $description => $tag) : ?>
-                            <li class="fpcm-editor-cssclick" htmltag="<?php print $tag; ?>"><a><?php print $description; ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>              
-                    </div>                
-                </div>
-                <?php endif; ?>
-
-                <div class="fpcm-fpcm-editor-selectbox">
-                    <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-paragraphs"><?php $FPCM_LANG->write('EDITOR_PARAGRAPH'); ?></button>
-                    <div class="fpcm-editor-select">
-                        <ul class="fpcm-editor-smenu">
-                            <?php foreach ($editorParagraphs as $descr => $tag) : ?>
-                            <li class="fpcm-editor-htmlclick" htmltag="<?php print $tag; ?>"><a><?php print $descr; ?></a></li>
-                            <?php endforeach; ?>                   
-                        </ul>              
-                    </div>                
-                </div>
-
-                <div class="fpcm-fpcm-editor-selectbox">
-                    <button class="fpcm-ui-button fpcm-editor-select-button" id="fpcm-editor-fontsizes"><?php $FPCM_LANG->write('EDITOR_SELECTFS'); ?></button>
-                    <div class="fpcm-editor-select">
-                        <ul class="fpcm-editor-smenu">
-                            <?php foreach ($editorFontsizes as $editorFontsize) : ?>
-                            <li class="fpcm-editor-htmlfontsize" htmltag="<?php print $editorFontsize; ?>"><a><?php print $editorFontsize; ?>pt</a></li>
-                            <?php endforeach; ?>
-                        </ul>              
-                    </div>                
-                </div>                    
-            </div>
 
             <div class="fpcm-ui-buttonset fpcm-ui-editor-buttons">
+                
+                <?php if (count($editorStyles)) : ?>
+                <select class="fpcm-ui-input-select" id="fpcm-editor-styles">
+                    <option value=""><?php $FPCM_LANG->write('EDITOR_SELECTSTYLES'); ?></option>
+                    <?php foreach ($editorStyles as $description => $tag) : ?>
+                    <option class="fpcm-editor-select-click fpcm-editor-cssclick" value="<?php print $tag; ?>"><?php print $description; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <?php endif; ?>
+
+                <select class="fpcm-ui-input-select" id="fpcm-editor-paragraphs">
+                    <option value=""><?php $FPCM_LANG->write('EDITOR_PARAGRAPH'); ?></option>
+                    <?php foreach ($editorParagraphs as $descr => $tag) : ?>
+                    <option class="fpcm-editor-select-click fpcm-editor-htmlclick" value="<?php print $tag; ?>"><?php print $descr; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                
+                <select class="fpcm-ui-input-select" id="fpcm-editor-fontsizes">
+                    <option value=""><?php $FPCM_LANG->write('EDITOR_SELECTFS'); ?></option>
+                    <?php foreach ($editorFontsizes as $editorFontsize) : ?>
+                    <option class="fpcm-editor-htmlfontsize" value="<?php print $editorFontsize; ?>"><?php print $editorFontsize; ?>pt</option>
+                    <?php endforeach; ?>
+                </select>
+
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_BOLD'); ?> (Ctrl + B)" class="fpcm-editor-htmlclick" htmltag="b"><span class="fa fa-bold"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_ITALIC'); ?> (Ctrl + I)" class="fpcm-editor-htmlclick" htmltag="i"><span class="fa fa-italic"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_UNDERLINE'); ?> (Ctrl + U)" class="fpcm-editor-htmlclick" htmltag="u"><span class="fa fa-underline"></span></button>
@@ -74,7 +62,7 @@
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_AJUSTIFY'); ?> (Ctrl + Shift + J)" class="fpcm-editor-alignclick" htmltag="justify"><span class="fa fa-align-justify"></span></button>            
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_LISTUL'); ?> (Ctrl + .)" id="fpcm-dialog-editor-html-insertlist-btn"><span class="fa fa-list-ul"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_LISTOL'); ?> (Ctrl + #)" id="fpcm-dialog-editor-html-insertlistnum-btn"><span class="fa fa-list-ol"></span></button>            
-                <button title="<?php $FPCM_LANG->write('EDITOR_INSERTTABLE'); ?> (Ctrl + Q)" class="fpcm-editor-htmlclick" htmltag="blockquote"><span class="fa fa-quote-left"></span></button>
+                <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_QUOTE'); ?> (Ctrl + Q)" class="fpcm-editor-htmlclick" htmltag="blockquote"><span class="fa fa-quote-left"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_INSERTLINK'); ?>  (Ctrl + L)" id="fpcm-dialog-editor-html-insertlink-btn"><span class="fa fa-link"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_INSERTPIC'); ?>  (Ctrl + P)" id="fpcm-dialog-editor-html-insertimage-btn"><span class="fa fa-picture-o"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_INSERTMEDIA'); ?> (Ctrl + Shift + Z)" id="fpcm-dialog-editor-html-insertmedia-btn"><span class="fa fa-youtube-play"></span></button>

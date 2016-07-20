@@ -33,8 +33,10 @@ var fpcmAjaxHandler = function () {
                 eval(self.execDone);
             }
         })
-        .fail(function() {
-            alert(fpcmAjaxErrorMessage);
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log(fpcmAjaxErrorMessage);
+            console.log('ERROR MESSAGE: ' + errorThrown);
+
             if (typeof self.execFail == 'string') {
                 eval(self.execFail);
             }

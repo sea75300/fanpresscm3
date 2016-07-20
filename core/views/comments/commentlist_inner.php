@@ -33,7 +33,7 @@
 </table>
 
 <?php if (count($commentActions)) : ?>
-<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-commentaction-buttons">
+<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-commentaction-buttons">
     <table>
         <tr>
             <?php if ($commentsMode == 1) : ?><td><?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcmcommentsopensearch', 'fpcm-articles-opensearch'); ?></td><?php endif; ?>

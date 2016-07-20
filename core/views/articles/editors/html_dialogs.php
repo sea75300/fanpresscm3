@@ -138,9 +138,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
+                        icon: "ui-icon-check",
                         click: function() {
                             fpcmEditor.insertLink();
                             jQuery( this ).dialog( "close" );
@@ -148,9 +146,7 @@
                     },
                     {
                         text: "<?php $FPCM_LANG->write('HL_FILES_MNG'); ?>",
-                        icons: {
-                            primary: "ui-icon-folder-open"            
-                        },                
+                        icon: "ui-icon-folder-open",
                         click: function() {
                             window.fileOpenMode = 1;
                             fpcmEditor.showFileManager();
@@ -158,9 +154,7 @@
                     },
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                
+                        icon: "ui-icon-closethick",
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
@@ -185,9 +179,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
+                        icon: "ui-icon-check",                        
                         click: function() {
                             fpcmEditor.insertPicture();
                             jQuery( this ).dialog( "close" );
@@ -195,9 +187,7 @@
                     },
                     {
                         text: "<?php $FPCM_LANG->write('HL_FILES_MNG'); ?>",
-                        icons: {
-                            primary: "ui-icon-folder-open"            
-                        },                
+                        icon: "ui-icon-folder-open" ,                
                         click: function() {
                             window.fileOpenMode = 2;
                             fpcmEditor.showFileManager();
@@ -205,9 +195,7 @@
                     },
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                
+                        icon: "ui-icon-closethick",                
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
@@ -232,9 +220,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
+                        icon: "ui-icon-check",                        
                         click: function() {
                             fpcmEditor.insertTable();
                             jQuery( this ).dialog( "close" );
@@ -242,9 +228,7 @@
                     },
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                
+                        icon: "ui-icon-closethick",                
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
@@ -269,9 +253,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
+                        icon: "ui-icon-check",                        
                         click: function() {
                             fpcmEditor.insertColor(jQuery('#fpcmdialogeditorhtmlcolorhexcode').val(), jQuery('.color_mode:checked').val());
                             jQuery( this ).dialog( "close" );
@@ -279,9 +261,7 @@
                     },
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                
+                        icon: "ui-icon-closethick",                
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
@@ -300,9 +280,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->write('GLOBAL_INSERT'); ?>",
-                        icons: {
-                            primary: "ui-icon-check"            
-                        },                        
+                        icon: "ui-icon-check",                        
                         click: function() {
                             fpcmEditor.insertPlayer(jQuery('#mediapath').val(), jQuery('#mediatype:checked').val());
                             jQuery( this ).dialog( "close" );
@@ -310,9 +288,7 @@
                     },
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                
+                        icon: "ui-icon-closethick",                
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
@@ -330,9 +306,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                        
+                        icon: "ui-icon-closethick",                        
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
@@ -365,9 +339,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                        
+                        icon: "ui-icon-closethick",                        
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
@@ -386,9 +358,7 @@
                 dlButtons: [
                     {
                         text: "<?php $FPCM_LANG->printClose(); ?>",
-                        icons: {
-                            primary: "ui-icon-closethick"            
-                        },                        
+                        icon: "ui-icon-closethick",                        
                         click: function() {
                             jQuery( this ).dialog( "close" );
                         }
