@@ -48,6 +48,7 @@
         'GLOBAL_DOWNLOAD'               => 'Download',
         'GLOBAL_PREVIEW'                => 'Show preview',
         'GLOBAL_WRITEMAIL'              => 'Write an e-mail',
+        'GLOBAL_CONFIRM'                => 'Please confirm',
 
         'LOGIN_BTN'                     => 'Login',
         'LOGIN_NEWPASSWORD'             => 'Request new password',

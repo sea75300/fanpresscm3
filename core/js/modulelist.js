@@ -52,10 +52,11 @@ var fpcmModulelist = function () {
         jQuery('.fpcm-ui-actions-modules').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
             fpcm.ui.dialog({
-                content: fpcmConfirmMessage,
+                title: fpcm.ui.translate('confirmHL'),
+                content: fpcm.ui.translate('confirmMessage'),
                 dlButtons: [
                     {
-                        text: fpcmYes,
+                        text: fpcm.ui.translate('yes'),
                         icon: "ui-icon-check",                    
                         click: function() {
                             var moduleKeys = [];
@@ -82,7 +83,7 @@ var fpcmModulelist = function () {
                         }
                     },
                     {
-                        text: fpcmNo,
+                        text: fpcm.ui.translate('no'),
                         icon: "ui-icon-closethick",
                         click: function() {
                             jQuery(this).addClass('fpcm-noloader');
@@ -110,7 +111,7 @@ var fpcmModulelist = function () {
             title      : fpcmDetailsHeadline + ' « ' + moduleName + ' »',
             dlButtons  : [
                 {
-                    text: fpcmClose,
+                    text: fpcm.ui.translate('close'),
                     icon: "ui-icon-closethick",
                     click: function() {
                         jQuery( this ).dialog( "close" );

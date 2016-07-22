@@ -101,8 +101,7 @@
                     'daysfull'              => $this->lang->getDays(),
                     'daysshort'             => $this->lang->getDaysShort(),
                     'months'                => array_values($this->lang->getMonths())
-                ),
-                'fpcmExtended'              => $this->lang->translate('GLOBAL_EXTENDED')
+                )
             );
             
             $this->view->addJsVars($this->jsVars);

@@ -115,16 +115,20 @@
             
             if (is_object($this->language)) {
                 $this->jsvars = array(
-                    'fpcmQuickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
-                    'fpcmOpenProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
-                    'fpcmLogout'           => $this->language->translate('LOGOUT_BTN'),
-                    'fpcmConfirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
-                    'fpcmAjaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
-                    'fpcmAjaxResponseErrorMessage' => $this->language->translate('AJAX_REPONSE_ERROR'),
-                    'fpcmClose'            => $this->language->translate('GLOBAL_CLOSE'),
-                    'fpcmYes'              => $this->language->translate('GLOBAL_YES'),
-                    'fpcmNo'               => $this->language->translate('GLOBAL_NO'),
-                    'fpcmNewWindow'        => $this->language->translate('GLOBAL_OPENNEWWIN')
+                    'fpcmLang' => array(
+                        'quickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
+                        'openProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
+                        'logout'           => $this->language->translate('LOGOUT_BTN'),
+                        'confirmHL'        => $this->language->translate('GLOBAL_CONFIRM'),
+                        'confirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
+                        'close'            => $this->language->translate('GLOBAL_CLOSE'),
+                        'yes'              => $this->language->translate('GLOBAL_YES'),
+                        'no'               => $this->language->translate('GLOBAL_NO'),
+                        'newWindow'        => $this->language->translate('GLOBAL_OPENNEWWIN'),
+                        'extended'         => $this->language->translate('GLOBAL_EXTENDED'),
+                        'ajaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
+                        'ajaxResponseErrorMessage' => $this->language->translate('AJAX_REPONSE_ERROR'),
+                    )
                 );
             }
             

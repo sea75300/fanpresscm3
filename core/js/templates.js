@@ -1,5 +1,5 @@
 /**
- * FanPress CM UI Namespace
+ * FanPress CM Templates Namespace
  */
 if (fpcm === undefined) {
     var fpcm = {};
@@ -79,7 +79,7 @@ fpcm.templates = {
                 title      : fpcmPreviewHeadline,
                 dlButtons  : [
                     {
-                        text: fpcmClose,
+                        text: fpcm.ui.translate('close'),
                         icon: "ui-icon-closethick",                    
                         click: function() {
                             jQuery(this).dialog('close');

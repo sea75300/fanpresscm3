@@ -1,5 +1,8 @@
 /**
  * FanPress CM UI Namespace
+ * @article Stefan Seehafer <sea75300@yahoo.de>
+ * @copyright (c) 2016, Stefan Seehafer
+ * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  */
 if (fpcm === undefined) {
     var fpcm = {};
@@ -19,11 +22,17 @@ fpcm.ui = {
         this.tabs('.fpcm-tabs-general');
         this.accordion('.fpcm-tabs-accordion');
     },
+    
+    translate: function(langVar) {
+        
+        return fpcmLang[langVar] === undefined ? langVar : fpcmLang[langVar];
+
+    },
 
     actionButtonsGenreal: function() {
         jQuery('.fpcm-ui-actions-genreal').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcmConfirmMessage)) {
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }            
@@ -276,8 +285,8 @@ fpcm.ui = {
             dlParams.height   = params.dlHeight;            
         }
         
-        if (params.dlMinHeight !== undefined) {
-            dlParams.minWidth   = params.dlMinHeight;            
+        if (params.dlMinWidth !== undefined) {
+            dlParams.minWidth   = params.dlMinWidth;
         }
         
         if (params.dlMinHeight !== undefined) {

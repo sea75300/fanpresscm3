@@ -55,11 +55,11 @@ jQuery(document).ready(function () {
         
         fpcm.ui.dialog({
             id: 'profile',
-            title: fpcmQuickLinks,
+            title: fpcm.ui.translate('quickLinks'),
             dlWidth: dialogWidth,
             dlButtons: [
                 {
-                    text: fpcmOpenProfile,
+                    text: fpcm.ui.translate('openProfile'),
                     icon: "ui-icon-wrench",                  
                     click: function () {
                         fpcmJs.showLoader(true);
@@ -67,7 +67,7 @@ jQuery(document).ready(function () {
                     }
                 },
                 {
-                    text: fpcmLogout,
+                    text: fpcm.ui.translate('logout'),
                     icon: "ui-icon-power",
                     click: function () {
                         fpcmJs.showLoader(true);
@@ -103,10 +103,11 @@ jQuery(document).ready(function () {
     jQuery('.fpcm-logs-clear').click(function () {
         var logId = jQuery(this).attr('id');
         fpcm.ui.dialog({
-            content: fpcmConfirmMessage,
+            title: fpcm.ui.translate('confirmHL'),
+            content: fpcm.ui.translate('confirmMessage'),
             dlButtons: [
                 {
-                    text: fpcmYes,
+                    text: fpcm.ui.translate('yes'),
                     icon: "ui-icon-check",                    
                     click: function() {
                         fpcmJs.clearLogs(logId); 
@@ -114,7 +115,7 @@ jQuery(document).ready(function () {
                     }
                 },
                 {
-                    text: fpcmNo,
+                    text: fpcm.ui.translate('no'),
                     icon: "ui-icon-closethick",
                     click: function() {
                         jQuery(this).dialog('close');

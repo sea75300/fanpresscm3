@@ -77,7 +77,10 @@
                 'fpcmDetailsInstall' => $this->lang->translate('MODULES_LIST_INSTALL')
             ));
 
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'modulelist.js'));
+            $this->view->setViewJsFiles(array(
+                \fpcm\classes\baseconfig::$jsPath.'modulelist.js',
+                \fpcm\classes\baseconfig::$jsPath.'filemanager.js'
+            ));
             
             if (!$this->permissions->check(array('modules' => 'install'))) {
                 unset($this->moduleActions[$this->lang->translate('MODULES_LIST_INSTALL')],
@@ -99,8 +102,11 @@
                       $this->moduleActions[$this->lang->translate('MODULES_LIST_UNINSTALL')]);
                 $this->view->assign('moduleManagerMode', false);
             }
-            
-            
+
+            $translInfo = array('{{filecount}}' => 1, '{{filesize}}'  => ini_get("upload_max_filesize"));
+            $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
+            $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('modules/list'));
+
             $this->view->assign('moduleActions', $this->moduleActions);
             $this->view->render();
             

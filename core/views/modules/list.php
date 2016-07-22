@@ -31,20 +31,7 @@
         
         <?php if ($permissionInstall) : ?>
         <div id="tabs-modules-upload">
-            <form action="<?php print $FPCM_BASEMODULELINK; ?>modules/list" method="POST" enctype="multipart/form-data">
-                <table id="fpcm-ui-phpupload-filelist" class="fpcm-ui-table fpcm-ui-phpupload"></table>
-
-                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-                    <span class="fpcm-ui-fileinput-php">
-                        <?php fpcm\model\view\helper::linkButton('#', 'FILE_FORM_FILEADD') ?>
-                        <?php fpcm\model\view\helper::submitButton('uploadFile', 'FILE_FORM_UPLOADSTART', 'start-upload fpcm-loader'); ?>
-
-                        <button type="reset" class="cancel-upload" id="fpcm-ui-phpupload-cancel"><?php $FPCM_LANG->write('FILE_FORM_UPLOADCANCEL'); ?></button>
-
-                        <input type="file" name="files[]" class="fpcm-ui-fileinput-select fpcm-hidden">
-                    </span>
-                </div>    
-            </form>
+            <?php include_once dirname(__DIR__).'/filemanager/forms/phpupload.php'; ?>
         </div>
         <?php endif; ?>
     </div>

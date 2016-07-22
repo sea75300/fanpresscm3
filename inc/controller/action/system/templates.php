@@ -198,7 +198,14 @@
             $tplfilelist = new \fpcm\model\files\templatefilelist();
             $this->view->assign('templateFiles', $tplfilelist->getFolderObjectList());
             
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'templates.js'));
+            $this->view->setViewJsFiles(array(
+                \fpcm\classes\baseconfig::$jsPath.'filemanager.js',
+                \fpcm\classes\baseconfig::$jsPath.'templates.js'
+            ));
+            
+            $translInfo = array('{{filecount}}' => 1, '{{filesize}}'  => ini_get("upload_max_filesize"));
+            $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
+            $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('modules/list'));
             
             $this->view->render();
         }

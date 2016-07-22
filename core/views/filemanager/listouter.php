@@ -38,7 +38,7 @@
     jQuery(document).ready(function() {
         <?php if ($loadAjax) : ?>
         fpcmJs.reloadFiles();
+        fpcm.filemanager.initActionButtons();
         <?php endif; ?>
-        fpcmFilemgr.initActionButtons();
     });
 </script>

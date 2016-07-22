@@ -164,32 +164,30 @@ var fpcmEditor = function () {
     };
 
     this.showFileManager = function() {
-
         fpcmJs.appendHtml('#fpcm-dialog-editor-html-filemanager', '<iframe id="fpcm-dialog-editor-html-filemanager-frame" class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
         fpcm.ui.dialog({
             id       : 'editor-html-filemanager',
-            minWidth : filemanagerWidth,
-            minHeight: filemanagerHeight,
+            dlMinWidth : filemanagerWidth,
             modal    : true,
             resizable: true,
             title    : fpcmFileManagerHeadline,
-            buttons  : [
+            dlButtons  : [
                 {
-                    text: fpcmExtended,
+                    text: fpcm.ui.translate('extended'),
                     icon: "ui-icon-wrench",                    
                     click: function() {
                         jQuery(this).children('#fpcm-dialog-editor-html-filemanager-frame').contents().find('.fpcm-filemanager-buttons').fadeToggle();
                     }
                 },
                 {
-                    text: fpcmClose,
+                    text: fpcm.ui.translate('close'),
                     icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
                     }
                 }                            
             ],
-            close: function( event, ui ) {
+            dlOnClose: function( event, ui ) {
                 jQuery(this).empty();
             }
         });   
@@ -219,7 +217,7 @@ var fpcmEditor = function () {
                     }
                 },
                 {
-                    text: fpcmClose,
+                    text: fpcm.ui.translate('close'),
                     icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
@@ -327,14 +325,14 @@ var fpcmEditor = function () {
                     close_previous  : false,
                     buttons  : [
                         {
-                            text: fpcmExtended,                   
+                            text: fpcm.ui.translate('extended'),                   
                             onclick: function() {
                                 var tinyMceWins = top.tinymce.activeEditor.windowManager.getWindows();
                                 jQuery('#'+ tinyMceWins[1]._id).find('iframe').contents().find('.fpcm-filemanager-buttons').fadeToggle();
                             }
                         },
                         {
-                            text: fpcmClose,                      
+                            text: fpcm.ui.translate('close'),                      
                             onclick: function() {
                                 top.tinymce.activeEditor.windowManager.close();
                             }
@@ -486,10 +484,10 @@ jQuery(document).ready(function() {
         fpcm.ui.dialog({
             id: 'editor-extended',
             dlWidth: dialogWidth,
-            title: fpcmExtended,
+            title: fpcm.ui.translate('extended'),
             dlButtons: [
                 {
-                    text: fpcmClose,
+                    text: fpcm.ui.translate('close'),
                     icon: "ui-icon-closethick",
                     click: function() {
                         jQuery(this).dialog('close');
@@ -557,7 +555,7 @@ jQuery(document).ready(function() {
             title: text,
             dlButtons: [
                 {
-                    text: fpcmClose,
+                    text: fpcm.ui.translate('close'),
                     icon: "ui-icon-closethick",                        
                     click: function() {
                         jQuery( this ).dialog( "close" );

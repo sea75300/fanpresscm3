@@ -26,7 +26,7 @@
                     <span>FanPress CM</span> <span>News System</span>
                 </div>
                 <?php if ($FPCM_LOGGEDIN) : ?>
-                <div class="fpcm-header-td3">
+                <div class="fpcm-header-td3 ">
                     <?php if (!$FPCM_CRONJOBS_DISABLED) : ?>
                     <span class="fa-stack fa-lg fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_CRONJOBS'); ?>..."</span>
                         <span class="fa fa-square fa-stack-2x"></span>

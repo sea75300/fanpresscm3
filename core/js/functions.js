@@ -117,7 +117,7 @@ var fpcmJs = function () {
     this.reloadFilesDone = function (ajaxResult) {
         fpcmJs.assignHtml("#tabs-files-list-content", ajaxResult);
         fpcmJs.assignButtons();
-        fpcmFilemgr.assignButtons();
+        fpcm.filemanager.assignButtons();
         var fpcmRFDinterval = setInterval(function(){
             if (jQuery('#fpcm-filelist-images-finished').length == 1) {
                 fpcmJs.showLoader(false);
@@ -177,7 +177,7 @@ var fpcmJs = function () {
         
         jQuery('.fpcm-delete-btn').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcmConfirmMessage)) {
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }
@@ -210,7 +210,7 @@ var fpcmJs = function () {
         
         jQuery('.fpcm-ui-articleactions-ok').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcmConfirmMessage)) {
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }
@@ -263,7 +263,7 @@ var fpcmJs = function () {
     this.commentActionButtons = function () {        
         jQuery('.fpcm-ui-commentaction').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcmConfirmMessage)) {
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }            
@@ -273,7 +273,7 @@ var fpcmJs = function () {
     this.usersActionButtons = function () {
         jQuery('.fpcm-ui-useractions-diable').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcmConfirmMessage)) {
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }            
@@ -281,7 +281,7 @@ var fpcmJs = function () {
                 
         jQuery('.fpcm-ui-useractions-enable').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcmConfirmMessage)) {
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }
@@ -384,7 +384,7 @@ var fpcmJs = function () {
             title      : fpcmManualCheckHeadline,
             dlButtons  : [
                 {
-                    text: fpcmNewWindow,
+                    text: fpcm.ui.translate('newWindow'),
                     icon: "ui-icon-extlink",                    
                     click: function() {
                         window.open(fpcmManualCheckUrl);
@@ -392,7 +392,7 @@ var fpcmJs = function () {
                     }
                 },
                 {
-                    text: fpcmClose,
+                    text: fpcm.ui.translate('close'),
                     icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
@@ -468,7 +468,7 @@ var fpcmJs = function () {
                 content: '<p class="fpcm-ui-center">' + fpcmSessionCheckMsg + '</p>',
                 dlButtons: buttons = [
                     {
-                        text: fpcmYes,
+                        text: fpcm.ui.translate('yes'),
                         icon: "ui-icon-check",
                         click: function() {
                             fpcmJs.relocate(fpcmActionPath + 'system/login');
@@ -476,7 +476,7 @@ var fpcmJs = function () {
                         }
                     },
                     {
-                        text: fpcmNo,
+                        text: fpcm.ui.translate('no'),
                         icon: "ui-icon-closethick",
                         click: function() {
                             fpcmSessionCheckEnabled = true;
@@ -577,7 +577,7 @@ var fpcmJs = function () {
                         }
                     },                    
                     {
-                        text: fpcmClose,
+                        text: fpcm.ui.translate('close'),
                         icon: "ui-icon-closethick" ,                        
                         click: function() {
                             jQuery(this).dialog('close');
@@ -632,7 +632,7 @@ var fpcmJs = function () {
                         }
                     },                    
                     {
-                        text: fpcmClose,
+                        text: fpcm.ui.translate('close'),
                         icon: "ui-icon-closethick",                        
                         click: function() {
                             jQuery(this).dialog('close');

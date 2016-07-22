@@ -12,5 +12,5 @@
 
             <input type="file" name="files[]" multiple class="fpcm-ui-fileinput-select fpcm-hidden">
         </span>
-    </div>    
+    </div>
 </form>
