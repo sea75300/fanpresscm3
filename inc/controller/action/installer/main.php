@@ -141,7 +141,7 @@
             $availableDrivers = \PDO::getAvailableDrivers();
             
             $sqlDrivers = array();
-            foreach (\fpcm\classes\database::supportedDBMS as $driver => $name) {
+            foreach (\fpcm\classes\database::$supportedDBMS as $driver => $name) {
              
                 if (!in_array($driver, $availableDrivers)) {
                     continue;

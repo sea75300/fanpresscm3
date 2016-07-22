@@ -80,7 +80,7 @@
             if (is_object(\fpcm\classes\baseconfig::$fpcmDatabase)) {
                 $checkOptions['Database driver in use']    = array(
                     'current'   => \fpcm\classes\baseconfig::$fpcmDatabase->getDbtype(),
-                    'recommend' => implode(', ', array_intersect($dbDrivers, array_keys(\fpcm\classes\database::supportedDBMS))),
+                    'recommend' => implode(', ', array_intersect($dbDrivers, array_keys(\fpcm\classes\database::$supportedDBMS))),
                     'result'    => true,
                     'helplink'  => '',
                     'optional'  => 0

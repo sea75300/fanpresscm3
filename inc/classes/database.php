@@ -102,7 +102,7 @@
          * mysql => MySQL 5.5 + oder MariaDB 10 +
          * pgsql => Postgres 9 +
          */
-        const supportedDBMS = array(
+        public static $supportedDBMS = array(
             'mysql' => 'MySQL/ MariaDB',
             'pgsql' => 'Postgres'
         );
