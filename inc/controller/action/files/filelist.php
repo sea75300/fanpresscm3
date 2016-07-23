@@ -38,7 +38,7 @@
         public function __construct() {
             parent::__construct(); 
             
-            $this->checkPermission = array('article' => 'add', 'article' => 'edit');            
+            $this->checkPermission = array('uploads' => 'visible');            
             $this->view = new \fpcm\model\view\acp('listouter', 'filemanager');
             
             $this->fileList = new \fpcm\model\files\imagelist();

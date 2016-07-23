@@ -1437,8 +1437,10 @@ div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before,
 h1 a.fpcm-ui-helpbutton:before,
 .fpcm-ui-button span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-button-blank span.ui-icon:before,
+.fpcm-ui-button.fpcm-back-button .ui-button-text:after,
 .fpcm-ui-button.fpcm-forward-button .ui-button-text:after,
-.fpcm-ui-button:before {
+.fpcm-ui-button:before,
+.fpcm-ui-button:after {
     font-family: 'FontAwesome';
 }
 
@@ -1525,7 +1527,7 @@ h1 a.fpcm-ui-helpbutton:before,
     content: '\f00c';
 }
 
-.fpcm-ui-button.fpcm-forward-button .ui-button-text:after {
+.fpcm-ui-button.fpcm-forward-button:after {
     content: '\f138';
     font-weight: normal !important;
     padding-left: 0.65em;

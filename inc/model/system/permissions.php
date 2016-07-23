@@ -64,7 +64,11 @@
                 'templates'         => 0,
                 'smileys'           => 0,
                 'update'            => 0,
-                'logs'              => 0
+                'logs'              => 0,
+                'crons'             => 0,
+                'backups'           => 0,
+                'wordban'           => 0,
+                'ipaddr'            => 0
             ),
             'modules' => array(
                 'install'           => 0,
@@ -73,6 +77,7 @@
                 'configure'         => 0
             ),
             'uploads' => array(
+                'visible'           => 1,
                 'add'               => 1,
                 'delete'            => 0,
                 'thumbs'            => 1,
@@ -110,7 +115,11 @@
                 'templates'         => 0,
                 'smileys'           => 0,
                 'update'            => 0,
-                'logs'              => 0
+                'logs'              => 0,
+                'crons'             => 0,
+                'backups'           => 0,
+                'wordban'           => 0,
+                'ipaddr'            => 0
             ),
             'modules' => array(
                 'install'           => 0,
@@ -119,6 +128,7 @@
                 'configure'         => 0
             ),
             'uploads' => array(
+                'visible'           => 0,
                 'add'               => 0,
                 'delete'            => 0,
                 'thumbs'            => 0,

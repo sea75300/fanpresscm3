@@ -21,7 +21,7 @@
         public function __construct() {
             parent::__construct();
 
-            $this->checkPermission = array('system' => 'logs');
+            $this->checkPermission = array('system' => 'crons');
             $this->view   = new \fpcm\model\view\acp('cronjobs', 'system');
 
         }

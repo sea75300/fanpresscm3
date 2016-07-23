@@ -59,7 +59,7 @@
 
                     <tr>
                         <th><?php $FPCM_LANG->write('PERMISSION_MODULES'); ?></th>
-                        <th><?php $FPCM_LANG->write('PERMISSION_SYSTEM'); ?></th>
+                        <th></th>
                     </tr>
                     <tr>
                         <td>

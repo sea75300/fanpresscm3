@@ -124,7 +124,7 @@
          */
         public function getCommentsBySearchCondition(array $conditions) {
             
-            $where = array();
+            $where = array('1=1');
             $valueParams = array();
 
             if (isset($conditions['text']) && $conditions['searchtype'] == 0) {

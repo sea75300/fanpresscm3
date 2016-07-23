@@ -8,7 +8,7 @@
     namespace fpcm\controller\action\system;
     
     class permissions extends \fpcm\controller\abstracts\controller {
-        
+
         /**
          *
          * @var \fpcm\model\view\acp

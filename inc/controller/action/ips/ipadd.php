@@ -24,7 +24,7 @@
         public function __construct() {
             parent::__construct();
             
-            $this->checkPermission = array('system' => 'options');
+            $this->checkPermission = array('system' => 'ipaddr');
             
             $this->view = new \fpcm\model\view\acp('ipadd', 'ips');
             $this->ipaddress = new \fpcm\model\ips\ipaddress();

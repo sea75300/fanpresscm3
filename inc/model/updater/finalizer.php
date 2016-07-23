@@ -77,6 +77,26 @@
                     $permissions['system']['logs'] = $groupId < 2 ? 1 : 0;
                 }
                 
+                if (!isset($permissions['system']['crons'])) {
+                    $permissions['system']['crons'] = $groupId < 2 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['system']['backups'])) {
+                    $permissions['system']['backups'] = $groupId < 2 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['system']['wordban'])) {
+                    $permissions['system']['wordban'] = $groupId < 3 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['system']['ipaddr'])) {
+                    $permissions['system']['ipaddr'] = $groupId < 2 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['uploads']['visible'])) {
+                    $permissions['uploads']['visible'] = 1;
+                }
+
                 $permission->setPermissionData($permissions);
                 $permission->setRollId($groupId);
                 $res = $res && $permission->update();
