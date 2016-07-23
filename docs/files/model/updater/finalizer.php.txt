@@ -2,7 +2,7 @@
     /**
      * System update finalizer object
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\updater;
@@ -33,11 +33,13 @@
             $res = true &&
                    $this->createTables() &&
                    $this->alterTables() &&
+                   $this->removeSystemOptions() &&
                    $this->addSystemOptions() &&
                    $this->updateSystemOptions() &&
                    $this->updatePermissions() &&
                    $this->checkFilesystem() &&
-                   $this->updateVersion();
+                   $this->updateVersion() &&
+                   $this->optimizeTables();
             
             $this->config->setMaintenanceMode(false);
 
@@ -59,6 +61,7 @@
          * @return boolean
          */
         private function updatePermissions() {
+
             $res = true;
             
             $permission = new \fpcm\model\system\permissions();
@@ -74,6 +77,26 @@
                     $permissions['system']['logs'] = $groupId < 2 ? 1 : 0;
                 }
                 
+                if (!isset($permissions['system']['crons'])) {
+                    $permissions['system']['crons'] = $groupId < 2 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['system']['backups'])) {
+                    $permissions['system']['backups'] = $groupId < 2 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['system']['wordban'])) {
+                    $permissions['system']['wordban'] = $groupId < 3 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['system']['ipaddr'])) {
+                    $permissions['system']['ipaddr'] = $groupId < 2 ? 1 : 0;
+                }
+                
+                if (!isset($permissions['uploads']['visible'])) {
+                    $permissions['uploads']['visible'] = 1;
+                }
+
                 $permission->setPermissionData($permissions);
                 $permission->setRollId($groupId);
                 $res = $res && $permission->update();
@@ -113,6 +136,23 @@
                 $this->config->setNewConfig($newconf);
                 $res = $res && $this->config->update();
             }
+            
+            return $res;
+        }
+        
+        /**
+         * System-Optionen bei Update aktualisieren
+         * @return bool
+         */
+        private function removeSystemOptions() {
+            
+            if ($this->config->files_img_thumb_minwidth === false && $this->config->files_img_thumb_minheight === false) {
+                return true;
+            }
+            
+            $res = true;
+            $res = $res && $this->config->remove('files_img_thumb_minwidth');
+            $res = $res && $this->config->remove('files_img_thumb_minheight');
             
             return $res;
         }
@@ -189,6 +229,19 @@
                 }
                 
             }
+            
+            if ($this->checkVersion('3.3.0-a1') && $this->dbcon->getDbtype() != 'pgsql') {
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `name` )', '', false);
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `email` )', '', false);
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `website` )', '', false);
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `private` )', '', false);
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `approved` )', '', false); 
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `spammer` )', '', false);
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `createtime` )', '', false);
+                
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableCronjobs, 'ADD UNIQUE', '( `cjname` )', '', false);
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableCronjobs, 'ADD INDEX', '( `lastexec` )', '', false);
+            }
 
             return $res;
         }
@@ -198,22 +251,16 @@
          * @return bool
          */
         private function createTables() {
+
             $res = true;
             
+            if ($this->checkVersion('3.3.0-a4')) {
+                $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'15revisions.yml');
+                $this->convertRevisions();
+            }
+            
             if ($this->checkVersion('3.2.0-dev')) {
-                
-                $path = (method_exists($this->dbcon, 'getDbtype')
-                      ? \fpcm\classes\baseconfig::$dbStructPath.$this->dbcon->getDbtype().'/14texts.sql'
-                      : \fpcm\classes\baseconfig::$dataDir.'dbstruct/mysql/14texts.sql');                
-                
-                if (method_exists($this->dbcon, 'execSqlFile')) {
-                    $res  = $res && $this->dbcon->execSqlFile($path);
-                } else {
-                    $sql = file_get_contents($path);
-                    $sql = str_replace('{{dbpref}}', $this->dbcon->getDbprefix(), $sql);
-                    $res = $res && $this->dbcon->exec($sql);
-                }
-
+                $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'14texts.yml');
             }
             
             return $res;
@@ -225,6 +272,18 @@
          */
         private function checkFilesystem() {
 
+            if (file_exists(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php')) {
+                unlink(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php');
+            }
+
+            if ($this->checkVersion('3.2.0', '>=')) {
+                return true;
+            }
+
+            if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
+                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
+            }
+            
             if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
                 \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
             }
@@ -234,13 +293,48 @@
             }
             
             $libPath = \fpcm\classes\loader::libGetFilePath('jquery', 'jquery-2.1.4.min.js');
-            if (file_exists($libPath)) {
+            if ($libPath) {
                 unlink($libPath);
             }
             
             return true;
         }
         
+        /**
+         * Führt Optimierung der Datenbank-Tabellen durch
+         * @since FPCM 3.3
+         * @return boolean
+         */
+        private function optimizeTables() {
+
+            if (!method_exists($this->dbcon, 'optimize')) {
+                return true;
+            }
+
+            $tables   = array();
+            $tables[] = \fpcm\classes\database::tableArticles;
+            $tables[] = \fpcm\classes\database::tableAuthors;
+            $tables[] = \fpcm\classes\database::tableCategories;
+            $tables[] = \fpcm\classes\database::tableComments;
+            $tables[] = \fpcm\classes\database::tableConfig;
+            $tables[] = \fpcm\classes\database::tableCronjobs;
+            $tables[] = \fpcm\classes\database::tableFiles;
+            $tables[] = \fpcm\classes\database::tableIpAdresses;
+            $tables[] = \fpcm\classes\database::tableModules;
+            $tables[] = \fpcm\classes\database::tablePermissions;
+            $tables[] = \fpcm\classes\database::tableRoll;
+            $tables[] = \fpcm\classes\database::tableSessions;
+            $tables[] = \fpcm\classes\database::tableSmileys;
+            $tables[] = \fpcm\classes\database::tableTexts;
+            
+            $tables = $this->events->runEvent('updaterAddOptimizeTables', $tables);
+            foreach ($tables as $table) {
+                $this->dbcon->optimize($table);
+            }
+
+            return true; 
+        }
+
         /**
          * Prüft System-Version auf bestimmten Wert
          * @param string $version
@@ -253,6 +347,44 @@
         }
 
         /**
+         * Revisionen von Dateisystem nach DB-Tabelle konvertieren
+         * @return boolean
+         * @since FPCM 3.3
+         */
+        private function convertRevisions() {
+
+            $revsPath = \fpcm\classes\baseconfig::$revisionDir.'article';
+            $revisionFiles = glob($revsPath.'*/*.php');
+            
+            if (!$revisionFiles || !count($revisionFiles)) {
+                return true;
+            }
+
+            foreach ($revisionFiles as $revisionFile) {
+                
+                $articleId   = (int) substr(basename(dirname($revisionFile)), 7);
+                $revisionIdx = (int) substr(basename($revisionFile), 3, -4);
+                $revision    = new \fpcm\model\files\revision($revisionIdx, $revsPath.$articleId.'/');
+
+                if (!$revision->exists()) {
+                    continue;;
+                }
+
+                $newRevision = new \fpcm\model\articles\revision();
+                $newRevision->setArticleId($articleId);
+                $newRevision->setRevisionIdx($revisionIdx);
+                $newRevision->setContent($revision->getContent());
+                if (!$newRevision->save()) {
+                    trigger_error("Revision conversion failure for revision {$revisionIdx} of article {$articleId}");
+                    continue;
+                }
+            }
+            
+            return true;
+
+        }
+
+                /**
          * nicht genutzt
          * @return void
          */

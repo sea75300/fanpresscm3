@@ -120,6 +120,7 @@
         }
 
         /**
+         * Arary mit Informationen u. a. für template-Plugin von TinyMCE
          * @see \fpcm\model\abstracts\articleEditor::getTemplateDrafts()
          * @return array
          * @since FPCM 3.3

@@ -92,6 +92,16 @@
         }
 
         /**
+         * Erzeugt Query für Optimierungsvorgang auf Datenbank-Tabellen
+         * @param string $table
+         * @return string
+         * @since FPCM 3.3.0
+         */
+        public function optimize($table) {
+            return "OPTIMIZE $table";
+        }
+
+        /**
          * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
          * @return array
          */
@@ -103,8 +113,10 @@
                 'varchar'   => 'varchar',
                 'text'      => 'text',
                 'mtext'     => 'mediumtext',
+                'ltext'     => 'longtext',
                 'bool'      => 'tinyint',
                 'bin'       => 'blob',
+                'lbin'      => 'longblob',
                 'float'     => 'float',
                 'double'    => 'decimal',
                 'char'      => 'char'

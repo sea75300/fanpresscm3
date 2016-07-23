@@ -3,7 +3,7 @@
      * FanPress CM Article Model
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -124,7 +124,7 @@
          * Auszuschließende Elemente beim in save/update
          * @var array
          */
-        protected $dbExcludes = array('defaultPermissions', 'forceDelete');
+        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission');
         
         /**
          * Action-String für edit-Action
@@ -138,6 +138,13 @@
          * @since FPCM 3.2.0
          */
         protected $wordbanList;
+
+        /**
+         * Status ob Artikel bearbeitet werden kann
+         * @var bool
+         * @since FPCM 3.3
+         */
+        protected $editPermission = true;
 
         /**
          * Konstruktor
@@ -282,7 +289,16 @@
         public function getImagepath() {
             return $this->imagepath;
         }
-                
+
+        /**
+         * Liefert Status, ob Artikel bearbeitet werden kann zurück
+         * @return bool
+         * @since FPCM 3.3
+         */
+        public function getEditPermission() {
+            return $this->editPermission;
+        }
+                        
         /**
          * Ttiel setzten
          * @param string $title
@@ -403,6 +419,15 @@
         public function setImagepath($imagepath) {
             $this->imagepath = $imagepath;
         }
+
+        /**
+         * Setzt Status, ob Artikel bearbeitet werden kann
+         * @param bool $editPermission
+         * @since FPCM 3.3
+         */
+        public function setEditPermission($editPermission) {
+            $this->editPermission = $editPermission;
+        }
         
         /**
          * Artikel vollständig löschen erzwingen
@@ -418,14 +443,6 @@
          */
         public function setMd5path($str) {
             $this->md5path = md5($str);
-        }
-
-        /**
-         * Liefert Pfad des Artikel-Revisionsverzeichnisses zurück
-         * @return string
-         */
-        public function getRevisionsFolder() {
-            return \fpcm\classes\baseconfig::$revisionDir."article{$this->id}/";
         }
         
         /**
@@ -567,19 +584,19 @@
          */
         public function createRevision($timer = 0) {
 
-            if (!is_dir($this->getRevisionsFolder())) {
-                mkdir($this->getRevisionsFolder());
-            }
-            
             $content = $this->getPreparedSaveParams();            
             $content = $this->events->runEvent('createRevision', $content);
-            
-            if (!$timer) $timer = $this->changetime;
-            
-            $revision = new \fpcm\model\files\revision($timer, $this->getRevisionsFolder(), json_encode($content));
-            
+
+            if (!$timer) {
+                $timer = $this->changetime;
+            }
+
+            $revision = new revision();
+            $revision->setArticleId($this->id);
+            $revision->setRevisionIdx($timer);
+            $revision->setContent($content);
             if (!$revision->save()) {
-                trigger_error('Unable to create article revision');
+                trigger_error('Unable to create revision for article '.$this->id);
                 return false;
             }
             
@@ -592,28 +609,40 @@
          * @return array
          */
         public function getRevisions($full = false) {
-            
-            $revisionFiles = glob($this->getRevisionsFolder().'*.php');
-            
-            if (!$revisionFiles || !count($revisionFiles)) return array();
-            
-            $revisionFiles = $this->events->runEvent('getRevisionsBefore', $revisionFiles);            
+
+            $result = $this->dbcon->select(
+                \fpcm\classes\database::tableRevisions,
+                'article_id, revision_idx, content',
+                'article_id = ? '.$this->dbcon->orderBy(array('revision_idx DESC')),
+                array($this->id)
+            );
+
+            $revisionSets = $this->dbcon->fetch($result, true);
+            if (!is_array($revisionSets) || !count($revisionSets)) {
+                return array();
+            }
+            $revisionFiles = $this->events->runEvent('getRevisionsBefore', $revisionSets);            
             
             $revisions = array();
-            foreach ($revisionFiles as $revisionFile) {
-                $revData = json_decode(file_get_contents($revisionFile), true);
-                $revTime = (int) substr(basename($revisionFile), 3, -4);
+            foreach ($revisionSets as $revisionSet) {
                 
-                if (!is_array($revData) || !$revTime) continue;
+                $revisionObj = new revision($this->id);
+                $revisionObj->createFromDbObject($revisionSet);
+                
+                $revData = $revisionObj->getContent();
+                $revTime = $revisionObj->getRevisionIdx();
+                
+                if (!is_array($revData) || !$revTime) {
+                    continue;
+                }
+
                 $revisions[$revTime] = $full ? $revData : $revData['title'];
             }
             
             $revisions = $this->events->runEvent('getRevisionsAfter', array('full' => $full, 'revisions' => $revisions))['revisions'];
-            
-            krsort($revisions);
-            
+
             return $revisions;
-            
+
         }
 
         /**
@@ -622,13 +651,13 @@
          * @return boolean
          */
         public function getRevision($revisionTime) {
-            
-            $revision = new \fpcm\model\files\revision($revisionTime, $this->getRevisionsFolder());
-            
-            if (!$revision->exists()) return false;
+
+            $revision = new revision($this->id, $revisionTime);
+            if (!$revision->exists()) {
+                return false;
+            }
             
             $revision = $this->events->runEvent('getRevision', $revision);
-            
             foreach ($revision->getContent() as $key => $value) {                
                 $this->$key = $value;                
             }            
@@ -655,15 +684,17 @@
         public function deleteRevisions(array $revisionList) {
 
             $revisionList = array_intersect(array_keys($this->getRevisions()), array_map('intval', $revisionList));
-            
+
             $resFailed = 0;
-            
             foreach ($revisionList as $revisionTime) {
-                $revision = new \fpcm\model\files\revision($revisionTime, $this->getRevisionsFolder());
-                if (!$revision->delete()) $resFailed++;
+                $revision = new revision($this->id, $revisionTime);
+                if (!$revision->delete()) {
+                    $resFailed++;
+                }
             }
             
             return $resFailed ? false : true;
+
         }
         
         /**

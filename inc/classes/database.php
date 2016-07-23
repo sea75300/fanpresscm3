@@ -589,7 +589,8 @@
         
         /**
          * Erzeugt Query für Optimierungsvorgang auf Datenbank-Tabellen
-         * @return string
+         * @param string $table Name der Tabelle
+         * @return bool
          * @since FPCM 3.3.0
          */
         public function optimize($table) {

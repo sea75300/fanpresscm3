@@ -3,7 +3,7 @@
      * Base config class
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -156,6 +156,13 @@
         public static $dbdumpDir;
         
         /**
+         * Verzeichnis für Template-Vorlagen für Editor
+         * @var string
+         * @since FPCM 3.3
+         */
+        public static $articleTemplatesDir;
+        
+        /**
          * root-URL
          * @var string
          */
@@ -295,6 +302,7 @@
             self::$uploadDir           = self::$dataDir.'uploads/';
             self::$dbdumpDir           = self::$dataDir.'dbdump/';
             self::$dbStructPath        = self::$dataDir.'dbstruct/';
+            self::$articleTemplatesDir = self::$dataDir.'drafts/';
             
             self::$coreDir             = self::$baseDir.'/core/';
             self::$viewsDir            = self::$coreDir.'views/';
@@ -369,6 +377,22 @@
         }
         
         /**
+         * PHP Memory Limit
+         * @param bool $inByte Ausgabe in Byte oder Mbyte
+         * @return int
+         * @since FPCM 3.3
+         */
+        public static function memoryLimit($inByte = false) {
+            $limit = (int) substr(ini_get('memory_limit'), 0, -1);
+            
+            if (!$inByte) {
+                return $limit;
+            }
+            
+            return $limit * 1024 * 1024;
+        }
+
+        /**
          * Controller abrufen
          * @return array
          */
@@ -382,7 +406,7 @@
                     return $controllerList;
                 }                
             }
-            
+
             include_once loader::libGetFilePath('spyc', 'Spyc.php');
 
             if (!file_exists(self::$controllerFiles['actions']) || !file_exists(self::$controllerFiles['ajax'])) {
@@ -446,11 +470,16 @@
          * @return bool
          */
         public static function enableAsyncCronjobs($status) {
+
             if (self::asyncCronjobsEnabled() && !$status) {
                 logs::syslogWrite('Asynchronous cron job execution disabled.');
                 return file_put_contents(self::$cronAsyncFile, '');
             }
 
+            if (!file_exists(self::$cronAsyncFile)) {
+                return false;
+            }
+            
             logs::syslogWrite('Asynchronous cron job execution enabled.');
             return unlink(self::$cronAsyncFile);            
         }

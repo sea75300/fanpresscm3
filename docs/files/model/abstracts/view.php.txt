@@ -3,7 +3,7 @@
      * Allgemeines View Objekt
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\abstracts;
@@ -115,15 +115,20 @@
             
             if (is_object($this->language)) {
                 $this->jsvars = array(
-                    'fpcmQuickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
-                    'fpcmOpenProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
-                    'fpcmLogout'           => $this->language->translate('LOGOUT_BTN'),
-                    'fpcmConfirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
-                    'fpcmAjaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
-                    'fpcmClose'            => $this->language->translate('GLOBAL_CLOSE'),
-                    'fpcmYes'              => $this->language->translate('GLOBAL_YES'),
-                    'fpcmNo'               => $this->language->translate('GLOBAL_NO'),
-                    'fpcmNewWindow'        => $this->language->translate('GLOBAL_OPENNEWWIN')
+                    'fpcmLang' => array(
+                        'quickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
+                        'openProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
+                        'logout'           => $this->language->translate('LOGOUT_BTN'),
+                        'confirmHL'        => $this->language->translate('GLOBAL_CONFIRM'),
+                        'confirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
+                        'close'            => $this->language->translate('GLOBAL_CLOSE'),
+                        'yes'              => $this->language->translate('GLOBAL_YES'),
+                        'no'               => $this->language->translate('GLOBAL_NO'),
+                        'newWindow'        => $this->language->translate('GLOBAL_OPENNEWWIN'),
+                        'extended'         => $this->language->translate('GLOBAL_EXTENDED'),
+                        'ajaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
+                        'ajaxResponseErrorMessage' => $this->language->translate('AJAX_REPONSE_ERROR'),
+                    )
                 );
             }
             
@@ -273,6 +278,15 @@
          */
         public function addJsVars(array $jsvars) {
             $this->jsvars = array_merge($this->jsvars, $jsvars);
+        }
+
+        /**
+         * Force to load jQuery in Pub-Controllers before other JS-Files if not already done
+         * @since FPCM 3.2.0
+         */
+        public function prependjQuery() {
+            if ($this->config->system_loader_jquery) return false;
+            array_unshift($this->viewJsFiles, \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-3.1.0.min.js'));
         }
 
         /**

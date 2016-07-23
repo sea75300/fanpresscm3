@@ -92,6 +92,16 @@
         }
 
         /**
+         * Erzeugt Query für Optimierungsvorgang auf Datenbank-Tabellen
+         * @param string $table
+         * @return string
+         * @since FPCM 3.3.0
+         */
+        public function optimize($table) {
+            return "VACUUM $table";
+        }
+
+        /**
          * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
          * @return array
          */
@@ -103,8 +113,10 @@
                 'varchar'   => 'character varying',
                 'text'      => 'text',
                 'mtext'     => 'text',
+                'ltext'     => 'text',
                 'bool'      => 'smallint',
-                'bin'       => 'text',
+                'bin'       => 'bytea',
+                'lbin'      => 'bytea',
                 'float'     => 'real',
                 'double'    => 'decimal',
                 'char'      => 'char'

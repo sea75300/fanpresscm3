@@ -86,9 +86,26 @@
         
         /**
          * Wordsperre-Tabelle
-         * @since FPCM 3.2.0
+         * @since FPCM 3.2
          */
         const tableTexts  = 'texts';
+        
+        /**
+         * Tabelle für revisionen
+         * @since FPCM 3.3
+         */
+        const tableRevisions  = 'revisions';
+
+        /**
+         * Liste mit unterstützten Datenbanksystemen
+         * @since FPCM 3.3
+         * mysql => MySQL 5.5 + oder MariaDB 10 +
+         * pgsql => Postgres 9 +
+         */
+        public static $supportedDBMS = array(
+            'mysql' => 'MySQL/ MariaDB',
+            'pgsql' => 'Postgres'
+        );
 
         /**
          * Datenbank-Verbindung
@@ -407,14 +424,19 @@
          */
         public function execYaTdl($path) {
 
+            if (substr($path, -4) !== '.yml') {
+                $path .= '.yml';
+            }
+            
             $yatdl = new \fpcm\model\system\yatdl($path);
             if ($yatdl->parse() !== true) {
+                trigger_error('An YaTDL parser error occurred!');
                 return false;
             }
             
             $sql = str_replace('{{dbpref}}', $this->getDbprefix(), $yatdl->getSqlString());
             $this->lastQueryString = $sql;
-            
+
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
                 logs::sqllogWrite($sql);
             }
@@ -563,6 +585,16 @@
          */
         public function dbLike() {
             return $this->driver->getDbLike();
+        }
+        
+        /**
+         * Erzeugt Query für Optimierungsvorgang auf Datenbank-Tabellen
+         * @param string $table Name der Tabelle
+         * @return bool
+         * @since FPCM 3.3.0
+         */
+        public function optimize($table) {
+            return $this->driver->optimize($this->dbprefix.'_'.$table);
         }
 
         /**

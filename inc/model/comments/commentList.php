@@ -16,14 +16,14 @@
     class commentList extends \fpcm\model\abstracts\tablelist {
 
         /**
-         *
+         * articlelist Objekt
          * @var \fpcm\model\articles\articlelist
          * @since FPCM 3.3
          */
         protected $articleList;
 
         /**
-         *
+         * Liste mit IDs von Artikeln, die vom aktuelle Benutzer verschrieben wurden
          * @var array
          * @since FPCM 3.3
          */

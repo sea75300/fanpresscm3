@@ -84,7 +84,7 @@
 
         /**
          * Artikel ID setzen
-         * @return int
+         * @param int $articleId
          */
         public function setArticleId($articleId) {
             $this->article_id = (int) $articleId;
@@ -92,7 +92,7 @@
 
         /**
          * Revisionszeit-Index setzen
-         * @return int
+         * @param int $revisionIdx
          */
         public function setRevisionIdx($revisionIdx) {
             $this->revision_idx = (int) $revisionIdx;

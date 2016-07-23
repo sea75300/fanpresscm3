@@ -43,12 +43,7 @@
         private function renderContent() {
 
             $userlist = new \fpcm\model\users\userList();
-            
-            if (!\fpcm\classes\baseconfig::canConnect()) {
-                $this->content = $this->language->translate('GLOBAL_NOTFOUND2');
-                return false;
-            }
-            
+             
             $content    = array();
             $content[]  = '<table class="fpcm-ui-table fpcm-ui-users fpcm-ui-large-td">';
             

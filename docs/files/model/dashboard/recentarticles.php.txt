@@ -2,7 +2,7 @@
     /**
      * Recent articles Dashboard Container
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -106,7 +106,7 @@
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-articlelist-open">';
                 $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-openlink-btn" href="'.$article->getArticleLink().'" target="_blank">'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'</a>';
-                if ($this->isAdmin || $allPermissions || ($ownPermissions && !$this->isAdmin && !$allPermissions && $this->currentUser == $article->getCreateuser())) {
+                if ($article->getEditPermission()) {
                     $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-loader" href="'.$article->getEditLink().'">'.$this->language->translate('GLOBAL_EDIT').'</a>';
                 } else {
                     $content[] = '  <span class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly">'.$this->language->translate('GLOBAL_EDIT').'</span>';

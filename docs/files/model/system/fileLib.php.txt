@@ -3,7 +3,7 @@
      * View file lib
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\system;
@@ -32,11 +32,12 @@
          * @var array
          */
         private $jslib = array(
-            'inc/lib/jquery/jquery-2.2.0.min.js',
+            'inc/lib/jquery/jquery-3.1.0.min.js',
             'inc/lib/jquery-ui/jquery-ui.min.js',
             'inc/lib/fancybox/jquery.fancybox.pack.js',
             'inc/lib/spinjs/spin.min.js',
             'inc/lib/spinjs/jquery.spin.js',
+            'core/js/ui.js',
             'core/js/ajax.js',
             'core/js/functions.js',
             'core/js/system.js'
@@ -131,7 +132,7 @@
             
             return array_merge(
                 array(
-                    \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-2.2.0.min.js'),
+                    \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-3.1.0.min.js'),
                     \fpcm\classes\baseconfig::$rootPath.'js/fpcm.js'
                 ),
                 $modulesFiles

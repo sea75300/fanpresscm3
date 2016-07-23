@@ -3,7 +3,7 @@
      * ACP Menu Objekt
      * 
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\theme;
@@ -124,7 +124,7 @@
                 'filemanager'   => array(
                     array(
                         'url'               => 'files/list&mode=1',
-                        'permission'        => array('article' => 'add', 'article' => 'edit'),
+                        'permission'        => array('uploads' => 'visible'),
                         'description'       => $this->language->translate('HL_FILES_MNG'),
                         'icon'              => 'fa fa-folder-open',
                         'class'             => '',
@@ -238,7 +238,7 @@
                 ),
                 array(
                     'url'               => 'ips/list',
-                    'permission'        => array('system' => 'options'),
+                    'permission'        => array('system' => 'ipaddr'),
                     'description'       => $this->language->translate('HL_OPTIONS_IPBLOCKING'),
                     'class'             => '',
                     'id'                => '',
@@ -246,7 +246,7 @@
                 ),
                 array(
                     'url'               => 'wordban/list',
-                    'permission'        => array('system' => 'options'),
+                    'permission'        => array('system' => 'wordban'),
                     'description'       => $this->language->translate('HL_OPTIONS_WORDBAN'),
                     'class'             => '',
                     'id'                => '',
@@ -277,6 +277,14 @@
                     'icon'              => 'fa fa-smile-o fa-fw'
                 ),
                 array(
+                    'url'               => 'system/crons',
+                    'permission'        => array('system' => 'crons'),
+                    'description'       => $this->language->translate('HL_CRONJOBS'),
+                    'class'             => '',
+                    'id'                => '',
+                    'icon'              => 'fa fa-history fa-fw'
+                ),
+                array(
                     'url'               => 'system/logs',
                     'permission'        => array('system' => 'logs'),
                     'description'       => $this->language->translate('HL_LOGS'),
@@ -289,7 +297,7 @@
             if (\fpcm\classes\baseconfig::$fpcmDatabase->getDbtype() == 'mysql') {
                 $data[] = array(
                     'url'               => 'system/backups',
-                    'permission'        => array('system' => 'options', 'system' => 'logs'),
+                    'permission'        => array('system' => 'backups'),
                     'description'       => $this->language->translate('HL_BACKUPS'),
                     'class'             => '',
                     'id'                => '',

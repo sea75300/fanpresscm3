@@ -7,7 +7,7 @@
      * Rückgabe: Objekt welche von der Klasse fpcm\model\abstracts\articleEditor abgeleitet wurde
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @since FPCM 3.1.0
      */
@@ -21,7 +21,7 @@
      * Rückgabe: Objekt welche von der Klasse fpcm\model\abstracts\articleEditor abgeleitet wurde
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @package fpcm.model.events
      * @since FPCM 3.1.0

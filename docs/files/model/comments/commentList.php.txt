@@ -2,7 +2,7 @@
     /**
      * FanPress CM Comment List Model
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\comments;
@@ -14,13 +14,38 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class commentList extends \fpcm\model\abstracts\tablelist {
+
+        /**
+         * articlelist Objekt
+         * @var \fpcm\model\articles\articlelist
+         * @since FPCM 3.3
+         */
+        protected $articleList;
+
+        /**
+         * Liste mit IDs von Artikeln, die vom aktuelle Benutzer verschrieben wurden
+         * @var array
+         * @since FPCM 3.3
+         */
+        protected $ownArticleIds = false;
+
+        /**
+         * Permission Object
+         * @var \fpcm\model\system\permissions
+         * @since FPCM 3.3
+         */
+        protected $permissions = false;
         
         /**
          * Konstruktor
          */
         public function __construct() {
             $this->table = \fpcm\classes\database::tableComments;
-            
+
+            if (is_object(\fpcm\classes\baseconfig::$fpcmSession) && \fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
+            }
+
             parent::__construct();
         }
         
@@ -75,6 +100,95 @@
             }
             
             $list = $this->dbcon->fetch($this->dbcon->select($this->table, '*', implode(' AND ', $where).$this->dbcon->orderBy(array('createtime ASC')), $params), true);            
+            return $this->createCommentResult($list);
+        }
+        
+        /**
+         * Liefert ein array der Kommentare, welcher mit der Bedingung übereinstimmen
+         * @param array $conditions
+         * * title => via Title-Inhalt
+         * * content => via content-Inhalt
+         * * user => via Benutzer
+         * * category => via Category
+         * * datefrom => seit Datum X.Y.Z
+         * * dateto => bis Datum X.Y.Z
+         * * postponed => nur geplante Artikel
+         * * archived => nur archivierte Artikel
+         * * pinned => nur gepinnte Artikel
+         * * comment => commentare sind aktiv
+         * * deleted => nur gelöschte Artikel
+         * * draft => nur Entwürfe
+         * * orderby => Array von Sortierungen in SQL-Syntax
+         * * limit => Abfrage einschränken
+         * @return array
+         */
+        public function getCommentsBySearchCondition(array $conditions) {
+            
+            $where = array('1=1');
+            $valueParams = array();
+
+            if (isset($conditions['text']) && $conditions['searchtype'] == 0) {
+                $where[] = "name ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+
+            if (isset($conditions['text']) && $conditions['searchtype'] == 0) {
+                $where[] = "email ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+
+            if (isset($conditions['text']) && $conditions['searchtype'] == 0) {
+                $where[] = "website ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+            
+            if (isset($conditions['text'])) {
+                $where[] = "text ".$this->dbcon->dbLike()." ?";
+                $valueParams[] = "%{$conditions['text']}%";
+            }
+            
+            if ($conditions['searchtype'] == 0) {
+                $textWhere = array();
+                $textWhere[] = '('.implode(' OR ', $where).')';
+                $where = $textWhere;
+            }
+            
+            if (isset($conditions['datefrom'])) {
+                $where[] = "createtime >= ?";
+                $valueParams[] = $conditions['datefrom'];
+            }
+            
+            if (isset($conditions['dateto'])) {
+                $where[] = "createtime <= ?";
+                $valueParams[] = $conditions['dateto'];
+            }
+            
+            if (isset($conditions['spam']) && $conditions['spam'] > -1) {
+                $where[] = "spammer = ?";
+                $valueParams[] = $conditions['spam'];
+            }
+            
+            if (isset($conditions['private']) && $conditions['private'] > -1) {
+                $where[] = "private = ?";
+                $valueParams[] = $conditions['private'];
+            }
+            
+            if (isset($conditions['approved']) && $conditions['approved'] > -1) {
+                $where[] = "approved = ?";
+                $valueParams[] = $conditions['approved'];
+            }
+            
+            $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
+            $where = implode(" {$combination} ", $where);
+
+            $list = $this->dbcon->fetch(
+                    $this->dbcon->select(
+                        $this->table, '*', $where.$this->dbcon->orderBy(array('createtime ASC')),
+                        $valueParams
+                    ),
+                    true
+            );
+
             return $this->createCommentResult($list);
         }
         
@@ -235,6 +349,41 @@
         }
 
         /**
+         * Führt Prüfung durch, ob Artikel bearbeitet werden kann
+         * @param \fpcm\model\comments\comment $comment
+         * @return boolean
+         */
+        public function checkEditPermissions(comment &$comment) {
+
+            if ($this->permissions === false) {
+                return true;
+            }
+
+            if (!is_array($this->ownArticleIds)) {                
+                $this->articleList   = new \fpcm\model\articles\articlelist();
+                $this->ownArticleIds = $this->articleList->getArticleIDsByUser(\fpcm\classes\baseconfig::$fpcmSession->getUserId());
+            }
+
+            $isAdmin     = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin();
+            $permEditAll = $this->permissions->check(array('comment' => 'editall'));            
+            $permEditOwn = $this->permissions->check(array('comment' => 'edit'));
+            
+            if ($isAdmin || $permEditAll) {
+                $comment->setEditPermission(true);
+                return true;
+            }
+            
+            if (!$isAdmin && !$permEditAll && $permEditOwn && in_array($comment->getArticleid(), $this->ownArticleIds)) {
+                $comment->setEditPermission(true);
+                return true;                
+            }
+
+            $comment->setEditPermission(false);
+            return true;
+
+        }
+
+        /**
          * Erzeugt Listen-Result-Array
          * @param array $list
          * @return array
@@ -244,9 +393,11 @@
             
             foreach ($list as $listItem) {
                 $object = new comment();
-                if ($object->createFromDbObject($listItem)) {
-                    $res[$object->getId()] = $object;
+                if (!$object->createFromDbObject($listItem)) {
+                    continue;
                 }
+                $this->checkEditPermissions($object);
+                $res[$object->getId()] = $object;
             }
             
             return $res;            

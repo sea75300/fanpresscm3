@@ -378,6 +378,7 @@
         
         /**
          * PHP Memory Limit
+         * @param bool $inByte Ausgabe in Byte oder Mbyte
          * @return int
          * @since FPCM 3.3
          */

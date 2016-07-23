@@ -2,7 +2,7 @@
     /**
      * Update check Dashboard Container
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -85,7 +85,12 @@
             if ($this->systemCheckresult === false || $this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FORCE_UPDATE) {
                 $iconClass   = 'fa-cloud-download';
                 $statusClass = 'fpcm-dashboard-updates-outdated';
-                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', array('{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES));                
+                
+                $replace = array(
+                    '{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES,
+                    '{{version}}'     => $this->systemUpdates->getRemoteData('version')
+                );
+                $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', $replace);
             } elseif ($this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {
                 $iconClass   = 'fa-exclamation-triangle';
                 $statusClass = 'fpcm-dashboard-updates-checkerror';

@@ -40,6 +40,14 @@
         public function getDbLike();
 
         /**
+         * Erzeugt Query für Optimierungsvorgang auf Datenbank-Tabellen
+         * @param string $table
+         * @return string
+         * @since FPCM 3.3.0
+         */
+        public function optimize($table);
+
+        /**
          * Erzeugt LIMIT-SQL-String
          * @param int $limit
          * @param int $offset

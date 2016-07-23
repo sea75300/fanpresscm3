@@ -3,7 +3,7 @@
      * FanPress CM file model
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\abstracts;
@@ -167,7 +167,7 @@
          * @return boolean
          */
         public function __call($name, $arguments) {
-            print "Function not found! {$name}";
+            print "Function '{$name}' not found in ".get_class($this).'<br>';
             return false;
         }
 
@@ -178,7 +178,7 @@
          * @return boolean
          */        
         public static function __callStatic($name, $arguments) {
-            print "Function not found! {$name}";
+            print "Static function '{$name}' not found in ".get_class($this).'<br>';
             return false;
         }
         
@@ -309,6 +309,15 @@
         public function escapeFileName(&$filename) {
             $filename = preg_replace('/[^A-Za-z0-9_.\-]/', '', htmlentities($filename, ENT_COMPAT | ENT_HTML401));
         }
-        
+
+        /**
+         * Verschiebt via PHP Upload hochgeladene Datei von tmp-Pfad nach Zielpfad
+         * @param string $uploadedPath
+         * @return bool
+         * @since FPCM 3.3
+         */
+        public function moveUploadedFile($uploadedPath) {
+            return move_uploaded_file($uploadedPath, $this->fullpath);
+        }
     }
 

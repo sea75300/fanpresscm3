@@ -2,7 +2,7 @@
     /**
      * PHP file uploader model
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\files;
@@ -59,13 +59,13 @@
                 }
                 
                 $fileName = \fpcm\classes\baseconfig::$uploadDir.$fileNames[$key];
-                if (!move_uploaded_file($value, $fileName)) {
+                $image = new image($fileNames[$key]);
+                if (!$image->moveUploadedFile($value)) {
                     trigger_error('Unable to move uploaded to to uploader folder! '.$fileNames[$key]);
                     $res['error'][$key] = $fileNames[$key];
                     continue;
                 }
 
-                $image = new image($fileNames[$key]);
                 $image->createThumbnail();
                 $image->setFiletime(time());
                 $image->setUserid($userId);
@@ -74,6 +74,9 @@
                     $res['error'][$key] = $fileNames[$key];
                     continue;
                 }
+
+                $fmThumbs = new \fpcm\model\crons\fmThumbs('fmThumbs');
+                $fmThumbs->run();
                 
                 $res['success'][$key] = $fileNames[$key];
             }
@@ -88,6 +91,7 @@
          * @return boolean
          */
         public function processModuleUpload() {
+
             $tempNames = $this->uploader['tmp_name'];
             $fileNames = $this->uploader['name'];
             $fileTypes = $this->uploader['type'];
@@ -136,6 +140,42 @@
                     
                     if ($res !== true) return $res;
                 }
+            }
+            
+            return true;
+        }
+        
+        /**
+         * Führt Upload von HTML-Template für Artikle-Editor via HTML-Form + PHP durch
+         * @since FPCM 3.3
+         * @return boolean
+         */
+        public function processArticleTemplateUpload() {
+
+            $tempNames = $this->uploader['tmp_name'];
+            $fileNames = $this->uploader['name'];
+            $fileTypes = $this->uploader['type'];
+
+            foreach ($tempNames as $key => $value) {               
+
+                if (!is_uploaded_file($value) || !isset($fileNames[$key]) || !isset($fileTypes[$key]) || $this->uploader['name'] == 'index.html' || $this->uploader['name'] == 'index.htm') {
+                    return false;
+                }
+                
+                $ext = pathinfo($fileNames[$key], PATHINFO_EXTENSION);
+                $ext = ($ext) ? strtolower($ext) : '';
+                
+                if ((isset($fileTypes[$key]) && !in_array($fileTypes[$key], templatefile::$allowedTypes)) || !in_array($ext, templatefile::$allowedExts)) {
+                    trigger_error('Unsupported filetype in '.$fileNames[$key]);
+                    return false;
+                }
+
+                $file = new templatefile($fileNames[$key]);
+                if (!$file->moveUploadedFile($value)) {
+                    trigger_error('Unable to move uploaded to to uploader folder! '.$fileNames[$key]);
+                    return false;
+                }
+
             }
             
             return true;

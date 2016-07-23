@@ -92,7 +92,7 @@
         }
 
         /**
-         * @see sqlDriver::optimize()
+         * Erzeugt Query für Optimierungsvorgang auf Datenbank-Tabellen
          * @param string $table
          * @return string
          * @since FPCM 3.3.0

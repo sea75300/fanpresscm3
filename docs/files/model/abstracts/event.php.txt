@@ -3,7 +3,7 @@
      * FanPress CM event model
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\abstracts;
@@ -103,7 +103,7 @@
          * @return boolean
          */
         public function __call($name, $arguments) {
-            print "Function not found! {$name}";
+            print "Function '{$name}' not found in ".get_class($this).'<br>';
             return false;
         }
 
@@ -114,7 +114,7 @@
          * @return boolean
          */        
         public static function __callStatic($name, $arguments) {
-            print "Function not found! {$name}";
+            print "Static function '{$name}' not found in ".get_class($this).'<br>';
             return false;
         }
         
@@ -149,6 +149,17 @@
             
             trigger_error('Event object of class '.  get_class($object).' must be an instance of \\fpcm\\model\\interfaces\\event!');
             return false;
+        }
+        
+        /**
+         * Liefert Array mit Event-Klassen in installierten Modulen zurück
+         * @return array
+         * @since FPCM 3.3
+         */
+        protected function getEventClasses() {
+
+            return glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/'.str_replace('fpcm\\model\\events\\', '', get_class($this)).'.php');
+
         }
         
     }

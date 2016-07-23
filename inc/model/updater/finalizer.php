@@ -346,6 +346,11 @@
             return version_compare($this->config->system_version, $version, $option);
         }
 
+        /**
+         * Revisionen von Dateisystem nach DB-Tabelle konvertieren
+         * @return boolean
+         * @since FPCM 3.3
+         */
         private function convertRevisions() {
 
             $revsPath = \fpcm\classes\baseconfig::$revisionDir.'article';

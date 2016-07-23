@@ -2,7 +2,7 @@
     /**
      * Recent articles Dashboard Container
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -107,13 +107,41 @@
                     $this->language->translate('EDITOR_PRE')                     => 'pre',
                     $this->language->translate('EDITOR_CODE')                    => 'code',
                 ),
-                'editorDefaultFontsize' => $this->config->system_editor_fontsize
+                'editorDefaultFontsize' => $this->config->system_editor_fontsize,
+                'editorTemplatesList'   => $this->getTemplateDrafts()
             );
 
             $vars = $this->events->runEvent('editorInitHtml', $vars);
             array_shift($vars['extraButtons']);
             
             return $vars;
+        }
+
+        /**
+         * Arary mit Informationen u. a. für template-Plugin von TinyMCE
+         * @see \fpcm\model\abstracts\articleEditor::getTemplateDrafts()
+         * @return array
+         * @since FPCM 3.3
+         */
+        public function getTemplateDrafts() {
+
+            $templatefilelist = new \fpcm\model\files\templatefilelist();
+
+            $ret = array();
+            foreach ($templatefilelist->getFolderList() as $file) {
+                
+                $basename = basename($file);
+                
+                if ($basename === 'index.html') {
+                    continue;
+                }
+                    
+                $ret[$basename] = $basename;
+                
+            }
+
+            return $ret;
+
         }
         
     }

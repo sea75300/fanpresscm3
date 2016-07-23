@@ -3,7 +3,7 @@
      * FanPress CM article editor plugin base model
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2015, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @since FPCM 3.1.0
      */
@@ -72,6 +72,13 @@
          * @return array
          */
         abstract public function getViewVars();
+
+        /**
+         * Arary mit Informationen u. a. für template-Plugin von TinyMCE
+         * @return array
+         * @since FPCM 3.3
+         */
+        abstract public function getTemplateDrafts();
         
         /**
          * Editor-Styles initialisieren
