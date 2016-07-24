@@ -156,6 +156,9 @@ var fpcmJs = function () {
     this.assignButtons = function () {
 
         fpcm.ui.controlgroup('.fpcm-ui-buttonset');
+        fpcm.ui.controlgroup('.fpcm-ui-commentaction-buttons');
+        fpcm.ui.controlgroup('.fpcm-ui-articlelist-buttons');
+
         fpcm.ui.button('.fpcm-ui-button');
         fpcm.ui.actionButtonsGenreal();
         fpcm.ui.assignBlankIconButton();

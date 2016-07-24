@@ -14,6 +14,7 @@ fpcm.filemanager = {
         fpcm.ui.assignCheckboxes();
         this.initInsertButtons();
         this.initSelectionCheckboxes();
+        fpcm.ui.controlgroup('.fpcm-filemanager-buttons');
     },
     
     initActionButtons : function() {
