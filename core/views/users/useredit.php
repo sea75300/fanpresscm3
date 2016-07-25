@@ -16,12 +16,8 @@
             </div>            
         </div>
         
-        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-            <table>
-                <tr>
-                    <td><?php \fpcm\model\view\helper::saveButton('userSave') ?></td>
-                </tr>
-            </table>
+        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+            <?php \fpcm\model\view\helper::saveButton('userSave'); ?>
         </div>
     </form>
 </div>

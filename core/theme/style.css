@@ -232,7 +232,6 @@ ol.list-large li {
 
 #fpcmopennews {
     width: 30px;
-    height: 28.6667px;
 }
 
 #fpcm-header-fixed-spacer {
@@ -479,10 +478,6 @@ table.fpcm-ui-options div.fpcm-ui-input-wrapper {
 
 .ui-icon-check {
   background-position: -64px -144px !important;
-}
-
-.fpcm-ui-editor-buttons.ui-controlgroup > .ui-controlgroup-item.ui-selectmenu-button {
-    min-height: 17.6666667px;
 }
 
 textarea.fpcm-options-cssclasses {
@@ -962,13 +957,21 @@ table.fpcm-ui-table.fpcm-ui-modules tr.fpcm-ui-modules-updates1 {
     z-index: 500;
 }
 
-.fpcm-buttons.fpcm-ui-articlelist-buttons {
-    padding-bottom: 0.2em;
+.fpcm-ui-editor-buttons .ui-selectmenu-button {
+    height: 17.666666666666666666666667px;
+    line-height: 17.666666666666666666666667px;
 }
 
+.fpcm-buttons.fpcm-ui-list-buttons a.fpcm-ui-button,
+.fpcm-buttons.fpcm-ui-list-buttons .ui-selectmenu-button {
+    height: 18.666666666666666666666667px;
+    line-height: 18.666666666666666666666667px;
+}
+
+#fpcmuireloadpkglist,
 .fpcm-header-td3 .fpcm-ui-button,
 .fpcm-buttons.fpcm-ui-list-buttons button {
-    height: 28.33px;
+    height: 30.666666666666666666666667px;
 }
 
 td.fpcm-td-spacer {

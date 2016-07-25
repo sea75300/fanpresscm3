@@ -26,17 +26,13 @@
 
                 
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <?php if ($resetPasswort) : ?>
-                            <td><?php \fpcm\model\view\helper::submitButton('reset', 'GLOBAL_OK', 'fpcm-loader fpcm-ok-button'); ?></td>
-                            <td><?php \fpcm\model\view\helper::linkButton($FPCM_BASELINK, 'GLOBAL_BACK', '', 'fpcm-loader fpcm-back-button'); ?></td>
-                            <?php else : ?>
-                            <td><?php \fpcm\model\view\helper::submitButton('login', 'LOGIN_BTN', 'fpcm-loader fpcm-login-btn'); ?></td>
-                            <td><?php \fpcm\model\view\helper::linkButton($FPCM_BASELINK.'index.php?module='.$FPCM_CURRENT_MODULE.'&reset', 'LOGIN_NEWPASSWORD', '', 'fpcm-loader fpcm-passreset-btn'); ?></td>
-                            <?php endif; ?>
-                        </tr>
-                    </table>
+                <?php if ($resetPasswort) : ?>
+                    <?php \fpcm\model\view\helper::submitButton('reset', 'GLOBAL_OK', 'fpcm-loader fpcm-ok-button'); ?>
+                    <?php \fpcm\model\view\helper::linkButton($FPCM_BASELINK, 'GLOBAL_BACK', '', 'fpcm-loader fpcm-back-button'); ?>
+                <?php else : ?>
+                    <?php \fpcm\model\view\helper::submitButton('login', 'LOGIN_BTN', 'fpcm-loader fpcm-login-btn'); ?>
+                    <?php \fpcm\model\view\helper::linkButton($FPCM_BASELINK.'index.php?module='.$FPCM_CURRENT_MODULE.'&reset', 'LOGIN_NEWPASSWORD', '', 'fpcm-loader fpcm-passreset-btn'); ?>
+                <?php endif; ?>
                 </div>
                 
                 <?php \fpcm\model\view\helper::pageTokenField(); ?>

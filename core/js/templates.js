@@ -61,10 +61,12 @@ fpcm.templates = {
             
             if (fpcmTemplateId > 5) {
                 jQuery('#showpreview').hide();
+                fpcmJs.assignButtons();
                 return false;
             }
 
             jQuery('#showpreview').show();
+            fpcmJs.assignButtons();
 
             return false;
         });

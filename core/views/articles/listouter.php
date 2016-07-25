@@ -6,10 +6,10 @@
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $listAction.$listActionLimit; ?>">
         <div class="fpcm-tabs-general">
             <ul class="fpcm-tabs-articles-headers">
-                <li><a href="#tabs-article-list"><?php $FPCM_LANG->write($headlineVar); ?></a></li>
-                <li><a href="#tabs-article-drafts" class="tabs-article-hidesearch"><?php $FPCM_LANG->write('ARTICLES_DRAFTS'); ?></a></li>
+                <li><a href="#tabs-article-list" data-tabid="1"><?php $FPCM_LANG->write($headlineVar); ?></a></li>
+                <li><a href="#tabs-article-drafts" data-tabid="2" class="tabs-article-hidesearch"><?php $FPCM_LANG->write('ARTICLES_DRAFTS'); ?></a></li>
                 <?php if ($showTrash && $deletePermissions) : ?>
-                <li><a href="#tabs-article-trash" class="tabs-article-hidesearch"><?php $FPCM_LANG->write('ARTICLES_TRASH'); ?></a></li>
+                <li><a href="#tabs-article-trash" data-tabid="3" class="tabs-article-hidesearch"><?php $FPCM_LANG->write('ARTICLES_TRASH'); ?></a></li>
                 <?php endif; ?>
             </ul>
 
@@ -28,11 +28,12 @@
             <?php endif; ?>
         </div>
         
-        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-articlelist-buttons">
+        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
             <?php if ($permAdd) : ?><?php \fpcm\model\view\helper::linkButton('?module=articles/add', 'HL_ARTICLE_ADD', 'fpcm-articles-listaddnew', 'fpcm-new-btn fpcm-loader'); ?><?php endif; ?></td>
             <?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcm-articles-opensearch', 'fpcm-articles-opensearch'); ?>
             <?php \fpcm\model\view\helper::select('actions[action]', $articleActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?>
             <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?>
+            <?php if ($showTrash && $deletePermissions) : ?><?php \fpcm\model\view\helper::submitButton('clearTrash', 'ARTICLE_LIST_EMPTYTRASH', 'fpcm-delete-btn fpcm-loader fpcm-hidden'); ?><?php endif; ?>
         </div>
         
         <?php \fpcm\model\view\helper::pageTokenField(); ?>

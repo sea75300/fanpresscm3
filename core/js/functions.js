@@ -156,8 +156,9 @@ var fpcmJs = function () {
     this.assignButtons = function () {
 
         fpcm.ui.controlgroup('.fpcm-ui-buttonset');
-        fpcm.ui.controlgroup('.fpcm-ui-commentaction-buttons');
-        fpcm.ui.controlgroup('.fpcm-ui-articlelist-buttons');
+        fpcm.ui.controlgroup('.fpcm-buttons.fpcm-ui-list-buttons', {
+            onlyVisible: true
+        });
 
         fpcm.ui.button('.fpcm-ui-button');
         fpcm.ui.actionButtonsGenreal();
@@ -219,48 +220,10 @@ var fpcmJs = function () {
             }
 
             if (jQuery('#actionsaction').val() == articleActions.newtweet) {
-                self.articleActionsTweet();
+                fpcm.articlelist.articleActionsTweet();
                 return false;
             }
         });
-    };
-
-    this.articleActionsTweet = function() {
-        var articleIds = [];
-        jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
-            articleIds.push(jQuery(item).val());
-        });
-
-        if (articleIds.length == 0) {
-            fpcmJs.showLoader(false);
-            return false;
-        }
-
-        fpcmAjax.action     = 'articles/tweet';
-        fpcmAjax.data       = {ids: fpcmAjax.toJSON(articleIds)};
-        fpcmAjax.execDone   = "fpcmJs.articleActionsTweetCallback(fpcmAjax.result);";
-        fpcmAjax.async      = false;
-        fpcmAjax.post();
-        fpcmAjax.reset();  
-
-    };
-
-    this.articleActionsTweetCallback = function(result) {
-
-        jQuery('#actionsaction').prop('selectedIndex',0);
-        jQuery('#actionsaction').selectmenu('refresh');
-
-        self.showLoader(false);
-        
-        result = fpcmAjax.fromJSON(result);
-        if (result.notice != 0) {
-            fpcmJs.addAjaxMassage('notice', result.notice);
-        }
-
-        if (result.error != 0) {
-            fpcmJs.addAjaxMassage('error', result.error);
-        }
-
     };
     
     this.commentActionButtons = function () {        
@@ -539,62 +502,6 @@ var fpcmJs = function () {
         jQuery('#password_confirm').val(passwd);
         
         return false;
-    };
-    
-    this.initArticleSearch = function() {
-
-        jQuery('#fpcmarticlesopensearch').click(function () {
-
-            fpcm.ui.selectmenu('.fpcm-ui-input-select-articlesearch', {
-                width: '100%',
-                appendTo: '#fpcm-dialog-articles-search'
-            });
-
-            fpcm.ui.datepicker('.fpcm-full-width-date');
-
-            fpcm.ui.dialog({
-                id      : 'articles-search',
-                dlWidth: 700,
-                dlHeight: 350,
-                resizable: true,
-                title    : fpcmSearchHeadline,
-                dlButtons  : [
-                    {
-                        text: fpcmSearchStart,
-                        icon: "ui-icon-check",
-                        click: function() {                            
-                            var sfields = jQuery('.fpcm-articles-search-input');
-                            var sParams = {
-                                mode: fpcmArticleSearchMode,
-                                filter: {}
-                            };
-                            
-                            jQuery.each(sfields, function( key, obj ) {
-                                var objVal  = jQuery(obj).val();
-                                var objName = jQuery(obj).attr('name');                                
-                                sParams.filter[objName] = objVal;
-                            });
-
-                            fpcmJs.startSearch(sParams);
-                            jQuery(this).dialog('close');
-                        }
-                    },                    
-                    {
-                        text: fpcm.ui.translate('close'),
-                        icon: "ui-icon-closethick" ,                        
-                        click: function() {
-                            jQuery(this).dialog('close');
-                        }
-                    }                            
-                ],
-                dlOnOpen: function( event, ui ) {
-                    jQuery('#text').focus();
-                }
-            });
-
-            return false;
-        });
-
     };
     
     this.initCommentSearch = function() {

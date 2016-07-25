@@ -99,8 +99,7 @@
                 $this->lang->translate('ARTICLE_LIST_COMMENTS')       => 'comments',
                 $this->lang->translate('ARTICLE_LIST_NEWTWEET')       => 'newtweet',
                 $this->lang->translate('GLOBAL_DELETE')               => 'delete',
-                $this->lang->translate('ARTICLE_LIST_RESTOREARTICLE') => 'restore',
-                $this->lang->translate('ARTICLE_LIST_EMPTYTRASH')     => 'trash',
+                $this->lang->translate('ARTICLE_LIST_RESTOREARTICLE') => 'restore'
             );
             
             $this->initPermissions();
@@ -112,8 +111,21 @@
          */
         public function request() {
 
-            if ($this->buttonClicked('doAction') && !$this->checkPageToken()) {
+            if (($this->buttonClicked('doAction') || $this->buttonClicked('clearTrash')) && !$this->checkPageToken()) {
                 $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+            
+            if ($this->buttonClicked('clearTrash')) {
+
+                if (!$this->doTrash()) {
+                    $this->view->addErrorMessage('DELETE_FAILED_TRASH');                    
+                }
+                else {
+                    $this->view->addNoticeMessage('DELETE_SUCCESS_TRASH');
+                }
+
+                $this->initPagination();
                 return true;
             }
             
@@ -127,7 +139,7 @@
                     return true;
                 }
                 
-                $ids = ($actionData['action'] == 'trash') ? array() : array_map('intval', $actionData['ids']);
+                $ids = array_map('intval', $actionData['ids']);
                 
                 $action = in_array($actionData['action'], array_values($this->articleActions))
                         ? $actionData['action']
@@ -140,29 +152,13 @@
                 }
 
                 if (!call_user_func(array($this, 'do'.  ucfirst($action)), $ids)) {
-                    
-                    if ($action == 'delete') {
-                        $msg = 'DELETE_FAILED_ARTICLE';
-                    } elseif ($action == 'trash') {
-                        $msg = 'DELETE_FAILED_TRASH';
-                    } else {
-                        $msg = 'SAVE_FAILED_ARTICLE'.strtoupper($action);
-                    }
-                    
+                    $msg = ($action == 'delete')  ? 'DELETE_FAILED_ARTICLE' : 'SAVE_FAILED_ARTICLE';
                     $this->initPagination();
-                    
                     $this->view->addErrorMessage($msg);
                     return true;
                 }
                 
-                if ($action == 'delete') {
-                    $msg = 'DELETE_SUCCESS_ARTICLE';
-                } elseif ($action == 'trash') {
-                    $msg = 'DELETE_SUCCESS_TRASH';
-                } else {
-                    $msg = 'SAVE_SUCCESS_ARTICLE'.strtoupper($action);
-                }                
-                
+                $msg = ($action == 'delete')  ? 'DELETE_SUCCESS_ARTICLE' : 'SAVE_SUCCESS_ARTICLE'.strtoupper($action);                
                 $this->view->addNoticeMessage($msg);
             }
             
@@ -201,6 +197,10 @@
             $this->view->assign('commentCount', $commentCounts);
             $this->view->assign('commentPrivateUnapproved', $this->commentList->countUnapprovedPrivateComments($this->getArticleListIds()));            
             $this->view->assign('commentSum', $commentCounts && $this->articleCount ? array_sum($commentCounts) : 0);
+            
+            $this->view->setViewJsFiles(array(
+                \fpcm\classes\baseconfig::$jsPath.'articlelist.js'
+            ));
             
             $this->translateCategories();
             
@@ -278,10 +278,9 @@
         
         /**
          * Papierkorb leeren
-         * @param array $ids
          * @return boolean
          */
-        protected function doTrash(array $ids) {
+        protected function doTrash() {
             if (!$this->deleteActions || !$this->config->articles_trash) return false;            
             return $this->articleList->emptyTrash();
         }
@@ -358,13 +357,6 @@
 
             if ($this->permissions->check(array('article' => 'approve'))) {
                 unset($this->articleActions[$this->lang->translate('ARTICLE_LIST_APPROVE')]);
-            }
-
-            if (!$this->deleteActions || !$this->config->articles_trash) {
-                unset(
-                    $this->articleActions[$this->lang->translate('ARTICLE_LIST_EMPTYTRASH')],
-                    $this->articleActions[$this->lang->translate('ARTICLE_LIST_RESTOREARTICLE')]
-                );
             }
             
             $this->initEditPermisions();

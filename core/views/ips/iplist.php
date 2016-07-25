@@ -57,12 +57,8 @@
             </div>
             
             <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                <table>
-                    <tr>
-                        <td><?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'ips/add', 'IPLIST_ADDIP', '', 'fpcm-loader fpcm-new-btn'); ?></td>
-                        <td><?php fpcm\model\view\helper::deleteButton('delete'); ?></td>
-                    </tr>
-                </table>
+                <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'ips/add', 'IPLIST_ADDIP', '', 'fpcm-loader fpcm-new-btn'); ?>
+                <?php fpcm\model\view\helper::deleteButton('delete'); ?>
             </div>             
 
         </div>

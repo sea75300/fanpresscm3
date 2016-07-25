@@ -22,12 +22,8 @@
     </tr>                    
 </table>            
 
-<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-    <table>
-        <tr>
-            <td><?php \fpcm\model\view\helper::saveButton('saveSmiley'); ?></td>
-        </tr>
-    </table>
+<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+    <?php \fpcm\model\view\helper::saveButton('saveSmiley'); ?>
 </div>
 
 <script type="text/javascript">

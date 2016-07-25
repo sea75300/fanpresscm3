@@ -16,7 +16,7 @@
                     </tr>      
                 </table>            
 
-                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-list-buttons">
+                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
                     <table>
                         <tr>
                             <td><?php \fpcm\model\view\helper::saveButton('saveRoll'); ?></td>

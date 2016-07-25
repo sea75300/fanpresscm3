@@ -80,11 +80,8 @@ jQuery(document).ready(function () {
 
     });
 
-    if (typeof fpcmSearchHeadline != 'undefined') {
-
-        fpcmJs.initArticleSearch();        
+    if (typeof fpcmSearchHeadline != 'undefined') {    
         fpcmJs.initCommentSearch();
-
     }
 
     jQuery('#fpcm-clear-cache').click(function () {
@@ -142,16 +139,6 @@ jQuery(document).ready(function () {
         fpcmEditor.showCommentLayer(layerUrl);
         return false;
     });  
-    
-    jQuery('.fpcm-tabs-articles-headers a').click(function () {
-        if (jQuery(this).hasClass('tabs-article-hidesearch')) {
-            jQuery('#fpcmarticlesopensearch').hide();
-            jQuery('#fpcmarticleslistaddnew').hide();
-        } else if (jQuery('#fpcmarticlesopensearch').css('display') == 'none' ) {
-            jQuery('#fpcmarticlesopensearch').show();
-            jQuery('#fpcmarticleslistaddnew').show();
-        }
-    });
 
     jQuery('#tabs-options-syscheck').click(function () {
         fpcmJs.systemCheck();

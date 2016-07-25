@@ -25,7 +25,7 @@ jQuery(document).ready(function () {
     </div>
     
     <?php if ($showNextButton) : ?>
-    <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+    <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
         <table>
             <tr>
                 <td><?php \fpcm\model\view\helper::submitButton('SubmitNext', 'GLOBAL_NEXT'); ?></td>

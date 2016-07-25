@@ -230,12 +230,8 @@
             <div id="tabs-options-check"></div>
         </div>
 
-        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-            <table>
-                <tr>
-                    <td><?php fpcm\model\view\helper::saveButton('configSave', 'fpcm-loader'); ?></td>
-                </tr>
-            </table>
+        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+            <?php fpcm\model\view\helper::saveButton('configSave', 'fpcm-loader'); ?>
         </div>
 
         <?php \fpcm\model\view\helper::pageTokenField(); ?>

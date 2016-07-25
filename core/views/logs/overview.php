@@ -17,7 +17,7 @@
                 <div id="fpcm-logcontent0">
                     <?php include __DIR__.'/sessions.php'; ?>
                 </div>
-                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
                     <table>
                         <tr>
                             <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_0', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
@@ -29,7 +29,7 @@
                 <div id="fpcm-logcontent1">
                     <?php include __DIR__.'/system.php'; ?>
                 </div>                
-                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
                     <table>
                         <tr>
                             <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_1', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
@@ -41,7 +41,7 @@
                 <div id="fpcm-logcontent2">
                     <?php include __DIR__.'/errors.php'; ?>
                 </div>                
-                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
                     <table>
                         <tr>
                             <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_2', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
@@ -53,7 +53,7 @@
                 <div id="fpcm-logcontent3">
                     <?php include __DIR__.'/database.php'; ?>
                 </div>                
-                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
                     <table>
                         <tr>
                             <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_3', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
@@ -65,7 +65,7 @@
                 <div id="fpcm-logcontent4">
                     <?php include __DIR__.'/packages.php'; ?>
                 </div>
-                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
+                <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
                     <table>
                         <tr>
                             <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_4', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>

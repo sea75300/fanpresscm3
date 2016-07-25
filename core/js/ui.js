@@ -13,7 +13,6 @@ fpcm.ui = {
     load: function() {
 
         jQuery(document).tooltip();
-        jQuery('.fpcm-link-fancybox').fancybox();
 
         fpcmJs.assignButtons();
         this.assignSelectmenu();
@@ -21,6 +20,7 @@ fpcm.ui = {
         this.spinner('input.fpcm-ui-spinner');
         this.tabs('.fpcm-tabs-general');
         this.accordion('.fpcm-tabs-accordion');
+
     },
     
     translate: function(langVar) {

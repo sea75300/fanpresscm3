@@ -14,18 +14,14 @@
                 <?php include __DIR__.'/list_inner.php'; ?>
             </div>
             
-            <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-articlelist-buttons">
-                <table>
-                    <tr>
-                        <?php if ($moduleManagerMode) : ?>
-                        <td><?php fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_RELOADPKGLIST', 'fpcm-ui-reloadpkglist', 'fpcm-ui-button-blank fpcm-reload-btn'); ?></td>
-                        <?php else : ?>
-                        <td><?php fpcm\model\view\helper::linkButton(\fpcm\classes\baseconfig::$moduleServerManualLink, 'MODULES_LIST_EXTERNALLIST', 'fpcm-ui-externalpkglist', 'fpcm-externallink-btn', '_blank'); ?></td>
-                        <?php endif; ?>
-                        <td><?php fpcm\model\view\helper::select('moduleActions', $moduleActions, '', false, true, false, 'fpcm-ui-input-select-moduleactions'); ?></td>
-                        <td><?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-actions-modules fpcm-ok-button fpcm-loader'); ?></td>
-                    </tr>
-                </table>
+            <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+            <?php if ($moduleManagerMode) : ?>
+                <?php fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_RELOADPKGLIST', 'fpcm-ui-reloadpkglist', 'fpcm-ui-button-blank fpcm-reload-btn'); ?>
+            <?php else : ?>
+                <?php fpcm\model\view\helper::linkButton(\fpcm\classes\baseconfig::$moduleServerManualLink, 'MODULES_LIST_EXTERNALLIST', 'fpcm-ui-externalpkglist', 'fpcm-externallink-btn', '_blank'); ?>
+            <?php endif; ?>
+                <?php fpcm\model\view\helper::select('moduleActions', $moduleActions, '', false, true, false, 'fpcm-ui-input-select-moduleactions'); ?>
+                <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-actions-modules fpcm-ok-button fpcm-loader'); ?>
             </div>         
         </div>
         

@@ -55,17 +55,12 @@
 <?php endif; ?>
 
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-    <table>
-        <tr>
-            <?php if ($isRevision) : ?>
-                <td>
-                    <?php if ($revisionPermission) : ?><?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?><?php endif; ?>
-                    <td><?php \fpcm\model\view\helper::linkButton($article->getEditLink(), 'EDITOR_BACKTOCURRENT', '', 'fpcm-back-button'); ?></td>
-            <?php else : ?>
-                <td><?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', 'fpcm-button-extended'); ?></td>
-                <td><?php fpcm\model\view\helper::saveButton('articleSave'); ?></td>
-                <?php if ($editorMode) : ?><td><?php fpcm\model\view\helper::deleteButton('articleDelete'); ?></td><?php endif; ?>
-            <?php endif; ?>
-        </tr>
-    </table>
+<?php if ($isRevision) : ?>
+    <?php if ($revisionPermission) : ?><?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?><?php endif; ?>
+    <?php \fpcm\model\view\helper::linkButton($article->getEditLink(), 'EDITOR_BACKTOCURRENT', '', 'fpcm-back-button'); ?>
+<?php else : ?>
+    <?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', 'fpcm-button-extended'); ?>
+    <?php fpcm\model\view\helper::saveButton('articleSave'); ?>
+    <?php if ($editorMode) : ?><?php fpcm\model\view\helper::deleteButton('articleDelete'); ?><?php endif; ?>
+<?php endif; ?>
 </div>

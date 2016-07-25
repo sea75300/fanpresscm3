@@ -48,7 +48,7 @@
     </tr>
 </table>
 
-<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> <?php if ($commentsMode == 2) : ?>fpcm-hidden<?php endif; ?>">
+<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons <?php if ($commentsMode == 2) : ?>fpcm-hidden<?php endif; ?>">
     <table>
         <tr>
             <td><?php fpcm\model\view\helper::saveButton('commentSave'); ?></td>
