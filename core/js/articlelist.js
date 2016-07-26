@@ -47,7 +47,7 @@ fpcm.articlelist = {
             fpcm.ui.dialog({
                 id      : 'articles-search',
                 dlWidth: 700,
-                dlHeight: 350,
+                dlHeight: 375,
                 resizable: true,
                 title    : fpcmSearchHeadline,
                 dlButtons  : [

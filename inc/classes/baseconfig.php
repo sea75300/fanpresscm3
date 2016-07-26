@@ -391,6 +391,24 @@
             
             return $limit * 1024 * 1024;
         }
+        
+        /**
+         * PHP Upload filesize limit
+         * @param bool $inByte Ausgabe in Byte oder Mbyte
+         * @return int
+         * @since FPCM 3.3
+         */
+        public static function uploadFilesizeLimit($inByte = false) {
+
+            $limit = (int) substr(ini_get('upload_max_filesize'), 0, -1);
+            
+            if (!$inByte) {
+                return $limit;
+            }
+            
+            return $limit * 1024 * 1024;
+
+        }
 
         /**
          * Controller abrufen

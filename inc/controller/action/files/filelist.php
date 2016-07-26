@@ -157,7 +157,10 @@
             } else {
                 $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('files/list', array('mode' => $this->mode)));
                 
-                $translInfo = array('{{filecount}}' => ini_get("max_file_uploads"), '{{filesize}}'  => ini_get("upload_max_filesize"));
+                $translInfo = array(
+                    '{{filecount}}' => ini_get("max_file_uploads"),
+                    '{{filesize}}'  => \fpcm\classes\tools::calcSize(\fpcm\classes\baseconfig::uploadFilesizeLimit(true), 0)
+                );
                 $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             }
             

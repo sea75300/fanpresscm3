@@ -963,7 +963,8 @@ table.fpcm-ui-table.fpcm-ui-modules tr.fpcm-ui-modules-updates1 {
 }
 
 .fpcm-buttons.fpcm-ui-list-buttons a.fpcm-ui-button,
-.fpcm-buttons.fpcm-ui-list-buttons .ui-selectmenu-button {
+.fpcm-buttons.fpcm-ui-list-buttons .ui-selectmenu-button,
+.fpcm-filemanager-buttons a {
     height: 18.666666666666666666666667px;
     line-height: 18.666666666666666666666667px;
 }

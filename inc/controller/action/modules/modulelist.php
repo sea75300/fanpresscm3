@@ -103,7 +103,10 @@
                 $this->view->assign('moduleManagerMode', false);
             }
 
-            $translInfo = array('{{filecount}}' => 1, '{{filesize}}'  => ini_get("upload_max_filesize"));
+            $translInfo = array(
+                '{{filecount}}' => 1,
+                '{{filesize}}'  => \fpcm\classes\tools::calcSize(\fpcm\classes\baseconfig::uploadFilesizeLimit(true), 0)
+            );
             $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('modules/list'));
 

@@ -9,15 +9,15 @@
             <td><?php \fpcm\model\view\helper::select('approved', $searchApproval, null, false, false, false, 'fpcm-comments-search-input fpcm-ui-input-select-commentsearch'); ?></td>
             <td><?php \fpcm\model\view\helper::select('private', $searchPrivate, null, false, false, false, 'fpcm-comments-search-input fpcm-ui-input-select-commentsearch'); ?></td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><?php \fpcm\model\view\helper::select('combination', $searchCombination, null, false, false, false, 'fpcm-comments-search-input fpcm-ui-input-select-commentsearch'); ?></td>
-        </tr>
         <tr>    
             <td><?php \fpcm\model\view\helper::textInput('datefrom', 'fpcm-comments-search-input fpcm-full-width-date', '', false, 10, $FPCM_LANG->translate('ARTICLE_SEARCH_DATE_FROM'), 'fpcm-full-width'); ?></td>
             <td><?php \fpcm\model\view\helper::textInput('dateto', 'fpcm-comments-search-input fpcm-full-width-date', '', false, 10, $FPCM_LANG->translate('ARTICLE_SEARCH_DATE_TO'), 'fpcm-full-width'); ?></td>
             <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><?php \fpcm\model\view\helper::select('combination', $searchCombination, null, false, false, false, 'fpcm-comments-search-input fpcm-ui-input-select-commentsearch'); ?></td>
         </tr>
     </table>
 </div>
