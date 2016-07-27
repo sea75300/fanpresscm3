@@ -87,7 +87,7 @@
                 $statusClass = 'fpcm-dashboard-updates-outdated';
                 
                 $replace = array(
-                    '{{versionlink}}' => 'index.php?module='.FPCM_CONTROLLER_SYSUPDATES,
+                    '{{versionlink}}' => 'index.php?module=package/sysupdate',
                     '{{version}}'     => $this->systemUpdates->getRemoteData('version')
                 );
                 $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', $replace);

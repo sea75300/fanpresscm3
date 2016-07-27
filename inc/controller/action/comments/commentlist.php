@@ -108,13 +108,14 @@
                 $this->lang->translate('ARTICLE_SEARCH_LOGICAND') => 0,
                 $this->lang->translate('ARTICLE_SEARCH_LOGICOR')  => 1
             ));
-
-            $this->view->addJsVars(array(
-                'fpcmSearchWaitMsg'      => $this->lang->translate('SEARCH_WAITMSG'),
-                'fpcmSearchHeadline'     => $this->lang->translate('ARTICLES_SEARCH'),
-                'fpcmSearchStart'        => $this->lang->translate('ARTICLE_SEARCH_START'),
-                'fpcmCommentsLastSearch' => 0
+            
+            $this->view->addJsLangVars(array(
+                'searchWaitMsg'      => $this->lang->translate('SEARCH_WAITMSG'),
+                'searchHeadline'     => $this->lang->translate('ARTICLES_SEARCH'),
+                'searchStart'        => $this->lang->translate('ARTICLE_SEARCH_START')
             ));
+
+            $this->view->addJsVars(array('fpcmCommentsLastSearch' => 0));
         }
 
     }

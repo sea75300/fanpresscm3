@@ -94,7 +94,6 @@
             
             $this->jsVars  = $this->editorPlugin->getJsVars();
             $this->jsVars += array(
-                'fpcmFileManagerHeadline'   => $this->lang->translate('HL_FILES_MNG'),
                 'fpcmFileManagerUrl'        => \fpcm\classes\baseconfig::$rootPath.'index.php?module=files/list&mode=',
                 'fpcmFileManagerUrlMode'    => 2,
                 'fpcmPostponeDatePicker'    => array(
@@ -103,6 +102,8 @@
                     'months'                => array_values($this->lang->getMonths())
                 )
             );
+            
+            $this->view->addJsLangVars(array('fileManagerHeadline' => $this->lang->translate('HL_FILES_MNG')));
             
             $this->view->addJsVars($this->jsVars);
             

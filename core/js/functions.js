@@ -261,7 +261,7 @@ var fpcmJs = function () {
     
     this.startSearch = function (sParams) {
         if (((new Date()).getTime() - fpcmArticlesLastSearch) < 10000) {
-            self.addAjaxMassage('error', fpcmSearchWaitMsg);            
+            self.addAjaxMassage('error', fpcm.ui.translate('searchWaitMsg'));
             return false;
         }
 
@@ -285,7 +285,7 @@ var fpcmJs = function () {
     
     this.startCommentSearch = function (sParams) {
         if (((new Date()).getTime() - fpcmCommentsLastSearch) < 10000) {
-            self.addAjaxMassage('error', fpcmSearchWaitMsg);            
+            self.addAjaxMassage('error', fpcm.ui.translate('searchWaitMsg'));            
             return false;
         }
 
@@ -431,7 +431,7 @@ var fpcmJs = function () {
         fpcmSessionCheckEnabled = false;
         if (sessionOk == '0') {
             fpcm.ui.dialog({
-                content: '<p class="fpcm-ui-center">' + fpcmSessionCheckMsg + '</p>',
+                content: fpcm.ui.translate('sessionCheckMsg'),
                 dlButtons: buttons = [
                     {
                         text: fpcm.ui.translate('yes'),
@@ -497,7 +497,7 @@ var fpcmJs = function () {
 
     this.generatePasswdString = function() {
       
-        var passwd = generatePassword(12, false);
+        var passwd = generatePassword(12, false, /[\w\d\?\-]/);
         jQuery('#password').val(passwd);
         jQuery('#password_confirm').val(passwd);
         
@@ -520,10 +520,10 @@ var fpcmJs = function () {
                 dlWidth: 700,
                 dlHeight: 350,
                 resizable: true,
-                title    : fpcmSearchHeadline,
+                title    : fpcm.ui.translate('searchHeadline'),
                 dlButtons  : [
                     {
-                        text: fpcmSearchStart,
+                        text: fpcm.ui.translate('searchStart'),
                         icon: "ui-icon-check",                        
                         click: function() {                            
                             var sfields = jQuery('.fpcm-comments-search-input');

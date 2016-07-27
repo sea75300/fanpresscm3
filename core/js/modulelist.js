@@ -108,7 +108,7 @@ var fpcmModulelist = function () {
             id         : 'modulelist-infos',
             dlWidth    : 550,
             resizable  : true,
-            title      : fpcmDetailsHeadline + ' « ' + moduleName + ' »',
+            title      : fpcm.ui.translate('detailsHeadline') + ' « ' + moduleName + ' »',
             dlButtons  : [
                 {
                     text: fpcm.ui.translate('close'),

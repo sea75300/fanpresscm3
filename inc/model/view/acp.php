@@ -132,7 +132,12 @@
                 $this->assign('FPCM_SESSION_LOGIN', $this->session->getLogin());
                 $nav = new \fpcm\model\theme\navigation();
                 $this->assign('FPCM_NAVIGATION', $nav->render());
-                $this->jsvars = array('fpcmSessionCheckEnabled' => true, 'fpcmSessionCheckMsg' => $this->language->translate('SESSION_TIMEOUT')) + $this->jsvars;
+                $this->jsvars = array('fpcmSessionCheckEnabled' => true) + $this->jsvars;
+
+                $this->addJsLangVars(array(
+                    'sessionCheckMsg' => $this->language->translate('SESSION_TIMEOUT')
+                ));
+                
             }
             
             /**

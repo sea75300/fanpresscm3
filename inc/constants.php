@@ -49,6 +49,7 @@
     if (!defined('FPCM_CONTROLLER_SYSUPDATES')) {
         /**
          * System-Update-Controller-Action
+         * @deprecated since FPCM 3.3
          */
         define ('FPCM_CONTROLLER_SYSUPDATES', 'package/sysupdate');
     }

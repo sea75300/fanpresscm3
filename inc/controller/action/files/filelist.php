@@ -144,9 +144,10 @@
             $this->view->addJsVars(array(
                 'fpcmBaseUrl'     => \fpcm\classes\baseconfig::$rootPath,
                 'fpcmFmgrMode'    => $this->mode,
-                'fpcmFmgrNewName' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME'),
                 'fpcmEditorType'  => $this->config->system_editor
             ));
+            
+            $this->view->addJsLangVars(array('newNameMsg' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME')));
             
             $this->view->assign('newUploader', $this->config->file_uploader_new);
             $this->view->assign('jquploadPath', \fpcm\classes\loader::libGetFileUrl('jqupload'));

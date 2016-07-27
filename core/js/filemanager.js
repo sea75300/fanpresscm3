@@ -19,15 +19,20 @@ fpcm.filemanager = {
     
     initActionButtons : function() {
         jQuery('#btnRenameFiles').click(function () {
-            if (typeof fpcmFmgrNewName != 'undefined') {
-                var newName = prompt(fpcmFmgrNewName, '');
-                if (!newName || newName == '') {
-                    jQuery(this).addClass('fpcm-noloader');
-                    return false;
-                }            
-                jQuery('#newfilename').val(newName);                
+            if (fpcmLang.newNameMsg === undefined) {
+                fpcmJs.showLoader(false);
+                return true;
             }
-            
+
+            var newName = prompt(fpcm.ui.translate('newNameMsg'), '');
+            if (!newName || newName == '') {
+                jQuery(this).addClass('fpcm-noloader');
+                fpcmJs.showLoader(false);
+                return false;
+            }
+
+            jQuery('#newfilename').val(newName);
+
         });
         
         jQuery('#btnCreateThumbs').click(function () {            

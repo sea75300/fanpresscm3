@@ -246,7 +246,7 @@
          */
         public function setViewJsFiles(array $viewJsFiles) {
             $this->viewJsFiles = array_merge($this->viewJsFiles, $viewJsFiles);
-        }        
+        }
  
         /**
          * CSS-Dateien in View auslesen
@@ -277,7 +277,16 @@
          * @param mixed $jsvars
          */
         public function addJsVars(array $jsvars) {
+            unset($jsvars['fpcmLang']);
             $this->jsvars = array_merge($this->jsvars, $jsvars);
+        }
+
+        /**
+         * Sprachvariable zur Nutzung via Javascript hinzufügen
+         * @param mixed $jsvars
+         */
+        public function addJsLangVars(array $jsvars) {
+            $this->jsvars['fpcmLang'] = array_merge($this->jsvars['fpcmLang'], $jsvars);
         }
 
         /**

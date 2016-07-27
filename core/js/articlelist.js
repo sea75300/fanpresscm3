@@ -49,10 +49,10 @@ fpcm.articlelist = {
                 dlWidth: 700,
                 dlHeight: 375,
                 resizable: true,
-                title    : fpcmSearchHeadline,
+                title    : fpcm.ui.translate('searchHeadline'),
                 dlButtons  : [
                     {
-                        text: fpcmSearchStart,
+                        text: fpcm.ui.translate('searchStart'),
                         icon: "ui-icon-check",
                         click: function() {                            
                             var sfields = jQuery('.fpcm-articles-search-input');

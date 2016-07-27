@@ -190,10 +190,8 @@
             
             $this->view->assign('allowedTags', htmlentities($this->articleTemplate->getAllowedTags(', ')));
             
-            $this->view->addJsVars(array(
-                'fpcmPreviewHeadline' => $this->lang->translate('HL_TEMPLATE_PREVIEW'),
-                'fpcmTemplateId'      => 1
-            ));
+            $this->view->addJsVars(array('fpcmTemplateId' => 1));
+            $this->view->addJsLangVars(array('previewHeadline' => $this->lang->translate('HL_TEMPLATE_PREVIEW')));
             
             $tplfilelist = new \fpcm\model\files\templatefilelist();
             $this->view->assign('templateFiles', $tplfilelist->getFolderObjectList());

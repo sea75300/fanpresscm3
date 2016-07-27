@@ -18,7 +18,7 @@
         
         <div id="tools">
             <ul>
-                <li><a href="index.php?module=<?php print FPCM_CONTROLLER_SYSUPDATES; ?>&step=4" target="_blank">Updater</a></li>
+                <li><a href="index.php?module=package/sysupdate&step=4" target="_blank">Updater</a></li>
                 <li><a href="http://www.adminer.org/de/" target="_blank">Adminer</a></li>
                 <li><a href="http://phpfm.sourceforge.net/" target="_blank">phpFileManager</a></li>
             </ul>            

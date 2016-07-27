@@ -8,7 +8,7 @@
 jQuery.noConflict();
 jQuery(document).ready(function () {
 
-    if (typeof fpcmSessionCheckEnabled != 'undefined' && fpcmSessionCheckEnabled) {
+    if (fpcmSessionCheckEnabled !== undefined && fpcmSessionCheckEnabled) {
         setInterval(function() { fpcmJs.checkSession(); }, 60000);
     }
 
@@ -80,7 +80,7 @@ jQuery(document).ready(function () {
 
     });
 
-    if (typeof fpcmSearchHeadline != 'undefined') {    
+    if (fpcmLang.searchHeadline !== undefined) {    
         fpcmJs.initCommentSearch();
     }
 

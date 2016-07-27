@@ -1330,7 +1330,7 @@ table.fpcm-module-manager td.module-manager-list-td7 {
 .ui-spinner input:active {
     border: 0 !important;
     box-shadow: none !important;
-    margin: 0.2em 22px 0.2em 0.4em;
+    padding: 0;
 }
 
 #fancybox-loading {
