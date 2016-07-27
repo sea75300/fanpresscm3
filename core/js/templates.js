@@ -78,7 +78,7 @@ fpcm.templates = {
                 id         : 'templatepreview-layer',
                 dlWidth    : '75%',
                 resizable  : true,
-                title      : fpcmPreviewHeadline,
+                title      : fpcm.ui.translate('previewHeadline'),
                 dlButtons  : [
                     {
                         text: fpcm.ui.translate('close'),

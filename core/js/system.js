@@ -8,8 +8,10 @@
 jQuery.noConflict();
 jQuery(document).ready(function () {
 
-    if (typeof fpcmSessionCheckEnabled != 'undefined' && fpcmSessionCheckEnabled) {
-        setInterval(function() { fpcmJs.checkSession(); }, 60000);
+    if (typeof fpcmSessionCheckEnabled !== 'undefined' && fpcmSessionCheckEnabled) {
+        setInterval(function() {
+            fpcmJs.checkSession();
+        }, 60000);
     }
 
     fpcmAjax = new fpcmAjaxHandler();
@@ -80,7 +82,7 @@ jQuery(document).ready(function () {
 
     });
 
-    if (typeof fpcmSearchHeadline != 'undefined') {    
+    if (fpcmLang.searchHeadline !== undefined) {    
         fpcmJs.initCommentSearch();
     }
 

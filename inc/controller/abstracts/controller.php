@@ -216,13 +216,13 @@
                 return;
                 
             } elseif ($res === \fpcm\model\updater\system::SYSTEMUPDATER_FORCE_UPDATE) {
-                $this->redirect(FPCM_CONTROLLER_SYSUPDATES);
+                $this->redirect('package/sysupdate');
                 return;
             } elseif ($res === false) {
 
                 $systemUpdates = new \fpcm\model\updater\system();
                 $replace = array(
-                    '{{versionlink}}' => $this->getControllerLink(FPCM_CONTROLLER_SYSUPDATES),
+                    '{{versionlink}}' => $this->getControllerLink('package/sysupdate'),
                     '{{version}}'     => $systemUpdates->getRemoteData('version')
                 );
                 $this->view->addErrorMessage('UPDATE_VERSIONCHECK_NEW', $replace);

@@ -162,52 +162,12 @@
             $this->view->assign('globalConfig', $this->config->getData());
             $this->view->assign('languages', array_flip($this->lang->getLanguages()));
             
-            $acpLenghts = array(
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_1800')  => 1800,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_3600')  => 3600,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_5400')  => 5400,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_7200')  => 7200,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_9000')  => 9000,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_10800') => 10800,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_14400') => 14400,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_18000') => 18000              
-            );
-            $this->view->assign('acpLenghts', $acpLenghts);
-
-            $cacheTimeout = array(
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_3600')   => 3600,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_21600')  => 21600,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_43200')  => 43200,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_64800')  => 64800,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_86400')  => 86400,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_172800') => 172800,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_259200') => 259200,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_345600') => 345600,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_432000') => 432000
-            );
-            $this->view->assign('cacheTimeout', $cacheTimeout);
-            
             $notify = array(
                 $this->lang->translate('SYSTEM_OPTIONS_COMMENT_NOTIFY_GLOBAL') => 0,
                 $this->lang->translate('SYSTEM_OPTIONS_COMMENT_NOTIFY_AUTHOR') => 1,
                 $this->lang->translate('SYSTEM_OPTIONS_COMMENT_NOTIFY_ALL')    => 2
             );
             $this->view->assign('notify', $notify);
-
-            $commentFloodList = array(
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_0')    => 0,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_10')   => 10,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_20')   => 20,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_30')   => 30,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_60')   => 60,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_90')   => 90,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_120')  => 120,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_300')  => 300,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_600')  => 600,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_900')  => 900,
-                $this->lang->translate('SYSTEM_OPTIONS_FLOODPROTECTION_1800') => 1800
-            );
-            $this->view->assign('commentFloodList', $commentFloodList);
 
             $articleLimitList = array(
                 1 => 1,

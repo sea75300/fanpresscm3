@@ -44,7 +44,7 @@
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_CACHETIMEOUT'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::select('system_cache_timeout', $cacheTimeout, $globalConfig['system_cache_timeout'], false, false); ?></td>
+                        <td><?php fpcm\model\view\helper::select('system_cache_timeout', $FPCM_LANG->translate('SYSTEM_OPTIONS_CACHETIMEOUT_INTERVAL'), $globalConfig['system_cache_timeout'], false, false); ?></td>
                     </tr>                               
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_USEMODE'); ?>:</td>
@@ -72,7 +72,7 @@
                     </tr>			 			 
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_SESSIONLENGHT'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::select('system_session_length', $acpLenghts, $globalConfig['system_session_length'], false, false); ?></td>
+                        <td><?php fpcm\model\view\helper::select('system_session_length', $FPCM_LANG->translate('SYSTEM_OPTIONS_SESSIONLENGHT_INTERVALS'), $globalConfig['system_session_length'], false, false); ?></td>
                     </tr>			 			 
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'); ?>:</td>
@@ -177,7 +177,7 @@
                    </tr>
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_FLOODPROTECTION'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::select('comments_flood', $commentFloodList, $globalConfig['comments_flood'], false, false); ?></td>
+                        <td><?php fpcm\model\view\helper::select('comments_flood', $FPCM_LANG->translate('SYSTEM_OPTIONS_FLOODPROTECTION_INTERVALS'), $globalConfig['comments_flood'], false, false); ?></td>
                    </tr>		
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENTEMAIL'); ?>:</td>

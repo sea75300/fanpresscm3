@@ -170,7 +170,7 @@ var fpcmEditor = function () {
             dlMinWidth : filemanagerWidth,
             modal    : true,
             resizable: true,
-            title    : fpcmFileManagerHeadline,
+            title    : fpcm.ui.translate('fileManagerHeadline'),
             dlButtons  : [
                 {
                     text: fpcm.ui.translate('extended'),
@@ -319,7 +319,7 @@ var fpcmEditor = function () {
             file_picker_callback  : function(callback, value, meta) {
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
-                    title           : fpcmFileManagerHeadline,
+                    title           : fpcm.ui.translate('fileManagerHeadline'),
                     width           : filemanagerWidth,
                     height          : filemanagerHeight,
                     close_previous  : false,
