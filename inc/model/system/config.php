@@ -31,6 +31,7 @@
      * @property int    $system_loginfailed_locked Anzahl fehlgeschlagener Login-Versuche, nach denen Login temporär gesperrt wird
      * @property int    $system_updates_devcheck Entwickler-Versionen bei Update-Prüfung anzeigen
      * @property bool   $system_updates_emailnotify E-Mail-Benachrichtigung über Updates
+     * @property int    $system_updates_manual Interval für manuelle Update-Prüfung
      * 
      * @property bool   $articles_revisions Revisionen aktiv
      * @property bool   $articles_trash Papierkorb aktiv

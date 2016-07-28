@@ -97,7 +97,7 @@
          * @return bool
          */
         public function checkManual() {
-            return (time() > filectime(\fpcm\classes\baseconfig::$versionFile) + FPCM_UPDATER_MANUALCHECK) ? true : false;            
+            return (time() > filectime(\fpcm\classes\baseconfig::$versionFile) + $this->config->system_updates_manual) ? true : false;            
         }
         
         /**

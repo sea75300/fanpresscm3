@@ -116,6 +116,7 @@
         
         'SYSTEM_OPTIONS_EXTENDED_EMAILUPDATES'      => 'Email notification when updates are available',
         'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Include developement releases in update check',
+        'SYSTEM_OPTIONS_EXTENDED_UPDATESMANCHK'     => 'Update check interval if external server connections not available',
         
         'SYSTEM_OPTIONS_TWITTER_CONNECTION'         => 'Twitter connection',
         'SYSTEM_OPTIONS_TWITTER_CONNECT'            => 'Request API key and/or token',
@@ -156,6 +157,13 @@
             'weekly'            => 604800,
             'every two weeks'   => 1209600,
             'monthly'           => 2419200
+        ),
+
+        'SYSTEM_OPTIONS_UPDATESMANUAL' => array(
+            'täglich'           => 86400,            
+            'wöchentlich'       => 604800,
+            '14-tägig'          => 1209600,
+            'monatlich'         => 2419200
         )
         
     );

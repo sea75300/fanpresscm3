@@ -57,6 +57,7 @@
     if (!defined('FPCM_UPDATER_MANUALCHECK')) {
         /**
          * Interval für manuellen Update-Check
+         * @deprecated since FPCM 3.3.0, moved system options
          */
         define ('FPCM_UPDATER_MANUALCHECK', 3600 * 24 * 14);
     }

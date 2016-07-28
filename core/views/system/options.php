@@ -13,6 +13,7 @@
                 <?php if ($showTwitter) : ?> 
                 <li><a href="#tabs-options-twitter"><?php $FPCM_LANG->write('SYSTEM_HL_OPTIONS_TWITTER'); ?></a></li>
                 <?php endif; ?>
+                <li><a href="#tabs-options-security"><?php $FPCM_LANG->write('SYSTEM_HL_OPTIONS_SECURITY'); ?></a></li>
                 <li><a href="#tabs-options-extended"><?php $FPCM_LANG->write('GLOBAL_EXTENDED'); ?></a></li>
                 <li id="tabs-options-syscheck"><a href="#tabs-options-check"><?php $FPCM_LANG->write('SYSTEM_HL_OPTIONS_SYSCHECK'); ?></a></li>
             </ul>
@@ -58,25 +59,8 @@
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_INCLUDEJQUERY'); ?>:</td>
                         <td>
                             <?php fpcm\model\view\helper::boolSelect('system_loader_jquery', $globalConfig['system_loader_jquery']); ?>
-                            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_INCLUDEJQUERY_YES'), 'position:relative;bottom:0.8em;'); ?>
+                            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_INCLUDEJQUERY_YES')); ?>
                         </td>
-                    </tr>
-                </table>
-                
-                <h4><?php $FPCM_LANG->write('SYSTEM_HL_OPTIONS_SECURITY'); ?></h4>
-                
-                <table class="fpcm-ui-table fpcm-ui-options">
-                    <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::boolSelect('system_maintenance', $globalConfig['system_maintenance']); ?></td>		
-                    </tr>			 			 
-                    <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_SESSIONLENGHT'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::select('system_session_length', $FPCM_LANG->translate('SYSTEM_OPTIONS_SESSIONLENGHT_INTERVALS'), $globalConfig['system_session_length'], false, false); ?></td>
-                    </tr>			 			 
-                    <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::textInput('system_loginfailed_locked', 'fpcm-ui-spinner', $globalConfig['system_loginfailed_locked'], false, 5, false, false); ?></td>
                     </tr>
                 </table>
             </div>
@@ -206,6 +190,23 @@
                </table>
             </div>
             
+            <div id="tabs-options-security">
+                <table class="fpcm-ui-table fpcm-ui-options">
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('system_maintenance', $globalConfig['system_maintenance']); ?></td>		
+                    </tr>			 			 
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_SESSIONLENGHT'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::select('system_session_length', $FPCM_LANG->translate('SYSTEM_OPTIONS_SESSIONLENGHT_INTERVALS'), $globalConfig['system_session_length'], false, false); ?></td>
+                    </tr>			 			 
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('system_loginfailed_locked', 'fpcm-ui-spinner', $globalConfig['system_loginfailed_locked'], false, 5, false, false); ?></td>
+                    </tr>
+                </table>
+            </div>
+            
             <div id="tabs-options-extended">
                 <table class="fpcm-ui-table fpcm-ui-options">
                    <tr>			
@@ -215,6 +216,10 @@
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('system_updates_devcheck', $globalConfig['system_updates_devcheck']); ?></td>		
+                   </tr>
+                   <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_UPDATESMANCHK'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::select('system_updates_manual', $FPCM_LANG->translate('SYSTEM_OPTIONS_UPDATESMANUAL'), $globalConfig['system_updates_manual'], false, false); ?></td>
                    </tr>
                </table>
             </div>
@@ -240,7 +245,7 @@
 </div>
 
 <?php if ($syscheck) : ?><script type="text/javascript">jQuery(document).ready(function(){
-    jQuery('.fpcm-tabs-general').tabs('option', 'active', <?php if ($showTwitter) : ?>6<?php else : ?>5<?php endif; ?>);
+    jQuery('.fpcm-tabs-general').tabs('option', 'active', <?php if ($showTwitter) : ?>7<?php else : ?>6<?php endif; ?>);
     jQuery('#tabs-options-syscheck').trigger('click');
 });</script>
 <?php endif; ?>
