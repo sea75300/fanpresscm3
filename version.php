@@ -7,6 +7,6 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
-    $fpcmVersion = '3.3.0-a7';
+    $fpcmVersion = '3.3.0-a8';
 
 ?>

@@ -19,7 +19,7 @@
             <tr>
                 <td><?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-ui-button-blank fpcm-openlink-btn'); ?></td>
                 <td><strong><?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?></strong></td>
-                <td class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('actions[ids][]', 'fpcm-list-selectbox-trash fpcm-list-selectbox-sub-trash'.$articleMonth, $articleId, 'chbx'.$articleId, '', false) ?></td>
+                <td class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('actions[ids][]', 'fpcm-list-selectbox-trash fpcm-list-selectbox-sub-trash'.$articleMonth, $articleId, '', 'chbx'.$articleId, false) ?></td>
             </tr>
         <?php endforeach; ?>
     <?php endforeach; ?>                    
