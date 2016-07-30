@@ -281,9 +281,83 @@ var fpcmEditor = function () {
             mode            : "text/html",
             matchTags       : {
                 bothTags: true
-            },
+            },            
             extraKeys       : {
-                "Ctrl-Space": "autocomplete"
+                "Ctrl-Space": "autocomplete",
+                "Ctrl-B"    : function() {
+                    jQuery('#fpcm-editor-html-bold-btn').click();
+                },
+                "Ctrl-I"    : function() {
+                    jQuery('#fpcm-editor-html-italic-btn').click();
+                },
+                "Ctrl-U"    : function() {
+                    jQuery('#fpcm-editor-html-underline-btn').click();
+                },
+                "Ctrl-O"    : function() {
+                    jQuery('#fpcm-editor-html-strike-btn').click();
+                },
+                "Shift-Ctrl-F"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-insertcolor-btn').click();
+                },
+                "Ctrl-Y"    : function() {
+                    jQuery('#fpcm-editor-html-sup-btn').click();
+                },
+                "Shift-Ctrl-Y"    : function() {
+                    jQuery('#fpcm-editor-html-sub-btn').click();
+                },
+                "Shift-Ctrl-L"    : function() {
+                    jQuery('#fpcm-editor-html-aleft-btn').click();
+                },
+                "Shift-Ctrl-C"    : function() {
+                    jQuery('#fpcm-editor-html-acenter-btn').click();
+                },
+                "Shift-Ctrl-R"    : function() {
+                    jQuery('#fpcm-editor-html-aright-btn').click();
+                },
+                "Shift-Ctrl-J"    : function() {
+                    jQuery('#fpcm-editor-html-ajustify-btn').click();
+                },
+                "Ctrl-N"    : function() {
+                    jQuery('#fpcm-editor-html-insertlist-btn').click();
+                },
+                "Shift-Ctrl-N"    : function() {
+                    jQuery('#fpcm-editor-html-insertlistnum-btn').click();
+                },
+                "Ctrl-Q"    : function() {
+                    jQuery('#fpcm-editor-html-quote-btn').click();
+                },
+                "Ctrl-L"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-insertlink-btn').click();
+                },
+                "Ctrl-P"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-insertimage-btn').click();
+                },
+                "Shift-Ctrl-Z"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-insertmedia-btn').click();
+                },
+                "Ctrl-F"    : function() {
+                    jQuery('#fpcm-editor-html-insertiframe-btn').click();
+                },
+                "Ctrl-M"    : function() {
+                    jQuery('#fpcm-editor-html-insertmore-btn').click();
+                },
+                "Shift-Ctrl-T"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-inserttable-btn').click();
+                },
+                "Shift-Ctrl-E"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-insertsmiley-btn').click();
+                },
+                "Shift-Ctrl-D"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-insertdraft-btn').click();
+                },
+                "Shift-Ctrl-I"    : function() {
+                    jQuery('#fpcm-dialog-editor-html-insertsymbol-btn').click();
+                },
+                "Shift-Ctrl-S"    : function() {
+                    jQuery('#fpcm-editor-html-removetags-btn').click();
+                    return false;
+                }
+
             },
             value           : document.documentElement.innerHTML
         });
@@ -436,27 +510,27 @@ jQuery(document).ready(function() {
         return false;
     });
 
-    jQuery('#fpcm-dialog-editor-html-insertlist-btn').click(function() {
+    jQuery('#fpcm-editor-html-insertlist-btn').click(function() {
         fpcmEditor.insertListToFrom('ul');
         return false;
     });
     
-    jQuery('#fpcm-dialog-editor-html-insertlistnum-btn').click(function() {
+    jQuery('#fpcm-editor-html-insertlistnum-btn').click(function() {
         fpcmEditor.insertListToFrom('ol');
         return false;
     });
     
-    jQuery('#fpcm-dialog-editor-html-insertiframe-btn').click(function() {
+    jQuery('#fpcm-editor-html-insertiframe-btn').click(function() {
         fpcmEditor.insert('<iframe src="http://" class="fpcm-articletext-iframe">','</iframe>');
         return false;
     });
     
-    jQuery('#fpcm-dialog-editor-html-insertmore-btn').click(function() {
+    jQuery('#fpcm-editor-html-insertmore-btn').click(function() {
         fpcmEditor.insertMoreArea();
         return false;
     });
 
-    jQuery('#fpcm-dialog-editor-html-removetags-btn').click(function() {
+    jQuery('#fpcm-editor-html-removetags-btn').click(function() {
         
         fpcmAjax.action     = 'editor/cleartags';
         fpcmAjax.data       = {text: editor.doc.getValue()};
@@ -590,7 +664,6 @@ jQuery(document).ready(function() {
      * http://www.brain4.de/programmierecke/js/tastatur.php
      */
     jQuery(document).keypress(function(thekey) {
-        if(typeof editor == 'undefined' || (editor && !editor.state.focused) || !fmcEditorKeyShortcutsEnabled) return;
 
         if (thekey.ctrlKey && thekey.which == 115) {
             if(jQuery("#btnArticleSave")) {
@@ -599,32 +672,5 @@ jQuery(document).ready(function() {
             }
         }
 
-        if (thekey.ctrlKey && thekey.which == 98) { fpcmEditor.insert('<b>', '</b>');return false; }
-        if (thekey.ctrlKey && thekey.which == 105) { fpcmEditor.insert('<i>', '</i>');return false; }
-        if (thekey.ctrlKey && thekey.which == 117) { fpcmEditor.insert('<u>', '</u>');return false; }
-        if (thekey.ctrlKey && thekey.which == 111) { fpcmEditor.insert('<s>', '</s>');return false; }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 89) { fpcmEditor.insert('<sub>', '</sub>');return false; }
-        if (thekey.ctrlKey && thekey.which == 121) { fpcmEditor.insert('<sup>', '</sup>');return false; }
-
-        if (thekey.ctrlKey && thekey.which == 46) { fpcmEditor.insertListToFrom('ul');return false; }
-        if (thekey.ctrlKey && thekey.which == 35) { fpcmEditor.insertListToFrom('ol');return false; }
-
-        if (thekey.ctrlKey && thekey.which == 113) { fpcmEditor.insert('<blockquote>', '</blockquote>');return false; }
-        if (thekey.ctrlKey && thekey.which == 102) { jQuery('#fpcm-dialog-editor-html-insertiframe-btn').click();return false; }
-        if (thekey.ctrlKey && thekey.which == 109) { fpcmEditor.insertMoreArea();return false; }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 90) { jQuery('#fpcm-dialog-editor-html-insertmedia-btn').click();return false; }
-        if (thekey.ctrlKey && thekey.which == 108) { jQuery('#fpcm-dialog-editor-html-insertlink-btn').click();return false;  }
-        if (thekey.ctrlKey && thekey.which == 112) { jQuery('#fpcm-dialog-editor-html-insertimage-btn').click();return false;  }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 84) { jQuery('#fpcm-dialog-editor-html-inserttable-btn').click();return false;  }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 69) { jQuery('#fpcm-dialog-editor-html-insertsmiley-btn').click();return false;  }        
-
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 76) { fpcmEditor.insertAlignTags('left');return false; }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 67) { fpcmEditor.insertAlignTags('center');return false; }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 82) { fpcmEditor.insertAlignTags('right');return false; }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 74) { fpcmEditor.insertAlignTags('justify');return false; }
-        
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 70) { jQuery('#fpcm-dialog-editor-html-insertcolor-btn').click();return false; }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 83) { jQuery('#fpcm-dialog-editor-html-removetags-btn').click();return false; }
-        if (thekey.ctrlKey && thekey.shiftKey && thekey.which == 73) { jQuery('#fpcm-dialog-editor-html-insertsymbol-btn').click();return false; }
-    });        
+    });  
 });

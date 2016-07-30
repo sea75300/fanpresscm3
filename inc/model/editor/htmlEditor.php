@@ -63,7 +63,6 @@
             
             return array(
                 'fpcmCmColors'                  => $editorHtmlColors,
-                'fmcEditorKeyShortcutsEnabled'  => true,
                 'fpcmEditorAutocompleteLinks'   => $this->getEditorLinks(),
                 'fpcmEditorAutocompleteImages'  => $this->getFileList(),
                 'fpcmEditorHtmlElement'         => $this->language->translate('EDITOR_HTML_BUTTONS_LITEXT')
