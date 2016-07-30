@@ -390,6 +390,7 @@ var fpcmEditor = function () {
             default_link_target   : "_blank",
             autoresize_min_height : '500',
             image_caption         : true,
+            autosave_restore_when_empty: false,
             file_picker_callback  : function(callback, value, meta) {
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,

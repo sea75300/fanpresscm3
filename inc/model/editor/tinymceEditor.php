@@ -49,12 +49,26 @@
          * @return array
          */
         public function getJsVars() {
-            $editorStyles = array(array('title' => $this->language->translate('GLOBAL_SELECT'), 'value' => ''));
 
+            $editorStyles = array(array('title' => $this->language->translate('GLOBAL_SELECT'), 'value' => ''));
+            
+            $cache = new \fpcm\classes\cache('tinymce_plugins');
+            if ($cache->isExpired()) {
+
+                $path  = dirname(\fpcm\classes\loader::libGetFilePath('tinymce4', 'tinymce.min.js'));            
+                $path .= '/plugins/*';
+
+                $pluginFolders = implode(' ', array_map('basename', glob($path, GLOB_ONLYDIR)));
+                $cache->write($pluginFolders, $this->config->system_cache_timeout);
+            }
+            else {
+                $pluginFolders = $cache->read();
+            }
+            
             $params = array(
                 'fpcmTinyMceLang'        => $this->config->system_lang,
                 'fpcmTinyMceElements'     => '~readmore',
-                'fpcmTinyMcePlugins'     => 'advlist anchor autolink autoresize charmap code colorpicker fullscreen hr image imagetools importcss insertdatetime link lists media nonbreaking searchreplace table textcolor textpattern visualblocks visualchars wordcount template fpcm_emoticons fpcm_readmore',
+                'fpcmTinyMcePlugins'     => $pluginFolders,
                 'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime template | undo redo removeformat searchreplace fullscreen code',
                 'fpcmTinyMceCssClasses'  => array_merge($editorStyles, $this->getEditorStyles()),
                 'fpcmTinyMceLinkList'    => $this->getEditorLinks(),
