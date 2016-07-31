@@ -38,7 +38,7 @@
             $cjId = $this->getRequestVar('cjId');
             if ($cjId) {
                 
-                $cjClassName = "\\fpcm\\model\\crons\\{$cjId}";
+                $cjClassName = \fpcm\model\abstracts\cron::getCronNamespace($cjId);
 
                 /* @var $cronjob \fpcm\model\abstracts\cron */
                 $cronjob = new $cjClassName($cjId);

@@ -220,7 +220,7 @@
         /**
          * Inittiert Objekt mit Daten aus der Datenbank
          */
-        protected function init() {
+        public function init() {
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             

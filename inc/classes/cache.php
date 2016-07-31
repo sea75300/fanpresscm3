@@ -131,6 +131,15 @@
         public function getSize() {            
             return array_sum(array_map('filesize', glob(baseconfig::$cacheDir.'/*.cache')));
         }
+
+        /**
+         * Gibt Zeitspanne zurück, bis Cache verfällt
+         * @return int
+         * @since FPCM 3.3
+         */
+        function getExpirationTime() {
+            return $this->expirationTime;
+        }
         
         /**
          * Cache-Name verschlüsseln

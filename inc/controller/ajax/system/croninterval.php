@@ -45,7 +45,7 @@
                 return false;
             }
                 
-            $cjClassName = "\\fpcm\\model\\crons\\{$cronjobId}";
+            $cjClassName = \fpcm\model\abstracts\cron::getCronNamespace($cronjobId);
 
             /* @var $cronjob \fpcm\model\abstracts\cron */
             $cronjob = new $cjClassName($cronjobId);

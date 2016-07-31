@@ -213,4 +213,8 @@
             return $this->dbcon->update($this->table, array('execinterval'), array($this->execinterval, $this->cronName), 'cjname '.$this->dbcon->dbLike().' ?');
         }
         
+        public static function getCronNamespace($cronId) {
+            return "\\fpcm\\model\\crons\\{$cronId}";
+        }
+        
     }
