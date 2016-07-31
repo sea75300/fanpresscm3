@@ -312,8 +312,11 @@
             self::$langDir             = self::$incDir.'lang/';
             self::$dashcontainerDir    = self::$incDir.'model/dashboard/';
 
-            $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
-            self::$rootPath            = $http.$_SERVER['HTTP_HOST'].rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/').'/'.basename(self::$baseDir).'/';
+            if (php_sapi_name() !== 'cli') {
+                $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
+                self::$rootPath            = $http.$_SERVER['HTTP_HOST'].rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/').'/'.basename(self::$baseDir).'/';
+            }
+            
 
             self::$uploadRootPath      = self::$rootPath.basename(self::$dataDir).'/uploads/';
             self::$shareRootPath       = self::$rootPath.basename(self::$dataDir).'/share/';
