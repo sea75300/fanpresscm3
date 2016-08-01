@@ -133,6 +133,22 @@
             $res = true;
 
             $newconf = array();
+            if (!is_array($this->config->twitter_data)) {
+                $newconf['twitter_data'] = array(
+                    'consumer_key'    => '',
+                    'consumer_secret' => '',
+                    'user_token'      => '',
+                    'user_secret'     => ''
+                );
+                
+                $newconf['twitter_data'] = json_encode($newconf['twitter_data']);
+            }
+            
+            if (!is_array($this->config->twitter_events)) {
+                $newconf['twitter_events'] = array('create' => 0, 'update' => 0);
+                $newconf['twitter_events'] = json_encode($newconf['twitter_events']);
+            }
+            
             if (count($newconf)) {
                 $this->config->setNewConfig($newconf);
                 $res = $res && $this->config->update();

@@ -129,6 +129,9 @@
          * @param string $wrapper Wrapper-DIV nutzen
          */
         public static function textInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false, $wrapper = true) {
+
+            $placeholder = self::$language->translate($placeholder) ? self::$language->translate($placeholder) : $placeholder;
+
             $html   = array();
             if ($wrapper) {
                 $wrapperClass = is_string($wrapper) ? $wrapper : '';
@@ -414,6 +417,10 @@
          * @since FPCM 3.1.6
          */
         public static function shortHelpButton($description, $style = '', $href = false, $target = '_self') {
+            
+            $description = self::$language->translate($description)
+                         ? self::$language->translate($description)
+                         : $description;
             
             $html   = array();
             

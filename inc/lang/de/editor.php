@@ -51,6 +51,8 @@
         'EDITOR_CHANGEAUTHOR'           => 'Autor ändern',
         'EDITOR_ARTICLEIMAGE'           => 'Artikel-Bild festlegen',
         'EDITOR_ARTICLEIMAGE_SHOW'      => 'Artikel-Bild anzeigen',
+        'EDITOR_TWEET_TEXT'             => 'Twitter-Beitrag-Text (überschreibt Tweet-Template)',
+        'EDITOR_TWEET_TEXT_REPLACER'    => 'Platzhalter aus Tweet-Template nutzbar!',
         
         'EDITOR_STATUS_DRAFT'           => 'Artikel als Entwurf gespeichert',
         'EDITOR_STATUS_PINNED'          => 'Artikel ist gepinnt',

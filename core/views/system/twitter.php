@@ -1,7 +1,8 @@
 <table class="fpcm-ui-table fpcm-ui-options fpcm-ui-options-twitter">
     <?php if ($twitterIsActive) : ?>
     <tr>
-        <th colspan="2"><?php $FPCM_LANG->write('SYSTEM_OPTIONS_TWITTER_ACTIVE', array('{{screenname}}' => $twitterScreenName)); ?></th>
+        <th></th>
+        <th><span class="fa fa-check-square fa-align-right"></span> <?php $FPCM_LANG->write('SYSTEM_OPTIONS_TWITTER_ACTIVE', array('{{screenname}}' => $twitterScreenName)); ?></th>
     </tr>
     <tr class="fpcm-td-spacer" colspan="2"><td></td></tr>
     <?php endif; ?>

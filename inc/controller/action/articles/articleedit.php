@@ -198,6 +198,10 @@
                     $this->article->setCreateuser($data['author']);
                 }
 
+                if (isset($data['tweettxt']) && $data['tweettxt']) {
+                    $this->article->setTweetOverride($data['tweettxt']);
+                }
+
                 $this->article->setChangetime($allTimer);
                 $this->article->setChangeuser($this->session->getUserId());                
                 

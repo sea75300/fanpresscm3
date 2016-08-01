@@ -70,8 +70,12 @@
                 if (!$this->article->getTitle() || !$this->article->getContent()) {
                     $this->view->addErrorMessage('SAVE_FAILED_ARTICLE_EMPTY');
                     return true;
-                }                
-                
+                }
+
+                if (isset($data['tweettxt']) && $data['tweettxt']) {
+                    $this->article->setTweetOverride($data['tweettxt']);
+                }
+
                 $this->article->prepareDataSave();
                 $id = $this->article->save();
                 if ($id === false) {

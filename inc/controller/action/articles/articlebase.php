@@ -79,7 +79,8 @@
             $this->view->assign('userIsAdmin', $this->session->getCurrentUser()->isAdmin());
             if ($this->session->getCurrentUser()->isAdmin()) {
                 $userlist = new \fpcm\model\users\userList();
-                $this->view->assign('changeuserList', $userlist->getUsersNameList());
+                $changeuserList = array($this->lang->translate('EDITOR_CHANGEAUTHOR') => '') + $userlist->getUsersNameList();
+                $this->view->assign('changeuserList', $changeuserList);
             }
             
             $this->view->assign('editorFile', $this->editorPlugin->getEditorTemplate());
@@ -91,6 +92,10 @@
             $this->view->assign('isRevision', false);
             $this->view->assign('timesMode', false);
             $this->view->assign('userfields', $this->getUserFields());
+            
+            $twitter = new \fpcm\model\system\twitter();
+            
+            $this->view->assign('showTwitter', $twitter->checkRequirements());
             
             $this->jsVars  = $this->editorPlugin->getJsVars();
             $this->jsVars += array(

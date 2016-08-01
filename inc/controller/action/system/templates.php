@@ -157,7 +157,7 @@
                     $this->view->addNoticeMessage('SAVE_SUCCESS_TEMPLATE', array('{{filenames}}' => implode(', ', $tplSaveOk)));                    
                 }                
             }
-            
+
             return true;
         }
         

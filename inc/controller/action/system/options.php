@@ -58,17 +58,26 @@
             
             if ($this->buttonClicked('configSave')) {                
                 $newconfig = $this->getRequestVar();
-                
-                if (isset($newconfig['twitter_data']) && isset($newconfig['twitter_events'])) {
 
-                    foreach ($this->config->twitter_events as $key => $value) {
-                        $newconfig['twitter_events'][$key] = isset($newconfig['twitter_events'][$key]) ? 1 : 0;
-                    }
-
-                    $newconfig['twitter_data']              = json_encode($newconfig['twitter_data']);
-                    $newconfig['twitter_events']            = json_encode($newconfig['twitter_events']);
-
+                if (!isset($newconfig['twitter_events'])) {
+                    $newconfig['twitter_events'] = array('create' => 0, 'update' => 0);
                 }
+
+                foreach ($this->config->twitter_events as $key => $value) {
+                    $newconfig['twitter_events'][$key] = (isset($newconfig['twitter_events'][$key]) && $newconfig['twitter_events'][$key] ? 1 : 0);
+                }
+
+                $newconfig['twitter_events']            = json_encode($newconfig['twitter_events']);
+                
+                if (!isset($newconfig['twitter_data'])) {
+                    $newconfig['twitter_data'] = array('consumer_key' => '', 'consumer_secret' => '', 'user_token' => '', 'user_secret' => '');
+                }
+
+                foreach ($this->config->twitter_data as $key => $value) {
+                    $newconfig['twitter_data'][$key] = isset($newconfig['twitter_data'][$key]) ? $newconfig['twitter_data'][$key] : '';
+                }
+
+                $newconfig['twitter_data']           = json_encode($newconfig['twitter_data']);
                 
                 $newconfig['articles_limit']                 = (int) $newconfig['articles_limit'];
                 $newconfig['articles_acp_limit']             = (int) $newconfig['articles_acp_limit'];
@@ -80,7 +89,7 @@
                 $newconfig['file_img_thumb_width']           = (int) $newconfig['file_img_thumb_width'];
                 $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
                 $newconfig['system_updates_devcheck']        = (int) $newconfig['system_updates_devcheck'];
-                
+
                 $this->config->setNewConfig($newconfig);
                 if (!$this->config->update()) {
                     $this->view->addErrorMessage('SAVE_FAILED_OPTIONS');
@@ -209,6 +218,7 @@
             ));
             
             $twitter = new \fpcm\model\system\twitter();
+            
             $this->view->assign('showTwitter', $twitter->checkRequirements());
             $this->view->assign('twitterIsActive', $twitter->checkConnection());
             $this->view->assign('twitterScreenName', $twitter->getUsername());

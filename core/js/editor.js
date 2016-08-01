@@ -660,6 +660,10 @@ jQuery(document).ready(function() {
         return false;
     });
     
+    fpcm.ui.checkboxradio('#fpcm-dialog-editor-extended .fpcm-ui-input-checkbox', {
+        icon: false
+    });
+    
     /**
      * Keycodes
      * http://www.brain4.de/programmierecke/js/tastatur.php

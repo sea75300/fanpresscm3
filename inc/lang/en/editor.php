@@ -51,6 +51,8 @@
         'EDITOR_CHANGEAUTHOR'           => 'Change author',
         'EDITOR_ARTICLEIMAGE'           => 'Add article image',
         'EDITOR_ARTICLEIMAGE_SHOW'      => 'Show article image',
+        'EDITOR_TWEET_TEXT'             => 'Tweet content (override tweet template)',
+        'EDITOR_TWEET_TEXT_REPLACER'    => 'Replacements of tweet template available',
         
         'EDITOR_STATUS_DRAFT'           => 'Article is draft',
         'EDITOR_STATUS_PINNED'          => 'Article is pinned',

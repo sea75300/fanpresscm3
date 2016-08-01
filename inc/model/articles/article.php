@@ -124,7 +124,7 @@
          * Auszuschließende Elemente beim in save/update
          * @var array
          */
-        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission');
+        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission', 'tweetOverride');
         
         /**
          * Action-String für edit-Action
@@ -145,6 +145,13 @@
          * @since FPCM 3.3
          */
         protected $editPermission = true;
+
+        /**
+         * Text für überschriebenes Tweet-Template
+         * @var string
+         * @since FPCM 3.3
+         */
+        protected $tweetOverride = false;
 
         /**
          * Konstruktor
@@ -444,7 +451,25 @@
         public function setMd5path($str) {
             $this->md5path = md5($str);
         }
-        
+
+        /**
+         * Text für überschriebenes Tweet-Template zurückgeben
+         * @return string
+         * @since FPCM 3.3
+         */
+        function getTweetOverride() {
+            return $this->tweetOverride;
+        }
+
+        /**
+         * Text für überschriebenes Tweet-Template setzen
+         * @param string $tweetOverride
+         * @since FPCM 3.3
+         */
+        function setTweetOverride($tweetOverride) {
+            $this->tweetOverride = $tweetOverride;
+        }
+                
         /**
          * schönen URL-Pfad zurückgeben
          * @return string
@@ -553,7 +578,7 @@
             }
             
             $this->events->runEvent('articleUpdateAfter', $this->id);
-            
+
             return $return;            
         }
         
@@ -720,6 +745,10 @@
                 '{{permaLink}}' => $eventResult->getArticleLink(),
                 '{{shortLink}}' => $eventResult->getArticleShortLink()
             ));
+            
+            if ($this->tweetOverride !== false) {
+                $tpl->setContent($this->tweetOverride);
+            }
             
             $twitter = new \fpcm\model\system\twitter();
             return $twitter->updateStatus($tpl->parse());
