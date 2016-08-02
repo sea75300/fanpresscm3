@@ -42,9 +42,10 @@
             $options = array(
                 'script_url' => \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('ajax/jqupload'),
                 'upload_dir' => \fpcm\classes\baseconfig::$uploadDir,
-                'upload_url' => \fpcm\classes\baseconfig::$uploadDir,        
-                'image_versions' => array(
-                    'thumbnail' => array(
+                'upload_url' => \fpcm\classes\baseconfig::$uploadDir,
+                'accept_file_types'  => '/\.(gif|jpe?g|png|bmp)$/i',
+                'image_versions'     => array(
+                    'thumbnail'      => array(
                         'upload_dir' => \fpcm\classes\baseconfig::$uploadDir.'thumbs/',
                         'upload_url' => \fpcm\classes\baseconfig::$uploadDir.'thumbs/',
                         'crop'       => false,

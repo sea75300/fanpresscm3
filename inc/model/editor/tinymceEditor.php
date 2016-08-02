@@ -76,7 +76,8 @@
                 'fpcmTinyMceTextpattern' => $this->getTextPatterns(),
                 'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize,
                 'fpcmTinyMceReadmoreBlockHL' => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE'),
-                'fpcmTinyMceTemplatesList'   => $this->getTemplateDrafts()
+                'fpcmTinyMceTemplatesList'   => $this->getTemplateDrafts(),
+                'fpcmTinyMceAutosavePrefix'  => 'tinymce-as-'.$this->session->getUserId().'-'.$this->session->getSessionId()
             );
             
             return $this->events->runEvent('editorInitTinymce', $params);

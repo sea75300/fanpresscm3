@@ -161,9 +161,66 @@ fpcm.filemanager = {
             jQuery('.fpcm-ui-fileinput-select').empty();
         });
 
+    },
+    
+    initJqUpload: function() {
+        
+        if (!fpcmJqUploadInit) {
+            return false;
+        }
+
+        'use strict';
+
+        jQuery('#fileupload').fileupload({
+            url: fpcmAjaxActionPath + 'jqupload',
+            dropZone: jQuery('#fpcm-filemanager-upload-drop')
+        });
+
+        jQuery('#fileupload').addClass('fileupload-processing');
+        jQuery.ajax({
+            url: jQuery('#fileupload').fileupload('option', 'url'),
+            dataType: 'json',
+            context: jQuery('#fileupload')[0]
+        }).always(function () {
+            jQuery(this).removeClass('fileupload-processing');
+        }).done(function (result) {
+            jQuery(this).fileupload('option', 'done')
+                .call(this, jQuery.Event('done'), {result: result});
+        });
+        
+        jQuery(document).bind('dragover', function (e) {
+            var dropZone = $('#fpcm-filemanager-upload-drop'), timeout = window.dropZoneTimeout;
+
+            if (!timeout) {
+                dropZone.addClass('in');
+            } else {
+                clearTimeout(timeout);
+            }
+
+            var found = false, node = e.target;
+
+            do {
+                if (node === dropZone[0]) {
+                    found = true;
+                    break;
+                }
+                node = node.parentNode;
+            } while (node != null);
+            if (found) {
+                dropZone.addClass('hover');
+            } else {
+                dropZone.removeClass('hover');
+            }
+            window.dropZoneTimeout = setTimeout(function () {
+                window.dropZoneTimeout = null;
+                dropZone.removeClass('in hover');
+            }, 100);
+        });
+
     }
 };
 
 jQuery(document).ready(function () {
+    fpcm.filemanager.initJqUpload();
     fpcm.filemanager.initUploadButtons();
 });

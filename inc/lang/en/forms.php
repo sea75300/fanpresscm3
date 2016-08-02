@@ -135,6 +135,7 @@
         'FILE_LIST_RENAME'              => 'Rename files',
         'FILE_LIST_RENAME_NEWNAME'      => 'Please insert a new filename:',
         'FILE_LIST_PHPMAXINFO'          => 'No more than {{filecount}} file with {{filesize}}.',
+        'FILE_LIST_UPLOADDROP'          => 'Drop files to this box for upload',
         
         'FILE_LIST_SMILEYCODE'          => 'Smiley code',
         'FILE_LIST_SMILEYADD'           => 'Add smiley',

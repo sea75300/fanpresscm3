@@ -142,9 +142,10 @@
             $this->view->assign('loadAjax', $loadAjax);
             
             $this->view->addJsVars(array(
-                'fpcmBaseUrl'     => \fpcm\classes\baseconfig::$rootPath,
-                'fpcmFmgrMode'    => $this->mode,
-                'fpcmEditorType'  => $this->config->system_editor
+                'fpcmBaseUrl'      => \fpcm\classes\baseconfig::$rootPath,
+                'fpcmFmgrMode'     => $this->mode,
+                'fpcmEditorType'   => $this->config->system_editor,
+                'fpcmJqUploadInit' => $this->config->file_uploader_new
             ));
             
             $this->view->addJsLangVars(array('newNameMsg' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME')));

@@ -4,12 +4,15 @@
 <noscript><link rel="stylesheet" type="text/css" href="<?php print $jquploadPath ?>css/jquery.fileupload-ui-noscript.css"></noscript>
 
 <form id="fileupload" action="<?php print $actionPath; ?>" method="POST" enctype="multipart/form-data">
+
     <div class="fileupload-buttonbar">
-        <div class="fileupload-progress fade" style="display:none;margin:10px 0;">
+        <div class="fileupload-progress fade fpcm-hidden">
             <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
             <div class="progress-extended">&nbsp;</div>
         </div>
-    </div>    
+    </div>
+
+    <div id="fpcm-filemanager-upload-drop"><h4 class="fpcm-ui-center"><?php $FPCM_LANG->write('FILE_LIST_UPLOADDROP'); ?></h4></div>
     
     <table role="presentation" class="fpcm-ui-table fpcm-ui-uploadlist">
         <tbody class="files"></tbody>
@@ -48,28 +51,16 @@
     </tr>
 {% } %}
 </script>
-<!-- The template to display files available for download -->
+
 <script id="template-download" type="text/x-tmpl">
-
 </script>
-
-<!-- The Templates plugin is included to render the upload/download listings -->
 <script src="<?php print $jquploadPath ?>js/template.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="<?php print $jquploadPath ?>js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
 <script src="<?php print $jquploadPath ?>js/jquery.fileupload.js"></script>
-<!-- The File Upload processing plugin -->
 <script src="<?php print $jquploadPath ?>js/jquery.fileupload-process.js"></script>
-<!-- The File Upload validation plugin -->
 <script src="<?php print $jquploadPath ?>js/jquery.fileupload-validate.js"></script>
-<!-- The File Upload user interface plugin -->
 <script src="<?php print $jquploadPath ?>js/jquery.fileupload-ui.js"></script>
-<!-- The File Upload jQuery UI plugin -->
 <script src="<?php print $jquploadPath ?>js/jquery.fileupload-jquery-ui.js"></script>
-<!-- The main application script -->
-<script src="<?php print $jquploadPath ?>js/main.js"></script>
-<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
 <!--[if (gte IE 8)&(lt IE 10)]>
 <script src="<?php print $jquploadPath ?>js/cors/jquery.xdr-transport.js"></script>
 <![endif]-->

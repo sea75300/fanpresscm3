@@ -391,8 +391,13 @@ input, select, textarea, option, button {
 }
 
 .fpcm-ui-input-wrapper,
+.fpcm-ui-input-text,
 textarea {
-    background-color: #ffffff;
+    background-color: #fff;
+}
+
+.fpcm-ui-input-wrapper,
+textarea {
     border: 1px solid #C5DBEC;
     border-radius: 5px;
 }
@@ -1436,9 +1441,18 @@ span.fpcm-ui-shorthelp:hover {
     color: #3399ff;
 }
 
-table.fpcm-ui-table.fpcm-ui-options tr td span.fpcm-ui-shorthelp.fpcm-options {
-    position:relative;
-    bottom:0.8em;
+#fpcm-filemanager-upload-drop {
+    background: rgba(223, 239, 252, 0.35);
+}
+
+#fpcm-filemanager-upload-drop h4 {
+    padding: 1.75em 0em;
+}
+
+#fpcm-filemanager-upload-drop h4:before {
+    display: block;
+    font-size: 5em;
+    padding-bottom: 0.1em;
 }
 
 div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before,
@@ -1448,7 +1462,8 @@ h1 a.fpcm-ui-helpbutton:before,
 .fpcm-ui-button.fpcm-back-button .ui-button-text:after,
 .fpcm-ui-button.fpcm-forward-button .ui-button-text:after,
 .fpcm-ui-button:before,
-.fpcm-ui-button:after {
+.fpcm-ui-button:after,
+#fpcm-filemanager-upload-drop h4:before {
     font-family: 'FontAwesome';
 }
 
@@ -1649,7 +1664,8 @@ h1 a.fpcm-ui-helpbutton:before,
     content: '\f06e';
 }
 
-div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before {
+div.mce-btn button .mce-ico.mce-i-fpcm-readmore:before,
+#fpcm-filemanager-upload-drop h4:before {
     content: '\f0fe';
 }
 
