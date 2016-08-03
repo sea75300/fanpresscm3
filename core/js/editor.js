@@ -239,6 +239,43 @@ var fpcmEditor = function () {
         });
     };
     
+    this.initCodeMirrorAutosave = function () {
+
+        var autoSaveStorage = localStorage.getItem(fpcmEditorAutosavePrefix);
+        var isDisabled = (autoSaveStorage === null ? true : false);
+        
+        fpcm.ui.button('#fpcm-editor-html-restoredraft-btn',
+        {
+            disabled: isDisabled
+        },
+        function () {
+
+            var autoSaveStorage = localStorage.getItem(fpcmEditorAutosavePrefix);
+            editor.setValue(autoSaveStorage);
+
+            return false;
+        });
+        
+        setInterval(function() {
+
+            var editorValue = editor.getValue();
+            if (!editorValue) {
+                return false;
+            }
+            
+            if (editorValue === localStorage.getItem(fpcmEditorAutosavePrefix)) {
+                return true;
+            }
+
+            localStorage.setItem(fpcmEditorAutosavePrefix, editorValue);
+            fpcm.ui.button('#fpcm-editor-html-restoredraft-btn', {
+                disabled: false
+            });
+            
+        }, 30000);
+
+    },
+    
     this.initCodeMirror = function () {
         jQuery('#fpcmdialogeditorhtmlcolorhexcode').colorPicker({
             rows        : 5,
@@ -359,10 +396,12 @@ var fpcmEditor = function () {
                 }
 
             },
-            value           : document.documentElement.innerHTML
+            value           : document.documentElement.innerHTML,
+            theme           : 'mdn-like'
         });
 
-        editor.setOption('theme', 'mdn-like');
+        self.initCodeMirrorAutosave();
+
     };
     
     this.initTinyMce = function() {

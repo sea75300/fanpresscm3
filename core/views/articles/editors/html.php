@@ -78,6 +78,7 @@
                 <?php endforeach; ?>
             <?php endif; ?>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_REMOVESTYLE'); ?> (Ctrl + Shift + S)" id="fpcm-editor-html-removetags-btn"><span class="fa fa-eraser"></span></button>
+                <button disabled="disabled" title="<?php $FPCM_LANG->write('EDITOR_AUTOSAVE_RESTORE'); ?>" id="fpcm-editor-html-restoredraft-btn"><span class="fa fa-repeat fa-flip-horizontal"></span></button>
             </div>                
         </td>
     </tr>

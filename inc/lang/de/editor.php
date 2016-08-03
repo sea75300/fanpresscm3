@@ -47,6 +47,7 @@
         'EDITOR_REVISION_DATE'          => 'Revisionsdatum',
         'EDITOR_BACKTOCURRENT'          => 'Zurück zur aktuellen Version',
         'EDITOR_REVISION_RESTORE'       => 'Revision wiederherstellen',
+        'EDITOR_AUTOSAVE_RESTORE'       => 'Letzten Entwurf wiederherstellen',
         'EDITOR_ARTICLE_SHORTLINK'      => 'Kurzlink',
         'EDITOR_CHANGEAUTHOR'           => 'Autor ändern',
         'EDITOR_ARTICLEIMAGE'           => 'Artikel-Bild festlegen',
