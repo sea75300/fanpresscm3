@@ -151,7 +151,7 @@ var fpcmEditor = function () {
         jQuery('#fpcmdialogeditorhtmlcolorhexcode').val('');
         jQuery('.color_mode:checked').removeAttr('checked');    
         jQuery('#color_mode1').prop( "checked", true );
-    }
+    };
     
     this.insertPlayer = function (url, tagName) {
         aTag  = '<' + tagName + '>';
@@ -161,6 +161,19 @@ var fpcmEditor = function () {
         jQuery('#mediapath').val('');
         jQuery('#mediatype:checked').removeAttr('checked');    
         jQuery('#mediatype').prop( "checked", true );        
+    };
+    
+    this.insertFrame = function (url, params) {
+        
+        if (url === undefined) {
+            url = 'http://';
+        }
+        
+        if (params === undefined) {
+            params = [];
+        }
+
+        fpcmEditor.insert('<iframe src="' + url + '" class="fpcm-articletext-iframe" ' + params.join(' ') + '>','</iframe>');
     };
 
     this.showFileManager = function() {
@@ -309,7 +322,8 @@ var fpcmEditor = function () {
             }
         });
 
-        editor = CodeMirror.fromTextArea(document.getElementById("articlecontent"), {
+        editor = CodeMirror.fromTextArea(
+            document.getElementById("articlecontent"), {
             lineNumbers     : true,
             matchBrackets   : true,
             lineWrapping    : true,
@@ -398,6 +412,25 @@ var fpcmEditor = function () {
             },
             value           : document.documentElement.innerHTML,
             theme           : 'mdn-like'
+        });
+        
+        editor.on('paste', function(instance, event) {
+                
+            if (event.clipboardData === undefined) {
+                return true;
+            }
+
+            var orgText = event.clipboardData.getData('Text');            
+            var chgText = fpcm.editor_videolinks.replace(orgText);
+
+            if (orgText === chgText) {
+                return false;
+            }
+
+            event.preventDefault();
+            fpcmEditor.insertFrame(chgText, ['width="500"', 'height="300"', 'frameborder="0"', 'allowfullscreen']);
+            return true;
+
         });
 
         self.initCodeMirrorAutosave();
@@ -563,7 +596,7 @@ jQuery(document).ready(function() {
     });
     
     jQuery('#fpcm-editor-html-insertiframe-btn').click(function() {
-        fpcmEditor.insert('<iframe src="http://" class="fpcm-articletext-iframe">','</iframe>');
+        fpcmEditor.insertFrame();
         return false;
     });
     
