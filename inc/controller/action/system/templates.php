@@ -189,8 +189,8 @@
             $this->view->assign('contentTweet', $this->tweetTemplate->getContent());
             
             $this->view->assign('allowedTags', htmlentities($this->articleTemplate->getAllowedTags(', ')));
-            
-            $this->view->addJsVars(array('fpcmTemplateId' => 1));
+
+            $this->view->addJsVars(array('fpcmTemplateId' => 1, 'fpcmJqUploadInit' => 0));
             $this->view->addJsLangVars(array('previewHeadline' => $this->lang->translate('HL_TEMPLATE_PREVIEW')));
             
             $tplfilelist = new \fpcm\model\files\templatefilelist();

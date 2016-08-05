@@ -73,6 +73,7 @@
             $this->assignModules($this->moduleList);
 
             $this->view->addJsLangVars(array('detailsHeadline' => $this->lang->translate('MODULES_LIST_INFORMATIONS')));
+            $this->view->addJsVars(array('fpcmJqUploadInit' => 0));
 
             $this->view->setViewJsFiles(array(
                 \fpcm\classes\baseconfig::$jsPath.'modulelist.js',
