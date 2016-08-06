@@ -13,7 +13,7 @@
         'COMMMENT_IPADDRESS'    => 'Author IP address',
         'COMMMENT_LASTCHANGE'   => '<strong>Last change:</strong> {{username}} at {{time}}',
         'COMMMENT_TEXT'         => 'Comment text',
-        'COMMMENT_PRIVATE'      => 'Comment ist private',
+        'COMMMENT_PRIVATE'      => 'Comment is private',
         'COMMMENT_PRIVATE_BTN'  => 'Change private status',
         'COMMMENT_APPROVE'      => 'Comment is approved',
         'COMMMENT_APPROVE_BTN'  => 'Change approval',

@@ -8,8 +8,8 @@
 
     $lang = array(
         'PASSWORD_RESET_SUBJECT' => 'Neues Passwort angefordert',
-        'PASSWORD_RESET_TEXT'    => 'Für dich wurde ein neues Passwort angefordert. Dies lautet <b>{{newpass}}</b>. Hast du dies'
-                                     . 'nicht selbst veranlasst, so kontaktiere am Besten einen Administrator.',
+        'PASSWORD_RESET_TEXT'    => 'Für dich wurde ein neues Passwort angefordert. Dies lautet <b>{{newpass}}</b>. Hast du dies '
+                                  . 'nicht selbst veranlasst, so kontaktiere am Besten einen Administrator.',
         
         'PUBLIC_COMMENT_EMAIL_SUBJECT' => 'Es wurde ein neuer Kommentar geschrieben',
         'PUBLIC_COMMENT_EMAIL_TEXT'    => "Von {{name}} (E-Mail-Adresse: {{email}}) wurde ein Kommentar auf den Artikel {{articleurl}} geschrieben.\n\n{{commenttext}}\n\nLogge dich ein um den Kommentar zu moderieren. {{systemurl}}",

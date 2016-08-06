@@ -49,7 +49,7 @@
         'PROFILE_MENU_LOGGEDINSINCE'    => 'Eingeloggt seit',
         'PROFILE_MENU_YOURIP'           => 'Deine IP-Adresse:',
         
-        'HELP_SELECT'                   => 'Klicke auf eine Überschrift, um den Hilfeintrag zu öffnen',
+        'HELP_SELECT'                   => 'Klicke auf eine Überschrift, um den Hilfe-Eintrag zu öffnen',
         'HELP_BTN_OPEN'                 => 'Hilfe-Eintrag aufrufen',
         'HL_HELP_CACHE'                 => 'Cache',
         'HL_HELP_INTEGRATION'           => 'Integration in deine Seite',
@@ -58,7 +58,7 @@
         'CRONJOB_ANONYMIZEIPS'         => 'IP-Adressen aus Kommentaren anonymisieren',
         'CRONJOB_CLEARLOGS'            => 'Systemlogs leeren',
         'CRONJOB_CLEARTEMP'            => 'temporäre Dateien aufräumen',
-        'CRONJOB_FMTHUMBS'             => 'Dateimanger-Thumbnails erzeugen',
+        'CRONJOB_FMTHUMBS'             => 'Dateimanager-Thumbnails erzeugen',
         'CRONJOB_POSTPONEDARTICLES'    => 'geplante Artikel veröffentlichen',
         'CRONJOB_UPDATECHECK'          => 'Prüfung auf Updates',
         'CRONJOB_DBBACKUP'             => 'System-Datenbank sichern',

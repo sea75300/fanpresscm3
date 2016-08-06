@@ -241,7 +241,7 @@ Help language file
                             Der Tab enthält verschiedene Einstellungen zur Ausgabe von Artikel-Kommentaren und deren Verwaltung.
                             <ul>
                                 <li><em>Kommentar-System ist aktiv:</em> Kommentar-System global de/aktivieren.</li>
-                                <li><em>Kommentare-Template:</em> Template für die Anzeige von Kommentaren.</li>
+                                <li><em>Kommentar-Template:</em> Template für die Anzeige von Kommentaren.</li>
                                 <li><em>Anti-Spam-Frage:</em> Frage für das Standard-Spam-Plugin.</li>
                                 <li><em>Antwort auf Anti-Spam-Frage:</em> Antwort für das Standard-Spam-Plugin.</li>
                                 <li><em>Zeitsperre zwischen zwei Kommentaren:</em> Zeit in Sekunden, die zwischen zwei Kommentaren von
@@ -251,7 +251,7 @@ Help language file
                                 <li><em>Müssen Kommentare freigeschalten werden:</em> Kommentare sind sofort sichtbar oder
                                 müssen manuell durch den Autor oder einen Admin freigegeben werden.</li>
                                 <li><em>Benachrichtigung bei neuem Kommentare an:</em> E-Mail-Adresse festlegen, an welche die
-                                Benachrichtigungen über neue Kommentare gehen. (nur an Author, nur an globale Adresse oder an beide)</li>
+                                Benachrichtigungen über neue Kommentare gehen. (nur an Autor, nur an globale Adresse oder an beide)</li>
                                 <li><em>Automatische Spam-Markierung:</em> Sind vom aktuellen Kommentar-Autor bereits diese Anzahl an Kommentaren
                                     als Spam markiert im System vorhanden, so wird der neue Kommentar automatisch als Spam markiert.</li>
                             </ul>
@@ -320,8 +320,8 @@ Help language file
                 <li><b>Cronjobs:</b><br>
                     Cronjobs sind Aufgaben, welche in regelmäßgen Abständen automatisch durch FanPress CM im Hintergrund
                     ausgeführt werden. Die Cronjob-Übersicht zeigt die eine Liste von verfügbaren Cronjobs, wenn sie zuletzt
-                    ausgeführt wurden sowie den Zeitpunkt der nächsten Ausführung. Das Zeit-Interval der Ausführung kannst du
-                    anpassen, in dem du die Interval-zeit änderst.
+                    ausgeführt wurden sowie den Zeitpunkt der nächsten Ausführung. Das Zeit-Intervall der Ausführung kannst du
+                    anpassen, in dem du die Intervall-zeit änderst.
                 </li>  
                 <li><b>System-Logs:</b><br>
                     Im Bereich der Systemlogs findest du eine Auflistung aller bisherigen Benutzer-Logins, System-Meldungen von FanPress und

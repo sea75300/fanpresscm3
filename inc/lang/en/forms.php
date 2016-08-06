@@ -54,7 +54,7 @@
         'LOGIN_NEWPASSWORD'             => 'Request new password',
         'LOGOUT_BTN'                    => 'Logout',
         
-        'NAVIGATION_SHOW'               => 'Show menü',
+        'NAVIGATION_SHOW'               => 'Show menu',
         'PROFILE_MENU_OPENPROFILE'      => 'Open profile',
         
         'ARTICLES_EDITOR'               => 'Article editor',
@@ -129,8 +129,8 @@
         'FILE_LIST_UPLOAD_BY'           => 'uploaded by',
         'FILE_LIST_OPEN_THUMB'          => 'Open thumbnail',
         'FILE_LIST_OPEN_FULL'           => 'Open image',
-        'FILE_LIST_INSERT_THUMB'        => 'Insert thumbnail url',
-        'FILE_LIST_INSERT_FULL'         => 'Insert image url',
+        'FILE_LIST_INSERT_THUMB'        => 'Insert thumbnail URL',
+        'FILE_LIST_INSERT_FULL'         => 'Insert image URL',
         'FILE_LIST_NEWTHUMBS'           => 'Create new thumbnails',
         'FILE_LIST_RENAME'              => 'Rename files',
         'FILE_LIST_RENAME_NEWNAME'      => 'Please insert a new filename:',
@@ -144,13 +144,13 @@
         'FILE_FORM_UPLOADSTART'         => 'Start upload',
         'FILE_FORM_UPLOADCANCEL'        => 'Cancel upload',
         
-        'IPLIST_DESCRIPTION'            => '<strong>Notizće:</strong><br>To lock a single ip address, insert in into the address field in its full length. (for example 192.168.1.2)<br>'.
+        'IPLIST_DESCRIPTION'            => '<strong>Notice:</strong><br>To lock a single IP address, insert in into the address field in its full length. (for example 192.168.1.2)<br>'.
                                            'In case you want to lock an area like "192.168.2.X", replace the last numbers with an *. (for example 192.168.2.* or 192.168.*.*)',
         'IPLIST_ADDIP'                  => 'Lock IP address',
         'IPLIST_IPADDRESS'              => 'IP address',
         'IPLIST_IPTIME'                 => 'Locked on',
         'IPLIST_BLOCKTYPE'              => 'Blocking type',
-        'IPLIST_NOCOMMENTS'             => 'No comment acccess',
+        'IPLIST_NOCOMMENTS'             => 'No comment access',
         'IPLIST_NOLOGIN'                => 'No login access',
         'IPLIST_NOACCESS'               => 'No frontend access',
         
@@ -170,7 +170,7 @@
         'SYSCHECK_FOLDER_CACHE'         => 'Cache folder',
         'SYSCHECK_FOLDER_CONFIG'        => 'Config folder',
         'SYSCHECK_FOLDER_LOGS'          => 'Logs folder',
-        'SYSCHECK_FOLDER_FILEMANAGER'   => 'Filemanager temp folder',
+        'SYSCHECK_FOLDER_FILEMANAGER'   => 'File manager temp folder',
         'SYSCHECK_FOLDER_REVISIONS'     => 'Revisions folder',
         'SYSCHECK_FOLDER_SMILEYS'       => 'Smiley folder',
         'SYSCHECK_FOLDER_STYLES'        => 'Template folder',
@@ -178,7 +178,7 @@
         'SYSCHECK_FOLDER_SHARE'         => 'Share button folder',
         'SYSCHECK_FOLDER_MODULES'       => 'Modules folder',
         'SYSCHECK_FOLDER_UPLOADS'       => 'Upload folder',
-        'SYSCHECK_FOLDER_DBDUMPS'       => 'Datagbase dump folder',
+        'SYSCHECK_FOLDER_DBDUMPS'       => 'Database dump folder',
         'SYSCHECK_FOLDER_DRAFTS'        => 'Article template folder',
         'SYSCHECK_COMPLETE'             => 'Complete system check'
     );

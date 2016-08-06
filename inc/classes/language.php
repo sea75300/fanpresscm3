@@ -106,7 +106,7 @@
                 
                 $this->langData = array_merge($this->langData, $lang);
             }
-            
+
             $this->cache->write($this->langData, FPCM_LANGCACHE_TIMEOUT);
         }
         

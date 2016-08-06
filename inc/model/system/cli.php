@@ -53,6 +53,11 @@
         const FPCMCLI_PARAM_INFO    = '--info';
 
         /**
+         * CLI param: --list
+         */
+        const FPCMCLI_PARAM_LIST    = '--list';
+
+        /**
          * CLI param: --size
          */
         const FPCMCLI_PARAM_SIZE    = '--size';
@@ -79,6 +84,49 @@
          */
         function setFuncParams(array $funcParams) {
             $this->funcParams = $funcParams;
+        }
+        
+        public function processHelp() {
+            
+            $lines   = array();
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php <module name> <optional params> ';
+            $lines[] = '';
+            $lines[] = '      - cache       cache actions';
+            $lines[] = '      - cron        displays this text';
+            $lines[] = '      - pkg         package manager';
+            $lines[] = '      - help        displays this text';
+            $lines[] = '';
+            $lines[] = '';
+            $lines[] = '> Cache:';
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php cache <optional params> <internal cache name>';
+            $lines[] = '';
+            $lines[] = '      --clean       clean up cache';
+            $lines[] = '      --size        returns total size of current cache content';
+            $lines[] = '      --info        return information of cache expiration time';
+            $lines[] = '';
+            $lines[] = '> Cronjobs:';
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php cron <optional params> <cronjob name>';
+            $lines[] = '';
+            $lines[] = '      --exec        executes given cronjob';
+            $lines[] = '';
+            $lines[] = '> Package manager:';
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php pkg <optional params> system | system package actions';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php pkg <optional params> module | module package actions';
+            $lines[] = '';
+            $lines[] = '      --update      updates local package list storage';
+            $lines[] = '      --upgrade     upgrades files in local file system and performs database changes from given package';
+            $lines[] = '      --upgrade-db  performs database changes from given package';
+            $lines[] = '      --install     performs setup of a given package (modules only)';
+            $lines[] = '      --remove      performs removal of a given package (modules only)';
+            $lines[] = '      --info        displays information about a given package (modules only)';
+            $lines[] = '      --list        displays list available packages (modules only)';
+            $lines[] = '';
+
+            $this->output($lines);
         }
 
         public function processCache() {
@@ -180,6 +228,12 @@
                         $this->output('System update successfull. New version: '.$this->config->system_version);
                     }
                     
+                    if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
+                        
+                        
+                        
+                    }
+                    
                 case self::FPCMCLI_PARAM_UPGRADE_DB :
                     
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
@@ -191,6 +245,92 @@
 
                     }
                     
+                    if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
+                        
+                        
+                        
+                    }
+                    
+                    
+                    break;
+                    
+                case self::FPCMCLI_PARAM_INSTALL :
+                    
+                    if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_MODULE) {                        
+                        $this->output('Invalid params', true);
+                    }
+                    
+                    
+                    break;
+                    
+                case self::FPCMCLI_PARAM_REMOVE :
+                    
+                    if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_MODULE) {                        
+                        $this->output('Invalid params', true);
+                    }
+                    
+                    
+                    break;
+                    
+                case self::FPCMCLI_PARAM_LIST :
+                    
+                    if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_MODULE) {                        
+                        $this->output('Invalid params', true);
+                    }
+                    
+                    $moduleList = new \fpcm\model\modules\modulelist();
+                    $list = $moduleList->getModulesRemote(false);
+
+                    $out = array('', 'Available modules from package server for current FanPress CM version:', '');
+                    
+                    /* @var $value \fpcm\model\modules\listitem */
+                    foreach ($list as $value) {
+                        $line = array(
+                            '   == '.$value->getName().' > '.$value->getKey().'_version'.$value->getVersionRemote(),
+                            '   '.$value->getAuthor().' > '.$value->getLink(),
+                            '   '.$value->getDescription(),
+                            ''
+                        );
+                        
+                        $out[] = implode(PHP_EOL, $line);
+                    }
+                    
+                    $this->output($out);
+                    
+                    break;
+                    
+                case self::FPCMCLI_PARAM_INFO :
+
+                    if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_MODULE) {                        
+                        $this->output('Invalid params', true);
+                    }
+
+                    $moduleList = new \fpcm\model\modules\modulelist();
+                    $list       = $moduleList->getModulesRemote();
+                    
+                    $keyData = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
+                    
+                    if (!array_key_exists($keyData[0], $list)) {
+                        $this->output('The requested module was not found in package list storage. Check you entered module key or update package information storage.', true);
+                    }
+
+                    /* @var $module \fpcm\model\modules\listitem */
+                    $module = $list[$keyData[0]];
+                    
+                    $this->output(array(
+                        '== '.$module->getName(),
+                        '   '.$module->getKey(),
+                        '   > '.$module->getDescription(),
+                        '   Version: '.$module->getVersionRemote(),
+                        '   Author: '.$module->getAuthor(),
+                        '   Link: '.$module->getLink(),
+                        '   Installed: '.($module->isInstalled() ? 'yes' : 'no'),
+                        '   Installed version: '.$module->getVersion(),
+                        '   Status: '.($module->getStatus() ? 'enabled' : 'disabled'),
+                        '   Dependencies:',
+                        '   '.implode(PHP_EOL, $module->getDependencies())
+                    ));
+
                     
                     break;
 
@@ -251,6 +391,10 @@
     
         private function output($str, $die = false) {
 
+            if (is_array($str)) {
+                $str = implode(PHP_EOL, $str);
+            }
+            
             if ($die) {
                 die($str.PHP_EOL);
             }

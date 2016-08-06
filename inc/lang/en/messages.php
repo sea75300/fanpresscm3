@@ -7,7 +7,7 @@
      */
 
     $lang = array(
-        'LOGIN_FAILED'                  => 'Your username or password are wong. Please try again.',
+        'LOGIN_FAILED'                  => 'Your username or password was wrong. Please try again.',
         'LOGIN_FAILED_DISABLED'         => 'The entered username has been disabled.',
         'LOGIN_REQUIRED'                => 'Please log in to access this page!',
         'LOGIN_PASSWORD_RESET'          => 'Password reset has been successful. Please check your e-mail for further information.',
@@ -24,7 +24,7 @@
         'SEARCH_WAITMSG'                => 'Please wait at least 10 second before you start a new search.',
         'RSSFEED_DISABLED'              => 'The RSS feed is disabled. Please contact the site owner for further information.',
         'MAINTENANCE_MODE_ENABLED'      => 'Maintenance mode is currently enabled. This function or service is not available at the moment.',
-        'CSRF_INVALID'                  => 'The CSRF token is inavlid. The action was not executed!',
+        'CSRF_INVALID'                  => 'The CSRF token is invalid. The action was not executed!',
         'SESSION_TIMEOUT'               => 'Your current session has reached it maximum life time. Do you want to proceed to login screen? (select "no" to stay on this site)',
         
         'SAVE_SUCCESS_ADDUSER'          => 'The user has been saved!',
@@ -80,12 +80,12 @@
         'SAVE_FAILED_WORDBAN'           => 'Unable to create censored text!',
         'SAVE_FAILED_UPLOADPHP'         => 'An error occurred while uploading files!<br>{{filenames}}',
         'SAVE_FAILED_TEMPLATE'          => 'An error occurred while saving templates!<br>{{filenames}}',
-        'SAVE_FAILED_TEMPLATE_CF_URLMISSING' => 'Unable to save comment form template, because {{submitUrl}} replancement is missing!',
+        'SAVE_FAILED_TEMPLATE_CF_URLMISSING' => 'Unable to save comment form template, because {{submitUrl}} replacement is missing!',
         'SAVE_FAILED_ARTICLE'           => 'Unable to save the article!',
         'SAVE_FAILED_ARTICLE_EMPTY'     => 'Please insert an article title and text before save it!',
         'SAVE_FAILED_ARTICLEPINN'       => 'Unable to un/pin the article!',
-        'SAVE_FAILED_ARTICLEARCHIVE'    => 'Unable to arhcive the article!',
-        'SAVE_FAILED_ARTICLERESTORE'    => 'Unable to restore th article!',
+        'SAVE_FAILED_ARTICLEARCHIVE'    => 'Unable to archive the article!',
+        'SAVE_FAILED_ARTICLERESTORE'    => 'Unable to restore the article!',
         'SAVE_FAILED_ARTICLENEWTWEET'   => 'Unable to create tweets for articles!<br>{{titles}}',
         'SAVE_FAILED_ARTICLECOMMENTS'   => 'Unable to en/disable comments!',
         'SAVE_FAILED_ARTICLEREVRESTORE' => 'Unable to restore article revision!',
@@ -108,7 +108,7 @@
         'DELETE_SUCCESS_WORDBAN'        => 'The censored texts were deleted!',
         'DELETE_SUCCESS_ARTICLE'        => 'The articles were deleted!',
         'DELETE_SUCCESS_REVISIONS'      => 'The revisions were deleted!',
-        'DELETE_SUCCESS_TRASH'          => 'Trash has been cleared successfuly!',
+        'DELETE_SUCCESS_TRASH'          => 'Trash has been cleared successfully!',
         'DELETE_SUCCESS_COMMENTS'       => 'The comments were deleted!',
         
         'DELETE_FAILED_USERS'           => 'Unable to delete the users!',
@@ -138,7 +138,7 @@
         'UPDATE_VERSIONCHECK_CURRENT'   => 'Your version of FanPress CM is up to date! Release notes and further information can be found in "Recent FanPress CM news".',
         'UPDATE_NOTAUTOCHECK'           => 'Automatic update check failed! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Check manually</a>',
         'UPDATE_WRITEERROR'             => 'The <strong>version.php</strong> file in FanPress CM root folder is not writable. This may affect other files of your installation too.<br>'.
-                                           'This can be caused by wrong file permissions. Please check/change permissions of - in case - all files until this message disppears on reload.<br>'.
+                                           'This can be caused by wrong file permissions. Please check/change permissions of - in case - all files until this message disappears after page reload.<br>'.
                                            'In case you\'re unable to do so, contact you host for further help.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Module updates are available. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Show updates</a>',
@@ -157,7 +157,7 @@
         'PACKAGES_FAILED_ADDITIONAL'     => 'An error occurred while processing additional package steps!',
 
         'PACKAGES_SUCCESS_DOWNLOAD'     => '<span class="fa fa-cloud-download fpcm-ui-booltext-yes fa-fw fa-lg"></span> Download of package file has been successful.',
-        'PACKAGES_SUCCESS_EXTRACT'      => '<span class="fa fa-file-archive-o fpcm-ui-booltext-yes fa-fw fa-lg"></span> Extractig package file has been successful.',
+        'PACKAGES_SUCCESS_EXTRACT'      => '<span class="fa fa-file-archive-o fpcm-ui-booltext-yes fa-fw fa-lg"></span> Extracting package file has been successful.',
         'PACKAGES_SUCCESS_COPY'         => '<span class="fa fa-random fpcm-ui-booltext-yes fa-fw fa-lg"></span> Copy of package file content has been successful.',
         'PACKAGES_SUCCESS_ADDITIONAL'   => '<span class="fa fa-refresh fpcm-ui-booltext-yes fa-fw fa-lg"></span> Execution of additional package steps has been successful!',
         'PACKAGES_SUCCESS_LOGDONE'      => '<span class="fa fa-file-text-o fpcm-ui-booltext-yes fa-fw fa-lg"></span> Update of package manager log successfully!',
@@ -176,7 +176,7 @@
         'MODULES_SUCCESS_ENABLE'        => 'Selected modules were enabled.',
         'MODULES_SUCCESS_DISABLE'       => 'Selected modules were disabled.',
         'MODULES_SUCCESS_INSTALL'       => '<span class="fa fa-check-square fpcm-ui-booltext-yes fa-fw fa-lg"></span> Selected modules were installed.',
-        'MODULES_SUCCESS_UNINSTALL'     => 'Selected modules were uninstalled.',
+        'MODULES_SUCCESS_UNINSTALL'     => 'Selected modules were removed successfully.',
         'MODULES_SUCCESS_UPDATE'        => '<span class="fa fa-check-square fpcm-ui-booltext-yes fa-fw fa-lg"></span> The module has been updated successfully.',
         
         'MODULES_FAILED_ENABLE'         => 'Unable to enable selected modules.',

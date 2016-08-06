@@ -115,7 +115,7 @@
         'CRONJOB_LIST_LASTEXEC'         => 'Zuletzt ausgeführt',
         'CRONJOB_LIST_NEXTEXEC'         => 'nächste Ausführung',
         'CRONJOB_LIST_EXECDEMAND'       => 'Cronjob jetzt ausführen',
-        'CRONJOB_LIST_INTERVAL'         => 'Zeit-Interval',
+        'CRONJOB_LIST_INTERVAL'         => 'Zeit-Intervall',
 
         'BACKUPS_TAB_DATABASE'          => 'Datenbank',
         

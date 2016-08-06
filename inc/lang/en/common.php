@@ -38,7 +38,7 @@
         'HL_CRONJOBS'                   => 'Cronjobs',
         'HL_COMMENTS_MNG'               => 'Comments',
         'HL_CATEGORIES_MNG'             => 'Categories',        
-        'HL_FILES_MNG'                  => 'Filemanager',
+        'HL_FILES_MNG'                  => 'File manager',
         'HL_ARTICLES_OPEN'              => 'Show articles on website',
         'HL_BACKUPS'                    => 'Backup manager',
         'HL_HELP'                       => 'Help',
@@ -47,7 +47,7 @@
         
         'HL_PROFILE'                    => 'Profile',
         'PROFILE_MENU_LOGGEDINSINCE'    => 'Logged in since',
-        'PROFILE_MENU_YOURIP'           => 'Your ip address',
+        'PROFILE_MENU_YOURIP'           => 'Your IP address',
         
         'HELP_SELECT'                   => 'Click on headline to open help entry',
         'HELP_BTN_OPEN'                 => 'Open help chapter',
@@ -57,7 +57,7 @@
         
         'CRONJOB_ANONYMIZEIPS'         => 'Anonymize IP addresses in comments',
         'CRONJOB_CLEARLOGS'            => 'Clear system logs',
-        'CRONJOB_CLEARTEMP'            => 'Cleanup temporary files',
+        'CRONJOB_CLEARTEMP'            => 'Clean-up temporary files',
         'CRONJOB_FMTHUMBS'             => 'Create filemanager thumbnails',
         'CRONJOB_POSTPONEDARTICLES'    => 'Publish postponed articles',
         'CRONJOB_UPDATECHECK'          => 'Check for updates',

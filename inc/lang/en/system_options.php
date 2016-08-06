@@ -13,11 +13,11 @@
         'SYSTEM_HL_OPTIONS_COMMENTS'                => 'Comments',
         'SYSTEM_HL_OPTIONS_SECURITY'                => 'Security and Maintenance',
         'SYSTEM_HL_OPTIONS_TWITTER'                 => 'Twitter connection',
-        'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System check and updates',
+        'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System check',
         
         'SYSTEM_OPTIONS_MAINTENANCE'                => 'Maintenance mode enabled',
         'SYSTEM_OPTIONS_CRONJOBS'                   => 'Asynchronous cronjob execution disabled',
-        'SYSTEM_OPTIONS_URL'                        => 'Article url base',
+        'SYSTEM_OPTIONS_URL'                        => 'Article URL base',
         'SYSTEM_OPTIONS_LANG'                       => 'Language',   
         'SYSTEM_OPTIONS_DATETIMEMASK'               => 'Date-Time mask',
         'SYSTEM_OPTIONS_DATETIMEMASK_HELP'          => 'Syntax equivalent to PHP function date()',
@@ -115,7 +115,7 @@
         'SYSTEM_OPTIONS_NEWS_ENABLEFEED'            => 'RSS feed is enabled',
         
         'SYSTEM_OPTIONS_EXTENDED_EMAILUPDATES'      => 'Email notification when updates are available',
-        'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Include developement releases in update check',
+        'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Include development releases in update check',
         'SYSTEM_OPTIONS_EXTENDED_UPDATESMANCHK'     => 'Update check interval if external server connections not available',
         
         'SYSTEM_OPTIONS_TWITTER_CONNECTION'         => 'Twitter connection',
@@ -126,7 +126,7 @@
         'SYSTEM_OPTIONS_TWITTER_CONSUMER_SECRET'    => 'Consumer Secret (API Secret)',
         'SYSTEM_OPTIONS_TWITTER_USER_TOKEN'         => 'Access Token',
         'SYSTEM_OPTIONS_TWITTER_USER_SECRET'        => 'Access Token Secret',        
-        'SYSTEM_OPTIONS_TWITTER_ACTIVE'             => 'Twitter connection is anbled! Connected with user "{{screenname}}".',
+        'SYSTEM_OPTIONS_TWITTER_ACTIVE'             => 'Twitter connection is enabled! Connected with user "{{screenname}}".',
         'SYSTEM_OPTIONS_TWITTER_EVENTCREATE'        => 'On create',
         'SYSTEM_OPTIONS_TWITTER_EVENTUPDATE'        => 'On update',
         
@@ -160,10 +160,10 @@
         ),
 
         'SYSTEM_OPTIONS_UPDATESMANUAL' => array(
-            'täglich'           => 86400,            
-            'wöchentlich'       => 604800,
-            '14-tägig'          => 1209600,
-            'monatlich'         => 2419200
+            'daily'           => 86400,            
+            'weekly'          => 604800,
+            'every two weeks' => 1209600,
+            'monthlay'        => 2419200
         )
         
     );

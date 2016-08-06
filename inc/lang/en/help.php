@@ -37,7 +37,7 @@ Help language file
                 </li>
             </ul>
 
-            <p>The <span class="fpcm-ui-button">Shortlink</span>-button at the top of the editor allows you to create a shortened
+            <p>The <span class="fpcm-ui-button">Short link</span>-button at the top of the editor allows you to create a shortened
             link using <a href=http://is.gd>is.gd</a> service. The service can be changed by modules.</p>
 
             <p>If possible, you can connect FanPress CM to twitter and let the system create automatically create tweets during
@@ -123,8 +123,8 @@ Help language file
         uses a classic HTML form and PHP upload combination, which can be used if your're using an older browser or have other problems
         with the jQuery uploader.</p>
         <p><b>How to insert an image into an article?</b></p>
-        <p>To insert the source path of an image, use the button <span class="fpcm-ui-button">Insert image url</span> or
-        <span class="fpcm-ui-button">Insert thumbnail url</span>, depending on what you want to insert into your article.</p>
+        <p>To insert the source path of an image, use the button <span class="fpcm-ui-button">Insert image URL</span> or
+        <span class="fpcm-ui-button">Insert thumbnail URL</span>, depending on what you want to insert into your article.</p>
         <p>You also can click right on both buttons and copy the source link and insert it into the source field in the Insert image
         dialogue. The HTML editor view uses an auto-completion in the source field. Just start typing the file name. TinyMCE includes an
         option called "Image list" where you can select an image.</p>
@@ -166,7 +166,7 @@ Help language file
                                 <li>The upper part contains general settings of the FanPress CM system.
                                     <ul>
                                         <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
-                                        <li><em>Article url base:</em> Base url for articles, important for use with phpinclude. In most cases
+                                        <li><em>Article URL base:</em> Base URL for articles, important for use with phpinclude. In most cases
                                             this will be something like <em>your-domain.com/index.php</em> or a file which includes
                                             <em>fpcmapi.php</em>.</li>
                                         <li><em>Language:</em> Global system language, can be override by user settings.</li>
@@ -237,8 +237,8 @@ Help language file
                             <ul>
                                 <li><em>Email notification when updates are available:</em> Enable or disable the e-mail notification if a new version
                                     of FanPress CM was detected by the update cronjob.</li>
-                                <li><em>Include developement releases in update check:</em> This option allows you to include test- and
-                                    developement versions when FanPress CM executes and update check. <b>Important: test- and developement
+                                <li><em>Include development releases in update check:</em> This option allows you to include test- and
+                                    development versions when FanPress CM executes and update check. <b>Important: test- and development
                                     may include failures, unfinished functions which can cause problems!</b></li>
                             </ul>
                         </li>
@@ -362,7 +362,7 @@ Help language file
                 like "Page XYZ".</li>
                 <li><strong>$api->showTitle()</strong> displayse the article title in HTML &lt;title&gt; , 
                 accepts a parameter for a separator of your text in &lt;title&gt;.</li>
-                <li><strong>$api->legacyRedirect()</strong> redirect visitors which enters your site using an FanPress CM 1/2 article/ page url style.</li>
+                <li><strong>$api->legacyRedirect()</strong> redirect visitors which enters your site using an FanPress CM 1/2 article/ page URL style.</li>
             </ul>
             <p>You can use a couple of constants for further configuration of the output:</p>
             <ul>
