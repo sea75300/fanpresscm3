@@ -63,6 +63,16 @@
         const FPCMCLI_PARAM_SIZE    = '--size';
 
         /**
+         * CLI param: --enable
+         */
+        const FPCMCLI_PARAM_ENABLE  = '--enable';
+
+        /**
+         * CLI param: --disable
+         */
+        const FPCMCLI_PARAM_DISBALE = '--disable';
+
+        /**
          * CLI param: package manager type: system
          */
         const FPCMCLI_PARAM_TYPE_SYSTEM    = 'system';
@@ -161,6 +171,7 @@
 
             $updaterSys = new \fpcm\model\updater\system();
             $updaterMod = new \fpcm\model\updater\modules();
+            $moduleList = new \fpcm\model\modules\modulelist();
 
             switch ($this->funcParams[0]) {
 
@@ -181,8 +192,13 @@
 
                     break;
 
+                case self::FPCMCLI_PARAM_INSTALL :
                 case self::FPCMCLI_PARAM_UPGRADE :
 
+                    if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_MODULE && $this->funcParams[0] === self::FPCMCLI_PARAM_INSTALL) {                        
+                        $this->output('Invalid params', true);
+                    }
+                    
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
 
                         $this->output('Start system update...');
@@ -193,48 +209,99 @@
                         $fileInfo = pathinfo($remoteData['filepath'], PATHINFO_FILENAME);
 
                         $pkg = new \fpcm\model\packages\update('update', $fileInfo);
+                    
+                    }
+                    elseif ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {                        
 
-                        $this->output('Download package from '.$remoteData['filepath'].'...');
-                        $success = $pkg->download();
-                        if ($success !== true) {
-                            $this->output('Download failed. ERROR CODE: '.$success, true);
+                        $list       = $moduleList->getModulesRemote();
+                        $keyData    = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
+
+                        if (!array_key_exists($keyData[0], $list)) {
+                            $this->output('The requested module was not found in package list storage. Check you entered module key or update package information storage.', true);
                         }
 
-                        $this->output('Unpacking package file '.\fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile(), true).'...');
-                        $success = $pkg->extract();
-                        if ($success !== true) {
-                            $this->output('Unpacking failed. ERROR CODE: '.$success, true);
-                        }
+                        /* @var $module \fpcm\model\modules\listitem */
+                        $module = $list[$keyData[0]];                        
+                        $pkg     = new \fpcm\model\packages\module('module', $module->getKey(), $module->getVersionRemote());
+                    }
 
-                        $this->output('Copy package content...');
-                        $success = $pkg->copy();
-                        if ($success !== true) {
-                            $this->output('Copy process failed. ERROR CODE: '.$success, true);
-                        }
+                    $this->output('Download package from '.$pkg->getRemoteFile().'...');
 
+                    $success = $pkg->download();
+                    if ($success !== true) {
+                        $this->output('Download failed. ERROR CODE: '.$success, true);
+                    }
+
+                    $this->output('Unpacking package file '.\fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile(), true).'...');
+                    $success = $pkg->extract();
+                    if ($success !== true) {
+                        $this->output('Unpacking failed. ERROR CODE: '.$success, true);
+                    }
+
+                    $this->output('Copy package content...');
+                    $success = $pkg->copy();
+                    if ($success !== true) {
+                        $this->output('Copy process failed. ERROR CODE: '.$success, true);
+                    }
+
+                    if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
                         $this->output('Run final update steps...');
-                        $this->runFinalizer();
-                        
-                        $this->output('Update package manager log...');
-                        $pkg->loadPackageFileListFromTemp();
-                        \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
-                        
-                        $this->output('Perform cleanup...');
-                        $success = $pkg->cleanup();
-                        if ($success !== true) {
-                            $this->output('Cleanup package data. ERROR CODE: '.$success, true);
+                        $this->runFinalizer();                        
+                    }
+                    elseif ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
+
+                        $this->output('Perform database changes...');
+
+                        $moduleClass = \fpcm\model\abstracts\module::getModuleClassName($keyData[0]);
+                        $res = class_exists($moduleClass);
+
+                        $moduleClassPath = \fpcm\classes\baseconfig::$moduleDir.$keyData[0].'/'.str_replace(array('\\', '/'), '', $keyData[0]).'.php';
+                        if (!file_exists($moduleClassPath)) {
+                            $this->output('Module class '.$moduleClass.' not found in "'.$moduleClassPath.'"!', true);
                         }
-                        
+
+                        $modObj = new $moduleClass($pkg->getKey(), '', $module->getVersionRemote());                        
+                        if (!is_a($modObj, '\fpcm\model\abstracts\module'))  {
+                            $this->output('Module class '.$moduleClass.' must be an instance of "\fpcm\model\abstracts\module"!', true);
+                        }
+
+                        if ($this->funcParams[0] === self::FPCMCLI_PARAM_INSTALL) {
+                            if ($module->isInstalled()) {
+                                $this->output('The selected module is already installed. Exiting...', true);
+                            }                            
+                            $res = $modObj->runInstall();
+                        }
+                        elseif ($this->funcParams[0] === self::FPCMCLI_PARAM_UPGRADE) {
+                            if (!$module->isInstalled()) {
+                                $this->output('The selected module is not installed. Exiting...', true);
+                            }
+                            $res = $modObj->runUpdate();
+                        }
+
+                    }
+
+                    $this->output('Update package manager log...');
+                    $pkg->loadPackageFileListFromTemp();
+                    \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
+
+                    $this->output('Perform cleanup...');
+                    $success = $pkg->cleanup();
+
+                    if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
                         $this->output('System update successfull. New version: '.$this->config->system_version);
                     }
-                    
+
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
-                        
-                        
-                        
+                        $this->output('Module installed successfull!');
                     }
                     
+                    break;
+
                 case self::FPCMCLI_PARAM_UPGRADE_DB :
+                    
+                    if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
+                        $this->output('Invalid params', true);
+                    }
                     
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
 
@@ -243,23 +310,7 @@
                         
                         $this->output('Update successfull. New version: '.$this->config->system_version);
 
-                    }
-                    
-                    if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
-                        
-                        
-                        
-                    }
-                    
-                    
-                    break;
-                    
-                case self::FPCMCLI_PARAM_INSTALL :
-                    
-                    if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_MODULE) {                        
-                        $this->output('Invalid params', true);
-                    }
-                    
+                    }                    
                     
                     break;
                     
@@ -269,7 +320,27 @@
                         $this->output('Invalid params', true);
                     }
                     
+                    $list       = $moduleList->getModulesRemote();
+                    $keyData    = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
                     
+                    if (!array_key_exists($keyData[0], $list)) {
+                        $this->output('The requested module was not found in package list storage. Check you entered module key or update package information storage.', true);
+                    }
+
+                    /* @var $module \fpcm\model\modules\listitem */
+                    $module = $list[$keyData[0]];                    
+                    if (!$module->isInstalled()) {
+                        $this->output('The selected module is not installed. Exiting...', true);
+                    }
+
+                    $module->runUninstall();
+                    
+                    if (!$moduleList->uninstallModules(array($keyData[0]))) {
+                        $this->output('Unable to remove module '.$keyData[0], true);
+                    }
+
+                    $this->output('Module '.$keyData[0].' was removed successfully.');
+
                     break;
                     
                 case self::FPCMCLI_PARAM_LIST :
@@ -277,8 +348,7 @@
                     if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_MODULE) {                        
                         $this->output('Invalid params', true);
                     }
-                    
-                    $moduleList = new \fpcm\model\modules\modulelist();
+
                     $list = $moduleList->getModulesRemote(false);
 
                     $out = array('', 'Available modules from package server for current FanPress CM version:', '');
@@ -286,7 +356,7 @@
                     /* @var $value \fpcm\model\modules\listitem */
                     foreach ($list as $value) {
                         $line = array(
-                            '   == '.$value->getName().' > '.$value->getKey().'_version'.$value->getVersionRemote(),
+                            '   == '.$value->getName().' > '.$value->getKey().', '.$value->getVersionRemote(),
                             '   '.$value->getAuthor().' > '.$value->getLink(),
                             '   '.$value->getDescription(),
                             ''
@@ -305,10 +375,9 @@
                         $this->output('Invalid params', true);
                     }
 
-                    $moduleList = new \fpcm\model\modules\modulelist();
                     $list       = $moduleList->getModulesRemote();
                     
-                    $keyData = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
+                    $keyData    = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
                     
                     if (!array_key_exists($keyData[0], $list)) {
                         $this->output('The requested module was not found in package list storage. Check you entered module key or update package information storage.', true);
