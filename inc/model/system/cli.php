@@ -217,7 +217,7 @@
                         $keyData    = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
 
                         if (!array_key_exists($keyData[0], $list)) {
-                            $this->output('The requested module was not found in package list storage. Check you entered module key or update package information storage.', true);
+                            $this->output('The requested module was not found in package list storage. Check your module key or update package information storage.', true);
                         }
 
                         /* @var $module \fpcm\model\modules\listitem */
@@ -324,7 +324,7 @@
                     $keyData    = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
                     
                     if (!array_key_exists($keyData[0], $list)) {
-                        $this->output('The requested module was not found in package list storage. Check you entered module key or update package information storage.', true);
+                        $this->output('The requested module was not found in package list storage. Check your module key or update package information storage.', true);
                     }
 
                     /* @var $module \fpcm\model\modules\listitem */
@@ -380,7 +380,7 @@
                     $keyData    = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[2]);
                     
                     if (!array_key_exists($keyData[0], $list)) {
-                        $this->output('The requested module was not found in package list storage. Check you entered module key or update package information storage.', true);
+                        $this->output('The requested module was not found in package list storage. Check your module key or update package information storage.', true);
                     }
 
                     /* @var $module \fpcm\model\modules\listitem */
@@ -451,6 +451,49 @@
                 $cronjob->updateLastExecTime();
 
                 $this->output('Cronjob execution finished. Returned code: '.$success);
+
+            }
+            
+            return true;
+
+        }
+
+        /**
+         * Cronjob Ausführung
+         * @return boolean
+         */
+        public function processModule() {
+
+            $moduleList = new \fpcm\model\modules\modulelist();
+            $list       = $moduleList->getModulesLocal();
+
+            $keyData    = \fpcm\model\packages\package::explodeModuleFileName($this->funcParams[1]);
+
+            if (!array_key_exists($keyData[0], $list)) {
+                $this->output('The requested module was not found in local module storage. Check your module key.', true);
+            }
+
+            /* @var $module \fpcm\model\modules\listitem */
+            $module = $list[$keyData[0]];                    
+            if (!$module->isInstalled()) {
+                $this->output('The selected module is not installed. Exiting...', true);
+            }
+
+            if ($this->funcParams[0] === self::FPCMCLI_PARAM_ENABLE) {
+                    if (!$moduleList->enableModules(array($keyData[0]))) {
+                        $this->output('Unable to enable module '.$keyData[0], true);
+                    }
+
+                    $this->output('Module '.$keyData[0].' was enabled successfully.');
+
+            }
+
+            if ($this->funcParams[0] === self::FPCMCLI_PARAM_DISBALE) {
+                    if (!$moduleList->disableModules(array($keyData[0]))) {
+                        $this->output('Unable to disable module '.$keyData[0], true);
+                    }
+
+                    $this->output('Module '.$keyData[0].' was disableed successfully.');
 
             }
             
