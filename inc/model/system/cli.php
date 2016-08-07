@@ -103,7 +103,8 @@
             $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php <module name> <optional params> ';
             $lines[] = '';
             $lines[] = '      - cache       cache actions';
-            $lines[] = '      - cron        displays this text';
+            $lines[] = '      - cron        cronjob actions';
+            $lines[] = '      - module      module action';
             $lines[] = '      - pkg         package manager';
             $lines[] = '      - help        displays this text';
             $lines[] = '';
@@ -134,6 +135,13 @@
             $lines[] = '      --remove      performs removal of a given package (modules only)';
             $lines[] = '      --info        displays information about a given package (modules only)';
             $lines[] = '      --list        displays list available packages (modules only)';
+            $lines[] = '';
+            $lines[] = '> Modules:';
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php module <optional params> <module name>';
+            $lines[] = '';
+            $lines[] = '      --enable      enable module';
+            $lines[] = '      --disable     disable module';
             $lines[] = '';
 
             $this->output($lines);
