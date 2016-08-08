@@ -28,6 +28,12 @@ var fpcmAjaxHandler = function () {
             async       : self.async
         })
         .done(function(result) {
+
+            if (result.search('FATAL ERROR:') === 3) {
+                console.log(fpcmAjaxErrorMessage);
+                console.log('ERROR MESSAGE: ' + errorThrown);
+            }
+            
             self.result = result;
             if (typeof self.execDone == 'string') {
                 eval(self.execDone);

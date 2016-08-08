@@ -339,6 +339,7 @@ var fpcmJs = function () {
     this.systemCheckDone = function (ajaxResult) {       
         fpcmJs.showLoader(false);
         fpcmJs.assignHtml("#tabs-options-check", ajaxResult);
+        fpcmJs.assignButtons();
     };
     
     this.openManualCheckFrame = function () {
