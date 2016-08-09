@@ -46,8 +46,26 @@ Help language file
             <p>Sofern es dein Host zulässt, kannst du in den Systemeinstellungen FanPress CM direkt mit Twitter verbinden. Somit werden Artikel beim
             Veröffentlichen oder über das Aktions-Menü unter <i>Artikel bearbeiten</i> direkt bei Twitter bekannt gemacht werden.</p>
 
-            <p>Um einen Artikel zu einem bestimmten Zeitpunkt automatisch freizuschalten, öffne das <span class="fpcm-ui-button">Erweitert</span>-Menü über den Button am unteren
-            Bildschirmrand. Setzte den Haken bei <span class="fpcm-ui-button">Eintrag freischalten am </span> um wählen anschließend Datum und Uhrzeit aus.</p>
+            <p><span class="fpcm-ui-button">Erweitert</span>-Menü:</p>
+            <ul>
+                <li><em>Artikelbild:</em> Mit dem Artikelbild kannst du einen Artikel eine zusätzliche Dekoration, optische
+                    Beschreibung, etc. geben. Die Position und Größe des Artikelbildes kann über das Artikel-Template festgelegt werden.
+                </li>
+                <li><em>Artikel freischalten:</em> Mittels dieser Option kannst du einen neuen Artikel verfassen und zu einem bestimmten
+                    Zeitpunkt automatisch veröffentlichen lassen. Der Zeitpunkt kann maximal zwei Monate in der Zukunft liegen.</li>
+                <li><em>Artikel als Entwurf speichern:</em> Wird diese Option aktiviert, so wird der Artikel beim Speichern nicht als
+                    Entwurf abgelegt. Entwürfe werden nicht sofort veröffentlicht, sondern sind nur für angemeldete Benutzer sichtbar
+                    und können vor der Veröffentlichung noch bearbeitet werden.</li>
+                <li><em>Artikel pinnen:</em> "Gepinnte" Artikel werden im Frontend vor allen anderen verfügbaren Artikeln angezeigt, auch
+                    auch wenn das Datum ihrer Veröffentlichung vor neueren Artikeln liegt.</li>
+                <li><em>Kommentare aktiv:</em> Über diese Option kann das Kommentar-System für einen einzelnen Artikel gesteuert werden.
+                    ist die Option nicht aktiv, so können keine Kommentare auf der Artikel verfasst werden.</li>
+                <li><em>Artikel archivieren:</em> Bestehende Artikel können über diese Option in's Archiv verschoben werden bzw.
+                    herausgenommen werden.</li>
+                <li><em>Twitter-Beitrag-Text:</em> Über dieses Textfeld kann das Standard-Template für einen Beitrag bei Twitter
+                    überschrieben und durch einen eigenen Text ersetzt werden. Der Inhalt dieses Feldes wird nicht gespeichert.</li>
+                <li><em>Autor ändern:</em> Benutzer mit entsprechenden Rechten können hierüber den Verfasser eines Artikeln ändern.</li>
+            </ul>
 
             <p>In FanPress CM kannst du über den <strong>&lt;readmore&gt;</strong>-Tag ein Stück Text einfügen, das beim Aufruf der Seite
             nicht angezeigt wird. (bspw. für Spoiler, etc.)</p>

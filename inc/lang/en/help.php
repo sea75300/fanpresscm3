@@ -43,8 +43,23 @@ Help language file
             <p>If possible, you can connect FanPress CM to twitter and let the system create automatically create tweets during
             when publishing or updating an article. See the help chapter for further information..</p>
 
-            <p>To postpone an article until a certain time, open the extended dialogue in the button box at the bottom of the editor
-            and check the postpone checkbox. Know you can select a date and time.</p>
+            <p><span class="fpcm-ui-button">Extended</span> menu:</p>
+            <ul>
+                <li><em>Article image:</em> You can set an article image to extend articles with an optical introduction, decoration
+                    or so on.</li>
+                <li><em>Postpone article:</em> Postponed articles are not published immediately after saving it. You can set a date and
+                    time when an article is published automatically. The time must be within a two month range.</li>
+                <li><em>Save article as draft:</em> Articles saved as draft are available for users, which signed in before only.
+                    Users can edit drafts and publish them later.</li>
+                <li><em>Pin article:</em> Pinned articles will show up at the beginning of the article list in frontend, even if you
+                    have published new articles.</li>
+                <li><em>Comments enabled:</em> With this option you can enable or disable the comment system for a single article.
+                    If the option is disabled, a visitor is unable to create a new comment.</li>
+                <li><em>Archive article:</em> Existing articles can be moved to the article archive if you enable this option..</li>
+                <li><em>Tweet content:</em> This field allows you to override the content of posts on Twitter based on the default
+                    Tweet template. The content of this input field won't be saved anywhere.</li>
+                <li><em>Change author:</em> Users with permissions can change the autor of a new or existing article.</li>
+            </ul>
 
             <p>To hide content like spoilers and so an, you can use the FanPress CM tag <strong>&lt;readmore&gt;</strong>. Just insert
             the text between <strong>&lt;readmore&gt;YOUR TEXT&lt;/readmore&gt;</strong>.</p>

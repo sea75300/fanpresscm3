@@ -19,6 +19,7 @@
         'PERMISSION_ARTICLE_ARCHIVE'    => 'Artikel archivieren und im Archiv bearbeiten',
         'PERMISSION_ARTICLE_APPROVE'    => 'Artikel müssen freigeschalten werden',
         'PERMISSION_ARTICLE_REVISIONS'  => 'Kann Revisionen verwalten',
+        'PERMISSION_ARTICLE_AUTHORS'    => 'Kann Artikel-Autor ändern',
         'PERMISSION_COMMENT_EDIT'       => 'Kommentare auf eigene Artikel bearbeiten',
         'PERMISSION_COMMENT_EDITALL'    => 'Kommentare auf alle Artikel bearbeiten',
         'PERMISSION_COMMENT_DELETE'     => 'Kommentare löschen',

@@ -76,8 +76,9 @@
                 $this->view->assign($key, $value);
             }
 
-            $this->view->assign('userIsAdmin', $this->session->getCurrentUser()->isAdmin());
-            if ($this->session->getCurrentUser()->isAdmin()) {
+            $changeAuthor = $this->permissions->check(array('article' => 'authors'));
+            $this->view->assign('changeAuthor', $changeAuthor);
+            if ($changeAuthor) {
                 $userlist = new \fpcm\model\users\userList();
                 $changeuserList = array($this->lang->translate('EDITOR_CHANGEAUTHOR') => '') + $userlist->getUsersNameList();
                 $this->view->assign('changeuserList', $changeuserList);

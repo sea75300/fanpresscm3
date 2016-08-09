@@ -49,7 +49,7 @@
                 <td><?php fpcm\model\view\helper::shortHelpButton('EDITOR_TWEET_TEXT_REPLACER', '', $FPCM_BASEMODULELINK.'system/templates', '_blank'); ?></td>
             </tr>  
             <?php endif; ?>
-            <?php if ($userIsAdmin) : ?>
+            <?php if ($changeAuthor) : ?>
             <tr>
                 <td><span class="fa fa-user fa-fw fa-lg"></span></td>
                 <td colspan="2" class="fpcm-td-select-row"><?php fpcm\model\view\helper::select('article[author]', $changeuserList, $article->getCreateuser(), false, false); ?></td>

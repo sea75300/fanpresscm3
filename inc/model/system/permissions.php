@@ -46,7 +46,8 @@
                 'delete'            => 0,
                 'archive'           => 0,
                 'approve'           => 0,
-                'revisions'         => 0
+                'revisions'         => 0,
+                'authors'           => 0
             ),
             'comment' => array(
                 'edit'              => 1,
@@ -97,7 +98,8 @@
                 'delete'            => 0,
                 'archive'           => 0,
                 'approve'           => 0,
-                'revisions'         => 0
+                'revisions'         => 0,
+                'authors'           => 0
             ),
             'comment' => array(
                 'edit'              => 0,

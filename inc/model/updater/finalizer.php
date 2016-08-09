@@ -73,6 +73,10 @@
                     $permissions['article']['revisions'] = $groupId < 3 ? 1 : 0;
                 }
                 
+                if (!isset($permissions['article']['authors'])) {
+                    $permissions['article']['authors'] = $groupId < 2 ? 1 : 0;
+                }
+                
                 if (!isset($permissions['system']['logs'])) {
                     $permissions['system']['logs'] = $groupId < 2 ? 1 : 0;
                 }

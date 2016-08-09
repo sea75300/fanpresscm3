@@ -19,6 +19,7 @@
         'PERMISSION_ARTICLE_ARCHIVE'    => 'Archive articles and edit archived',
         'PERMISSION_ARTICLE_APPROVE'    => 'Approval of articles required',
         'PERMISSION_ARTICLE_REVISIONS'  => 'Manage article revisions',
+        'PERMISSION_ARTICLE_AUTHORS'    => 'Can change article author',
         'PERMISSION_COMMENT_EDIT'       => 'Edit comments on own articles',
         'PERMISSION_COMMENT_EDITALL'    => 'Edit comments on all articles',
         'PERMISSION_COMMENT_DELETE'     => 'Delete comments',
