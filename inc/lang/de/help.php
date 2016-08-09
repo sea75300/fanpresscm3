@@ -196,16 +196,6 @@ Help language file
                                         Wichtig wenn du jQuery nicht anderweitig in deiner Seite eingebunden hast.</li>                                        
                                     </ul>
                                 </li>
-                                <li>Der untere Teil enthält Einstellungen zur Wartungs und System-Sicherheit:
-                                    <ul>
-                                        <li><em>Wartungsmodus aktiv:</em> Wurde der Wartungsmodus aktiviert, so haben nur angemeldete Benutzer Zugriff auf FanPress CM.
-                                            Besucher deiner Seite, etc. erhalten eine Hinweis-Meldung.</li>
-                                        <li><em>Maximale Länge einer Admin-Sitzung:</em> Länge einer Session im FanPress-CM Adminbereich.</li>
-                                        <li><em>Anzahl Login-Versuche vor temporärer Sperre:</em> Hiermit kannst du Anzahl der Fehlgeschlagenen Logins einstellen,
-                                            bis der Login vorübergehend gesperrt wird. Diese Option hilft dabei, die Übernahme von FanPress CM Accounts
-                                            zu erschweren.</li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                         <li><b>Editor & Dateimanager:</b><br>
@@ -257,7 +247,19 @@ Help language file
                             </ul>
                         </li>
                         <li><b>Twitter-Verbindung:</b><br>
-                            Sofern dieser Tab angezeigt wird, siehe letzter Hilfe-Abschnitt ganz unten.
+                            Sofern dieser Tab angezeigt wird, kannst du eine direkte Verbindung zu Twitter herstelen.
+                            Siehe letzter Hilfe-Abschnitt ganz unten zur Einrichtung.
+                        </li>
+                        <li><b>Sicherheit & Wartung:</b><br>
+                            Dieser Tab enthält Einstellungen zur Wartungs und System-Sicherheit:
+                            <ul>
+                                <li><em>Wartungsmodus aktiv:</em> Wurde der Wartungsmodus aktiviert, so haben nur angemeldete Benutzer Zugriff auf FanPress CM.
+                                    Besucher deiner Seite, etc. erhalten eine Hinweis-Meldung.</li>
+                                <li><em>Maximale Länge einer Admin-Sitzung:</em> Länge einer Session im FanPress-CM Adminbereich.</li>
+                                <li><em>Anzahl Login-Versuche vor temporärer Sperre:</em> Hiermit kannst du Anzahl der Fehlgeschlagenen Logins einstellen,
+                                    bis der Login vorübergehend gesperrt wird. Diese Option hilft dabei, die Übernahme von FanPress CM Accounts
+                                    zu erschweren.</li>
+                            </ul>
                         </li>
                         <li><b>Erweitert:</b><br>
                             Der "Erweitert"-Tab enthält verschiedene Einstellungen, welche nur mit Bedacht geändert werden sollten.
@@ -268,9 +270,14 @@ Help language file
                                     wieder Entwickler- und Test-Versionen. Aktivieren diese Option, um solche Versionen beim Update-Check
                                     ebenfalls anzuzeigen. <b>Achtung: Entwickler- und Test-Versionen können Fehler enthalten oder
                                     unvollständige Änderungen enthalten, welche zu Problemen führen können!</b></li>
+                                <li><em>Update-Check-Intervall, wenn externe Server-Verbindungen nicht möglich:</em> Kann deine
+                                    FanPress CM Installation keine direkte Verbindung zum Update herstellen, so wird dir in regelmäßigem
+                                    Abstand ein Dialog angezeigt, welcher die Download-Seite auf
+                                    <a href="https://Nobody-Knows.org">Nobody-Knows.org</a> angezeigt. Mit dieser Einstellung kann
+                                    festgelegt werden, in welchem zeitlichen Abstand dies passiert.</li>
                             </ul>
                         </li>
-                        <li><b>System-Überprüfung & Updates:</b><br>
+                        <li><b>Systemprüfung:</b><br>
                             Auf diesem Tab erhältst du eine Übersicht über den aktuelle Update-Status deines FanPress CM-Systems sowie
                             der verfügbaren Funktionen, etc. deines Servers. Bei allen <i>nicht-optionalen</i> Werten sollte ein blauer
                             Haken wie <span class="fa fa-check-square fpcm-ui-booltext-yes"></span> zu sehen sein. Wenn dies nicht der
@@ -318,10 +325,15 @@ Help language file
                     Benutzer mit den entsprechenden Rechten können die nutzbaren Smileys verwalten.
                 </li>
                 <li><b>Cronjobs:</b><br>
-                    Cronjobs sind Aufgaben, welche in regelmäßgen Abständen automatisch durch FanPress CM im Hintergrund
-                    ausgeführt werden. Die Cronjob-Übersicht zeigt die eine Liste von verfügbaren Cronjobs, wenn sie zuletzt
-                    ausgeführt wurden sowie den Zeitpunkt der nächsten Ausführung. Das Zeit-Intervall der Ausführung kannst du
-                    anpassen, in dem du die Intervall-zeit änderst.
+                    <ul>
+                        <li>Cronjobs sind Aufgaben, welche in regelmäßgen Abständen automatisch durch FanPress CM im Hintergrund
+                        ausgeführt werden. Die Cronjob-Übersicht zeigt eine Liste aller verfügbaren Cronjobs, wenn sie zuletzt
+                        ausgeführt wurden, sowie den Zeitpunkt der nächsten voraussichtlichen Ausführung.</li>
+
+                        <li>Die Häufigkeit der Ausführung eines Cronjobs kannst du anpassen, indem der Wert für das Intervall-Zeit
+                            angepasst wird.</li>
+                        <li>Beachte bei der Änderung des Intervals, dass Cronjobs u. U. für erhöhte Serverlast führen kann.</li>
+                    </ul>
                 </li>  
                 <li><b>System-Logs:</b><br>
                     Im Bereich der Systemlogs findest du eine Auflistung aller bisherigen Benutzer-Logins, System-Meldungen von FanPress und

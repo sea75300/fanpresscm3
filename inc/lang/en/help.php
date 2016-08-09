@@ -162,30 +162,20 @@ Help language file
                     Users with permissions to change settings can chose those options:
                     <ul>
                         <li><b>General:</b><br>
+                            The upper part contains general settings of the FanPress CM system.
                             <ul>
-                                <li>The upper part contains general settings of the FanPress CM system.
-                                    <ul>
-                                        <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
-                                        <li><em>Article URL base:</em> Base URL for articles, important for use with phpinclude. In most cases
-                                            this will be something like <em>your-domain.com/index.php</em> or a file which includes
-                                            <em>fpcmapi.php</em>.</li>
-                                        <li><em>Language:</em> Global system language, can be override by user settings.</li>
-                                        <li><em>Timezone:</em> Global system timezone, can be override by user settings.</li>
-                                        <li><em>Date-Time-Mask:</em> Settings how to display date and time informations, can be override by user settings.</li>
-                                        <li><em>Interval for cache timeout:</em> Interval until cache content expires automatically.</li>
-                                        <li><em>Usemode:</em> Mode how to use FanPress CM (phpinclude or iframe).</li>
-                                        <li><em>CSS style file path:</em> path to your css file if you use iframes.</li>
-                                        <li><em>Include jQuery library:</em> Include jQuery library shipped with FanPress CM. Important if you use
-                                        phpclude and get a warning the jQuery is not loaded at your page.</li>
-                                    </ul>
-                                </li>
-                                <li>The lower second part includes maintenance and security settings.
-                                    <ul>
-                                        <li><em>Maintenance mode enabled:</em> The "Maintenance mode" limits system access to already logged-in users only.</li>
-                                        <li><em>ACP session length:</em> Interval until auto logout from ACP.</li>
-                                        <li><em>Login auto-lock:</em> This settings defines the number of failed login-attempts before authentication is locked temporarily.</li>
-                                    </ul>                                     
-                                </li>
+                                <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
+                                <li><em>Article URL base:</em> Base URL for articles, important for use with phpinclude. In most cases
+                                    this will be something like <em>your-domain.com/index.php</em> or a file which includes
+                                    <em>fpcmapi.php</em>.</li>
+                                <li><em>Language:</em> Global system language, can be override by user settings.</li>
+                                <li><em>Timezone:</em> Global system timezone, can be override by user settings.</li>
+                                <li><em>Date-Time-Mask:</em> Settings how to display date and time informations, can be override by user settings.</li>
+                                <li><em>Interval for cache timeout:</em> Interval until cache content expires automatically.</li>
+                                <li><em>Usemode:</em> Mode how to use FanPress CM (phpinclude or iframe).</li>
+                                <li><em>CSS style file path:</em> path to your css file if you use iframes.</li>
+                                <li><em>Include jQuery library:</em> Include jQuery library shipped with FanPress CM. Important if you use
+                                phpclude and get a warning the jQuery is not loaded at your page.</li>
                             </ul>
                         </li>
                         <li><b>Editor and file manager:</b><br>
@@ -232,6 +222,14 @@ Help language file
                         <li><b>Twitter connection:</b><br>
                             If you see this tab, got to the Twitter connection chapter below.
                         </li>
+                        <li><b>Sicherheit & Wartung:</b><br>
+                            This tab includes maintenance and security settings.
+                            <ul>
+                                <li><em>Maintenance mode enabled:</em> The "Maintenance mode" limits system access to already logged-in users only.</li>
+                                <li><em>ACP session length:</em> Interval until auto logout from ACP.</li>
+                                <li><em>Login auto-lock:</em> This settings defines the number of failed login-attempts before authentication is locked temporarily.</li>
+                            </ul>
+                        </li>
                         <li><b>Extended:</b><br>
                             All options on the "Extended" register should be used carefully.
                             <ul>
@@ -240,9 +238,13 @@ Help language file
                                 <li><em>Include development releases in update check:</em> This option allows you to include test- and
                                     development versions when FanPress CM executes and update check. <b>Important: test- and development
                                     may include failures, unfinished functions which can cause problems!</b></li>
+                                <li><em>Update check interval if unable to connect to external servers:</em> If your FanPress CM
+                                    installation is unable to connect to the update server, a dialog will pop up from time to time
+                                    which includes the project page at <a href="https://Nobody-Knows.org">Nobody-Knows.org</a>.
+                                    This setting allows you to set the interval the dialog is displayed.</li>
                             </ul>
                         </li>
-                        <li><b>System check and updates:</b><br>
+                        <li><b>System check:</b><br>
                             This tab give you a detailed overview about your systems status and may indicate problems with your webspace.
                             Any <i>non optional</i> should contain a blue check symbol like <span class="fa fa-check-square fpcm-ui-booltext-yes"></span>.
                             In case it is not your probably should contact your host.
@@ -285,9 +287,12 @@ Help language file
                     Manage smileys available in articles and comments.
                 </li>
                 <li><b>Cronjobs:</b><br>
-                    Cronjobs are tasks, executed automatically and regularly by FanPress CM in background. The cronjob list
-                    shows you when a cronjob was executed last, when it's next execution is planned. You can modfify the
-                    execution interval by changed the interval time.
+                    <ul>
+                        <li>Cronjobs are tasks, executed automatically and regularly by FanPress CM in background. The cronjob list
+                        shows you when a cronjob was executed last, when it's next execution is planned.</li>
+                        <li>You can modfify the execution interval by changed the interval time.</li>
+                        <li>Please be careful when you change the intverval, because a cronjob can cause high system load.</li>
+                    </ul>
                 </li>                                
                 <li><b>System Logs:</b><br>
                     This area shows you the system logs of FanPress CM for sessions, system messages, errors and database errors.
