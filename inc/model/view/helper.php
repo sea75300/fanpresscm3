@@ -1,19 +1,14 @@
 <?php
-    /**
-     * View helper
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2013-2015, Stefan Seehafer
-     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     */
 
     namespace fpcm\model\view;
 
     /**
      * View Helper
      * 
-     * @package fpcm.model.view
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @package fpcm.model.view
      */
     final class helper {
         

@@ -2,7 +2,7 @@
 <!--
 Help language file
 @author Stefan Seehafer <sea75300@yahoo.de>
-@copyright (c) 2013-2015, Stefan Seehafer
+@copyright (c) 2011-2016, Stefan Seehafer
 @license http://www.gnu.org/licenses/gpl.txt GPLv3
 */
 -->
@@ -193,26 +193,23 @@ Help language file
             <p>Benutzer mit den entsprechenden Rechten können hier zentrale Einstellungen von FanPress CM ändern.</p>
             <ul>
                 <li><b>Allgemein:</b><br>
+                    Dieser Tab enthält allgemeine Einstellungen.
                     <ul>
-                        <li>Der obere Teil enthält allgemeine Einstellungen:
-                            <ul>
-                                <li><em>E-Mail-Adresse:</em> Zentrale E-Mail-Adresse für Systembenachrichtigungen.</li>
-                                <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontend, wichtig v. a. bei der Nutzung
-                                    von phpinclude. Entspricht in vielen Fällen der <em>deine-domain.xyz/index.php</em> oder der Datei, in der
-                                    <em>fpcmapi.php</em> includiert ist.</li>
-                                <li><em>Sprache:</em> Globale Spracheinstellung, kann durch Profileinstellung überschrieben werden.</li>
-                                <li><em>Zeitzone:</em> Globale Zeitzone, kann durch Profileinstellung überschrieben werden.</li>
-                                <li><em>Datum- und Zeitanzeige:</em> Maske für die Anzeige von Datums- und Zeitangaben, kann durch
-                                Profileinstellung überschrieben werden.</li>
-                                <li><em>Zeit bis zum Verfall des Cache-Inhaltes:</em> Zeit bis der Cache-Inhalt von
-                                FanPress CM automatisch verworfen und der Cache neu aufgebaut wird.</li>
-                                <li><em>Verwendung per:</em> Nutzung von FanPress CM via phpinclude oder in einem iframe.</li>
-                                <li><em>Pfad zu deiner CSS-Datei:</em> Pfad zu deiner CSS-Datei mit deinen eigenen Style-Angaben. Wichtig
-                                wenn du FanPress CM via iframe nutzt.</li>
-                                <li><em>jQuery Bibliothek laden:</em> Soll jQuery bei Nutzung von phpinclude geladen werden oder nicht.
-                                Wichtig wenn du jQuery nicht anderweitig in deiner Seite eingebunden hast.</li>                                        
-                            </ul>
-                        </li>
+                        <li><em>E-Mail-Adresse:</em> Zentrale E-Mail-Adresse für Systembenachrichtigungen.</li>
+                        <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontend, wichtig v. a. bei der Nutzung
+                            von phpinclude. Entspricht in vielen Fällen der <em>deine-domain.xyz/index.php</em> oder der Datei, in der
+                            <em>fpcmapi.php</em> includiert ist.</li>
+                        <li><em>Sprache:</em> Globale Spracheinstellung, kann durch Profileinstellung überschrieben werden.</li>
+                        <li><em>Zeitzone:</em> Globale Zeitzone, kann durch Profileinstellung überschrieben werden.</li>
+                        <li><em>Datum- und Zeitanzeige:</em> Maske für die Anzeige von Datums- und Zeitangaben, kann durch
+                        Profileinstellung überschrieben werden.</li>
+                        <li><em>Zeit bis zum Verfall des Cache-Inhaltes:</em> Zeit bis der Cache-Inhalt von
+                        FanPress CM automatisch verworfen und der Cache neu aufgebaut wird.</li>
+                        <li><em>Verwendung per:</em> Nutzung von FanPress CM via phpinclude oder in einem iframe.</li>
+                        <li><em>Pfad zu deiner CSS-Datei:</em> Pfad zu deiner CSS-Datei mit deinen eigenen Style-Angaben. Wichtig
+                        wenn du FanPress CM via iframe nutzt.</li>
+                        <li><em>jQuery Bibliothek laden:</em> Soll jQuery bei Nutzung von phpinclude geladen werden oder nicht.
+                        Wichtig wenn du jQuery nicht anderweitig in deiner Seite eingebunden hast.</li>                                        
                     </ul>
                 </li>
                 <li><b>Editor & Dateimanager:</b><br>
