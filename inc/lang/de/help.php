@@ -188,180 +188,219 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-            <p>Im Bereich <b>Optionen</b> können sämtliche Einstellungen von FanPress CM verändert werden.</p>
+        
+            <h3>Systemeinstellungen</h3>
+            <p>Benutzer mit den entsprechenden Rechten können hier zentrale Einstellungen von FanPress CM ändern.</p>
             <ul>
-                <li><b>Systemeinstellungen:</b><br>
-                    Benutzer mit den entsprechenden Rechten können hier zentrale Einstellungen von FanPress CM ändern.
+                <li><b>Allgemein:</b><br>
                     <ul>
-                        <li><b>Allgemein:</b><br>
+                        <li>Der obere Teil enthält allgemeine Einstellungen:
                             <ul>
-                                <li>Der obere Teil enthält allgemeine Einstellungen:
-                                    <ul>
-                                        <li><em>E-Mail-Adresse:</em> Zentrale E-Mail-Adresse für Systembenachrichtigungen.</li>
-                                        <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontend, wichtig v. a. bei der Nutzung
-                                            von phpinclude. Entspricht in vielen Fällen der <em>deine-domain.xyz/index.php</em> oder der Datei, in der
-                                            <em>fpcmapi.php</em> includiert ist.</li>
-                                        <li><em>Sprache:</em> Globale Spracheinstellung, kann durch Profileinstellung überschrieben werden.</li>
-                                        <li><em>Zeitzone:</em> Globale Zeitzone, kann durch Profileinstellung überschrieben werden.</li>
-                                        <li><em>Datum- und Zeitanzeige:</em> Maske für die Anzeige von Datums- und Zeitangaben, kann durch
-                                        Profileinstellung überschrieben werden.</li>
-                                        <li><em>Zeit bis zum Verfall des Cache-Inhaltes:</em> Zeit bis der Cache-Inhalt von
-                                        FanPress CM automatisch verworfen und der Cache neu aufgebaut wird.</li>
-                                        <li><em>Verwendung per:</em> Nutzung von FanPress CM via phpinclude oder in einem iframe.</li>
-                                        <li><em>Pfad zu deiner CSS-Datei:</em> Pfad zu deiner CSS-Datei mit deinen eigenen Style-Angaben. Wichtig
-                                        wenn du FanPress CM via iframe nutzt.</li>
-                                        <li><em>jQuery Bibliothek laden:</em> Soll jQuery bei Nutzung von phpinclude geladen werden oder nicht.
-                                        Wichtig wenn du jQuery nicht anderweitig in deiner Seite eingebunden hast.</li>                                        
-                                    </ul>
-                                </li>
+                                <li><em>E-Mail-Adresse:</em> Zentrale E-Mail-Adresse für Systembenachrichtigungen.</li>
+                                <li><em>URL für Artikellinks:</em> Basis-URL für Artikel-Links im Frontend, wichtig v. a. bei der Nutzung
+                                    von phpinclude. Entspricht in vielen Fällen der <em>deine-domain.xyz/index.php</em> oder der Datei, in der
+                                    <em>fpcmapi.php</em> includiert ist.</li>
+                                <li><em>Sprache:</em> Globale Spracheinstellung, kann durch Profileinstellung überschrieben werden.</li>
+                                <li><em>Zeitzone:</em> Globale Zeitzone, kann durch Profileinstellung überschrieben werden.</li>
+                                <li><em>Datum- und Zeitanzeige:</em> Maske für die Anzeige von Datums- und Zeitangaben, kann durch
+                                Profileinstellung überschrieben werden.</li>
+                                <li><em>Zeit bis zum Verfall des Cache-Inhaltes:</em> Zeit bis der Cache-Inhalt von
+                                FanPress CM automatisch verworfen und der Cache neu aufgebaut wird.</li>
+                                <li><em>Verwendung per:</em> Nutzung von FanPress CM via phpinclude oder in einem iframe.</li>
+                                <li><em>Pfad zu deiner CSS-Datei:</em> Pfad zu deiner CSS-Datei mit deinen eigenen Style-Angaben. Wichtig
+                                wenn du FanPress CM via iframe nutzt.</li>
+                                <li><em>jQuery Bibliothek laden:</em> Soll jQuery bei Nutzung von phpinclude geladen werden oder nicht.
+                                Wichtig wenn du jQuery nicht anderweitig in deiner Seite eingebunden hast.</li>                                        
                             </ul>
                         </li>
-                        <li><b>Editor & Dateimanager:</b><br>
-                            Der Tab umfasst Einstellungen zum Artikel-Editor und Dateimanager.
-                            <ul>
-                                <li><em>Editor auswählen:</em> Welcher Editor soll genutzt werden, die reine HTML-Ansicht oder der auf
-                                Basis von TinyMCE 4.</li>
-                                <li><em>jQuery Dateiupload verwenden:</em> Soll der moderne AJAX-Uploader genutzt werden, mit dem
-                                mehrere Dateien auf einmal hochgeladen werden können. Oder den klassischen PHP-Uploader nutzten.</li>
-                                <li><em>Revisionen aktivieren:</em> Soll FanPress CM Revisionen beim Speichern eines Artikels anlegen.</li>
-                                <li><em>Papierkorb aktivieren:</em> Artikel nicht direkt löschen sondern
-                                zuerst in Papierkorb verschieben. Hier kannst du sie ggf. wiederherstellen.</li>
-                                <li><em>Maximale Größe des Vorschaubildes:</em> Größe der von FanPress CM erzeugten Thumbnails.</li>
-                                <li><em>CSS-Klassen im Editor:</em> CSS-Klassen zur Nutzung im FanPress CM Editor.</li>
-                            </ul>
-                        </li>            
-                        <li><b>Artikel:</b><br>
-                            Der Tab enthält verschiedene Einstellungen zur Artikel-Ausgabe.
-                            <ul>
-                                <li><em>max. News pro Seite:</em> Anzahl an Artikeln, die im Frontend ausgegeben werden sollen.</li>
-                                <li><em>Anzahl an Artikeln im ACP:</em> Anzahl an Artikeln, die im ACP ausgegeben werden sollen,
-                                    kann durch Benutzer-Einstellung überschrieben werden</li>
-                                <li><em>Template für Artikel-Liste::</em> Template, welches für Artikel-Liste genutzt werden soll.</li>
-                                <li><em>Template für einzelnen Artikel:</em> Template, welches für die Anzeige eines einzelnen Artikels
-                                genutzt werden soll.</li>
-                                <li><em>News sortieren nach:</em> Reihenfolge, nach der Artikel im Frontend sortiert werden sollen.</li>
-                                <li><em>Share-Buttons anzeigen:</em> Sollen Share-Buttons angezeigt werden.</li>
-                                <li><em>Archiv-Link anzeigen:</em> Soll Link zu Archiv in der Navigation im Frontend angezeigt werden.</li>
-                                <li><em>RSS-Feed ist aktiv:</em> RSS-Feed aktivieren.</li>
-                            </ul>
-                        </li>
-                        <li><b>Kommentare:</b><br>
-                            Der Tab enthält verschiedene Einstellungen zur Ausgabe von Artikel-Kommentaren und deren Verwaltung.
-                            <ul>
-                                <li><em>Kommentar-System ist aktiv:</em> Kommentar-System global de/aktivieren.</li>
-                                <li><em>Kommentar-Template:</em> Template für die Anzeige von Kommentaren.</li>
-                                <li><em>Anti-Spam-Frage:</em> Frage für das Standard-Spam-Plugin.</li>
-                                <li><em>Antwort auf Anti-Spam-Frage:</em> Antwort für das Standard-Spam-Plugin.</li>
-                                <li><em>Zeitsperre zwischen zwei Kommentaren:</em> Zeit in Sekunden, die zwischen zwei Kommentaren von
-                                der selben IP-Adresse vergangen sein muss.</li>
-                                <li><em>Muss E-Mail Adresse angegeben werden:</em> Muss E-Mail-Adresse beim Schreiben eines Kommentars
-                                angegeben werden oder nicht.</li>
-                                <li><em>Müssen Kommentare freigeschalten werden:</em> Kommentare sind sofort sichtbar oder
-                                müssen manuell durch den Autor oder einen Admin freigegeben werden.</li>
-                                <li><em>Benachrichtigung bei neuem Kommentare an:</em> E-Mail-Adresse festlegen, an welche die
-                                Benachrichtigungen über neue Kommentare gehen. (nur an Autor, nur an globale Adresse oder an beide)</li>
-                                <li><em>Automatische Spam-Markierung:</em> Sind vom aktuellen Kommentar-Autor bereits diese Anzahl an Kommentaren
-                                    als Spam markiert im System vorhanden, so wird der neue Kommentar automatisch als Spam markiert.</li>
-                            </ul>
-                        </li>
-                        <li><b>Twitter-Verbindung:</b><br>
-                            Sofern dieser Tab angezeigt wird, kannst du eine direkte Verbindung zu Twitter herstelen.
-                            Siehe letzter Hilfe-Abschnitt ganz unten zur Einrichtung.
-                        </li>
-                        <li><b>Sicherheit & Wartung:</b><br>
-                            Dieser Tab enthält Einstellungen zur Wartungs und System-Sicherheit:
-                            <ul>
-                                <li><em>Wartungsmodus aktiv:</em> Wurde der Wartungsmodus aktiviert, so haben nur angemeldete Benutzer Zugriff auf FanPress CM.
-                                    Besucher deiner Seite, etc. erhalten eine Hinweis-Meldung.</li>
-                                <li><em>Maximale Länge einer Admin-Sitzung:</em> Länge einer Session im FanPress-CM Adminbereich.</li>
-                                <li><em>Anzahl Login-Versuche vor temporärer Sperre:</em> Hiermit kannst du Anzahl der Fehlgeschlagenen Logins einstellen,
-                                    bis der Login vorübergehend gesperrt wird. Diese Option hilft dabei, die Übernahme von FanPress CM Accounts
-                                    zu erschweren.</li>
-                            </ul>
-                        </li>
-                        <li><b>Erweitert:</b><br>
-                            Der "Erweitert"-Tab enthält verschiedene Einstellungen, welche nur mit Bedacht geändert werden sollten.
-                            <ul>
-                                <li><em>E-Mail-Benachrichtigung, wenn Updates verfügbar:</em> Diese Option ermöglicht es, die Benachrichtigung über
-                                    verfügbare Updates durch den Update-Cronjob zu de/aktivieren.</li>
-                                <li><em>Entwickler-Versionen bei Update-Check anzeigen:</em> Neben den offizielle Releases gibt es immer
-                                    wieder Entwickler- und Test-Versionen. Aktivieren diese Option, um solche Versionen beim Update-Check
-                                    ebenfalls anzuzeigen. <b>Achtung: Entwickler- und Test-Versionen können Fehler enthalten oder
-                                    unvollständige Änderungen enthalten, welche zu Problemen führen können!</b></li>
-                                <li><em>Update-Check-Intervall, wenn externe Server-Verbindungen nicht möglich:</em> Kann deine
-                                    FanPress CM Installation keine direkte Verbindung zum Update herstellen, so wird dir in regelmäßigem
-                                    Abstand ein Dialog angezeigt, welcher die Download-Seite auf
-                                    <a href="https://Nobody-Knows.org">Nobody-Knows.org</a> angezeigt. Mit dieser Einstellung kann
-                                    festgelegt werden, in welchem zeitlichen Abstand dies passiert.</li>
-                            </ul>
-                        </li>
-                        <li><b>Systemprüfung:</b><br>
-                            Auf diesem Tab erhältst du eine Übersicht über den aktuelle Update-Status deines FanPress CM-Systems sowie
-                            der verfügbaren Funktionen, etc. deines Servers. Bei allen <i>nicht-optionalen</i> Werten sollte ein blauer
-                            Haken wie <span class="fa fa-check-square fpcm-ui-booltext-yes"></span> zu sehen sein. Wenn dies nicht der
-                            Fall ist, wende sich an deinen Host.
-                        </li>            
                     </ul>
                 </li>
-                <li><b>Benutzer & Rollen:</b><br>
-                    Benutzer mit entsprechenden Rechten können Benutzer und Benutzer-Rollen anlegen und veralten.
-                </li>
-                <li><b>Berechtigungen:</b><br>
-                    Benutzer mit entsprechenden Rechten können hier die Zugriffsrechte auf verschiedene Dinge von FanPress CM ändern und
-                    den Zugriff einschränken. Der Bereich sollte nur von Administratoren nutzbar sein! Der Rolle "Administrator" kann der Zugriff
-                    auf die Rechte-Einstellungen nicht verweigert werden.
-                </li>
-                <li><b>IP-Adressen:</b><br>
-                    Benutzer mit Rechten zur Änderung der Systemeinstellungen können hier IP-Adressen sperren oder Sperren wieder aufheben.
-                    (z. B. wegen Spam) Pro Eintrag kann festgelegt werden, für welchen Bereich von FanPress CM die Sperren gelten soll:
-                    keine Kommentare, kein Login, überhaupt kein Zugriff
-                </li>
-                <li><b>Textzensur:</b><br>
-                    Die Textzensur ermöglicht es, bestimmte Wörter, Textgruppen oder Zeichenketten für die Verwendung zu sperren. Diese
-                    Textstellen werden durch den angegeben Text ersetzt. Die Textzensur wird beim Erstellen von Kommentaren, Artikeln,
-                    Kategorien, Benutzern und Benutzer-Rollen ausgeführt.
-                </li>
-                <li><b>Kategorien:</b><br>
-                    Benutzer mit entsprechenden Rechten können hier neue Kategorien, sowie bestehende ändern oder löschen.
-                </li>
-                <li><b>Templates:</b><br>
-                    Benutzer mit entsprechenden Rechten können die Templates zur Ausgabe von Artikeln, Kommentaren, etc. bearbeiten.
-                    Für eine bessere Übersicht bietet der Template-Editor Syntax-Highlighting und eine Liste der verfügbaren Platzhalter.
+                <li><b>Editor & Dateimanager:</b><br>
+                    Der Tab umfasst Einstellungen zum Artikel-Editor und Dateimanager.
                     <ul>
-                        <li><em>Artikel-Liste:</em> Template für Anzeige von Artikeln in der Artikel-Liste</li>
-                        <li><em>Artikel-Einzel-Ansicht:</em> Template für Anzeige eines einzelnen Artikels inkl.
-                            dessen Kommentaren, dem Kommentar-Formular, etc. Dieser Tab wird nicht angezeigt, wenn für
-                            <em>Artikel-Liste</em> und <em>Artikel-Einzel-Ansicht</em> das gleiche Template genutzt wird.</li>
-                        <li><em>Kommentar:</em> Template für einen einzelnen Kommentar</li>
-                        <li><em>Kommentar-Formular:</em> Template für das Formular zum Verfassen eines Kommentars</li>
-                        <li><em>Latest News:</em> Template für die einzelnen Zeilen in den "Latest News"</li>
-                        <li><em>Tweet:</em> HTML-freies Template für automatisch erzeugte Einträge bei Twitter (Tweets).</li>
-                        <li><em>Vorlagen:</em> HTML-Vorlagen zu Nutzung im Artikel-Editor. (TinyMCE bzw. HTML-Ansicht)</li>
+                        <li><em>Editor auswählen:</em> Welcher Editor soll genutzt werden, die reine HTML-Ansicht oder der auf
+                        Basis von TinyMCE 4.</li>
+                        <li><em>jQuery Dateiupload verwenden:</em> Soll der moderne AJAX-Uploader genutzt werden, mit dem
+                        mehrere Dateien auf einmal hochgeladen werden können. Oder den klassischen PHP-Uploader nutzten.</li>
+                        <li><em>Revisionen aktivieren:</em> Soll FanPress CM Revisionen beim Speichern eines Artikels anlegen.</li>
+                        <li><em>Papierkorb aktivieren:</em> Artikel nicht direkt löschen sondern
+                        zuerst in Papierkorb verschieben. Hier kannst du sie ggf. wiederherstellen.</li>
+                        <li><em>Maximale Größe des Vorschaubildes:</em> Größe der von FanPress CM erzeugten Thumbnails.</li>
+                        <li><em>CSS-Klassen im Editor:</em> CSS-Klassen zur Nutzung im FanPress CM Editor.</li>
+                    </ul>
+                </li>            
+                <li><b>Artikel:</b><br>
+                    Der Tab enthält verschiedene Einstellungen zur Artikel-Ausgabe.
+                    <ul>
+                        <li><em>max. News pro Seite:</em> Anzahl an Artikeln, die im Frontend ausgegeben werden sollen.</li>
+                        <li><em>Anzahl an Artikeln im ACP:</em> Anzahl an Artikeln, die im ACP ausgegeben werden sollen,
+                            kann durch Benutzer-Einstellung überschrieben werden</li>
+                        <li><em>Template für Artikel-Liste::</em> Template, welches für Artikel-Liste genutzt werden soll.</li>
+                        <li><em>Template für einzelnen Artikel:</em> Template, welches für die Anzeige eines einzelnen Artikels
+                        genutzt werden soll.</li>
+                        <li><em>News sortieren nach:</em> Reihenfolge, nach der Artikel im Frontend sortiert werden sollen.</li>
+                        <li><em>Share-Buttons anzeigen:</em> Sollen Share-Buttons angezeigt werden.</li>
+                        <li><em>Archiv-Link anzeigen:</em> Soll Link zu Archiv in der Navigation im Frontend angezeigt werden.</li>
+                        <li><em>RSS-Feed ist aktiv:</em> RSS-Feed aktivieren.</li>
                     </ul>
                 </li>
-                <li><b>Smileys:</b><br>
-                    Benutzer mit den entsprechenden Rechten können die nutzbaren Smileys verwalten.
-                </li>
-                <li><b>Cronjobs:</b><br>
+                <li><b>Kommentare:</b><br>
+                    Der Tab enthält verschiedene Einstellungen zur Ausgabe von Artikel-Kommentaren und deren Verwaltung.
                     <ul>
-                        <li>Cronjobs sind Aufgaben, welche in regelmäßgen Abständen automatisch durch FanPress CM im Hintergrund
-                        ausgeführt werden. Die Cronjob-Übersicht zeigt eine Liste aller verfügbaren Cronjobs, wenn sie zuletzt
-                        ausgeführt wurden, sowie den Zeitpunkt der nächsten voraussichtlichen Ausführung.</li>
-
-                        <li>Die Häufigkeit der Ausführung eines Cronjobs kannst du anpassen, indem der Wert für das Intervall-Zeit
-                            angepasst wird.</li>
-                        <li>Beachte bei der Änderung des Intervals, dass Cronjobs u. U. für erhöhte Serverlast führen kann.</li>
+                        <li><em>Kommentar-System ist aktiv:</em> Kommentar-System global de/aktivieren.</li>
+                        <li><em>Kommentar-Template:</em> Template für die Anzeige von Kommentaren.</li>
+                        <li><em>Anti-Spam-Frage:</em> Frage für das Standard-Spam-Plugin.</li>
+                        <li><em>Antwort auf Anti-Spam-Frage:</em> Antwort für das Standard-Spam-Plugin.</li>
+                        <li><em>Zeitsperre zwischen zwei Kommentaren:</em> Zeit in Sekunden, die zwischen zwei Kommentaren von
+                        der selben IP-Adresse vergangen sein muss.</li>
+                        <li><em>Muss E-Mail Adresse angegeben werden:</em> Muss E-Mail-Adresse beim Schreiben eines Kommentars
+                        angegeben werden oder nicht.</li>
+                        <li><em>Müssen Kommentare freigeschalten werden:</em> Kommentare sind sofort sichtbar oder
+                        müssen manuell durch den Autor oder einen Admin freigegeben werden.</li>
+                        <li><em>Benachrichtigung bei neuem Kommentare an:</em> E-Mail-Adresse festlegen, an welche die
+                        Benachrichtigungen über neue Kommentare gehen. (nur an Autor, nur an globale Adresse oder an beide)</li>
+                        <li><em>Automatische Spam-Markierung:</em> Sind vom aktuellen Kommentar-Autor bereits diese Anzahl an Kommentaren
+                            als Spam markiert im System vorhanden, so wird der neue Kommentar automatisch als Spam markiert.</li>
                     </ul>
-                </li>  
-                <li><b>System-Logs:</b><br>
-                    Im Bereich der Systemlogs findest du eine Auflistung aller bisherigen Benutzer-Logins, System-Meldungen von FanPress und
-                    Fehlermeldungen durch PHP selbst oder der Datenbank. Über den Button <i>Log-Datei leeren</i> kannst du Meldungen, etc. löschen
-                    lassen.
                 </li>
-                <li><b>Backupmanager:</b><br>
-                    Im Bereich "Backupmanager" kannst du ab Version 3.1 die automatisch erzeugten Datenbank-Backups herunterladen.
+                <li><b>Twitter-Verbindung:</b><br>
+                    Sofern dieser Tab angezeigt wird, kannst du eine direkte Verbindung zu Twitter herstelen.
+                    Siehe letzter Hilfe-Abschnitt ganz unten zur Einrichtung.
                 </li>
+                <li><b>Sicherheit & Wartung:</b><br>
+                    Dieser Tab enthält Einstellungen zur Wartungs und System-Sicherheit:
+                    <ul>
+                        <li><em>Wartungsmodus aktiv:</em> Wurde der Wartungsmodus aktiviert, so haben nur angemeldete Benutzer Zugriff auf FanPress CM.
+                            Besucher deiner Seite, etc. erhalten eine Hinweis-Meldung.</li>
+                        <li><em>Maximale Länge einer Admin-Sitzung:</em> Länge einer Session im FanPress-CM Adminbereich.</li>
+                        <li><em>Anzahl Login-Versuche vor temporärer Sperre:</em> Hiermit kannst du Anzahl der Fehlgeschlagenen Logins einstellen,
+                            bis der Login vorübergehend gesperrt wird. Diese Option hilft dabei, die Übernahme von FanPress CM Accounts
+                            zu erschweren.</li>
+                    </ul>
+                </li>
+                <li><b>Erweitert:</b><br>
+                    Der "Erweitert"-Tab enthält verschiedene Einstellungen, welche nur mit Bedacht geändert werden sollten.
+                    <ul>
+                        <li><em>E-Mail-Benachrichtigung, wenn Updates verfügbar:</em> Diese Option ermöglicht es, die Benachrichtigung über
+                            verfügbare Updates durch den Update-Cronjob zu de/aktivieren.</li>
+                        <li><em>Entwickler-Versionen bei Update-Check anzeigen:</em> Neben den offizielle Releases gibt es immer
+                            wieder Entwickler- und Test-Versionen. Aktivieren diese Option, um solche Versionen beim Update-Check
+                            ebenfalls anzuzeigen. <b>Achtung: Entwickler- und Test-Versionen können Fehler enthalten oder
+                            unvollständige Änderungen enthalten, welche zu Problemen führen können!</b></li>
+                        <li><em>Update-Check-Intervall, wenn externe Server-Verbindungen nicht möglich:</em> Kann deine
+                            FanPress CM Installation keine direkte Verbindung zum Update herstellen, so wird dir in regelmäßigem
+                            Abstand ein Dialog angezeigt, welcher die Download-Seite auf
+                            <a href="https://Nobody-Knows.org">Nobody-Knows.org</a> angezeigt. Mit dieser Einstellung kann
+                            festgelegt werden, in welchem zeitlichen Abstand dies passiert.</li>
+                    </ul>
+                </li>
+                <li><b>Systemprüfung:</b><br>
+                    Auf diesem Tab erhältst du eine Übersicht über den aktuelle Update-Status deines FanPress CM-Systems sowie
+                    der verfügbaren Funktionen, etc. deines Servers. Bei allen <i>nicht-optionalen</i> Werten sollte ein blauer
+                    Haken wie <span class="fa fa-check-square fpcm-ui-booltext-yes"></span> zu sehen sein. Wenn dies nicht der
+                    Fall ist, wende sich an deinen Host.
+                </li>            
             </ul>
+
+            <h3>Benutzer & Rollen</h3>
+            <ul>
+                <li>Mit den entsprechenden Rechten können Benutzer und Benutzer-Rollen verwaltet werden.</li>
+                <li>Ein Benutzer kann lediglich Mitglied einer einzelnen Rolle sein.</li>
+                <li>Benutzer können deaktiviert werden. Dabei wird der Login gesperrt und somit der Zugriff auf den
+                    Administratonsbereich gesperrt. Die Erstellten Artikel, etc. bleiben erhalten. Dies kann nützlich sein, wenn
+                    der Benutzer das Team deiner Seite verlassen hat, aus ihm ausgeschlossen wurde oder der Account irgendwie
+                    missbraucht wurde.</li>
+            </ul>
+                
+            <h3>Berechtigungen</h3>
+            <p>Benutzer mit entsprechenden Rechten können hier die Zugriffsrechte auf verschiedene Dinge von FanPress CM ändern und
+               den Zugriff einschränken. Der Bereich sollte nur von Administratoren nutzbar sein! Der Rolle "Administrator" kann der Zugriff
+               auf die Rechte-Einstellungen nicht verweigert werden.</p>
+                
+            <h3>IP-Adressen</h3>
+            <p>Benutzer mit Rechten zur Änderung der Systemeinstellungen können hier IP-Adressen sperren oder Sperren wieder aufheben.
+               (z. B. wegen Spam) Pro Eintrag kann festgelegt werden, für welchen Bereich von FanPress CM die Sperren gelten soll:
+               keine Kommentare, kein Login, überhaupt kein Zugriff.</p>
+            <ul>
+                <li><em>Keine Kommentare schreiben:</em> Der Besucher mit der angegebenen IP-Adresse kann keine
+                    Kommentare verfassen, wenn diese nicht für den Artikel oder genrell deaktiviert sind.</li>
+                <li><em>Kein ACP-Login:</em> Der Besucher mit der angegebenen IP-Adresse kann sich nicht in FanPress-CM
+                    einloggen bzw. hat keinen Zugriff auf die Login-Maske.</li>
+                <li><em>Kein Frontend-Zugriff:</em> Dem Besucher mit der angegebenen IP-Adresse werden veröffentlichte
+                    Artikel, Kommentare, etc. nicht angezeigt. Der weitere Zugriffe auf deine Seite kann von anderen Faktoren
+                    abhängen.</li>
+            </ul>
+                
+            <h3>Textzensur</h3>
+            <ul>
+                <li>Die Textzensur ermöglicht es, bestimmte Wörter, Textgruppen oder Zeichenketten für die Verwendung zu sperren.</li>
+                <li>Diese Textstellen werden durch den angegeben Text ersetzt.</li>
+                <li>Die Textzensur wird beim Erstellen von Kommentaren, Artikeln, Kategorien, Benutzern und Benutzer-Rollen ausgeführt.</li>
+            </ul>
+                
+            <h3>Kategorien</h3>
+            <ul>
+                <li>Benutzer mit entsprechenden Rechten können hier neue Kategorien, sowie bestehende ändern oder löschen.</li>
+                <li>Der Zugriff auf Kategorien kann auf bestimmte Benutzergruppen beschränkt werden.</li>
+                <li>Für das "Kategorie-Icon" kann eine Bid-Datei auf einem externen Server oder lokal auf deinem Webspace verwendet
+                    werden. In beiden Fällen sollte die vollständige URL angegeben werden.</li>
+            </ul>
+                
+            <h3>Templates</h3>
+            <p>Benutzer mit entsprechenden Rechten können die Templates zur Ausgabe von Artikeln, Kommentaren, etc. bearbeiten.
+               Für eine bessere Übersicht bietet der Template-Editor Syntax-Highlighting und eine Liste der verfügbaren Platzhalter.</p>
+            <ul>
+                <li><em>Artikel-Liste:</em> Template für Anzeige von Artikeln in der Artikel-Liste</li>
+                <li><em>Artikel-Einzel-Ansicht:</em> Template für Anzeige eines einzelnen Artikels inkl.
+                    dessen Kommentaren, dem Kommentar-Formular, etc. Dieser Tab wird nicht angezeigt, wenn für
+                    <em>Artikel-Liste</em> und <em>Artikel-Einzel-Ansicht</em> das gleiche Template genutzt wird.</li>
+                <li><em>Kommentar:</em> Template für einen einzelnen Kommentar</li>
+                <li><em>Kommentar-Formular:</em> Template für das Formular zum Verfassen eines Kommentars</li>
+                <li><em>Latest News:</em> Template für die einzelnen Zeilen in den "Latest News"</li>
+                <li><em>Tweet:</em> HTML-freies Template für automatisch erzeugte Einträge bei Twitter (Tweets).</li>
+                <li><em>Vorlagen:</em> HTML-Vorlagen zu Nutzung im Artikel-Editor. (TinyMCE bzw. HTML-Ansicht)</li>
+            </ul>
+            
+            <h3>Smileys</h3>
+            <p>Benutzer mit den entsprechenden Rechten können die nutzbaren Smileys verwalten.</p>
+            
+            <h3>Cronjobs</h3>
+            <ul>
+                <li>Cronjobs sind Aufgaben, welche in regelmäßgen Abständen automatisch durch FanPress CM im Hintergrund
+                    ausgeführt werden.</li>
+                <li>Die Cronjob-Übersicht zeigt eine Liste aller verfügbaren Cronjobs, wenn sie zuletzt ausgeführt wurden,
+                    sowie den Zeitpunkt der nächsten voraussichtlichen Ausführung.</li>
+                <li>Die Häufigkeit der Ausführung eines Cronjobs kannst du anpassen, indem der Wert für das Intervall-Zeit
+                    angepasst wird.</li>
+                <li>Beachte bei der Änderung des Intervals, dass Cronjobs u. U. für erhöhte Serverlast führen kann.</li>
+            </ul>
+            
+            <h3>System-Logs</h3>
+            <p>Im Bereich der Systemlogs findest du eine Auflistung aller bisherigen Benutzer-Logins, System-Meldungen von FanPress und
+               Fehlermeldungen durch PHP selbst oder der Datenbank. Über den Button <i>Log-Datei leeren</i> kannst du Meldungen, etc. löschen
+               lassen.</p>
+            <ul>
+                <li>Das <em>System-Log</em> beinhaltet allgemeine Meldungen von FanPress CM.</li>
+                <li>Das <em>PHP-Fehler-Log</em> beinhaltet einen Übersicht über Fehlermeldungen, die aufgrund von Fehlern bei der
+                    Server-seitigen Ausführung des FanPress CM Codes auftreten.</li>
+                <li>Im <em>Datenbank-Log</em> werden Fehler- und Hinweismeldungen geführt, welche bei der Ausführung von Datenbank-Zugriffen
+                    auftreten.</li>
+                <li>Das <em>Session-Log</em> ist eine Übersicht über durchgeführte Logins aller vorhandenen Benutzern.</li>
+                <li>Im <em>Paket-Manager-Log</em> wird eine Übersicht über installierte Pakete geführt. Dies sind Pakete für System-Updates
+                    und Pakete von Modulen.</li>
+            </ul>
+            
+            <h3>Backupmanager</h3>
+            <ul>
+                <li>Im Bereich "Backupmanager" kannst du die automatisch erzeugten Datenbank-Backups herunterladen.</li>
+                <li>Die erzeugten Datenbank-Backups sind gepackten SQL-Dateien, deren Struktur vom verwendeten Datenbank-System
+                    abhängt.</li>
+                <li>Um ein Backup bei Bedarf wiederherzustellen, kannst du Werkzeuge wie
+                    <a href="https://www.phpmyadmin.net/" target="_blank">phpMyAdmin</a>, <a href="https://www.adminer.org/de" target="_blank">Adminer</a> or
+                    <a href="http://phppgadmin.sourceforge.net/doku.php" target="_blank">phpPgAdmin</a> nutzen.
+                </li>
+            </ul>        
+
         ]]>
         </text>
     </chapter>

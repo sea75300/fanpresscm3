@@ -171,152 +171,184 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-            <p>The <b>Options</b> allows to change all system wide settings of FanPress CM.</p>
+            <h3>System settings</h3>
+            <p>Users with permissions to change settings can chose those options:</p>
             <ul>
-                <li><b>System settings:</b><br>
-                    Users with permissions to change settings can chose those options:
+                <li><b>General:</b><br>
+                    The upper part contains general settings of the FanPress CM system.
                     <ul>
-                        <li><b>General:</b><br>
-                            The upper part contains general settings of the FanPress CM system.
-                            <ul>
-                                <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
-                                <li><em>Article URL base:</em> Base URL for articles, important for use with phpinclude. In most cases
-                                    this will be something like <em>your-domain.com/index.php</em> or a file which includes
-                                    <em>fpcmapi.php</em>.</li>
-                                <li><em>Language:</em> Global system language, can be override by user settings.</li>
-                                <li><em>Timezone:</em> Global system timezone, can be override by user settings.</li>
-                                <li><em>Date-Time-Mask:</em> Settings how to display date and time informations, can be override by user settings.</li>
-                                <li><em>Interval for cache timeout:</em> Interval until cache content expires automatically.</li>
-                                <li><em>Usemode:</em> Mode how to use FanPress CM (phpinclude or iframe).</li>
-                                <li><em>CSS style file path:</em> path to your css file if you use iframes.</li>
-                                <li><em>Include jQuery library:</em> Include jQuery library shipped with FanPress CM. Important if you use
-                                phpclude and get a warning the jQuery is not loaded at your page.</li>
-                            </ul>
-                        </li>
-                        <li><b>Editor and file manager:</b><br>
-                            Settings for editor and file manager.
-                            <ul>
-                                <li><em>Select editor:</em> Enables TinyMCE editor view or classic HTML editor view..</li>
-                                <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
-                                <li><em>Revisions enabled:</em> Enabled revision function to save changes on articles and make them
-                                restorable.</li>
-                                <li><em>Enabled article trash:</em> Enable article trash to and be able to restore deleted articles.</li>
-                                <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnails.</li>
-                                <li><em>CSS classes in editor:</em> CSS classes with can be used in article editor.</li>
-                            </ul>
-                        </li>            
-                        <li><b>Articles:</b><br>
-                            Settings for article output.
-                            <ul>
-                                <li><em>Articles per page:</em> Number of articles to display per page in front end.</li>
-                                <li><em>Article list template:</em> Template for front end article list.</li>
-                                <li><em>Single article template:</em> Template to display a single article in front end.</li>
-                                <li><em>Sort articles by:</em> Sorting of articles in article list.</li>
-                                <li><em>Show share buttons:</em> Enabled social media share buttons.</li>
-                                <li><em>Show archive link:</em> Enable archive link in front end pagination.</li>
-                                <li><em>RSS-Feed is enabled:</em> Enable RSS feed.</li>
-                            </ul>
-                        </li>
-                        <li><b>Comments:</b><br>
-                            Settings for comments and comment output.
-                            <ul>
-                                <li><em>Comments are enabled:</em> Comments are enabled globally.</li>
-                                <li><em>Comment template:</em> Template to display a single comment.</li>
-                                <li><em>Spam captcha question:</em> Question for default spam captcha plugin.</li>
-                                <li><em>Spam captcha answer:</em> Answer for default spam captcha plugin.</li>
-                                <li><em>Flood protection between two comments:</em> Time between to comment from same IP address.</li>
-                                <li><em>Email address is required:</em> Email address is required to add a comment to an article.</li>
-                                <li><em>Approval of comments is required:</em> Comment must be approved before being displayed in
-                                article.</li>
-                                <li><em>Send Notification of new comments to:</em> Email address which should be used for notifications
-                                about new comments. (author only, global only, both)</li>
-                                <li><em>Automatic "Mark as Spam":</em> This options allows you to set a limit number of comments, which are already
-                                    marked as spam, before a new comment of this author will be marked as spam automatically.</li>
-                            </ul>
-                        </li>
-                        <li><b>Twitter connection:</b><br>
-                            If you see this tab, got to the Twitter connection chapter below.
-                        </li>
-                        <li><b>Sicherheit & Wartung:</b><br>
-                            This tab includes maintenance and security settings.
-                            <ul>
-                                <li><em>Maintenance mode enabled:</em> The "Maintenance mode" limits system access to already logged-in users only.</li>
-                                <li><em>ACP session length:</em> Interval until auto logout from ACP.</li>
-                                <li><em>Login auto-lock:</em> This settings defines the number of failed login-attempts before authentication is locked temporarily.</li>
-                            </ul>
-                        </li>
-                        <li><b>Extended:</b><br>
-                            All options on the "Extended" register should be used carefully.
-                            <ul>
-                                <li><em>Email notification when updates are available:</em> Enable or disable the e-mail notification if a new version
-                                    of FanPress CM was detected by the update cronjob.</li>
-                                <li><em>Include development releases in update check:</em> This option allows you to include test- and
-                                    development versions when FanPress CM executes and update check. <b>Important: test- and development
-                                    may include failures, unfinished functions which can cause problems!</b></li>
-                                <li><em>Update check interval if unable to connect to external servers:</em> If your FanPress CM
-                                    installation is unable to connect to the update server, a dialog will pop up from time to time
-                                    which includes the project page at <a href="https://Nobody-Knows.org">Nobody-Knows.org</a>.
-                                    This setting allows you to set the interval the dialog is displayed.</li>
-                            </ul>
-                        </li>
-                        <li><b>System check:</b><br>
-                            This tab give you a detailed overview about your systems status and may indicate problems with your webspace.
-                            Any <i>non optional</i> should contain a blue check symbol like <span class="fa fa-check-square fpcm-ui-booltext-yes"></span>.
-                            In case it is not your probably should contact your host.
-                        </li>            
+                        <li><em>Email address:</em> General Email address for comment notifications and so on.</li>
+                        <li><em>Article URL base:</em> Base URL for articles, important for use with phpinclude. In most cases
+                            this will be something like <em>your-domain.com/index.php</em> or a file which includes
+                            <em>fpcmapi.php</em>.</li>
+                        <li><em>Language:</em> Global system language, can be override by user settings.</li>
+                        <li><em>Timezone:</em> Global system timezone, can be override by user settings.</li>
+                        <li><em>Date-Time-Mask:</em> Settings how to display date and time informations, can be override by user settings.</li>
+                        <li><em>Interval for cache timeout:</em> Interval until cache content expires automatically.</li>
+                        <li><em>Usemode:</em> Mode how to use FanPress CM (phpinclude or iframe).</li>
+                        <li><em>CSS style file path:</em> path to your css file if you use iframes.</li>
+                        <li><em>Include jQuery library:</em> Include jQuery library shipped with FanPress CM. Important if you use
+                        phpclude and get a warning the jQuery is not loaded at your page.</li>
                     </ul>
                 </li>
-                <li><b>User and rolls:</b><br>
-                    Here you can manage users and user rolls in your system, including deletion, editing and so on.
-                </li>
-                <li><b>Permissions:</b><br>
-                    Permissions allows you to define which user can use a function or not. This area should be visible for
-                    administrators only! You can't prohibit the Administrator roll to access permission settings.
-                </li>
-                <li><b>IP addresses:</b><br>
-                    Here you can lock IP addresses to prohibit access to FanPress CM because of spam comments, many login failures, etc.
-                </li>
-                <li><b>Censored texts:</b><br>
-                    Censored texts prevent certain words, texts, text groups and strings from beeing used in comments, articles,
-                    categories, users and user rolls. Censored texts will be replaced by the "Replacement" text.
-                </li>
-                <li><b>Categories:</b><br>
-                    The area to manage article categories, depending on given permissions.
-                </li>
-                <li><b>Templates:</b><br>
-                    Edit templates to display articles, comments, the latest news, etc. in front end. The template editor includes
-                    syntax highlighting and a list of allowed replacements.
+                <li><b>Editor and file manager:</b><br>
+                    Settings for editor and file manager.
                     <ul>
-                        <li><em>Article list:</em> Template used for a single article in article lists.</li>
-                        <li><em>Single article view:</em> Template used for a single article opened in frontend including
-                            comments and so on. Tab is invisible if <em>Article list</em> and <em>Single article view</em>
-                            are the same value.</li>
-                        <li><em>Comment:</em> Template used for a single comment</li>
-                        <li><em>Comment form:</em> Template used for formular to create a comment</li>
-                        <li><em>Latest News:</em> Template used for a single line of the "Latest News" widget</li>
-                        <li><em>Tweet:</em> Template used for generation of a Tweet on Twitter! No HTML code allowed.</li>
-                        <li><em>Article templates:</em> HTML files which can be used are template in TinyMCE or HTML editor view.</li>
+                        <li><em>Select editor:</em> Enables TinyMCE editor view or classic HTML editor view..</li>
+                        <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
+                        <li><em>Revisions enabled:</em> Enabled revision function to save changes on articles and make them
+                        restorable.</li>
+                        <li><em>Enabled article trash:</em> Enable article trash to and be able to restore deleted articles.</li>
+                        <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnails.</li>
+                        <li><em>CSS classes in editor:</em> CSS classes with can be used in article editor.</li>
+                    </ul>
+                </li>            
+                <li><b>Articles:</b><br>
+                    Settings for article output.
+                    <ul>
+                        <li><em>Articles per page:</em> Number of articles to display per page in front end.</li>
+                        <li><em>Article list template:</em> Template for front end article list.</li>
+                        <li><em>Single article template:</em> Template to display a single article in front end.</li>
+                        <li><em>Sort articles by:</em> Sorting of articles in article list.</li>
+                        <li><em>Show share buttons:</em> Enabled social media share buttons.</li>
+                        <li><em>Show archive link:</em> Enable archive link in front end pagination.</li>
+                        <li><em>RSS-Feed is enabled:</em> Enable RSS feed.</li>
                     </ul>
                 </li>
-                <li><b>Smileys:</b><br>
-                    Manage smileys available in articles and comments.
-                </li>
-                <li><b>Cronjobs:</b><br>
+                <li><b>Comments:</b><br>
+                    Settings for comments and comment output.
                     <ul>
-                        <li>Cronjobs are tasks, executed automatically and regularly by FanPress CM in background. The cronjob list
-                        shows you when a cronjob was executed last, when it's next execution is planned.</li>
-                        <li>You can modfify the execution interval by changed the interval time.</li>
-                        <li>Please be careful when you change the intverval, because a cronjob can cause high system load.</li>
+                        <li><em>Comments are enabled:</em> Comments are enabled globally.</li>
+                        <li><em>Comment template:</em> Template to display a single comment.</li>
+                        <li><em>Spam captcha question:</em> Question for default spam captcha plugin.</li>
+                        <li><em>Spam captcha answer:</em> Answer for default spam captcha plugin.</li>
+                        <li><em>Flood protection between two comments:</em> Time between to comment from same IP address.</li>
+                        <li><em>Email address is required:</em> Email address is required to add a comment to an article.</li>
+                        <li><em>Approval of comments is required:</em> Comment must be approved before being displayed in
+                        article.</li>
+                        <li><em>Send Notification of new comments to:</em> Email address which should be used for notifications
+                        about new comments. (author only, global only, both)</li>
+                        <li><em>Automatic "Mark as Spam":</em> This options allows you to set a limit number of comments, which are already
+                            marked as spam, before a new comment of this author will be marked as spam automatically.</li>
                     </ul>
-                </li>                                
-                <li><b>System Logs:</b><br>
-                    This area shows you the system logs of FanPress CM for sessions, system messages, errors and database errors.
-                    You can clear the logs in case they are to large.
                 </li>
-                <li><b>Backup manager:</b><br>
-                    The "Backup manager" allows you to download the database backups created by the FanPress CM cronjob.
+                <li><b>Twitter connection:</b><br>
+                    If you see this tab, got to the Twitter connection chapter below.
+                </li>
+                <li><b>Sicherheit & Wartung:</b><br>
+                    This tab includes maintenance and security settings.
+                    <ul>
+                        <li><em>Maintenance mode enabled:</em> The "Maintenance mode" limits system access to already logged-in users only.</li>
+                        <li><em>ACP session length:</em> Interval until auto logout from ACP.</li>
+                        <li><em>Login auto-lock:</em> This settings defines the number of failed login-attempts before authentication is locked temporarily.</li>
+                    </ul>
+                </li>
+                <li><b>Extended:</b><br>
+                    All options on the "Extended" register should be used carefully.
+                    <ul>
+                        <li><em>Email notification when updates are available:</em> Enable or disable the e-mail notification if a new version
+                            of FanPress CM was detected by the update cronjob.</li>
+                        <li><em>Include development releases in update check:</em> This option allows you to include test- and
+                            development versions when FanPress CM executes and update check. <b>Important: test- and development
+                            may include failures, unfinished functions which can cause problems!</b></li>
+                        <li><em>Update check interval if unable to connect to external servers:</em> If your FanPress CM
+                            installation is unable to connect to the update server, a dialog will pop up from time to time
+                            which includes the project page at <a href="https://Nobody-Knows.org">Nobody-Knows.org</a>.
+                            This setting allows you to set the interval the dialog is displayed.</li>
+                    </ul>
+                </li>
+                <li><b>System check:</b><br>
+                    This tab give you a detailed overview about your systems status and may indicate problems with your webspace.
+                    Any <i>non optional</i> should contain a blue check symbol like <span class="fa fa-check-square fpcm-ui-booltext-yes"></span>.
+                    In case it is not your probably should contact your host.
+                </li>            
+            </ul>
+
+            <h3>User and rolls</h3>
+            <ul>
+                <li>Here you can manage users and user rolls in your system, including deletion, editing and so on.</li>
+                <li>An user can be a member of only one group.</li>
+                <li>You can disable users to keep their data (written articles & co.) and prevent them from login to the admin panel.
+                    This can be usefull if the user was excluded or left your team, or the account was abused by someone else..</li>
+            </ul>
+                
+            <h3>Permissions</h3>
+            <p>Permissions allows you to define which user can use a function or not. This area should be visible for
+            administrators only! You can't prohibit the Administrator roll to access permission settings.</p>
+                
+            <h3>IP addresses</h3>
+            <p>Here you can lock IP addresses to prohibit access to FanPress CM because of spam comments, many login failures, etc.</p>
+            <ul>
+                <li><em>No comment access:</em> The user of this IP address was prohibited reading or writing comments..</li>
+                <li><em>No login access:</em> The user of this IP address can't log into your FanPress CM system and can't
+                    access the login mask.</li>
+                <li><em>No frontend access:</em> The user of this IP address can't read you published articles, comments and so on.
+                    Access to other parts of your site may depend of futher factors.</li>
+            </ul>
+                
+            <h3>Censored texts</h3>
+            <ul>
+                <li>Censored texts prevent certain words, texts, text groups and strings from beeing used in comments, articles,
+                    categories, users and user rolls.</li>
+                <li>Censored texts will be replaced by the "Replacement" text.</li>
+            </ul>
+                
+            <h3>Categories</h3>
+            <ul>
+                <li>The area to manage article categories, depending on given permissions.</li>
+                <li>The access to a category can be restricted to certain groups.</li>
+                <li>The "Category icon" can be a remote image file or somewhere in you local file system. It is recommend to use the
+                full URL of the file in both cases.</li>
+            </ul>
+                
+            <h3>Templates</h3>
+            <p>Edit templates to display articles, comments, the latest news, etc. in front end. The template editor includes
+            syntax highlighting and a list of allowed replacements.</p>
+            <ul>
+                <li><em>Article list:</em> Template used for a single article in article lists.</li>
+                <li><em>Single article view:</em> Template used for a single article opened in frontend including
+                    comments and so on. Tab is invisible if <em>Article list</em> and <em>Single article view</em>
+                    are the same value.</li>
+                <li><em>Comment:</em> Template used for a single comment</li>
+                <li><em>Comment form:</em> Template used for formular to create a comment</li>
+                <li><em>Latest News:</em> Template used for a single line of the "Latest News" widget</li>
+                <li><em>Tweet:</em> Template used for generation of a Tweet on Twitter! No HTML code allowed.</li>
+                <li><em>Article templates:</em> HTML files which can be used are template in TinyMCE or HTML editor view.</li>
+            </ul>
+            
+            <h3>Smileys</h3>
+            <p>Manage smileys available in articles and comments.</p>
+            
+            <h3>Cronjobs</h3>
+            <ul>
+                <li>Cronjobs are tasks, executed automatically and regularly by FanPress CM in background.</li>
+                <li>The cronjob list shows you when a cronjob was executed last, when it's next execution is planned.</li>
+                <li>You can modfify the execution interval by changed the interval time.</li>
+                <li>Please be careful when you change the intverval, because a cronjob can cause high system load.</li>
+            </ul>
+            
+            <h3>System Logs</h3>
+            <p>This area shows you the system logs of FanPress CM for sessions, system messages, errors and database errors.
+               You can clear the logs in case they are to large.</p>
+            <ul>
+                <li>The <em>System Log</em> includes messages dropped by the FanPress CM system itself.</li>
+                <li>The <em>PHP error log</em> lists error messages and notices triggered during the execution of FanPress CM.</li>
+                <li>The <em>Database log</em> includes error messages, notices and so on triggered during the access of the
+                    database.</li>
+                <li>The <em>Session log</em> lists all logins of users available in FanPress CM.</li>
+                <li>The <em>Package manager log</em> is an overview of installed packages from updates and installed modules.</li>
+            </ul>
+            
+            <h3>Backup manager</h3>
+            <ul>
+                <li>The "Backup manager" allows you to download the database backups created by the FanPress CM cronjob.</li>
+                <li>The created backups are zipped SQL-Files. The structure depends on the database system you're using.</li>
+                <li>To restore a backup file, you can use tools such as
+                    <a href="https://www.phpmyadmin.net/" target="_blank">phpMyAdmin</a>, <a href="https://www.adminer.org/" target="_blank">Adminer</a> or
+                    <a href="http://phppgadmin.sourceforge.net/doku.php" target="_blank">phpPgAdmin</a>.
                 </li>
             </ul>
+
         ]]>
         </text>
     </chapter>

@@ -24,6 +24,16 @@ fpcm.editor_videolinks = {
             return text.replace('/video', '/embed/video');
         }
 
+        if (text.search('clipfish.de') >= 0) {
+
+            var regex = /.*?(video)\/([0-9]*)\/.*?/i;
+            var videoId = regex.exec(text);
+            if (videoId[2] !== undefined) {
+                return 'http://www.clipfish.de/embed_video/?vid=' + videoId[2];
+            }
+
+        }
+
         return text;
 
     },
