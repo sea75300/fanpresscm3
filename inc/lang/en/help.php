@@ -372,7 +372,7 @@ Help language file
             <p>Module authors can define module <b>dependencies</b>, which means a selected module requires other modules to be enabled
             and usable. The button <span class="fpcm-ui-button"><span class="ui-icon ui-icon-alert"></span></span> at the beginning of a
             module line informs you about dependency errors. See module description for further information.</p>
-            <p>In case you want to create an own module, check the <a href="http://nobody-knows.org/download/fanpress-cm/tutorial-zum-schreiben-eines-moduls/">Tutorial</a>
+            <p>In case you want to create an own module, check the <a href="https://nobody-knows.org/download/fanpress-cm/tutorial-zum-schreiben-eines-moduls/">Tutorial</a>
             and our <a href="http://updates.nobody-knows.org/fanpress/docs_fpcm3/">class documentation</a>.
             </p>
         ]]>
@@ -483,7 +483,7 @@ Help language file
         <text>
         <![CDATA[
             <p>In case you need help with technical issues or further questions, email me at <em>fanpress@nobody-knows.org</em>
-            or <em>sea75300@yahoo.de</em>. You also can leave a comment on <a href="http://nobody-knows.org/download/fanpress-cm/">nobody-knows.org</a>.</p>
+            or <em>sea75300@yahoo.de</em>. You also can leave a comment on <a href="https://nobody-knows.org/download/fanpress-cm/">nobody-knows.org</a>.</p>
             <p>A fast and simple way to provide access in case you need support, install <em>FanPress CM Support Module</em> using the
             module manager. However, an e-mail with the created support user and additional information will be send during installation!</p>
         ]]>

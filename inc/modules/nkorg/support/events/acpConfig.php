@@ -1,6 +1,6 @@
 <?php
     /**
-     * FanPress CM Support Module, http://nobody-knows.org
+     * FanPress CM Support Module, https://nobody-knows.org
      *
      * nkorg/support event class: acpConfig
      * 

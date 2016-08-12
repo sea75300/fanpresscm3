@@ -73,6 +73,10 @@
                     $permissions['article']['revisions'] = $groupId < 3 ? 1 : 0;
                 }
                 
+                if (!isset($permissions['article']['authors'])) {
+                    $permissions['article']['authors'] = $groupId < 2 ? 1 : 0;
+                }
+                
                 if (!isset($permissions['system']['logs'])) {
                     $permissions['system']['logs'] = $groupId < 2 ? 1 : 0;
                 }
@@ -118,6 +122,7 @@
             $res = $res && $this->config->add('articles_acp_limit', 100);
             $res = $res && $this->config->add('system_updates_devcheck', (defined('FPCM_UPDATER_DEVCHECK') ? (int) FPCM_UPDATER_DEVCHECK : 0) );
             $res = $res && $this->config->add('system_updates_emailnotify', (defined('FPCM_UPDATE_CRONNOTIFY_EMAIL') ? (int) FPCM_UPDATE_CRONNOTIFY_EMAIL : 1) );
+            $res = $res && $this->config->add('system_updates_manual', (defined('FPCM_UPDATER_MANUALCHECK') ? (int) FPCM_UPDATER_MANUALCHECK : 1209600) );
             
             return $res;
 
@@ -132,6 +137,22 @@
             $res = true;
 
             $newconf = array();
+            if (!is_array($this->config->twitter_data)) {
+                $newconf['twitter_data'] = array(
+                    'consumer_key'    => '',
+                    'consumer_secret' => '',
+                    'user_token'      => '',
+                    'user_secret'     => ''
+                );
+                
+                $newconf['twitter_data'] = json_encode($newconf['twitter_data']);
+            }
+            
+            if (!is_array($this->config->twitter_events)) {
+                $newconf['twitter_events'] = array('create' => 0, 'update' => 0);
+                $newconf['twitter_events'] = json_encode($newconf['twitter_events']);
+            }
+            
             if (count($newconf)) {
                 $this->config->setNewConfig($newconf);
                 $res = $res && $this->config->update();

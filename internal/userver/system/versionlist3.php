@@ -13,7 +13,7 @@
             'file'      => 'http://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.2.1.zip',
             'force'     => 0,
             'message'   => 'Next minor release of FanPress CM 3.x!',
-            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-2-1-veroeffentlicht/',
+            'notice'    => 'https://nobody-knows.org/fanpress-cm-3-2-1-veroeffentlicht/',
             'signature' => $signature
         )
     );

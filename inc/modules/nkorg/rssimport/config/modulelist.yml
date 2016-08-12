@@ -4,7 +4,7 @@ name: RSS Importer
 vendor: nkorg
 key: rssimport
 author: imagine
-link: http://nobody-knows.org
+link: https://nobody-knows.org
 version: 1.0.0
 sysversion: 3.2.0
 description: "Importer for article feeds based on RSS2 or Atom feeds."

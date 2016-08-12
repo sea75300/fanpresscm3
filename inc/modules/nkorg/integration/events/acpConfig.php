@@ -1,6 +1,6 @@
 <?php
     /**
-     * FanPress CM Integration, http://nobody-knows.org/fanpress3
+     * FanPress CM Integration, https://nobody-knows.org/fanpress3
      *
      * nkorg/integration event class: acpConfig
      * 

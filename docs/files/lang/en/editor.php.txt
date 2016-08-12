@@ -2,18 +2,18 @@
     /**
      * Editor language file
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2013-2014, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
     $lang = array(
-        'EDITOR_ARTICLEURL'             => 'Article url',
+        'EDITOR_ARTICLEURL'             => 'Article URL',
         'EDITOR_DRAFT'                  => 'Save article as draft',
         'EDITOR_PINNED'                 => 'Pin article',
         'EDITOR_POSTPONETO'             => 'Postpone article',
         'EDITOR_ARCHIVE'                => 'Archive article',
         'EDITOR_COMMENTS'               => 'Comments enabled',
-        'EDITOR_SHORTLINKS'             => 'Shortlink',
+        'EDITOR_SHORTLINKS'             => 'Short link',
         'EDITOR_PREVIWBOX'              => 'Draft',  
         'EDITOR_AUTHOREDIT'             => '<strong>created by:</strong> {{username}} on {{time}}',  
         'EDITOR_LASTEDIT'               => '<strong>last change by:</strong>  {{username}} on {{time}}',
@@ -38,19 +38,22 @@
         'EDITOR_INSERTSYMBOL'           => 'Insert symbol',
         'EDITOR_INSERTCOLOR'            => 'Insert color',
         'EDITOR_INSERTCOLOR_HEXCODE'    => 'HTML color code',
-        'EDITOR_INSERTCOLOR_TEXT'       => 'as font color',
-        'EDITOR_INSERTCOLOR_BACKGROUND' => 'as backgroudn color',
+        'EDITOR_INSERTCOLOR_TEXT'       => 'As font color',
+        'EDITOR_INSERTCOLOR_BACKGROUND' => 'As background color',
         'EDITOR_INSERTMEDIA'            => 'Insert media player',
-        'EDITOR_INSERTMEDIA_AUDIO'      => 'as audio',
-        'EDITOR_INSERTMEDIA_VIDEO'      => 'as video',
-        'EDITOR_CSS_CLASS'              => 'Css class',
+        'EDITOR_INSERTMEDIA_AUDIO'      => 'As audio',
+        'EDITOR_INSERTMEDIA_VIDEO'      => 'As video',
+        'EDITOR_CSS_CLASS'              => 'CSS class',
         'EDITOR_REVISION_DATE'          => 'Revision date',
-        'EDITOR_BACKTOCURRENT'          => 'back to current version',
+        'EDITOR_BACKTOCURRENT'          => 'Back to current version',
         'EDITOR_REVISION_RESTORE'       => 'Restore revision',
-        'EDITOR_ARTICLE_SHORTLINK'      => 'Shortlink',
+        'EDITOR_AUTOSAVE_RESTORE'       => 'Restore latest draft',
+        'EDITOR_ARTICLE_SHORTLINK'      => 'Short link',
         'EDITOR_CHANGEAUTHOR'           => 'Change author',
         'EDITOR_ARTICLEIMAGE'           => 'Add article image',
         'EDITOR_ARTICLEIMAGE_SHOW'      => 'Show article image',
+        'EDITOR_TWEET_TEXT'             => 'Tweet content (override tweet template)',
+        'EDITOR_TWEET_TEXT_REPLACER'    => 'Replacements of tweet template available',
         
         'EDITOR_STATUS_DRAFT'           => 'Article is draft',
         'EDITOR_STATUS_PINNED'          => 'Article is pinned',

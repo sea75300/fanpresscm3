@@ -1,6 +1,6 @@
 <?php
     /**
-     * Language Editor, http://nobody-knows.org
+     * Language Editor, https://nobody-knows.org
      *
      * nkorg/langeditor event class: navigationAdd
      * 

@@ -1,6 +1,6 @@
 <?php
     /**
-     * Tweet Extender, http://nobody-knows.org/
+     * Tweet Extender, https://nobody-knows.org/
      *
      * nkorg/tweetextender event class: navigationAdd
      * 

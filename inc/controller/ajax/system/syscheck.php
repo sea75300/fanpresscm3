@@ -76,7 +76,7 @@
                 'current'   => $this->config->system_version,
                 'recommend' => $remoteVersion ? $remoteVersion : $this->lang->translate('GLOBAL_NOTFOUND'),
                 'result'    => version_compare($this->config->system_version, $remoteVersion, '>='),
-                'helplink'  => 'http://nobody-knows.org/download/fanpress-cm/',
+                'helplink'  => 'https://nobody-knows.org/download/fanpress-cm/',
                 'actionbtn' => array('link' => $this->getControllerLink('package/sysupdate'), 'description' => 'PACKAGES_UPDATE'),
             );      
             

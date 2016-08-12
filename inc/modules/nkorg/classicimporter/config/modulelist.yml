@@ -4,7 +4,7 @@ name: FanPress CM Classic Importer
 vendor: nkorg
 key: classicimporter
 author: imagine
-link: http://nobody-knows.org/
+link: https://nobody-knows.org/
 version: 3.2.0
 sysversion: 3.0.0
 description: "Import module for FanPress CM 2.5"

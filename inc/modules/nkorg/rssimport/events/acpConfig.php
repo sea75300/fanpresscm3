@@ -1,6 +1,6 @@
 <?php
     /**
-     * RSS Importer, http://nobody-knows.org
+     * RSS Importer, https://nobody-knows.org
      *
      * nkorg/rssimport event class: acpConfig
      * 

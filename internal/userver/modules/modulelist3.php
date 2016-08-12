@@ -7,7 +7,7 @@
             'name'          => '???',
             'description'   => '??',
             'author'        => 'imagine',
-            'link'          => 'http://nobody-knows.org/',
+            'link'          => 'https://nobody-knows.org/',
             'version'       => '???',
             'minsysverion'  => '3.1.0',
             'maxsysverion'  => '4.0.0'

@@ -8,7 +8,7 @@
             'file'      => 'http://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.3.0-a4.zip',
             'force'     => 0,
             'message'   => 'Fourth alpha release of FanPress CM 3.3. Article revision storage movde to database!',
-            'notice'    => 'http://nobody-knows.org/fanpress-cm-3-3-0-veroeffentlicht/',
+            'notice'    => 'https://nobody-knows.org/fanpress-cm-3-3-0-veroeffentlicht/',
             'signature' => ''
         )
     );

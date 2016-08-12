@@ -1,6 +1,6 @@
 <?php
     /**
-     * Inactivity Manager, http://nobody-knows.org/
+     * Inactivity Manager, https://nobody-knows.org/
      *
      * nkorg/inactivity_manager class: nkorginactivity_manager
      * 

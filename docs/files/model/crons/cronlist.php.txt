@@ -31,7 +31,7 @@
          */
         public function registerCron($cronName, $async = false) {
 
-            $cronName = "\\fpcm\\model\\crons\\$cronName";
+            $cronName = \fpcm\model\abstracts\cron::getCronNamespace($cronName);
 
             if (!class_exists($cronName)) {
                 trigger_error("Undefined cronjon {$cronName} called");
@@ -129,7 +129,7 @@
             if (!count($res)) return $list;
 
             foreach ($res as $value) {
-                $cronName = "\\fpcm\\model\\crons\\{$value->cjname}";
+                $cronName = \fpcm\model\abstracts\cron::getCronNamespace($value->cjname);
 
                 if (!class_exists($cronName)) continue;
 
@@ -165,7 +165,7 @@
             
             foreach ($res as $value) {
 
-                $cronName = "\\fpcm\\model\\crons\\{$value->cjname}";
+                $cronName = \fpcm\model\abstracts\cron::getCronNamespace($value->cjname);
 
                 if (!class_exists($cronName)) continue;
 

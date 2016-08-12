@@ -1,6 +1,6 @@
 <?php
     /**
-     * Sitemap Link List, http://nobody-knows.org/fanpress3/
+     * Sitemap Link List, https://nobody-knows.org/fanpress3/
      *
      * nkorg/sitemaplinklist class: nkorgsitemaplinklist
      * 

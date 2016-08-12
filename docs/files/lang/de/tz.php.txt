@@ -11,7 +11,7 @@
             DateTimeZone::AFRICA    => 'Afrikanische Zeitzonen',
             DateTimeZone::AMERICA   => 'Amerikanische Zeitzonen',
             DateTimeZone::ASIA      => 'Asiatische Zeitzonen',
-            DateTimeZone::ATLANTIC  => 'Atlatische Zeitzonen',
+            DateTimeZone::ATLANTIC  => 'Atlantische Zeitzonen',
             DateTimeZone::AUSTRALIA => 'Australische Zeitzonen',
             DateTimeZone::EUROPE    => 'Europäische Zeitzonen',
             DateTimeZone::INDIAN    => 'Indische Zeitzonen',

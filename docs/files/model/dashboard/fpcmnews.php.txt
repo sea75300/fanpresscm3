@@ -48,7 +48,7 @@
                 return false;
             }
             
-            $xmlString = simplexml_load_file('http://nobody-knows.org/category/fanpress-cm/feed/');
+            $xmlString = simplexml_load_file('https://nobody-knows.org/category/fanpress-cm/feed/');
             
             if (!$xmlString) {
                 $this->content = $this->language->translate('GLOBAL_NOTFOUND2');

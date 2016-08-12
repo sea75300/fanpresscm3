@@ -4,7 +4,7 @@ name: Tweet Extender
 vendor: nkorg
 key: tweetextender
 author: Stefan
-link: http://nobody-knows.org/
+link: https://nobody-knows.org/
 version: 3.2.0
 sysversion: 3.2.0
 description: "The Tweet Extender allows you to modify posts send to twitter when the connection and sending on creation/ updating is enabled."

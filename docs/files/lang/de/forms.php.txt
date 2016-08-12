@@ -2,7 +2,7 @@
     /**
      * Forms language file
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2013-2014, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -115,7 +115,7 @@
         'CRONJOB_LIST_LASTEXEC'         => 'Zuletzt ausgeführt',
         'CRONJOB_LIST_NEXTEXEC'         => 'nächste Ausführung',
         'CRONJOB_LIST_EXECDEMAND'       => 'Cronjob jetzt ausführen',
-        'CRONJOB_LIST_INTERVAL'         => 'Zeit-Interval',
+        'CRONJOB_LIST_INTERVAL'         => 'Zeit-Intervall',
 
         'BACKUPS_TAB_DATABASE'          => 'Datenbank',
         
@@ -135,6 +135,7 @@
         'FILE_LIST_RENAME'              => 'Dateien umbenennen',
         'FILE_LIST_RENAME_NEWNAME'      => 'Bitte einen neuen Dateiname eingeben:',
         'FILE_LIST_PHPMAXINFO'          => 'Maximal {{filecount}} Dateien mit {{filesize}}.',
+        'FILE_LIST_UPLOADDROP'          => 'Dateien zum Hochladen hierher ziehen',
         
         'FILE_LIST_SMILEYCODE'          => 'Smiley-Code',
         'FILE_LIST_SMILEYADD'           => 'Smiley hinzufügen',

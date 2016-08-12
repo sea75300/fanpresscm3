@@ -2,7 +2,7 @@
     /**
      * System options language file
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2013-2014, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -13,35 +13,44 @@
         'SYSTEM_HL_OPTIONS_COMMENTS'                => 'Comments',
         'SYSTEM_HL_OPTIONS_SECURITY'                => 'Security and Maintenance',
         'SYSTEM_HL_OPTIONS_TWITTER'                 => 'Twitter connection',
-        'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System check and updates',
+        'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System check',
         
         'SYSTEM_OPTIONS_MAINTENANCE'                => 'Maintenance mode enabled',
         'SYSTEM_OPTIONS_CRONJOBS'                   => 'Asynchronous cronjob execution disabled',
-        'SYSTEM_OPTIONS_URL'                        => 'Article url base',
+        'SYSTEM_OPTIONS_URL'                        => 'Article URL base',
         'SYSTEM_OPTIONS_LANG'                       => 'Language',   
         'SYSTEM_OPTIONS_DATETIMEMASK'               => 'Date-Time mask',
         'SYSTEM_OPTIONS_DATETIMEMASK_HELP'          => 'Syntax equivalent to PHP function date()',
         'SYSTEM_OPTIONS_TIMEZONE'                   => 'Timezone',
+
         'SYSTEM_OPTIONS_SESSIONLENGHT'              => 'ACP session length',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_1800'         => '0,5 hours',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_3600'         => '1 hour',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_5400'         => '1,5 hours',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_7200'         => '2 hours',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_9000'         => '2,5 hours',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_10800'        => '3 hours',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_14400'        => '4 hours',
-        'SYSTEM_OPTIONS_SESSIONLENGHT_18000'        => '5 hours', 
+        'SYSTEM_OPTIONS_SESSIONLENGHT_INTERVALS'    => array(
+            '30 minutes'  => 1800,
+            '1 hour'    => 3600,
+            '1,5 hours' => 5400,
+            '2 hours'   => 7200,
+            '2,5 hours' => 9000,
+            '3 hours'   => 10800,
+            '4 hours'   => 14400,
+            '5 hours'   => 18000,
+            '6 hours'   => 21600
+        ), 
         
         'SYSTEM_OPTIONS_CACHETIMEOUT'               => 'Interval for cache timeout',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_3600'          => '1 hour',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_21600'         => '6 hours',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_43200'         => '12 hours',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_64800'         => '18 hours',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_86400'         => '1 day',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_172800'        => '2 days',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_259200'        => '3 days',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_345600'        => '4 days',
-        'SYSTEM_OPTIONS_CACHETIMEOUT_432000'        => '5 days',
+        'SYSTEM_OPTIONS_CACHETIMEOUT_INTERVAL'      => array(
+            '30 minutes' => 1800,
+            '1 hour'     => 3600,
+            '6 hours'    => 21600,
+            '12 hours'   => 43200,
+            '18 hours'   => 64800,
+            '1 day'      => 86400,
+            '2 days'     => 172800,
+            '3 days'     => 259200,
+            '4 days'     => 345600,
+            '5 days'     => 432000,
+            '6 days'     => 518400,
+            '1 week'     => 604800
+        ),
         
         'SYSTEM_OPTIONS_USEMODE'                    => 'Usemode',
         'SYSTEM_OPTIONS_USEMODE_IFRAME'             => 'iframe',
@@ -71,18 +80,21 @@
         'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Login auto-lock',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Flood protection between two comments',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_0'          => 'none',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_10'         => '10 seconds',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_20'         => '20 seconds',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_30'         => '30 seconds',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_60'         => '60 seconds',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_90'         => '90 seconds',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_120'        => '2 minutes',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_300'        => '5 minutes',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_600'        => '10 minutes',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_900'        => '15 minutes',
-        'SYSTEM_OPTIONS_FLOODPROTECTION_1800'       => '30 minutes',        
-        
+        'SYSTEM_OPTIONS_FLOODPROTECTION_INTERVALS'  => array(
+            'none'        => 0,
+            '10 seconds'  => 10,
+            '20 seconds'  => 20,
+            '30 seconds'  => 30,
+            '60 seconds'  => 60,
+            '90 seconds'  => 90,
+            '2 minutes'   => 120,
+            '5 minutes'   => 300,
+            '10 minutes'  => 600,
+            '15 minutes'  => 900,
+            '30 minutes'  => 1800,
+            '60 minutes'  => 3600,
+        ),
+
         'SYSTEM_OPTIONS_COMMENTEMAIL'               => 'Email address required',
         'SYSTEM_OPTIONS_COMMENT_APPROVE'            => 'Comment Approval required',
         'SYSTEM_OPTIONS_COMMENT_NOTIFY'             => 'Send comment notification to',
@@ -103,7 +115,8 @@
         'SYSTEM_OPTIONS_NEWS_ENABLEFEED'            => 'RSS feed is enabled',
         
         'SYSTEM_OPTIONS_EXTENDED_EMAILUPDATES'      => 'Email notification when updates are available',
-        'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Include developement releases in update check',
+        'SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'        => 'Include development releases in update check',
+        'SYSTEM_OPTIONS_EXTENDED_UPDATESMANCHK'     => 'Update check interval if unable to connect to external servers',
         
         'SYSTEM_OPTIONS_TWITTER_CONNECTION'         => 'Twitter connection',
         'SYSTEM_OPTIONS_TWITTER_CONNECT'            => 'Request API key and/or token',
@@ -113,7 +126,7 @@
         'SYSTEM_OPTIONS_TWITTER_CONSUMER_SECRET'    => 'Consumer Secret (API Secret)',
         'SYSTEM_OPTIONS_TWITTER_USER_TOKEN'         => 'Access Token',
         'SYSTEM_OPTIONS_TWITTER_USER_SECRET'        => 'Access Token Secret',        
-        'SYSTEM_OPTIONS_TWITTER_ACTIVE'             => 'Twitter connection is anbled! Connected with user "{{screenname}}".',
+        'SYSTEM_OPTIONS_TWITTER_ACTIVE'             => 'Twitter connection is enabled! Connected with user "{{screenname}}".',
         'SYSTEM_OPTIONS_TWITTER_EVENTCREATE'        => 'On create',
         'SYSTEM_OPTIONS_TWITTER_EVENTUPDATE'        => 'On update',
         
@@ -125,22 +138,32 @@
         'SYSTEM_OPTIONS_SYSCHECK_PHPMEMLIMIT'       => 'PHP memory limit',
         'SYSTEM_OPTIONS_SYSCHECK_PHPMAXEXECTIME'    => 'PHP max execution time',
 
-        'SYSTEM_OPTIONS_INTERVAL_0'          => 'every request',
-        'SYSTEM_OPTIONS_INTERVAL_60'         => '60 seconds',
-        'SYSTEM_OPTIONS_INTERVAL_90'         => '90 seconds',
-        'SYSTEM_OPTIONS_INTERVAL_120'        => '2 minutes',
-        'SYSTEM_OPTIONS_INTERVAL_300'        => '5 minutes',
-        'SYSTEM_OPTIONS_INTERVAL_600'        => '10 minutes',
-        'SYSTEM_OPTIONS_INTERVAL_900'        => '15 minutes',
-        'SYSTEM_OPTIONS_INTERVAL_1800'       => '30 minutes',
-        'SYSTEM_OPTIONS_INTERVAL_3600'       => '1 hour',
-        'SYSTEM_OPTIONS_INTERVAL_7200'       => '2 hours',
-        'SYSTEM_OPTIONS_INTERVAL_10800'      => '3 hours',
-        'SYSTEM_OPTIONS_INTERVAL_21600'      => '6 hours',
-        'SYSTEM_OPTIONS_INTERVAL_43200'      => '12 hours',
-        'SYSTEM_OPTIONS_INTERVAL_86400'      => '1 day',
-        'SYSTEM_OPTIONS_INTERVAL_172800'     => '2 days',
-        'SYSTEM_OPTIONS_INTERVAL_604800'     => '1 week',
-        'SYSTEM_OPTIONS_INTERVAL_1209600'    => '2 weeks',
-        'SYSTEM_OPTIONS_INTERVAL_2419200'    => 'monthly'
+        'SYSTEM_OPTIONS_CRONINTERVALS' => array(
+            'every request'     => 0,
+            '60 seconds'        => 60,
+            '90 seconds'        => 90,
+            'every 2 minutes'   => 120,
+            'every 5 minutes'   => 300,
+            'every 10 minutes'  => 600,
+            'every 15 minutes'  => 900,
+            'every 30 minutes'  => 1800,
+            'every 60 minutes'  => 3600,
+            'every 2 hours'     => 7200,
+            'every 3 hours'     => 10800,
+            'every 6 hours'     => 21600,
+            'every 12 hours'    => 43200,
+            'daily'             => 86400,
+            'every 2 days'      => 172800,
+            'weekly'            => 604800,
+            'every two weeks'   => 1209600,
+            'monthly'           => 2419200
+        ),
+
+        'SYSTEM_OPTIONS_UPDATESMANUAL' => array(
+            'daily'           => 86400,            
+            'weekly'          => 604800,
+            'every two weeks' => 1209600,
+            'monthlay'        => 2419200
+        )
+        
     );

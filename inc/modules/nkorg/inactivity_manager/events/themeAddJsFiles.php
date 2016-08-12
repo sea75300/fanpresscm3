@@ -1,6 +1,6 @@
 <?php
     /**
-     * Inactivity Manager, http://nobody-knows.org/fanpress3
+     * Inactivity Manager, https://nobody-knows.org/fanpress3
      *
      * nkorg/integration event class: themeAddJsFiles
      * 

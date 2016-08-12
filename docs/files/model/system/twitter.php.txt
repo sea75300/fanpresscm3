@@ -49,10 +49,10 @@
          */
         public function checkRequirements() {
 
-            if (!is_array($this->config->twitter_data)) {
+            if (!is_array($this->config->twitter_data)) {                
                 return false;
             }
-            
+
             return \fpcm\classes\baseconfig::canConnect() && function_exists('curl_init');
         }
 
@@ -62,11 +62,11 @@
          */
         public function checkConnection() {
             
-            $keys = empty($this->config->twitter_data['consumer_key']) &&
-                    empty($this->config->twitter_data['consumer_secret']) &&
-                    empty($this->config->twitter_data['user_token']) &&
-                    empty($this->config->twitter_data['user_secret']);
-            
+            $keys = $this->config->twitter_data['consumer_key'] &&
+                    $this->config->twitter_data['consumer_secret'] &&
+                    $this->config->twitter_data['user_token'] &&
+                    $this->config->twitter_data['user_secret'];
+
             if (!$this->checkRequirements() || !$keys) {
                 return false;
             }            

@@ -26,7 +26,7 @@
              6 => 'June',
              7 => 'June',
              8 => 'August',
-             9 => 'september',
+             9 => 'September',
              10 => 'October',
              11 => 'November',
              12 => 'December'

@@ -2,7 +2,7 @@
     /**
      * Templates language file
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2013-2014, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -18,7 +18,7 @@
         'TEMPLATE_REPLACEMENTS'             => 'Available replacements',
         'TEMPLATE_EDITOR'                   => 'Template-Editor',
         'TEMPLATE_NOTES'                    => '<strong>Notice:</strong><br>'.
-                                               '- only use <strong>CSS clases/IDs or inline-"style" values</strong> for styling. HTML-Tags like <em>body, style, etc.</em> create invalid code and could raise problems!<br>'.
+                                               '- only use <strong>CSS classes/IDs or inline-"style" values</strong> for styling. HTML-Tags like <em>body, style, etc.</em> create invalid code and could raise problems!<br>'.
                                                '- using markers in the "{{A}}:{{/A}}" form you can replace the colon with own text.<br>',
         
         'TEMPLATE_ARTICLE_CATEGORYICONS'    => 'Category icons',
@@ -32,7 +32,7 @@
         'TEMPLATE_ARTICLE_COMMENTCOUNT'     => 'Comment count',
         'TEMPLATE_ARTICLE_COMMENTLINK'      => 'Comment form link',    
         'TEMPLATE_ARTICLE_PERMALINK'        => 'Article link',
-        'TEMPLATE_ARTICLE_SHORTLINK'        => 'Shortlink',
+        'TEMPLATE_ARTICLE_SHORTLINK'        => 'Short link',
         'TEMPLATE_ARTICLE_TEXT'             => 'Article text content',
         'TEMPLATE_ARTICLE_SHAREBUTTONS'     => 'Share buttons',
         'TEMPLATE_ARTICLE_STATUSPINNED'     => '"Article is pinned" notice',
@@ -49,14 +49,14 @@
         'TEMPLATE_COMMMENT_ID'              => 'Comment id',
         
         'TEMPLATE_COMMMENTFORM_FORMHEADLINE'        => 'Comment form headline',
-        'TEMPLATE_COMMMENTFORM_NAMEDESCRIPTION'     => 'Field desctiption "Name"',
+        'TEMPLATE_COMMMENTFORM_NAMEDESCRIPTION'     => 'Field description "Name"',
         'TEMPLATE_COMMMENTFORM_NAMEFIELD'           => 'Field "Name"',
-        'TEMPLATE_COMMMENTFORM_EMAILDESCRIPTION'    => 'Field desctiption "Email"',
+        'TEMPLATE_COMMMENTFORM_EMAILDESCRIPTION'    => 'Field description "Email"',
         'TEMPLATE_COMMMENTFORM_EMAILFIELD'          => 'Field "E-Mail"',
-        'TEMPLATE_COMMMENTFORM_WEBSITEDESCRIPTION'  => 'Field desctiption "Website"',
+        'TEMPLATE_COMMMENTFORM_WEBSITEDESCRIPTION'  => 'Field description "Website"',
         'TEMPLATE_COMMMENTFORM_WEBSITEFIELD'        => 'Field "Website"',
         'TEMPLATE_COMMMENTFORM_TEXTFIELD'           => 'Textarea for comment text',
-        'TEMPLATE_COMMMENTFORM_SMILEYSDESCRIPTION'  => 'Desctiption "Smileys"',
+        'TEMPLATE_COMMMENTFORM_SMILEYSDESCRIPTION'  => 'Description "Smileys"',
         'TEMPLATE_COMMMENTFORM_SMILEYS'             => 'Smiley list',
         'TEMPLATE_COMMMENTFORM_TAGS'                => 'Allowed HTML tag list',
         'TEMPLATE_COMMMENTFORM_SPAMPLUGINQUESTION'  => 'Spam captcha question',
@@ -64,5 +64,5 @@
         'TEMPLATE_COMMMENTFORM_PRIVATECHECKBOX'     => 'Checkbox for private comment',        
         'TEMPLATE_COMMMENTFORM_SUBMITBUTTON'        => 'Submit button',
         'TEMPLATE_COMMMENTFORM_RESETBUTTON'         => 'Reset button',
-        'TEMPLATE_COMMMENTFORM_SUBMITURL'           => 'Comment form url <b>(important!)</b>'
+        'TEMPLATE_COMMMENTFORM_SUBMITURL'           => 'Comment form URL <b>(important!)</b>'
     );

@@ -1,19 +1,14 @@
 <?php
-    /**
-     * View helper
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2013-2015, Stefan Seehafer
-     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     */
 
     namespace fpcm\model\view;
 
     /**
      * View Helper
      * 
-     * @package fpcm.model.view
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @package fpcm.model.view
      */
     final class helper {
         
@@ -129,6 +124,9 @@
          * @param string $wrapper Wrapper-DIV nutzen
          */
         public static function textInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false, $wrapper = true) {
+
+            $placeholder = self::$language->translate($placeholder) ? self::$language->translate($placeholder) : $placeholder;
+
             $html   = array();
             if ($wrapper) {
                 $wrapperClass = is_string($wrapper) ? $wrapper : '';
@@ -414,6 +412,10 @@
          * @since FPCM 3.1.6
          */
         public static function shortHelpButton($description, $style = '', $href = false, $target = '_self') {
+            
+            $description = self::$language->translate($description)
+                         ? self::$language->translate($description)
+                         : $description;
             
             $html   = array();
             

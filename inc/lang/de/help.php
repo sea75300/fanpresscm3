@@ -422,7 +422,7 @@ Help language file
             <p>Für Module lasst sich <b>Abhängigkeiten</b> definieren, d. h. ein Modul kann erst dann aktiviert/ verwendet werden wenn
             andere Module installiert sind. Wird dir vor einem Modul der Button <span class="fpcm-ui-button"><span class="ui-icon ui-icon-alert"></span></span> angezeigt,
             so wurden für dieses Modul nicht-erfüllte Abhängigkeiten festgestellt. Werde in diesem Fall einen Blick in die Modul-Informationen.</p>
-            <p>Wenn du selbst ein Modul erstellen willst, schau am Besten in das <a href="http://nobody-knows.org/download/fanpress-cm/tutorial-zum-schreiben-eines-moduls/">Tutorial</a>
+            <p>Wenn du selbst ein Modul erstellen willst, schau am Besten in das <a href="https://nobody-knows.org/download/fanpress-cm/tutorial-zum-schreiben-eines-moduls/">Tutorial</a>
             und besuche die <a href="http://updates.nobody-knows.org/fanpress/docs_fpcm3/">Klassen-Doku</a>.</p>
         ]]>
         </text>
@@ -540,7 +540,7 @@ Help language file
         <![CDATA[
             <p>Solltest du weitergehende Hilfe bei technischen Problemen brauchen oder Fragen haben, schreiben eine E-mail an
             <em>fanpress@nobody-knows.org</em> oder <em>sea75300@yahoo.de</em>. Alternativ kannst du auch auf der Download-Seite unter
-            <a href="http://nobody-knows.org/download/fanpress-cm/">nobody-knows.org</a> einen Kommentar hinterlassen.</p>
+            <a href="https://nobody-knows.org/download/fanpress-cm/">nobody-knows.org</a> einen Kommentar hinterlassen.</p>
             <p>Das Module <em>FanPress CM Support Module</em> kann installiert werden, um einen einfachen, temporären Zugang
             zur Verfügung zu stellen. Beachte bitte, dass bereits bei der Installation einen E-Mail mit den Zugangsdaten versendet
             wird.</p>

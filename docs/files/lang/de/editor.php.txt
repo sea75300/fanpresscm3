@@ -2,7 +2,7 @@
     /**
      * Editor language file
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2013-2014, Stefan Seehafer
+     * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -37,7 +37,7 @@
         'EDITOR_INSERTSMILEY'           => 'Smiley einfügen',
         'EDITOR_INSERTSYMBOL'           => 'Symbol einfügen',
         'EDITOR_INSERTCOLOR'            => 'Farbe einfügen',
-        'EDITOR_INSERTCOLOR_HEXCODE'    => 'HTML-Farbecode',
+        'EDITOR_INSERTCOLOR_HEXCODE'    => 'HTML-Farbcode',
         'EDITOR_INSERTCOLOR_TEXT'       => 'als Schriftfarbe',
         'EDITOR_INSERTCOLOR_BACKGROUND' => 'als Hintergrundfarbe',
         'EDITOR_INSERTMEDIA'            => 'Audio-/Video-Player einfügen',
@@ -47,10 +47,13 @@
         'EDITOR_REVISION_DATE'          => 'Revisionsdatum',
         'EDITOR_BACKTOCURRENT'          => 'Zurück zur aktuellen Version',
         'EDITOR_REVISION_RESTORE'       => 'Revision wiederherstellen',
+        'EDITOR_AUTOSAVE_RESTORE'       => 'Letzten Entwurf wiederherstellen',
         'EDITOR_ARTICLE_SHORTLINK'      => 'Kurzlink',
         'EDITOR_CHANGEAUTHOR'           => 'Autor ändern',
         'EDITOR_ARTICLEIMAGE'           => 'Artikel-Bild festlegen',
         'EDITOR_ARTICLEIMAGE_SHOW'      => 'Artikel-Bild anzeigen',
+        'EDITOR_TWEET_TEXT'             => 'Twitter-Beitrag-Text (überschreibt Tweet-Template)',
+        'EDITOR_TWEET_TEXT_REPLACER'    => 'Platzhalter aus Tweet-Template nutzbar!',
         
         'EDITOR_STATUS_DRAFT'           => 'Artikel als Entwurf gespeichert',
         'EDITOR_STATUS_PINNED'          => 'Artikel ist gepinnt',
