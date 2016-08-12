@@ -92,6 +92,11 @@
             switch ($this->step) {
                 case 1 :
                     $res = $pkg->download();
+                    
+                    if ($res === \fpcm\model\packages\package::FPCMPACKAGE_REMOTEFILE_ERROR) {
+                        $versionDataFile->delete();
+                    }
+                    
                     if ($res === true) {
                         \fpcm\classes\logs::syslogWrite('Downloaded update package successfully from '.$pkg->getRemoteFile());
                         $this->returnData['nextstep'] = 2;
