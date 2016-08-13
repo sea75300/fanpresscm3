@@ -18,59 +18,54 @@
             <?php if (!isset($userRolls[$group])) continue; ?>
             <div id="tabs-permissions-group<?php print $group; ?>">
                 
-                <table class="fpcm-ui-table fpcm-ui-permissions">
-                    
-                    <tr>
-                        <th><?php $FPCM_LANG->write('PERMISSION_ARTICLES'); ?></th>
-                        <th><?php $FPCM_LANG->write('PERMISSION_COMMENTS'); ?></th>
-                    </tr>
-                    <tr>
-                        <td>
-                        <?php foreach ($permissionData['article'] as $key => $value) : ?>
-                            <?php fpcm\model\view\helper::checkbox("permissions[$group][article][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_ARTICLE_'.strtoupper($key)), "{$group}_article_{$key}", $value, false); ?>
-                        <?php endforeach; ?>
-                        
-                        </td>
-                        <td>
-                        <?php foreach ($permissionData['comment'] as $key => $value) : ?>
-                            <?php fpcm\model\view\helper::checkbox("permissions[$group][comment][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_COMMENT_'.strtoupper($key)), "{$group}_comment_{$key}", $value, false); ?>
-                        <?php endforeach; ?>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th><?php $FPCM_LANG->write('PERMISSION_UPLOADS'); ?></th>
-                        <th><?php $FPCM_LANG->write('PERMISSION_SYSTEM'); ?></th>
-                    </tr>
-                    <tr>
-                        <td>
-                        <?php foreach ($permissionData['uploads'] as $key => $value) : ?>
-                            <?php fpcm\model\view\helper::checkbox("permissions[$group][uploads][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_UPLOADS_'.strtoupper($key)), "{$group}_uploads_{$key}", $value, false); ?>
-                        <?php endforeach; ?>
-                        </td>
-                        <td>
+                <div class="fpcm-ui-permissions-container">
+                    <div class="fpcm-ui-permissions-container-inner">
+                        <h2><?php $FPCM_LANG->write('PERMISSION_SYSTEM'); ?></h2>
                         <?php foreach ($permissionData['system'] as $key => $value) : ?>
                             <?php $readOnly = ($key == 'permissions' && $group == 1) ? true : false; ?>
                             <?php fpcm\model\view\helper::checkbox("permissions[$group][system][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_SYSTEM_'.strtoupper($key)), "{$group}_system_{$key}", $value, $readOnly); ?>
                             <?php if ($readOnly) : ?><input type="hidden" name="<?php print "permissions[$group][system][$key]"; ?>" value="1"><?php endif; ?>
                         <?php endforeach; ?>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th><?php $FPCM_LANG->write('PERMISSION_MODULES'); ?></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td>
+                    </div>
+                </div>
+                
+                <div class="fpcm-ui-permissions-container">
+                    <div class="fpcm-ui-permissions-container-inner">
+                        <h2><?php $FPCM_LANG->write('PERMISSION_ARTICLES'); ?></h2>
+                        <?php foreach ($permissionData['article'] as $key => $value) : ?>
+                            <?php fpcm\model\view\helper::checkbox("permissions[$group][article][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_ARTICLE_'.strtoupper($key)), "{$group}_article_{$key}", $value, false); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <div class="fpcm-ui-permissions-container">
+                    <div class="fpcm-ui-permissions-container-inner">
+                        <h2><?php $FPCM_LANG->write('PERMISSION_COMMENTS'); ?></h2>
+                        <?php foreach ($permissionData['comment'] as $key => $value) : ?>
+                            <?php fpcm\model\view\helper::checkbox("permissions[$group][comment][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_COMMENT_'.strtoupper($key)), "{$group}_comment_{$key}", $value, false); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <div class="fpcm-ui-permissions-container">
+                    <div class="fpcm-ui-permissions-container-inner">
+                        <h2><?php $FPCM_LANG->write('PERMISSION_MODULES'); ?></h2>
                         <?php foreach ($permissionData['modules'] as $key => $value) : ?>
                             <?php fpcm\model\view\helper::checkbox("permissions[$group][modules][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_MODULES_'.strtoupper($key)), "{$group}_modules_{$key}", $value, false); ?>
                         <?php endforeach; ?>
-                        </td>
-                        <td></td>
-                    </tr>
-                    
-                </table>
+                    </div>
+                </div>
+
+                <div class="fpcm-ui-permissions-container">
+                    <div class="fpcm-ui-permissions-container-inner">
+                        <h2><?php $FPCM_LANG->write('PERMISSION_UPLOADS'); ?></h2>
+                        <?php foreach ($permissionData['uploads'] as $key => $value) : ?>
+                            <?php fpcm\model\view\helper::checkbox("permissions[$group][uploads][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_UPLOADS_'.strtoupper($key)), "{$group}_uploads_{$key}", $value, false); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <div class="fpcm-clear"></div>
 
             </div>
         <?php endforeach; ?>
