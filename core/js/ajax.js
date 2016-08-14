@@ -30,7 +30,7 @@ var fpcmAjaxHandler = function () {
         .done(function(result) {
 
             if (result.search('FATAL ERROR:') === 3) {
-                console.log(fpcmAjaxErrorMessage);
+                console.log(fpcm.ui.translate('ajaxErrorMessage'));
                 console.log('ERROR MESSAGE: ' + errorThrown);
             }
             
@@ -40,7 +40,7 @@ var fpcmAjaxHandler = function () {
             }
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
-            console.log(fpcmAjaxErrorMessage);
+            console.log(fpcm.ui.translate('ajaxErrorMessage'));
             console.log('ERROR MESSAGE: ' + errorThrown);
 
             if (typeof self.execFail == 'string') {
