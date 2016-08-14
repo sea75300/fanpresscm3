@@ -189,7 +189,7 @@ fpcm.filemanager = {
         });
         
         jQuery(document).bind('dragover', function (e) {
-            var dropZone = $('#fpcm-filemanager-upload-drop'), timeout = window.dropZoneTimeout;
+            var dropZone = jQuery('#fpcm-filemanager-upload-drop'), timeout = window.dropZoneTimeout;
 
             if (!timeout) {
                 dropZone.addClass('in');
