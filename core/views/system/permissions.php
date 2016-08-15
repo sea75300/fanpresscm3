@@ -20,17 +20,6 @@
                 
                 <div class="fpcm-ui-permissions-container">
                     <div class="fpcm-ui-permissions-container-inner">
-                        <h2><?php $FPCM_LANG->write('PERMISSION_SYSTEM'); ?></h2>
-                        <?php foreach ($permissionData['system'] as $key => $value) : ?>
-                            <?php $readOnly = ($key == 'permissions' && $group == 1) ? true : false; ?>
-                            <?php fpcm\model\view\helper::checkbox("permissions[$group][system][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_SYSTEM_'.strtoupper($key)), "{$group}_system_{$key}", $value, $readOnly); ?>
-                            <?php if ($readOnly) : ?><input type="hidden" name="<?php print "permissions[$group][system][$key]"; ?>" value="1"><?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                
-                <div class="fpcm-ui-permissions-container">
-                    <div class="fpcm-ui-permissions-container-inner">
                         <h2><?php $FPCM_LANG->write('PERMISSION_ARTICLES'); ?></h2>
                         <?php foreach ($permissionData['article'] as $key => $value) : ?>
                             <?php fpcm\model\view\helper::checkbox("permissions[$group][article][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_ARTICLE_'.strtoupper($key)), "{$group}_article_{$key}", $value, false); ?>
@@ -47,20 +36,33 @@
                     </div>
                 </div>
                 
-                <div class="fpcm-ui-permissions-container">
-                    <div class="fpcm-ui-permissions-container-inner">
-                        <h2><?php $FPCM_LANG->write('PERMISSION_MODULES'); ?></h2>
-                        <?php foreach ($permissionData['modules'] as $key => $value) : ?>
-                            <?php fpcm\model\view\helper::checkbox("permissions[$group][modules][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_MODULES_'.strtoupper($key)), "{$group}_modules_{$key}", $value, false); ?>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+                <div class="fpcm-clear"></div>
 
                 <div class="fpcm-ui-permissions-container">
                     <div class="fpcm-ui-permissions-container-inner">
                         <h2><?php $FPCM_LANG->write('PERMISSION_UPLOADS'); ?></h2>
                         <?php foreach ($permissionData['uploads'] as $key => $value) : ?>
                             <?php fpcm\model\view\helper::checkbox("permissions[$group][uploads][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_UPLOADS_'.strtoupper($key)), "{$group}_uploads_{$key}", $value, false); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <div class="fpcm-ui-permissions-container">
+                    <div class="fpcm-ui-permissions-container-inner">
+                        <h2><?php $FPCM_LANG->write('PERMISSION_SYSTEM'); ?></h2>
+                        <?php foreach ($permissionData['system'] as $key => $value) : ?>
+                            <?php $readOnly = ($key == 'permissions' && $group == 1) ? true : false; ?>
+                            <?php fpcm\model\view\helper::checkbox("permissions[$group][system][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_SYSTEM_'.strtoupper($key)), "{$group}_system_{$key}", $value, $readOnly); ?>
+                            <?php if ($readOnly) : ?><input type="hidden" name="<?php print "permissions[$group][system][$key]"; ?>" value="1"><?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <div class="fpcm-ui-permissions-container">
+                    <div class="fpcm-ui-permissions-container-inner">
+                        <h2><?php $FPCM_LANG->write('PERMISSION_MODULES'); ?></h2>
+                        <?php foreach ($permissionData['modules'] as $key => $value) : ?>
+                            <?php fpcm\model\view\helper::checkbox("permissions[$group][modules][$key]", '', 1, $FPCM_LANG->translate('PERMISSION_MODULES_'.strtoupper($key)), "{$group}_modules_{$key}", $value, false); ?>
                         <?php endforeach; ?>
                     </div>
                 </div>

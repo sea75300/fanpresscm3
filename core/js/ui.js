@@ -174,8 +174,15 @@ fpcm.ui = {
             params = {};
         }
 
-        params.firstDay   = 1;
-        params.dateFormat = "yy-mm-dd";
+        params.showButtonPanel   = true,
+        params.showOtherMonths   = true,
+        params.selectOtherMonths = true,
+        params.monthNames        = this.translate('jquiDateMonths'),
+        params.dayNames          = this.translate('jquiDateDays'),
+        params.dayNamesShort     = this.translate('jquiDateDaysShort'),
+        params.dayNamesMin       = this.translate('jquiDateDaysShort')
+        params.firstDay          = 1;
+        params.dateFormat        = "yy-mm-dd";
 
         jQuery(elemClassId).datepicker(params);
 

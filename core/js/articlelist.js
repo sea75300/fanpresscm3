@@ -42,7 +42,9 @@ fpcm.articlelist = {
                 appendTo: '#fpcm-dialog-articles-search'
             });
 
-            fpcm.ui.datepicker('.fpcm-full-width-date');
+            fpcm.ui.datepicker('.fpcm-full-width-date', {
+                minDate: fpcmArticlSearchMinDate
+            });
 
             fpcm.ui.dialog({
                 id      : 'articles-search',

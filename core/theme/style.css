@@ -940,8 +940,19 @@ table.fpcm-ui-table.fpcm-ui-syscheck tr td:last-child {
         border-top-right-radius: 5px;
     }
     
-    .fpcm-ui-permissions-container,
-    .ui-tabs-vertical .ui-tabs-nav li a {
+    .fpcm-ui-permissions-container {
+        width: 100% !important;
+    }
+
+    .fpcm-ui-permissions-container {
+        width: 50% !important;
+    }
+
+}
+
+@media (max-width: 55em) {
+    
+    .fpcm-ui-permissions-container {
         width: 100% !important;
     }
 

@@ -33,6 +33,7 @@
             $this->view->assign('list', $this->articleItems);
             
             $this->view->addJsVars(array('fpcmArticleSearchMode' => -1));
+            $this->initMinSearchDateValue();
             
             $this->view->render();
         }

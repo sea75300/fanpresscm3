@@ -128,6 +128,9 @@
                         'extended'         => $this->language->translate('GLOBAL_EXTENDED'),
                         'ajaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
                         'ajaxResponseErrorMessage' => $this->language->translate('AJAX_REPONSE_ERROR'),
+                        'jquiDateDays'             => $this->language->getDays(),
+                        'jquiDateDaysShort'        => $this->language->getDaysShort(),
+                        'jquiDateMonths'           => array_values($this->language->getMonths())
                     )
                 );
             }

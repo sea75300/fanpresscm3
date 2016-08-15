@@ -665,14 +665,7 @@ jQuery(document).ready(function() {
     
     fpcm.ui.datepicker('input.fpcm-ui-datepicker', {
         maxDate: "+2m",
-        minDate: "-0d",
-        showButtonPanel: true,
-        showOtherMonths: true,
-        selectOtherMonths: true,
-        monthNames: fpcmPostponeDatePicker['months'],
-        dayNames: fpcmPostponeDatePicker['daysfull'],
-        dayNamesShort: fpcmPostponeDatePicker['daysshort'],
-        dayNamesMin: fpcmPostponeDatePicker['daysshort']
+        minDate: "-0d"
     });   
     
     jQuery('.fp-ui-button-restore').click(function() {

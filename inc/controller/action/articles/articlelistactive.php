@@ -32,9 +32,10 @@
             $this->view->assign('listAction', 'articles/listactive');            
             $this->view->assign('list', $this->articleItems);
             $this->view->assign('showArchiveStatus', false);
-            
+
             $this->view->addJsVars(array('fpcmArticleSearchMode' => 0));
-            
+            $this->initMinSearchDateValue();
+
             $this->view->render();
         }
 
