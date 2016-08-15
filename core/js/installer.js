@@ -56,7 +56,7 @@ var fpcmInstaller = function () {
         });
     };
     
-    this.initDatabaseFailed = function (result) {        
+    this.initDatabaseFailed = function (result) {
         if(result == 0){        
             fpcmJs.appendHtml('#fpcm-installer-execlist', "<p class='fpcm-ui-important-text'>FAILED!</p>");
             self.breakDbInit = false;

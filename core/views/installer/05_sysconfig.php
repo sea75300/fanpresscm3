@@ -28,11 +28,11 @@
             </tr>			 			 
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_SESSIONLENGHT'); ?>:</td>
-                <td><?php fpcm\model\view\helper::select('conf[system_session_length]', $acpLenghts, '3600', false, false); ?></td>
+                <td><?php fpcm\model\view\helper::select('conf[system_session_length]', $FPCM_LANG->translate('SYSTEM_OPTIONS_SESSIONLENGHT_INTERVALS'), '3600', false, false); ?></td>
             </tr>
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_CACHETIMEOUT'); ?>:</td>
-                <td><?php fpcm\model\view\helper::select('conf[system_cache_timeout]', $cacheTimeout, '86400', false, false); ?></td>
+                <td><?php fpcm\model\view\helper::select('conf[system_cache_timeout]', $FPCM_LANG->translate('SYSTEM_OPTIONS_CACHETIMEOUT_INTERVAL'), '86400', false, false); ?></td>
             </tr>                               
             <tr>			
                 <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_USEMODE'); ?>:</td>

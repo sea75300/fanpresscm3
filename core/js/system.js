@@ -162,8 +162,8 @@ jQuery(document).ready(function () {
         var confirm  = jQuery(this).val();
 
         if (password != confirm) {
-            if (fpcmPasswordCheckAlert) {
-                alert(fpcmPasswordCheckAlert);
+            if (fpcmLang.passCheckAlert !== undefined) {
+                alert(fpcm.ui.translate('passCheckAlert'));
             } else {
                 fpcmJs.addAjaxMassage('error', 'SAVE_FAILED_PASSWORD_MATCH');                
             }

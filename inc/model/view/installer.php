@@ -34,6 +34,7 @@
          * @param string $viewPath View-Pfad unterhalb von core/views/installer/
          */
         public function __construct($viewName, $langCode) {
+
             $this->viewPath     = \fpcm\classes\baseconfig::$viewsDir.'installer/';
             $this->viewName     = $viewName.'.php';
             
@@ -46,10 +47,16 @@
             include \fpcm\classes\baseconfig::$versionFile;
             $this->version      = $fpcmVersion;
             
-            $this->addJsVars(array(
-                'fpcmPasswordCheckAlert' => $this->language->translate('SAVE_FAILED_PASSWORD_MATCH'),
-                'fpcmCronAsyncDiabled'   => true
-            ));
+            $this->jsvars = array(
+                'fpcmLang' => array(
+                    'confirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
+                    'passCheckAlert'   => $this->language->translate('SAVE_FAILED_PASSWORD_MATCH'),
+                    'ajaxErrorMessage' => $this->language->translate('AJAX_REQUEST_ERROR'),
+                    'ajaxResponseErrorMessage' => $this->language->translate('AJAX_REPONSE_ERROR')
+                )
+            );
+
+            $this->addJsVars(array('fpcmCronAsyncDiabled' => true));
         }
 
         /**

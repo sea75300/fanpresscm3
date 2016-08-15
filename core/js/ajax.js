@@ -76,7 +76,7 @@ var fpcmAjaxHandler = function () {
     };
     
     this.toJSON = function(data) {
-        
+
         var isArray = data instanceof Array ? true : false;
         var isObject = data instanceof Object ? true : false;
         if (!isArray || !isObject) {

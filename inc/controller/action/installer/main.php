@@ -192,32 +192,7 @@
                 $this->lang->translate('SYSTEM_OPTIONS_USEMODE_IFRAME') => 0,
                 $this->lang->translate('SYSTEM_OPTIONS_USEMODE_PHPINCLUDE') => 1
             );
-            $this->view->assign('systemModes', $modes);            
-            
-            $acpLenghts = array(
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_1800')  => 1800,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_3600')  => 3600,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_5400')  => 5400,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_7200')  => 7200,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_9000')  => 9000,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_10800') => 10800,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_14400') => 14400,
-                $this->lang->translate('SYSTEM_OPTIONS_SESSIONLENGHT_18000') => 18000              
-            );
-            $this->view->assign('acpLenghts', $acpLenghts);
-
-            $cacheTimeout = array(
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_3600')   => 3600,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_21600')  => 21600,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_43200')  => 43200,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_64800')  => 64800,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_86400')  => 86400,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_172800') => 172800,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_259200') => 259200,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_345600') => 345600,
-                $this->lang->translate('SYSTEM_OPTIONS_CACHETIMEOUT_432000') => 432000
-            );
-            $this->view->assign('cacheTimeout', $cacheTimeout);
+            $this->view->assign('systemModes', $modes);
         }
         
         /**
