@@ -22,6 +22,7 @@
         public function __construct() {
             parent::__construct();
             
+            $this->dbcon  = new \fpcm\classes\database();
             $this->config = new \fpcm\model\system\config(false, false);
         }
         
@@ -276,12 +277,26 @@
             $res = true;
             
             if ($this->checkVersion('3.3.0-a4')) {
+                
+                if (method_exists($this->dbcon, 'execYaTdl')) {
                 $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'15revisions.yml');
+                }
+                else {
+                    $res = $res && $this->execYaTdl(\fpcm\classes\baseconfig::$dataDir.'dbstruct/15revisions.yml');                    
+                }
+                
                 $this->convertRevisions();
             }
             
             if ($this->checkVersion('3.2.0-dev')) {
+                
+                if (method_exists($this->dbcon, 'execYaTdl')) {
                 $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'14texts.yml');
+            }
+                else {
+                    $res = $res && $this->execYaTdl(\fpcm\classes\baseconfig::$dataDir.'dbstruct/14texts.yml');                    
+                }
+            
             }
             
             return $res;
