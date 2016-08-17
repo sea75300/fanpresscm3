@@ -83,7 +83,7 @@
                 $changeuserList = array($this->lang->translate('EDITOR_CHANGEAUTHOR') => '') + $userlist->getUsersNameList();
                 $this->view->assign('changeuserList', $changeuserList);
             }
-            
+
             $this->view->assign('editorFile', $this->editorPlugin->getEditorTemplate());
             $this->view->assign('article', $this->article);
             $this->view->assign('categories', $this->categoryList->getCategoriesCurrentUser());
@@ -93,9 +93,8 @@
             $this->view->assign('isRevision', false);
             $this->view->assign('timesMode', false);
             $this->view->assign('userfields', $this->getUserFields());
-            
+
             $twitter = new \fpcm\model\system\twitter();
-            
             $this->view->assign('showTwitter', $twitter->checkRequirements());
             
             $this->jsVars  = $this->editorPlugin->getJsVars();
@@ -104,7 +103,8 @@
                 'fpcmFileManagerUrlMode'    => 2
             );
             
-            $this->view->addJsLangVars(array('fileManagerHeadline' => $this->lang->translate('HL_FILES_MNG')));
+            $jsLangVars = array('fileManagerHeadline' => $this->lang->translate('HL_FILES_MNG'));
+            $this->view->addJsLangVars(array_merge($jsLangVars, $this->editorPlugin->getJsLangVars()));
             
             $this->view->addJsVars($this->jsVars);
             

@@ -911,7 +911,13 @@ table.fpcm-ui-table.fpcm-ui-syscheck tr td:last-child {
     table.fpcm-ui-table.fpcm-ui-users tr th.fpcm-ui-users-registeredtime,
     table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-registeredtime,
     table.fpcm-ui-table.fpcm-ui-users tr th.fpcm-ui-users-articlecount,
-    table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-articlecount{
+    table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-articlecount,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-help,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-current,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-recommend,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-help,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-current,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-recommend {
         display: none;
     }
     

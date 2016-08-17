@@ -135,14 +135,14 @@
         'LOAD_FAILED_WORDBAN'           => 'Der Begriff wurde nicht gefunden.',
         
         'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM Version <i>{{version}}</i> ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
-        'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM aktuell! Die Release-Notes und weitere Infos findest du in den aktuellen FanPress CM News.',
+        'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM ist <strong>aktuell</strong>! Die Release-Notes und weitere Infos findest du in den aktuellen FanPress CM News.',
         'UPDATE_NOTAUTOCHECK'           => 'Es konnte keine automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
         'UPDATE_WRITEERROR'             => 'Die Datei <strong>version.php</strong> im FanPress CM-Verzeichnis ist nicht beschreibbar, was u. U. auch auf andere Dateien deiner Installation zutrifft.<br>'.
                                            'Dies kann durch falsche Dateirechte verursacht werden. Prüfe/ ändere die Rechte der - am Besten aller - Dateien via FTP, bis diese Meldung verschwindet.<br>'.
                                            'Sollte dies nicht gelingen, wende dich bitte an deinen Host für weitere Hilfe.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Für einige Module sind Updates verfügbar. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Updates anzeigen</a>',
-        'UPDATE_MODULECHECK_CURRENT'     => 'Alle installierten Module sind aktuell!',
+        'UPDATE_MODULECHECK_CURRENT'     => 'Alle installierten Module sind <strong>aktuell</strong>!',
         'UPDATE_MODULECHECK_FAILED'      => 'Es konnte keine Update-Prüfung für die installierten Module durchgeführt werden!',
         
         'PACKAGES_FAILED_REMOTEFILE'     => 'Es konnte keine Verbindung zum Paketserver hergestellt werden!',

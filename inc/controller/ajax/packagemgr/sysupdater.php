@@ -145,7 +145,6 @@
                         $pkg->loadPackageFileListFromTemp();
                         \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
                         $pkg->cleanup();
-                        $versionDataFile->delete();
                     }
                     
                     \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
@@ -159,6 +158,10 @@
 
                     $this->returnData['newver'] = $this->config->system_version;
                     $res = true;
+
+                    if ($versionDataFile->exists()) {
+                        $versionDataFile->delete();
+                    }
 
                     break;
                 default:

@@ -137,6 +137,9 @@
         'SYSTEM_OPTIONS_SYSCHECK_PHPVERSION'        => 'PHP version',
         'SYSTEM_OPTIONS_SYSCHECK_PHPMEMLIMIT'       => 'PHP memory limit',
         'SYSTEM_OPTIONS_SYSCHECK_PHPMAXEXECTIME'    => 'PHP max execution time',
+        'SYSTEM_OPTIONS_SYSCHECK_DBDRV_MYSQL'       => 'MySQL/ MariaDB database driver',
+        'SYSTEM_OPTIONS_SYSCHECK_DBDRV_PGSQL'       => 'Postgres database driver',
+        'SYSTEM_OPTIONS_SYSCHECK_DBDRV_ACTIVE'      => 'Active database driver',
 
         'SYSTEM_OPTIONS_CRONINTERVALS' => array(
             'every request'     => 0,

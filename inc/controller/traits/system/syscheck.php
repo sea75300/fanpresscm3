@@ -61,7 +61,7 @@
 
             $current = $resultMySql || $resultPgSql ? true : false;
             
-            $checkOptions['MySQL/MariaDB Database Driver']    = array(
+            $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_DBDRV_MYSQL')]    = array(
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => $resultMySql,
@@ -69,7 +69,7 @@
                 'optional'  => (!$resultMySql && $resultPgSql ? 1 : 0)
             );
             
-            $checkOptions['Postgres Database Driver']    = array(
+            $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_DBDRV_PGSQL')]    = array(
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => $resultPgSql,
@@ -78,7 +78,7 @@
             );
     
             if (is_object(\fpcm\classes\baseconfig::$fpcmDatabase)) {
-                $checkOptions['Database driver in use']    = array(
+                $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_DBDRV_ACTIVE')]    = array(
                     'current'   => \fpcm\classes\baseconfig::$fpcmDatabase->getDbtype(),
                     'recommend' => implode(', ', array_intersect($dbDrivers, array_keys(\fpcm\classes\database::$supportedDBMS))),
                     'result'    => true,
@@ -86,6 +86,15 @@
                     'optional'  => 0
                 );                
             }
+            
+            $current = in_array('pdo', $loadedExtensions) && in_array('pdo_mysql', $loadedExtensions);
+            $checkOptions['PHP Data Objects (PDO)']    = array(
+                'current'   => $current ? 'true' : 'false',
+                'recommend' => 'true',
+                'result'    => (true && $current),
+                'helplink'  => 'http://php.net/manual/en/class.pdo.php',
+                'optional'  => 0
+            );
 
             $current = (CRYPT_SHA256 == 1 ? true : false);
             $current = $current && in_array('sha256', hash_algos());            
@@ -94,15 +103,6 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/en/function.hash-algos.php',
-                'optional'  => 0
-            );
-            
-            $current = in_array('pdo', $loadedExtensions) && in_array('pdo_mysql', $loadedExtensions);
-            $checkOptions['PHP Data Objects (PDO)']    = array(
-                'current'   => $current ? 'true' : 'false',
-                'recommend' => 'true',
-                'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/en/class.pdo.php',
                 'optional'  => 0
             );
             

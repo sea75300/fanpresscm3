@@ -162,5 +162,14 @@
             
             return $ret;
         }
-        
+
+        /**
+         * @see \fpcm\model\abstracts\articleEditor
+         * @return array
+         * @since FPCM 3.3
+         */
+        public function getJsLangVars() {
+            return array();
+        }
+
     }

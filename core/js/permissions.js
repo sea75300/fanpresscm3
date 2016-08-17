@@ -8,10 +8,7 @@ if (fpcm === undefined) {
 fpcm.permissions = {
 
     initButtonIcons: function() {
-        fpcm.ui.checkboxradio('.fpcm-ui-input-checkbox', {
-            
-        });
-        
+        fpcm.ui.checkboxradio('.fpcm-ui-input-checkbox');
     }
     
 }

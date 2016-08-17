@@ -72,6 +72,28 @@
         }
 
         /**
+         * @see \fpcm\model\abstracts\articleEditor
+         * @return array
+         * @since FPCM 3.3
+         */
+        public function getJsLangVars() {
+            return array(
+                'globalInsert'       => $this->language->translate('GLOBAL_INSERT'),
+                'editorInsertPic'    => $this->language->translate('EDITOR_INSERTPIC'),
+                'editorInsertLink'   => $this->language->translate('EDITOR_INSERTLINK'),
+                'editorInsertTable'  => $this->language->translate('EDITOR_INSERTTABLE'),
+                'editorInsertColor'  => $this->language->translate('EDITOR_INSERTCOLOR'),
+                'editorInsertMedia'  => $this->language->translate('EDITOR_INSERTMEDIA'),
+                'editorInsertSmiley' => $this->language->translate('EDITOR_INSERTSMILEY'),
+                'editorInsertSymbol' => $this->language->translate('EDITOR_INSERTSYMBOL'),
+                'editorInsertATpl'   => $this->language->translate('EDITOR_HTML_BUTTONS_ARTICLETPL'),
+                
+                
+                
+            );
+        }
+
+        /**
          * Array von Variablen, welche in Editor-Template genutzt werden
          * @return array
          */
