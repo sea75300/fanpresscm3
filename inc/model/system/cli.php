@@ -48,6 +48,11 @@
         const FPCMCLI_PARAM_CLEAN   = '--clean';
 
         /**
+         * CLI param: --clear
+         */
+        const FPCMCLI_PARAM_CLEAR   = '--clear';
+
+        /**
          * CLI param: --info
          */
         const FPCMCLI_PARAM_INFO    = '--info';
@@ -100,18 +105,28 @@
             
             $lines   = array();
             $lines[] = '';
-            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php <module name> <optional params> ';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php <module name> <action params> <additional params>';
+            $lines[] = '';
+            $lines[] = '> Modules:';
             $lines[] = '';
             $lines[] = '      - cache       cache actions';
             $lines[] = '      - cron        cronjob actions';
+            $lines[] = '      - logs        logfile actions';
             $lines[] = '      - module      module action';
             $lines[] = '      - pkg         package manager';
+            $lines[] = '      - syscheck    system check';
             $lines[] = '      - help        displays this text';
+            $lines[] = '';
+            $lines[] = '> Example:';
+            $lines[] = '';
+            $lines[] = '      php fpcmcli.php help';
             $lines[] = '';
             $lines[] = '';
             $lines[] = '> Cache:';
             $lines[] = '';
-            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php cache <optional params> <internal cache name>';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php cache <action params> <internal cache name>';
+            $lines[] = '';
+            $lines[] = '    Action params:';
             $lines[] = '';
             $lines[] = '      --clean       clean up cache';
             $lines[] = '      --size        returns total size of current cache content';
@@ -119,14 +134,18 @@
             $lines[] = '';
             $lines[] = '> Cronjobs:';
             $lines[] = '';
-            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php cron <optional params> <cronjob name>';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php cron <action params> <cronjob name>';
+            $lines[] = '';
+            $lines[] = '    Action params:';
             $lines[] = '';
             $lines[] = '      --exec        executes given cronjob';
             $lines[] = '';
             $lines[] = '> Package manager:';
             $lines[] = '';
-            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php pkg <optional params> system | system package actions';
-            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php pkg <optional params> module | module package actions';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php pkg <action params> system';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php pkg <action params> module <module key>';
+            $lines[] = '';
+            $lines[] = '> Action params:';
             $lines[] = '';
             $lines[] = '      --update      updates local package list storage';
             $lines[] = '      --upgrade     upgrades files in local file system and performs database changes from given package';
@@ -138,10 +157,30 @@
             $lines[] = '';
             $lines[] = '> Modules:';
             $lines[] = '';
-            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php module <optional params> <module name>';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php module <action params> <module key>';
+            $lines[] = '';
+            $lines[] = '    Action params:';
             $lines[] = '';
             $lines[] = '      --enable      enable module';
             $lines[] = '      --disable     disable module';
+            $lines[] = '';
+            $lines[] = '> Logfiles:';
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php logs <action params> <logfile name>';
+            $lines[] = '';
+            $lines[] = '    Action params:';
+            $lines[] = '';
+            $lines[] = '      --list        show entries of selected logfile';
+            $lines[] = '      --clear       clear selected logfile';
+            $lines[] = '';
+            $lines[] = '> System check:';
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php syscheck';
+            $lines[] = '';
+            $lines[] = '    - The system check has no params to set.';
+            $lines[] = '    - Executing the system check via FanPress CM CLI may result in wrong "current" values and check results';
+            $lines[] = '      for "PHP memory limit" and "PHP max execution time" due to different settings for web and CLI access in php.ini.';
+            $lines[] = '';
             $lines[] = '';
 
             $this->output($lines);
@@ -488,25 +527,113 @@
             }
 
             if ($this->funcParams[0] === self::FPCMCLI_PARAM_ENABLE) {
-                    if (!$moduleList->enableModules(array($keyData[0]))) {
-                        $this->output('Unable to enable module '.$keyData[0], true);
-                    }
+                if (!$moduleList->enableModules(array($keyData[0]))) {
+                    $this->output('Unable to enable module '.$keyData[0], true);
+                }
 
-                    $this->output('Module '.$keyData[0].' was enabled successfully.');
+                $this->output('Module '.$keyData[0].' was enabled successfully.');
 
             }
 
             if ($this->funcParams[0] === self::FPCMCLI_PARAM_DISBALE) {
-                    if (!$moduleList->disableModules(array($keyData[0]))) {
-                        $this->output('Unable to disable module '.$keyData[0], true);
+                if (!$moduleList->disableModules(array($keyData[0]))) {
+                    $this->output('Unable to disable module '.$keyData[0], true);
+                }
+
+                $this->output('Module '.$keyData[0].' was disableed successfully.');
+            }
+            
+            return true;
+
+        }
+
+        /**
+         * Logfiles auswerten
+         * @return boolean
+         */
+        public function processLogs() {
+
+            if (!isset($this->funcParams[1]) || !trim($this->funcParams[1])) {
+                $this->output('Invalid params', true);
+            }
+            
+            $path = \fpcm\classes\baseconfig::$logDir.$this->funcParams[1].'.txt';
+            
+            $this->output('--- Logfile: '.\fpcm\model\files\ops::removeBaseDir($path, true).' ---');
+            
+            if (!file_exists($path) || !in_array($path, \fpcm\classes\baseconfig::$logFiles)) {
+                $this->output('Logfile '.\fpcm\model\files\ops::removeBaseDir($path, true).' not found!', true);
+            }
+            
+            if ($this->funcParams[0] === self::FPCMCLI_PARAM_CLEAR && !file_put_contents($path, '') === false) {
+                $this->output('Unable to clear logfile '.\fpcm\model\files\ops::removeBaseDir($path, true).'!', true);
+            }
+            
+            $rows = file($path, FILE_SKIP_EMPTY_LINES);
+            if (!is_array($rows)) {
+                $this->output('Unable to load logfile '.\fpcm\model\files\ops::removeBaseDir($path, true).'!', true);
+            }
+            
+            if (!count($rows)) {
+                $this->output('     >> No data available...');
+                return true;
+            }
+            
+            $rows = array_map('json_decode', $rows);
+            
+            $is_pkg_log = ($path === \fpcm\classes\baseconfig::$logFiles['pkglog'] ? true : false);
+            if ($this->funcParams[0] === self::FPCMCLI_PARAM_LIST) {
+
+                foreach ($rows as $row) {
+
+                    if (!is_object($row)) {
+                        continue;
                     }
 
-                    $this->output('Module '.$keyData[0].' was disableed successfully.');
+                    $this->output('Entry added on: '.$row->time);
+                    if ($is_pkg_log) {
+                        $this->output('Package name: '.$row->pkgname);
+                    }
+
+                    $this->output($row->text);
+                    $this->output('-----');
+
+                }
 
             }
             
             return true;
 
+        }
+        
+        /**
+         * Logfiles auswerten
+         * @return boolean
+         */
+        public function processSyscheck() {
+
+            \fpcm\classes\baseconfig::$fpcmLanguage = new \fpcm\classes\language('en');
+            
+            $sysCheckAction = new \fpcm\controller\ajax\system\syscheck();
+            $rows = $sysCheckAction->processCli();
+
+            $this->output(PHP_EOL.'Executing system check...'.PHP_EOL);
+            
+            $lines = array();
+            foreach ($rows as $descr => $data) {
+                
+                $line = array(
+                    '> '.strip_tags($descr),
+                    '   current value     : '.(string) $data['current'],
+                    '   recommended value : '.(string) $data['recommend'],
+                    '   result            : '.($data['result'] ? 'OK' : '!!'),
+                isset($data['notice']) && trim($data['notice']) ? '   '.$data['notice'].PHP_EOL : ''
+                );
+                
+                $lines[] = implode(PHP_EOL, $line);
+            }
+
+            $this->output($lines);
         }
     
         private function output($str, $die = false) {

@@ -86,7 +86,30 @@
             
             $checkOptions = array_merge($checkOptions, $this->getCheckOptionsSystem());
 
-            return $this->events->runEvent('runSystemCheck', $checkOptions);;
+            return $this->events->runEvent('runSystemCheck', $checkOptions);
+        }
+        
+        public function processCli() {
+            
+            $checkOptions     = array();            
+            
+            $updater = new \fpcm\model\updater\system();
+            $updater->checkUpdates();
+            
+            $remoteVersion = $updater->getRemoteData('version');
+
+            $versionCheckresult = version_compare($this->config->system_version, $remoteVersion, '>=');
+            $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_FPCMVERSION')] = array(
+                'current'   => $this->config->system_version,
+                'recommend' => $remoteVersion ? $remoteVersion : $this->lang->translate('GLOBAL_NOTFOUND'),
+                'result'    => $versionCheckresult,
+                'notice'    => !$versionCheckresult ? 'You may run       : php '.\fpcm\classes\baseconfig::$baseDir.'fpcmcli.php pkg --upgrade system' : ''
+            );      
+
+            $checkOptions = array_merge($checkOptions, $this->getCheckOptionsSystem());
+
+            return $this->events->runEvent('runSystemCheck', $checkOptions);
+            
         }
         
     }
