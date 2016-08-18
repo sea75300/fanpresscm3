@@ -587,10 +587,6 @@
          * @return bool
          */
         public function delete() {
-            $this->deleteRevisions(array_keys($this->getRevisions()));
-
-            $commentList = new \fpcm\model\comments\commentList();
-            $commentList->deleteCommentsByArticle($this->id);
 
             if ($this->config->articles_trash && !$this->forceDelete) {
                 $this->cache->cleanup();
@@ -598,7 +594,12 @@
                 
                 return $this->update();
             }
-            
+
+            $this->deleteRevisions();
+
+            $commentList = new \fpcm\model\comments\commentList();
+            $commentList->deleteCommentsByArticle($this->id);
+
             return parent::delete();
         }
 
@@ -706,19 +707,23 @@
          * @param array $revisionList Liste von Revisions-IDs
          * @return boolean
          */
-        public function deleteRevisions(array $revisionList) {
+        public function deleteRevisions(array $revisionList = array()) {
 
-            $revisionList = array_intersect(array_keys($this->getRevisions()), array_map('intval', $revisionList));
+            if (!count($revisionList)) {
 
-            $resFailed = 0;
-            foreach ($revisionList as $revisionTime) {
-                $revision = new revision($this->id, $revisionTime);
-                if (!$revision->delete()) {
-                    $resFailed++;
-                }
+                return $this->dbcon->delete(
+                    \fpcm\classes\database::tableRevisions,
+                    'article_id = ?',
+                    array($this->id)
+                );
+
             }
-            
-            return $resFailed ? false : true;
+
+            return $this->dbcon->delete(
+                \fpcm\classes\database::tableRevisions,
+                'article_id = ? AND revision_idx IN ('.implode(',', array_map('intval', $revisionList)).')',
+                array($this->id)
+            );
 
         }
         

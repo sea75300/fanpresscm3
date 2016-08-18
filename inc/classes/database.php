@@ -259,7 +259,7 @@
         public function delete($table, $where = null, array $params = array()) {
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql    = "DELETE FROM $table";
-            if (!is_null($where)) $sql .= " WHERE $where";    
+            if (!is_null($where)) $sql .= " WHERE $where";
 
             return $this->exec($sql, $params);
         }

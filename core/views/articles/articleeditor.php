@@ -34,12 +34,8 @@
 
                 <?php if ($revisionPermission) : ?>                
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <td><?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?></td>
-                            <td><?php fpcm\model\view\helper::deleteButton('revisionDelete'); ?></td>
-                        </tr>
-                    </table>
+                    <?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?>
+                    <?php fpcm\model\view\helper::deleteButton('revisionDelete'); ?>
                 </div>
                 <?php endif; ?>
             </div>
