@@ -11,9 +11,6 @@ var fpcmEditor = function () {
     var filemanagerWidth  = jQuery(top).width() * 0.75;
     var filemanagerHeight = jQuery(top).height() * 0.75;
 
-    /**
-     * Author: DDogg, http://www.php.de/html-usability-und-barrierefreiheit/34508-onclick-input-text-area.html
-     */
     this.insert = function(aTag, eTag) {    
 
         if(editor.doc.somethingSelected()) {
@@ -43,7 +40,7 @@ var fpcmEditor = function () {
         jQuery('#linkstarget').val('');
         jQuery('#linkscss').val('');
         fileOpenMode = 0;
-    }
+    };
 
     this.clearPathTextValuesImg = function() {
         jQuery('#imagespath').val('http://');
@@ -51,12 +48,12 @@ var fpcmEditor = function () {
         jQuery('#imagesalt').val('');
         jQuery('#imagescss').val('');
         fileOpenMode = 0;
-    }
+    };
 
     this.clearTableForm = function() {
         jQuery('#tablerows').val('1');
         jQuery('#tablecols').val('1');
-    }
+    };
 
     this.insertLink = function() {
         var lnk_url = jQuery('#linksurl').val();
@@ -79,7 +76,7 @@ var fpcmEditor = function () {
         }
 
         self.insert(aTag, '</a>');
-    }
+    };
 
     this.insertTable = function() {
         var tablerows = jQuery('#tablerows').val();
@@ -92,7 +89,7 @@ var fpcmEditor = function () {
             aTag += '</tr>\n';        
         }
         self.insert(aTag + '</table>', '');  
-    }
+    };
 
     this.insertPicture = function() {
         var pic_path = jQuery('#imagespath').val();
@@ -116,7 +113,7 @@ var fpcmEditor = function () {
             if(pic_css) { aTag = aTag + ' class=\"'+ pic_css +'\"'; }
             self.insert(aTag + ' />', ' ');
         }
-    }
+    };
 
     this.insertListToFrom = function(listtype) {
         aTag = "";
@@ -129,20 +126,26 @@ var fpcmEditor = function () {
         aTag = '<' + listtype + '>\n' + aTag;
 
         self.insert(aTag, '</' + listtype + '>');
-    }
+    };
 
     this.insertFontsize = function(fs) {
         aTag = '<span style=\"font-size:' + fs + 'pt;\">';
         self.insert(aTag, '</span>');
-    }
+    };
 
     this.insertAlignTags = function(aligndes) {
         aTag = '<p style=\"text-align:' + aligndes + ';\">';
         self.insert(aTag, '</p>');
-    }
+    };
 
-    this.insertMoreArea = function() { self.insert('<readmore>', '</readmore>'); }
-    this.insertSmilies = function(smiliecode) { self.insert(' ' + smiliecode + ' ', ''); }
+    this.insertMoreArea = function() {
+        self.insert('<readmore>', '</readmore>');
+    };
+    
+    this.insertSmilies = function(smiliecode) {
+        self.insert(' ' + smiliecode + ' ', '');
+    };
+
     this.insertColor = function(color, mode) {    
         mode    = (typeof mode == 'undefined') ? 'color' : mode;
         color   = (color == '') ? '#000000' : color;    
@@ -287,7 +290,7 @@ var fpcmEditor = function () {
             
         }, 30000);
 
-    },
+    };
     
     this.initCodeMirror = function () {
         jQuery('#fpcmdialogeditorhtmlcolorhexcode').colorPicker({
@@ -434,7 +437,6 @@ var fpcmEditor = function () {
         });
 
         self.initCodeMirrorAutosave();
-        
         
         jQuery('#fpcm-dialog-editor-html-insertlink-btn').click(function() {
             fpcm.ui.dialog({
@@ -924,6 +926,11 @@ jQuery(document).ready(function() {
                 jQuery(this).dialog('destroy');
             }
         });
+        
+        jQuery('#btnArticleSave').click(function() {
+            jQuery('#fpcm-dialog-editor-extended').dialog('close');
+        });
+        
         return false;
     });
     
