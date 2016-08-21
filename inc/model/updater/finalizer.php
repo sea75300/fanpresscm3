@@ -251,8 +251,8 @@
                 }
                 
             }
-            
-            if ($this->checkVersion('3.3.0-a1') && $this->dbcon->getDbtype() != 'pgsql') {
+
+            if ($this->checkVersion('3.3.0-a1') && (!method_exists($this->dbcon, 'getDbtype') || $this->dbcon->getDbtype() == 'mysql')) {
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `name` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `email` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `website` )', '', false);
@@ -263,6 +263,33 @@
                 
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableCronjobs, 'ADD UNIQUE', '( `cjname` )', '', false);
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableCronjobs, 'ADD INDEX', '( `lastexec` )', '', false);
+            }
+
+            if ($this->checkVersion('3.3.0-rc6') && (!method_exists($this->dbcon, 'getDbtype') || $this->dbcon->getDbtype() == 'mysql')) {
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableConfig, 'ADD UNIQUE', '( `config_name` )', '', false);
+            }
+
+            if (method_exists($this->dbcon, 'getDbtype') && $this->checkVersion('3.3.0-rc6') && $this->dbcon->getDbtype() == 'pgsql') {
+
+                $data =   'CREATE INDEX '.$this->dbcon->getDbprefix().'_comments_name ON '.$this->dbcon->getDbprefix().'_comments USING btree (name);'
+                        . 'CREATE INDEX '.$this->dbcon->getDbprefix().'_comments_email ON '.$this->dbcon->getDbprefix().'_comments USING btree (email);'
+                        . 'CREATE INDEX '.$this->dbcon->getDbprefix().'_comments_website ON '.$this->dbcon->getDbprefix().'_comments USING btree (website);'
+                        . 'CREATE INDEX '.$this->dbcon->getDbprefix().'_comments_private ON '.$this->dbcon->getDbprefix().'_comments USING btree (private);'
+                        . 'CREATE INDEX '.$this->dbcon->getDbprefix().'_comments_approved ON '.$this->dbcon->getDbprefix().'_comments USING btree (approved);'
+                        . 'CREATE INDEX '.$this->dbcon->getDbprefix().'_comments_spammer ON '.$this->dbcon->getDbprefix().'_comments USING btree (spammer);'
+                        . 'CREATE INDEX '.$this->dbcon->getDbprefix().'_comments_createtime ON '.$this->dbcon->getDbprefix().'_comments USING btree (createtime);'
+
+                        . 'CREATE UNIQUE INDEX '.$this->dbcon->getDbprefix().'_cronjobs_cjname ON '.$this->dbcon->getDbprefix().'_cronjobs USING btree (cjname);'
+                        . 'CREATE INDEX '.$this->dbcon->getDbprefix().'_cronjobs_lastexec ON '.$this->dbcon->getDbprefix().'_cronjobs USING btree (lastexec);'
+                
+                        . 'CREATE UNIQUE INDEX '.$this->dbcon->getDbprefix().'_config_config_name ON '.$this->dbcon->getDbprefix().'_config USING btree (config_name);';
+
+                $path = \fpcm\classes\baseconfig::$tempDir.'indices.sql';
+                file_put_contents($path, $data);
+
+                $res = $res && $this->dbcon->execSqlFile($path);
+                
+                unlink($path);
             }
 
             return $res;
