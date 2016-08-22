@@ -194,7 +194,6 @@
                 $this->lang->translate('SYSCHECK_FOLDER_FILEMANAGER')   => \fpcm\classes\baseconfig::$filemanagerTempDir,
                 $this->lang->translate('SYSCHECK_FOLDER_LOGS')          => \fpcm\classes\baseconfig::$logDir,
                 $this->lang->translate('SYSCHECK_FOLDER_MODULES')       => \fpcm\classes\baseconfig::$moduleDir,
-                $this->lang->translate('SYSCHECK_FOLDER_REVISIONS')     => \fpcm\classes\baseconfig::$revisionDir,
                 $this->lang->translate('SYSCHECK_FOLDER_SHARE')         => \fpcm\classes\baseconfig::$shareDir,
                 $this->lang->translate('SYSCHECK_FOLDER_SMILEYS')       => \fpcm\classes\baseconfig::$smileyDir,
                 $this->lang->translate('SYSCHECK_FOLDER_STYLES')        => \fpcm\classes\baseconfig::$stylesDir,

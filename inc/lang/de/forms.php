@@ -171,7 +171,6 @@
         'SYSCHECK_FOLDER_CONFIG'        => 'Config-Order',
         'SYSCHECK_FOLDER_LOGS'          => 'Logs-Order',
         'SYSCHECK_FOLDER_FILEMANAGER'   => 'Dateimanager-Temp-Order',
-        'SYSCHECK_FOLDER_REVISIONS'     => 'Revisionen-Order',
         'SYSCHECK_FOLDER_SMILEYS'       => 'Smiley-Order',
         'SYSCHECK_FOLDER_STYLES'        => 'Template-Order',
         'SYSCHECK_FOLDER_TEMP'          => 'Temporäre Dateien Order',

@@ -171,7 +171,6 @@
         'SYSCHECK_FOLDER_CONFIG'        => 'Config folder',
         'SYSCHECK_FOLDER_LOGS'          => 'Logs folder',
         'SYSCHECK_FOLDER_FILEMANAGER'   => 'File manager temp folder',
-        'SYSCHECK_FOLDER_REVISIONS'     => 'Revisions folder',
         'SYSCHECK_FOLDER_SMILEYS'       => 'Smiley folder',
         'SYSCHECK_FOLDER_STYLES'        => 'Template folder',
         'SYSCHECK_FOLDER_TEMP'          => 'global temp folder',

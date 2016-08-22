@@ -21,6 +21,9 @@ cols:
         length: 
         params: NOT NULL
 indices:
+    config_name:
+        col: config_name
+        isUnqiue: true
 defaultvalues:
     rows:
         1:
