@@ -102,6 +102,22 @@
         }
 
         /**
+         * Query-String um Index auf Tabellenspalte zu setzten
+         * @param string $table
+         * @param string $indexName
+         * @param string $field
+         * @param string $isUnique
+         * @return string
+         * @since FPCM 3.3.1
+         */
+        public function createIndexString($table, $indexName, $field, $isUnique) {
+
+            $index = ($isUnique ? 'UNIQUE INDEX' : 'INDEX');
+            return "CREATE {$index} {$table}_{$indexName} ON {$table} USING btree ({$field});";
+
+        }
+
+        /**
          * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
          * @return array
          */
