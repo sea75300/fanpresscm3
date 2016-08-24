@@ -344,6 +344,22 @@
         }
 
         /**
+         * Index auf eine Spalte in der übergebenen Tabelle erzeugen
+         * @param string $table
+         * @param string $indexName
+         * @param string $field
+         * @param bool $isUnique
+         * @return bool
+         * @since FPCM 3.3.1
+         */
+        public function createIndex($table, $indexName, $field, $isUnique = false) {
+            
+            $sql = $this->driver->createIndexString("{$this->dbprefix}_{$table}", $indexName, $field, $isUnique);
+            return $this->exec($sql);
+
+        }
+
+        /**
          * Führt ein SQL Kommando aus
          * @param string $command SQL String
          * @param array $bindParams Paramater, welche gebunden werden sollen

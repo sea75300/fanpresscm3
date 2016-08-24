@@ -88,5 +88,16 @@
          * @return array
          */
         public function getYaTDLDataTypes();
+
+        /**
+         * Query-String um Index auf Tabellenspalte zu setzten
+         * @param string $table
+         * @param string $indexName
+         * @param string $field
+         * @param string $isUnique
+         * @return string
+         * @since FPCM 3.3.1
+         */
+        public function createIndexString($table, $indexName, $field, $isUnique);
         
     }
