@@ -7,6 +7,8 @@
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
+    header('X-XSS-Protection: 1; mode=block');
+
     require_once __DIR__.'/inc/controller/main.php';
     require_once __DIR__.'/inc/common.php';
 

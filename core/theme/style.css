@@ -608,47 +608,6 @@ div.fpcm-navigation #fpcm-ui-showmenu-li {
     }
 }
 
-@media (max-width: 480px) {
-
-    .fpcm-wrapper,
-    div.fpcm-navigation,
-    div.fpcm-navigation ul.fpcm-menu li li {
-        width: 100%;
-    }
-    
-    div.fpcm-navigation-wrapper {
-        min-height: 5em;
-    }
-    
-    div.fpcm-navigation {
-        position: absolute;
-        z-index: 100;
-    }
-    
-    div.fpcm-navigation ul.fpcm-menu li ul {
-        min-width: 100%;
-        margin: 0;
-        border-top: 1px solid #00aded;
-        border-left: 0;
-    }
-    
-    div.fpcm-navigation {
-        margin-bottom: 0.8em;
-    }
-    
-    div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 {
-        display: none;
-    }
-    
-    div.fpcm-navigation #fpcm-ui-showmenu-li {
-        display: block !important;
-    }
-    
-    div.fpcm-debug-data {
-        display: none;
-    }
-}
-
 table.fpcm-ui-table.fpcm-ui-smileys tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-users tr:nth-child(odd),
 table.fpcm-ui-table.fpcm-ui-categories tr:nth-child(odd),
@@ -925,6 +884,58 @@ table.fpcm-ui-table.fpcm-ui-syscheck tr td:last-child {
         width: 50%;
     }
 
+    .fpcm-buttons-fixed {
+        position: static !important;
+        margin: 0.5em 0em !important;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .fpcm-footer {
+        position: static !important;
+    }
+
+    .fpcm-wrapper {
+        margin-bottom: 0.8em;
+    }
+    
+    .fpcm-wrapper,
+    div.fpcm-navigation,
+    div.fpcm-navigation ul.fpcm-menu li li {
+        width: 100%;
+    }
+    
+    div.fpcm-navigation-wrapper {
+        min-height: 5em;
+    }
+    
+    div.fpcm-navigation {
+        position: absolute;
+        z-index: 100;
+    }
+    
+    div.fpcm-navigation ul.fpcm-menu li ul {
+        min-width: 100%;
+        margin: 0;
+        border-top: 1px solid #00aded;
+        border-left: 0;
+    }
+    
+    div.fpcm-navigation {
+        margin-bottom: 0.8em;
+    }
+    
+    div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 {
+        display: none;
+    }
+    
+    div.fpcm-navigation #fpcm-ui-showmenu-li {
+        display: block !important;
+    }
+    
+    div.fpcm-debug-data {
+        display: none;
+    }
 }
 
 @media (max-width: 70em) {
