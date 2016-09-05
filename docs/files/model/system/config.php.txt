@@ -90,7 +90,9 @@
             $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
             $this->cache    = new \fpcm\classes\cache('config');
             $this->useCache = $useCache;
-            
+
+            $this->data = array();
+
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
             $this->init();

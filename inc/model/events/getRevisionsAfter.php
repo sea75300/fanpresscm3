@@ -1,6 +1,6 @@
 <?php
     /**
-     * Module-Event: getRevisionsBefore
+     * Module-Event: getRevisionsAfter
      * 
      * Event wird ausgeführt, bevor die Revisionsliste abgerufen wird
      * Parameter: array Liste von Revisionsdateien für des Artikels
@@ -13,7 +13,7 @@
     namespace fpcm\model\events;
 
     /**
-     * Module-Event: getRevisionsBefore
+     * Module-Event: getRevisionsAfter
      * 
      * Event wird ausgeführt, bevor die Revisionsliste abgerufen wird
      * Parameter: array Liste von Revisionsdateien für des Artikels

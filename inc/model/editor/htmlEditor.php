@@ -72,6 +72,7 @@
         }
 
         /**
+         * Array von Sprachvariablen für Nutzung in Javascript
          * @see \fpcm\model\abstracts\articleEditor
          * @return array
          * @since FPCM 3.3

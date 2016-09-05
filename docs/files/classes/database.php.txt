@@ -259,7 +259,7 @@
         public function delete($table, $where = null, array $params = array()) {
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql    = "DELETE FROM $table";
-            if (!is_null($where)) $sql .= " WHERE $where";    
+            if (!is_null($where)) $sql .= " WHERE $where";
 
             return $this->exec($sql, $params);
         }
@@ -341,6 +341,22 @@
          */
         public function drop($table) {            
             return $this->exec("DROP TABLE {$this->dbprefix}_{$table}");            
+        }
+
+        /**
+         * Index auf eine Spalte in der übergebenen Tabelle erzeugen
+         * @param string $table
+         * @param string $indexName
+         * @param string $field
+         * @param bool $isUnique
+         * @return bool
+         * @since FPCM 3.3.1
+         */
+        public function createIndex($table, $indexName, $field, $isUnique = false) {
+            
+            $sql = $this->driver->createIndexString("{$this->dbprefix}_{$table}", $indexName, $field, $isUnique);
+            return $this->exec($sql);
+
         }
 
         /**

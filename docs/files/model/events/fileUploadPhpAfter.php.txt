@@ -1,6 +1,6 @@
 <?php
     /**
-     * Module-Event: getCronList
+     * Module-Event: fileUploadPhpAfter
      * 
      * Event wird ausgeführt, wenn Liste von Cronjob-Dateien für asynchrone Ausführung geladen wird
      * Parameter: array mit Dateiliste von Cronjob-Classen
@@ -13,7 +13,7 @@
     namespace fpcm\model\events;
 
     /**
-     * Module-Event: getCronList
+     * Module-Event: fileUploadPhpAfter
      * 
      * Event wird ausgeführt, wenn Liste von Cronjob-Dateien für asynchrone Ausführung geladen wird
      * Parameter: array mit Dateiliste von Cronjob-Classen

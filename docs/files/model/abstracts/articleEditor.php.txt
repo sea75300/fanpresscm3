@@ -68,13 +68,20 @@
         abstract public function getJsVars();
 
         /**
+         * Array von Sprachvariablen für Nutzung in Javascript
+         * @return array
+         * @since FPCM 3.3
+         */
+        abstract public function getJsLangVars();
+
+        /**
          * Array von Variablen, welche in Editor-Template genutzt werden
          * @return array
          */
         abstract public function getViewVars();
 
         /**
-         * Arary mit Informationen u. a. für template-Plugin von TinyMCE
+         * Array mit Informationen u. a. für template-Plugin von TinyMCE
          * @return array
          * @since FPCM 3.3
          */
