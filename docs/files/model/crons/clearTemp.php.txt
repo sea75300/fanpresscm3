@@ -24,14 +24,17 @@
             if (!\fpcm\classes\baseconfig::asyncCronjobsEnabled()) {
                 return false;
             }
-            
+
             if (!is_writable(\fpcm\classes\baseconfig::$tempDir)) {
                 trigger_error('Unable to cleanup '.\fpcm\classes\baseconfig::$tempDir.'! Access denied!');
                 return false;
             }
-            
+
             $tempFiles = glob(\fpcm\classes\baseconfig::$tempDir.'*');
-            
+            if (!is_array($tempFiles) || !count($tempFiles)) {
+                return true;
+            }
+
             foreach ($tempFiles as $tempFile) {
                 
                 if ($tempFile == \fpcm\classes\baseconfig::$tempDir.'index.html') continue;
