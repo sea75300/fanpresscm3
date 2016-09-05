@@ -1,6 +1,6 @@
 <?php
     /**
-     * Module-Event: parseTemplateCommentForm
+     * Module-Event: parseTemplateComment
      * 
      * Event wird ausgeführt, wenn Kommentar-Formular-Template geparst wird
      * Parameter: array mit Platzhaltern und zugewiesenen Daten
@@ -13,7 +13,7 @@
     namespace fpcm\model\events;
 
     /**
-     * Module-Event: parseTemplateCommentForm
+     * Module-Event: parseTemplateComment
      * 
      * Event wird ausgeführt, wenn Kommentar-Formular-Template geparst wird
      * Parameter: array mit Platzhaltern und zugewiesenen Daten

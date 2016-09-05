@@ -212,7 +212,13 @@
         public function update() {
             return $this->dbcon->update($this->table, array('execinterval'), array($this->execinterval, $this->cronName), 'cjname '.$this->dbcon->dbLike().' ?');
         }
-        
+
+        /**
+         * Gibt Klassen-Namepsace für Cronjob-Klassen zurück
+         * @param string $cronId
+         * @return string
+         * @since FPCM 3.3
+         */
         public static function getCronNamespace($cronId) {
             return "\\fpcm\\model\\crons\\{$cronId}";
         }

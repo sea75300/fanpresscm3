@@ -88,7 +88,7 @@
         const FPCMCLI_PARAM_TYPE_MODULE    = 'module';
 
         /**
-         *
+         * Funktionsparameter
          * @var array
          */
         protected $funcParams = array();
@@ -100,7 +100,11 @@
         function setFuncParams(array $funcParams) {
             $this->funcParams = $funcParams;
         }
-        
+
+        /**
+         * CLI: Hilfe ausgeben
+         * @return void
+         */
         public function processHelp() {
             
             $lines   = array();
@@ -186,6 +190,10 @@
             $this->output($lines);
         }
 
+        /**
+         * CLI: Cache Aktionen durchführen
+         * @return bool
+         */
         public function processCache() {
             
             $cacheName = $this->funcParams[1] === 'all' ? null : $this->funcParams[1];
@@ -635,7 +643,12 @@
 
             $this->output($lines);
         }
-    
+
+        /**
+         * CLI Ausgabe
+         * @param string $str
+         * @param bool $die
+         */
         private function output($str, $die = false) {
 
             if (is_array($str)) {
