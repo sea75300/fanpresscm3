@@ -70,7 +70,9 @@
                 
                 $viewVars = $this->getViewVars();                
                 
-                foreach ($viewVars as $key => $value) { $$key = $value; }
+                foreach ($viewVars as $key => $value) {
+                    $$key = $value;
+                }
 
                 include_once \fpcm\classes\baseconfig::$viewsDir.'common/header.php';                
                 include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';

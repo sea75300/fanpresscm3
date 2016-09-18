@@ -26,10 +26,6 @@ jQuery(document).ready(function () {
         fpcmJs.windowResize();
     });
     
-    jQuery(window).scroll(function () {
-       fpcm.ui.fixedHeader();
-    });
-    
     jQuery('.fpcm-loader').click(function () {
         if (jQuery(this).hasClass('fpcm-noloader')) return false;        
         fpcmJs.showLoader(true);
@@ -42,44 +38,6 @@ jQuery(document).ready(function () {
     
     jQuery('#fpcm-ui-showmenu-li').click(function () {
         jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').fadeToggle();
-    });
-
-    fpcm.ui.button('#fpcm-profile-menu-open', {},
-    function () {
-        
-        if (jQuery(window).width() >= 600) {
-            dialogWidth = 500;
-        } else if (jQuery(window).width() >= 480) {
-            dialogWidth = '75%';
-        } else if (jQuery(window).width() <= 480) {
-            dialogWidth = '95%';
-        }
-        
-        fpcm.ui.dialog({
-            id: 'profile',
-            title: fpcm.ui.translate('quickLinks'),
-            dlWidth: dialogWidth,
-            dlButtons: [
-                {
-                    text: fpcm.ui.translate('openProfile'),
-                    icon: "ui-icon-wrench",                  
-                    click: function () {
-                        fpcmJs.showLoader(true);
-                        fpcmJs.relocate(fpcmActionPath + 'system/profile');
-                    }
-                },
-                {
-                    text: fpcm.ui.translate('logout'),
-                    icon: "ui-icon-power",
-                    click: function () {
-                        fpcmJs.showLoader(true);
-                        fpcmJs.relocate(fpcmActionPath + 'system/logout');
-                    }
-                }
-            ],
-            dlOnClose: null
-        });
-
     });
 
     if (fpcmLang.searchHeadline !== undefined) {    

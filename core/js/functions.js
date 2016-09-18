@@ -122,6 +122,7 @@ var fpcmJs = function () {
             if (jQuery('#fpcm-filelist-images-finished').length == 1) {
                 fpcmJs.showLoader(false);
                 clearInterval(fpcmRFDinterval);
+                fpcmJs.windowResize();
                 return false;
             }
         }, 1000);
@@ -146,6 +147,22 @@ var fpcmJs = function () {
     this.windowResize = function () {        
         self.messagesCenter();
         jQuery('#fpcm-ui-errorbox').css('top', jQuery(window).height() / 2 - jQuery('#fpcm-ui-errorbox').height() / 2);
+
+        var wrpl     = jQuery('#fpcm-wrapper-left');
+        var prof_btn = jQuery('#fpcm-navigation-profile');
+        var prof_sbm = jQuery('#fpcm-navigation-submenu-profile');
+
+        wrpl.css('min-height', '');
+        prof_sbm.css('margin-left', 'initial');
+        prof_sbm.css('margin-top', '');
+
+        if (jQuery(window).width() > 800) {
+            jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').show();
+            wrpl.css('min-height', jQuery('body').height());
+            prof_sbm.css('margin-left', prof_btn.width());
+            prof_sbm.css('margin-top', (prof_btn.height() * -1) - 3);
+        }
+
     };
     
     this.windowLoginResize = function () {
@@ -281,6 +298,7 @@ var fpcmJs = function () {
         fpcmJs.assignHtml('#tabs-article-list', ajaxResult);
         noActionButtonAssign = true;
         fpcmJs.assignButtons();
+        fpcmJs.windowResize();
     };
     
     this.startCommentSearch = function (sParams) {
@@ -307,6 +325,7 @@ var fpcmJs = function () {
         fpcmJs.assignButtons();
         fpcmJs.initCommentSearch();
         fpcm.ui.assignSelectmenu();
+        fpcmJs.windowResize();
     };
     
     this.addAjaxMassage = function (type, message, fadeOut) {
@@ -340,6 +359,7 @@ var fpcmJs = function () {
         fpcmJs.showLoader(false);
         fpcmJs.assignHtml("#tabs-options-check", ajaxResult);
         fpcmJs.assignButtons();
+        fpcmJs.windowResize();
     };
     
     this.openManualCheckFrame = function () {
@@ -475,6 +495,7 @@ var fpcmJs = function () {
             if (jQuery('#fpcm-dashboard-finished').length == 1) {
                 jQuery('#fpcm-dashboard-containers-loading').remove();
                 clearInterval(fpcmRFDinterval);
+                fpcmJs.windowResize();
                 return false;
             }
         }, 250);

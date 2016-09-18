@@ -24,7 +24,8 @@
             'inc/lib/jquery-ui/jquery-ui.min.css',
             'inc/lib/fancybox/jquery.fancybox.css',
             'inc/lib/font-awesome/css/font-awesome.min.css',
-            'core/theme/style.css'
+            'core/theme/style.css',
+            'core/theme/responsive.css',
         );
 
         /**

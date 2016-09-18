@@ -1,0 +1,167 @@
+@media (max-width: 90em) {
+    div.fpcm-filelist-thumb-box {
+        width: 33%;
+    }
+}
+
+@media (max-width: 70em) {
+    
+    .fpcm-wrapper {
+        width: 75%;
+    }
+    
+    .fpcm-wrapper-left {
+        width: 25%;
+    }
+    
+    .ui-tabs-vertical {
+        width: 99%;
+    }
+    
+    .ui-tabs-vertical .ui-tabs-nav,
+    .ui-tabs-vertical .ui-tabs-panel {
+        width: 100%;
+        padding-right: 0.2em;
+    }
+
+    .ui-tabs-vertical .ui-tabs-nav li {
+        padding-right: 0px !important;
+        margin-bottom: 0px !important;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+    .fpcm-ui-permissions-container {
+        width: 100% !important;
+    }
+
+    .fpcm-ui-permissions-container {
+        width: 50% !important;
+    }
+
+}
+
+@media (max-width: 60em) {
+    div.fpcm-filelist-thumb-box {
+        width: 50%;
+    }
+}
+
+@media (max-width: 55em) {    
+    .fpcm-ui-permissions-container {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 50em) {
+
+    .fpcm-footer-bottom {
+        display: block;
+    }
+    
+    .fpcm-footer-left {
+        display: none;
+    }
+    
+    .fpcm-content-wrapper   {
+        padding: 0.4em;
+    }
+
+    .fpcm-wrapper,
+    .fpcm-wrapper-left,
+    div.fpcm-navigation ul.fpcm-menu li li {
+        width: 100%;
+    }
+
+    div.fpcm-navigation ul.fpcm-menu li ul {
+        margin: -4em 0 0 25%;
+    }
+    
+    div.fpcm-navigation {
+        margin-bottom: 0.8em;
+    }
+    
+    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-ui-articlelist-comments,
+    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments,
+    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-times,
+    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-times,
+    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-meta,
+    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-meta,    
+    table.fpcm-ui-table.fpcm-ui-modules tr th.fpcm-ui-modules-key,    
+    table.fpcm-ui-table.fpcm-ui-modules tr td.fpcm-ui-modules-key,    
+    table.fpcm-ui-table.fpcm-ui-modules tr th.fpcm-ui-modules-version,    
+    table.fpcm-ui-table.fpcm-ui-modules tr td.fpcm-ui-modules-version,
+    table.fpcm-ui-table.fpcm-ui-users tr th.fpcm-ui-users-registeredtime,
+    table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-registeredtime,
+    table.fpcm-ui-table.fpcm-ui-users tr th.fpcm-ui-users-articlecount,
+    table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-articlecount,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-help,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-current,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-recommend,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-help,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-current,
+    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-recommend {
+        display: none;
+    }
+    
+    table.fpcm-ui-table.fpcm-ui-options tr td:first-child {
+        width: 50%;
+    }
+
+    .fpcm-buttons-fixed {
+        position: static !important;
+        margin: 0.5em 0em !important;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .fpcm-wrapper {
+        margin-bottom: 0.8em;
+    }
+    
+    div.fpcm-navigation {
+        z-index: 100;
+    }
+    
+    div.fpcm-navigation ul.fpcm-menu li ul {
+        min-width: 100%;
+        margin: 0;
+        border-top: 1px solid #00aded;
+        border-left: 0;
+    }
+    
+    div.fpcm-navigation {
+        margin-bottom: 0.8em;
+    }
+    
+    div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 {
+        display: none;
+    }
+    
+    div.fpcm-navigation #fpcm-ui-showmenu-li {
+        display: block !important;
+    }
+    
+    div.fpcm-debug-data {
+        display: none;
+    }
+    
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
+        width: 100%;
+    }
+    
+    .fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content .fpcm-profile-btn {
+        margin-bottom: 0.7em;
+    }
+}
+
+@media (max-width: 36em) {
+    .fpcm-login-form {        
+        width: 100%;
+    }
+    
+    div.fpcm-filelist-thumb-box {
+        width: 100%;
+    }
+}

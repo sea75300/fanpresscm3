@@ -15,43 +15,51 @@
         
         <?php include_once 'profiledialog.php'; ?>
 
-        <div id="fpcm-header-fixed-spacer"></div>
-        
-        <div id="fpcm-header" class="fpcm-header">
-            <div class="fpcm-header-inner">
-                <div class="fpcm-header-td1">
-                    <img class="fpcm-logo" src="<?php print $FPCM_THEMEPATH; ?>logo.svg" alt="FanPress CM">
-                </div>
-                <div class="fpcm-header-td2">
-                    <span>FanPress CM</span> <span>News System</span>
-                </div>
-                <?php if ($FPCM_LOGGEDIN) : ?>
-                <div class="fpcm-header-td3 fpcm-ui-list-buttons">
-                    <?php if (!$FPCM_CRONJOBS_DISABLED) : ?>
-                    <span class="fa-stack fa-lg fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_CRONJOBS'); ?>..."</span>
+        <div class="fpcm-wrapper-left <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-fixed<?php endif; ?>" id="fpcm-wrapper-left">
+            
+            <div class="fpcm-logo fpcm-ui-center">
+                <div><img class="fpcm-logo" src="<?php print $FPCM_THEMEPATH; ?>logo.svg" alt="FanPress CM News System"></div>
+                <div><span>FanPress CM</span> <span>News System</span></div>
+            </div>
+
+            <?php if ($FPCM_LOGGEDIN) : ?>
+            
+            <div class="fpcm-status-info fpcm-ui-important-text">
+
+            <?php if (!$FPCM_CRONJOBS_DISABLED) : ?>
+                <div class="fpcm-status-info-box fpcm-ui-center">
+                    <span class="fa-stack fa-lg" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_CRONJOBS'); ?>...">
                         <span class="fa fa-square fa-stack-2x"></span>
                         <span class="fa fa-terminal fa-stack-1x fa-inverse"></span>
-                    </span>
-                    <?php endif; ?>
-                    <?php if ($FPCM_MAINTENANCE_MODE) : ?>
-                    <span class="fa-stack fa-lg fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>..."</span>
+                    </span>                    
+                </div>
+            <?php endif; ?>
+            <?php if ($FPCM_MAINTENANCE_MODE) : ?>
+                <div class="fpcm-status-info-box fpcm-ui-center">
+                    <span class="fa-stack fa-lg" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>...">
                         <span class="fa fa-square fa-stack-2x"></span>
                         <span class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></span>
-                    </span>
-                    <?php endif; ?>
-                    <?php \fpcm\model\view\helper::linkButton($FPCM_FRONTEND_LINK, 'GLOBAL_FRONTEND_OPEN', 'fpcm-open-news', 'fpcm-ui-button-blank fpcm-openlink-btn', '_blank') ?>
-                    <button class="fpcm-ui-button fpcm-ui-button-blank fpcm-clearcache-btn" id="fpcm-clear-cache"><?php $FPCM_LANG->write('GLOBAL_CACHE_CLEAR'); ?></button>
-                    <button id="fpcm-profile-menu-open" class="fpcm-ui-button"><span class="fa fa-info-circle fa-fw"></span> <?php print $FPCM_USER; ?> <span class="fa fa-chevron-down"></span></button>
+                    </span>                    
                 </div>
-                 <?php endif; ?>                    
+            <?php endif; ?>
                 <div class="fpcm-clear"></div>
-            </div>                           
+            </div>
+            <?php endif; ?>
+
+            <?php include_once 'navigation.php'; ?>
+            
+
+            <div class="fpcm-footer fpcm-footer-left">
+                <div class="fpcm-footer-text">
+                    <b>Version</b> <?php print $FPCM_VERSION; ?><br>
+                    &copy; 2011-<?php print date('Y'); ?> <a href="https://nobody-knows.org/download/fanpress-cm/" target="_blank">nobody-knows.org</a>                    
+                </div>
+            </div>
+
         </div>
-        
-        <?php include_once 'navigation.php'; ?>
         
         <?php if (isset($includeManualCheck) && $includeManualCheck) : ?>
         <?php include_once __DIR__.'/updatemancheck.php'; ?>
         <?php endif; ?>
         
-        <div class="fpcm-wrapper <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-full<?php endif; ?>">
+        <div class="fpcm-wrapper <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-fixed<?php endif; ?>" id="fpcm-wrapper-right">

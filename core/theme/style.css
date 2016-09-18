@@ -33,7 +33,7 @@ button {
 }
 
 h1,
-.fpcm-header-td2 {
+.fpcm-logo {
      font-family: 'Raleway', 'Droid Sans', sans-serif !important;
 }
 
@@ -119,12 +119,44 @@ ol.list-large li {
 
 /* .CSS-Klassen und #IDs */
 
-.fpcm-wrapper {
-    padding:0;
-    margin: 0.8em 0 4.5em 0;
+.fpcm-wrapper,
+.fpcm-wrapper-left {
     float: left;
     display: block;
+}
+
+.fpcm-wrapper {
+    padding:0;
+    margin: 0;
     width: 85%;
+}
+
+.fpcm-wrapper-left {
+    width: 15%;
+    background: rgba(255,255,255,0.5);
+}
+
+.fpcm-wrapper-left div.fpcm-logo {
+    margin-bottom: 0.4em;
+}
+
+.fpcm-wrapper-left div.fpcm-logo span {
+    display: block;
+    font-size: 1.25em;
+    color: #00aded;
+}
+
+.fpcm-wrapper-left div.fpcm-logo span:nth-child(even) {
+    color: #000000;
+}
+
+.fpcm-wrapper-left div.fpcm-status-info {
+    width: 100%;
+}
+
+.fpcm-wrapper-left div.fpcm-status-info div.fpcm-status-info-box {
+    display: block;
+    float: left;
 }
 
 .fpcm-quarter-width     {
@@ -135,16 +167,48 @@ ol.list-large li {
     width: 85%;
 }
 
-.fpcm-wrapper.fpcm-wrapper-full,
+.fpcm-wrapper.fpcm-wrapper-fixed  {
+    margin-left: 15%;
+}
+
+.fpcm-wrapper-left.fpcm-wrapper-fixed  {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.fpcm-wrapper-left.fpcm-wrapper-fixed  {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.fpcm-wrapper-left.fpcm-wrapper-fixed div.fpcm-footer  {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+
 .fpcm-full-width {
     width: 100%;
 }
 
-.fpcm-content-wrapper   { margin: 0 0.8em; }
-.fpcm-inner-wrapper     { margin: 0.4em 0.4em 55px 0.4em; }
-.fpcm-dialog-wrapper    { padding: 0em 0.6em 0em 0em; }
-.fpcm-hidden            { display: none; }
-.fpcm-clear             { clear: both; }
+.fpcm-content-wrapper   {
+    padding: 0.5em 0.5em 4em 0.5em;
+}
+.fpcm-inner-wrapper     {
+    margin: 0.4em 0.4em 55px 0.4em;
+}
+.fpcm-dialog-wrapper    {
+    padding: 0em 0.6em 0em 0em;
+}
+.fpcm-hidden            {
+    display: none;
+}
+.fpcm-clear             {
+    clear: both;
+}
 
 .fpcm-login-form {
     width: 450px;
@@ -155,102 +219,20 @@ ol.list-large li {
     padding: 0.5em;
 }
 
-@media (max-width: 35em) {
-    .fpcm-login-form {        
-        width: 100%;
-    }
-}
-
 .fpcm-small-text {
     font-size: 0.85em;
     padding: 0.2em;
 }
 
-.fpcm-header     {
-    width: 100%;
-    z-index: 250;
-    background: rgba(255,255,255,0.75);
-    overflow: hidden;
-}
-
-.fpcm-header.fpcm-header-fixed {
-    position: fixed;
-    top: 0px;
-}
-
-.fpcm-header-td1,
-.fpcm-header-td2,
-.fpcm-header-td3,
-.fpcm-header div.fpcm-header-inner {
-    max-height: 50px;    
-}
-
-.fpcm-header-td1,
-.fpcm-header-td2,
-.fpcm-header-td3 {
-    display: block;
-    padding: 0;
-    margin: 0;
-}
-
-.fpcm-header-td1,
-.fpcm-header-td2 {
-    float: left;
-}
-
-.fpcm-header-td1 img.fpcm-logo {
-    width: 50px;
-    height: 50px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
-.fpcm-header-td2 {
-    font-size: 1.5em;
-    line-height: 2.5em;
-    padding-left: 0.5em;
-}
-
-.fpcm-header-td2 span {
-    color: #00aded;
-}
-
-.fpcm-header-td2 span:nth-child(even) {
-    color: #000000;
-}
-
-.fpcm-header-td3 {
-    float: right;
-    line-height: 3.5em;
-    padding-right: 0.5em;
-}
-
-#fpcmopennews {
-    width: 30px;
-}
-
-#fpcm-header-fixed-spacer {
-    height: 50px;
-    display: none;
-}
-
-@media (max-width: 600px) {
-    .fpcm-header-td2 {
-        display: none;
-    }
-}
-
 .fpcm-footer {
-    text-align:left;
+    font-size: 0.8em;
+    text-align:center;
     padding: 0.5em;
-    font-size: 0.9em;
-    background: rgba(255,255,255,0.6);
-    border-top: 2px solid #c3ebfb;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    z-index: 4;
+    display: block;
+}
+
+.fpcm-footer-bottom {
+    display: none;
 }
 
 .fpcm-debug-data {
@@ -489,10 +471,7 @@ textarea.fpcm-options-cssclasses {
 /* Admin-Bereich Navigation */
 
 div.fpcm-navigation {
-    float: left;
-    display: block;
-    width: 15%;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 }
 
 div.fpcm-navigation a,
@@ -521,17 +500,11 @@ div.fpcm-navigation ul.fpcm-menu li {
     display: block;
     padding: 0.6em 0;
     margin: 0px;
-    background: rgba(255,255,255,0.75);
 }
 
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1:last-child {
     width: auto;
     padding: 0.6em 0.8em;
-}
-
-div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1,
-div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navicon {
-    text-align: center !important;
 }
 
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navigation-descr {
@@ -544,6 +517,18 @@ div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navicon {
     padding: 0.1em 0;
     font-size: 1.75em;
     text-shadow: 1px 1px 1px #cccccc;
+}
+
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1.trio-nav {
+    display: inline-block;
+    width: 32.333%;
+    margin: 0;
+    padding: 0.3em 0;
+    line-height: 50px;
+}
+
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1.trio-nav .fpcm-submenu {
+    line-height: normal;
 }
 
 div.fpcm-navigation ul.fpcm-menu li ul.fpcm-submenu li.fpcm-menu-level2,
@@ -565,7 +550,7 @@ div.fpcm-navigation ul.fpcm-menu li ul {
     height: auto;
     z-index: 200;
     border-left: 5px solid #00aded;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.75);
     min-width: 15%;
 }
 
@@ -588,24 +573,8 @@ div.fpcm-navigation #fpcm-ui-showmenu-li {
     display: none !important;
 }
 
-@media (max-width: 800px) {
-    
-    .fpcm-wrapper {
-        width: 75%;
-    }
-    
-    div.fpcm-navigation {
-        width: 25%;
-    }
-    
-    div.fpcm-navigation ul.fpcm-menu li ul {
-        min-width: 25%;
-        margin: -4em 0 0 25%;
-    }
-    
-    div.fpcm-navigation {
-        margin-bottom: 0.8em;
-    }
+#fpcm-navigation-profile li.fpcm-navigation-submenu-profile-meta span {
+    display: block;
 }
 
 table.fpcm-ui-table.fpcm-ui-smileys tr:nth-child(odd),
@@ -805,7 +774,6 @@ table.fpcm-ui-table.fpcm-ui-permissions tr th {
 
 .fpcm-message-box .fpcm-msg-icon,
 .fpcm-message-box .fpcm-msg-text,
-#fpcm-dialog-profile table td,
 table.fpcm-ui-table.fpcm-ui-options tr td,
 table.fpcm-ui-table.fpcm-ui-articles tr td,
 table.fpcm-ui-table.fpcm-ui-comments tr td,
@@ -832,6 +800,7 @@ table.fpcm-ui-table.fpcm-ui-table-insert tr td:first-child {
     width: 66%;
 }
 
+.fpcm-wrapper-left div.fpcm-status-info div.fpcm-status-info-box,
 table.fpcm-ui-table.fpcm-ui-articles-search td,
 table.fpcm-ui-table.fpcm-ui-articlelist-acp tr td {
     width: 33%;
@@ -854,125 +823,6 @@ table.fpcm-ui-table.fpcm-ui-syscheck tr td:last-child {
 
 table.fpcm-ui-table.fpcm-ui-syscheck tr td:last-child {
     font-size: 1.75em;
-}
-
-@media (max-width: 50em) {
-    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-ui-articlelist-comments,
-    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments,
-    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-times,
-    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-times,
-    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-meta,
-    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-meta,    
-    table.fpcm-ui-table.fpcm-ui-modules tr th.fpcm-ui-modules-key,    
-    table.fpcm-ui-table.fpcm-ui-modules tr td.fpcm-ui-modules-key,    
-    table.fpcm-ui-table.fpcm-ui-modules tr th.fpcm-ui-modules-version,    
-    table.fpcm-ui-table.fpcm-ui-modules tr td.fpcm-ui-modules-version,
-    table.fpcm-ui-table.fpcm-ui-users tr th.fpcm-ui-users-registeredtime,
-    table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-registeredtime,
-    table.fpcm-ui-table.fpcm-ui-users tr th.fpcm-ui-users-articlecount,
-    table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-articlecount,
-    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-help,
-    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-current,
-    table.fpcm-ui-table.fpcm-ui-syscheck tr th.fpcm-ui-syscheck-recommend,
-    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-help,
-    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-current,
-    table.fpcm-ui-table.fpcm-ui-syscheck tr td.fpcm-ui-syscheck-recommend {
-        display: none;
-    }
-    
-    table.fpcm-ui-table.fpcm-ui-options tr td:first-child {
-        width: 50%;
-    }
-
-    .fpcm-buttons-fixed {
-        position: static !important;
-        margin: 0.5em 0em !important;
-        border-bottom-right-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-
-    .fpcm-footer {
-        position: static !important;
-    }
-
-    .fpcm-wrapper {
-        margin-bottom: 0.8em;
-    }
-    
-    .fpcm-wrapper,
-    div.fpcm-navigation,
-    div.fpcm-navigation ul.fpcm-menu li li {
-        width: 100%;
-    }
-    
-    div.fpcm-navigation-wrapper {
-        min-height: 5em;
-    }
-    
-    div.fpcm-navigation {
-        position: absolute;
-        z-index: 100;
-    }
-    
-    div.fpcm-navigation ul.fpcm-menu li ul {
-        min-width: 100%;
-        margin: 0;
-        border-top: 1px solid #00aded;
-        border-left: 0;
-    }
-    
-    div.fpcm-navigation {
-        margin-bottom: 0.8em;
-    }
-    
-    div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 {
-        display: none;
-    }
-    
-    div.fpcm-navigation #fpcm-ui-showmenu-li {
-        display: block !important;
-    }
-    
-    div.fpcm-debug-data {
-        display: none;
-    }
-}
-
-@media (max-width: 70em) {
-    
-    .ui-tabs-vertical {
-        width: 99%;
-    }
-    
-    .ui-tabs-vertical .ui-tabs-nav,
-    .ui-tabs-vertical .ui-tabs-panel {
-        width: 100%;
-        padding-right: 0.2em;
-    }
-
-    .ui-tabs-vertical .ui-tabs-nav li {
-        padding-right: 0px !important;
-        margin-bottom: 0px !important;
-        border-bottom-right-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    
-    .fpcm-ui-permissions-container {
-        width: 100% !important;
-    }
-
-    .fpcm-ui-permissions-container {
-        width: 50% !important;
-    }
-
-}
-
-@media (max-width: 55em) {
-    
-    .fpcm-ui-permissions-container {
-        width: 100% !important;
-    }
-
 }
 
 table.fpcm-ui-table.fpcm-ui-modules tr.fpcm-ui-modules-updates1 {
@@ -1161,17 +1011,6 @@ h3, .fpcm-dashboard-container h3 {
     margin: 0.2em 0em;
 }
 
-@media (max-width: 50em) {
-    .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
-    .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
-        width: 100%;
-    }
-    
-    .fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content .fpcm-profile-btn {
-        margin-bottom: 0.7em;
-    }
-}
-
 .fpcm-dashboard-message-box {
     font-size: 0.9em;
     padding: 0.4em; 
@@ -1349,11 +1188,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     border-top: 1px dotted #000000;
 }
 
-#fpcm-dialog-profile table {
-    width: 100%;
-    border: 0px;
-}
-
 .fpcm-ui-progressbar {
     width: 75%;
     margin: 0 auto;
@@ -1431,24 +1265,6 @@ div.fpcm-accordion-pkgmanager ul {
 div.fpcm-filelist-thumb-box {
     float: left;
     width: 25%;
-}
-
-@media (max-width: 90em) {
-    div.fpcm-filelist-thumb-box {
-        width: 33%;
-    }
-}
-
-@media (max-width: 60em) {
-    div.fpcm-filelist-thumb-box {
-        width: 50%;
-    }
-}
-
-@media (max-width: 36em) {
-    div.fpcm-filelist-thumb-box {
-        width: 100%;
-    }
 }
 
 div.fpcm-filelist-thumb-box-inner {
@@ -1699,10 +1515,6 @@ h1 a.fpcm-ui-helpbutton:before,
 
 .fpcm-ui-button.fpcm-modules-depencerror span.ui-icon:before {
     content: '\f071';
-}
-
-.fpcm-ui-button.fpcm-clearcache-btn span.ui-icon:before {
-    content: '\f1b8';
 }
 
 .fpcm-ui-button.fpcm-folderopen-btn span.ui-icon:before {
