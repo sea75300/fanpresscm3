@@ -177,12 +177,6 @@ ol.list-large li {
     bottom: 0px;
 }
 
-.fpcm-wrapper-left.fpcm-wrapper-fixed  {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-}
-
 .fpcm-wrapper-left.fpcm-wrapper-fixed div.fpcm-footer  {
     position: absolute;
     left: 0px;

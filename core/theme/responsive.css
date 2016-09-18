@@ -154,6 +154,22 @@
     .fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content .fpcm-profile-btn {
         margin-bottom: 0.7em;
     }
+    
+    .fpcm-wrapper.fpcm-wrapper-fixed  {
+        margin-left: 0;
+    }
+
+    .fpcm-wrapper-left.fpcm-wrapper-fixed  {
+        position: static;
+    }
+
+    .fpcm-wrapper-left.fpcm-wrapper-fixed div.fpcm-footer  {
+        position: static;
+    }
+    
+    .fpcm-login-form {
+        margin-top: 1.2em;
+    }
 }
 
 @media (max-width: 36em) {

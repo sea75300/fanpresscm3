@@ -11,8 +11,16 @@ if (fpcm === undefined) {
 fpcm.login = {
 
     moveToCenter: function () {
+        
+        if (jQuery(window).width() < 800) {
+            return;
+        }
+
         var loginTopPos = (jQuery(window).height() / 2 - jQuery('.fpcm-login-form').height() * 0.5);
-        jQuery('.fpcm-login-form').css('margin-top', loginTopPos);  
+        jQuery('.fpcm-login-form').css('margin-top', loginTopPos);        
+        
+        var loginLeftPos = jQuery('.fpcm-wrapper-left').width();
+        jQuery('.fpcm-login-form').css('margin-left', loginLeftPos);
     },
 
     setFocus: function () {
