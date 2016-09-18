@@ -38,6 +38,10 @@
     .fpcm-ui-permissions-container {
         width: 50% !important;
     }
+    
+    #fpcm-navigation-submenu-profile {
+        margin-left: -66%;
+    }
 
 }
 

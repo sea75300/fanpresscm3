@@ -153,7 +153,7 @@ var fpcmJs = function () {
         var prof_sbm = jQuery('#fpcm-navigation-submenu-profile');
 
         wrpl.css('min-height', '');
-        prof_sbm.css('margin-left', 'initial');
+        prof_sbm.css('margin-left', '');
         prof_sbm.css('margin-top', '');
 
         if (jQuery(window).width() > 800) {
