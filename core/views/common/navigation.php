@@ -46,6 +46,7 @@
                     </li>
                 </ul>
             </li>
+            <li class="fpcm-menu-level1 fpcm-menu-level1-show trio-nav"></li>
 
     <?php foreach ($FPCM_NAVIGATION as $navigationGroup) : ?>            
         <?php foreach ($navigationGroup as $groupName => $navigationItem) : ?>     
