@@ -41,7 +41,7 @@
                     <li class="fpcm-menu-level2 fpcm-navigation-submenu-profile-meta">
                         <span><b><?php $FPCM_LANG->write('PROFILE_MENU_LOGGEDINSINCE'); ?>:</b></span>
                         <span><?php \fpcm\model\view\helper::dateText($FPCM_SESSION_LOGIN); ?> (<?php print $FPCM_DATETIME_ZONE; ?>)</span>
-                        <span><b><?php $FPCM_LANG->write('PROFILE_MENU_YOURIP'); ?>:</b></span>
+                        <span><b><?php $FPCM_LANG->write('PROFILE_MENU_YOURIP'); ?></b></span>
                         <span><?php print fpcm\classes\http::getIp(); ?></span>
                     </li>
                 </ul>
