@@ -126,7 +126,6 @@
                 $this->view->assign('showReload', true);
                 $this->view->assign('showNextButton', false);
                 $this->view->addErrorMessage('INSTALLER_SYSCHECK_FAILEDMSG');
-                $this->view->assign('nofade', true);
             }
 
             $this->view->assign('installer', true);

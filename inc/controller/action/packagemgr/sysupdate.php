@@ -68,7 +68,6 @@
 
             if (!is_writable(\fpcm\classes\baseconfig::$versionFile)) {
                 $this->view->addErrorMessage('UPDATE_WRITEERROR');
-                $this->view->assign('nofade', true);
                 $this->view->render();
                 return false;
             }

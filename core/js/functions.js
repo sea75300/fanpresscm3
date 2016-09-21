@@ -73,7 +73,7 @@ var fpcmJs = function () {
         fpcmJs.showLoader(false);
         jQuery('.fpcm-messages').remove();
         fpcmJs.appendHtml('#fpcm-body', ajaxResult);
-        fpcmJs.messagesCenter();
+        fpcmJs.prepareMessages();
         fpcmJs.reloadLogs(workData);
 
     };
@@ -132,12 +132,9 @@ var fpcmJs = function () {
         window.location.href = url;
     };
     
-    this.messagesCenter = function () {
-        var messagesTopPos  = (jQuery(window).height() / 2 - jQuery('.fpcm-messages').height() * 0.5);
-        var messagesLeftPos = (jQuery(window).width() / 2 - jQuery('.fpcm-messages').width() * 0.5);
-        jQuery('.fpcm-messages').css('top', messagesTopPos);
-        jQuery('.fpcm-messages').css('left', messagesLeftPos);        
-        jQuery('.fpcm-messages.fpcm-messages-fadeout').delay(3000).fadeOut('slow');
+    this.prepareMessages = function () {
+        jQuery('div.fpcm-message-box.fpcm-message-notice').delay(2000).fadeOut('slow');
+        jQuery('div.fpcm-message-box.fpcm-message-neutral').delay(2000).fadeOut('slow');
         jQuery('.fpcm-messages div.fpcm-message-box').draggable({
             opacity: 0.5,
             cursor: 'move'
@@ -145,7 +142,7 @@ var fpcmJs = function () {
     };
     
     this.windowResize = function () {        
-        self.messagesCenter();
+        self.prepareMessages();
         jQuery('#fpcm-ui-errorbox').css('top', jQuery(window).height() / 2 - jQuery('#fpcm-ui-errorbox').height() / 2);
 
         var wrpl     = jQuery('#fpcm-wrapper-left');
@@ -340,7 +337,7 @@ var fpcmJs = function () {
         if (!workData) {
             jQuery('.fpcm-messages').removeClass('fpcm-messages-fadeout');
         };
-        fpcmJs.messagesCenter();
+        fpcmJs.prepareMessages();
     };
     
     this.systemCheck = function () {

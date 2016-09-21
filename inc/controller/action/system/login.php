@@ -122,7 +122,6 @@
                 } else {
                     \fpcm\classes\logs::syslogWrite("Passwort reset for user id {$user->getUsername()} failed.");
                     $this->view->addErrorMessage('LOGIN_PASSWORD_RESET_FAILED');
-                    $this->view->assign('nofade', false);
                 }
                 
             }
@@ -152,7 +151,6 @@
             if (($this->iplist->ipIsLocked() || $this->iplist->ipIsLocked('nologin'))) {
                 $this->view->addErrorMessage('ERROR_IP_LOCKED');
                 $this->view->assign('lockedGlobal', true);
-                $this->view->assign('nofade', false);
             }            
             
             if ($this->loginLocked) {
@@ -161,7 +159,6 @@
                     '{{lockedtime}}' => $this->loginLockedExpire / 60,
                     '{{lockeddate}}' => date($this->config->system_dtmask, $this->loginLockedDate)
                 ));
-                $this->view->assign('nofade', false);
             }
             
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'login.js'));
