@@ -165,11 +165,6 @@ var fpcmJs = function () {
 
     };
     
-    this.windowLoginResize = function () {
-        var loginTopPos = (jQuery(window).height() / 2 - jQuery('.fpcm-login-form').height() * 0.5 - jQuery('.fpcm-header').height());
-        jQuery('.fpcm-login-form').css('margin-top', loginTopPos);      
-    };
-    
     this.assignButtons = function () {
 
         fpcm.ui.controlgroup('.fpcm-ui-buttonset');
