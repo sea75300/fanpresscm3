@@ -46,14 +46,11 @@ label {
 }
 
 h1 {
-    font-size:1.5em;
-    border: 1px solid #4297D7;
-    background: url('../../inc/lib/jquery-ui/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png') repeat-x scroll 50% 50% #5C9CCC;
-    color: #FFF;
-    padding: 0.4em;
-    margin-top: 0;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px #999999;
+    font-size: 1.75em;
+    background: rgba(255,255,255,0.5);
+    color: #222;
+    padding: 0.6em;
+    margin: -0.25em -0.3em 0.8em -0.25em;
 }
 
 h1 a.fpcm-ui-helpbutton {
@@ -497,6 +494,10 @@ div.fpcm-navigation ul.fpcm-menu li {
     margin: 0px;
 }
 
+div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-active {
+    background: rgba(255, 173, 97, 0.5);
+}
+
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1:last-child {
     width: auto;
     padding: 0.6em 0.8em;
@@ -516,9 +517,9 @@ div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navicon {
 
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1.trio-nav {
     display: inline-block;
-    width: 32.333%;
-    margin: 0;
-    padding: 0.3em 0;
+    width: 33.333333333333333333%;
+    margin: 0px -2px;
+    padding: 0.3em 0 !important;
     line-height: 50px;
 }
 

@@ -20,6 +20,11 @@ fpcm.ui = {
         this.spinner('input.fpcm-ui-spinner');
         this.tabs('.fpcm-tabs-general');
         this.accordion('.fpcm-tabs-accordion');
+        
+        var active_submenu_items = jQuery('#fpcm-navigation-ul ul.fpcm-submenu').find('li.fpcm-menu-active');
+        if (active_submenu_items.length !== undefined && active_submenu_items.length) {            
+            jQuery(active_submenu_items[0]).parent().parent().addClass('fpcm-menu-active');
+        }
 
     },
     
