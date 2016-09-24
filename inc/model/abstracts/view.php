@@ -172,6 +172,27 @@
         }
 
         /**
+         * String zum Setzten des aktuell aktiven Modules in Navigation
+         * @return string
+         * @since FPCM 3.4
+         */
+        protected function getNavigationActiveCheckStr() {
+
+            $data = array();
+            
+            $module = \fpcm\classes\http::getOnly('module');
+            $mode   = \fpcm\classes\http::getOnly('mode');
+            $key    = \fpcm\classes\http::getOnly('key');
+            
+            $data[] = \fpcm\classes\http::getOnly('module');
+            $data[] = ($mode ? '&mode='.$mode : '');
+            $data[] = ($key ? '&key='.$key : '');
+
+            return implode('', $data);
+            
+        }
+
+        /**
          * View-Pfad zurückgeben
          * @return string
          */

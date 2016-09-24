@@ -150,6 +150,7 @@
             
             $this->view->assign('showDisableButton', $showDisableButton);
             $this->view->setViewJsFiles(array(\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')));
+            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users'));
             
             $this->view->render();            
         }

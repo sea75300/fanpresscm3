@@ -48,8 +48,6 @@
 
             <?php include_once 'navigation.php'; ?>
 
-            <?php fpcmDebugOutput(); ?>
-
             <div class="fpcm-footer fpcm-footer-left">
                 <div class="fpcm-footer-text">
                     <b>Version</b> <?php print $FPCM_VERSION; ?><br>

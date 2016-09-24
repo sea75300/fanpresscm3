@@ -68,7 +68,7 @@
 
             if (!class_exists($controllerName)) {
                 trigger_error('Undefined controller called: '.$module);
-                $this->errorPage("ERROR: The controller class <b>$module</b> does not exist! :/");
+                $this->errorPage("The rquested controller <b>$module</b> does not exist! <span class=\"fa fa-frown-o\"></span>");
             }
 
             /**
@@ -78,7 +78,7 @@
 
             if (!is_a($controller, 'fpcm\controller\abstracts\controller')) {
                 trigger_error("ERROR: The controller for <b>$module</b> must be an instance of <b>fpcm\controller\abstracts\controller</b>.");
-                die("ERROR: The controller for <b>$module</b> must be an instance of <b>fpcm\controller\abstracts\controller</b>. ;)");
+                die("Controller class <b>$module</b> must be an instance of <b>fpcm\controller\abstracts\controller</b>. <span class=\"fa fa-frown-o\"></span>");
             }
 
             if (!$controller->request()) return false;

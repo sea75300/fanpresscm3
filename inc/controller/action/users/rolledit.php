@@ -45,6 +45,7 @@
             }
             
             $this->view->assign('userRoll', $userRoll);
+            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users'));
             
             return true;
             

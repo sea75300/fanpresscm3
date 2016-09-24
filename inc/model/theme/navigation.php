@@ -118,7 +118,7 @@
                         'description'       => $this->language->translate('HL_COMMENTS_MNG'),
                         'icon'              => 'fa fa-comments',
                         'class'             => '',
-                        'id'                => ''                        
+                        'id'                => 'nav-item-editcomments'                        
                     )
                 ),
                 'filemanager'   => array(
@@ -225,7 +225,7 @@
                     'permission'        => array('system' => 'users', 'system' => 'rolls'),
                     'description'       => $this->language->translate('HL_OPTIONS_USERS'),
                     'class'             => '',
-                    'id'                => '',
+                    'id'                => 'nav-item-users',
                     'icon'              => 'fa fa-users fa-fw'
                 ),
                 array(
@@ -241,7 +241,7 @@
                     'permission'        => array('system' => 'ipaddr'),
                     'description'       => $this->language->translate('HL_OPTIONS_IPBLOCKING'),
                     'class'             => '',
-                    'id'                => '',
+                    'id'                => 'nav-item-ips',
                     'icon'              => 'fa fa-unlock fa-fw'
                 ),
                 array(
@@ -249,7 +249,7 @@
                     'permission'        => array('system' => 'wordban'),
                     'description'       => $this->language->translate('HL_OPTIONS_WORDBAN'),
                     'class'             => '',
-                    'id'                => '',
+                    'id'                => 'nav-item-wordban',
                     'icon'              => 'fa fa-ban fa-fw'
                 ),
                 array(
@@ -257,7 +257,7 @@
                     'permission'        => array('system' => 'categories'),
                     'description'       => $this->language->translate('HL_CATEGORIES_MNG'),
                     'class'             => '',
-                    'id'                => '',
+                    'id'                => 'nav-item-categories',
                     'icon'              => 'fa fa-file-o fa-fw'
                 ),
                 array(
@@ -273,7 +273,7 @@
                     'permission'        => array('system' => 'smileys'),
                     'description'       => $this->language->translate('HL_OPTIONS_SMILEYS'),
                     'class'             => '',
-                    'id'                => '',
+                    'id'                => 'nav-item-smileys',
                     'icon'              => 'fa fa-smile-o fa-fw'
                 ),
                 array(

@@ -132,6 +132,7 @@
                 $this->assign('FPCM_SESSION_LOGIN', $this->session->getLogin());
                 $nav = new \fpcm\model\theme\navigation();
                 $this->assign('FPCM_NAVIGATION', $nav->render());
+                $this->assign('FPCM_NAVIGATION_ACTIVE', $this->getNavigationActiveCheckStr());
                 $this->jsvars = array('fpcmSessionCheckEnabled' => true) + $this->jsvars;
 
                 $this->addJsLangVars(array(

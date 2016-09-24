@@ -253,7 +253,8 @@
             $this->view->addJsVars(array(
                 'fpcmEditorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT'),
                 'fpcmEditorCommentLayerSave'   => $this->lang->translate('GLOBAL_SAVE'),
-                'fpcmCanConnect'               => \fpcm\classes\baseconfig::canConnect() ? 1 : 0
+                'fpcmCanConnect'               => \fpcm\classes\baseconfig::canConnect() ? 1 : 0,
+                'fpcmNavigationActiveItemId'   => 'itemnav-id-editnews'
             ));
             
             if (!$this->permissions->check(array('article' => 'approve')) && $this->article->getApproval()) {

@@ -50,6 +50,8 @@
                 $this->cache->cleanup();
                 $this->redirect('smileys/list', array('added' => 1));
             }
+
+            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-smileys'));
             
             return true;            
         }

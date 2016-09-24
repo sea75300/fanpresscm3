@@ -51,6 +51,7 @@
             $userRolls = new \fpcm\model\users\userRollList();            
             $this->view->assign('userRolls', $userRolls->getUserRollsTranslated());               
             $this->view->assign('category', $this->category);
+            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-categories'));
             
             $this->view->render();            
         }
