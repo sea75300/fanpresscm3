@@ -68,7 +68,7 @@
 
             if (!class_exists($controllerName)) {
                 trigger_error('Undefined controller called: '.$module);
-                $this->errorPage("The rquested controller <b>$module</b> does not exist! <span class=\"fa fa-frown-o\"></span>");
+                $this->errorPage("The requested controller <b>$module</b> does not exist! <span class=\"fa fa-frown-o\"></span>");
             }
 
             /**
