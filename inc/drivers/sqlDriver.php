@@ -63,11 +63,20 @@
         public function orderBy(array $conditions);
         
         /**
-         * Erzeugt CONCAT SQl_String
+         * Erzeugt CONCAT SQL-String
          * @param array $fields
          * @return string
          */        
         public function concatString(array $fields);
+        
+        /**
+         * Erzeugt CONCAT_WS SQL-String
+         * @param string $delim
+         * @param array $fields
+         * @return string
+         * @since FPCM 3.4
+         */       
+        public function implodeCols($delim, array $fields);
         
         /**
          * Erzeugt Parameter für @see \PDO::lastInsertId()
@@ -99,5 +108,12 @@
          * @since FPCM 3.3.1
          */
         public function createIndexString($table, $indexName, $field, $isUnique);
+
+        /**
+         * Liefert empfohlene Version für Datenbank-System zurück
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getRecommendVersion();
         
     }

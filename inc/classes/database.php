@@ -585,13 +585,24 @@
         }
         
         /**
-         * Erzeugt CONCAT SQl_String
+         * Erzeugt CONCAT SQL-String
          * @param array $fields
          * @return string
          * @since FPCM 3.1.0
          */
         public function concatString(array $fields) {
             return $this->driver->concatString($fields);
+        }
+
+        /**
+         * Erzeugt CONCAT_WS SQL-String
+         * @param string $delim
+         * @param array $fields
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function implodeCols($delim, array $fields) {
+            return $this->driver->implodeCols($delim, $fields);
         }
         
         /**
@@ -646,6 +657,33 @@
          */
         public function getYaTDLDataTypes() {
             return $this->driver->getYaTDLDataTypes();
+        }
+
+        /**
+         * Gibt Version des verbundenen Datenbank-Systems zurück
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getDbVersion() {            
+            return $this->connection->getAttribute(\PDO::ATTR_SERVER_VERSION);
+        }
+
+        /**
+         * Prüft, ob aktuelle Version des DBMS >= der empfohlenen Version ist
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function checkDbVersion() {            
+            return version_compare($this->getDbVersion(), $this->getRecommendVersion(), '>=') ? true : false;            
+        }
+
+        /**
+         * Gibt Version des verbundenen Datenbank-Systems zurück
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getRecommendVersion() {            
+            return $this->driver->getRecommendVersion();
         }
 
         /**

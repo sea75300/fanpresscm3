@@ -237,8 +237,8 @@ ol.list-large li {
 
 .fpcm-messages {
     position: fixed;
-    right: 4em;
-    top: 1em;
+    right: 2.5em;
+    top: 4.5em;
     z-index: 10000;
     max-width: 66%;
     min-width: 200px;

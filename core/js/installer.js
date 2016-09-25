@@ -23,7 +23,7 @@ var fpcmInstaller = function () {
 
         fpcmAjax.action     = 'installer/checkdb';
         fpcmAjax.data       = {dbdata: sParams};
-        fpcmAjax.execDone   = "if (fpcmAjax.result == '1' || fpcmAjax.result == 1) { jQuery('#installerform').submit();return true; } else { alert(fpcmInstallerDBTestFailed); }";
+        fpcmAjax.execDone   = "fpcmInstaller.checkDbCallback(fpcmAjax.result);";
         fpcmAjax.async      = false;
         fpcmAjax.post();
         fpcmAjax.reset();
@@ -31,6 +31,18 @@ var fpcmInstaller = function () {
         return false;
     };
     
+    this.checkDbCallback = function(res) {
+
+        if (res === '1' || res === 1) {
+            jQuery('#installerform').submit();
+            return true;
+        }
+
+        alert(fpcmInstallerDBTestFailed);
+        return false;
+
+    };
+
     this.initDatabase = function () {
         jQuery.each(fpcmSqlFiles, function( key, obj ) {
 

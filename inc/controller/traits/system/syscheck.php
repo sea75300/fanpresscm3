@@ -82,9 +82,17 @@
                     'current'   => \fpcm\classes\baseconfig::$fpcmDatabase->getDbtype(),
                     'recommend' => implode(', ', array_intersect($dbDrivers, array_keys(\fpcm\classes\database::$supportedDBMS))),
                     'result'    => true,
-                    'helplink'  => '',
+                    'helplink'  => 'http://php.net/manual/de/pdo.getavailabledrivers.php',
                     'optional'  => 0
-                );                
+                );
+
+                $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_DBVERSION')]    = array(
+                    'current'   => \fpcm\classes\baseconfig::$fpcmDatabase->getDbVersion(),
+                    'recommend' => \fpcm\classes\baseconfig::$fpcmDatabase->getRecommendVersion(),
+                    'result'    => \fpcm\classes\baseconfig::$fpcmDatabase->checkDbVersion(),
+                    'helplink'  => 'http://php.net/manual/de/pdo.getattribute.php',
+                    'optional'  => 0
+                );
             }
             
             $current = in_array('pdo', $loadedExtensions) && in_array('pdo_mysql', $loadedExtensions);

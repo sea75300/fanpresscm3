@@ -37,12 +37,19 @@
         /**
          * Controller-Processing
          */
-        public function process() {            
+        public function process() {
+
             $databaseInfo = $this->getRequestVar('dbdata');
 
             try {
                 $db = new \fpcm\classes\database($databaseInfo);                
             } catch (\PDOException $exc) {
+                trigger_error($exc->getMessage());
+                die('0');
+            }
+            
+            if (!$db->checkDbVersion()) {
+                trigger_error('Unsupported database system detected. Installed version is '.$db->getDbVersion().', FanPress CM requires version '.$db->getRecommendVersion());
                 die('0');
             }
 

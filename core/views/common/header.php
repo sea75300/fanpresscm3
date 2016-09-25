@@ -12,8 +12,6 @@
     <body class="fpcm-body" id="fpcm-body"> 
         
         <?php include_once 'vars.php'; ?>
-        
-        <?php include_once 'profiledialog.php'; ?>
 
         <div class="fpcm-wrapper-left <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-fixed<?php endif; ?>" id="fpcm-wrapper-left">
             

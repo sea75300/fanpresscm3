@@ -140,6 +140,7 @@
         'SYSTEM_OPTIONS_SYSCHECK_DBDRV_MYSQL'       => 'MySQL/ MariaDB database driver',
         'SYSTEM_OPTIONS_SYSCHECK_DBDRV_PGSQL'       => 'Postgres database driver',
         'SYSTEM_OPTIONS_SYSCHECK_DBDRV_ACTIVE'      => 'Active database driver',
+        'SYSTEM_OPTIONS_SYSCHECK_DBVERSION'         => 'Database system version',
 
         'SYSTEM_OPTIONS_CRONINTERVALS' => array(
             'every request'     => 0,

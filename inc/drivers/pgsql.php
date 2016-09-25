@@ -111,10 +111,19 @@
          * @since FPCM 3.3.1
          */
         public function createIndexString($table, $indexName, $field, $isUnique) {
-
             $index = ($isUnique ? 'UNIQUE INDEX' : 'INDEX');
             return "CREATE {$index} {$table}_{$indexName} ON {$table} USING btree ({$field});";
+        }
 
+        /**
+         * Erzeugt CONCAT_WS SQL-String
+         * @param string $delim
+         * @param array $fields
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function implodeCols($delim, array $fields) {
+            return " CONCAT_WS('{$delim}', '".  implode("', '", $fields)."')";
         }
 
         /**
@@ -138,6 +147,15 @@
                 'char'      => 'char'
             );
 
+        }
+
+        /**
+         * Liefert empfohlene Version für Datenbank-System zurück
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getRecommendVersion() {
+            return '9.1';
         }
 
     }
