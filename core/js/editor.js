@@ -8,8 +8,6 @@
 var fpcmEditor = function () {
     
     var self = this;    
-    var filemanagerWidth  = jQuery(top).width() * 0.75;
-    var filemanagerHeight = jQuery(top).height() * 0.75;
 
     this.insert = function(aTag, eTag) {    
 
@@ -180,10 +178,14 @@ var fpcmEditor = function () {
     };
 
     this.showFileManager = function() {
+        
+        var size = fpcm.ui.getDialogSizes();
+        
         fpcmJs.appendHtml('#fpcm-dialog-editor-html-filemanager', '<iframe id="fpcm-dialog-editor-html-filemanager-frame" class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
         fpcm.ui.dialog({
             id       : 'editor-html-filemanager',
-            dlMinWidth : filemanagerWidth,
+            dlMinWidth : size.width,
+            dlMinHeight: size.height,
             modal    : true,
             resizable: true,
             title    : fpcm.ui.translate('fileManagerHeadline'),
@@ -211,17 +213,17 @@ var fpcmEditor = function () {
     
     this.showCommentLayer = function (layerUrl) {
         
-        if (jQuery(window).width() >= 600) {
-            dialogWidth = 900;
-        } else {
-            dialogWidth = '95%';
-        }
+        var size = fpcm.ui.getDialogSizes();
         
         fpcmJs.appendHtml('#fpcm-dialog-editor-comments', '<iframe id="fpcm-editor-comment-frame" name="fpcmeditorcommentframe" class="fpcm-full-width" src="' + layerUrl + '"></iframe>');
         jQuery('.fpcm-ui-commentaction-buttons').fadeOut();
+
+        var size = fpcm.ui.getDialogSizes();
+
         fpcm.ui.dialog({
             id       : 'editor-comments',
-            dlWidth    : dialogWidth,
+            dlWidth    : size.width,
+            dlHeight   : size.height,
             resizable: true,
             title    : fpcmEditorCommentLayerHeader,
             dlButtons  : [
@@ -438,11 +440,12 @@ var fpcmEditor = function () {
 
         self.initCodeMirrorAutosave();
         
-        jQuery('#fpcm-dialog-editor-html-insertlink-btn').click(function() {
+        var size = fpcm.ui.getDialogSizes();
+
+        jQuery('#fpcm-dialog-editor-html-insertlink-btn').click(function() {           
             fpcm.ui.dialog({
                 id: 'editor-html-insertlink',
-                dlWidth: 500,
-                dlHeight: 300,
+                dlWidth: size.width,
                 title: fpcm.ui.translate('editorInsertLink'),
                 dlButtons: [
                     {
@@ -482,8 +485,7 @@ var fpcmEditor = function () {
         jQuery('#fpcm-dialog-editor-html-insertimage-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertimage',
-                dlWidth: 500,
-                dlHeight: 300,
+                dlWidth: size.width,
                 title: fpcm.ui.translate('editorInsertPic'),
                 dlButtons: [
                     {
@@ -532,8 +534,7 @@ var fpcmEditor = function () {
 
             fpcm.ui.dialog({
                 id: 'editor-html-inserttable',
-                dlWidth: 400,
-                dlHeight: 250,
+                dlWidth: size.width,
                 title: fpcm.ui.translate('editorInsertTable'),
                 dlButtons: [
                     {
@@ -566,8 +567,7 @@ var fpcmEditor = function () {
         jQuery('#fpcm-dialog-editor-html-insertcolor-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertcolor',
-                dlWidth: 500,
-                dlHeight: 250,
+                dlWidth: size.width,
                 title: fpcm.ui.translate('editorInsertColor'),
                 dlButtons: [
                     {
@@ -593,8 +593,7 @@ var fpcmEditor = function () {
         jQuery('#fpcm-dialog-editor-html-insertmedia-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertmedia',
-                dlWidth: 500,
-                dlHeight: 250,
+                dlWidth: size.width,
                 title: fpcm.ui.translate('editorInsertMedia'),
                 dlButtons: [
                     {
@@ -620,7 +619,7 @@ var fpcmEditor = function () {
         jQuery('#fpcm-dialog-editor-html-insertsmiley-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertsmileys',
-                dlWidth: 350,
+                dlWidth: size.width,
                 title: fpcm.ui.translate('editorInsertSmiley'),
                 dlButtons: [
                     {
@@ -652,8 +651,8 @@ var fpcmEditor = function () {
         jQuery('#fpcm-dialog-editor-html-insertsymbol-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertsymbol',
-                dlWidth: 600,
-                dlHeight: 500,
+                dlWidth: size.width,
+                dlHeight: size.height,
                 title: fpcm.ui.translate('editorInsertSymbol'),
                 dlButtons: [
                     {
@@ -671,8 +670,7 @@ var fpcmEditor = function () {
         jQuery('#fpcm-dialog-editor-html-insertdraft-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertdraft',
-                dlWidth: 350,
-                dlHeight: 250,
+                dlWidth: fpcm.ui.getDialogSizes(top, 0.25).width,
                 title: fpcm.ui.translate('editorInsertATpl'),
                 dlButtons: [
                     {
@@ -745,8 +743,8 @@ var fpcmEditor = function () {
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
                     title           : fpcm.ui.translate('fileManagerHeadline'),
-                    width           : filemanagerWidth,
-                    height          : filemanagerHeight,
+                    width           : fpcm.ui.getDialogSizes().width,
+                    height          : fpcm.ui.getDialogSizes().height,
                     close_previous  : false,
                     buttons  : [
                         {
@@ -898,17 +896,11 @@ jQuery(document).ready(function() {
     fpcm.ui.button('#fpcmeditorextended', {},
     function() {
 
-        if (jQuery(window).width() >= 800) {
-            dialogWidth = 600;
-        } else if (jQuery(window).width() >= 480) {
-            dialogWidth = '75%';
-        } else if (jQuery(window).width() <= 480) {
-            dialogWidth = '95%';
-        }
-        
+        var size = fpcm.ui.getDialogSizes();
+
         fpcm.ui.dialog({
             id: 'editor-extended',
-            dlWidth: dialogWidth,
+            dlWidth: size.width,
             title: fpcm.ui.translate('extended'),
             dlButtons: [
                 {
@@ -963,18 +955,12 @@ jQuery(document).ready(function() {
     jQuery('.fpcm-articlelist-shortlink').click(function () {
         var text = jQuery(this).text();
         var link = jQuery(this).attr('href');
-        
-        if (jQuery(window).width() >= 600) {
-            dialogWidth = 900;
-        } else if (jQuery(window).width() >= 480) {
-            dialogWidth = '75%';
-        } else if (jQuery(window).width() <= 480) {
-            dialogWidth = '95%';
-        } 
-        
+
+        var size = fpcm.ui.getDialogSizes();
+
         fpcm.ui.dialog({
             id: 'editor-shortlink',
-            dlWidth: dialogWidth,
+            dlWidth: size.width,
             title: text,
             dlButtons: [
                 {

@@ -371,7 +371,7 @@
          * @return void
          */
         public static function buttonsContainerClass() {
-            print 'fpcm-buttons fpcm-buttons-fixed ui-widget-header ui-corner-tl ui-corner-bl';
+            print 'fpcm-buttons fpcm-buttons-fixed';
         }
         
         /**

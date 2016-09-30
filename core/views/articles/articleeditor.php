@@ -15,7 +15,6 @@
 
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $editorAction; ?>" name="nform">
         <div id="tabs-article">
-            <!-- Dateimanager layer -->  
             <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-filemanager"></div>            
             
             <?php include $editorFile; ?>                

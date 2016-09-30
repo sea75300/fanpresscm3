@@ -103,10 +103,12 @@ var fpcmModulelist = function () {
     
     this.showDetails = function (moduleKey, moduleName) {
 
+        var size = fpcm.ui.getDialogSizes();
+
         var details = fpcmModuleLayerInfos[moduleKey];
         fpcm.ui.dialog({
             id         : 'modulelist-infos',
-            dlWidth    : 550,
+            dlWidth    : size.width,
             resizable  : true,
             title      : fpcm.ui.translate('detailsHeadline') + ' « ' + moduleName + ' »',
             dlButtons  : [

@@ -355,10 +355,13 @@ var fpcmJs = function () {
     };
     
     this.openManualCheckFrame = function () {
+
+        var size = fpcm.ui.getDialogSizes();
+
         fpcm.ui.dialog({
             id         : 'manualupdate-check',
-            dlWidth    : (jQuery(window).width() * 0.5),
-            dlHeight   : (jQuery(window).height() * 0.75),
+            dlWidth    : size.width,
+            dlHeight   : size.height,
             resizable  : true,
             title      : fpcmManualCheckHeadline,
             dlButtons  : [
@@ -529,10 +532,11 @@ var fpcmJs = function () {
 
             fpcm.ui.datepicker('.fpcm-full-width-date');
 
+            var size = fpcm.ui.getDialogSizes();
+
             fpcm.ui.dialog({
                 id      : 'comments-search',
-                dlWidth: 700,
-                dlHeight: 350,
+                dlWidth: size.width,
                 resizable: true,
                 title    : fpcm.ui.translate('searchHeadline'),
                 dlButtons  : [

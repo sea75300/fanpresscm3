@@ -46,10 +46,11 @@ fpcm.articlelist = {
                 minDate: fpcmArticlSearchMinDate
             });
 
+            var size = fpcm.ui.getDialogSizes();
+
             fpcm.ui.dialog({
                 id      : 'articles-search',
-                dlWidth: 700,
-                dlHeight: 375,
+                dlWidth: size.width,
                 resizable: true,
                 title    : fpcm.ui.translate('searchHeadline'),
                 dlButtons  : [
