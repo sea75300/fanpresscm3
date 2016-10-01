@@ -32,8 +32,10 @@
         </div>
         
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-            <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'smileys/add', 'FILE_LIST_SMILEYADD', '', 'fpcm-loader fpcm-new-btn'); ?>
-            <?php fpcm\model\view\helper::deleteButton('deleteSmiley'); ?>
+            <div class="fpcm-ui-margin-center">
+                <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'smileys/add', 'FILE_LIST_SMILEYADD', '', 'fpcm-loader fpcm-new-btn'); ?>
+                <?php fpcm\model\view\helper::deleteButton('deleteSmiley'); ?>
+            </div>
         </div> 
 
         <?php \fpcm\model\view\helper::pageTokenField(); ?>

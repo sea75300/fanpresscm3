@@ -11,7 +11,9 @@
         </div>
     
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-            <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.$backaction, 'GLOBAL_BACK'); ?>
+            <div class="fpcm-ui-margin-center">
+                <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.$backaction, 'GLOBAL_BACK'); ?>
+            </div>
         </div>
     </form> 
 </div>

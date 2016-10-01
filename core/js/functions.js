@@ -159,6 +159,10 @@ var fpcmJs = function () {
             onlyVisible: true
         });
 
+        fpcm.ui.controlgroup('.fpcm-buttons.fpcm-ui-margin-center', {
+            onlyVisible: true
+        });
+
         fpcm.ui.button('.fpcm-ui-button');
         fpcm.ui.actionButtonsGenreal();
         fpcm.ui.assignBlankIconButton();

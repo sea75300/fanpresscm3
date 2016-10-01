@@ -51,7 +51,9 @@
 
 <?php if (!isset($externalSave)) : ?>
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-    <?php \fpcm\model\view\helper::saveButton('userSave'); ?>
+    <div class="fpcm-ui-margin-center">
+        <?php \fpcm\model\view\helper::saveButton('userSave'); ?>
+    </div>
 </div>
 <?php endif; ?>
 

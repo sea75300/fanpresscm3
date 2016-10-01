@@ -147,9 +147,8 @@ fpcm.ui = {
     
     tabs: function(elemClassId, params) {
 
-        if (params === undefined) params = {};        
+        if (params === undefined) params = {};
         jQuery(elemClassId).tabs(params);
-
     },
 
     spinner: function(elemClassId, params) {

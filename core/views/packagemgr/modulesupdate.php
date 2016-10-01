@@ -17,11 +17,9 @@
 </div>
 
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-    <table>
-        <tr>
-            <td><?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'modules/list', 'MODULES_LIST_BACKTOLIST', '', 'fpcm-loader'); ?></td>
-        </tr>
-    </table>
+    <div class="fpcm-ui-margin-center">
+        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'modules/list', 'MODULES_LIST_BACKTOLIST', '', 'fpcm-loader'); ?>
+    </div>
 </div>
 
 <script type="text/javascript">

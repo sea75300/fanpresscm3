@@ -34,8 +34,10 @@
 
 <?php if (count($commentActions)) : ?>
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-commentaction-buttons">
-    <?php if ($commentsMode == 1) : ?><?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcmcommentsopensearch', 'fpcm-articles-opensearch'); ?><?php endif; ?>
-    <?php \fpcm\model\view\helper::select('commentAction', $commentActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?>
-    <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?>
+    <div class="fpcm-ui-margin-center">
+        <?php if ($commentsMode == 1) : ?><?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcmcommentsopensearch', 'fpcm-articles-opensearch'); ?><?php endif; ?>
+        <?php \fpcm\model\view\helper::select('commentAction', $commentActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?>
+        <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?>
+    </div>
 </div>
 <?php endif; ?>

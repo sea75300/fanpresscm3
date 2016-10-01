@@ -43,8 +43,10 @@
         </div>
         
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons" id="template_buttons">
-            <?php \fpcm\model\view\helper::linkButton('#', 'GLOBAL_PREVIEW', 'showpreview', 'fpcm-ui-preview'); ?>
-            <?php \fpcm\model\view\helper::saveButton('saveTemplates'); ?>
+            <div class="fpcm-ui-margin-center">
+                <?php \fpcm\model\view\helper::linkButton('#', 'GLOBAL_PREVIEW', 'showpreview', 'fpcm-ui-preview'); ?>
+                <?php \fpcm\model\view\helper::saveButton('saveTemplates'); ?>
+            </div>
         </div>
     </form>
 </div>

@@ -46,9 +46,11 @@
                 </table>
                 
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/add', 'USERS_ADD', '', 'fpcm-loader fpcm-new-btn'); ?>
-                    <?php fpcm\model\view\helper::submitButton('disableUser', 'GLOBAL_DISABLE', 'fpcm-loader fpcm-ui-useractions-disable'); ?>
-                    <?php fpcm\model\view\helper::deleteButton('deleteActive'); ?>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/add', 'USERS_ADD', '', 'fpcm-loader fpcm-new-btn'); ?>
+                        <?php fpcm\model\view\helper::submitButton('disableUser', 'GLOBAL_DISABLE', 'fpcm-loader fpcm-ui-useractions-disable'); ?>
+                        <?php fpcm\model\view\helper::deleteButton('deleteActive'); ?>
+                    </div>
                 </div>
             </div>
             
@@ -88,8 +90,10 @@
                 </table>
                 
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <?php fpcm\model\view\helper::submitButton('enableUser', 'GLOBAL_ENABLE', 'fpcm-loader fpcm-ui-useractions-enable'); ?>
-                    <?php fpcm\model\view\helper::deleteButton('deleteDisabled'); ?>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::submitButton('enableUser', 'GLOBAL_ENABLE', 'fpcm-loader fpcm-ui-useractions-enable'); ?>
+                        <?php fpcm\model\view\helper::deleteButton('deleteDisabled'); ?>
+                    </div>
                 </div>
             </div>
             <?php endif; ?>
@@ -113,8 +117,10 @@
                 </table>
                 
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/addroll', 'USERS_ROLL_ADD', '', 'fpcm-loader fpcm-new-btn'); ?>
-                    <?php fpcm\model\view\helper::deleteButton('deleteRoll'); ?>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/addroll', 'USERS_ROLL_ADD', '', 'fpcm-loader fpcm-new-btn'); ?>
+                        <?php fpcm\model\view\helper::deleteButton('deleteRoll'); ?>
+                    </div>
                 </div>
             </div>
             <?php endif; ?>

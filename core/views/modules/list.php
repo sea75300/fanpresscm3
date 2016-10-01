@@ -14,7 +14,8 @@
                 <?php include __DIR__.'/list_inner.php'; ?>
             </div>
             
-            <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+            <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">                
+                <div class="fpcm-ui-margin-center">
             <?php if ($moduleManagerMode) : ?>
                 <?php fpcm\model\view\helper::linkButton('#', 'MODULES_LIST_RELOADPKGLIST', 'fpcm-ui-reloadpkglist', 'fpcm-ui-button-blank fpcm-reload-btn'); ?>
             <?php else : ?>
@@ -22,6 +23,7 @@
             <?php endif; ?>
                 <?php fpcm\model\view\helper::select('moduleActions', $moduleActions, '', false, true, false, 'fpcm-ui-input-select-moduleactions'); ?>
                 <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-actions-modules fpcm-ok-button fpcm-loader'); ?>
+                </div>
             </div>         
         </div>
         

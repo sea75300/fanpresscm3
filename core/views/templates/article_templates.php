@@ -25,17 +25,11 @@
 <table id="fpcm-ui-phpupload-filelist" class="fpcm-ui-table fpcm-ui-phpupload"></table>
 
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-filemanager-buttons" id="article_template_buttons">
-    <table>
-        <tr>
-            <td>
-                <span class="fpcm-ui-fileinput-php">
-                    <?php fpcm\model\view\helper::linkButton('#', 'FILE_FORM_FILEADD', 'btnAddFile') ?>
-                    <?php fpcm\model\view\helper::submitButton('uploadFile', 'FILE_FORM_UPLOADSTART', 'start-upload fpcm-loader'); ?>
-                    <button type="reset" class="cancel-upload" id="btnCancelUpload"><?php $FPCM_LANG->write('FILE_FORM_UPLOADCANCEL'); ?></button>
-                    <input type="file" name="files[]" class="fpcm-ui-fileinput-select fpcm-hidden">
-                </span>
-            </td>
-            <td><?php fpcm\model\view\helper::deleteButton('fileDelete'); ?></td>
-        </tr>
-    </table>
+    <div class="fpcm-ui-margin-center">
+        <?php fpcm\model\view\helper::linkButton('#', 'FILE_FORM_FILEADD', 'btnAddFile') ?>
+        <?php fpcm\model\view\helper::submitButton('uploadFile', 'FILE_FORM_UPLOADSTART', 'start-upload fpcm-loader'); ?>
+        <button type="reset" class="cancel-upload" id="btnCancelUpload"><?php $FPCM_LANG->write('FILE_FORM_UPLOADCANCEL'); ?></button>
+        <input type="file" name="files[]" class="fpcm-ui-fileinput-select fpcm-hidden">
+        <?php fpcm\model\view\helper::deleteButton('fileDelete'); ?>
+    </div>
 </div>

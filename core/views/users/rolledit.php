@@ -17,11 +17,9 @@
                 </table>            
 
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <td><?php \fpcm\model\view\helper::saveButton('saveRoll'); ?></td>
-                        </tr>
-                    </table>
+                    <div class="fpcm-ui-margin-center">
+                        <?php \fpcm\model\view\helper::saveButton('saveRoll'); ?>
+                    </div>
                 </div>                
             </div>
         </div>

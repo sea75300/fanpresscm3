@@ -24,21 +24,13 @@ jQuery(document).ready(function () {
         </div>
     </div>
     
-    <?php if ($showNextButton) : ?>
     <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-        <table>
-            <tr>
-                <td><?php \fpcm\model\view\helper::submitButton('SubmitNext', 'GLOBAL_NEXT'); ?></td>
-            </tr>
-        </table>
+        <div class="fpcm-ui-margin-center">
+        <?php if ($showNextButton) : ?>
+            <?php \fpcm\model\view\helper::submitButton('SubmitNext', 'GLOBAL_NEXT'); ?>
+        <?php elseif($showReload) : ?>
+            <?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'installer&step='.$currentStep.($currentStep > 1 ? '&language='.$FPCM_LANG->getLangCode() : ''), 'GLOBAL_RELOAD'); ?>
+        <?php endif; ?>
+        </div>
     </div>
-    <?php elseif($showReload) : ?>
-    <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-        <table>
-            <tr>
-                <td><?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'installer&step='.$currentStep.($currentStep > 1 ? '&language='.$FPCM_LANG->getLangCode() : ''), 'GLOBAL_RELOAD'); ?></td>
-            </tr>
-        </table>
-    </div>
-    <?php endif; ?>
 </form>

@@ -18,11 +18,9 @@
                     <?php include __DIR__.'/sessions.php'; ?>
                 </div>
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_0', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
-                        </tr>
-                    </table>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_0', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?>
+                    </div>
                 </div>              
             </div>
             <div id="tabs-logs-systemlog">
@@ -30,11 +28,9 @@
                     <?php include __DIR__.'/system.php'; ?>
                 </div>                
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_1', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
-                        </tr>
-                    </table>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_1', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?>
+                    </div>
                 </div>
             </div>
             <div id="tabs-logs-phplog">
@@ -42,11 +38,9 @@
                     <?php include __DIR__.'/errors.php'; ?>
                 </div>                
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_2', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
-                        </tr>
-                    </table>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_2', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?>
+                    </div>
                 </div>          
             </div>             
             <div id="tabs-logs-sqllog">
@@ -54,11 +48,9 @@
                     <?php include __DIR__.'/database.php'; ?>
                 </div>                
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_3', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
-                        </tr>
-                    </table>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_3', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?>
+                    </div>
                 </div> 
             </div>             
             <div id="tabs-logs-packages">
@@ -66,11 +58,9 @@
                     <?php include __DIR__.'/packages.php'; ?>
                 </div>
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-                    <table>
-                        <tr>
-                            <td><?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_4', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?></td>
-                        </tr>
-                    </table>
+                    <div class="fpcm-ui-margin-center">
+                        <?php fpcm\model\view\helper::submitButton('fpcm-logs-clear_4', 'LOGS_CLEARLOG', 'fpcm-logs-clear fpcm-clear-btn'); ?>
+                    </div>
                 </div> 
             </div>            
         </div>    

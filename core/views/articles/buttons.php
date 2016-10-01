@@ -1,5 +1,5 @@
 <?php if (!$isRevision) : ?>
-    <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-extended">  
+    <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-extended">
         <table class="fpcm-ui-table fpcm-ui-editor-extended">
             <tr>
                 <td class="fpcm-td-select-row"><span class="fa fa-picture-o fa-fw fa-lg"></span></td>
@@ -62,12 +62,14 @@
 <?php endif; ?>
 
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
-<?php if ($isRevision) : ?>
-    <?php if ($revisionPermission) : ?><?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?><?php endif; ?>
-    <?php \fpcm\model\view\helper::linkButton($article->getEditLink(), 'EDITOR_BACKTOCURRENT', '', 'fpcm-back-button'); ?>
-<?php else : ?>
-    <?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', 'fpcm-button-extended'); ?>
-    <?php fpcm\model\view\helper::saveButton('articleSave'); ?>
-    <?php if ($editorMode) : ?><?php fpcm\model\view\helper::deleteButton('articleDelete'); ?><?php endif; ?>
-<?php endif; ?>
+    <div class="fpcm-ui-margin-center">
+        <?php if ($isRevision) : ?>
+            <?php if ($revisionPermission) : ?><?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?><?php endif; ?>
+            <?php \fpcm\model\view\helper::linkButton($article->getEditLink(), 'EDITOR_BACKTOCURRENT', '', 'fpcm-back-button'); ?>
+        <?php else : ?>
+            <?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', 'fpcm-button-extended'); ?>
+            <?php fpcm\model\view\helper::saveButton('articleSave'); ?>
+            <?php if ($editorMode) : ?><?php fpcm\model\view\helper::deleteButton('articleDelete'); ?><?php endif; ?>
+        <?php endif; ?>
+    </div>
 </div>
