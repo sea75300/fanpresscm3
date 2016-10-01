@@ -116,9 +116,6 @@
             if (is_object($this->language)) {
                 $this->jsvars = array(
                     'fpcmLang' => array(
-                        'quickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
-                        'openProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
-                        'logout'           => $this->language->translate('LOGOUT_BTN'),
                         'confirmHL'        => $this->language->translate('GLOBAL_CONFIRM'),
                         'confirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
                         'close'            => $this->language->translate('GLOBAL_CLOSE'),

@@ -372,6 +372,29 @@ fpcm.ui = {
 
         }
         
+    },
+    
+    prepareMessages: function () {
+        jQuery('div.fpcm-message-box.fpcm-message-notice').delay(2000).fadeOut('slow');
+        jQuery('div.fpcm-message-box.fpcm-message-neutral').delay(2000).fadeOut('slow');
+        jQuery('.fpcm-messages div.fpcm-message-box').draggable({
+            opacity: 0.5,
+            cursor: 'move'
+        });
+    },
+    
+    appendMessage: function(value) {
+
+        if (fpcmMsg === undefined) {
+            fpcmMsg = [];
+        }
+
+        value = fpcmAjax.fromJSON(value);
+
+        fpcmMsg = value.data;
+        this.showMessages();
+        this.prepareMessages();
+
     }
     
 }

@@ -96,8 +96,7 @@
             
             if (!\fpcm\classes\baseconfig::canConnect()) {
                 unset($this->moduleActions[$this->lang->translate('MODULES_LIST_INSTALL')],
-                      $this->moduleActions[$this->lang->translate('MODULES_LIST_UPDATE')],
-                      $this->moduleActions[$this->lang->translate('MODULES_LIST_UNINSTALL')]);
+                      $this->moduleActions[$this->lang->translate('MODULES_LIST_UPDATE')]);
                 $this->view->assign('moduleManagerMode', false);
             }
 

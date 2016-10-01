@@ -31,10 +31,16 @@
             if (!parent::process()) return false;
             
             $this->cache->cleanup();
-
             $this->events->runEvent('clearCache');
 
-            $this->lang->write('CACHE_CLEARED_OK');
+            $this->returnData[] = array(
+                'txt'  => $this->lang->translate('CACHE_CLEARED_OK'),
+                'type' => 'notice',
+                'id'   => md5(uniqid()),
+                'icon' => 'info-circle'
+            );
+
+            $this->getResponse();
         }
 
     }

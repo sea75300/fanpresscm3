@@ -27,21 +27,19 @@
             $type = $this->getRequestVar('type');
             $msg  = $this->getRequestVar('msgtxt');
             
-            switch ($type) {
-                case 'error' :
-                    $view->addErrorMessage($msg);
-                    break;
-                case 'notice' :
-                    $view->addNoticeMessage($msg);
-                    break;
-                default:
-                    $view->addMessage($msg);
-                    break;
+            $str  = $this->lang->translate($msg);
+            if (!$str) {
+                $str = $msg;
             }
 
-            \fpcm\classes\logs::syslogWrite($view->getMessages());
-            
-            $view->render();
+            $this->returnData[] = array(
+                'txt'  => $str,
+                'type' => $type,
+                'id'   => md5($type.$msg),
+                'icon' => $type === 'error' ? 'exclamation-triangle' : ( $type === 'notice' ? 'check' : 'info-circle' )
+            );
+
+            $this->getResponse();
         }
 
     }

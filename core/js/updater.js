@@ -84,7 +84,8 @@ var fpcmUpdater = function () {
     this.ajaxCallbackFinal = function(result) {
 
         jQuery('#fpcm-ui-headspinner').removeClass('fa-spin');
-        fpcmJs.addAjaxMassage('notice', fpcmUpdaterMessages['EXIT_1'], false);
+        fpcmJs.addAjaxMassage('notice', fpcmUpdaterMessages['EXIT_1']);
+        fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + '<span class="fa fa-check-square fa-fw fa-lg fpcm-ui-booltext-yes"></span>'  + fpcmUpdaterMessages['EXIT_1'] + '</p>');
         fpcmJs.showLoader(false);
         self.addTimer();
 
