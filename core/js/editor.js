@@ -145,7 +145,7 @@ var fpcmEditor = function () {
     };
 
     this.insertColor = function(color, mode) {    
-        mode    = (typeof mode == 'undefined') ? 'color' : mode;
+        mode    = (mode === undefined) ? 'color' : mode;
         color   = (color == '') ? '#000000' : color;    
         self.insert('<span style="' + mode + ':' + color + ';">', '</span>');
 
@@ -225,7 +225,7 @@ var fpcmEditor = function () {
             dlWidth    : size.width,
             dlHeight   : size.height,
             resizable: true,
-            title    : fpcmEditorCommentLayerHeader,
+            title    : fpcm.ui.translate('editorCommentLayerHeader'),
             dlButtons  : [
                 {
                     text: fpcmEditorCommentLayerSave,

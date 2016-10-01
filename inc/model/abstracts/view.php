@@ -345,13 +345,22 @@
          * @param string $params
          * @return void
          */
-        public function addErrorMessage($messageText, $params= array()) {            
-            if ($this->language->translate($messageText)) {
-                $this->messages[][$this->language->translate($messageText, $params)] = 'error';
-                return;
+        public function addErrorMessage($messageText, $params= array()) {
+
+            $msg  = $this->language->translate($messageText, $params);
+            if (!$msg) {
+                $msg = $messageText;
             }
+
+            $type = 'error';
             
-            $this->messages[][$messageText] = 'error';
+            $this->messages[] = array(
+                'txt'  => $msg,
+                'type' => $type,
+                'id'   => md5($type.$msg),
+                'icon' => 'exclamation-triangle'
+            );
+
         }
         
         /**
@@ -361,12 +370,21 @@
          * @return void
          */
         public function addNoticeMessage($messageText, $params= array()) {
-            if ($this->language->translate($messageText)) {
-                $this->messages[][$this->language->translate($messageText, $params)] = 'notice';
-                return;
+
+            $msg  = $this->language->translate($messageText, $params);
+            if (!$msg) {
+                $msg = $messageText;
             }
+
+            $type = 'notice';
             
-            $this->messages[][$messageText] = 'notice';
+            $this->messages[] = array(
+                'txt'  => $msg,
+                'type' => $type,
+                'id'   => md5($type.$msg),
+                'icon' => 'check'
+            );
+
         }
         
         /**
@@ -376,13 +394,22 @@
          * @return void
          */
         public function addMessage($messageText, $params= array()) {
-            if ($this->language->translate($messageText)) {
-                $this->messages[][$this->language->translate($messageText, $params)] = 'neutral';
-                return;
+
+            $msg  = $this->language->translate($messageText, $params);
+            if (!$msg) {
+                $msg = $messageText;
             }
+
+            $type = 'neutral';
             
-            $this->messages[][$messageText] = 'neutral';
-        }        
+            $this->messages[] = array(
+                'txt'  => $msg,
+                'type' => $type,
+                'id'   => md5($type.$msg),
+                'icon' => 'info-circle'
+            );
+
+        }    
         
         /**
          * Prüft, ob View-Datei vorhanden ist und lädt diese

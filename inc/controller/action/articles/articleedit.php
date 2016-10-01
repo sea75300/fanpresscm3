@@ -251,11 +251,12 @@
             $this->view->assign('revisionPermission', $this->permissions->check(array('article' => 'revisions')));
             
             $this->view->addJsVars(array(
-                'fpcmEditorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT'),
                 'fpcmEditorCommentLayerSave'   => $this->lang->translate('GLOBAL_SAVE'),
                 'fpcmCanConnect'               => \fpcm\classes\baseconfig::canConnect() ? 1 : 0,
                 'fpcmNavigationActiveItemId'   => 'itemnav-id-editnews'
             ));
+            
+            $this->view->addJsLangVars(array('editorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT')));
             
             if (!$this->permissions->check(array('article' => 'approve')) && $this->article->getApproval()) {
                 $this->view->addMessage('Um den Artikel freizugeben, speichere ihn einfach erneut ab.');

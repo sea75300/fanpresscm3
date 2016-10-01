@@ -82,7 +82,7 @@
             $this->assign('messageVar', $message);
             $this->assign('backaction', $action);
         }
-
+        
         /**
          * Lädt Datei, fügt View-Element, Header & Footer zusammen und erstellt Variablen für View
          * @see view
@@ -140,6 +140,13 @@
                 ));
                 
             }
+
+            /**
+             * Meldungen
+             */
+            $this->addJsVars(array(
+                'fpcmMsg' => $this->getMessages()
+            ));
             
             /**
              * CSS und JS Files
@@ -160,11 +167,6 @@
              * Sprache
              */
             $this->assign('FPCM_LANG', $this->language);
-            
-            /**
-             * Meldungen
-             */
-            $this->assign('FPCM_MESSAGES', $this->getMessages());
             
             /**
              * Login-Status

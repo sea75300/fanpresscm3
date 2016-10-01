@@ -39,7 +39,9 @@
                     break;
             }
 
-            $view->render();            
+            \fpcm\classes\logs::syslogWrite($view->getMessages());
+            
+            $view->render();
         }
 
     }

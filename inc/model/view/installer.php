@@ -89,6 +89,13 @@
         protected function initAssigns() {
 
             /**
+             * Meldungen
+             */
+            $this->addJsVars(array(
+                'fpcmMsg' => $this->getMessages()
+            ));
+
+            /**
              * CSS und JS Files
              */
             $this->assign('FPCM_CSS_FILES', $this->getViewCssFiles());
@@ -107,11 +114,6 @@
              * Sprache
              */
             $this->assign('FPCM_LANG', $this->language);
-            
-            /**
-             * Meldungen
-             */
-            $this->assign('FPCM_MESSAGES', $this->getMessages());
             
             /**
              * System config data

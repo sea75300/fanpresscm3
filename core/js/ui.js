@@ -21,6 +21,7 @@ fpcm.ui = {
         this.tabs('.fpcm-tabs-general');
         this.accordion('.fpcm-tabs-accordion');
         this.highlightModule();
+        this.showMessages();
 
     },
     
@@ -335,12 +336,42 @@ fpcm.ui = {
                 scale_factor = 0.65;
             }
         }
-        
-        
-        return {
+
+        var ret = {
             width : jQuery(top).width() * scale_factor,
             height: jQuery(top).height() * scale_factor
         }
+
+        return ret;
+    },
+    
+    showMessages: function() {
+        
+        if (fpcmMsg === undefined || !fpcmMsg.length) {
+            return false;
+        }
+        
+        var msg = null;
+        for (var i = 0; i < fpcmMsg.length; i++) {
+
+            msg = fpcmMsg[i];
+            msgCode  = '<div class="fpcm-message-box fpcm-message-' + msg.type + '" id="msgbox-' + msg.id + '">';
+            msgCode += '    <div class="fpcm-msg-icon">';
+            msgCode += '        <span class="fa-stack fa-lg">';
+            msgCode += '            <span class="fa fa-square fa-stack-2x fa-inverse"></span>';                    
+            msgCode += '            <span class="fa fa-' + msg.icon + ' fa-stack-1x"></span>';
+            msgCode += '        </span>';
+            msgCode += '    </div>';
+            msgCode += '    <div class="fpcm-msg-text">' + msg.txt + '</div>';
+            msgCode += '    <div class="fpcm-msg-close" id="msgclose-' + msg.id + '">';
+            msgCode += '        <span class="fa-stack fa-lg"><span class="fa fa-square fa-stack-2x fa-inverse"></span><span class="fa fa-times fa-stack-1x"></span></span>';
+            msgCode += '    </div>';
+            msgCode += '</div>';
+            msgCode += '<div class="fpcm-clear"></div>';
+            fpcmJs.appendHtml('#fpcm-messages', msgCode);
+
+        }
+        
     }
     
 }
