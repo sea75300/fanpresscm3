@@ -772,6 +772,12 @@
             $this->content = nl2br($this->content, false);
             
             $search  = array('p', 'ul', 'li', 'table', 'tr', 'th', 'td', 'div', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
+
+            $eventData = $this->events->runEvent('articlePrepareDataSave', array('content' => $this->content, 'searchParams' => $search));
+
+            $this->content = $eventData['content'];
+            $search        = $eventData['searchParams'];
+
             array_map(array($this, 'replaceDirtyTags'), $search);
 
             return true;

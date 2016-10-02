@@ -87,6 +87,7 @@
         public function save() {
 
             $params = $this->getPreparedSaveParams();
+            $params = $this->events->runEvent('wordbanItemSave', $params);
 
             $return = false;
             if ($this->dbcon->insert($this->table, implode(',', array_keys($params)), implode(', ', $this->getPreparedValueParams(count($params))), array_values($params))) {
@@ -104,6 +105,7 @@
          */
         public function update() {
             $params     = $this->getPreparedSaveParams();
+            $params     = $this->events->runEvent('wordbanItemUpdate', $params);
             $fields     = array_keys($params);
             
             $params[]   = $this->getId();

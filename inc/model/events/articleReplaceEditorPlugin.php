@@ -23,7 +23,7 @@
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
      * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     * @package fpcm.model.events
+     * @package fpcm/model/events
      * @since FPCM 3.1.0
      */
     final class articleReplaceEditorPlugin extends \fpcm\model\abstracts\event {
@@ -35,7 +35,7 @@
          */
         public function run($data = null) {
             
-            $eventClasses = glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/articleReplaceEditorPlugin.php');
+            $eventClasses = $this->getEventClasses();
             
             if (!count($eventClasses)) return false;
             

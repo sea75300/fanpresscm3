@@ -1,0 +1,10 @@
+## Module list config file
+---
+name: Example Module
+vendor: nkorg
+key: example
+author: Stefan Seehafer
+link: https://nobody-knows.org
+version: 3.4.0
+sysversion: 3.4.0-dev
+description: "This is a FanPress CM 3.x module. This can be used as example or for testing purposes."

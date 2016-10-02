@@ -182,7 +182,8 @@
                 }
 
                 $dom->appendChild($rss);
-                
+                $dom = $this->events->runEvent('prepareRssFeed', $dom);
+
                 $content .= $dom->saveXML();
                 
                 if (!$this->session->exists()) {

@@ -245,6 +245,15 @@
             }
             
             $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
+
+            $eventData = $this->events->runEvent('articlesByCondition', array(
+                'conditions' => $conditions,
+                'where'      => $where
+            ));
+
+            $conditions = $eventData['conditions'];
+            $where      = $eventData['where'];
+
             $where = implode(" {$combination} ", $where);
 
             $where2 = array();
@@ -417,8 +426,8 @@
             } else {
                 $where .= ' AND deleted = 0';
             }
-            
-            return $this->dbcon->count($this->table, '*', $where);
+
+            return $this->dbcon->count($this->table, '*', $this->events->runEvent('articlesByConditionCount', $where));
         }
         
         /**

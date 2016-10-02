@@ -179,6 +179,14 @@
             }
             
             $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
+            
+            $eventData = $this->events->runEvent('commentsByCondition', array(
+                'conditions' => $conditions,
+                'where'      => $where
+            ));
+
+            $where      = $eventData['where'];
+
             $where = implode(" {$combination} ", $where);
 
             $list = $this->dbcon->fetch(
@@ -275,7 +283,7 @@
             $where .= is_null($private) ? '' : ' AND private = '.$private;
             $where .= is_null($approved) ? '' : ' AND approved = '.$approved;
             $where .= is_null($spam) ? '' : ' AND spammer = '.$spam;
-            
+
             $articleCounts = $this->dbcon->fetch($this->dbcon->select($this->table, 'articleid, count(id) AS count', "$where GROUP BY articleid"), true);
             
             if (!count($articleCounts)) return array(0);
@@ -321,7 +329,9 @@
             if (isset($condition['private'])) $where = 'private = 1';
             if (isset($condition['unapproved'])) $where = 'approved = 0';
             if (isset($condition['spam'])) $where = 'spammer = 1';
-            
+
+            $where  = $this->events->runEvent('commentsByConditionCount', $where);
+
             return $this->dbcon->count($this->table, '*', $where);
         }
         

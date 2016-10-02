@@ -346,7 +346,9 @@
             if (!$this->email) return self::AUTHOR_ERROR_NOEMAIL;
             
             $params     = $this->getPreparedSaveParams();
-            if (empty($this->passwd)) { unset($params['passwd']); }
+            if (empty($this->passwd)) {
+                unset($params['passwd']);
+            }
             
             $fields     = array_keys($params);
             

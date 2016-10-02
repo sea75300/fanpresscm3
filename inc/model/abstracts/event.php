@@ -54,6 +54,12 @@
         protected $permissions;
 
         /**
+         *
+         * @var string
+         */
+        protected $returnDataType = false;
+
+        /**
          * Konstruktor
          * @param array $modules
          * @return boolean
@@ -158,8 +164,69 @@
          */
         protected function getEventClasses() {
 
-            return glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/'.str_replace('fpcm\\model\\events\\', '', get_class($this)).'.php');
+            $return = glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/'.$this->getEventClassBase().'.php');
+            if (!is_array($return)) {
+                return array();
+            }
 
+            return $return;
         }
-        
+
+        /**
+         * Liefert
+         * @return string
+         */
+        protected function getEventClassBase() {
+            return str_replace('fpcm\\model\\events\\', '', get_class($this));
+        }
+
+        /**
+         * wird ausgeführt, wenn Artikel gespeichert wird
+         * @param array $data
+         * @return array
+         */
+        public function run($data = null) {
+            
+            $eventClasses = $this->getEventClasses();
+            
+            if (!count($eventClasses)) return $data;
+            
+            $mdata = $data;
+            foreach ($eventClasses as $eventClass) {
+                
+                $classkey = $this->getModuleKeyByEvent($eventClass);                
+                if (!in_array($classkey, $this->activeModules)) continue;
+                
+                $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, $this->getEventClassBase());
+                
+                /**
+                 * @var \fpcm\model\abstracts\event
+                 */
+                $module = new $eventClass();
+
+                if (!$this->is_a($module)) continue;
+                
+                $mdata = $module->run($mdata);
+            }
+
+            if (!$mdata) {
+                return $data;
+            }
+
+            if ($this->returnDataType === 'array' && !is_array($mdata)) {
+                trigger_error('Invalid data type. Returned data type must be an array');
+                return $data;
+            }
+            elseif ($this->returnDataType === 'object' && !is_object($mdata)) {
+                trigger_error('Invalid data type. Returned data type must be an object');
+                return $data;
+            }
+            elseif ($this->returnDataType !== false && !is_a($mdata, $this->returnDataType) ) {
+                trigger_error('Invalid data type. Returned data type must be instance of '.$this->returnDataType);
+                return $data;
+            }
+
+            return $mdata;
+            
+        }
     }
