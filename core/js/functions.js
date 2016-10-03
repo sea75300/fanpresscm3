@@ -159,7 +159,7 @@ var fpcmJs = function () {
             onlyVisible: true
         });
 
-        fpcm.ui.controlgroup('.fpcm-buttons.fpcm-ui-margin-center', {
+        fpcm.ui.controlgroup('.fpcm-buttons div.fpcm-ui-margin-center', {
             onlyVisible: true
         });
 

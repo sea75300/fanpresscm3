@@ -17,10 +17,8 @@ fpcm.login = {
         }
 
         var loginTopPos = (jQuery(window).height() / 2 - jQuery('.fpcm-login-form').height() * 0.5);
-        jQuery('.fpcm-login-form').css('margin-top', loginTopPos);        
-        
-        var loginLeftPos = jQuery('.fpcm-wrapper-left').width();
-        jQuery('.fpcm-login-form').css('margin-left', loginLeftPos);
+        jQuery('.fpcm-login-form').css('margin-top', loginTopPos);
+
     },
 
     setFocus: function () {

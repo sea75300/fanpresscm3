@@ -51,9 +51,13 @@ var fpcmModulelist = function () {
         
         jQuery('.fpcm-ui-actions-modules').click(function () {
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
+            
+            var size  = fpcm.ui.getDialogSizes(top, 0.35);
+
             fpcm.ui.dialog({
                 title: fpcm.ui.translate('confirmHL'),
                 content: fpcm.ui.translate('confirmMessage'),
+                dlWidth: size.width,
                 dlButtons: [
                     {
                         text: fpcm.ui.translate('yes'),

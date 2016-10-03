@@ -67,9 +67,9 @@ h1 a.fpcm-ui-helpbutton:hover {
 
 h2 {
     font-size:1.35em;
-    color: #2E6E9E;
-    border: 1px solid #C5DBEC;
-    background: url('../../inc/lib/jquery-ui/images/ui-bg_glass_85_dfeffc_1x400.png') repeat-x scroll 50% 50% #DFEFFC;
+    color: #2779aa;
+    border: 1px solid #aed0ea;
+    background: #deedf7 url("../../inc/lib/jquery-ui/images/ui-bg_glass_100_deedf7_1x400.png") 50% 50% repeat-x;
     font-weight: bold;
     padding: 0.4em;
     border-radius: 5px;
@@ -141,6 +141,11 @@ ol.list-large li {
     display: block;
     font-size: 1.25em;
     color: #00aded;
+}
+
+img.fpcm-logo {
+    width: 50%;
+    max-width: 100px;
 }
 
 .fpcm-wrapper-left div.fpcm-logo span:nth-child(even) {
@@ -300,7 +305,7 @@ ol.list-large li {
 
 ins,
 .fpcm-message-notice {
-    color: #2E6E9E;
+    color: #2779aa;
 }
 
 table.fpcm-ui-table.fpcm-dashboard-updates tr:first-child td {
@@ -368,7 +373,7 @@ textarea {
 
 .fpcm-ui-input-wrapper,
 textarea {
-    border: 1px solid #C5DBEC;
+    border: 1px solid #aed0ea;
     border-radius: 5px;
 }
 
@@ -495,7 +500,7 @@ div.fpcm-navigation ul.fpcm-menu li {
 }
 
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-active {
-    background: rgba(255, 173, 97, 0.5);
+    background: rgba(59, 170, 227, 0.5);
 }
 
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1:last-child {
@@ -518,7 +523,7 @@ div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navicon {
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1.trio-nav {
     display: inline-block;
     width: 33.333333333333333333%;
-    margin: 0px -2px;
+    margin: 0px -1px;
     padding: 0.3em 0 !important;
     line-height: 50px;
 }
@@ -551,7 +556,7 @@ div.fpcm-navigation ul.fpcm-menu li ul {
 }
 
 div.fpcm-navigation ul.fpcm-menu li:hover {
-    background: rgba(195, 235, 251, 0.75);
+    background: rgba(255, 239, 143, 0.5);
 }
 
 div.fpcm-navigation ul.fpcm-menu li:hover ul {
@@ -635,25 +640,25 @@ table.fpcm-ui-table td  {
 table.fpcm-ui-table th {
     font-size: 1.1em;
     padding: 0.5em 0.3em;
-    color: #2E6E9E;
-    background: url('../../inc/lib/jquery-ui/images/ui-bg_glass_85_dfeffc_1x400.png') repeat-x scroll 50% 50% #DFEFFC;
-    border-top: 1px solid #C5DBEC;
-    border-bottom: 1px solid #C5DBEC;
+    color: #2779aa;
+    background: #deedf7 url("../../inc/lib/jquery-ui/images/ui-bg_glass_100_deedf7_1x400.png") 50% 50% repeat-x;
+    border-top: 1px solid #aed0ea;
+    border-bottom: 1px solid #aed0ea;
 }
 
 table.fpcm-ui-table th:first-child {
     border-radius: 5px 0 0 5px;
-    border-left: 1px solid #C5DBEC;
+    border-left: 1px solid #aed0ea;
 }
 
 table.fpcm-ui-table th:last-child {
     border-radius: 0 5px 5px 0px;
-    border-right: 1px solid #C5DBEC;
+    border-right: 1px solid #aed0ea;
 }
 
 table.fpcm-ui-table th.fpcm-th-full {
     border-radius: 5px;
-    border: 1px solid #C5DBEC;
+    border: 1px solid #aed0ea;
 }
 
 td {
@@ -916,8 +921,8 @@ td.fpcm-td-spacer {
 }
 
 h3, .fpcm-dashboard-container h3 {
-    border: 1px solid #4297D7;
-    background: url('../../inc/lib/jquery-ui/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png') repeat-x scroll 50% 50% #ffffff;
+    border: 1px solid #2694e8;
+    background: #3baae3 url("../../inc/lib/jquery-ui/images/ui-bg_glass_50_3baae3_1x400.png") 50% 50% repeat-x;
     color: #FFF;
     font-weight: bold;
     padding: 0.4em;

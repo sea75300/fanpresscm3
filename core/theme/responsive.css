@@ -50,6 +50,10 @@
     .fpcm-buttons-fixed {
         left: 25%;
     }
+    
+    .fpcm-buttons-fixed-full {
+        left: 0px;
+    }
 
 }
 
