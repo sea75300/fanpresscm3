@@ -1,3 +1,18 @@
+@media (min-width: 150em) {
+
+    .fpcm-wrapper-left {
+        width: 12.5%;
+    }
+
+    .fpcm-wrapper {
+        width: 87.5%;
+    }
+
+    div.fpcm-navigation ul.fpcm-menu li ul {
+        margin-left: 12.5%;
+    }
+}
+
 @media (max-width: 90em) {
     div.fpcm-filelist-thumb-box {
         width: 33%;
@@ -54,6 +69,11 @@
     .fpcm-buttons-fixed-full {
         left: 0px;
     }
+    
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
+        width: 50%;
+    }
 
 }
 
@@ -66,6 +86,11 @@
 @media (max-width: 55em) {    
     .fpcm-ui-permissions-container {
         width: 100% !important;
+    }
+    
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
+    .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
+        width: 100%;
     }
 }
 
@@ -166,11 +191,6 @@
     
     div.fpcm-debug-data {
         display: none;
-    }
-    
-    .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
-    .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
-        width: 100%;
     }
     
     .fpcm-dashboard-container .fpcm-dashboard-container-inner .fpcm-dashboard-container-content .fpcm-profile-btn {
