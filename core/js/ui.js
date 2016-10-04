@@ -346,7 +346,7 @@ fpcm.ui = {
     
     showMessages: function() {
         
-        if (fpcmMsg === undefined || !fpcmMsg.length) {
+        if (window.fpcmMsg === undefined || !fpcmMsg.length) {
             return false;
         }
         
@@ -384,7 +384,7 @@ fpcm.ui = {
     
     appendMessage: function(value) {
 
-        if (fpcmMsg === undefined) {
+        if (window.fpcmMsg === undefined) {
             fpcmMsg = [];
         }
 
