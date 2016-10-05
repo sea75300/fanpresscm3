@@ -89,6 +89,8 @@
                 $newconfig['file_img_thumb_width']           = (int) $newconfig['file_img_thumb_width'];
                 $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
                 $newconfig['system_updates_devcheck']        = (int) $newconfig['system_updates_devcheck'];
+                $newconfig['articles_archive_datelimit']     = $newconfig['articles_archive_datelimit']
+                                                             ? strtotime($newconfig['articles_archive_datelimit']) : 0;
 
                 $this->config->setNewConfig($newconfig);
                 if (!$this->config->update()) {
@@ -167,7 +169,7 @@
             
             $this->view->assign('articleTemplates', $templates->getArticleTemplates());
             $this->view->assign('commentTemplates', $templates->getCommentTemplates());            
-            
+
             $this->view->assign('globalConfig', $this->config->getData());
             $this->view->assign('languages', array_flip($this->lang->getLanguages()));
             
@@ -219,10 +221,14 @@
             
             $twitter = new \fpcm\model\system\twitter();
             
-            $this->view->assign('showTwitter', $twitter->checkRequirements());
+            $showTwitter = $twitter->checkRequirements();
+
+            $this->view->assign('showTwitter', $showTwitter);
             $this->view->assign('twitterIsActive', $twitter->checkConnection());
             $this->view->assign('twitterScreenName', $twitter->getUsername());
-            $this->view->assign('syscheck', $this->syscheck);
+
+            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'options.js'));
+            $this->view->addJsVars(array('showTwitter' => $showTwitter, 'syscheck' => $this->syscheck));
             
             $this->view->render();            
         }

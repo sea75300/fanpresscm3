@@ -55,9 +55,10 @@
             
             if ($this->cache->isExpired() || $this->session->exists()) {
                 $conditions = array(
-                    'limit'     => array($this->listShowLimit, $this->limit),
-                    'archived'  => 1,
-                    'postponed' => 0
+                    'limit'         => array($this->listShowLimit, $this->limit),
+                    'archived'      => 1,
+                    'postponed'     => 0,
+                    'archived_date' => $this->config->articles_archive_datelimit ? $this->config->articles_archive_datelimit : 0
                 );
                 
                 if ($this->category !== 0) {

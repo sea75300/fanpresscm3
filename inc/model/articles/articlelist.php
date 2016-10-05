@@ -78,12 +78,19 @@
          * @param bool $monthIndex Liste mit Monatsindex zurückgeben
          * @param array $limits Anzahl der zurückgegebenen Artikel einschränken array(Start,Anzahl)
          * @param bool $countOnly Verfügbare Artikel nur zählen
+         * @param bool $dateLimit Einschränkung auf nach Datum
          * @return array
          */        
-        public function getArticlesArchived($monthIndex = false, array $limits = array(), $countOnly = false) {
+        public function getArticlesArchived($monthIndex = false, array $limits = array(), $countOnly = false, $dateLimit = false) {
+
             $where = 'archived = 1 AND deleted = 0';
-            
-            if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            if ($dateLimit && $this->config->articles_archive_datelimit) {
+                $where .= ' createtime >= '.$this->config->articles_archive_datelimit;
+            }
+
+            if ($countOnly) {
+                return (int) $this->dbcon->count($this->table, 'id', $where);
+            }
             
             $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
@@ -211,6 +218,11 @@
             if (isset($conditions['archived'])) {
                 $where[] = "archived = ?";
                 $valueParams[] = $conditions['archived'];
+            }
+
+            if (isset($conditions['archived_date'])) {
+                $where[] = "createtime > ?";
+                $valueParams[] = $conditions['archived_date'];
             }
 
             if (isset($conditions['pinned'])) {

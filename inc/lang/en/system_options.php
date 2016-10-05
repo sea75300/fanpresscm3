@@ -71,6 +71,8 @@
         'SYSTEM_OPTIONS_NEWS_EDITOR_CSS'            => 'CSS classes in editor',
         'SYSTEM_OPTIONS_NEWS_EDITOR_FONTSIZE'       => 'Default editor font size',
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'Use jQuery uploader',
+        'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'          => 'Show articles in archiv from',
+        'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY'    => 'keep empty for no limit',
         'SYSTEM_OPTIONS_ARCHIVE_LINK'               => 'Show archive link',
         'SYSTEM_OPTIONS_ACTIVECOMMENTTEMPLATE'      => 'Comment template',
         'SYSTEM_OPTIONS_COMMENTFORMTEMPLATE'        => 'Comment form template',

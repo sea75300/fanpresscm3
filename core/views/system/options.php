@@ -88,7 +88,7 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_NEWUPLOADER'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('file_uploader_new', $globalConfig['file_uploader_new']); ?></td>		
-                    </tr>                       
+                    </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWIMGTHUMBSIZE'); ?>:</td>
                         <td>
@@ -144,7 +144,14 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ENABLEFEED'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('articles_rss', $globalConfig['articles_rss']); ?></td>		
-                    </tr>  
+                    </tr>
+
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('articles_archive_datelimit', '', $globalConfig['articles_archive_datelimit'] ? fpcm\model\view\helper::dateText($globalConfig['articles_archive_datelimit'], 'Y-m-d', true) : ''); ?>
+                            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY')); ?>
+                        </td>
+                    </tr>
 
                 </table>                    
             </div>
@@ -245,9 +252,3 @@
         
     </form> 
 </div>
-
-<?php if ($syscheck) : ?><script type="text/javascript">jQuery(document).ready(function(){
-    jQuery('.fpcm-tabs-general').tabs('option', 'active', <?php if ($showTwitter) : ?>7<?php else : ?>6<?php endif; ?>);
-    jQuery('#tabs-options-syscheck').trigger('click');
-});</script>
-<?php endif; ?>
