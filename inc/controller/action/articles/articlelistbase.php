@@ -203,6 +203,7 @@
             ));
             
             $this->translateCategories();
+            $this->view->assign('showDrafts', true);
             
             return true;
         }

@@ -7,7 +7,9 @@
         <div class="fpcm-tabs-general">
             <ul class="fpcm-tabs-articles-headers">
                 <li><a href="#tabs-article-list" data-tabid="1"><?php $FPCM_LANG->write($headlineVar); ?></a></li>
+                <?php if ($showDrafts) : ?>
                 <li><a href="#tabs-article-drafts" data-tabid="2" class="tabs-article-hidesearch"><?php $FPCM_LANG->write('ARTICLES_DRAFTS'); ?></a></li>
+                <?php endif; ?>
                 <?php if ($showTrash && $deletePermissions) : ?>
                 <li><a href="#tabs-article-trash" data-tabid="3" class="tabs-article-hidesearch"><?php $FPCM_LANG->write('ARTICLES_TRASH'); ?></a></li>
                 <?php endif; ?>
@@ -17,9 +19,11 @@
                 <?php include __DIR__.'/lists/articles.php'; ?>
             </div>
             
+            <?php if ($showDrafts) : ?>
             <div id="tabs-article-drafts">
                 <?php include __DIR__.'/lists/drafts.php'; ?>
             </div>
+            <?php endif; ?>
             
             <?php if ($showTrash && $deletePermissions) : ?>
             <div id="tabs-article-trash">

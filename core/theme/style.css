@@ -523,7 +523,7 @@ div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1 span.fpcm-navicon {
 div.fpcm-navigation ul.fpcm-menu li.fpcm-menu-level1.trio-nav {
     display: inline-block;
     width: 33.333333333333333333%;
-    margin: 0px -1px;
+    margin: 0px -2px;
     padding: 0.3em 0 !important;
     line-height: 50px;
 }

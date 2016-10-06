@@ -146,7 +146,7 @@ var fpcmJs = function () {
         if (jQuery(window).width() > 800) {
             jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').show();
             wrpl.css('min-height', jQuery('body').height());
-            prof_sbm.css('margin-left', prof_btn.width());
+            prof_sbm.css('margin-left', prof_btn.width() + 2);
             prof_sbm.css('margin-top', (prof_btn.height() * -1) - 3);
         }
 

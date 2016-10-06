@@ -40,6 +40,7 @@
             
             $this->view->addJsVars(array('fpcmArticleSearchMode' => 1));
             $this->view->assign('permAdd', false);
+            $this->view->assign('showDrafts', false);
 
             $this->initMinSearchDateValue();
             
