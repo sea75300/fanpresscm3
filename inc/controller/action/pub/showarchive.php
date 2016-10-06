@@ -57,9 +57,12 @@
                 $conditions = array(
                     'limit'         => array($this->listShowLimit, $this->limit),
                     'archived'      => 1,
-                    'postponed'     => 0,
-                    'archived_date' => $this->config->articles_archive_datelimit ? $this->config->articles_archive_datelimit : 0
+                    'postponed'     => 0
                 );
+                
+                if ($this->config->articles_archive_datelimit) {
+                    $conditions['datefrom'] = $this->config->articles_archive_datelimit;
+                }
                 
                 if ($this->category !== 0) {
                     $conditions['category'] = $this->category;

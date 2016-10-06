@@ -220,11 +220,6 @@
                 $valueParams[] = $conditions['archived'];
             }
 
-            if (isset($conditions['archived_date'])) {
-                $where[] = "createtime > ?";
-                $valueParams[] = $conditions['archived_date'];
-            }
-
             if (isset($conditions['pinned'])) {
                 $where[] = "pinned = ?";
                 $valueParams[] = $conditions['pinned'];
