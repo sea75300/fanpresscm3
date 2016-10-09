@@ -42,8 +42,6 @@
             $eventClass = array_shift($eventClasses);
                 
             $classkey = $this->getModuleKeyByEvent($eventClass);                
-            if (!in_array($classkey, $this->activeModules)) return false;
-
             $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'articleReplaceEditorPlugin');
 
             /**

@@ -32,6 +32,7 @@
          * @return boolean
          */
         public function run($module = null) {
+
             if (!in_array($module, $this->activeModules)) {
                 trigger_error("Request for acpConfig event of disabled module '{$module}'!");
 

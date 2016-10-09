@@ -164,12 +164,22 @@
          */
         protected function getEventClasses() {
 
-            $return = glob(\fpcm\classes\baseconfig::$moduleDir.'*/*/events/'.$this->getEventClassBase().'.php');
-            if (!is_array($return)) {
+            if (!count($this->activeModules)) {
                 return array();
             }
+            
+            $classes = array();
+            foreach ($this->activeModules as $module) {
+                
+                $path = \fpcm\classes\baseconfig::$moduleDir.$module.'/events/'.$this->getEventClassBase().'.php';
+                if (!file_exists($path)) {
+                    continue;
+                }
+                
+                $classes[] = $path;
+            }
 
-            return $return;
+            return $classes;
         }
 
         /**
@@ -195,8 +205,6 @@
             foreach ($eventClasses as $eventClass) {
                 
                 $classkey = $this->getModuleKeyByEvent($eventClass);                
-                if (!in_array($classkey, $this->activeModules)) continue;
-                
                 $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, $this->getEventClassBase());
                 
                 /**

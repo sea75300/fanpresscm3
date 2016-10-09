@@ -53,11 +53,7 @@
                 return false;
             }
 
-            $classkey = $vendorKey.'/'.$moduleKey;            
-            if (!in_array($classkey, $this->activeModules)) {
-                return false;
-            }
-
+            $classkey = $vendorKey.'/'.$moduleKey;
             $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'apiCallFunction');
 
             /**

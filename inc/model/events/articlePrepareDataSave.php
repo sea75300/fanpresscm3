@@ -42,9 +42,7 @@
             $mdata = $data;
             foreach ($eventClasses as $eventClass) {
                 
-                $classkey = $this->getModuleKeyByEvent($eventClass);                
-                if (!in_array($classkey, $this->activeModules)) continue;
-                
+                $classkey = $this->getModuleKeyByEvent($eventClass);
                 $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'articlePrepareDataSave');
                 
                 /**

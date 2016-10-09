@@ -42,8 +42,6 @@
             foreach ($eventClasses as $eventClass) {
                 
                 $classkey = $this->getModuleKeyByEvent($eventClass);                
-                if (!in_array($classkey, $this->activeModules)) continue;
-                
                 $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'editorGetFileList');
                 
                 /**
