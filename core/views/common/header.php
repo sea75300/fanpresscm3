@@ -20,30 +20,6 @@
                 <div><span>FanPress CM</span> <span>News System</span></div>
             </div>
 
-            <?php if ($FPCM_LOGGEDIN) : ?>
-            
-            <div class="fpcm-status-info fpcm-ui-important-text">
-
-            <?php if (!$FPCM_CRONJOBS_DISABLED) : ?>
-                <div class="fpcm-status-info-box fpcm-ui-center">
-                    <span class="fa-stack fa-lg" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_CRONJOBS'); ?>...">
-                        <span class="fa fa-square fa-stack-2x"></span>
-                        <span class="fa fa-terminal fa-stack-1x fa-inverse"></span>
-                    </span>                    
-                </div>
-            <?php endif; ?>
-            <?php if ($FPCM_MAINTENANCE_MODE) : ?>
-                <div class="fpcm-status-info-box fpcm-ui-center">
-                    <span class="fa-stack fa-lg" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>...">
-                        <span class="fa fa-square fa-stack-2x"></span>
-                        <span class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></span>
-                    </span>                    
-                </div>
-            <?php endif; ?>
-                <div class="fpcm-clear"></div>
-            </div>
-            <?php endif; ?>
-
             <?php include_once 'navigation.php'; ?>
 
             <div class="fpcm-footer fpcm-footer-left">
@@ -60,3 +36,4 @@
         <?php endif; ?>
         
         <div class="fpcm-wrapper <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-fixed<?php endif; ?>" id="fpcm-wrapper-right">
+            <?php include_once 'menutop.php'; ?>

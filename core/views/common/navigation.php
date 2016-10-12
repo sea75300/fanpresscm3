@@ -8,46 +8,6 @@
                     <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('NAVIGATION_SHOW'); ?></span>
                 </a>
             </li>
-
-            <li class="fpcm-menu-level1 fpcm-menu-level1-show trio-nav" title="<?php $FPCM_LANG->write('GLOBAL_FRONTEND_OPEN'); ?>">
-                <a href="<?php print $FPCM_FRONTEND_LINK; ?>" target="_blank">
-                    <span class="fpcm-ui-center fpcm-navicon fa fa-play"></span>
-                </a>
-            </li>
-            
-            <li class="fpcm-menu-level1 fpcm-menu-level1-show trio-nav" id="fpcm-clear-cache" title="<?php $FPCM_LANG->write('GLOBAL_CACHE_CLEAR'); ?>">
-                <a href="#" target="_blank">
-                    <span class="fpcm-ui-center fpcm-navicon fa fa-recycle"></span>
-                </a>
-            </li>
-            
-            <li class="fpcm-menu-level1 fpcm-menu-level1-show trio-nav" id="fpcm-navigation-profile">
-                <a href="#" target="_blank" class="fpcm-navigation-noclick">
-                    <span class="fpcm-ui-center fpcm-navicon fa fa-user"></span>
-                </a>
-                <ul class="fpcm-submenu" id="fpcm-navigation-submenu-profile">
-                    <li class="fpcm-menu-level2">
-                        <a href="<?php print $FPCM_BASEMODULELINK; ?>system/profile" class="fpcm-loader" id="fpcm-open-profile">
-                            <span class="fpcm-navicon fa fa-wrench"></span>
-                            <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('PROFILE_MENU_OPENPROFILE'); ?></span>
-                        </a>
-                    </li>
-                    <li class="fpcm-menu-level2">
-                        <a href="<?php print $FPCM_BASEMODULELINK; ?>system/logout" class="fpcm-loader" id="fpcm-open-profile">
-                            <span class="fpcm-navicon fa fa-sign-out"></span>
-                            <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('LOGOUT_BTN'); ?></span>
-                        </a>
-                    </li>
-                    <li class="fpcm-menu-level2 fpcm-navigation-submenu-profile-meta">
-                        <span><b><?php $FPCM_LANG->write('PROFILE_MENU_LOGGEDINSINCE'); ?>:</b></span>
-                        <span><?php \fpcm\model\view\helper::dateText($FPCM_SESSION_LOGIN); ?> (<?php print $FPCM_DATETIME_ZONE; ?>)</span>
-                        <span><b><?php $FPCM_LANG->write('PROFILE_MENU_YOURIP'); ?></b></span>
-                        <span><?php print fpcm\classes\http::getIp(); ?></span>
-                    </li>
-                </ul>
-            </li>
-            <li class="fpcm-menu-level1 fpcm-menu-level1-show trio-nav"></li>
-
     <?php foreach ($FPCM_NAVIGATION as $navigationGroup) : ?>            
         <?php foreach ($navigationGroup as $groupName => $navigationItem) : ?>     
             <li id="item<?php print $navigationItem['id']; ?>" class="fpcm-menu-level1 fpcm-menu-level1-show fpcm-ui-center <?php if (substr($navigationItem['url'], 0, strlen($FPCM_NAVIGATION_ACTIVE)) === $FPCM_NAVIGATION_ACTIVE) : ?>fpcm-menu-active<?php endif; ?>">

@@ -137,17 +137,11 @@ var fpcmJs = function () {
 
         var wrpl     = jQuery('#fpcm-wrapper-left');
         var prof_btn = jQuery('#fpcm-navigation-profile');
-        var prof_sbm = jQuery('#fpcm-navigation-submenu-profile');
 
         wrpl.css('min-height', '');
-        prof_sbm.css('margin-left', '');
-        prof_sbm.css('margin-top', '');
-
         if (jQuery(window).width() > 800) {
             jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').show();
             wrpl.css('min-height', jQuery('body').height());
-            prof_sbm.css('margin-left', prof_btn.width() + 2);
-            prof_sbm.css('margin-top', (prof_btn.height() * -1) - 3);
         }
 
     };
