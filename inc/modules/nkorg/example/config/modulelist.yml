@@ -7,4 +7,4 @@ author: Stefan Seehafer
 link: https://nobody-knows.org
 version: 3.4.0
 sysversion: 3.4.0-dev
-description: "This is a FanPress CM 3.x module. This can be used as example or for testing purposes."
+description: "This is a FanPress CM 3.x module. This module can be used as an example or for testing purposes. It replaces the former \"Example Module\" starting with FPCM 3.4!"
