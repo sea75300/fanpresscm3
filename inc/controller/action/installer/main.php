@@ -158,10 +158,11 @@
         protected function runStep4() {
             $sqlFiles = array();
 
-            foreach (glob(\fpcm\classes\baseconfig::$dbStructPath.'/*.yml') as $value) {
+            $files = \fpcm\classes\database::getTableFiles();
+            foreach ($files as $value) {
                 $sqlFiles[substr(basename($value, '.yml'), 2)] = base64_encode(str_rot13(base64_encode($value)));
             }
-            
+
             $this->view->addJsVars(array(
                 'fpcmSqlFiles'      => $sqlFiles,
                 'fpcmSqlFileExec'   => $this->lang->translate('INSTALLER_CREATETABLES_STEP')

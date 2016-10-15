@@ -185,6 +185,7 @@
          * @return bool
          */
         private function alterTables() {
+
             $res = true;
             
             if ($this->checkVersion('3.0.4')) {
@@ -291,6 +292,15 @@
                 $res = $res && $this->dbcon->execSqlFile($path);
                 
                 unlink($path);
+            }
+            
+            if (!method_exists($this->dbcon, 'checkTableStructure')) {
+                return $res;
+            }
+
+            $files = \fpcm\classes\database::getTableFiles();
+            foreach ($files as $file) {
+                $this->dbcon->checkTableStructure(basename($file, '.yml'));
             }
 
             return $res;

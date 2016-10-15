@@ -158,6 +158,15 @@
         public function dumpYamlArray() {
             fpcmDump($this->yamlArray);
         }
+        
+        /**
+         * Gibt geparsten YAMl_String als Array zurück
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function getArray() {
+            return $this->yamlArray;
+        }
 
         /**
          * Create Table Statement erzeugen

@@ -110,6 +110,24 @@
         public function createIndexString($table, $indexName, $field, $isUnique);
 
         /**
+         * Liefert Struktur-Infos für eine Bestimmte Tabelle und ggf. Spalte zurück
+         * @param string $table
+         * @param string $field
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function getTableStructureQuery($table, $field = false);
+        
+        /**
+         * Bereitet Treiber-spezifische Struktur von Tabelle-Struktur-Infos aus
+         * @param object $colRow
+         * @param array $data
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function prepareColRow($colRow, array &$data);
+
+        /**
          * Liefert empfohlene Version für Datenbank-System zurück
          * @return string
          * @since FPCM 3.4
