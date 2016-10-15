@@ -180,6 +180,7 @@
                 $this->article->setComments(isset($data['comments']) ? 1 : 0);
                 $this->article->setApproval($this->permissions->check(array('article' => 'approve')) ? 1 : 0);
                 $this->article->setImagepath(isset($data['imagepath']) ? $data['imagepath'] : '');
+                $this->article->setSources(isset($data['sources']) ? $data['sources'] : '');
 
                 if (isset($data['archived'])) {
                     $this->article->setArchived(1);

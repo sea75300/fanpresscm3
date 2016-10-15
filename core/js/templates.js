@@ -77,6 +77,7 @@ fpcm.templates = {
             fpcm.ui.dialog({
                 id         : 'templatepreview-layer',
                 dlWidth    : fpcm.ui.getDialogSizes().width,
+                dlHeight   : fpcm.ui.getDialogSizes().height,
                 resizable  : true,
                 title      : fpcm.ui.translate('previewHeadline'),
                 dlButtons  : [

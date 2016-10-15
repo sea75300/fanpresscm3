@@ -218,7 +218,8 @@
                 '{{permaLink}}:{{/permaLink}}'      => $article->getArticleLink(),
                 '{{commentLink}}:{{/commentLink}}'  => $article->getArticleLink().'#comments',
                 '<readmore>:</readmore>'            => $article->getMd5path(),
-                '{{articleImage}}'                  => $article->getArticleImage()
+                '{{articleImage}}'                  => $article->getArticleImage(),
+                '{{sources}}'                       => $article->getSources()
             );
 
             $tpl->setReplacementTags($replacements);

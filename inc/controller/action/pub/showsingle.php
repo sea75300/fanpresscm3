@@ -323,7 +323,8 @@
                 '{{permaLink}}:{{/permaLink}}'      => $this->article->getArticleLink(),
                 '{{commentLink}}:{{/commentLink}}'  => $this->article->getArticleLink().'#comments',
                 '<readmore>:</readmore>'            => $this->article->getMd5path(),
-                '{{articleImage}}'                  => $this->article->getArticleImage()
+                '{{articleImage}}'                  => $this->article->getArticleImage(),
+                '{{sources}}'                       => $this->article->getSources()
             );
 
             $this->articleTemplate->setReplacementTags($replacements);

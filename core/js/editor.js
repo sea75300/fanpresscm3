@@ -889,10 +889,6 @@ jQuery(document).ready(function() {
         return false;
     });
 
-    jQuery('#articlepostponed').click(function () {
-        jQuery('.fpcm-ui-editor-postponed').fadeToggle();
-    });
-
     fpcm.ui.button('#fpcmeditorextended', {},
     function() {
 

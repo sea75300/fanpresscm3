@@ -140,8 +140,10 @@
             }
             
             $html[] = ">\n";
-            $html[] = "</div>\n";
-            if ($wrapper) $html[] = "</div>\n";
+            if ($wrapper) {
+                $html[] = "</div>\n";
+                $html[] = "</div>\n";
+            }
             
             print implode('', $html);
         }

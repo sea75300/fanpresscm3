@@ -116,7 +116,15 @@ ol.list-large li {
 /* .CSS-Klassen und #IDs */
 
 .fpcm-wrapper,
-.fpcm-wrapper-left {
+.fpcm-wrapper-left,
+.fpcm-dashboard-container,
+.fpcm-ui-permissions-container,
+.fpcm-ui-editor-metabox-left,
+.fpcm-ui-editor-metabox-left div,
+.fpcm-ui-editor-metabox-right,
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon,
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button,
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col {
     float: left;
     display: block;
 }
@@ -642,7 +650,6 @@ table.fpcm-ui-table.fpcm-ui-articles tr:hover,
 table.fpcm-ui-table.fpcm-ui-comments tr:hover,
 table.fpcm-ui-table.fpcm-ui-article-revisions tr:hover,
 table.fpcm-ui-table.fpcm-ui-editor-smileys td:hover,
-table.fpcm-ui-table.fpcm-ui-editor-extended tr:hover,
 table.fpcm-ui-table.fpcm-ui-modules tr:hover,
 table.fpcm-ui-table.fpcm-ui-options tr:hover,
 table.fpcm-ui-table.fpcm-ui-syscheck tr:hover,
@@ -820,7 +827,6 @@ table.fpcm-ui-table.fpcm-ui-syscheck tr td,
 table.fpcm-ui-table.fpcm-ui-modules tr td,
 table.fpcm-ui-table.fpcm-ui-article-revisions tr td,
 table.fpcm-ui-table.fpcm-ui-iplist tr td,
-table.fpcm-ui-table.fpcm-ui-editor-extended tr td,
 table.fpcm-ui-table.fpcm-dashboard-updates tr td,
 table.fpcm-ui-table.fpcm-ui-backups tr td,
 table.fpcm-module-manager td.module-manager-list-buttons,
@@ -840,7 +846,6 @@ table.fpcm-ui-table.fpcm-ui-articlelist-acp tr td {
 
 .fpcm-half-width,
 .fpcm-ui-permissions-container,
-#fpcm-dialog-editor-extended.fpcm-editor-dialog .fpcm-ui-editor-postpone div.fpcm-ui-input-wrapper,
 table.fpcm-ui-table.fpcm-ui-iplist tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-articlelist-acp,
 table.fpcm-ui-table.fpcm-ui-permissions th,
@@ -900,6 +905,38 @@ table.fpcm-ui-table.fpcm-ui-modules tr.fpcm-ui-modules-updates1 {
     left: 0px;
 }
 
+div.fpcm-ui-editor-extended-row {
+    margin: 0.4em 0.2em;
+    padding: 0.3em 0em;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon span,
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .fpcm-ui-shorthelp {
+    margin-top: 0.4em;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button {
+    margin: 0em 0.8em;
+    min-width: 20em;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button .ui-checkboxradio-label {
+    width: 75%;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button.fpcm-ui-editor-extended-col-large {
+    width: 50%;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col {
+    margin-left: 0.4em;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .ui-spinner,
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col div.fpcm-ui-datepicker-inputwrapper {
+    width: 10em;
+}
+
 .fpcm-ui-editor-buttons .ui-selectmenu-button {
     height: 17.666666666666666666666667px;
     line-height: 17.666666666666666666666667px;
@@ -946,8 +983,6 @@ td.fpcm-td-spacer {
 
 .fpcm-dashboard-container,
 .fpcm-ui-permissions-container {
-    display: block;
-    float: left;
     position: relative;
 }
 
@@ -1072,13 +1107,6 @@ h3, .fpcm-dashboard-container h3 {
     background: rgba(229,227,239,0.4);
     border: 1px solid #A6C9E2;
     border-radius: 5px;
-}
-
-.fpcm-ui-editor-metabox-left,
-.fpcm-ui-editor-metabox-left div,
-.fpcm-ui-editor-metabox-right {
-    float: left;
-    display: block;
 }
 
 .fpcm-ui-editor-metabox-left div {
@@ -1249,8 +1277,9 @@ table.fpcm-module-manager td.module-manager-list-td7 {
 }
 
 /* jQuery UI Hooks */
+#fpcm-dialog-editor-extended.fpcm-editor-dialog .fpcm-ui-editor-postpone div.fpcm-ui-input-wrapper,
 .fpcm-ui-editor-postpone .ui-spinner {
-    width: 60px;
+    width: 3em;
 }
 
 .ui-spinner input,

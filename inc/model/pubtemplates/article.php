@@ -35,7 +35,8 @@
             '{{commentCount}}'                  => '',
             '{{permaLink}}:{{/permaLink}}'      => '',
             '{{commentLink}}:{{/commentLink}}'  => '',
-            '{{articleImage}}'                  => ''
+            '{{articleImage}}'                  => '',
+            '{{sources}}'                       => ''
         );
         
         /**
@@ -99,6 +100,19 @@
                     case '<readmore>' :
                         $keys   = $replacement;
                         $values = array('<a href="#" class="fpcm-pub-readmore-link" id="'.$value.'">'.$this->language->translate('ARTICLES_PUBLIC_READMORE').'</a><p class="fpcm-pub-readmore-text" id="fpcm-pub-readmore-text-'.$value.'">', '</p>');
+                        break;
+                    case '{{sources}}' :
+                        $keys   = $replacement;
+                        preg_match_all("#(https?)://\S+[^\s.,>)\];'\"!?]#", $value, $links);
+
+                        if (is_array($links[0]) && count($links[0])) {
+                            foreach ($links[0] as $link) {
+                                $value = str_replace($link, "<a href=\"{$link}\">{$link}</a>", $value);
+                            }
+                        }                        
+
+                        $values = array($value);
+
                         break;
                     default:
                         $keys   = $replacement;                        

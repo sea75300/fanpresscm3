@@ -21,10 +21,11 @@
 
 @media (max-width: 70em) {
     
-    .fpcm-wrapper {
+    .fpcm-wrapper,
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button.fpcm-ui-editor-extended-col-floatsmall {
         width: 75%;
     }
-    
+
     .fpcm-wrapper-left {
         width: 25%;
     }
@@ -57,7 +58,7 @@
     div.fpcm-navigation ul.fpcm-menu li ul {
         margin: -4em 0 0 25%;
     }
-    
+
     .fpcm-buttons-fixed {
         left: 25%;
     }
@@ -69,6 +70,39 @@
     .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
     .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
         width: 50%;
+    }
+
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon {
+        display: none;
+    }
+    
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon,
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button,
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col {
+        float: none;
+    }
+    
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button.fpcm-ui-editor-extended-col-floatsmall,
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-floatsmall {
+        float: left;
+    }
+
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-floatsmall {
+        margin-left: 0.4em;
+        width: 10%;
+    }
+    
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .ui-spinner,
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col div.fpcm-ui-datepicker-inputwrapper {
+        width: 25%;
+    }
+    
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-postponed {
+        margin: 0.4em;
+    }
+
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button .ui-checkboxradio-label {
+        width: 90%;
     }
 
 }
@@ -222,6 +256,17 @@
     .fpcm-messages div.fpcm-message-box {
         width: auto;
     }
+    
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button.fpcm-ui-editor-extended-col-floatsmall {
+        width: 70%;
+        min-width: none;
+    }
+
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-floatsmall {
+        margin-left: 0.4em;
+        width: 25%;
+    }
+    
 }
 
 @media (max-width: 36em) {

@@ -113,7 +113,13 @@
          * @var string
          */
         protected $md5path          = '';
-        
+
+        /**
+         * Artikel-Quellen
+         * @var string
+         */
+        protected $sources          = '';
+
         /**
          * richtiges Löschen erzwingen
          * @var int
@@ -305,7 +311,16 @@
         public function getEditPermission() {
             return $this->editPermission;
         }
-                        
+
+        /**
+         * Gibt Artikel-Quellen zurück
+         * @return bool
+         * @since FPCM 3.4
+         */
+        public function getSources() {
+            return $this->sources;
+        }
+                                
         /**
          * Ttiel setzten
          * @param string $title
@@ -425,6 +440,15 @@
          */
         public function setImagepath($imagepath) {
             $this->imagepath = $imagepath;
+        }
+
+        /**
+         * Setzt Artikel-Quellen-Daten
+         * @return bool
+         * @since FPCM 3.4
+         */
+        public function setSources($sources) {
+            return $this->sources = strip_tags($sources);
         }
 
         /**
