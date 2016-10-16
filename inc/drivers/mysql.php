@@ -111,10 +111,8 @@
          * @since FPCM 3.3.1
          */
         public function createIndexString($table, $indexName, $field, $isUnique) {
-
             $index = ($isUnique ? 'UNIQUE' : 'INDEX');
             return "ALTER TABLE {$table} ADD {$index} `{$indexName}` ( `{$field}` );";
-
         }
 
         /**
@@ -136,6 +134,44 @@
                 'float'     => 'float',
                 'double'    => 'decimal',
                 'char'      => 'char'
+            );
+
+        }
+
+        /**
+         * Liefert Struktur-Infos für eine Bestimmte Tabelle und ggf. Spalte zurück
+         * @param string $table
+         * @param string $field
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function getTableStructureQuery($table, $field = false) {
+            
+            $query = 'SHOW COLUMNS FROM '.$table;
+            if ($field !== false && trim($field)) {
+                $query .= " WHERE Field = '{$field}'";
+            }
+            
+            return $query;
+            
+        }
+
+        /**
+         * Bereitet Treiber-spezifische Struktur von Tabelle-Struktur-Infos aus
+         * @param object $colRow
+         * @param array $data
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function prepareColRow($colRow, array &$data) {
+
+            $type       = preg_replace('/(\([0-9]+\))/is', '', $colRow->Type);
+            $length     = preg_replace('/([^0-9])/is', '', $colRow->Type);
+            $length     = (int) str_replace(array('(', ')'), '', $length);
+
+            $data[$colRow->Field] = array(
+                'type'   => $type,
+                'length' => $length
             );
 
         }
