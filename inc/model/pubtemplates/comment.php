@@ -49,8 +49,26 @@
             
             $tags    = array_merge($this->replacementInternal, $this->replacementTags);
             
-            $this->parseLinks($tags['{{text}}']);
-            
+            $links = $this->parseLinks($tags['{{text}}'], array(), true);
+
+            if (isset($links[0]) && count($links[0])) {
+
+                foreach ($links[0] as $link) {
+                    
+                    if (strpos($tags['{{text}}'], 'href="'.$link) !== false || strpos($tags['{{text}}'], "href='".$link) !== false) {
+                        continue;
+                    }
+                    
+                    if (substr($link, -3, 2) === '</') {
+                        $link = substr($link, 0, -3);
+                    }
+
+                    $tags['{{text}}'] = preg_replace('/('.addcslashes($link, '/').')/is', "<a href=\"{$link}\">{$link}</a>", $tags['{{text}}']);
+
+                }
+                
+            }
+
             foreach ($tags as $replacement => $value) {
                 
                 $replacement = explode(':', $replacement);                
@@ -87,28 +105,6 @@
         protected function parseMentions(&$content) {            
             if (strpos($content, '@#') === false) return;
             $content = preg_replace("/@#([0-9])+/", "<a class=\"fpcm-pub-mentionedlink\" href=\"#c$1\">@$1</a>", $content);
-        }
-        
-        /**
-         * Links in Kommentar parsen
-         * @param string $content
-         * @param array $attributes
-         */
-        private function parseLinks(&$content, array $attributes=array()) {
-            $attrs = '';
-            foreach ($attributes as $attribute => $value) {
-                $attrs .= " {$attribute}=\"{$value}\"";
-            }
-            
-            preg_match_all("#(https?)://\S+[^\s.,>)\];'\"!?]#", $content, $links);
-            if (!$links || !count($links)) return false;
-            
-            $links = array_map('trim', array_map('strip_tags', $links[0]));
-            
-            foreach ($links as $link) {
-                if (strpos($link, '">') !== false || strpos($link, "'>") !== false) continue;
-                $content = str_replace($link, "<a href=\"{$link}\" {$attrs}>{$link}</a>", $content);
-            }
         }
 
     }

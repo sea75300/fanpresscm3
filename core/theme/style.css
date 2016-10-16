@@ -910,7 +910,10 @@ div.fpcm-ui-editor-extended-row {
     padding: 0.3em 0em;
 }
 
-div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon span,
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon {
+    line-height: 1.75em;
+}
+
 div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .fpcm-ui-shorthelp {
     margin-top: 0.4em;
 }
@@ -930,6 +933,10 @@ div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button.fpcm-ui-edito
 
 div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col {
     margin-left: 0.4em;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .ui-spinner {
+    padding-top: 0.2em;
 }
 
 div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .ui-spinner,
@@ -1450,6 +1457,10 @@ h1 a.fpcm-ui-helpbutton:before,
 .fpcm-ui-button.fpcm-new-btn:before {
     content: '\f016';
     font-size: 0.8em;
+}
+
+.fpcm-ui-button.fpcm-newuser-btn:before {
+    content: '\f234';
 }
 
 .fpcm-ui-button.fpcm-ui-button-edit span.ui-icon:before,

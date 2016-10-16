@@ -9,7 +9,7 @@
         </div>
 
         <div class="fpcm-ui-editor-extended-row">
-            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-picture-o fa-fw fa-lg"></span></div>
+            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-external-link fa-fw fa-lg"></span></div>
             <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-col-floatsmall fpcm-ui-editor-extended-col-large"><?php fpcm\model\view\helper::textInput('article[sources]', '', $article->getSources(), false, 255, 'TEMPLATE_ARTICLE_SOURCES'); ?></div>
             <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-col-floatsmall"></div>
             <div class="fpcm-clear"></div>
@@ -21,7 +21,6 @@
             <div class="fpcm-ui-editor-extended-button"><?php fpcm\model\view\helper::checkbox('article[postponed]', '', 1, 'EDITOR_POSTPONETO', 'articlepostponed', $article->getPostponed()); ?></div>
             <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-col-postponed">
                 <?php fpcm\model\view\helper::textInput('article[postponedate]', 'fpcm-ui-datepicker', fpcm\model\view\helper::dateText($postponedTimer, 'Y-m-d', true), false, 2, false, 'fpcm-ui-datepicker-inputwrapper'); ?>
-
                 <?php fpcm\model\view\helper::textInput('article[postponehour]', 'fpcm-ui-spinner-hour', fpcm\model\view\helper::dateText($postponedTimer, 'H', true), false, 2, false, false); ?>
                 <?php fpcm\model\view\helper::textInput('article[postponeminute]', 'fpcm-ui-spinner-minutes', fpcm\model\view\helper::dateText($postponedTimer, 'i', true), false, 2, false, false); ?>
             </div>
@@ -31,7 +30,7 @@
         
         <?php if ((!$editorMode || $article->getDraft()) && !$article->getArchived()) : ?>
         <div class="fpcm-ui-editor-extended-row">
-            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-text-o fa-fw fa-lg"></span></div>
+            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-file-text-o fa-fw fa-lg"></span></div>
             <div class="fpcm-ui-editor-extended-button"><?php fpcm\model\view\helper::checkbox('article[draft]', '', 1, 'EDITOR_DRAFT', 'articledraft', $article->getDraft()); ?></div>
             <div class="fpcm-ui-editor-extended-col"></div>
             <div class="fpcm-clear"></div>
@@ -65,7 +64,7 @@
         
         <?php if ($showTwitter) : ?>
         <div class="fpcm-ui-editor-extended-row">
-            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-twitter-square fa-fw fa-lg"></span></div>
+            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-twitter fa-fw fa-lg"></span></div>
             <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-col-floatsmall fpcm-ui-editor-extended-col-large"><?php fpcm\model\view\helper::textInput('article[tweettxt]', '', '', false, 512, 'EDITOR_TWEET_TEXT'); ?></div>
             <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-col-floatsmall"><?php fpcm\model\view\helper::shortHelpButton('EDITOR_TWEET_TEXT_REPLACER', '', $FPCM_BASEMODULELINK.'system/templates', '_blank'); ?></div>
             <div class="fpcm-clear"></div>

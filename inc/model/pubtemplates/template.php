@@ -204,6 +204,31 @@
                 $this->allowedTags  = $this->events->runEvent('publicTemplateHtmlTags', $this->allowedTags);
             }
         }
+
+        /**
+         * Links in Text parsen
+         * @param string $content
+         * @param array $attributes
+         */
+        protected function parseLinks(&$content, array $attributes=array(), $returnOnly = false) {
+
+            $attrs = '';
+            foreach ($attributes as $attribute => $value) {
+                $attrs .= " {$attribute}=\"{$value}\"";
+            }
+
+            $regEx   = '/((http|https?):\/\/\S+[^\s.,>)\]\"\'<\/])/is';
+
+            if ($returnOnly) {
+                preg_match_all($regEx, $content, $matches);
+                return $matches;
+            }
+
+            $content  = preg_replace($regEx, "<a href=\"$0\"{$attrs}>$0</a>", $content);
+
+            return $content;
+
+        }
        
     }
 ?>

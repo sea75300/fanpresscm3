@@ -47,7 +47,7 @@
                 
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
                     <div class="fpcm-ui-margin-center">
-                        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/add', 'USERS_ADD', '', 'fpcm-loader fpcm-new-btn'); ?>
+                        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/add', 'USERS_ADD', '', 'fpcm-loader fpcm-newuser-btn'); ?>
                         <?php fpcm\model\view\helper::submitButton('disableUser', 'GLOBAL_DISABLE', 'fpcm-loader fpcm-ui-useractions-disable'); ?>
                         <?php fpcm\model\view\helper::deleteButton('deleteActive'); ?>
                     </div>

@@ -103,16 +103,8 @@
                         break;
                     case '{{sources}}' :
                         $keys   = $replacement;
-                        preg_match_all("#(https?)://\S+[^\s.,>)\];'\"!?]#", $value, $links);
-
-                        if (is_array($links[0]) && count($links[0])) {
-                            foreach ($links[0] as $link) {
-                                $value = str_replace($link, "<a href=\"{$link}\">{$link}</a>", $value);
-                            }
-                        }                        
-
+                        $this->parseLinks($value);
                         $values = array($value);
-
                         break;
                     default:
                         $keys   = $replacement;                        

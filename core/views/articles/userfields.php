@@ -1,7 +1,7 @@
 <?php if (count($userfields)) : ?>
     <?php foreach ($userfields as $options) : ?>
         <div class="fpcm-ui-editor-extended-row">
-            <div class="fpcm-ui-editor-extended-icon"></div>
+            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-<?php print $options['type']; ?> fa-fw fa-lg"></span></div>
             <div class="fpcm-ui-editor-extended-button">
             <?php if ($options['type'] == 'textarea') : ?>
                 <p><?php print $options['description']; ?>:</p>
