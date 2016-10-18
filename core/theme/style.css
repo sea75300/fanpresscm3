@@ -911,7 +911,7 @@ div.fpcm-ui-editor-extended-row {
 }
 
 div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon {
-    line-height: 1.75em;
+    line-height: 2em;
 }
 
 div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .fpcm-ui-shorthelp {
@@ -936,7 +936,12 @@ div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col {
 }
 
 div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .ui-spinner {
-    padding-top: 0.2em;
+    margin-bottom: 0.2em;
+    height: 20px;
+}
+
+div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .ui-spinner .ui-spinner-input {
+    margin-top: 0;
 }
 
 div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col .ui-spinner,

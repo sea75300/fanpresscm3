@@ -484,8 +484,19 @@
                     continue;
                 }
                 
-                if (file_exists($dest) && sha1_file($source) == sha1_file($dest)) {
-                    continue;
+                if (file_exists($dest)) {
+                    
+                    if (sha1_file($source) == sha1_file($dest)) {
+                        continue;
+                    }
+
+                    $backFile = $dest.'.back';
+                    if (file_exists($backFile)) {
+                        unlink($backFile);
+                    }
+
+                    rename($dest, $backFile);
+
                 }
                 
                 if (!copy($source, $dest)) {
