@@ -160,7 +160,7 @@
         }
         
         /**
-         * Gibt geparsten YAMl_String als Array zurück
+         * Gibt geparsten YAML-String als Array zurück
          * @return array
          * @since FPCM 3.3.2
          */
