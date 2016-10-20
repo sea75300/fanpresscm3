@@ -84,6 +84,13 @@
          * @var bool
          */
         protected $parsingOk = false;
+        
+        /**
+         * Zusätzliches Tabellen-Prefix
+         * @var string
+         * @since FPCM 3.4
+         */
+        protected $tablePrefix = '';
 
         /**
          * Konstruktor
@@ -99,13 +106,25 @@
             $this->yamlArray = \Spyc::YAMLLoad($filePath);
 
         }
+
+        /**
+         * Setzt zusätzliches Tabellen-Prefix
+         * @param string $tablePrefix
+         * @since FPCM 3.4
+         */
+        function setTablePrefix($tablePrefix) {
+            $this->yamlArray['name'] .= $tablePrefix.'_';
+        }
         
         /**
          * Parst Array aus YAML-String in SQL-String
          * @return boolean
          */
         public function parse() {
-         
+            
+            $this->sqlArray  = array();
+            $this->sqlString = '';
+
             if (!$this->checkYamlArray()) {
                 return self::ERROR_YAMLCHECK_FAILED;
             }
