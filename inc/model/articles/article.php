@@ -320,7 +320,7 @@
         public function getSources() {
             return $this->sources;
         }
-                                
+                   
         /**
          * Ttiel setzten
          * @param string $title

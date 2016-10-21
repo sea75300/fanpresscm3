@@ -32,7 +32,14 @@
          * @return array
          */
         public function getUsersAll() {
-            $users = $this->dbcon->fetch($this->dbcon->select($this->table), true);
+
+            $item   = $this->dbcon->getTablePrefixed($this->table).'.*, ';
+            $item  .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.leveltitle AS groupname';
+
+            $where  = $this->dbcon->getTablePrefixed($this->table).'.roll = ';
+            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id';
+            $result = $this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where);
+            $users  = $this->dbcon->fetch($result, true);
             
             $res = array();
 
@@ -84,8 +91,17 @@
          * @return array of \fpcm\model\users\author
          */
         public function getUsersActive($byGroup = false) {
-            $users = $this->dbcon->fetch($this->dbcon->select($this->table,'*','disabled = 0'.$this->dbcon->orderBy(array('id ASC'))), true);
-            
+
+            $item  = $this->dbcon->getTablePrefixed($this->table).'.*, ';
+            $item .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.leveltitle AS groupname';
+
+            $where  = $this->dbcon->getTablePrefixed($this->table).'.roll = ';
+            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id';
+            $where .= ' AND disabled = 0 '.$this->dbcon->orderBy(array('id ASC'));
+
+            $result = $this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where);
+            $users  = $this->dbcon->fetch($result, true);
+
             if (!$users || !count($users)) {
                 return array();
             }
@@ -99,8 +115,17 @@
          * @return array
          */
         public function getUsersDisabled($byGroup = false) {
-            $users = $this->dbcon->fetch($this->dbcon->select($this->table,'*','disabled = 1'.$this->dbcon->orderBy(array('id ASC'))), true);
-            
+
+            $item  = $this->dbcon->getTablePrefixed($this->table).'.*, ';
+            $item .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.leveltitle AS groupname';
+
+            $where  = $this->dbcon->getTablePrefixed($this->table).'.roll = ';
+            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id';
+            $where .= ' AND disabled = 1 '.$this->dbcon->orderBy(array('id ASC'));
+
+            $result = $this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where);
+            $users  = $this->dbcon->fetch($result, true);
+
             if (!$users || !count($users)) {
                 return array();
             }
@@ -124,7 +149,16 @@
          * @return array
          */
         public function getUsersByIds(array $ids) {
-            $users = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'id IN ('.implode(', ', $ids).') '), true);
+
+            $item  = $this->dbcon->getTablePrefixed($this->table).'.*, ';
+            $item .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.leveltitle AS groupname';
+
+            $where  = $this->dbcon->getTablePrefixed($this->table).'.roll = ';
+            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id';
+            $where .= 'id IN ('.implode(', ', $ids).') ';
+
+            $result = $this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where);
+            $users  = $this->dbcon->fetch($result, true);
             
             if (!$users || !count($users)) {
                 return array();

@@ -415,7 +415,7 @@
         }
 
         /**
-         * Initialisiert miNDate-Wert für Artikel-Suchformular
+         * Initialisiert minDate-Wert für Artikel-Suchformular
          * @since FPCM 3.3
          */
         protected function initMinSearchDateValue() {

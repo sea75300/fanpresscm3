@@ -631,6 +631,15 @@
         public function getDbprefix() {
             return $this->dbprefix;
         }
+
+        /**
+         * vollen Tabellen-Name mit Prefix zurückgeben
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getTablePrefixed($table) {
+            return $this->dbprefix.'_'.$table;
+        }
         
         /**
          * Datenbank-Typ zurückgeben

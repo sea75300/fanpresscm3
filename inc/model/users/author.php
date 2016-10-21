@@ -90,6 +90,13 @@
          * @var array
          */
         protected $usrmeta;
+
+        /**
+         * Übersetzter Gruppenname
+         * @var string
+         * @since FPCM 3.4
+         */
+        protected $groupname;
         
         /**
          * Edit action string
@@ -103,6 +110,12 @@
          * @since FPCM 3.2.0
          */
         protected $wordbanList;
+        
+        /**
+         * Eigenschaften, welche beim Speichern in DB nicht von getPreparedSaveParams() zurückgegeben werden sollen
+         * @var array
+         */
+        protected $dbExcludes = array('groupname');
         
         /**
          * Konstruktor
@@ -194,6 +207,15 @@
          */
         public function getDisabled() {
             return $this->disabled;
+        }
+
+        /**
+         * Übersetzter Gruppenname
+         * @return string
+         * @since FPCM 3.4
+         */        
+        function getGroupname() {
+            return $this->groupname;
         }
 
         /**
@@ -431,6 +453,19 @@
 
             return false;
             
+        }        
+        /**
+         * Füllt Objekt mit Daten aus Datenbank-Result
+         * @param object $object
+         * @return boolean
+         */
+        public function createFromDbObject($object) {
+
+            $res = parent::createFromDbObject($object);
+            $this->groupname = $this->language->translate($this->groupname);
+
+            return $res;
+
         }
 
         /**
@@ -462,6 +497,29 @@
             $this->email = $this->wordbanList->replaceItems($this->email);
             
             return true;
+        }
+
+        /**
+         * Inittiert Objekt mit Daten aus der Datenbank, sofern ID vergeben wurde
+         */
+        protected function init() {
+            
+            $item   = $this->dbcon->getTablePrefixed($this->table).'.*, ';
+            $item  .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.leveltitle AS groupname';
+
+            $where  = $this->dbcon->getTablePrefixed($this->table).'.roll = ';
+            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id AND ';
+            $where .= $this->dbcon->getTablePrefixed($this->table).'.id = ?';
+            $data   = $this->dbcon->fetch($this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where, array($this->id)));
+
+            if (!$data) {
+                trigger_error('Failed to load data for object of type "'.get_class($this).'" with given id '.$this->id.'!');
+                return false;
+            }
+            
+            $this->objExists = true;
+            $this->createFromDbObject($data);
+
         }
         
     }
