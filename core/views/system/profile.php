@@ -22,6 +22,7 @@
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
             <div class="fpcm-ui-margin-center">
                 <?php \fpcm\model\view\helper::saveButton('profileSave'); ?>
+                <?php \fpcm\model\view\helper::submitButton('resetProfileSettings', 'GLOBAL_RESET', 'fpcm-profilereset-btn'); ?>
             </div>
         </div>
     </form>

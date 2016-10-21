@@ -256,5 +256,65 @@
             $this->cache->cleanup();
             $this->init();            
         }
+
+        /**
+         * Array mit Schriftgrößen für Editor
+         * @return array
+         * @since FPCM 3.4
+         */
+        public static function getDefaultFontsizes() {
+
+            $defaultFontsizes = array();
+            for ($i=8; $i<=16;$i++) {
+                $defaultFontsizes[$i.' pt'] = $i.'pt';
+            }
+            
+            return $defaultFontsizes;
+        }
+
+        /**
+         * Array mit Anzahl-Limits für Artikel in ACP-Liste
+         * @return array
+         * @since FPCM 3.4
+         */
+        public static function getAcpArticleLimits() {
+
+            return array(
+                10 => 10,
+                25 => 25,
+                50 => 50,
+                75 => 75,
+                100 => 100,
+                125 => 125,
+                150 => 150,
+                200 => 200,
+                250 => 250
+            );
+
+        }
+
+        /**
+         * Array mit Anzahl-Limits für Artikel-Listen
+         * @return array
+         * @since FPCM 3.4
+         */
+        public static function getArticleLimits() {
+
+            return array(
+                1 => 1,
+                2 => 2,
+                3 => 3,
+                4 => 4,
+                5 => 5,
+                10 => 10,
+                15 => 15,
+                20 => 20,
+                25 => 25,
+                30 => 30,
+                40 => 40,
+                50 => 50
+            );
+
+        }
         
     }

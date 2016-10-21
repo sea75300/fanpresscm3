@@ -24,4 +24,12 @@
                 <?php fpcm\model\view\helper::select('usermeta[articles_acp_limit]', $articleLimitList, $author->getUserMeta('articles_acp_limit'), false, false); ?>
             </td>
         </tr>
+        <tr>			
+            <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_EDITOR_FONTSIZE'); ?>:</td>
+            <td><?php fpcm\model\view\helper::select('usermeta[system_editor_fontsize]', $defaultFontsizes, $author->getUserMeta('system_editor_fontsize'), false, false); ?></td>
+        </tr>
+        <tr>			
+            <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_NEWUPLOADER'); ?>:</td>
+            <td><?php fpcm\model\view\helper::boolSelect('usermeta[file_uploader_new]', $author->getUserMeta('file_uploader_new')); ?></td>
+        </tr>
     </table>

@@ -53,10 +53,22 @@
             }
 
             $checkPageToken = $this->checkPageToken();
-            if ($this->buttonClicked('userSave') && !$checkPageToken) {
+            if (($this->buttonClicked('userSave') || $this->buttonClicked('resetProfileSettings')) && !$checkPageToken) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
-            
+
+            if ($this->buttonClicked('resetProfileSettings') && $checkPageToken) {
+                $author->setUserMeta(array());
+                $author->disablePasswordSecCheck();
+                if ($author->update() === false) {
+                    $this->view->addErrorMessage('SAVE_FAILED_USER_PROFILE');
+                }
+                else {
+                    $this->view->addNoticeMessage('SAVE_SUCCESS_RESETPROFILE');
+                    $this->view->assign('reloadSite', true);
+                }
+            }
+
             if ($this->buttonClicked('userSave') && $checkPageToken) {
                 $author->setUserName($this->getRequestVar('username'));
                 $author->setEmail($this->getRequestVar('email'));
@@ -129,19 +141,8 @@
             
             $this->view->assign('timezoneAreas', $timezones);
             $this->view->assign('externalSave', true);
-
-            $articleLimitList = array(
-                10 => 10,
-                25 => 25,
-                50 => 50,
-                75 => 75,
-                100 => 100,
-                125 => 125,
-                150 => 150,
-                200 => 200,
-                250 => 250
-            );
-            $this->view->assign('articleLimitList', $articleLimitList);
+            $this->view->assign('articleLimitList', \fpcm\model\system\config::getAcpArticleLimits());
+            $this->view->assign('defaultFontsizes', \fpcm\model\system\config::getDefaultFontsizes());
             
             $userList = new \fpcm\model\users\userList();
             $showDisableButton = (!$this->userEnabled && ($this->userId == $this->session->getUserId() || $userList->countActiveUsers() == 1))

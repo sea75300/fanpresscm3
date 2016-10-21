@@ -34,6 +34,7 @@
         'SAVE_SUCCESS_ADDCATEGORY'      => 'The category has been saved!',
         'SAVE_SUCCESS_EDITUSER'         => 'Changed to the user has been saved!',
         'SAVE_SUCCESS_EDITUSER_PROFILE' => 'Changed on your profile has been saved!',
+        'SAVE_SUCCESS_RESETPROFILE'     => 'The user settings have been reset to default!',
         'SAVE_SUCCESS_EDITROLL'         => 'Changed to the user roll has been saved!',
         'SAVE_SUCCESS_EDITCATEGORY'     => 'Changed to the category has been saved!',
         'SAVE_SUCCESS_OPTIONS'          => 'Configuration changes has been saved!',

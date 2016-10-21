@@ -263,6 +263,12 @@
                 case 'articles_acp_limit' :
                     return $this->config->articles_acp_limit;
                 break;
+                case 'file_uploader_new' :
+                    return $this->config->file_uploader_new;
+                break;
+                case 'system_editor_fontsize' :
+                    return $this->config->system_editor_fontsize;
+                break;
             }
         }
 

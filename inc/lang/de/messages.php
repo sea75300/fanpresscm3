@@ -34,6 +34,7 @@
         'SAVE_SUCCESS_ADDCATEGORY'      => 'Die Kategorie wurde gespeichert!',
         'SAVE_SUCCESS_EDITUSER'         => 'Die Änderungen am Benutzer wurden gespeichert!',
         'SAVE_SUCCESS_EDITUSER_PROFILE' => 'Die Änderungen an deinem Profil wurden gespeichert!',
+        'SAVE_SUCCESS_RESETPROFILE'     => 'Die Benutzereinstellungen wurden auf die Standardwerte zurückgesetzt!',
         'SAVE_SUCCESS_EDITROLL'         => 'Die Änderungen an der Benutzerrolle wurden gespeichert!',
         'SAVE_SUCCESS_EDITCATEGORY'     => 'Die Änderungen an der Kategorie wurden gespeichert!',
         'SAVE_SUCCESS_OPTIONS'          => 'Die Änderungen an der Konfiguration wurde gespeichert!',

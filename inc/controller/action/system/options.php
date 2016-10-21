@@ -180,40 +180,9 @@
             );
             $this->view->assign('notify', $notify);
 
-            $articleLimitList = array(
-                1 => 1,
-                2 => 2,
-                3 => 3,
-                4 => 4,
-                5 => 5,
-                10 => 10,
-                15 => 15,
-                20 => 20,
-                25 => 25,
-                30 => 30,
-                40 => 40,
-                50 => 50
-            );
-            $this->view->assign('articleLimitList', $articleLimitList);
-            
-            $articleLimitListAcp = array(
-                10 => 10,
-                25 => 25,
-                50 => 50,
-                75 => 75,
-                100 => 100,
-                125 => 125,
-                150 => 150,
-                200 => 200,
-                250 => 250
-            );
-            $this->view->assign('articleLimitListAcp', $articleLimitListAcp);
-            
-            $defaultFontsizes = array();
-            for ($i=8; $i<=16;$i++) {
-                $defaultFontsizes[$i.' pt'] = $i.'pt';
-            }
-            $this->view->assign('defaultFontsizes', $defaultFontsizes);
+            $this->view->assign('articleLimitList', \fpcm\model\system\config::getArticleLimits());
+            $this->view->assign('articleLimitListAcp', \fpcm\model\system\config::getAcpArticleLimits());
+            $this->view->assign('defaultFontsizes', \fpcm\model\system\config::getDefaultFontsizes());
             
             $this->view->addJsVars(array(
                 'fpcmDtMasks' => \fpcm\classes\baseconfig::$dateTimeMasks

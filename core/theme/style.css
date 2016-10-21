@@ -1495,6 +1495,10 @@ h1 a.fpcm-ui-helpbutton:before,
     content: '\f084';
 }
 
+.fpcm-ui-button.fpcm-profilereset-btn:before {
+    content: '\f0ec';
+}
+
 .fpcm-ui-button.fpcm-ui-articleactions-ok:before,
 .fpcm-ui-button.fpcm-ok-button:before,
 .fpcm-ui-button.fpcm-ok-button span.ui-icon:before {
