@@ -115,17 +115,21 @@
          * @return bool
          */
         private function addSystemOptions() {
-            
+
+            $yatdl = new \fpcm\model\system\yatdl(\fpcm\classes\baseconfig::$dbStructPath.'06config.yml');
+            $yatdl->parse();
+
+            $data = $yatdl->getArray();
+
+            if (!isset($data['defaultvalues']['rows']) || !count($data['defaultvalues']['rows'])) {
+                return true;
+            }
+
             $res = true;
-            $res = $res && $this->config->add('comments_markspam_commentcount', 2);
-            $res = $res && $this->config->add('system_loginfailed_locked', 5);
-            $res = $res && $this->config->add('system_editor_fontsize', '12pt');
-            $res = $res && $this->config->add('articles_acp_limit', 100);
-            $res = $res && $this->config->add('system_updates_devcheck', (defined('FPCM_UPDATER_DEVCHECK') ? (int) FPCM_UPDATER_DEVCHECK : 0) );
-            $res = $res && $this->config->add('system_updates_emailnotify', (defined('FPCM_UPDATE_CRONNOTIFY_EMAIL') ? (int) FPCM_UPDATE_CRONNOTIFY_EMAIL : 1) );
-            $res = $res && $this->config->add('system_updates_manual', (defined('FPCM_UPDATER_MANUALCHECK') ? (int) FPCM_UPDATER_MANUALCHECK : 1209600) );
-            $res = $res && $this->config->add('articles_archive_datelimit', 0);
-            
+            foreach ($data['defaultvalues']['rows'] as $option) {
+                $res = $res && $this->config->add($option['config_name'], $option['config_value']);
+            }
+
             return $res;
 
         }

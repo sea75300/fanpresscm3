@@ -188,29 +188,21 @@ defaultvalues:
             config_value: "2"
         41:
             id: 41
-            config_name: "files_img_thumb_minwidth"
-            config_value: "500"
-        42:
-            id: 42
-            config_name: "files_img_thumb_minheight"
-            config_value: "500"
-        43:
-            id: 43
             config_name: "file_img_thumb_width"
             config_value: "100"
-        44:
-            id: 44
+        42:
+            id: 42
             config_name: "file_img_thumb_height"
             config_value: "100"
-        45:
-            id: 45
+        43:
+            id: 43
             config_name: "file_uploader_new"
             config_value: "1"
-        46:
-            id: 46
+        44:
+            id: 44
             config_name: "twitter_data"
             config_value: '{"consumer_key":"","consumer_secret":"","user_token":"","user_secret":""}'
-        47:
-            id: 47
+        45:
+            id: 45
             config_name: "twitter_events"
             config_value: '{"create":0,"update":0}'
