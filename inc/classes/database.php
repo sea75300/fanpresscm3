@@ -477,7 +477,7 @@
          * @param array $bindParams Paramater, welche gebunden werden sollen
          * @return PDOStatement Zeilen in der Datenbank
          */
-        public function query($command, array$bindParams = array()) {
+        public function query($command, array $bindParams = array()) {
             
             $this->queryCount++;
             
@@ -585,7 +585,7 @@
         }
         
         /**
-         * Erzeugt CONCAT SQl_String
+         * Erzeugt CONCAT SQL-String
          * @param array $fields
          * @return string
          * @since FPCM 3.1.0
@@ -649,10 +649,114 @@
         }
 
         /**
+         * Liefert Struktur-Infos für eine Bestimmte Tabelle und ggf. Spalte zurück
+         * @param string $table
+         * @param string $field
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function getTableStructure($table, $field = false) {
+
+            $query = $this->driver->getTableStructureQuery($this->dbprefix.'_'.$table, $field);
+
+            $result = $this->query($query);
+            if ($result === false) {
+                return array();
+            }
+
+            $colRows = $this->fetch($result, true);
+            if (!is_array($colRows) || !count($colRows)) {
+                return array();
+            }
+
+            $data = array();
+            foreach ($colRows as $colRow) {
+                $this->driver->prepareColRow($colRow, $data);
+            }
+            
+            return $data;
+        }
+        
+        public function checkTableStructure($tableFile) {
+
+            $isPg    = $this->dbtype === 'pgsql' ? true : false;
+            $typeMap = $this->driver->getYaTDLDataTypes();
+
+            $yatdl = new \fpcm\model\system\yatdl(baseconfig::$dbStructPath.$tableFile.'.yml');
+            
+            $data  = $yatdl->getArray();            
+            $table = $data['name'];
+
+            $structure = $this->getTableStructure($table);
+
+            $lenghtTypes = array('varchar');
+            if ($isPg) {
+                $lenghtTypes += array('int', 'bigint', 'bool');
+            }
+
+            foreach ($data['cols'] as $col => $attr) {
+                
+                if (isset($structure[$col])) {
+                    continue;
+                }
+
+                if (!isset($typeMap[$attr['type']])) {
+                    trigger_error('Undefined data type for column '.$col);
+                    continue;
+                }
+
+                $type   = $typeMap[$attr['type']];
+                if (in_array($attr['type'], $lenghtTypes)) {
+                    $length = (int) $attr['length'];
+                    $type .= "({$length})";
+                }
+
+                if ($isPg) {                    
+                    $attr['params'] = str_replace('NOT NULL', '', $attr['params']);                    
+                }
+
+                $type .= trim($attr['params']) ? ' '.$attr['params'] : '';
+                if (!$this->alter($table, 'ADD', $col, $type, false)) {
+                    logs::sqllogWrite($this->lastQueryString);
+                    return false;
+                }
+
+            }
+
+            return true;
+
+        }
+
+        /**
          * Error die
          */
         private function dieError() {
             die('Connection to database failed!');
         }
 
+        /**
+         * Liefert YMl-Dateien aus Pfad zurück
+         * @param string $path
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public static function getTableFiles($path = false) {
+            
+            if (!$path) {
+                $path = \fpcm\classes\baseconfig::$dbStructPath;
+            }
+            
+            if (!is_dir($path)) {
+                trigger_error('Invalid path given, '.$path.' is not a directory');
+                return array();
+            }
+
+            $files = glob($path.'*.yml');
+            if (!is_array($files) || !count($files)) {
+                return array();
+            }
+
+            return $files;
+
+        }
     }
