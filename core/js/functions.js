@@ -139,6 +139,7 @@ var fpcmJs = function () {
         var prof_btn    = jQuery('#fpcm-navigation-profile');
         var wrpl_height = jQuery('body').height() < jQuery(window).height() ? jQuery(window).height() : jQuery('body').height();           
 
+        wrpl.css('min-height', '');
         if (jQuery(window).width() > 800) {
             jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').show();
             wrpl.css('min-height', wrpl_height);

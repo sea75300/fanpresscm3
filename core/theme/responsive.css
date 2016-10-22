@@ -51,6 +51,11 @@
         width: 100% !important;
     }
 
+    table.fpcm-ui-table.fpcm-ui-options tr td:first-child,
+    table.fpcm-ui-table.fpcm-ui-logs-sessions tr td,
+    table.fpcm-ui-table.fpcm-ui-logs tr td:first-child,
+    table.fpcm-ui-table.fpcm-ui-options-twitter tr td:first-child,
+    div.fpcm-filelist-thumb-box,
     .fpcm-ui-permissions-container {
         width: 50% !important;
     }
@@ -104,7 +109,36 @@
     div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button .ui-checkboxradio-label {
         width: 90%;
     }
+    
+    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-ui-articlelist-comments,
+    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments,
+    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-times,
+    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-times,
+    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-meta {
+        width: 6em;
+    }
+    
+    table.fpcm-ui-articles .fpcm-ui-editor-metabox-right {
+        width: auto;
+    }
 
+    table.fpcm-ui-table.fpcm-ui-articles th:first-child,
+    table.fpcm-ui-table.fpcm-ui-articles tr td:first-child,
+    table.fpcm-ui-table.fpcm-ui-comments th.fpcm-ui-articlelist-open,
+    table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-ui-articlelist-open,
+    table.fpcm-ui-table.fpcm-ui-smileys tr td.fpcm-ui-smiley-listimg,
+    table.fpcm-ui-table.fpcm-ui-editor-smileys td {
+        width: 4em;
+    }
+    
+    table.fpcm-ui-table.fpcm-ui-articles th:first-child .fpcm-ui-button,
+    table.fpcm-ui-table.fpcm-ui-articles tr td:first-child .fpcm-ui-button,
+    table.fpcm-ui-table.fpcm-ui-comments th.fpcm-ui-articlelist-open .fpcm-ui-button,
+    table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-ui-articlelist-open .fpcm-ui-button,
+    table.fpcm-ui-table.fpcm-ui-smileys tr td.fpcm-ui-smiley-listimg .fpcm-ui-button,
+    table.fpcm-ui-table.fpcm-ui-editor-smileys td .fpcm-ui-button {
+        margin-bottom: 0.3em;
+    }
 }
 
 @media (max-width: 60em) {

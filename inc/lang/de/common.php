@@ -48,7 +48,7 @@
         'HL_PROFILE'                    => 'Profil',
         'PROFILE_MENU_LOGGEDINAS'       => 'angemeldet als <em>{{username}}</em>',
         'PROFILE_MENU_LOGGEDINSINCE'    => 'seit',
-        'PROFILE_MENU_YOURIP'           => 'IP-Adresse is ',
+        'PROFILE_MENU_YOURIP'           => 'IP-Adresse ist',
         
         'HELP_SELECT'                   => 'Klicke auf eine Überschrift, um den Hilfe-Eintrag zu öffnen',
         'HELP_BTN_OPEN'                 => 'Hilfe-Eintrag aufrufen',
