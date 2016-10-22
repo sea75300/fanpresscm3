@@ -487,6 +487,32 @@
         }
 
         /**
+         * Liefert minimalen und maximalen createtime-Timestamp
+         * @param int $archived
+         * @return array
+         * @since FPCM 3.3.3
+         */
+        public function getMinMaxDate($archived = false) {
+            
+            $where  = 'deleted = 0';
+            $params = array();
+
+            if ($archived !== false) {
+                $where   .= " AND archived = ?";
+                $params[] = (int) $archived;
+            }
+
+            $result = $this->dbcon->select($this->table, 'MAX(createtime) AS maxdate, MIN(createtime) AS mindate', $where, $params);
+            $data   = $this->dbcon->fetch($result);
+
+            return array(
+                'maxDate' => $data->maxdate === null ? time() : $data->maxdate,
+                'minDate' => $data->mindate === null ? 0      : $data->mindate
+            );
+
+        }
+
+        /**
          * Erzeugt Listen-Result-Array
          * @param array $list
          * @param bool $monthIndex

@@ -32,8 +32,11 @@
             $this->view->assign('listAction', 'articles/listall');
             $this->view->assign('list', $this->articleItems);
             
-            $this->view->addJsVars(array('fpcmArticleSearchMode' => -1));
-            $this->initMinSearchDateValue();
+            $minMax = $this->articleList->getMinMaxDate();
+            $this->view->addJsVars(array(
+                'fpcmArticleSearchMode'   => -1,
+                'fpcmArticlSearchMinDate' => date('Y-m-d', $minMax['minDate'])
+            ));
             
             $this->view->render();
         }

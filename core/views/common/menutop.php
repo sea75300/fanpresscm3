@@ -1,9 +1,9 @@
 <?php if ($FPCM_LOGGEDIN) : ?>
  <div class="fpcm-status-info">
      <ul class="fpcm-menu-top">
-         <li class="fpcm-menu-top-level1" id="fpcm-navigation-profile">
+         <li class="fpcm-menu-top-level1 fpcm-ui-center" id="fpcm-navigation-profile">
              <a href="#" target="_blank" class="fpcm-navigation-noclick">
-                 <span class="fpcm-ui-center fpcm-navicon fa fa-user fa-lg fa-fw"></span> <?php print $FPCM_USER; ?>
+                 <?php $FPCM_LANG->write('PROFILE_MENU_LOGGEDINAS',  array('{{username}}' => $FPCM_USER)); ?> <span class="fpcm-ui-center fpcm-navicon fa fa-user fa-lg fa-fw"></span>
              </a>
              <ul class="fpcm-submenu">
                  <li class="fpcm-menu-top-level2">

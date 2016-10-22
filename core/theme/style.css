@@ -592,6 +592,7 @@ div.fpcm-navigation #fpcm-ui-showmenu-li {
     right: 0;
     border-top: 5px solid #00aded;
     min-width: 25%;
+    text-align: left;
 }
 
 .fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top li:hover ul {
@@ -606,6 +607,7 @@ div.fpcm-navigation #fpcm-ui-showmenu-li {
 
 .fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top #fpcm-navigation-profile {
     padding-right: 0.8em;
+    padding-left: 0.8em;
 }
 
 .fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top li li.fpcm-menu-top-level2 {

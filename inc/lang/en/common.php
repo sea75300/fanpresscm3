@@ -46,8 +46,9 @@
         'HL_TEMPLATE_PREVIEW'           => 'Template preview',
         
         'HL_PROFILE'                    => 'Profile',
-        'PROFILE_MENU_LOGGEDINSINCE'    => 'Logged in since',
-        'PROFILE_MENU_YOURIP'           => 'Your IP address',
+        'PROFILE_MENU_LOGGEDINAS'       => 'You are logged in as <em>{{username}}</em>',
+        'PROFILE_MENU_LOGGEDINSINCE'    => 'since',
+        'PROFILE_MENU_YOURIP'           => 'IP address',
         
         'HELP_SELECT'                   => 'Click on headline to open help entry',
         'HELP_BTN_OPEN'                 => 'Open help chapter',

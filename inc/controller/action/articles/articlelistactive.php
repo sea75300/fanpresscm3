@@ -33,8 +33,11 @@
             $this->view->assign('list', $this->articleItems);
             $this->view->assign('showArchiveStatus', false);
 
-            $this->view->addJsVars(array('fpcmArticleSearchMode' => 0));
-            $this->initMinSearchDateValue();
+            $minMax = $this->articleList->getMinMaxDate(0);
+            $this->view->addJsVars(array(
+                'fpcmArticleSearchMode'   => 0,
+                'fpcmArticlSearchMinDate' => date('Y-m-d', $minMax['minDate'])
+            ));
 
             $this->view->render();
         }
