@@ -412,26 +412,6 @@
 
             $this->view->addJsVars(array('fpcmArticlesLastSearch' => 0));
         }
-
-        /**
-         * Initialisiert miNDate-Wert für Artikel-Suchformular
-         * @since FPCM 3.3
-         */
-        protected function initMinSearchDateValue() {
-            
-            $value = null;
-            
-            if ($this->articleCount && count($this->articleItems)) {
-
-                /* @var $firstItem \fpcm\model\articles\article */
-                $firstItem = array_slice($this->articleItems, -1);
-                $firstItem = array_shift($firstItem[0]);    
-                $value = date('Y-m-d', $firstItem->getCreatetime());
-            }
-
-            $this->view->addJsVars(array('fpcmArticlSearchMinDate' => $value));
-
-        }
         
     }
 ?>
