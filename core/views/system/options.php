@@ -92,9 +92,12 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWIMGTHUMBSIZE'); ?>:</td>
                         <td>
-                            <?php fpcm\model\view\helper::textInput('file_img_thumb_width', 'fpcm-ui-spinner', $globalConfig['file_img_thumb_width'], false, 5, false, false); ?> <span class="fa fa-times fa-fw"></span>
-                            <?php fpcm\model\view\helper::textInput('file_img_thumb_height', 'fpcm-ui-spinner', $globalConfig['file_img_thumb_height'], false, 5, false, false); ?>
-                            <?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZEPIXELS'); ?>
+                            <div class="fpcm-ui-buttonset">
+                                <?php fpcm\model\view\helper::textInput('file_img_thumb_width', 'ui-spinner-input', $globalConfig['file_img_thumb_width'], false, 5, false, false); ?>
+                                <label for="file_img_thumb_width" class="ui-controlgroup-label"><span class="fa fa-times fa-fw"></span></label>                                
+                                <?php fpcm\model\view\helper::textInput('file_img_thumb_height', 'ui-spinner-input', $globalConfig['file_img_thumb_height'], false, 5, false, false); ?>
+                                <label for="file_img_thumb_height" class="ui-controlgroup-label"><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZEPIXELS'); ?></label>
+                            </div>
                         </td>	
                     </tr>
                     <tr>			
@@ -127,7 +130,10 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_SORTING'); ?>:</td>
                         <td>
-                            <?php fpcm\model\view\helper::select('articles_sort', $sorts, $globalConfig['articles_sort'], false, false); ?> <?php fpcm\model\view\helper::select('articles_sort_order', $sortsOrders, $globalConfig['articles_sort_order'], false, false); ?>
+                            <div class="fpcm-ui-buttonset">
+                                <?php fpcm\model\view\helper::select('articles_sort', $sorts, $globalConfig['articles_sort'], false, false); ?>
+                                <?php fpcm\model\view\helper::select('articles_sort_order', $sortsOrders, $globalConfig['articles_sort_order'], false, false); ?>
+                            </div>
                         </td>		
                     </tr>                        
 

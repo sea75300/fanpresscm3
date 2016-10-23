@@ -382,9 +382,12 @@ textarea {
 }
 
 .fpcm-ui-input-wrapper-inner,
-.ui-spinner,
 textarea {
     padding: 0.3em 0.4em;
+}
+
+.ui-spinner {
+    padding: 0.2em;
 }
 
 .fpcm-ui-input-wrapper-inner {
@@ -415,7 +418,7 @@ textarea:active,
 }
 
 table.fpcm-ui-options div.fpcm-ui-input-wrapper {
-    width: 200px;
+    width: 400px;
 }
 
 .ui-spinner {
@@ -466,7 +469,7 @@ table.fpcm-ui-options div.fpcm-ui-input-wrapper {
 
 textarea.fpcm-options-cssclasses {
     height: 150px;
-    width: 50%;
+    width: 400px;
 }
 
 /* Admin-Bereich Navigation */
@@ -1328,6 +1331,14 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 3px;
+}
+
+.ui-controlgroup-label.ui-widget-content:last-child {
+    border-right: 1px solid #aed0ea;
+}
+
+.ui-controlgroup .ui-controlgroup-label span {
+    font-size: 1em;
 }
 
 .ui-selectmenu-menu, .ui-selectmenu-text {

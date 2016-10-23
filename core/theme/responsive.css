@@ -59,7 +59,19 @@
     .fpcm-ui-permissions-container {
         width: 50% !important;
     }
+    
+    textarea.fpcm-options-cssclasses {
+        width: 95%;
+    }
 
+    table.fpcm-ui-options div.fpcm-ui-input-wrapper {
+        width: 83% !important;
+    }
+    
+    table.fpcm-ui-options span.ui-selectmenu-button {
+        width: 60% !important;
+    }
+    
     div.fpcm-navigation ul.fpcm-menu li ul {
         margin: -4em 0 0 25%;
     }
@@ -216,7 +228,7 @@
     }
     
     table.fpcm-ui-table.fpcm-ui-options tr td:first-child {
-        width: 50%;
+        width: 35% !important;
     }
 
     .fpcm-buttons-fixed {
