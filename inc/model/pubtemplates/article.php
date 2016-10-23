@@ -103,7 +103,7 @@
                         break;
                     case '{{sources}}' :
                         $keys   = $replacement;
-                        $this->parseLinks($value);
+                        $this->parseLinks($value, array('rel' => 'noopener noreferrer'));
                         $values = array($value);
                         break;
                     default:

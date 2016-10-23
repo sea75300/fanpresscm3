@@ -49,7 +49,7 @@
             
             $tags    = array_merge($this->replacementInternal, $this->replacementTags);
             
-            $links = $this->parseLinks($tags['{{text}}'], array(), true);
+            $links = $this->parseLinks($tags['{{text}}'], array('rel' => 'noopener'), true);
 
             if (isset($links[0]) && count($links[0])) {
 
