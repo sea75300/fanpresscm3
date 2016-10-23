@@ -237,8 +237,6 @@
                </table>
             </div>
 
-            <div id="tabs-options-check"></div>
-
             <?php if ($showTwitter) : ?>
             <div id="tabs-options-twitter">
                 <?php include_once __DIR__.'/twitter.php'; ?>

@@ -37,7 +37,7 @@
                             <td><a href="mailto:<?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?>"><?php print \fpcm\model\view\helper::escapeVal($user->getEmail()); ?></a></td>
                             <td class="fpcm-ui-center fpcm-ui-users-registeredtime"><?php \fpcm\model\view\helper::dateText($user->getRegistertime()); ?></td>
                             <td class="fpcm-ui-center fpcm-ui-users-articlecount"><?php if (isset($articleCounts[$user->getId()])) : ?><?php print $articleCounts[$user->getId()]; ?><?php else : ?>0<?php endif; ?></td>
-                            <td class="fpcm-td-select-row"><input type="radio" name="useridsa" value="<?php print $user->getId(); ?>" <?php if ($user->getId() == $currentUser) : ?>readonly="readonly"<?php endif; ?>></td>      
+                            <td class="fpcm-td-select-row"><input type="radio" name="useridsa" value="<?php print $user->getId(); ?>" <?php if ($user->getId() == $currentUser) : ?>disabled="disabled"<?php endif; ?>></td>      
                         </tr>      
                         <?php endforeach; ?>
 
@@ -111,7 +111,7 @@
                     <tr>
                         <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($FPCM_BASEMODULELINK.'users/editroll&id='.$rollid, ($rollid <= 3 ? false : true)); ?></td>
                         <td><strong><?php print \fpcm\model\view\helper::escapeVal($rollName); ?></strong></td>
-                        <td class="fpcm-td-select-row"><input type="radio" name="rollids" value="<?php print $rollid; ?>" <?php if ($rollid <= 3) : ?>readonly="readonly"<?php endif; ?>></td>
+                        <td class="fpcm-td-select-row"><input type="radio" name="rollids" value="<?php print $rollid; ?>" <?php if ($rollid <= 3) : ?>disabled="disabled"<?php endif; ?>></td>
                     </tr>      
                     <?php endforeach; ?>
                 </table>

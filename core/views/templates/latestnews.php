@@ -10,11 +10,7 @@
             </dl>
         </td>
     </tr>
-    <tr>
-        <td>
-            <?php include __DIR__.'/editorhead.php'; ?>
-        </td>
-    </tr>
+        <?php include __DIR__.'/editorhead.php'; ?>
     <tr>
         <td>
             <?php fpcm\model\view\helper::textArea('template[latestNews]', 'fpcm-full-width', $contentLatestNews); ?>

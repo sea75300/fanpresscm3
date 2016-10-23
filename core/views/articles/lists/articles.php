@@ -11,7 +11,7 @@
     <?php \fpcm\model\view\helper::notFoundContainer($list, 6); ?>
 
     <?php foreach($list AS $articleMonth => $articles) : ?>
-        <tr class="fpcm-td-spacer" colspan="6"><td></td></tr>
+        <tr class="fpcm-td-spacer"><td colspan="6"></td></tr>
         <tr>
             <th></th>
             <th><?php $FPCM_LANG->writeMonth(fpcm\model\view\helper::dateText($articleMonth, 'n', true)); ?> <?php print fpcm\model\view\helper::dateText($articleMonth, 'Y', true); ?> (<?php print count($articles); ?>)</th> 
@@ -60,7 +60,7 @@
         </td>
         <td class="fpcm-ui-center">            
             <?php \fpcm\model\view\helper::select('pageSelect', $pageSelectOptions, $pageCurrent, false, false); ?>
-        </td class="fpcm-ui-center">
+        </td>
         <td class="fpcm-ui-center">
             <?php if ($nextBtn) : ?>
                 <?php \fpcm\model\view\helper::linkButton($FPCM_SELF.'?module='.$listAction.'&page='.$nextBtn, 'GLOBAL_NEXT', '', 'fpcm-ui-pager-buttons fpcm-forward-button'); ?>

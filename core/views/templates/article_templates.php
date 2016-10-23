@@ -17,7 +17,7 @@
     </tr>
     <?php endforeach; ?>
 
-    <tr class="fpcm-td-spacer" colspan="3"><td></td></tr>
+    <tr class="fpcm-td-spacer"><td colspan="3"></td></tr>
 </table>
 
 <p><?php print $maxFilesInfo; ?></p>

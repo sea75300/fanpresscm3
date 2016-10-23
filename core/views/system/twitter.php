@@ -4,7 +4,7 @@
         <th></th>
         <th><span class="fa fa-check-square fa-align-right"></span> <?php $FPCM_LANG->write('SYSTEM_OPTIONS_TWITTER_ACTIVE', array('{{screenname}}' => $twitterScreenName)); ?></th>
     </tr>
-    <tr class="fpcm-td-spacer" colspan="2"><td></td></tr>
+    <tr class="fpcm-td-spacer"><td colspan="2"></td></tr>
     <?php endif; ?>
     <tr>
         <td></td>

@@ -160,8 +160,8 @@ var fpcmEditor = function () {
         self.insert(aTag, '</' + tagName + '>');
         
         jQuery('#mediapath').val('');
-        jQuery('#mediatype:checked').removeAttr('checked');    
-        jQuery('#mediatype').prop( "checked", true );        
+        jQuery('.fpcm-editor-mediatype').removeAttr('checked');    
+        jQuery('#mediatype_a').prop( "checked", true );        
     };
     
     this.insertFrame = function (url, params) {

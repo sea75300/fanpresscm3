@@ -10,7 +10,7 @@
     
     <?php \fpcm\model\view\helper::notFoundContainer($modules, 6); ?>
 
-    <tr class="fpcm-td-spacer"><td colspan="6"></td></tr>
+    <tr><td  class="fpcm-td-spacer" colspan="6"></td></tr>
     <?php foreach ($modules as $module) :  ?>                
     <tr class="fpcm-ui-modules-updates<?php print $module->hasUpdates(); ?>">
         <td class="fpcm-ui-center">

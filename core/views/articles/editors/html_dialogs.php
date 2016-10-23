@@ -73,11 +73,11 @@
         </tr>   
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTMEDIA_AUDIO'); ?>:</label></td>
-            <td><?php fpcm\model\view\helper::radio('media[type]', '', 'audio', '', 'mediatype', true); ?></td>
+            <td><?php fpcm\model\view\helper::radio('media[type]', 'fpcm-editor-mediatype', 'audio', '', 'mediatype_a', true); ?></td>
         </tr>
         <tr>
             <td><label><?php $FPCM_LANG->write('EDITOR_INSERTMEDIA_VIDEO'); ?>:</label></td>
-            <td><?php fpcm\model\view\helper::radio('media[type]', '', 'video', '', 'mediatype', false); ?></td>
+            <td><?php fpcm\model\view\helper::radio('media[type]', 'fpcm-editor-mediatype', 'video', '', 'mediatype_v', false); ?></td>
         </tr>         
     </table>
 </div>

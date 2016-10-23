@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-    </div>    
 
-    <?php \fpcm\model\view\helper::pageTokenField(); ?>
-</form>
+        <?php \fpcm\model\view\helper::pageTokenField(); ?>
+    </form>
+</div>

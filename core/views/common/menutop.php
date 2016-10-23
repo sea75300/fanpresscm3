@@ -7,13 +7,13 @@
              </a>
              <ul class="fpcm-submenu">
                  <li class="fpcm-menu-top-level2">
-                     <a href="<?php print $FPCM_BASEMODULELINK; ?>system/profile" class="fpcm-loader" id="fpcm-open-profile">
+                     <a href="<?php print $FPCM_BASEMODULELINK; ?>system/profile" class="fpcm-loader">
                          <span class="fpcm-navicon fa fa-wrench fa-fw"></span>
                          <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('PROFILE_MENU_OPENPROFILE'); ?></span>
                      </a>
                  </li>
                  <li class="fpcm-menu-top-level2">
-                     <a href="<?php print $FPCM_BASEMODULELINK; ?>system/logout" class="fpcm-loader" id="fpcm-open-profile">
+                     <a href="<?php print $FPCM_BASEMODULELINK; ?>system/logout" class="fpcm-loader">
                          <span class="fpcm-navicon fa fa-sign-out fa-fw"></span>
                          <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('LOGOUT_BTN'); ?></span>
                      </a>

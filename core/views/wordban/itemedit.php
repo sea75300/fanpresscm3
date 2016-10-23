@@ -10,5 +10,5 @@
                <?php include __DIR__.'/itemeditor.php'; ?>                
             </div>
         </div>
-    </div>             
-</form>
+    </form>
+</div>             
