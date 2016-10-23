@@ -18,7 +18,7 @@
                         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
                     </tr>
                     <?php if (!count($messages)) : ?>
-                    <tr class="fpcm-td-spacer" colspan="4"><td></td></tr>
+                    <tr class="fpcm-td-spacer"><td colspan="4"></td></tr>
                     <tr>
                         <td colspan="4"><?php $FPCM_LANG->write('GLOBAL_NOTFOUND2'); ?></td>
                     </tr>                    

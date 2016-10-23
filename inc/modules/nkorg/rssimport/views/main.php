@@ -32,11 +32,11 @@
             </table>
             
             <table id="feed-articles-list" class="fpcm-ui-table fpcm-ui-articles">
-                <tr class="fpcm-td-spacer" colspan="3"><td></td></tr>
+                <tr class="fpcm-td-spacer"><td colspan="3"></td></tr>
                 <tr>
                     <th colspan="2"><?php $FPCM_LANG->write('NKORG_RSSIMPORT_FOUND'); ?></th>
                 </tr>
-                <tr class="fpcm-td-spacer" colspan="3"><td></td></tr>
+                <tr class="fpcm-td-spacer"><td colspan="3"></td></tr>
             </table>
         </div>
         
