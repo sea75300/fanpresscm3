@@ -138,7 +138,7 @@
                         'description'       => $this->language->translate('HL_OPTIONS'),
                         'icon'              => 'fa fa-cog',
                         'class'             => 'fpcm-navigation-noclick',
-                        'id'                => '',
+                        'id'                => 'fpcm-options-submenu',
                         'submenu'           => $this->optionSubmenu()
                     )
                 ),
