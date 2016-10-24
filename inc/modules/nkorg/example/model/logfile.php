@@ -29,5 +29,11 @@
             return $data;
 
         }
+
+        public static function cleanup() {
+
+            file_put_contents(\fpcm\classes\baseconfig::$logDir.'nkorg_example.log', '');
+
+        }
         
     }

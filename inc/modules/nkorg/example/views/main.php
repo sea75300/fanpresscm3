@@ -4,7 +4,7 @@
     <div class="fpcm-tabs-general">
 
         <ul>
-            <li><a href="#example"><?php $FPCM_LANG->write('NKORG_TWEETENTENDER_TERMLIST'); ?></a></li>
+            <li><a href="#example"><?php $FPCM_LANG->write('FPCM_EXAMPLE_HEADLINE'); ?></a></li>
         </ul>
 
         <div id="example">
@@ -12,6 +12,14 @@
             <pre>
                 <?php print $logfiledata; ?>
             </pre>
+        </div>
+        
+        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+            <div class="fpcm-ui-margin-center">
+                <form method="post" action="<?php print $FPCM_BASEMODULELINK.$FPCM_CURRENT_MODULE; ?>&key=nkorg/example">
+                    <?php \fpcm\model\view\helper::submitButton('clearLog', 'LOGS_CLEARLOG'); ?>
+                </form>
+            </div>
         </div>
     </div>
 </div>

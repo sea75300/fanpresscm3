@@ -16,7 +16,11 @@
     class acpConfig extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
-           
+
+            if (\fpcm\classes\http::postOnly('btnClearLog') !== null) {
+                \fpcm\modules\nkorg\example\model\logfile::cleanup();
+            }
+
             $view = new \fpcm\model\view\module(\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__), 'acp', 'main');
 
             $view->addMessage('FPCM_EXAMPLE_HEADLINE');

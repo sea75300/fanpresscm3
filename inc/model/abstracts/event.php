@@ -64,9 +64,8 @@
          * @param array $modules
          * @return boolean
          */
-        public function __construct($modules) {
-            $this->modules = $modules;
-            
+        public function __construct() {
+
             $moduleList = new \fpcm\model\modules\modulelist();
             
             $this->cache = new \fpcm\classes\cache('activeeventscache');
@@ -169,9 +168,11 @@
             }
             
             $classes = array();
+            
+            $eventBaseClass = '/events/'.$this->getEventClassBase().'.php';
             foreach ($this->activeModules as $module) {
                 
-                $path = \fpcm\classes\baseconfig::$moduleDir.$module.'/events/'.$this->getEventClassBase().'.php';
+                $path = \fpcm\classes\baseconfig::$moduleDir.$module.$eventBaseClass;
                 if (!file_exists($path)) {
                     continue;
                 }
