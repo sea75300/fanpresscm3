@@ -155,54 +155,58 @@ defaultvalues:
             config_name: "articles_archive_datelimit"
             config_value: "0"
         33:
+            id: 33
+            config_name: "articles_revisions_limit"
+            config_value: "0"
+        34:
             id: 34
             config_name: "comments_template_active"
             config_value: "comments"
-        34:
-            id: 34
-            config_name: "comments_flood"
-            config_value: "300"
         35:
             id: 35
-            config_name: "comments_email_optional"
-            config_value: "1"
+            config_name: "comments_flood"
+            config_value: "300"
         36:
             id: 36
-            config_name: "comments_confirm"
+            config_name: "comments_email_optional"
             config_value: "1"
         37:
             id: 37
-            config_name: "comments_antispam_question"
-            config_value: ""
+            config_name: "comments_confirm"
+            config_value: "1"
         38:
             id: 38
-            config_name: "comments_antispam_answer"
+            config_name: "comments_antispam_question"
             config_value: ""
         39:
             id: 39
-            config_name: "comments_notify"
-            config_value: "0"
+            config_name: "comments_antispam_answer"
+            config_value: ""
         40:
             id: 40
-            config_name: "comments_markspam_commentcount"
-            config_value: "2"
+            config_name: "comments_notify"
+            config_value: "0"
         41:
             id: 41
-            config_name: "file_img_thumb_width"
-            config_value: "100"
+            config_name: "comments_markspam_commentcount"
+            config_value: "2"
         42:
             id: 42
-            config_name: "file_img_thumb_height"
+            config_name: "file_img_thumb_width"
             config_value: "100"
         43:
             id: 43
-            config_name: "file_uploader_new"
-            config_value: "1"
+            config_name: "file_img_thumb_height"
+            config_value: "100"
         44:
             id: 44
-            config_name: "twitter_data"
-            config_value: '{"consumer_key":"","consumer_secret":"","user_token":"","user_secret":""}'
+            config_name: "file_uploader_new"
+            config_value: "1"
         45:
             id: 45
+            config_name: "twitter_data"
+            config_value: '{"consumer_key":"","consumer_secret":"","user_token":"","user_secret":""}'
+        46:
+            id: 46
             config_name: "twitter_events"
             config_value: '{"create":0,"update":0}'

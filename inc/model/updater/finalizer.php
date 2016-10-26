@@ -306,6 +306,10 @@
             foreach ($files as $file) {
                 $this->dbcon->checkTableStructure(basename($file, '.yml'));
             }
+            
+            if ($this->checkVersion('3.4.0-b2')) {
+                $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "cjname, lastexec, execinterval", "'removeRevisions', 0, 2419200");                
+            }
 
             return $res;
         }

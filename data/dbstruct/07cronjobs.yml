@@ -73,3 +73,8 @@ defaultvalues:
             cjname: "fileindex"
             lastexec: 0
             execinterval: 86400
+        9:
+            id: 9
+            cjname: "removeRevisions"
+            lastexec: 0
+            execinterval: 2419200

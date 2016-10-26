@@ -63,7 +63,8 @@
         'CRONJOB_POSTPONEDARTICLES'    => 'Publish postponed articles',
         'CRONJOB_UPDATECHECK'          => 'Check for updates',
         'CRONJOB_DBBACKUP'             => 'Create database dump',
-        'CRONJOB_FILEINDEX'            => 'Rebuild file index'
+        'CRONJOB_FILEINDEX'            => 'Rebuild file index',
+        'CRONJOB_REMOVEREVISIONS'      => 'Remove old article revisions'
         
     );
 

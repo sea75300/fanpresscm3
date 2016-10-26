@@ -63,7 +63,8 @@
         'CRONJOB_POSTPONEDARTICLES'    => 'geplante Artikel veröffentlichen',
         'CRONJOB_UPDATECHECK'          => 'Prüfung auf Updates',
         'CRONJOB_DBBACKUP'             => 'System-Datenbank sichern',
-        'CRONJOB_FILEINDEX'            => 'Dateiindex neu aufbauen'
+        'CRONJOB_FILEINDEX'            => 'Dateiindex neu aufbauen',
+        'CRONJOB_REMOVEREVISIONS'      => 'Artikel-Revisionen bereinigen'
     );
 
 ?>

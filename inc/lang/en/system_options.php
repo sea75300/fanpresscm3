@@ -73,6 +73,8 @@
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'Use jQuery uploader',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'          => 'Show articles in archiv from',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY'    => 'keep empty for no limit',
+        'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT'       => 'Delete old revisions, if limit exceeds',
+        'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT_EMPTY' => '0 = no Limit',
         'SYSTEM_OPTIONS_ARCHIVE_LINK'               => 'Show archive link',
         'SYSTEM_OPTIONS_ACTIVECOMMENTTEMPLATE'      => 'Comment template',
         'SYSTEM_OPTIONS_COMMENTFORMTEMPLATE'        => 'Comment form template',

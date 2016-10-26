@@ -44,6 +44,7 @@
      * @property bool   $articles_rss RSS-Feed ist aktiv
      * @property int    $articles_acp_limit Anzahl an Artikeln in der ACP-Liste
      * @property int    $articles_archive_datelimit Datum, bis zu dem Artikel im Archiv maximal angezeigt werden sollen
+     * @property int    $articles_revisions_limit Anzahl Revisionen, bei der alte Revisionen bereinigt werden
      * 
      * @property string $comments_template_active aktives Kommentar-Template
      * @property int    $comments_flood Sperre zwischen zwei Kommentaren

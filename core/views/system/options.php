@@ -82,6 +82,15 @@
                         </td>		
                     </tr>
                     <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT'); ?>:</td>
+                        <td>
+                            <div class="fpcm-ui-buttonset">
+                                <?php fpcm\model\view\helper::textInput('articles_revisions_limit', 'ui-spinner-input', $globalConfig['articles_revisions_limit'], false, 5, false, false); ?>
+                            </div>
+                            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT_EMPTY')); ?>
+                        </td>	
+                    </tr>
+                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ENABLETRASH'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('articles_trash', $globalConfig['articles_trash']); ?></td>		
                     </tr>
@@ -151,7 +160,6 @@
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ENABLEFEED'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('articles_rss', $globalConfig['articles_rss']); ?></td>		
                     </tr>
-
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'); ?>:</td>
                         <td><?php fpcm\model\view\helper::textInput('articles_archive_datelimit', '', $globalConfig['articles_archive_datelimit'] ? fpcm\model\view\helper::dateText($globalConfig['articles_archive_datelimit'], 'Y-m-d', true) : ''); ?>

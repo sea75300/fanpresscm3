@@ -73,6 +73,8 @@
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'jQuery Dateiupload verwenden',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'          => 'Artikel in Archiv anzeigen ab',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY'    => 'leer lassen für kein Limit',
+        'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT'       => 'Alte Revisionen löschen, wenn Anzahl größer als',
+        'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT_EMPTY' => '0 = kein Limit',
         'SYSTEM_OPTIONS_ARCHIVE_LINK'               => 'Archiv-Link anzeigen',
         'SYSTEM_OPTIONS_ACTIVECOMMENTTEMPLATE'      => 'Kommentar-Template',
         'SYSTEM_OPTIONS_COMMENTFORMTEMPLATE'        => 'Kommentar-Formular-Template',
