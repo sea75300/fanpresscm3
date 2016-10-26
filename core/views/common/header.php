@@ -10,12 +10,12 @@
     </head>    
 
     <body class="fpcm-body" id="fpcm-body"> 
-        
+
         <?php include_once 'vars.php'; ?>
 
         <div class="fpcm-wrapper-left <?php if (in_array($FPCM_CURRENT_MODULE, array('system/login', 'installer'))) : ?>fpcm-wrapper-fixed<?php endif; ?>" id="fpcm-wrapper-left">
             
-            <div class="fpcm-logo fpcm-ui-center">
+            <div id="fpcm-logo" class="fpcm-logo fpcm-ui-center">
                 <div><img class="fpcm-logo" src="<?php print $FPCM_THEMEPATH; ?>logo.svg" alt="FanPress CM News System"></div>
                 <div><span>FanPress CM</span> <span>News System</span></div>
             </div>

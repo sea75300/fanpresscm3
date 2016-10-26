@@ -1,6 +1,12 @@
 <?php if ($FPCM_LOGGEDIN) : ?>
  <div class="fpcm-status-info">
      <ul class="fpcm-menu-top">
+         <li class="fpcm-menu-top-level1" id="fpcm-ui-showmenu-li">
+             <a href="#" id="fpcm-ui-showmenu">
+                 <span class="fpcm-navicon fa fa-bars fa-fw fa-lg"></span>
+                 <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('NAVIGATION_SHOW'); ?></span>
+             </a>
+         </li>
          <li class="fpcm-menu-top-level1 fpcm-ui-center" id="fpcm-navigation-profile">
              <a href="#" target="_blank" class="fpcm-navigation-noclick">
                  <?php $FPCM_LANG->write('PROFILE_MENU_LOGGEDINAS',  array('{{username}}' => $FPCM_USER)); ?> <span class="fpcm-ui-center fpcm-navicon fa fa-user fa-lg fa-fw"></span>

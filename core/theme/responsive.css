@@ -261,7 +261,7 @@
         display: none;
     }
     
-    div.fpcm-navigation #fpcm-ui-showmenu-li {
+    div.fpcm-status-info ul.fpcm-menu-top #fpcm-ui-showmenu-li {
         display: block !important;
     }
     

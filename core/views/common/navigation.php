@@ -2,12 +2,6 @@
 <div class="fpcm-navigation-wrapper">
     <div class="fpcm-navigation">
         <ul id="fpcm-navigation-ul" class="fpcm-menu">
-            <li class="fpcm-menu-level1 fpcm-ui-center" id="fpcm-ui-showmenu-li">
-                <a href="#" id="fpcm-ui-showmenu">
-                    <span class="fpcm-navicon fa fa-bars"></span>
-                    <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('NAVIGATION_SHOW'); ?></span>
-                </a>
-            </li>
     <?php foreach ($FPCM_NAVIGATION as $navigationGroup) : ?>            
         <?php foreach ($navigationGroup as $groupName => $navigationItem) : ?>     
             <li <?php if ($navigationItem['id']) : ?>id="item<?php print $navigationItem['id']; ?>"<?php endif; ?> class="fpcm-menu-level1 fpcm-menu-level1-show fpcm-ui-center <?php if (substr($navigationItem['url'], 0, strlen($FPCM_NAVIGATION_ACTIVE)) === $FPCM_NAVIGATION_ACTIVE) : ?>fpcm-menu-active<?php endif; ?>">

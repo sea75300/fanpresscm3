@@ -580,14 +580,15 @@ div.fpcm-navigation ul.fpcm-menu li li {
     padding: 0.5em 0.3em;
 }
 
-div.fpcm-navigation #fpcm-ui-showmenu-li {
-    display: none !important;
-}
-
 .fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top {
     float: right;
     display: block;
     width: 100%;
+}
+
+div.fpcm-status-info ul.fpcm-menu-top #fpcm-ui-showmenu-li {
+    display: none !important;
+    float: left;
 }
 
 .fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top li ul {
