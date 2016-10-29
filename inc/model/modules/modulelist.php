@@ -160,13 +160,21 @@
          * @return array
          */
         public function getDisabledInstalledModules() {
+
+            $cache = new \fpcm\classes\cache(__CLASS__.__FUNCTION__);
+            if (!$cache->isExpired()) {
+                return $cache->read();
+            }
+
             $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey', 'status = 0'), true);
             
             $keys = array();
             foreach ($modules as $module) {
                 $keys[] = $module->modkey;
             }
-            
+
+            $cache->write($keys, $this->config->system_cache_timeout);
+
             return $keys;
         }
 
@@ -175,13 +183,21 @@
          * @return array
          */
         public function getEnabledInstalledModules() {
+
+            $cache = new \fpcm\classes\cache(__CLASS__.__FUNCTION__);
+            if (!$cache->isExpired()) {
+                return $cache->read();
+            }
+
             $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey', 'status = 1'), true);
             
             $keys = array();
             foreach ($modules as $module) {
                 $keys[] = $module->modkey;
             }
-            
+
+            $cache->write($keys, $this->config->system_cache_timeout);
+
             return $keys;
         }
         
@@ -190,12 +206,21 @@
          * @return array
          */
         public function getInstalledModules() {
+
+            $cache = new \fpcm\classes\cache(__CLASS__.__FUNCTION__);
+            if (!$cache->isExpired()) {
+                return $cache->read();
+            }
+
             $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey'), true);
             
             $keys = array();
             foreach ($modules as $module) {
                 $keys[] = $module->modkey;
-            }            
+            }
+
+            $cache->write($keys, $this->config->system_cache_timeout);
+
             return $keys;
         }
 
@@ -205,7 +230,7 @@
          * @return bool
          */
         public function disableModules(array $keys) {
-            $this->cache->cleanup('activeeventscache');
+            $this->cache->cleanup();
             return $this->dbcon->reverseBool($this->table, 'status', "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", $keys)."') AND status = 1");
         }
         
@@ -215,7 +240,7 @@
          * @return bool
          */
         public function enableModules(array $keys) {
-            $this->cache->cleanup('activeeventscache');
+            $this->cache->cleanup();
             
             foreach ($keys as $key => $val) {
                 if (!$this->checkDepencies($val)) {
@@ -236,7 +261,7 @@
          */
         public function uninstallModules(array $keys) {
 
-            $this->cache->cleanup('activeeventscache');
+            $this->cache->cleanup();
             
             $keys = array_intersect($keys, $this->getDisabledInstalledModules());
             if (!count($keys)) return false;

@@ -145,7 +145,9 @@
          */
         public function __construct($rollid = 0) {
 
-            $this->table    = \fpcm\classes\database::tablePermissions;            
+            $this->table     = \fpcm\classes\database::tablePermissions;
+            $this->cacheName = 'permissioncache'.$rollid;
+
             parent::__construct();
             
             if (!$rollid) return;
@@ -191,15 +193,23 @@
          * @return void
          */
         protected function init() {
-            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "rollid = ?", array($this->rollid)));
 
+            if (!$this->cache->isExpired()) {
+                $this->permissiondata = $this->cache->read();
+                return true;
+            }
+            
+            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "rollid = ?", array($this->rollid)));
+            
             if (!is_object($data)) return false;
             
             foreach ($data as $key => $value) {
                 $this->$key = $value;
             }
-            
+
             $this->permissiondata = json_decode($this->permissiondata, true);
+            $this->cache->write($this->permissiondata, $this->config->system_cache_timeout);
+
         }
         
         /**
