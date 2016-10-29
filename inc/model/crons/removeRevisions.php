@@ -23,34 +23,8 @@
                 return true;
             }
             
-            $table = \fpcm\classes\database::tableRevisions;
-            $count = $this->dbcon->count($table, '*', 'revision_idx <= ? ', array($this->lastExecTime));
-            if ($count < $limit) {
-                $this->updateLastExecTime();
-                return true;
-            }
-
-            $deleteLimit = abs($count - $limit);
-
-            $where = 'revision_idx <= ? '.$this->dbcon->orderBy(array('revision_idx ASC')).' '.$this->dbcon->limitQuery(0, $deleteLimit);
-            $rows  = $this->dbcon->fetch($this->dbcon->select($table, 'revision_idx', $where, array($this->lastExecTime)), true);
-
-            if (!$rows) {
-                $this->updateLastExecTime();
-                return true;
-            }
-
-            $ids = array();
-            foreach ($rows as $row) {
-                $ids[] = $row->revision_idx;
-            }
-
-            if (!count($ids)) {
-                $this->updateLastExecTime();
-                return true;
-            }
-
-            $this->dbcon->delete($table, 'revision_idx IN ('.implode(', ', $ids).')');
+            $limit = (time() - $limit);
+            $this->dbcon->delete(\fpcm\classes\database::tableRevisions, 'revision_idx <= ?', array($limit));
             $this->updateLastExecTime();
 
             return true;

@@ -154,12 +154,12 @@
             $item .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.leveltitle AS groupname';
 
             $where  = $this->dbcon->getTablePrefixed($this->table).'.roll = ';
-            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id';
-            $where .= 'id IN ('.implode(', ', $ids).') ';
+            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id AND ';
+            $where .= $this->dbcon->getTablePrefixed($this->table).'.id IN ('.implode(', ', $ids).') ';
 
             $result = $this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where);
             $users  = $this->dbcon->fetch($result, true);
-            
+
             if (!$users || !count($users)) {
                 return array();
             }

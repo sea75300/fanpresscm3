@@ -83,12 +83,7 @@
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT'); ?>:</td>
-                        <td>
-                            <div class="fpcm-ui-buttonset">
-                                <?php fpcm\model\view\helper::textInput('articles_revisions_limit', 'ui-spinner-input', $globalConfig['articles_revisions_limit'], false, 5, false, false); ?>
-                            </div>
-                            <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT_EMPTY')); ?>
-                        </td>	
+                        <td><?php fpcm\model\view\helper::select('articles_revisions_limit', $FPCM_LANG->translate('SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT_LIST'), $globalConfig['articles_revisions_limit'], false, false); ?></td>
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ENABLETRASH'); ?>:</td>

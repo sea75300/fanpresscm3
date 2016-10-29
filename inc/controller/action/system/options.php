@@ -89,6 +89,7 @@
                 $newconfig['file_img_thumb_width']           = (int) $newconfig['file_img_thumb_width'];
                 $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
                 $newconfig['system_updates_devcheck']        = (int) $newconfig['system_updates_devcheck'];
+                $newconfig['articles_revisions_limit']       = (int) $newconfig['articles_revisions_limit'];
                 $newconfig['articles_archive_datelimit']     = $newconfig['articles_archive_datelimit']
                                                              ? strtotime($newconfig['articles_archive_datelimit']) : 0;
 
@@ -197,7 +198,7 @@
             $this->view->assign('twitterScreenName', $twitter->getUsername());
 
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'options.js'));
-            $this->view->addJsVars(array('showTwitter' => $showTwitter, 'syscheck' => $this->syscheck));
+            $this->view->addJsVars(array('showTwitter' => $showTwitter ? 1 : 0, 'syscheck' => $this->syscheck));
             
             $this->view->render();            
         }
