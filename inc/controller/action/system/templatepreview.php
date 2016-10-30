@@ -145,7 +145,8 @@
                 '{{permaLink}}:{{/permaLink}}'      => $this->config->system_url,
                 '{{commentLink}}:{{/commentLink}}'  => $this->config->system_url.'#comments',
                 '<readmore>:</readmore>'            => md5(time()),
-                '{{articleImage}}'                  => ''
+                '{{articleImage}}'                  => '',
+                '{{sources}}'                       => ''
             );
             $this->template->setReplacementTags($replacements);
             $parsed[] = $this->template->parse();
@@ -178,7 +179,8 @@
                 '{{permaLink}}:{{/permaLink}}'      => $this->config->system_url,
                 '{{commentLink}}:{{/commentLink}}'  => $this->config->system_url.'#comments',
                 '<readmore>:</readmore>'            => md5(time()),
-                '{{articleImage}}'                  => ''
+                '{{articleImage}}'                  => '',
+                '{{sources}}'                       => $this->config->system_url
             );
 
             $this->template->setReplacementTags($replacements);
