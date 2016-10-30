@@ -11,7 +11,7 @@ require_once dirname(dirname(__DIR__)).'/inc/common.php';
 $data = array('content' => '', 'filesize' => 0);
 $cache = new \fpcm\classes\cache('jsfiles');
 
-if ($cache->isExpired()) {
+if ($cache->isExpired() || FPCM_DEBUG) {
 
     $jsFiles = array(
         __DIR__.'/ui.js',
@@ -22,7 +22,7 @@ if ($cache->isExpired()) {
 
     foreach ($jsFiles as $jsFile) {
 
-        $fileContent = file_get_contents($jsFile).PHP_EOL.PHP_EOL;
+        $fileContent = '/* '.\fpcm\model\files\ops::removeBaseDir($jsFile).' */'.PHP_EOL.file_get_contents($jsFile).PHP_EOL.PHP_EOL;
         if (!$fileContent) {
             continue;
         }
@@ -32,7 +32,7 @@ if ($cache->isExpired()) {
 
     }
 
-    $cache->write($data);
+    $cache->write($data, FPCM_LANGCACHE_TIMEOUT);
 } else {
     $data = $cache->read();
 }

@@ -55,7 +55,6 @@
     table.fpcm-ui-table.fpcm-ui-logs-sessions tr td,
     table.fpcm-ui-table.fpcm-ui-logs tr td:first-child,
     table.fpcm-ui-table.fpcm-ui-options-twitter tr td:first-child,
-    div.fpcm-filelist-thumb-box,
     .fpcm-ui-permissions-container {
         width: 50% !important;
     }
@@ -83,7 +82,8 @@
     .fpcm-buttons-fixed-full {
         left: 0px;
     }
-    
+
+    div.fpcm-filelist-thumb-box,
     .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
     .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
         width: 50%;
@@ -153,20 +153,19 @@
     }
 }
 
-@media (max-width: 60em) {
-    div.fpcm-filelist-thumb-box {
-        width: 50%;
-    }
-}
+@media (max-width: 55em) {
 
-@media (max-width: 55em) {    
     .fpcm-ui-permissions-container {
         width: 100% !important;
     }
-    
+
     .fpcm-dashboard-container.fpcm-dashboard-container-width-small,
     .fpcm-dashboard-container.fpcm-dashboard-container-width-big {
         width: 100%;
+    }
+    
+    div.fpcm-filelist-thumb-box {
+        width: 50%;
     }
 }
 
@@ -191,6 +190,7 @@
 
     .fpcm-wrapper,
     .fpcm-wrapper-left,
+    div.fpcm-filelist-thumb-box,
     div.fpcm-navigation ul.fpcm-menu li li {
         width: 100%;
     }
