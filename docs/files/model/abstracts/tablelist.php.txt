@@ -60,6 +60,13 @@
          * @var string
          */
         protected $cacheName    = false;
+        
+        /**
+         * Cache Modul
+         * @var string
+         * @since FPCM 3.4
+         */
+        protected $cacheModule    = '';
 
         /**
          * Konstruktor
@@ -70,7 +77,7 @@
  
             $this->dbcon    = \fpcm\classes\baseconfig::$fpcmDatabase;
             $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
-            $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)));
+            $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)), $this->cacheModule);
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             

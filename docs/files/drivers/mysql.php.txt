@@ -102,6 +102,31 @@
         }
 
         /**
+         * Query-String um Index auf Tabellenspalte zu setzten
+         * @param string $table
+         * @param string $indexName
+         * @param string $field
+         * @param string $isUnique
+         * @return string
+         * @since FPCM 3.3.1
+         */
+        public function createIndexString($table, $indexName, $field, $isUnique) {
+            $index = ($isUnique ? 'UNIQUE' : 'INDEX');
+            return "ALTER TABLE {$table} ADD {$index} `{$indexName}` ( `{$field}` );";
+        }
+
+        /**
+         * Erzeugt CONCAT_WS SQL-String
+         * @param string $delim
+         * @param array $fields
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function implodeCols($delim, array $fields) {
+            return " CONCAT_WS('{$delim}', '".  implode("', '", $fields)."')";
+        }
+
+        /**
          * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
          * @return array
          */
@@ -120,6 +145,53 @@
                 'float'     => 'float',
                 'double'    => 'decimal',
                 'char'      => 'char'
+            );
+
+        }
+
+        /**
+         * Liefert empfohlene Version für Datenbank-System zurück
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getRecommendVersion() {
+            return '5.5';
+        }
+
+        /**
+         * Liefert Struktur-Infos für eine Bestimmte Tabelle und ggf. Spalte zurück
+         * @param string $table
+         * @param string $field
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function getTableStructureQuery($table, $field = false) {
+            
+            $query = 'SHOW COLUMNS FROM '.$table;
+            if ($field !== false && trim($field)) {
+                $query .= " WHERE Field = '{$field}'";
+            }
+            
+            return $query;
+            
+        }
+
+        /**
+         * Bereitet Treiber-spezifische Struktur von Tabelle-Struktur-Infos aus
+         * @param object $colRow
+         * @param array $data
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function prepareColRow($colRow, array &$data) {
+
+            $type       = preg_replace('/(\([0-9]+\))/is', '', $colRow->Type);
+            $length     = preg_replace('/([^0-9])/is', '', $colRow->Type);
+            $length     = (int) str_replace(array('(', ')'), '', $length);
+
+            $data[$colRow->Field] = array(
+                'type'   => $type,
+                'length' => $length
             );
 
         }

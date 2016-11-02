@@ -102,6 +102,31 @@
         }
 
         /**
+         * Query-String um Index auf Tabellenspalte zu setzten
+         * @param string $table
+         * @param string $indexName
+         * @param string $field
+         * @param string $isUnique
+         * @return string
+         * @since FPCM 3.3.1
+         */
+        public function createIndexString($table, $indexName, $field, $isUnique) {
+            $index = ($isUnique ? 'UNIQUE INDEX' : 'INDEX');
+            return "CREATE {$index} {$table}_{$indexName} ON {$table} USING btree ({$field});";
+        }
+
+        /**
+         * Erzeugt CONCAT_WS SQL-String
+         * @param string $delim
+         * @param array $fields
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function implodeCols($delim, array $fields) {
+            return " CONCAT_WS('{$delim}', '".  implode("', '", $fields)."')";
+        }
+
+        /**
          * Datentyp-Mapping für Yaml-basierte Tabelle-Definitionen
          * @return array
          */
@@ -122,6 +147,50 @@
                 'char'      => 'char'
             );
 
+        }
+
+        /**
+         * Liefert empfohlene Version für Datenbank-System zurück
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getRecommendVersion() {
+            return '9.1';
+        }
+
+        /**
+         * Liefert Struktur-Infos für eine Bestimmte Tabelle und ggf. Spalte zurück
+         * @param string $table
+         * @param string $field
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function getTableStructureQuery($table, $field = false) {
+
+            $query = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '{$table}'";
+            if ($field !== false && trim($field)) {
+                $query .= " AND COLUMN_NAME = '{$field}'";
+            }
+            
+            return $query;
+
+        }
+
+        /**
+         * Bereitet Treiber-spezifische Struktur von Tabelle-Struktur-Infos aus
+         * @param object $colRow
+         * @param array $data
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function prepareColRow($colRow, array &$data) {
+
+            $data[$colRow->column_name] = array(
+                'type'   => $colRow->data_type,
+                'length' => (int) $colRow->character_maximum_length
+            );
+            
+            
         }
 
     }

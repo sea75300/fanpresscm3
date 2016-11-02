@@ -37,17 +37,20 @@
          * @return void
          */
         public function render() {            
-            if (parent::render()) {
-                $this->initAssigns();
-                
-                $viewVars = $this->getViewVars();
-                foreach ($viewVars as $key => $value) {
-                    $$key = $value;                    
-                }
-                
-                $message = $this->errorMessage;
-                include_once $this->getViewFile();
+
+            if (!parent::render()) {
+                return false;
             }
+
+            $this->initAssigns();
+
+            $viewVars = $this->getViewVars();
+            foreach ($viewVars as $key => $value) {
+                $$key = $value;                    
+            }
+
+            $message = $this->errorMessage;
+            include_once $this->getViewFile();
         }
         
         /**

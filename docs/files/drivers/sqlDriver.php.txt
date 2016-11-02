@@ -63,11 +63,20 @@
         public function orderBy(array $conditions);
         
         /**
-         * Erzeugt CONCAT SQl_String
+         * Erzeugt CONCAT SQL-String
          * @param array $fields
          * @return string
          */        
         public function concatString(array $fields);
+        
+        /**
+         * Erzeugt CONCAT_WS SQL-String
+         * @param string $delim
+         * @param array $fields
+         * @return string
+         * @since FPCM 3.4
+         */       
+        public function implodeCols($delim, array $fields);
         
         /**
          * Erzeugt Parameter für @see \PDO::lastInsertId()
@@ -88,6 +97,42 @@
          * @return array
          */
         public function getYaTDLDataTypes();
+
+        /**
+         * Query-String um Index auf Tabellenspalte zu setzten
+         * @param string $table
+         * @param string $indexName
+         * @param string $field
+         * @param string $isUnique
+         * @return string
+         * @since FPCM 3.3.1
+         */
+        public function createIndexString($table, $indexName, $field, $isUnique);
+
+        /**
+         * Liefert Struktur-Infos für eine Bestimmte Tabelle und ggf. Spalte zurück
+         * @param string $table
+         * @param string $field
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function getTableStructureQuery($table, $field = false);
+        
+        /**
+         * Bereitet Treiber-spezifische Struktur von Tabelle-Struktur-Infos aus
+         * @param object $colRow
+         * @param array $data
+         * @return array
+         * @since FPCM 3.3.2
+         */
+        public function prepareColRow($colRow, array &$data);
+
+        /**
+         * Liefert empfohlene Version für Datenbank-System zurück
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getRecommendVersion();
         
     }
 

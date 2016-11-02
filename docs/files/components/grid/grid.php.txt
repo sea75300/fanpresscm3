@@ -1,0 +1,97 @@
+<?php
+
+    namespace fpcm\components\grid;
+
+    /**
+     * Grid component object
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @package fpcm.components.grid
+     * @since FPCM 3.3
+     */
+    class grid extends \fpcm\model\abstracts\staticModel {
+
+        /**
+         * Array mit Elementen vom typ fpcm\components\grid\col
+         * @var array
+         */
+        private $cols;
+        
+        /**
+         * Array mit Elementen vom Type fpcm\components\grid\item
+         * @var array
+         */
+        private $items;
+        
+        /**
+         *
+         * @var \fpcm\model\view\acp
+         */
+        private $view;
+                
+        function __construct() {
+            
+            parent::__construct();
+            $this->view = new \fpcm\model\view\acp('grid', 'components');
+            
+        }
+
+        /**
+         * Liefert alle Spalten zurück
+         * @return array
+         */
+        function getCols() {
+            return $this->cols;
+        }
+
+        /**
+         * Liefert alle Einträge zurück
+         * @return array
+         */
+        function getItems() {
+            return $this->items;
+        }
+
+        /**
+         * Spalten setzen
+         * @param array $cols
+         */
+        function setCols(array $cols) {
+            $this->cols = $cols;
+        }
+
+        /**
+         * Einträge setzen
+         * @param array $items
+         */
+        function setItems($items) {
+            $this->items = $items;
+        }
+
+        /**
+         * Einzelne Spalte hinzufügen
+         * @param \fpcm\components\grid\col $col
+         */
+        public function addCol(col $col) {
+            $this->cols[] = $col;
+        }
+
+        /**
+         * Einzelnen Eintrag hinzufügen
+         * @param \fpcm\components\grid\item $item
+         */
+        public function addItem(item $item) {
+            $this->items[] = $item;
+        }
+
+        public function render() {
+
+            $this->view->assign('cols', $this->cols);
+            $this->view->assign('items', $this->items);
+            $this->view->render();
+            
+        }
+        
+    }
+

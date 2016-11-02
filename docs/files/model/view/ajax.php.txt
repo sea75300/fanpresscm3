@@ -31,26 +31,29 @@
          * @return void
          */
         public function render() {
-            if (parent::render()) {
-                ob_start();
-                
-                $this->assign('FPCM_MESSAGES', $this->getMessages());
-                
-                $viewVars = $this->getViewVars();                
-                $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
-                
-                foreach ($viewVars as $key => $value) { $$key = $value; }
-                
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
-                
-                if ($this->getViewFile()) include_once $this->getViewFile();
-                
-                $this->events->runEvent('viewRenderAfter');
-                
-                $data = ob_get_contents();
-                ob_end_clean();
-                die($data);                
+
+            if (!parent::render()) {
+                die();
             }
+
+            ob_start();
+
+            $this->assign('FPCM_MESSAGES', $this->getMessages());
+
+            $viewVars = $this->getViewVars();                
+            $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
+
+            foreach ($viewVars as $key => $value) { $$key = $value; }
+
+            include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+
+            if ($this->getViewFile()) include_once $this->getViewFile();
+
+            $this->events->runEvent('viewRenderAfter');
+
+            $data = ob_get_contents();
+            ob_end_clean();
+            die($data);                
         }
         
         /**

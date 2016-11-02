@@ -69,7 +69,7 @@
          * @param string $class CSS-Klasse
          */
         public static function button($type, $name, $descr, $class = '') {            
-            $name = ucfirst($name);            
+            $name  = ucfirst($name);            
             $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;
             print "<button type=\"$type\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" name=\"btn{$name}\" id=\"btn".self::cleanIdName($name)."\">$descr</button>";
         }
@@ -83,7 +83,12 @@
          * @param string $target Link-Target
          */
         public static function linkButton($href, $descr, $id = '', $class = '', $target = '_self') {
-            $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;            
+            $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;
+
+            if (!trim($id)) {
+                $id = uniqid('lnkbtn_');
+            }
+
             print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" id=\"".self::cleanIdName($id)."\" target=\"$target\">$descr</a>\n";
         }
         
@@ -119,11 +124,11 @@
          * @param string $class CSS-Klasse
          * @param string $value Wert
          * @param bool $readonly readonly Status
-         * @param int $maxLenght maximale Länge für Feld-Eingabe
+         * @param int $maxlength maximale Länge für Feld-Eingabe
          * @param string $placeholder Platzhalter-Text
          * @param string $wrapper Wrapper-DIV nutzen
          */
-        public static function textInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false, $wrapper = true) {
+        public static function textInput($name, $class = '', $value = '', $readonly = false, $maxlength = 255, $placeholder = false, $wrapper = true) {
 
             $placeholder = self::$language->translate($placeholder) ? self::$language->translate($placeholder) : $placeholder;
 
@@ -132,7 +137,7 @@
                 $wrapperClass = is_string($wrapper) ? $wrapper : '';
                 $html[] = "<div class=\"fpcm-ui-input-wrapper $wrapperClass\"><div class=\"fpcm-ui-input-wrapper-inner\">";
             }
-            $html[] = "<input type=\"text\" class=\"fpcm-ui-input-text $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\" value=\"".htmlentities($value, ENT_QUOTES)."\" maxlenght=\"$maxLenght\"";
+            $html[] = "<input type=\"text\" class=\"fpcm-ui-input-text $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\" value=\"".htmlentities($value, ENT_QUOTES)."\" maxlength=\"$maxlength\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
             if ($placeholder) $html[] = " placeholder=\"$placeholder\"";
             if ($placeholder && \fpcm\model\abstracts\view::isBrowser('MSIE 9.0')) {
@@ -140,8 +145,10 @@
             }
             
             $html[] = ">\n";
-            $html[] = "</div>\n";
-            if ($wrapper) $html[] = "</div>\n";
+            if ($wrapper) {
+                $html[] = "</div>\n";
+                $html[] = "</div>\n";
+            }
             
             print implode('', $html);
         }
@@ -161,17 +168,17 @@
          * @param string $class CSS-Klasse
          * @param string $value Wert
          * @param bool $readonly readonly Status
-         * @param int $maxLenght maximale Länge für Feld-Eingabe
+         * @param int $maxlength maximale Länge für Feld-Eingabe
          * @param sting $placeholder HTML5-Platzhalter-Text
          * @param string $wrapper Wrapper-DIV nutzen
          */
-        public static function passwordInput($name, $class = '', $value = '', $readonly = false, $maxLenght = 255, $placeholder = false, $wrapper = true) {
+        public static function passwordInput($name, $class = '', $value = '', $readonly = false, $maxlength = 255, $placeholder = false, $wrapper = true) {
             $html   = array();
             if ($wrapper) {
                 $wrapperClass = is_string($wrapper) ? $wrapper : '';
                 $html[] = "<div class=\"fpcm-ui-input-wrapper $wrapperClass\"><div class=\"fpcm-ui-input-wrapper-inner\">";
             }
-            $html[] = "<input type=\"password\" class=\"fpcm-ui-input-text $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\" value=\"".htmlentities($value, ENT_QUOTES)."\" maxlenght=\"$maxLenght\"";
+            $html[] = "<input type=\"password\" class=\"fpcm-ui-input-text $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\" value=\"".htmlentities($value, ENT_QUOTES)."\" maxlength=\"$maxlength\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
             if ($placeholder) $html[] = " placeholder=\"$placeholder\"";
             if ($placeholder && \fpcm\model\abstracts\view::isBrowser('MSIE 9.0')) {
@@ -197,9 +204,13 @@
         public static function checkbox($name, $class = '', $value = '', $descr = '', $id = '', $selected = true, $readonly = false) {
             $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;
             
+            if (!trim($id)) {
+                $id = uniqid('chkbox_');
+            }
+            
             $html   = array();
             $html[] = "<input type=\"checkbox\" class=\"fpcm-ui-input-checkbox $class\" name=\"$name\" id=\"".self::cleanIdName($id)."\" value=\"".htmlentities($value, ENT_QUOTES)."\"";
-            if ($readonly) $html[] = " readonly=\"readonly\"";
+            if ($readonly) $html[] = " disabled=\"disabled\"";
             if ($selected) $html[] = " checked=\"checked\"";
             $html[] = "> <label for=\"".self::cleanIdName($id)."\">$descr</label>\n";
             
@@ -219,9 +230,13 @@
         public static function radio($name, $class = '', $value = '', $descr = '', $id = '', $selected = true, $readonly = false) {
             $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;
             
+            if (!trim($id)) {
+                $id = uniqid('rdbtn_');
+            }
+            
             $html   = array();
             $html[] = "<input type=\"radio\" class=\"fpcm-ui-input-checkbox $class\" name=\"$name\" id=\"".self::cleanIdName($id)."\" value=\"".htmlentities($value, ENT_QUOTES)."\"";
-            if ($readonly) $html[] = " readonly=\"readonly\"";
+            if ($readonly) $html[] = " disabled=\"disabled\"";
             if ($selected) $html[] = " checked=\"checked\"";
             $html[] = "> <label for=\"$id\">$descr</label>\n";
             
@@ -238,7 +253,7 @@
          */
         public static function textArea($name, $class = '', $value = '', $readonly = false) {
             $html   = array();
-            $html[] = "<textarea type=\"text\" class=\"fpcm-ui-textarea $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\"";
+            $html[] = "<textarea class=\"fpcm-ui-textarea $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
             $html[] = ">".htmlentities($value, ENT_QUOTES)."</textarea>\n";
             
@@ -371,7 +386,7 @@
          * @return void
          */
         public static function buttonsContainerClass() {
-            print 'fpcm-buttons fpcm-buttons-fixed ui-widget-header ui-corner-tl ui-corner-bl';
+            print 'fpcm-buttons fpcm-buttons-fixed';
         }
         
         /**
@@ -436,7 +451,7 @@
          */
         public static function notFoundContainer(array $data, $cols) {
             if (count($data)) return false;
-            print "<tr class=\"fpcm-td-spacer\" colspan=\"{$cols}\"><td></td></tr><tr><td colspan=\"6\">".self::$language->translate('GLOBAL_NOTFOUND2')."</td></tr>";
+            print "<tr class=\"fpcm-td-spacer\"><td colspan=\"{$cols}\"></td></tr><tr><td colspan=\"6\">".self::$language->translate('GLOBAL_NOTFOUND2')."</td></tr>";
         }
 
         /**

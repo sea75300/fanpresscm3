@@ -93,6 +93,12 @@
          * @var string
          */
         protected $cacheName    = false;
+        
+        /**
+         * Cache name
+         * @var string
+         */
+        protected $cacheModule  = '';
 
         /**
          * Konstruktor
@@ -103,7 +109,7 @@
  
             $this->dbcon    = \fpcm\classes\baseconfig::$fpcmDatabase;
             $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
-            $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)));
+            $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)), $this->cacheModule);
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
@@ -264,7 +270,9 @@
                 if (!isset($object->$key)) continue;
                 $this->$key = $object->$key;   
             }
-            
+
+            $this->objExists = true;
+
             return true;
         }
         
@@ -288,6 +296,7 @@
                 $params['editAction'],
                 $params['objExists'],
                 $params['cacheName'],
+                $params['cacheModule'],
                 $params['wordbanList']
             );
             

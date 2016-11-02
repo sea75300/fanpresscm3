@@ -90,6 +90,13 @@
          * @var array
          */
         protected $usrmeta;
+
+        /**
+         * Übersetzter Gruppenname
+         * @var string
+         * @since FPCM 3.4
+         */
+        protected $groupname;
         
         /**
          * Edit action string
@@ -103,6 +110,12 @@
          * @since FPCM 3.2.0
          */
         protected $wordbanList;
+        
+        /**
+         * Eigenschaften, welche beim Speichern in DB nicht von getPreparedSaveParams() zurückgegeben werden sollen
+         * @var array
+         */
+        protected $dbExcludes = array('groupname');
         
         /**
          * Konstruktor
@@ -197,6 +210,15 @@
         }
 
         /**
+         * Übersetzter Gruppenname
+         * @return string
+         * @since FPCM 3.4
+         */        
+        function getGroupname() {
+            return $this->groupname;
+        }
+
+        /**
          * Deaktiviert-Status setzten
          * @param bool $disabled
          */
@@ -240,6 +262,12 @@
                 break;
                 case 'articles_acp_limit' :
                     return $this->config->articles_acp_limit;
+                break;
+                case 'file_uploader_new' :
+                    return $this->config->file_uploader_new;
+                break;
+                case 'system_editor_fontsize' :
+                    return $this->config->system_editor_fontsize;
                 break;
             }
         }
@@ -346,7 +374,9 @@
             if (!$this->email) return self::AUTHOR_ERROR_NOEMAIL;
             
             $params     = $this->getPreparedSaveParams();
-            if (empty($this->passwd)) { unset($params['passwd']); }
+            if (empty($this->passwd)) {
+                unset($params['passwd']);
+            }
             
             $fields     = array_keys($params);
             
@@ -429,6 +459,19 @@
 
             return false;
             
+        }        
+        /**
+         * Füllt Objekt mit Daten aus Datenbank-Result
+         * @param object $object
+         * @return boolean
+         */
+        public function createFromDbObject($object) {
+
+            $res = parent::createFromDbObject($object);
+            $this->groupname = $this->language->translate($this->groupname);
+
+            return $res;
+
         }
 
         /**
@@ -460,6 +503,29 @@
             $this->email = $this->wordbanList->replaceItems($this->email);
             
             return true;
+        }
+
+        /**
+         * Inittiert Objekt mit Daten aus der Datenbank, sofern ID vergeben wurde
+         */
+        protected function init() {
+            
+            $item   = $this->dbcon->getTablePrefixed($this->table).'.*, ';
+            $item  .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.leveltitle AS groupname';
+
+            $where  = $this->dbcon->getTablePrefixed($this->table).'.roll = ';
+            $where .= $this->dbcon->getTablePrefixed(\fpcm\classes\database::tableRoll).'.id AND ';
+            $where .= $this->dbcon->getTablePrefixed($this->table).'.id = ?';
+            $data   = $this->dbcon->fetch($this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where, array($this->id)));
+
+            if (!$data) {
+                trigger_error('Failed to load data for object of type "'.get_class($this).'" with given id '.$this->id.'!');
+                return false;
+            }
+            
+            $this->objExists = true;
+            $this->createFromDbObject($data);
+
         }
         
     }

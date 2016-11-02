@@ -24,6 +24,13 @@
         private $forceCss = false;
 
         /**
+         * DIV für Messages ausblenden
+         * @var bool
+         * @since FPCM 3.4
+         */
+        private $hideMessages = false;
+
+        /**
          * Konstruktor
          * @param string $viewName View-Name, ohne Endung .php
          * @param string $viewPath View-Pfad unterhalb von core/views/
@@ -57,7 +64,15 @@
             return $this->forceCss;
         }
 
-        
+        /**
+         * Status ausgeben, ob Messages-DIV angezeigt werden soll
+         * @return bool
+         * @since FPCM 3.4
+         */
+        function getHideMessages() {
+            return $this->hideMessages;
+        }
+
         /**
          * Header angezeigen Status setzten
          * @param bool $showHeader
@@ -96,35 +111,49 @@
         public function setForceCss($forceCss) {
             $this->forceCss = (bool) $forceCss;
         }
-                
+
+        /**
+         * Status setzen, ob Messages-DIV angezeigt werden soll
+         * @param bool $hideMessages
+         * @since FPCM 3.4
+         */
+        function setHideMessages($hideMessages) {
+            $this->hideMessages = (bool) $hideMessages;
+        }
+        
         /**
          * Lädt Datei, fügt View-Element, Header & Footer zusammen und erstellt Variablen für View
          * @see view
          * @return void
          */
-        public function render() {            
-            if (parent::render()) {
-                $this->initAssigns();
-                
-                $viewVars = $this->getViewVars();                
-                $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
-                
-                if (!isset($viewVars['hideDebug'])) {
-                    $viewVars['hideDebug'] = false;
-                }
-                
-                foreach ($viewVars as $key => $value) { $$key = $value; }
+        public function render() {
 
-                if ($this->getShowHeader()) include_once \fpcm\classes\baseconfig::$viewsDir.'common/headersimple.php';
-                
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
-                
-                if ($this->getViewFile()) include_once $this->getViewFile();
-
-                if ($this->getShowFooter()) include_once \fpcm\classes\baseconfig::$viewsDir.'common/footersimple.php';
-                
-                $this->events->runEvent('viewRenderAfter');
+            if (!parent::render()) {
+                return false;
             }
+
+            $this->initAssigns();
+
+            $viewVars = $this->getViewVars();                
+            $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
+
+            if (!isset($viewVars['hideDebug'])) {
+                $viewVars['hideDebug'] = false;
+            }
+
+            foreach ($viewVars as $key => $value) { $$key = $value; }
+
+            if ($this->getShowHeader()) include_once \fpcm\classes\baseconfig::$viewsDir.'common/headersimple.php';
+
+            if (!$this->hideMessages) {
+                include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+            }
+
+            if ($this->getViewFile()) include_once $this->getViewFile();
+
+            if ($this->getShowFooter()) include_once \fpcm\classes\baseconfig::$viewsDir.'common/footersimple.php';
+
+            $this->events->runEvent('viewRenderAfter');
         }
         
         /**

@@ -1,0 +1,56 @@
+<?php
+
+    namespace fpcm\components\grid;
+
+    /**
+     * Grid item object
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @package fpcm.components.grid
+     * @since FPCM 3.3
+     */
+    class item extends \fpcm\model\abstracts\staticModel {
+        
+        /**
+         * Datenarray, Struktur: Spalte => Wert
+         * @var array
+         */
+        private $data = array();
+
+        /**
+         * 
+         * @return array
+         */
+        function getData() {
+            return $this->data;
+        }
+
+        /**
+         * 
+         * @param array $data
+         */
+        function setData(array $data) {
+            $this->data = $data;
+        }
+        
+        /**
+         * 
+         * @param string $col
+         * @param string $data
+         */
+        function addColData($col, $data) {
+            $this->data = $data;
+        }
+
+        /**
+         * 
+         * @param string $col
+         * @return string
+         */
+        public function getColData($col) {
+            return isset($this->data[$col]) ? $this->data[$col] : "'col {$col} not set";
+        }
+
+    }
+

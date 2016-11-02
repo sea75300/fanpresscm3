@@ -78,12 +78,19 @@
          * @param bool $monthIndex Liste mit Monatsindex zurückgeben
          * @param array $limits Anzahl der zurückgegebenen Artikel einschränken array(Start,Anzahl)
          * @param bool $countOnly Verfügbare Artikel nur zählen
+         * @param bool $dateLimit Einschränkung auf nach Datum
          * @return array
          */        
-        public function getArticlesArchived($monthIndex = false, array $limits = array(), $countOnly = false) {
+        public function getArticlesArchived($monthIndex = false, array $limits = array(), $countOnly = false, $dateLimit = false) {
+
             $where = 'archived = 1 AND deleted = 0';
-            
-            if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
+            if ($dateLimit && $this->config->articles_archive_datelimit) {
+                $where .= ' createtime >= '.$this->config->articles_archive_datelimit;
+            }
+
+            if ($countOnly) {
+                return (int) $this->dbcon->count($this->table, 'id', $where);
+            }
             
             $where .= $this->dbcon->orderBy(array('createtime DESC'));
             
@@ -245,6 +252,15 @@
             }
             
             $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
+
+            $eventData = $this->events->runEvent('articlesByCondition', array(
+                'conditions' => $conditions,
+                'where'      => $where
+            ));
+
+            $conditions = $eventData['conditions'];
+            $where      = $eventData['where'];
+
             $where = implode(" {$combination} ", $where);
 
             $where2 = array();
@@ -417,8 +433,8 @@
             } else {
                 $where .= ' AND deleted = 0';
             }
-            
-            return $this->dbcon->count($this->table, '*', $where);
+
+            return $this->dbcon->count($this->table, '*', $this->events->runEvent('articlesByConditionCount', $where));
         }
         
         /**
@@ -467,6 +483,32 @@
 
             $article->setEditPermission(false);
             return true;
+
+        }
+
+        /**
+         * Liefert minimalen und maximalen createtime-Timestamp
+         * @param int $archived
+         * @return array
+         * @since FPCM 3.3.3
+         */
+        public function getMinMaxDate($archived = false) {
+            
+            $where  = 'deleted = 0';
+            $params = array();
+
+            if ($archived !== false) {
+                $where   .= " AND archived = ?";
+                $params[] = (int) $archived;
+            }
+
+            $result = $this->dbcon->select($this->table, 'MAX(createtime) AS maxdate, MIN(createtime) AS mindate', $where, $params);
+            $data   = $this->dbcon->fetch($result);
+
+            return array(
+                'maxDate' => $data->maxdate === null ? time() : $data->maxdate,
+                'minDate' => $data->mindate === null ? 0      : $data->mindate
+            );
 
         }
 

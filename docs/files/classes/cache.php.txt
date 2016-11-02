@@ -44,21 +44,34 @@
         private $expirationTime;
 
         /**
+         * Status-Flag, ob Cache-Modul angegeben wurde doer nicht
+         * @var bool
+         * @since FPCM 3.4
+         */
+        private $hasModule = false;
+
+        /**
          * Der Konstruktur
          * @param string $cacheName
+         * @param string $module
          */
-        public function __construct($cacheName = null) {
-            $this->cacheName = $this->initCacheName($cacheName);
-            
-            if (!is_null($this->cacheName)) {
-                $this->fileName = baseconfig::$cacheDir.$this->cacheName.'.cache';
+        public function __construct($cacheName = null, $module = '') {
 
-                if (file_exists($this->fileName)) {
-                    $data = unserialize(base64_decode(file_get_contents($this->fileName)));
-                    $this->data = $data['data'];
-                    $this->expirationTime = $data['expires'];
-                }
+            $this->cacheName = $this->initCacheName($cacheName);
+
+            if (is_null($this->cacheName)) {
+                return;
             }
+
+            $this->fileName = baseconfig::$cacheDir.$this->initCacheModule($module).$this->cacheName.'.cache';
+
+            if (!file_exists($this->fileName)) {
+                return false;
+            }
+
+            $data = unserialize(base64_decode(file_get_contents($this->fileName)));
+            $this->data = $data['data'];
+            $this->expirationTime = $data['expires'];
         }
         
         /**
@@ -86,7 +99,13 @@
          */
         public function write($data, $expires = 0) {
             if (defined('FPCM_INSTALLER_NOCACHE') && FPCM_INSTALLER_NOCACHE) return false;
-            
+
+            $parent = dirname($this->fileName);
+            if ($this->hasModule && !is_dir($parent) && !mkdir($parent)) {
+                trigger_error('Unable to create cache subdirectory in '.\fpcm\model\files\ops::removeBaseDir($parent, true));
+                return false;
+            }
+
             if (!is_null($this->fileName)) {
                 file_put_contents($this->fileName, base64_encode(serialize(array('data' => $data,'expires' => time() + $expires))));
             }
@@ -97,6 +116,7 @@
          * @return string
          */
         public function read() {
+
             if (!is_null($this->fileName) && file_exists($this->fileName)) { 
                 $data = unserialize(base64_decode(file_get_contents($this->fileName)));
                 return $data['data'];
@@ -108,17 +128,32 @@
         /**
          * Cache-Inhalt leeren
          * @param string $path
+         * @param string $module
          * @return bool
          */
-        public function cleanup($path = false) {
-            $cacheFiles = $path ? glob(baseconfig::$cacheDir.'/'.$this->initCacheName($path).'.cache') : glob(baseconfig::$cacheDir.'/*.cache');
+        public function cleanup($path = false, $module = '') {
+
+            $cacheBaseDir = baseconfig::$cacheDir.$this->initCacheModule($module);
+            
+            if ($path) {
+                $cacheFiles = glob($cacheBaseDir.$this->initCacheName($path).'.cache');
+            }
+            elseif ($this->hasModule) {
+                $cacheFiles = glob($cacheBaseDir.'*.cache');
+            }
+            else {
+                $cacheFiles = $this->getCacheComplete();
+            }
 
             if (!is_array($cacheFiles) || !count($cacheFiles)) return false;
-            
+
             foreach ($cacheFiles as $cacheFile) {
-                if (file_exists($cacheFile)) {
-                    unlink($cacheFile);
+
+                if (!file_exists($cacheFile)) {
+                    continue;
                 }
+
+                unlink($cacheFile);
             }
  
             return true;
@@ -128,8 +163,8 @@
          * Gibt aktuelle Größe des Caches in byte zurück
          * @return int
          */
-        public function getSize() {            
-            return array_sum(array_map('filesize', glob(baseconfig::$cacheDir.'/*.cache')));
+        public function getSize() {
+            return array_sum(array_map('filesize', $this->getCacheComplete()));
         }
 
         /**
@@ -137,24 +172,52 @@
          * @return int
          * @since FPCM 3.3
          */
-        function getExpirationTime() {
+        public function getExpirationTime() {
             return $this->expirationTime;
         }
-        
+
         /**
+         * Liefert alle *cache-Dateien in cache-ordner zurück
+         * @return array
+         * @since FPCM 3.4
+         */
+        public function getCacheComplete() {
+            return array_merge(glob(baseconfig::$cacheDir.'*.cache'), glob(baseconfig::$cacheDir.'*/*.cache'));
+        }
+
+                /**
          * Cache-Name verschlüsseln
          * @param string $cacheName
          * @return string
          */
         protected function initCacheName($cacheName) {
             
-            if (is_null($cacheName)) return null;
+            if ($cacheName === null) return null;
 
             if (defined('FPCM_CACHE_DEBUG') && FPCM_CACHE_DEBUG) {
                 return strtolower($cacheName);
             }
             
             return md5(strtolower($cacheName));
+        }
+        
+        /**
+         * Cache-Modul verschlüsseln
+         * @param string $module
+         * @return string
+         * @since FPCM 3.4
+         */
+        protected function initCacheModule($module) {
+            
+            if (!trim($module)) return '';
+
+            $this->hasModule = true;
+
+            if (defined('FPCM_CACHEMODULE_DEBUG') && FPCM_CACHEMODULE_DEBUG) {
+                return strtolower($module).'/';
+            }
+            
+            return md5(strtolower($module)).'/';
         }
 
     }

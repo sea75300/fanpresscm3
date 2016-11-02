@@ -115,16 +115,21 @@
          * @return bool
          */
         private function addSystemOptions() {
-            
+
+            $yatdl = new \fpcm\model\system\yatdl(\fpcm\classes\baseconfig::$dbStructPath.'06config.yml');
+            $yatdl->parse();
+
+            $data = $yatdl->getArray();
+
+            if (!isset($data['defaultvalues']['rows']) || !count($data['defaultvalues']['rows'])) {
+                return true;
+            }
+
             $res = true;
-            $res = $res && $this->config->add('comments_markspam_commentcount', 2);
-            $res = $res && $this->config->add('system_loginfailed_locked', 5);
-            $res = $res && $this->config->add('system_editor_fontsize', '12pt');
-            $res = $res && $this->config->add('articles_acp_limit', 100);
-            $res = $res && $this->config->add('system_updates_devcheck', (defined('FPCM_UPDATER_DEVCHECK') ? (int) FPCM_UPDATER_DEVCHECK : 0) );
-            $res = $res && $this->config->add('system_updates_emailnotify', (defined('FPCM_UPDATE_CRONNOTIFY_EMAIL') ? (int) FPCM_UPDATE_CRONNOTIFY_EMAIL : 1) );
-            $res = $res && $this->config->add('system_updates_manual', (defined('FPCM_UPDATER_MANUALCHECK') ? (int) FPCM_UPDATER_MANUALCHECK : 1209600) );
-            
+            foreach ($data['defaultvalues']['rows'] as $option) {
+                $res = $res && $this->config->add($option['config_name'], $option['config_value']);
+            }
+
             return $res;
 
         }
@@ -184,6 +189,7 @@
          * @return bool
          */
         private function alterTables() {
+
             $res = true;
             
             if ($this->checkVersion('3.0.4')) {
@@ -291,6 +297,19 @@
                 
                 unlink($path);
             }
+            
+            if (!method_exists($this->dbcon, 'checkTableStructure')) {
+                return $res;
+            }
+
+            $files = \fpcm\classes\database::getTableFiles();
+            foreach ($files as $file) {
+                $this->dbcon->checkTableStructure(basename($file, '.yml'));
+            }
+            
+            if ($this->checkVersion('3.4.0-b2')) {
+                $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "cjname, lastexec, execinterval", "'removeRevisions', 0, 2419200");                
+            }
 
             return $res;
         }
@@ -306,7 +325,7 @@
             if ($this->checkVersion('3.3.0-a4')) {
                 
                 if (method_exists($this->dbcon, 'execYaTdl')) {
-                $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'15revisions.yml');
+                    $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'15revisions.yml');
                 }
                 else {
                     $res = $res && $this->execYaTdl(\fpcm\classes\baseconfig::$dataDir.'dbstruct/15revisions.yml');                    

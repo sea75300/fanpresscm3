@@ -35,7 +35,8 @@
             '{{commentCount}}'                  => '',
             '{{permaLink}}:{{/permaLink}}'      => '',
             '{{commentLink}}:{{/commentLink}}'  => '',
-            '{{articleImage}}'                  => ''
+            '{{articleImage}}'                  => '',
+            '{{sources}}'                       => ''
         );
         
         /**
@@ -99,6 +100,11 @@
                     case '<readmore>' :
                         $keys   = $replacement;
                         $values = array('<a href="#" class="fpcm-pub-readmore-link" id="'.$value.'">'.$this->language->translate('ARTICLES_PUBLIC_READMORE').'</a><p class="fpcm-pub-readmore-text" id="fpcm-pub-readmore-text-'.$value.'">', '</p>');
+                        break;
+                    case '{{sources}}' :
+                        $keys   = $replacement;
+                        $this->parseLinks($value, array('rel' => 'noopener noreferrer'));
+                        $values = array($value);
                         break;
                     default:
                         $keys   = $replacement;                        

@@ -116,9 +116,6 @@
             if (is_object($this->language)) {
                 $this->jsvars = array(
                     'fpcmLang' => array(
-                        'quickLinks'       => $this->language->translate('GLOBAL_QUICKLINKS'),
-                        'openProfile'      => $this->language->translate('PROFILE_MENU_OPENPROFILE'),
-                        'logout'           => $this->language->translate('LOGOUT_BTN'),
                         'confirmHL'        => $this->language->translate('GLOBAL_CONFIRM'),
                         'confirmMessage'   => $this->language->translate('CONFIRM_MESSAGE'),
                         'close'            => $this->language->translate('GLOBAL_CLOSE'),
@@ -169,6 +166,27 @@
         private function initFileLibError() {
             $this->viewCssFiles = $this->fileLib->getCsslib();
             $this->viewJsFiles  = $this->fileLib->getJslib();
+        }
+
+        /**
+         * String zum Setzten des aktuell aktiven Modules in Navigation
+         * @return string
+         * @since FPCM 3.4
+         */
+        protected function getNavigationActiveCheckStr() {
+
+            $data = array();
+            
+            $module = \fpcm\classes\http::getOnly('module');
+            $mode   = \fpcm\classes\http::getOnly('mode');
+            $key    = \fpcm\classes\http::getOnly('key');
+            
+            $data[] = \fpcm\classes\http::getOnly('module');
+            $data[] = ($mode ? '&mode='.$mode : '');
+            $data[] = ($key ? '&key='.$key : '');
+
+            return implode('', $data);
+            
         }
 
         /**
@@ -324,13 +342,22 @@
          * @param string $params
          * @return void
          */
-        public function addErrorMessage($messageText, $params= array()) {            
-            if ($this->language->translate($messageText)) {
-                $this->messages[][$this->language->translate($messageText, $params)] = 'error';
-                return;
+        public function addErrorMessage($messageText, $params= array()) {
+
+            $msg  = $this->language->translate($messageText, $params);
+            if (!$msg) {
+                $msg = $messageText;
             }
+
+            $type = 'error';
             
-            $this->messages[][$messageText] = 'error';
+            $this->messages[] = array(
+                'txt'  => $msg,
+                'type' => $type,
+                'id'   => md5($type.$msg),
+                'icon' => 'exclamation-triangle'
+            );
+
         }
         
         /**
@@ -340,12 +367,21 @@
          * @return void
          */
         public function addNoticeMessage($messageText, $params= array()) {
-            if ($this->language->translate($messageText)) {
-                $this->messages[][$this->language->translate($messageText, $params)] = 'notice';
-                return;
+
+            $msg  = $this->language->translate($messageText, $params);
+            if (!$msg) {
+                $msg = $messageText;
             }
+
+            $type = 'notice';
             
-            $this->messages[][$messageText] = 'notice';
+            $this->messages[] = array(
+                'txt'  => $msg,
+                'type' => $type,
+                'id'   => md5($type.$msg),
+                'icon' => 'check'
+            );
+
         }
         
         /**
@@ -355,13 +391,22 @@
          * @return void
          */
         public function addMessage($messageText, $params= array()) {
-            if ($this->language->translate($messageText)) {
-                $this->messages[][$this->language->translate($messageText, $params)] = 'neutral';
-                return;
+
+            $msg  = $this->language->translate($messageText, $params);
+            if (!$msg) {
+                $msg = $messageText;
             }
+
+            $type = 'neutral';
             
-            $this->messages[][$messageText] = 'neutral';
-        }        
+            $this->messages[] = array(
+                'txt'  => $msg,
+                'type' => $type,
+                'id'   => md5($type.$msg),
+                'icon' => 'info-circle'
+            );
+
+        }    
         
         /**
          * Prüft, ob View-Datei vorhanden ist und lädt diese

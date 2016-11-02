@@ -1,0 +1,70 @@
+<?php
+
+    namespace fpcm\components\grid;
+
+    /**
+     * Grid column object
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @package fpcm.components.grid
+     * @since FPCM 3.3
+     */
+    class col extends \fpcm\model\abstracts\staticModel {
+
+        /**
+         * Beschreibung der Spalte
+         * @var string
+         */
+        private $descr = '';
+        
+        /**
+         * Name der Spalte
+         * @var string
+         */
+        private $name = '';
+        
+        /**
+         * CSS-Klasse für die Spalte
+         * @var string
+         */
+        private $class = '';
+
+        /**
+         * Konstruktor
+         * @param string $descr
+         * @param string $name
+         * @param string $class
+         */
+        function __construct($descr, $name, $class) {
+            $this->descr = $descr;
+            $this->name = $name;
+            $this->class = $class;
+        }
+
+                /**
+         * Beschreibung der Spalte zurückgeben
+         * @return string
+         */
+        function getDescr() {
+            return $this->descr;
+        }
+
+        /**
+         * Name der Spalte zurückgeben
+         * @return string
+         */
+        function getName() {
+            return $this->name;
+        }
+
+        /**
+         * CSS-Klasse für die Spalte zurückgeben
+         * @return string
+         */
+        function getClass() {
+            return $this->class;
+        }
+
+    }
+
