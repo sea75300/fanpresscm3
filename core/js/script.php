@@ -9,7 +9,7 @@
 require_once dirname(dirname(__DIR__)).'/inc/common.php';
 
 $data = array('content' => '', 'filesize' => 0);
-$cache = new \fpcm\classes\cache('jsfiles');
+$cache = new \fpcm\classes\cache('jsfiles', 'theme');
 
 if ($cache->isExpired() || FPCM_DEBUG) {
 

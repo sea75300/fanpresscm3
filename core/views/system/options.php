@@ -144,16 +144,18 @@
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWSHARELINKS'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('system_show_share', $globalConfig['system_show_share']); ?></td>		
-                    </tr>	 
-
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_URLREWRITING'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('articles_link_urlrewrite', $globalConfig['articles_link_urlrewrite']); ?></td>
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ENABLEFEED'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('articles_rss', $globalConfig['articles_rss']); ?></td>
+                    </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ARCHIVE_LINK'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('articles_archive_show', $globalConfig['articles_archive_show']); ?></td>		
-                    </tr>
-
-                    <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ENABLEFEED'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::boolSelect('articles_rss', $globalConfig['articles_rss']); ?></td>		
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'); ?>:</td>
@@ -161,7 +163,6 @@
                             <?php \fpcm\model\view\helper::shortHelpButton($FPCM_LANG->translate('SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY')); ?>
                         </td>
                     </tr>
-
                 </table>                    
             </div>
 

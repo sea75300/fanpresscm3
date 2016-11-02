@@ -145,8 +145,9 @@
          */
         public function __construct($rollid = 0) {
 
-            $this->table     = \fpcm\classes\database::tablePermissions;
-            $this->cacheName = 'permissioncache'.$rollid;
+            $this->table       = \fpcm\classes\database::tablePermissions;
+            $this->cacheName   = 'permissioncache'.$rollid;
+            $this->cacheModule = 'permissioncache';
 
             parent::__construct();
             

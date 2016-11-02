@@ -109,7 +109,7 @@
         protected $changeuser       = 0;
         
         /**
-         *MD5 Pfad
+         * MD5 Pfad
          * @var string
          */
         protected $md5path          = '';
@@ -499,19 +499,22 @@
          * @return string
          */
         public function getArticleNicePath() {
-            return strtolower(str_replace(array('_', ' ', '.', '!', '?', ':', ';'), '-', $this->title));
+            return rawurlencode($this->id.'-'.strtolower($this->title));
         }
-        
+
         /**
          * Gibt Direkt-Link zum Artikel zurück
          * @return string
          */
         public function getArticleLink() {
-            if (!$this->config->system_mode) {
-                return \fpcm\classes\baseconfig::$rootPath.'index.php?module=fpcm/article&id='.$this->id;
-            }
+
+            $idParam = ($this->config->articles_link_urlrewrite ? $this->getArticleNicePath() : $this->getId());
             
-            return $this->config->system_url.'?module=fpcm/article&id='.$this->id;
+            if (!$this->config->system_mode) {
+                return \fpcm\classes\baseconfig::$rootPath.\fpcm\classes\tools::getControllerLink('fpcm/article', array('id' => $idParam));
+            }
+
+            return $this->config->system_url.'?module=fpcm/article&id='.$idParam;
         }
         
         /**
@@ -818,7 +821,7 @@
             
             return true;
         }
-        
+
         /**
          * Ersetzt <br>, <br /> bzw. <br/> durch Leerzeichen
          */

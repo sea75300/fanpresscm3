@@ -45,7 +45,26 @@
             
             $suffix = isset($sizeUnits[$unitIdx]) ? $sizeUnits[$unitIdx] : ' ?';
             return number_format($value, $decimals, $delimDec, $delimTousands).' '.$suffix;
-            
-        }        
+
+        }
+
+        /**
+         * Create controller link
+         * @param string $controller
+         * @param array $params
+         * @return string
+         * @since FPCm 3.4
+         */
+        public static function getControllerLink($controller = '', array $params = array()) {
+
+            $redirectString = "index.php?module={$controller}";
+
+            if (!count($params)) {
+                return $redirectString;
+            }
+
+            return $redirectString.'&'.http_build_query($params);
+        }
+
     }
 ?>

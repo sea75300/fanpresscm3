@@ -73,6 +73,7 @@
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'Use jQuery uploader',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'          => 'Show articles in archiv from',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY'    => 'keep empty for no limit',
+        'SYSTEM_OPTIONS_NEWS_URLREWRITING'          => 'Enable URL rwriting for article links',
         'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT'       => 'Delete old revisions, if older then',
         'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT_LIST'  => array(
             'never'      => 0,

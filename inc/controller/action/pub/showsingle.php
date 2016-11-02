@@ -130,7 +130,10 @@
             }
             
             $this->articleId = (int) $this->getRequestVar('id');
-            
+
+            $srcData         = explode('-', $this->articleId, 2);
+            $this->articleId = $srcData[0];
+
             $this->article = new \fpcm\model\articles\article($this->articleId);
 
             if (!$this->article->exists()) {

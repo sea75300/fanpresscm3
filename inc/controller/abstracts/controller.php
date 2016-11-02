@@ -85,6 +85,13 @@
         protected $cacheName        = false;
         
         /**
+         * Cache Modul
+         * @var string
+         * @since FPCM 3.4
+         */
+        protected $cacheModule    = '';
+
+        /**
          * Aktive Module für Prüfung von Controlelr-Ausführung
          * @var array
          */
@@ -102,7 +109,7 @@
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
 
             $this->events       = \fpcm\classes\baseconfig::$fpcmEvents;
-            $this->cache        = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)));
+            $this->cache        = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)), $this->cacheModule);
             $this->config       = \fpcm\classes\baseconfig::$fpcmConfig;
             $this->session      = \fpcm\classes\baseconfig::$fpcmSession;
             $this->crons        = new \fpcm\model\crons\cronlist();
@@ -181,12 +188,7 @@
          * @return string
          */
         protected function getControllerLink($controller = '', array $params = array()) {
-            $redirectString = "index.php?module=$controller";
-            if (count($params)) {
-                $redirectString .= '&'.http_build_query($params);
-            }
-            
-            return $redirectString;
+            return \fpcm\classes\tools::getControllerLink($controller, $params);
         }
 
         /**

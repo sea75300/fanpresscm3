@@ -73,6 +73,7 @@
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'jQuery Dateiupload verwenden',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'          => 'Artikel in Archiv anzeigen ab',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY'    => 'leer lassen für kein Limit',
+        'SYSTEM_OPTIONS_NEWS_URLREWRITING'          => 'URL-Rewriting für Artikel-Links aktivieren',
         'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT'       => 'Alte Revisionen löschen, wenn älter als',
         'SYSTEM_OPTIONS_NEWS_REVISIONS_LIMIT_LIST'  => array(
             'nie'         => 0,

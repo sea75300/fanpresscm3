@@ -64,7 +64,7 @@
             parent::__construct();
             
             if ($this->config->articles_rss) {
-                $this->view = new \fpcm\model\view\pub('feed', 'public');
+                $this->view         = new \fpcm\model\view\pub('feed', 'public');
 
                 $this->articleList  = new \fpcm\model\articles\articlelist();
                 $this->userList     = new \fpcm\model\users\userList();
@@ -194,6 +194,7 @@
             }
 
             $this->view->assign('content', $content);
+            $this->view->setHideMessages(true);
             $this->view->render();
         }
     }

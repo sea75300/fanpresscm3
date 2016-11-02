@@ -101,32 +101,34 @@
          * @return void
          */
         public function render() {            
-            if (parent::render()) {
-                $this->initAssigns();
-                
-                $viewVars = $this->getViewVars();                
-                $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
-                
-                foreach ($viewVars as $key => $value) { $$key = $value; }
-
-                if ($this->showHeader) {
-                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/header.php';
-                } else {
-                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/headersimple.php';
-                }                
-                
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
-                
-                if ($this->getViewFile()) include_once $this->getViewFile();
-
-                if ($this->showFooter) {
-                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/footer.php';
-                } else {
-                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/footersimple.php';
-                }
-                
-                $this->events->runEvent('viewRenderAfter');
+            if (!parent::render()) {
+                return false;
             }
+
+            $this->initAssigns();
+
+            $viewVars = $this->getViewVars();                
+            $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
+
+            foreach ($viewVars as $key => $value) { $$key = $value; }
+
+            if ($this->showHeader) {
+                include_once \fpcm\classes\baseconfig::$viewsDir.'common/header.php';
+            } else {
+                include_once \fpcm\classes\baseconfig::$viewsDir.'common/headersimple.php';
+            }                
+
+            include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+
+            if ($this->getViewFile()) include_once $this->getViewFile();
+
+            if ($this->showFooter) {
+                include_once \fpcm\classes\baseconfig::$viewsDir.'common/footer.php';
+            } else {
+                include_once \fpcm\classes\baseconfig::$viewsDir.'common/footersimple.php';
+            }
+
+            $this->events->runEvent('viewRenderAfter');
         }
         
         /**

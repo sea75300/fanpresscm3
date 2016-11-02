@@ -65,22 +65,25 @@
          * @return void
          */
         public function render() {            
-            if (parent::render()) {
-                $this->initAssigns();
-                
-                $viewVars = $this->getViewVars();                
-                
-                foreach ($viewVars as $key => $value) {
-                    $$key = $value;
-                }
 
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/header.php';                
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
-                
-                if ($this->getViewFile()) include_once $this->getViewFile();
-
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/footer.php';
+            if (!parent::render()) {
+                return false;
             }
+
+            $this->initAssigns();
+
+            $viewVars = $this->getViewVars();                
+
+            foreach ($viewVars as $key => $value) {
+                $$key = $value;
+            }
+
+            include_once \fpcm\classes\baseconfig::$viewsDir.'common/header.php';                
+            include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+
+            if ($this->getViewFile()) include_once $this->getViewFile();
+
+            include_once \fpcm\classes\baseconfig::$viewsDir.'common/footer.php';
         }
         
         /**

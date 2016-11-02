@@ -204,8 +204,9 @@
                 }
 
                 $this->article->setChangetime($allTimer);
-                $this->article->setChangeuser($this->session->getUserId());                
-                
+                $this->article->setChangeuser($this->session->getUserId());
+                $this->article->setMd5path($this->article->getArticleNicePath());
+
                 $this->article->prepareDataSave();
                 
                 $saved = true;

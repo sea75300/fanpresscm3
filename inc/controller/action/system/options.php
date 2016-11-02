@@ -90,6 +90,7 @@
                 $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
                 $newconfig['system_updates_devcheck']        = (int) $newconfig['system_updates_devcheck'];
                 $newconfig['articles_revisions_limit']       = (int) $newconfig['articles_revisions_limit'];
+                $newconfig['articles_link_urlrewrite']       = (int) $newconfig['articles_link_urlrewrite'];
                 $newconfig['articles_archive_datelimit']     = $newconfig['articles_archive_datelimit']
                                                              ? strtotime($newconfig['articles_archive_datelimit']) : 0;
 
