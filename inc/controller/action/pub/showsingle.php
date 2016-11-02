@@ -129,10 +129,9 @@
                 return true;
             }
             
-            $this->articleId = (int) $this->getRequestVar('id');
-
+            $this->articleId = $this->getRequestVar('id');
             $srcData         = explode('-', $this->articleId, 2);
-            $this->articleId = $srcData[0];
+            $this->articleId = (int) $srcData[0];
 
             $this->article = new \fpcm\model\articles\article($this->articleId);
 
