@@ -197,8 +197,13 @@
          */
         public function processCache() {
             
+            if (!isset($this->funcParams[1])) {
+                $this->output('Invalid params detected, missing cache name or param "all"!');
+                return true;
+            }
+            
             $cacheName   = $this->funcParams[1] === 'all' ? null : $this->funcParams[1];
-            $cacheModule = $this->funcParams[2] === 'all' ? '' : $this->funcParams[2];
+            $cacheModule = !isset($this->funcParams[2]) || $this->funcParams[2] === 'all' ? '' : $this->funcParams[2];
             $cache     = new \fpcm\classes\cache($cacheName, $cacheModule);
 
             if ($this->funcParams[0] === self::FPCMCLI_PARAM_CLEAN) {

@@ -230,7 +230,7 @@
          * @return bool
          */
         public function disableModules(array $keys) {
-            $this->cache->cleanup(false, 'modules');
+            $this->cache->cleanup();
             return $this->dbcon->reverseBool($this->table, 'status', "(modkey ".$this->dbcon->dbLike()." '".  implode("' OR modkey ".$this->dbcon->dbLike()." '", $keys)."') AND status = 1");
         }
         
@@ -240,7 +240,7 @@
          * @return bool
          */
         public function enableModules(array $keys) {
-            $this->cache->cleanup(false, 'modules');
+            $this->cache->cleanup();
             
             foreach ($keys as $key => $val) {
                 if (!$this->checkDepencies($val)) {
@@ -261,7 +261,7 @@
          */
         public function uninstallModules(array $keys) {
 
-            $this->cache->cleanup(false, 'modules');
+            $this->cache->cleanup();
             
             $keys = array_intersect($keys, $this->getDisabledInstalledModules());
             if (!count($keys)) return false;

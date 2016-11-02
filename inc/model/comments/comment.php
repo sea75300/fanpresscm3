@@ -385,7 +385,7 @@
                 $return = true;
             }
             
-            $this->cache->cleanup(); 
+            $this->cache->cleanup('articlesingle'.$this->articleid, 'articles'); 
             
             $this->init();
             

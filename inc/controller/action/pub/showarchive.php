@@ -36,7 +36,7 @@
             
             parent::request();
             
-            $this->cache = new \fpcm\classes\cache('articlearchive'.$this->page);
+            $this->cache = new \fpcm\classes\cache('articlearchive'.$this->page, 'articlelist');
             
             return true;
         }

@@ -419,7 +419,7 @@
          */
         public static function getControllers() {
             
-            $controllerCache = new cache('controllerCache');
+            $controllerCache = new cache('controllerCache', 'system');
             
             if (!$controllerCache->isExpired()) {
                 $controllerList = $controllerCache->read();

@@ -82,7 +82,7 @@
         public static function createPageToken() {
             $str = hash('sha256', '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$');
 
-            $cache = new cache(self::getPageTokenFieldName());
+            $cache = new cache(self::getPageTokenFieldName(), 'pgtkn');
             $cache->cleanup(self::getPageTokenFieldName());
             $cache->write($str, FPCM_PAGETOKENCACHE_TIMEOUT);            
             unset($cache);

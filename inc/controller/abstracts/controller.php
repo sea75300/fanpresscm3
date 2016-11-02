@@ -264,7 +264,7 @@
             }
             
             $fieldname = \fpcm\classes\security::getPageTokenFieldName();
-            $cache     = new \fpcm\classes\cache($fieldname);
+            $cache     = new \fpcm\classes\cache($fieldname, 'pgtkn');
             
             $tokenData = $cache->read();
             $cache->cleanup($fieldname);
