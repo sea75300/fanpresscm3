@@ -209,6 +209,8 @@
          * Links in Text parsen
          * @param string $content
          * @param array $attributes
+         * @param bool $returnOnly
+         * @return string
          */
         protected function parseLinks(&$content, array $attributes=array(), $returnOnly = false) {
 

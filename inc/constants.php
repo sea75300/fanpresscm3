@@ -37,14 +37,6 @@
          */
         define ('FPCM_IGNORE_INSTALLER_DISABLED', false);
     }
-    
-    if (!defined('FPCM_UPDATE_CRONNOTIFY_EMAIL')) {        
-        /**
-         * Benachrichtigung über neue verfügbare Updates bei Cronjob-Ausführung verhindern
-         * @deprecated since FPCM 3.2.0, moved system options
-         */
-        define ('FPCM_UPDATE_CRONNOTIFY_EMAIL', true);
-    }
 
     if (!defined('FPCM_CONTROLLER_SYSUPDATES')) {
         /**
@@ -52,14 +44,6 @@
          * @deprecated since FPCM 3.3
          */
         define ('FPCM_CONTROLLER_SYSUPDATES', 'package/sysupdate');
-    }
-    
-    if (!defined('FPCM_UPDATER_MANUALCHECK')) {
-        /**
-         * Interval für manuellen Update-Check
-         * @deprecated since FPCM 3.3.0, moved system options
-         */
-        define ('FPCM_UPDATER_MANUALCHECK', 3600 * 24 * 14);
     }
     
     if (!defined('FPCM_LANGCACHE_TIMEOUT')) {
@@ -89,4 +73,12 @@
          * @since FPCM 3.2
          */
         define ('FPCM_CACHE_DEBUG', false);
+    }
+    
+    if (!defined('FPCM_CACHEMODULE_DEBUG')) {
+        /**
+         * Cache-Moduleordner-Namen nicht hashen
+         * @since FPCM 3.4
+         */
+        define ('FPCM_CACHEMODULE_DEBUG', false);
     }

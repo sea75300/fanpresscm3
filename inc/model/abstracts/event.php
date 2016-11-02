@@ -54,7 +54,8 @@
         protected $permissions;
 
         /**
-         *
+         * Datentyoe-String, welcher von einem Event definiert werden kann und
+         *  auf den die Rückgabe eines Module-Events geprüft wird
          * @var string
          */
         protected $returnDataType = false;

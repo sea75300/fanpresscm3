@@ -444,6 +444,7 @@
 
         /**
          * Setzt Artikel-Quellen-Daten
+         * @param string $sources
          * @return bool
          * @since FPCM 3.4
          */

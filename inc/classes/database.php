@@ -634,6 +634,7 @@
 
         /**
          * vollen Tabellen-Name mit Prefix zurückgeben
+         * @param string $table
          * @return string
          * @since FPCM 3.4
          */
@@ -723,7 +724,14 @@
             
             return $data;
         }
-        
+
+        /**
+         * Vergleicht die aktuelle Struktur der Tabelle in der DB mit der Struktur der YML-Datei und 
+         *  fügt ggf. fehlende Spalten zur Tabelle in der DB hinzu
+         * @param string $tableFile
+         * @return boolean
+         * @since FPCM 3.3.2
+         */
         public function checkTableStructure($tableFile) {
 
             $isPg    = $this->dbtype === 'pgsql' ? true : false;
