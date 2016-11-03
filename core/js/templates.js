@@ -121,7 +121,7 @@ fpcm.templates = {
         };
 
         var editor = CodeMirror.fromTextArea(editorElement, editorParams);
-        editor.setOption('theme', 'mdn-like');
+        editor.setOption('theme', 'fpcm');
 
     }
 
@@ -131,5 +131,6 @@ jQuery(document).ready(function() {
 
     fpcm.templates.initCodeMirror('templatearticle');
     fpcm.templates.initTemplatePreview();
+    fpcmJs.windowResize();
 
 });

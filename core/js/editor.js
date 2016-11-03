@@ -416,7 +416,7 @@ var fpcmEditor = function () {
 
             },
             value           : document.documentElement.innerHTML,
-            theme           : 'mdn-like'
+            theme           : 'fpcm'
         });
         
         editor.on('paste', function(instance, event) {

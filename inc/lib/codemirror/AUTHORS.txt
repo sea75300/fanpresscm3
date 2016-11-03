@@ -9,6 +9,7 @@ Adam King
 adanlobato
 Adán Lobato
 Adrian Aichner
+Adrian Heine
 aeroson
 Ahmad Amireh
 Ahmad M. Zawawi
@@ -61,10 +62,12 @@ anthonygego
 Anthony Gégo
 Anthony Grimes
 Anton Kovalyov
+Apollo Zhu
 AQNOUCH Mohammed
 areos
 Arnab Bose
 as3boyan
+atelierbram
 AtomicPages LLC
 Atul Bhouraskar
 Aurelian Oancea
@@ -98,6 +101,7 @@ Brian Sletten
 Bruce Mitchener
 Caitlin Potter
 Calin Barbat
+callodacity
 Camilo Roca
 Chad Jolly
 Chandra Sekhar Pydi
@@ -150,6 +154,7 @@ deebugger
 Deep Thought
 Devin Abbott
 Devon Carew
+Dick Choi
 dignifiedquire
 Dimage Sapelkin
 Dmitry Kiselyov
@@ -180,6 +185,7 @@ feizhang365
 Felipe Lalanne
 Felix Raab
 Filip Noetzel
+Filip Stollár
 flack
 ForbesLindesay
 Forbes Lindesay
@@ -271,6 +277,7 @@ Jim
 JobJob
 jochenberger
 Jochen Berger
+Joel Einbinder
 joelpinheiro
 Johan Ask
 John Connor
@@ -281,6 +288,7 @@ John Van Der Loo
 Jon Ander Peñalba
 Jonas Döbertin
 Jonathan Malmaud
+Jon Gacnik
 jongalloway
 Jon Malmaud
 Jon Sangster
@@ -318,6 +326,7 @@ Kris Ciccarello
 ks-ifware
 kubelsmieci
 KwanEsq
+Kyle Kelley
 Lanfei
 Lanny
 Laszlo Vidacs
@@ -333,6 +342,7 @@ lochel
 Lorenzo Stoakes
 Luciano Longo
 Lu Fangjian
+Luke Browning
 Luke Granger-Brown
 Luke Stagner
 lynschinzer
@@ -355,6 +365,7 @@ Mario Pietsch
 Mark Anderson
 Mark Lentczner
 Marko Bonaci
+Mark Peace
 Markus Bordihn
 Martin Balek
 Martín Gaitán
@@ -402,6 +413,7 @@ Mike Brevoort
 Mike Diaz
 Mike Ivanov
 Mike Kadin
+Mike Kobit
 MinRK
 Miraculix87
 misfo
@@ -411,6 +423,7 @@ Moritz Schwörer
 mps
 ms
 mtaran-google
+Mu-An Chiou
 Narciso Jaramillo
 Nathan Williams
 ndr
@@ -435,6 +448,7 @@ nlwillia
 noragrossman
 Norman Rzepka
 Oreoluwa Onatemowo
+Oskar Segersvärd
 pablo
 pabloferz
 Page
@@ -461,6 +475,7 @@ Philipp A
 Philip Stadermann
 Pierre Gerold
 Piët Delport
+Pontus Melke
 prasanthj
 Prasanth J
 Prayag Verma
@@ -474,6 +489,7 @@ Randy Edmunds
 Rasmus Erik Voel Jensen
 ray ratchup
 Ray Ratchup
+Remi Nyborg
 Richard Denton
 Richard van der Meer
 Richard Z.H. Wang
@@ -485,6 +501,7 @@ Rrandom
 Ruslan Osmanov
 Ryan Prior
 sabaca
+Sam Lee
 Samuel Ainsworth
 Sam Wilson
 sandeepshetty
@@ -540,8 +557,10 @@ tfjgeorge
 Thaddee Tyl
 thanasis
 TheHowl
+themrmax
 think
 Thomas Dvornik
+Thomas Kluyver
 Thomas Schmid
 Tim Alby
 Tim Baumann
@@ -549,6 +568,7 @@ Timothy Farrell
 Timothy Gu
 Timothy Hatcher
 TobiasBg
+Todd Berman
 Tomas-A
 Tomas Varaneckas
 Tom Erik Støwer
