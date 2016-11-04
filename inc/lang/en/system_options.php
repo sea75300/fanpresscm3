@@ -8,12 +8,12 @@
 
     $lang = array(
         'SYSTEM_HL_OPTIONS_GENERAL'                 => 'General',
-        'SYSTEM_HL_OPTIONS_EDITOR'                  => 'Editor and file manager',
+        'SYSTEM_HL_OPTIONS_EDITOR'                  => 'Editor and File Manager',
         'SYSTEM_HL_OPTIONS_ARTICLES'                => 'Articles',
         'SYSTEM_HL_OPTIONS_COMMENTS'                => 'Comments',
         'SYSTEM_HL_OPTIONS_SECURITY'                => 'Security and Maintenance',
-        'SYSTEM_HL_OPTIONS_TWITTER'                 => 'Twitter connection',
-        'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System check',
+        'SYSTEM_HL_OPTIONS_TWITTER'                 => 'Twitter Connection',
+        'SYSTEM_HL_OPTIONS_SYSCHECK'                => 'System Check',
         
         'SYSTEM_OPTIONS_MAINTENANCE'                => 'Maintenance mode enabled',
         'SYSTEM_OPTIONS_CRONJOBS'                   => 'Asynchronous cronjob execution disabled',

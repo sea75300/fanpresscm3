@@ -47,6 +47,8 @@ Help language file
             <ul>
                 <li><em>Article image:</em> You can set an article image to extend articles with an optical introduction, decoration
                     or so on.</li>
+                <li><em>List of sources:</em> The content of this field will show up in the "{{sources}}" template tag. You may enter links for credits for informations, images, videos and so on
+                or links for further information on a certain topic. Links will be converted to HTML link tags if possible</li>
                 <li><em>Postpone article:</em> Postponed articles are not published immediately after saving it. You can set a date and
                     time when an article is published automatically. The time must be within a two month range.</li>
                 <li><em>Save article as draft:</em> Articles saved as draft are available for users, which signed in before only.
@@ -161,6 +163,8 @@ Help language file
                 <li><em>Timezone</em> for time and date of articles, etc.</li>
                 <li><em>Date-Time-Mask</em> of your current location</li>
                 <li><em>ACP article list limit</em> defined the number of articles display per page in ACP article list</li>
+                <li><em>Default editor font size:</em> Default font size used in the article editor</li>
+                <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
             </ul>
         ]]>
         </text>
@@ -195,9 +199,11 @@ Help language file
                     Settings for editor and file manager.
                     <ul>
                         <li><em>Select editor:</em> Enables TinyMCE editor view or classic HTML editor view..</li>
+                        <li><em>Default editor font size:</em> Default font size used in the article editor</li>
                         <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
                         <li><em>Revisions enabled:</em> Enabled revision function to save changes on articles and make them
                         restorable.</li>
+                        <li><em>Delete old revisions, if older then:</em> Remove all article revisions which are older then a amount of weeks</li>
                         <li><em>Enabled article trash:</em> Enable article trash to and be able to restore deleted articles.</li>
                         <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnails.</li>
                         <li><em>CSS classes in editor:</em> CSS classes with can be used in article editor.</li>
@@ -211,8 +217,10 @@ Help language file
                         <li><em>Single article template:</em> Template to display a single article in front end.</li>
                         <li><em>Sort articles by:</em> Sorting of articles in article list.</li>
                         <li><em>Show share buttons:</em> Enabled social media share buttons.</li>
-                        <li><em>Show archive link:</em> Enable archive link in front end pagination.</li>
                         <li><em>RSS-Feed is enabled:</em> Enable RSS feed.</li>
+                        <li><em>Enable URL rwriting for article links:</em> Article links will be extended with a version of the article title</li>
+                        <li><em>Show archive link:</em> Enable archive link in front end pagination.</li>
+                        <li><em>Show articles in archiv from:</em> Show articles in front end archive which were published after the give date, older won't be visible to your visitors</li>
                     </ul>
                 </li>
                 <li><b>Comments:</b><br>

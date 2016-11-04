@@ -9,7 +9,7 @@
     $lang = array(
         'PERMISSION_ARTICLES'           => 'Articles',
         'PERMISSION_COMMENTS'           => 'Comments',
-        'PERMISSION_UPLOADS'            => 'File manager',
+        'PERMISSION_UPLOADS'            => 'File Manager',
         'PERMISSION_SYSTEM'             => 'System',
         'PERMISSION_MODULES'            => 'Modules',        
         'PERMISSION_ARTICLE_ADD'        => 'Create',

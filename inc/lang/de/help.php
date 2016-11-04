@@ -51,6 +51,8 @@ Help language file
                 <li><em>Artikelbild:</em> Mit dem Artikelbild kannst du einen Artikel eine zusätzliche Dekoration, optische
                     Beschreibung, etc. geben. Die Position und Größe des Artikelbildes kann über das Artikel-Template festgelegt werden.
                 </li>
+                <li><em>Quelleverzeichnis:</em> Der Inhalt dieses Feldes wird durch den Template-Tag "{{sources}}" dargestellt. Hier kannst du Links zu deinen Informationsquellen,
+                Quellen von Bildern, Videos, etc. oder zu weiterführenden Informationen angeben. Links werden so weit es geht automatisch in HTML-Links umgewandelt.</li>
                 <li><em>Artikel freischalten:</em> Mittels dieser Option kannst du einen neuen Artikel verfassen und zu einem bestimmten
                     Zeitpunkt automatisch veröffentlichen lassen. Der Zeitpunkt kann maximal zwei Monate in der Zukunft liegen.</li>
                 <li><em>Artikel als Entwurf speichern:</em> Wird diese Option aktiviert, so wird der Artikel beim Speichern nicht als
@@ -178,6 +180,8 @@ Help language file
                 <li><em>Zeitzone</em> welche für die Umrechnung von Zeitangaben genutzt wird</li>
                 <li><em>Datum- und Zeitanzeige</em>, welche für die Darstellung von Zeitangaben genutzt wird</li>
                 <li><em>Anzahl an Artikeln im ACP</em>, legt die Anzahl an Artikeln fest, welche unter "Artikel bearbeiten" pro Seite angezeigt werden</li>
+                <li><em>Standard-Schriftgröße im Editor:</em> Schriftgröße, die standardmäßig im Artikel-Editor genutzt wird</li>
+                <li><em>jQuery Dateiupload verwenden:</em> Nutzung des modernen AJAX-Uploads oder klassischer PHP-Upload</li>
             </ul>
         ]]>
         </text>
@@ -217,11 +221,13 @@ Help language file
                     <ul>
                         <li><em>Editor auswählen:</em> Welcher Editor soll genutzt werden, die reine HTML-Ansicht oder der auf
                         Basis von TinyMCE 4.</li>
+                        <li><em>Standard-Schriftgröße im Editor:</em> Schriftgröße, die standardmäßig im Artikel-Editor genutzt wird</li>
                         <li><em>jQuery Dateiupload verwenden:</em> Soll der moderne AJAX-Uploader genutzt werden, mit dem
                         mehrere Dateien auf einmal hochgeladen werden können. Oder den klassischen PHP-Uploader nutzten.</li>
                         <li><em>Revisionen aktivieren:</em> Soll FanPress CM Revisionen beim Speichern eines Artikels anlegen.</li>
-                        <li><em>Papierkorb aktivieren:</em> Artikel nicht direkt löschen sondern
-                        zuerst in Papierkorb verschieben. Hier kannst du sie ggf. wiederherstellen.</li>
+                        <li><em>Alte Revisionen löschen, wenn älter als:</em> Revisionen die älter als der angebene
+                            Wert sind, werden beim nächsten Durchlauf des zugehörigen Cronjobs auf der Datenbank entfernt, wenn Wert ungleich "Nie"</li>
+                        <li><em>Papierkorb aktivieren:</em> Artikel nicht direkt löschen sondern zuerst in Papierkorb verschieben, können bei Bedarf wiederherstellt werden.</li>
                         <li><em>Maximale Größe des Vorschaubildes:</em> Größe der von FanPress CM erzeugten Thumbnails.</li>
                         <li><em>CSS-Klassen im Editor:</em> CSS-Klassen zur Nutzung im FanPress CM Editor.</li>
                     </ul>
@@ -237,8 +243,12 @@ Help language file
                         genutzt werden soll.</li>
                         <li><em>News sortieren nach:</em> Reihenfolge, nach der Artikel im Frontend sortiert werden sollen.</li>
                         <li><em>Share-Buttons anzeigen:</em> Sollen Share-Buttons angezeigt werden.</li>
-                        <li><em>Archiv-Link anzeigen:</em> Soll Link zu Archiv in der Navigation im Frontend angezeigt werden.</li>
                         <li><em>RSS-Feed ist aktiv:</em> RSS-Feed aktivieren.</li>
+                        <li><em>URL-Rewriting für Artikel-Links aktivieren:</em> statt der klassischen Artikel-URL mit der Artikel-ID wird eine erweiterte Version erzeugt, welche um den
+                        Artikel-Titel erweitert wird und sich daher nachträglich ändern kann</li>
+                        <li><em>Archiv-Link anzeigen:</em> Soll Link zu Archiv in der Navigation im Frontend angezeigt werden.</li>
+                        <li><em>Artikel in Archiv anzeigen ab:</em> vor dem Datum angegebenen Datum veröffentlichte Artikel im Archiv nicht für Besucher anzeigen, wenn leer werden alle
+                        angezeigt</li>
                     </ul>
                 </li>
                 <li><b>Kommentare:</b><br>

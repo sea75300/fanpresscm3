@@ -7,9 +7,9 @@
      */
 
     $lang = array(
-        'MODULES_LIST_HEADLINE'         => 'Installed and available modules',
+        'MODULES_LIST_HEADLINE'         => 'Installed and Available Modules',
         'MODULES_LIST_INSTALL'          => 'Install module/s',
-        'MODULES_LIST_UNINSTALL'        => 'uninstall module/s',
+        'MODULES_LIST_UNINSTALL'        => 'Uninstall module/s',
         'MODULES_LIST_UPDATE'           => 'Update module/s',
         'MODULES_LIST_ENABLE'           => 'Enable module/s',
         'MODULES_LIST_DISABLE'          => 'Disable module/s',
@@ -23,7 +23,7 @@
         'MODULES_LIST_DESCRIPTION'      => 'Descriptions',
         'MODULES_LIST_DEPENCIES'        => 'Dependencies',
         'MODULES_LIST_INFORMATIONS'     => 'Module detail data',
-        'MODULES_LIST_UPLOAD'           => 'Upload module package file',
+        'MODULES_LIST_UPLOAD'           => 'Upload Module Package',
         'MODULES_LIST_RELOADPKGLIST'    => 'Update package list',
         'MODULES_LIST_EXTERNALLIST'     => 'Open external module list',
         'MODULES_LIST_BACKTOLIST'       => 'Back to module list'

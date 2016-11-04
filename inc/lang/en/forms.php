@@ -55,15 +55,15 @@
         'LOGOUT_BTN'                    => 'Logout',
         
         'NAVIGATION_SHOW'               => 'Menu',
-        'PROFILE_MENU_OPENPROFILE'      => 'User profile',
+        'PROFILE_MENU_OPENPROFILE'      => 'User Profile',
         
-        'ARTICLES_EDITOR'               => 'Article editor',
+        'ARTICLES_EDITOR'               => 'Article Editor',
         'ARTICLES_TRASH'                => 'Trash',
         'ARTICLES_DRAFTS'               => 'Drafts',
         'ARTICLES_SEARCH'               => 'Search & filter',
         'ARTICLES_PUBLIC_ARCHIVE'       => 'Open archive',
-        'ARTICLES_PUBLIC_ACTIVE'        => 'back to active articles',
-        'ARTICLES_PUBLIC_READMORE'      => 'read more...',
+        'ARTICLES_PUBLIC_ACTIVE'        => 'Back to active articles',
+        'ARTICLES_PUBLIC_READMORE'      => 'Read more...',
         
         'ARTICLE_LIST_TITLE'            => 'Title',
         'ARTICLE_LIST_PINNED'           => 'Pin/ unpin articles',
@@ -119,8 +119,8 @@
         
         'BACKUPS_TAB_DATABASE'          => 'Database',
         
-        'FILE_LIST_AVAILABLE'           => 'Available files',
-        'FILE_LIST_UPLOADFORM'          => 'Upload files',
+        'FILE_LIST_AVAILABLE'           => 'Available Files',
+        'FILE_LIST_UPLOADFORM'          => 'Upload Files',
         'FILE_LIST_FILENAME'            => 'Filename',
         'FILE_LIST_FILESIZE'            => 'Filesize',
         'FILE_LIST_RESOLUTION'          => 'Resolution',
