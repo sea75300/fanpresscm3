@@ -3,9 +3,3 @@
 
     <div class="fpcm-half-width fpcm-ui-margin-center" id="fpcm-installer-execlist"></div>
 </div>
-
-<script type="text/javascript">
-jQuery(document).ready(function () {
-    fpcmInstaller.initDatabase();
-});
-</script>

@@ -30,12 +30,3 @@
         </table>        
     </div>
 </div>
-
-<script type="text/javascript">
-jQuery(document).ready(function () {
-    jQuery('#btnSubmitNext').click(function() {        
-        fpcmInstaller.checkDBData();
-        return false;
-    });    
-});
-</script>

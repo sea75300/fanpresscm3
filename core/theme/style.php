@@ -11,7 +11,7 @@ require_once dirname(dirname(__DIR__)).'/inc/common.php';
 $data = array('content' => '', 'filesize' => 0);
 $cache = new \fpcm\classes\cache('cssfiles', 'theme');
 
-if ($cache->isExpired() || FPCM_DEBUG) {
+if ($cache->isExpired() || \fpcm\classes\baseconfig::installerEnabled() || FPCM_DEBUG) {
 
     $cssFiles = array(
         __DIR__.'/style.css',

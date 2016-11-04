@@ -22,22 +22,13 @@ fpcm.ui = {
         this.accordion('.fpcm-tabs-accordion');
         this.highlightModule();
         this.showMessages();
+        this.messagesInitClose();
 
         jQuery('.fpcm-navigation-noclick').click(function () {
             fpcmJs.showLoader(false);
             return false;
         });
     
-        jQuery('#fpcm-messages').find('.fpcm-msg-close').click(function () {
-            var closeId = jQuery(this).attr('id');
-            jQuery('#msgbox-' + closeId.substring(9)).fadeOut('slow');
-        }).mouseover(function () {
-            jQuery(this).find('.fa.fa-square').removeClass('fa-inverse');
-            jQuery(this).find('.fa.fa-times').addClass('fa-inverse');
-        }).mouseout(function () {
-            jQuery(this).find('.fa.fa-square').addClass('fa-inverse');
-            jQuery(this).find('.fa.fa-times').removeClass('fa-inverse');
-        });
     
         jQuery('#fpcm-ui-showmenu-li').click(function () {
             jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').fadeToggle();
@@ -418,6 +409,19 @@ fpcm.ui = {
         this.showMessages();
         this.prepareMessages();
 
+    },
+    
+    messagesInitClose: function() {
+        jQuery('#fpcm-messages').find('.fpcm-msg-close').click(function () {
+            var closeId = jQuery(this).attr('id');
+            jQuery('#msgbox-' + closeId.substring(9)).fadeOut('slow');
+        }).mouseover(function () {
+            jQuery(this).find('.fa.fa-square').removeClass('fa-inverse');
+            jQuery(this).find('.fa.fa-times').addClass('fa-inverse');
+        }).mouseout(function () {
+            jQuery(this).find('.fa.fa-square').addClass('fa-inverse');
+            jQuery(this).find('.fa.fa-times').removeClass('fa-inverse');
+        });
     }
     
 }

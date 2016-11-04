@@ -57,6 +57,20 @@
             6 => '06_firstuser',
             7 => '07_finalize'
         );
+       
+        /**
+         *
+         * @var array
+         */
+        protected $subTabs = array(
+            '01_selectlang' => 'INSTALLER_LANGUAGE_SELECT',
+            '02_syscheck' => 'INSTALLER_SYSCHECK',
+            '03_dbdata' => 'INSTALLER_DBCONNECTION',
+            '04_createtables' => 'INSTALLER_CREATETABLES',
+            '05_sysconfig' => 'INSTALLER_SYSTEMCONFIG',
+            '06_firstuser' => 'INSTALLER_ADMINUSER',
+            '07_finalize' => 'INSTALLER_FINALIZE'
+        );
 
         public function __construct() {
             return;
@@ -70,7 +84,7 @@
                 return false;
             }
             
-            $this->step     = !is_null($this->getRequestVar('step')) ? (int) $this->getRequestVar('step') : 1;
+            $this->step     = !is_null($this->getRequestVar('step')) ? $this->getRequestVar('step', array(9)) : 1;
             $this->langCode = !is_null($this->getRequestVar('language')) ? $this->getRequestVar('language') : FPCM_DEFAULT_LANGUAGE_CODE;            
             $this->lang     = new \fpcm\classes\language($this->langCode);
             $this->view     = new \fpcm\model\view\installer('main', $this->langCode);
@@ -83,7 +97,19 @@
             $maxStep = max(array_keys($this->subTemplates));
             
             if ($this->step > $maxStep) die('Undefined step!');
-            
+
+            $disabledTabs = array_keys(array_keys($this->subTemplates));
+            $disabledTabs = array_slice($disabledTabs, ($this->step === 1 ? 1 : $this->step), $maxStep);
+
+            $this->view->addJsVars(array(
+                'disabledTabs'  => $disabledTabs,
+                'activeTab'     => $this->step === 1 ? 0 : $this->step - 1
+            ));
+
+            $this->view->addJsLangVars(array('dbTestFailed' => $this->lang->translate('INSTALLER_DBCONNECTION_FAILEDMSG')));
+
+            $this->view->assign('tabCounter', 1);
+            $this->view->assign('subTabs', $this->subTabs);
             $this->view->assign('subTemplate', $this->subTemplates[$this->step]);
             $this->view->assign('maxStep', $maxStep);
             $this->view->assign('currentStep', $this->step);
@@ -93,10 +119,6 @@
             $this->view->setViewJsFiles(array(
                 \fpcm\classes\baseconfig::$jsPath.'installer.js',
                 \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')
-            ));
-            
-            $this->view->addJsVars(array(
-                'fpcmInstallerDBTestFailed' => $this->lang->translate('INSTALLER_DBCONNECTION_FAILEDMSG')
             ));
 
             if (method_exists($this, 'runAfterStep'.($this->step - 1))) {
@@ -164,6 +186,7 @@
             }
 
             $this->view->addJsVars(array(
+                'fpcmSqlFilesCount' => count($sqlFiles),
                 'fpcmSqlFiles'      => $sqlFiles,
                 'fpcmSqlFileExec'   => $this->lang->translate('INSTALLER_CREATETABLES_STEP')
             ));
@@ -313,6 +336,10 @@
             
             $this->view->assign('disableInstallerMsg', !$res);
             $this->view->assign('showNextButton', false);
+            
+            $cache = new \fpcm\classes\cache();
+            $cache->cleanup();
+            
         }
 
     }
