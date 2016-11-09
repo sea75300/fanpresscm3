@@ -40,6 +40,10 @@
     $updateData['signature'] = isset($versions[$version]['signature'])
                              ? $versions[$version]['signature']
                              : false;
+     
+    $updateData['phpversion'] = isset($versions[$version]['phpversion'])
+                              ? $versions[$version]['phpversion']
+                              : false;
     
     header('Content-type: text/plain');
     header("Content-Transfer-Encoding: binary\n");

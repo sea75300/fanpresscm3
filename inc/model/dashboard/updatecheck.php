@@ -58,8 +58,10 @@
             $this->systemUpdates = new \fpcm\model\updater\system();
             $this->runCheck();
 
+            $this->tableContent[] = '<tr><td colspan="2" class="fpcm-small-text"><p>'.$this->language->translate('UPDATE_VERSIONCHECK_NOTES').'</p><td><tr>';
+            
             $this->headline = $this->language->translate('SYSTEM_UPDATE');
-            $this->content  = implode(PHP_EOL, array('<table class="fpcm-ui-table fpcm-dashboard-updates">', implode(PHP_EOL, $this->tableContent),'</table>'));
+            $this->content  = implode(PHP_EOL, array('<table class="fpcm-ui-table fpcm-dashboard-updates fpcm-ui-center">', implode(PHP_EOL, $this->tableContent),'</table>'));
             $this->name     = 'updatecheck';            
             $this->position = 3;
             $this->height   = 0;

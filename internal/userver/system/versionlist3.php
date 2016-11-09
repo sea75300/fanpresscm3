@@ -14,7 +14,8 @@
             'force'     => 0,
             'message'   => 'Next minor release of FanPress CM 3.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-3-1-veroeffentlicht/',
-            'signature' => $signature
+            'signature' => $signature,
+            'phpversion'    => '5.4.0'
         ),
 
         '3.1' => array(
@@ -23,7 +24,8 @@
             'force'     => 1,
             'message'   => 'Latest version of FanPress CM 3.2 which can be directly updated from FanPress CM 3.0.x and 3.1.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-3-1-veroeffentlicht/',
-            'signature' => $signature
+            'signature' => $signature,
+            'phpversion'    => '5.4.0'
         ),
 
         '3.0' => array(
@@ -32,7 +34,8 @@
             'force'     => 1,
             'message'   => 'Latest version of FanPress CM 3.2 which can be directly updated from FanPress CM 3.0.x and 3.1.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-3-1-veroeffentlicht/',
-            'signature' => $signature
+            'signature' => $signature,
+            'phpversion'    => '5.4.0'
         )
     );
 ?>
