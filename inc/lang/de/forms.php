@@ -50,9 +50,9 @@
         'GLOBAL_WRITEMAIL'              => 'E-Mail verfassen',
         'GLOBAL_CONFIRM'                => 'Bitte bestätigen',
 
-        'LOGIN_BTN'                     => 'Einloggen',
+        'LOGIN_BTN'                     => 'Anmelden',
         'LOGIN_NEWPASSWORD'             => 'Neues Passwort anfordern',
-        'LOGOUT_BTN'                    => 'Ausloggen',
+        'LOGOUT_BTN'                    => 'Abmelden',
         
         'NAVIGATION_SHOW'               => 'Menü',
         'PROFILE_MENU_OPENPROFILE'      => 'Benutzerprofil',

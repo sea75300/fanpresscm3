@@ -53,6 +53,10 @@ var fpcmEditor = function () {
         jQuery('#tablecols').val('1');
     };
 
+    this.clearListForm = function() {
+        jQuery('#listrows').val('1');
+    };
+
     this.insertLink = function() {
         var lnk_url = jQuery('#linksurl').val();
         var lnk_txt = jQuery('#linkstext').val();
@@ -114,14 +118,13 @@ var fpcmEditor = function () {
     };
 
     this.insertListToFrom = function(listtype) {
-        aTag = "";
 
-        do {
-            $liTxt = prompt(fpcmEditorHtmlElement,"");
-            if($liTxt != "" && $liTxt != null) { aTag = aTag + '<li>' + $liTxt + '</li>\n'; }
-        } while($liTxt != "" && $liTxt != null);
+        var tablerows = jQuery('#listrows').val();
 
-        aTag = '<' + listtype + '>\n' + aTag;
+        aTag = '<' + listtype + '>\n';
+        for (i=0;i<tablerows;i++) {
+            aTag += '<li></li>\n';
+        }
 
         self.insert(aTag, '</' + listtype + '>');
     };
@@ -373,7 +376,7 @@ var fpcmEditor = function () {
                 "Shift-Ctrl-J"    : function() {
                     jQuery('#fpcm-editor-html-ajustify-btn').click();
                 },
-                "Ctrl-N"    : function() {
+                "Ctrl-Alt-N"    : function() {
                     jQuery('#fpcm-editor-html-insertlist-btn').click();
                 },
                 "Shift-Ctrl-N"    : function() {
@@ -520,7 +523,7 @@ var fpcmEditor = function () {
                 }
             });
             return false;
-        });        
+        });
         
         jQuery('#fpcm-dialog-editor-html-inserttable-btn').click(function() {
             
@@ -562,7 +565,7 @@ var fpcmEditor = function () {
             });
             
             return false;
-        });   
+        });
         
         jQuery('#fpcm-dialog-editor-html-insertcolor-btn').click(function() {
             fpcm.ui.dialog({
@@ -707,7 +710,83 @@ var fpcmEditor = function () {
 
             return false;
 
-        }); 
+        });
+        
+        jQuery('#fpcm-editor-html-insertlist-btn').click(function() {
+
+            fpcm.ui.spinner('#listrows', {
+                min: 1
+            });
+
+            fpcm.ui.dialog({
+                id: 'editor-html-insertlist',
+                dlWidth: size.width,
+                title: fpcm.ui.translate('editorInsertUl'),
+                dlButtons: [
+                    {
+                        text: fpcm.ui.translate('globalInsert'),
+                        icon: "ui-icon-check",                        
+                        click: function() {
+                            fpcmEditor.insertListToFrom('ul');
+                            jQuery( this ).dialog( "close" );
+                        }
+                    },
+                    {
+                        text: fpcm.ui.translate('close'),
+                        icon: "ui-icon-closethick",                
+                        click: function() {
+                            jQuery( this ).dialog( "close" );
+                        }
+                    }
+                ],
+                dlOnOpen: function () {
+                    fpcmEditor.setSelectToDialog(this);
+                },
+                dlOnClose: function() {
+                    fpcmEditor.clearListForm();
+                }
+            });
+
+            return false;
+        });
+
+        jQuery('#fpcm-editor-html-insertlistnum-btn').click(function() {
+
+            fpcm.ui.spinner('#listrows', {
+                min: 1
+            });
+
+            fpcm.ui.dialog({
+                id: 'editor-html-insertlist',
+                dlWidth: size.width,
+                title: fpcm.ui.translate('editorInsertOl'),
+                dlButtons: [
+                    {
+                        text: fpcm.ui.translate('globalInsert'),
+                        icon: "ui-icon-check",                        
+                        click: function() {
+                            fpcmEditor.insertListToFrom('ol');
+                            jQuery( this ).dialog( "close" );
+                        }
+                    },
+                    {
+                        text: fpcm.ui.translate('close'),
+                        icon: "ui-icon-closethick",                
+                        click: function() {
+                            jQuery( this ).dialog( "close" );
+                        }
+                    }
+                ],
+                dlOnOpen: function () {
+                    fpcmEditor.setSelectToDialog(this);
+                },
+                dlOnClose: function() {
+                    fpcmEditor.clearListForm();
+                }
+            });
+
+            return false;
+        });
 
     };
     
@@ -858,17 +937,7 @@ jQuery(document).ready(function() {
         fpcmEditor.insertAlignTags(tag);
         return false;
     });
-
-    jQuery('#fpcm-editor-html-insertlist-btn').click(function() {
-        fpcmEditor.insertListToFrom('ul');
-        return false;
-    });
-    
-    jQuery('#fpcm-editor-html-insertlistnum-btn').click(function() {
-        fpcmEditor.insertListToFrom('ol');
-        return false;
-    });
-    
+   
     jQuery('#fpcm-editor-html-insertiframe-btn').click(function() {
         fpcmEditor.insertFrame();
         return false;

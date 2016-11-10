@@ -64,6 +64,16 @@
     </table>
 </div>
 
+<!-- Liste einfügen -->  
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertlist">  
+    <table class="fpcm-ui-table fpcm-ui-table-insert">
+        <tr>
+            <td><label><?php $FPCM_LANG->write('EDITOR_INSERTTABLE_ROWS'); ?>:</label></td>
+            <td><?php \fpcm\model\view\helper::textInput('list[rows]', '', 1, false, 5, false, false); ?></td>
+        </tr>       
+    </table>
+</div>
+
 <!-- Player einfügen -->  
 <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-insertmedia">  
     <table class="fpcm-ui-table">

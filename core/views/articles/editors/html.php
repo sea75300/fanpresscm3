@@ -60,7 +60,7 @@
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_ACENTER'); ?> (Ctrl + Shift + C)" id="fpcm-editor-html-acenter-btn" class="fpcm-editor-alignclick" htmltag="center"><span class="fa fa-align-center"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_ARIGHT'); ?> (Ctrl + Shift + R)" id="fpcm-editor-html-aright-btn" class="fpcm-editor-alignclick" htmltag="right"><span class="fa fa-align-right"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_AJUSTIFY'); ?> (Ctrl + Shift + J)" id="fpcm-editor-html-ajustify-btn" class="fpcm-editor-alignclick" htmltag="justify"><span class="fa fa-align-justify"></span></button>            
-                <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_LISTUL'); ?> (Ctrl + N)" id="fpcm-editor-html-insertlist-btn"><span class="fa fa-list-ul"></span></button>
+                <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_LISTUL'); ?> (Ctrl + Alt + N)" id="fpcm-editor-html-insertlist-btn"><span class="fa fa-list-ul"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_LISTOL'); ?> (Ctrl + Shift + N)" id="fpcm-editor-html-insertlistnum-btn"><span class="fa fa-list-ol"></span></button>            
                 <button title="<?php $FPCM_LANG->write('EDITOR_HTML_BUTTONS_QUOTE'); ?> (Ctrl + Shift + Q)" id="fpcm-editor-html-quote-btn" class="fpcm-editor-htmlclick" htmltag="blockquote"><span class="fa fa-quote-left"></span></button>
                 <button title="<?php $FPCM_LANG->write('EDITOR_INSERTLINK'); ?>  (Ctrl + L)" id="fpcm-dialog-editor-html-insertlink-btn"><span class="fa fa-link"></span></button>
