@@ -310,6 +310,10 @@
             if ($this->checkVersion('3.4.0-b2')) {
                 $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "cjname, lastexec, execinterval", "'removeRevisions', 0, 2419200");                
             }
+            
+            if ($this->checkVersion('3.4.0-b5')) {
+                $this->dbcon->createIndex(\fpcm\classes\database::tableRevisions, 'hashsum_idx', 'hashsum');
+            }
 
             return $res;
         }

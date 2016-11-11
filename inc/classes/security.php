@@ -17,12 +17,18 @@
      * @package fpcm.classes.security
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
-    final class security {        
+    final class security {
         
         /**
          * Passwort Check RegEx
          */
         const regexPasswordCkeck = "/^.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/";
+        
+        /**
+         * Standard-Hash-Algorithmus
+         * @since FPCM 3.4
+         */
+        const defaultHashAlgo = "sha256";
         
         /**
          * Cookie-Name zurückgeben
@@ -37,7 +43,7 @@
          * @return string
          */
         public static function getPageTokenFieldName() {
-            return hash('sha256', 'pagetoken'.baseconfig::$rootPath.'_'.date('d-m-Y').'$'.http::getOnly('module'));
+            return hash(self::defaultHashAlgo, 'pagetoken'.baseconfig::$rootPath.'_'.date('d-m-Y').'$'.http::getOnly('module'));
         }
         
         /**
@@ -53,7 +59,7 @@
          * @return string
          */
         public static function createSessionId() {
-            return hash('sha256', self::getSecureBaseString());
+            return hash(self::defaultHashAlgo, self::getSecureBaseString());
         }         
         
         /**
@@ -72,7 +78,7 @@
          * @return string
          */
         public static function createSalt($additional = '') {
-            return '$5$'.substr(hash('sha256', self::getSecureBaseString()), 0, 16).'$';
+            return '$5$'.substr(hash(self::defaultHashAlgo, self::getSecureBaseString()), 0, 16).'$';
         }
         
         /**
@@ -80,7 +86,7 @@
          * @return string
          */
         public static function createPageToken() {
-            $str = hash('sha256', '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$');
+            $str = hash(self::defaultHashAlgo, '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$');
 
             $cache = new cache(self::getPageTokenFieldName(), 'pgtkn');
             $cache->cleanup(self::getPageTokenFieldName());

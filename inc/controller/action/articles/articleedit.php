@@ -144,7 +144,8 @@
             $allTimer = time();
             
             if ($this->buttonClicked('articleSave') && !$this->showRevision && $this->checkPageToken) {
-                $this->article->createRevision();
+
+                $this->article->prepareRevision();
                 
                 $data = $this->getRequestVar('article', array(4,7));
 
@@ -211,6 +212,10 @@
                 
                 $saved = true;
                 $res   = $this->article->update();
+                
+                if ($res) {
+                    $this->article->createRevision();
+                }
             }
             
             $this->handleCommentActions();
@@ -222,7 +227,7 @@
             } elseif (isset ($saved) && !$res) {
                 $this->view->addErrorMessage('SAVE_FAILED_ARTICLE');                
             }
-            
+
             if (!$this->revisionId) {
                 $this->article->prepareDataLoad();
             }

@@ -632,6 +632,14 @@
         }
 
         /**
+         *Artikel-Daten für Revision vorbereiten
+         * @since FPCM 3.4
+         */
+        public function prepareRevision() {
+            $this->data['preparedRevision'] = $this->getPreparedSaveParams();
+        }
+
+        /**
          * Erzeugt eine Revision des Artikels
          * @param int $timer
          * @return boolean
@@ -649,6 +657,14 @@
             $revision->setArticleId($this->id);
             $revision->setRevisionIdx($timer);
             $revision->setContent($content);
+            
+            $newHash = $revision->createHashSum();
+            $revision->setHashsum($newHash);
+
+            if ($revision->createHashSum($this->data['preparedRevision']) === $newHash) {
+                return true;
+            }
+
             if (!$revision->save()) {
                 trigger_error('Unable to create revision for article '.$this->id);
                 return false;

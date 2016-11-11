@@ -32,6 +32,13 @@
         protected $content = '';
 
         /**
+         * Revision hash
+         * @var string
+         * @since FPCM 3.4
+         */
+        protected $hashsum = '';
+
+        /**
          * Konstruktor
          * @param int $articleId
          * @param int $revisionIdx
@@ -83,6 +90,15 @@
         }
 
         /**
+         * Hash von Revision zurückgeben
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getHashSum() {
+            return $this->hashsum;
+        }
+        
+        /**
          * Artikel ID setzen
          * @param int $articleId
          */
@@ -105,7 +121,16 @@
         public function setContent(array $content) {
             $this->content = json_encode($content);
         }
-        
+
+        /**
+         * Hash von Revision setzen
+         * @param type $hashsum
+         * @since FPCM 3.4
+         */        
+        public function setHashsum($hashsum) {
+            $this->hashsum = $hashsum;
+        }
+                
         /**
          * Speichert eine neue Revision in der Datenbank
          * @return int
@@ -148,6 +173,21 @@
                 array($this->article_id, $this->revision_idx)
             );
 
+        }
+
+        /**
+         * Revision Hash Sum erzeugen
+         * @param array $data
+         * @since FPCM 3.4
+         */
+        public function createHashSum(array $data = array()) {
+
+            if (!count($data)) {
+                $data = json_decode($this->content, true);
+            }
+
+            unset($data['changetime'], $data['changeuser']);
+            return hash(\fpcm\classes\security::defaultHashAlgo, json_encode($data));
         }
 
         /**

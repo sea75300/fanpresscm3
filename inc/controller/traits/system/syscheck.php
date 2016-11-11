@@ -105,7 +105,7 @@
             );
 
             $current = (CRYPT_SHA256 == 1 ? true : false);
-            $current = $current && in_array('sha256', hash_algos());            
+            $current = $current && in_array(\fpcm\classes\security::defaultHashAlgo, hash_algos());            
             $checkOptions['SHA256 Hash Algorithm']    = array(
                 'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',

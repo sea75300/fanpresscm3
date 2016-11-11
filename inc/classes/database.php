@@ -567,12 +567,12 @@
         
         /**
          * Erzeugt LIMIT-SQL-String
-         * @param int $limit
          * @param int $offset
+         * @param int $limit
          * @return string
          */
-        public function limitQuery($limit, $offset) {
-            return $this->driver->limitQuery($limit, $offset);
+        public function limitQuery($offset, $limit) {
+            return $this->driver->limitQuery($offset, $limit);
         }
         
         /**
