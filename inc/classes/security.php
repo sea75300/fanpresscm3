@@ -31,6 +31,12 @@
         const defaultHashAlgo = "sha256";
         
         /**
+         * Cache-Modul für Page Tokens
+         * @since FPCM 3.4
+         */
+        const pageTokenCacheModule = "pgtkn";
+        
+        /**
          * Cookie-Name zurückgeben
          * @return string
          */
@@ -88,8 +94,8 @@
         public static function createPageToken() {
             $str = hash(self::defaultHashAlgo, '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$');
 
-            $cache = new cache(self::getPageTokenFieldName(), 'pgtkn');
-            $cache->cleanup(self::getPageTokenFieldName());
+            $cache = new cache(self::getPageTokenFieldName(), self::pageTokenCacheModule);
+            $cache->cleanup(self::getPageTokenFieldName(), self::pageTokenCacheModule);
             $cache->write($str, FPCM_PAGETOKENCACHE_TIMEOUT);            
             unset($cache);
             

@@ -108,14 +108,16 @@
          * @return boolean
          */
         public function process() {
+
             parent::process();
-            
+
+            header('Content-type: text/html; charset=utf-8');
             $content = '';
-            
+
             if ($this->cache->isExpired() || $this->session->exists()) {
                 $this->users  = array_flip($this->userList->getUsersNameList());
                 $this->emails = array_flip($this->userList->getUsersEmailList());
-                
+    
                 /**
                  * Feed-Basis mittel \DOMDocument-Klasse
                  */
@@ -156,7 +158,7 @@
                     $guid   = $dom->createElement('guid', htmlspecialchars($article->getArticleLink()));
                     $item->appendChild($guid);
 
-                    $atitle = $dom->createElement('title', $article->getTitle());
+                    $atitle = $dom->createElement('title', htmlspecialchars($article->getTitle()));
                     $item->appendChild($atitle);
                     
                     $alink  = $dom->createElement('link', htmlspecialchars($article->getArticleLink()));

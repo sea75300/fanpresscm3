@@ -49,9 +49,15 @@
             if (!$this->comment->exists()) {
                 $this->view->setNotFound('LOAD_FAILED_COMMENT', 'comments/list');
                 return true;
-            }            
-            
-            
+            }
+
+            if (!$this->comment->getEditPermission()) {
+                $this->view = new \fpcm\model\view\error();
+                $this->view->addErrorMessage('PERMISSIONS_REQUIRED');
+                $this->view->render();
+                return false;
+            }
+
             if ($this->buttonClicked('commentSave') && $this->getRequestVar('comment')) {
                 $commentData = $this->getRequestVar('comment', array(4,7));
                 

@@ -138,7 +138,7 @@
             if ($path) {
                 $cacheFiles = glob($cacheBaseDir.$this->initCacheName($path).'.cache');
             }
-            elseif ($this->hasModule) {
+            elseif ($module) {
                 $cacheFiles = glob($cacheBaseDir.'*.cache');
             }
             else {

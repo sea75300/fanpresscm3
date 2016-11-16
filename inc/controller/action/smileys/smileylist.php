@@ -49,7 +49,7 @@
                     $this->view->addErrorMessage('DELETE_FAILED_SMILEYS');
                 }
                 
-                $this->cache->cleanup('smileycache');
+                $this->cache->cleanup();
             }
             
             return true;            

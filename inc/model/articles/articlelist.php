@@ -11,6 +11,8 @@
      */ 
     class articlelist extends \fpcm\model\abstracts\tablelist {
 
+        use permissions;
+
         /**
          * Permission Object
          * @var \fpcm\model\system\permissions
@@ -455,36 +457,6 @@
             return $res;
         }
 
-        /**
-         * Führt Prüfung durch, ob Artikel bearbeitet werden kann
-         * @param \fpcm\model\articles\article $article
-         * @return boolean
-         */
-        public function checkEditPermissions(article &$article) {
-            
-            if ($this->permissions === false) {
-                return true;
-            }
-
-            $isAdmin     = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin();
-            $permEditAll = $this->permissions->check(array('article' => 'editall'));            
-            $permEditOwn = $this->permissions->check(array('article' => 'edit'));
-            
-            if ($isAdmin || $permEditAll) {
-                $article->setEditPermission(true);
-                return true;
-            }
-            
-            if (!$isAdmin && !$permEditAll && $permEditOwn &&
-                 $article->getCreateuser() == \fpcm\classes\baseconfig::$fpcmSession->getUserId()) {
-                $article->setEditPermission(true);
-                return true;                
-            }
-
-            $article->setEditPermission(false);
-            return true;
-
-        }
 
         /**
          * Liefert minimalen und maximalen createtime-Timestamp

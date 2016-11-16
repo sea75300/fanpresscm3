@@ -77,6 +77,13 @@
                 return true;
             }
             
+            if (!$this->article->getEditPermission()) {
+                $this->view = new \fpcm\model\view\error();
+                $this->view->addErrorMessage('PERMISSIONS_REQUIRED');
+                $this->view->render();
+                return false;
+            }
+
             if ($this->getRequestVar('revrestore')) {
                 $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLEREVRESTORE');
             }

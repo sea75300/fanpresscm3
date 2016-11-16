@@ -264,10 +264,10 @@
             }
             
             $fieldname = \fpcm\classes\security::getPageTokenFieldName();
-            $cache     = new \fpcm\classes\cache($fieldname, 'pgtkn');
+            $cache     = new \fpcm\classes\cache($fieldname, \fpcm\classes\security::pageTokenCacheModule);
             
             $tokenData = $cache->read();
-            $cache->cleanup($fieldname);
+            $cache->cleanup($fieldname, \fpcm\classes\security::pageTokenCacheModule);
             
             if (\fpcm\classes\http::getPageToken() == $tokenData) {
                 return true;
