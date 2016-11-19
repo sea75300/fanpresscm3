@@ -195,7 +195,7 @@
 
             if (!defined('FPCM_USERID') || !FPCM_USERID) return false;
 
-            $cache2 = new \fpcm\classes\cache($this->cacheName.'_user'.FPCM_USERID);
+            $cache2 = new \fpcm\classes\cache($this->cacheName.'_user'.FPCM_USERID, 'system');
             
             $userData = $cache2->read();
             

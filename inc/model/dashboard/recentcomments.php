@@ -52,6 +52,7 @@
          * Konstruktor
          */
         public function __construct() {
+
             $this->cacheName = 'recentcomments';
             
             parent::__construct();
@@ -60,7 +61,7 @@
             $this->currentUser  = $session->getUserId();
             $this->isAdmin      = $session->getCurrentUser()->isAdmin();
             $this->permissions  = new \fpcm\model\system\permissions($session->currentUser->getRoll());
-            $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser);
+            $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser, self::CACHE_M0DULE_DASHBOARD);
             
             if ($this->cache->isExpired()) {
                 $this->renderContent();                
@@ -83,7 +84,7 @@
             
             $commenList  = new \fpcm\model\comments\commentList();
             $userlist    = new \fpcm\model\users\userList();            
-            $comments    = $commenList->getCommentsByLimit(0, 10);
+            $comments    = $commenList->getCommentsByLimit(10, 0);
 
             $users    = array_flip($userlist->getUsersNameList());
             

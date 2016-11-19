@@ -16,6 +16,18 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class article extends \fpcm\model\abstracts\model {
+
+        /**
+         * Cache-Name für einzelnen Artikel
+         * @since FPCM 3.4
+         */
+        const CACHE_ARTICLE_SINGLE = 'articlesingle';
+
+        /**
+         * Cache-Module-Name
+         * @since FPCM 3.4
+         */
+        const CACHE_ARTICLE_MODULE = 'articles';
         
         /**
          * News-Titel
@@ -568,7 +580,7 @@
             
             $this->id = $this->dbcon->getLastInsertId();
             
-            $this->cache->cleanup();
+            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
 
             if ($this->config->twitter_events['create'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
                 $this->createTweet();
@@ -598,7 +610,7 @@
                 $return = true;
             }
             
-            $this->cache->cleanup();             
+            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
             $this->init();
 
             if ($this->config->twitter_events['update'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
@@ -617,7 +629,7 @@
         public function delete() {
 
             if ($this->config->articles_trash && !$this->forceDelete) {
-                $this->cache->cleanup();
+                $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
                 $this->deleted = 1;
                 
                 return $this->update();

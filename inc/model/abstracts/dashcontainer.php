@@ -18,6 +18,12 @@
     abstract class dashcontainer extends model implements \fpcm\model\interfaces\dashcontainer {
 
         /**
+         * Stanard-Dashboard-Conatiner-Cache-Module
+         * @since FPCM 3.4
+         */
+        const CACHE_M0DULE_DASHBOARD = 'dashboard';
+
+        /**
          * Container-Name
          * @var string
          */

@@ -69,7 +69,7 @@
 
             $moduleList = new \fpcm\model\modules\modulelist();
             
-            $this->cache = new \fpcm\classes\cache('activeeventscache');
+            $this->cache = new \fpcm\classes\cache('activeeventscache', 'modules');
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             

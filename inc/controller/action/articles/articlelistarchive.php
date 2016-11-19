@@ -25,7 +25,7 @@
             
             parent::request();
             
-            $this->articleItems = $this->articleList->getArticlesArchived(true, array($this->listShowStart, $this->listShowLimit));
+            $this->articleItems = $this->articleList->getArticlesArchived(true, array($this->listShowLimit, $this->listShowStart));
             
             return true;
         }

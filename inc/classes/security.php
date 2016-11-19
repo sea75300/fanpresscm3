@@ -107,7 +107,9 @@
          * @return string
          */
         private static function getSecureBaseString() {
-            return uniqid('fpcm', true).'#'.microtime(true).'#'.md5($_SERVER['HTTP_HOST']).'#'.mt_rand(0, mt_getrandmax());
+            
+            $md5base = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : __FILE__;
+            return uniqid('fpcm', true).'#'.microtime(true).'#'.md5($md5base).'#'.mt_rand();
         }
         
     }

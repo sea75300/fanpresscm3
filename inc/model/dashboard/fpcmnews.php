@@ -20,11 +20,11 @@
          * Konstruktor
          */
         public function __construct() {
-            $this->cacheName = 'fpcmnews';
+
+            $this->cacheName   = 'fpcmnews';
+            $this->cacheModule = self::CACHE_M0DULE_DASHBOARD;
             
             parent::__construct();
-
-            $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser);
             
             if ($this->cache->isExpired()) {
                 $this->renderContent();                

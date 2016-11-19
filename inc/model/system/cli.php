@@ -78,6 +78,11 @@
         const FPCMCLI_PARAM_DISBALE = '--disable';
 
         /**
+         * CLI param: --passwd
+         */
+        const FPCMCLI_PARAM_PASSWD = '--passwd';
+
+        /**
          * CLI param: package manager type: system
          */
         const FPCMCLI_PARAM_TYPE_SYSTEM    = 'system';
@@ -119,6 +124,7 @@
             $lines[] = '      - module      module action';
             $lines[] = '      - pkg         package manager';
             $lines[] = '      - syscheck    system check';
+            $lines[] = '      - users       user management';
             $lines[] = '      - help        displays this text';
             $lines[] = '';
             $lines[] = '> Example:';
@@ -185,6 +191,19 @@
             $lines[] = '    - The system check has no params to set.';
             $lines[] = '    - Executing the system check via FanPress CM CLI may result in wrong "current" values and check results';
             $lines[] = '      for "PHP memory limit" and "PHP max execution time" due to different settings for web and CLI access in php.ini.';
+            $lines[] = '';
+            $lines[] = '';
+            $lines[] = '> Users:';
+            $lines[] = '';
+            $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php users <user_id> <user_id>';
+            $lines[] = '';
+            $lines[] = '    Action params:';
+            $lines[] = '';
+            $lines[] = '      --passwd      resets the password for the selected user';
+            $lines[] = '      --enable      enable the selected user';
+            $lines[] = '      --disable     disable the selected user';
+            $lines[] = '      --remove      delete the selected user';
+            $lines[] = '';
             $lines[] = '';
             $lines[] = '';
 
@@ -655,6 +674,78 @@
             }
 
             $this->output($lines);
+        }
+        
+        /**
+         * Logfiles auswerten
+         * @return boolean
+         */
+        public function processUsers() {
+
+            if (!isset($this->funcParams[1])) {
+                $this->output('Invalid params, no user id set', true);
+            }
+            
+            $userId = (int) $this->funcParams[1];
+            $user   = new \fpcm\model\users\author($userId);
+            
+            if (!$user->exists()) {
+                $this->output('No user foudn give id '.$userId, true);
+            }
+            
+            switch ($this->funcParams[0]) {
+
+                case self::FPCMCLI_PARAM_PASSWD :
+
+                    $this->output('Create new password for user '.$user->getUsername().'...');
+                    $success = $user->resetPassword(true);
+                    
+                    if (!$success['updateOk']) {
+                        $this->output('Unable to reset password! Check system logs for further details.', true);
+                    }
+
+                    $this->output('Password set to '.$success['password']);
+
+                    break;
+
+                case self::FPCMCLI_PARAM_ENABLE :
+
+                    $this->output('Enable user '.$user->getUsername().'...');
+                    if ($user->enable()) {
+                        $this->output('User successfully enabled!');
+                    } else {
+                        $this->output('Failed to enable user!');
+                    }
+                    
+                    break;
+
+                case self::FPCMCLI_PARAM_DISBALE :
+
+                    $this->output('Disable user '.$user->getUsername().'...');
+                    if ($user->disable()) {
+                        $this->output('User successfully disabled!');
+                    } else {
+                        $this->output('Failed to disable user!');
+                    }
+
+                    break;
+
+                case self::FPCMCLI_PARAM_REMOVE :
+
+                    $this->output('Delete user '.$user->getUsername().'...');
+                    if ($user->delete()) {
+                        $this->output('User deleted!');
+                    } else {
+                        $this->output('Failed to delete user!');
+                    }
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            return true;
         }
 
         /**

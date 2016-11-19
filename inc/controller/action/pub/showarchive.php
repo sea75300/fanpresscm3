@@ -55,7 +55,7 @@
             
             if ($this->cache->isExpired() || $this->session->exists()) {
                 $conditions = array(
-                    'limit'         => array($this->listShowLimit, $this->limit),
+                    'limit'         => array($this->limit, $this->listShowLimit),
                     'archived'      => 1,
                     'postponed'     => 0
                 );

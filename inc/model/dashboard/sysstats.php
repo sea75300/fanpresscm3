@@ -27,7 +27,8 @@
          */
         public function __construct() {
             
-            $this->cacheName = 'sysstats';
+            $this->cacheName   = 'sysstats';
+            $this->cacheModule = self::CACHE_M0DULE_DASHBOARD;
             
             parent::__construct();   
             

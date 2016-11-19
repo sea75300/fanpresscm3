@@ -171,21 +171,33 @@ fpcm.filemanager = {
 
         'use strict';
 
-        jQuery('#fileupload').fileupload({
+        var uploaderEl = jQuery('#fileupload');
+
+        uploaderEl.fileupload({
             url: fpcmAjaxActionPath + 'jqupload',
-            dropZone: jQuery('#fpcm-filemanager-upload-drop')
+            dropZone: jQuery('#fpcm-filemanager-upload-drop'),
+        });
+        
+        this._uploadsDone = 0;
+        uploaderEl.on('fileuploaddone', function (e, data) {
+
+            fpcm.filemanager._uploadsDone++;
+            if (fpcm.filemanager._uploadsDone < data.getNumberOfFiles()) {
+                return true;
+            }
+
+            fpcmJs.execCronjobDemand('fileindex');
         });
 
-        jQuery('#fileupload').addClass('fileupload-processing');
+        uploaderEl.addClass('fileupload-processing');
         jQuery.ajax({
-            url: jQuery('#fileupload').fileupload('option', 'url'),
+            url: uploaderEl.fileupload('option', 'url'),
             dataType: 'json',
-            context: jQuery('#fileupload')[0]
+            context: uploaderEl[0]
         }).always(function () {
             jQuery(this).removeClass('fileupload-processing');
         }).done(function (result) {
-            jQuery(this).fileupload('option', 'done')
-                .call(this, jQuery.Event('done'), {result: result});
+            jQuery(this).fileupload('option', 'done').call(this, jQuery.Event('done'), {result: result});
         });
         
         jQuery(document).bind('dragover', function (e) {

@@ -278,6 +278,7 @@
          * @return bool Ja, wenn Benutzer + Passwort vorhanden ist
          */
         public function checkUser($username, $password) {
+
             $userList = new \fpcm\model\users\userList();            
 
             $userid = $userList->getUserIdByUsername($username);
@@ -285,13 +286,13 @@
                 trigger_error('Login failed for username '.$username.'! User not found. Request was made by '.\fpcm\classes\http::getIp());
                 return false;
             }
-            
+
             $user = new \fpcm\model\users\author($userid);
             if ($user->getDisabled()) {
                 trigger_error('Login failed for username '.$username.'! User is disabled. Request was made by '.\fpcm\classes\http::getIp());
                 return \fpcm\model\users\author::AUTHOR_ERROR_DISABLED;
             }
-            
+
             if (\fpcm\classes\security::createPasswordHash($password, $user->getPasswd()) == $user->getPasswd()) {
                 
                 $timer = time();
@@ -366,7 +367,7 @@
         protected function init() {
             
             $lastaction = time() + $this->config->system_session_length;
-            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionid = ? AND logout = 0 AND lastaction <= ? ".$this->dbcon->limitQuery(0, 1), array($this->sessionid, $lastaction)));
+            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionid = ? AND logout = 0 AND lastaction <= ? ".$this->dbcon->limitQuery(1, 0), array($this->sessionid, $lastaction)));
 
             if ($data === false) {
                 $this->sessionExists = false;

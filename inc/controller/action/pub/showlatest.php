@@ -96,7 +96,7 @@
             $this->limit    = defined('FPCM_PUB_LIMIT_LATEST') ? FPCM_PUB_LIMIT_LATEST : $this->config->articles_limit;
             $this->isUtf8   = defined('FPCM_PUB_OUTPUT_UTF8') ? FPCM_PUB_OUTPUT_UTF8 : true;
 
-            $this->cache = new \fpcm\classes\cache('articlelatest');
+            $this->cache = new \fpcm\classes\cache('articlelatest', \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
             
             return true;
         }
@@ -114,7 +114,7 @@
                 $this->users      = array_flip($this->userList->getUsersNameList());
                 
                 $conditions = array(
-                    'limit'     => array(0, $this->limit),
+                    'limit'     => array($this->limit, 0),
                     'archived'  => 0,
                     'postponed' => 0
                 );

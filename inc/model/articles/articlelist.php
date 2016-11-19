@@ -24,7 +24,7 @@
          * Konstruktor
          * @param int $id
          */
-        public function __construct($id = null) {
+        public function __construct() {
 
             $this->table = \fpcm\classes\database::tableArticles;
             
@@ -32,7 +32,7 @@
                 $this->permissions = new \fpcm\model\system\permissions(\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll());
             }
 
-            parent::__construct($id);
+            parent::__construct();
         }
         
         /**

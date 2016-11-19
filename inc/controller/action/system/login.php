@@ -77,11 +77,11 @@
             }
             
             $this->pageTokenOk = $this->checkPageToken();
-            
+
             session_start();
-            
+
             $this->loginLocked();
-            
+
             if ($this->buttonClicked('login') && !is_null($this->getRequestVar('login')) && !$this->loginLocked && $this->pageTokenOk) {
                 $data = $this->getRequestVar('login');                
                 $data = $this->events->runEvent('loginBefore', $data);

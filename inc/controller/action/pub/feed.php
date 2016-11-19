@@ -98,7 +98,7 @@
             $this->category = defined('FPCM_PUB_CATEGORY_LATEST') ? FPCM_PUB_CATEGORY_LATEST : 0;
             $this->limit    = defined('FPCM_PUB_LIMIT_LATEST') ? FPCM_PUB_LIMIT_LATEST : $this->config->articles_limit;
 
-            $this->cache = new \fpcm\classes\cache('articlefeed');
+            $this->cache = new \fpcm\classes\cache('articlefeed', \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
             
             return true;
         }
@@ -140,7 +140,7 @@
                 $channel->appendChild($descr);
                 
                 $conditions = array(
-                    'limit'     => array(0, $this->limit),
+                    'limit'     => array($this->limit, 0),
                     'archived'  => 0,
                     'postponed' => 0
                 );

@@ -20,7 +20,7 @@
             
             parent::request();
             
-            $this->articleItems = $this->articleList->getArticlesActive(true, array($this->listShowStart, $this->listShowLimit));
+            $this->articleItems = $this->articleList->getArticlesActive(true, array($this->listShowLimit, $this->listShowStart));
             
             return true;
         }

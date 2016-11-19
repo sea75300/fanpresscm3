@@ -33,13 +33,19 @@
         /**
          * Status, dass Update erzwungen wird
          */        
-        const SYSTEMUPDATER_FORCE_UPDATE        = 1001;            
+        const SYSTEMUPDATER_FORCE_UPDATE        = 1001;
         
         /**
          * Cache name
          * @var string
          */
-        protected $cacheName = 'fpcmsystemupdates'; 
+        protected $cacheName = 'fpcmsystemupdates';
+        
+        /**
+         * Cache module
+         * @var string
+         */
+        protected $cacheModule = 'pkgmgr';
         
         /**
          * Initialisiert System Updater

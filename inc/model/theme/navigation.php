@@ -28,7 +28,7 @@
         public function __construct() {
             parent::__construct();
             
-            $this->cache = new \fpcm\classes\cache('navigation_'.$this->session->getUserId());
+            $this->cache = new \fpcm\classes\cache('navigation_'.$this->session->getUserId(), 'theme');
         }
 
         /**

@@ -52,15 +52,16 @@
          * Konstruktor
          */
         public function __construct() {
-            $this->cacheName = 'recentarticles';
-            
+
+            $this->cacheName   = 'recentarticles';
+
             parent::__construct();
-            
+
             $session            = \fpcm\classes\baseconfig::$fpcmSession;
             $this->currentUser  = $session->getUserId();
             $this->isAdmin      = $session->getCurrentUser()->isAdmin();
             $this->permissions  = new \fpcm\model\system\permissions($session->currentUser->getRoll());
-            $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser);
+            $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser, self::CACHE_M0DULE_DASHBOARD);
             
             if ($this->cache->isExpired()) {
                 $this->renderContent();                
@@ -87,7 +88,7 @@
             $conditions = array(
                 'draft'     => -1,
                 'approval'  => -1,
-                'limit'     => array('0','10'),
+                'limit'     => array(10, 0),
                 'orderby'   => array('createtime DESC')
             );
             $articles = $articleList->getArticlesByCondition($conditions);
