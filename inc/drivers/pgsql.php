@@ -61,7 +61,7 @@
          * @return string
          */
         public function limitQuery($offset, $limit) {
-            return ' LIMIT '.(int) $limit.' OFFSET '.(int) $offset;
+            return ' LIMIT '.(int) $offset.' OFFSET '.(int) $limit;
         }
         
         /**
