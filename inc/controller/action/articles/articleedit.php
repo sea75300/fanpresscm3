@@ -176,7 +176,7 @@
                     $this->article->setPostponed($postpone);
                     $this->article->setCreatetime($timer);
                 } else {
-                    if ($this->article->getPostponed()) {
+                    if ($this->article->getPostponed() || ($this->article->getDraft() && !isset($data['draft']))) {
                         $this->article->setCreatetime($allTimer);
                     }
                     

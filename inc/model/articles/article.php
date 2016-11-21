@@ -673,7 +673,7 @@
             $newHash = $revision->createHashSum();
             $revision->setHashsum($newHash);
 
-            if ($revision->createHashSum($this->data['preparedRevision']) === $newHash) {
+            if (is_array($this->data['preparedRevision']) && $revision->createHashSum($this->data['preparedRevision']) === $newHash) {
                 return true;
             }
 
