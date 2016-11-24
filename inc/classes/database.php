@@ -376,7 +376,7 @@
             }
 
             $this->lastQueryString = $statement->queryString;
-            
+
             try {
                 $res = $statement->execute($bindParams);
             } catch (\PDOException $e) {
