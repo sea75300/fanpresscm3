@@ -69,7 +69,7 @@
                 'fpcmTinyMceLang'        => $this->config->system_lang,
                 'fpcmTinyMceElements'     => '~readmore',
                 'fpcmTinyMcePlugins'     => $pluginFolders,
-                'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime template | undo redo removeformat searchreplace fullscreen code restoredraft',
+                'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table toc | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime template | undo redo removeformat searchreplace fullscreen code restoredraft',
                 'fpcmTinyMceCssClasses'  => array_merge($editorStyles, $this->getEditorStyles()),
                 'fpcmTinyMceLinkList'    => $this->getEditorLinks(),
                 'fpcmTinyMceImageList'   => $this->getFileList(),
