@@ -13,14 +13,14 @@
 
             <div class="fpcm-filelist-actions-box fpcm-ui-center">
                 <div class="fpcm-filelist-actions">
-                    <a href="<?php print $file->getThumbnailUrl(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-link-thumb" target="_blank"><?php $FPCM_LANG->write('FILE_LIST_OPEN_THUMB'); ?></a>
-                    <a href="<?php print $file->getImageUrl(); ?>" target="_blank" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-link-full fpcm-file-list-link"><?php $FPCM_LANG->write('FILE_LIST_OPEN_FULL'); ?></a>
+                    <a href="<?php print $file->getThumbnailUrl(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-link-thumb" target="_blank" title="<?php $FPCM_LANG->write('FILE_LIST_OPEN_THUMB'); ?>"><?php $FPCM_LANG->write('FILE_LIST_OPEN_THUMB'); ?></a>
+                    <a href="<?php print $file->getImageUrl(); ?>" target="_blank" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-link-full fpcm-file-list-link" title="<?php $FPCM_LANG->write('FILE_LIST_OPEN_FULL'); ?>"><?php $FPCM_LANG->write('FILE_LIST_OPEN_FULL'); ?></a>
                     <?php if ($mode == 2) : ?>
-                    <a href="<?php print $file->getThumbnailUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-tinymce-thumb"><?php $FPCM_LANG->write('FILE_LIST_INSERT_THUMB'); ?></a>
-                    <a href="<?php print $file->getImageUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-tinymce-full"><?php $FPCM_LANG->write('FILE_LIST_INSERT_FULL'); ?></a>
+                    <a href="<?php print $file->getThumbnailUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-tinymce-thumb" title="<?php $FPCM_LANG->write('FILE_LIST_INSERT_THUMB'); ?>"><?php $FPCM_LANG->write('FILE_LIST_INSERT_THUMB'); ?></a>
+                    <a href="<?php print $file->getImageUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-tinymce-full" title="<?php $FPCM_LANG->write('FILE_LIST_INSERT_FULL'); ?>"><?php $FPCM_LANG->write('FILE_LIST_INSERT_FULL'); ?></a>
                     <?php endif; ?>
                     <?php if ($mode == 3) : ?>
-                    <a href="<?php print $file->getImageUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-articleimage"><?php $FPCM_LANG->write('EDITOR_ARTICLEIMAGE'); ?></a>
+                    <a href="<?php print $file->getImageUrl(); ?>" imgtxt="<?php print $file->getFilename(); ?>" class="fpcm-ui-button fpcm-ui-button-blank fpcm-filelist-articleimage" title="<?php $FPCM_LANG->write('EDITOR_ARTICLEIMAGE'); ?>"><?php $FPCM_LANG->write('EDITOR_ARTICLEIMAGE'); ?></a>
                     <?php endif; ?>                    
                 </div>
                 

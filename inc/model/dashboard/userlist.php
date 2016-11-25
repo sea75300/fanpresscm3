@@ -57,7 +57,7 @@
                 
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-editbutton-col">';
-                $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-email-btn" href="mailto:'.$emailAddress.'" target="_blank">'.$this->language->translate('GLOBAL_WRITEMAIL').'</a>';
+                $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-email-btn" href="mailto:'.$emailAddress.'" target="_blank" title="'.$this->language->translate('GLOBAL_WRITEMAIL').'">'.$this->language->translate('GLOBAL_WRITEMAIL').'</a>';
                 $content[] = '  </td>';
                 $content[] = '  <td>';
                 $content[] = '  <strong>'.\fpcm\model\view\helper::escapeVal($item->getDisplayname()).'</strong><br>';
