@@ -42,7 +42,7 @@
             
             return $res;            
         }
-        
+
         /**
          * Aktualisiert Dateiindex in Datenbank
          * @param int $userId

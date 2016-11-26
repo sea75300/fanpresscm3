@@ -73,7 +73,14 @@
          * Felder die in Datenbank gespeichert werden können
          * @var array
          */
-        protected $dbParams = array('userid', 'filename', 'filetime');
+        protected $dbParams = array('userid', 'filename', 'filetime', 'subfolder');
+
+        /**
+         * Unterordner-String
+         * @var string
+         * @since FPCM 3.4
+         */
+        protected $subfolder = '';
 
         /**
          * Konstruktor
@@ -191,7 +198,16 @@
         public function getMimetype() {
             return $this->mimetype;
         }
-        
+
+        /**
+         * Unterordner abrufen
+         * @return string
+         * @since FPCM 3.4
+         */
+        public function getSubfolder() {
+            return $this->subfolder;
+        }
+
         /**
          * Datensatz-ID setzten
          * @param int $id
@@ -215,7 +231,16 @@
         public function setFiletime($filetime) {
             $this->filetime = $filetime;
         }        
-        
+
+        /**
+         * Unterordner setzten
+         * @param string $subfolder
+         * @since FPCM 3.4
+         */
+        public function setSubfolder($subfolder) {
+            $this->subfolder = $subfolder;
+        }
+                
         /**
          * Speichert einen neuen Datei-Eintrag in der Datenbank
          * @return boolean
@@ -226,7 +251,7 @@
             $saveValues = $this->getSaveValues();
             $saveValues = $this->events->runEvent('imageSave', $saveValues);
             
-            return $this->dbcon->insert($this->table, implode(', ', $this->dbParams), '?, ?, ?', array_values($saveValues));            
+            return $this->dbcon->insert($this->table, implode(', ', $this->dbParams), '?, ?, ?, ?', array_values($saveValues));            
         }
         
         /**
@@ -238,8 +263,8 @@
             
             $saveValues = $this->getSaveValues();
             $params = $this->events->runEvent('imageUpdate', $saveValues);
-            
-            return $this->dbcon->update($this->table, $this->dbParams, array_values($saveValues), "filename ".$this->dbcon->dbLike()." {$this->filename}");
+
+            return $this->dbcon->update($this->table, $this->dbParams, array_values($saveValues), "filename = ? AND subfolder = ?", array($this->filename, $this->subfolder));
         }
         
         /**
@@ -250,7 +275,7 @@
             parent::delete();            
             if (file_exists($this->getFileManagerThumbnail())) unlink ($this->getFileManagerThumbnail());
             if (file_exists(\fpcm\classes\baseconfig::$uploadDir.$this->getThumbnail())) unlink (\fpcm\classes\baseconfig::$uploadDir.$this->getThumbnail());
-            return $this->dbcon->delete($this->table, 'filename '.$this->dbcon->dbLike().' ?', array($this->filename));
+            return $this->dbcon->delete($this->table, 'filename = ? AND subfolder = ?', array($this->filename, $this->subfolder));
             
             return false;
         }
@@ -271,7 +296,7 @@
 
             $this->filetime = time();
             $this->userid   = $userId;
-            $res = $this->dbcon->update($this->table, $this->dbParams, array_values($this->getSaveValues()), "filename ".$this->dbcon->dbLike()." '{$oldname}'");
+            $res = $this->dbcon->update($this->table, $this->dbParams, array_values($this->getSaveValues()), "filename = ? AND subfolder = ?", array($oldname, $this->subfolder));
             
             if (!$res) {
                 trigger_error('Unable to update database file info for '.$oldname);
@@ -299,7 +324,7 @@
                 return false;
             }
             
-            $count = $this->dbcon->count($this->table, '*', "filename ".$this->dbcon->dbLike()." '{$this->filename}'");
+            $count = $this->dbcon->count($this->table, '*', "filename = ? AND subfolder = ?", array($this->filename, $this->subfolder));
             if ($dbOnly) {
                 return $count > 0 ? true : false;
             }
@@ -365,7 +390,7 @@
          */
         protected function init($initDB) {
             if ($initDB) {
-                $dbData = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, userid, filetime', 'filename '.$this->dbcon->dbLike().' ?', array($this->filename)));
+                $dbData = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'filename = ? AND subfolder = ?', array($this->filename, $this->subfolder)));
                 
                 if (!$dbData) return false;
                 
