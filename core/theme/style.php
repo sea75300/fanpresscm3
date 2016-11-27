@@ -26,8 +26,8 @@ if ($cache->isExpired() || \fpcm\classes\baseconfig::installerEnabled() || FPCM_
             continue;
         }
 
-        $data['content'] .= $fileContent;
-        $data['filesize'] = filesize($cssFile);
+        $data['content']  .= $fileContent;
+        $data['filesize'] += filesize($cssFile);
 
     }
 
@@ -37,5 +37,7 @@ if ($cache->isExpired() || \fpcm\classes\baseconfig::installerEnabled() || FPCM_
 }
 
 header("Content-Type: text/css");
-header("Content-Length: ".$data['filesize']);
+if (!FPCM_NOJSCSSPHP_FILESIZE_HEADER) {
+    header("Content-Length: ".$data['filesize']);
+}
 die($data['content']);

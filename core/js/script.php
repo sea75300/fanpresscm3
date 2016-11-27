@@ -27,8 +27,8 @@ if ($cache->isExpired() || \fpcm\classes\baseconfig::installerEnabled() || FPCM_
             continue;
         }
 
-        $data['content'] .= $fileContent;
-        $data['filesize'] = filesize($jsFile);
+        $data['content']  .= $fileContent;
+        $data['filesize'] += filesize($jsFile);
 
     }
 
@@ -38,5 +38,7 @@ if ($cache->isExpired() || \fpcm\classes\baseconfig::installerEnabled() || FPCM_
 }
 
 header("Content-Type: application/javascript");
-header("Content-Length: ".$data['filesize']);
+if (!FPCM_NOJSCSSPHP_FILESIZE_HEADER) {
+    header("Content-Length: ".$data['filesize']);
+}
 die($data['content']);
