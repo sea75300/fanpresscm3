@@ -314,6 +314,10 @@
             if ($this->checkVersion('3.4.0-b5')) {
                 $this->dbcon->createIndex(\fpcm\classes\database::tableRevisions, 'hashsum_idx', 'hashsum');
             }
+            
+            if ($this->checkVersion('3.4.0-rc1')) {
+                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableFiles, 'DROP', 'subfolder', '', false);
+            }
 
             return $res;
         }

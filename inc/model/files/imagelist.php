@@ -60,7 +60,6 @@
                 $image = new \fpcm\model\files\image(basename($folderFile), '', '', false, true);
                 $image->setFiletime(time());
                 $image->setUserid($userId);
-                $image->setSubfolder('');
                 
                 if (!in_array($image->getMimetype(), image::$allowedTypes) || !in_array(strtolower($image->getExtension()), image::$allowedExts)) {
                     trigger_error("Filetype not allowed in \"$folderFile\".");

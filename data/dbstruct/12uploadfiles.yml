@@ -20,10 +20,6 @@ cols:
         type: varchar
         length: 255
         params: NOT NULL
-    subfolder:
-        type: varchar
-        length: 255
-        params: NOT NULL
     filetime:
         type: bigint
         length: 20
