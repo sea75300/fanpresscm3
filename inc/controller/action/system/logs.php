@@ -39,6 +39,7 @@
             $this->view->assign('systemLogs', array());
             $this->view->assign('databaseLogs', array());
             $this->view->assign('packagesLogs', array());
+            $this->view->assign('customLogs', $this->events->runEvent('logsAddList', array()));
             
             $this->view->render();
         }

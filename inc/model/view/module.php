@@ -112,20 +112,27 @@
 
             foreach ($viewVars as $key => $value) { $$key = $value; }
 
-            if ($this->showHeader) {
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/header.php';
-            } else {
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/headersimple.php';
-            }                
+            if ($this->moduleViewType !== 'ajax') {
 
-            include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+                if ($this->showHeader) {
+                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/header.php';
+                } else {
+                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/headersimple.php';
+                }                
+
+                include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+            }
+            
+
 
             if ($this->getViewFile()) include_once $this->getViewFile();
 
-            if ($this->showFooter) {
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/footer.php';
-            } else {
-                include_once \fpcm\classes\baseconfig::$viewsDir.'common/footersimple.php';
+            if ($this->moduleViewType !== 'ajax') {
+                if ($this->showFooter) {
+                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/footer.php';
+                } else {
+                    include_once \fpcm\classes\baseconfig::$viewsDir.'common/footersimple.php';
+                }
             }
 
             $this->events->runEvent('viewRenderAfter');

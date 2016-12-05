@@ -18,6 +18,18 @@
     abstract class event implements \fpcm\model\interfaces\event {
 
         /**
+         * Array returntype für Module-Event
+         * @since FPCM 3.4
+         */
+        const FPCM_MODULE_EVENT_RETURNTYPE_ARRAY = 'array';
+
+        /**
+         * Object returntype für Module-Event
+         * @since FPCM 3.4
+         */
+        const FPCM_MODULE_EVENT_RETURNTYPE_OBJ   = 'object';
+
+        /**
          *Event-Daten
          * @var array
          */
@@ -223,15 +235,15 @@
                 return $data;
             }
 
-            if ($this->returnDataType === 'array' && !is_array($mdata)) {
+            if ($this->returnDataType === self::FPCM_MODULE_EVENT_RETURNTYPE_ARRAY && !is_array($mdata)) {
                 trigger_error('Invalid data type. Returned data type must be an array');
                 return $data;
             }
-            elseif ($this->returnDataType === 'object' && !is_object($mdata)) {
+            elseif ($this->returnDataType === self::FPCM_MODULE_EVENT_RETURNTYPE_OBJ && !is_object($mdata)) {
                 trigger_error('Invalid data type. Returned data type must be an object');
                 return $data;
             }
-            elseif ($this->returnDataType !== false && !is_a($mdata, $this->returnDataType) ) {
+            elseif ($this->returnDataType !== false && !is_array($mdata) && !is_a($mdata, $this->returnDataType) ) {
                 trigger_error('Invalid data type. Returned data type must be instance of '.$this->returnDataType);
                 return $data;
             }

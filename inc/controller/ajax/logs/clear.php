@@ -39,9 +39,8 @@
                 return false;
             }
             
-            if (is_null($this->getRequestVar('log'))) return false;
-            
-            $this->log = (int) $this->getRequestVar('log');
+            if ($this->getRequestVar('log') === null) return false;
+            $this->log = $this->getRequestVar('log');
             
             return true;
         }
@@ -53,8 +52,10 @@
             
             if (!parent::process()) return false;
             
-            $res = \fpcm\classes\logs::clearLog($this->log);
-            
+            $res = (is_numeric($this->log)
+                 ? \fpcm\classes\logs::clearLog($this->log)
+                 : $this->events->runEvent('clearSystemLog', $this->log));
+
             $this->events->runEvent('clearSystemLogs');
             
             $view = new \fpcm\model\view\ajax();
@@ -63,6 +64,7 @@
             } else {
                 $view->addErrorMessage('LOGS_CLEARED_LOG_FAILED');
             }
+
             $view->render();
             
         }

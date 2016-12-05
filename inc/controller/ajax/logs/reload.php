@@ -39,9 +39,8 @@
                 return false;
             }
             
-            if (is_null($this->getRequestVar('log'))) return false;
-            
-            $this->log = (int) $this->getRequestVar('log');
+            if ($this->getRequestVar('log') === null) return false;
+            $this->log = $this->getRequestVar('log');
             
             return true;
         }
@@ -53,7 +52,13 @@
             
             if (!parent::process()) return false;
             
-            call_user_func(array($this, 'loadLog'.$this->log));
+            if (method_exists($this, 'loadLog'.$this->log)) {
+                call_user_func(array($this, 'loadLog'.$this->log));
+            }
+            else {
+                $this->events->runEvent('reloadSystemLog', $this->log);
+            }
+
             
             $this->events->runEvent('reloadSystemLogs');
 
