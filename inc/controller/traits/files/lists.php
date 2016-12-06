@@ -21,7 +21,7 @@
         /**
          * Berechtigungen initialisieren
          */
-        public function initPermisions() {
+        public function initPermissions() {
             $this->view->assign('permUpload', $this->permissions->check(array('uploads' => 'add')));
             $this->view->assign('permDelete', $this->permissions->check(array('uploads' => 'delete')));
             $this->view->assign('permThumbs', $this->permissions->check(array('uploads' => 'thumbs')));
@@ -32,11 +32,19 @@
          * View-Variablen initialisieren
          * @param array $list
          * @param array $users
+         * @param array $pagerData
          */
-        public function initViewAssigns($list, $users) {
+        public function initViewAssigns($list, $users, $pagerData) {
             $this->view->assign('files', $list);
             $this->view->assign('users', $users);
-            $this->view->assign('mode', $this->mode);            
+            $this->view->assign('mode', $this->mode);
+
+            $this->view->assign('showPager', true);
+            foreach ($pagerData as $key => $value) {
+                $this->view->assign($key, $value);
+            }
+
+            $this->view->assign('listAction', 'files/list');
         }
     
     }

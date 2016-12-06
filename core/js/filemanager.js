@@ -14,6 +14,7 @@ fpcm.filemanager = {
         fpcm.ui.assignCheckboxes();
         this.initInsertButtons();
         this.initSelectionCheckboxes();
+        this.initPagination();
         jQuery('.fpcm-link-fancybox').fancybox();
     },
     
@@ -227,6 +228,28 @@ fpcm.filemanager = {
                 window.dropZoneTimeout = null;
                 dropZone.removeClass('in hover');
             }, 100);
+        });
+
+    },
+    
+    initPagination: function() {
+
+        fpcm.ui.selectmenu('#pageSelect', {
+            select: function( event, ui ) {
+                fpcmJs.reloadFiles(ui.item.value);
+            }
+        });
+
+        jQuery('#fpcmpagernext').click(function() {
+            var page = jQuery(this).attr('href').split('&page=');
+            fpcmJs.reloadFiles((page[1] === undefined) ? 1 : page[1]);
+            return false;
+        });
+
+        jQuery('#fpcmpagerback').click(function() {
+            var page = jQuery(this).attr('href').split('&page=');
+            fpcmJs.reloadFiles((page[1] === undefined) ? 1 : page[1]);
+            return false;
         });
 
     }

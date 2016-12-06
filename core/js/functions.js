@@ -102,11 +102,11 @@ var fpcmJs = function () {
 
     };
     
-    this.reloadFiles = function () {
+    this.reloadFiles = function (page) {
         self.showLoader(true);
 
         fpcmAjax.action   = 'filelist';
-        fpcmAjax.query    = 'mode=' + fpcmFmgrMode;
+        fpcmAjax.query    = 'mode=' + fpcmFmgrMode + (page !== undefined ? '&page=' + page : '');
         fpcmAjax.execDone = 'fpcmJs.reloadFilesDone(fpcmAjax.result);';
         fpcmAjax.get();
         

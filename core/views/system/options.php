@@ -94,6 +94,10 @@
                         <td><?php fpcm\model\view\helper::boolSelect('file_uploader_new', $globalConfig['file_uploader_new']); ?></td>		
                     </tr>
                     <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_FILEMANAGER_LIMIT'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::select('file_list_limit', $articleLimitListAcp, $globalConfig['file_list_limit'], false, false); ?></td>
+                    </tr>
+                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_NEWSSHOWIMGTHUMBSIZE'); ?>:</td>
                         <td>
                             <div class="fpcm-ui-buttonset">

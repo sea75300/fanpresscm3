@@ -208,9 +208,13 @@ defaultvalues:
             config_value: "1"
         46:
             id: 46
-            config_name: "twitter_data"
-            config_value: '{"consumer_key":"","consumer_secret":"","user_token":"","user_secret":""}'
+            config_name: "file_list_limit"
+            config_value: "25"
         47:
             id: 47
+            config_name: "twitter_data"
+            config_value: '{"consumer_key":"","consumer_secret":"","user_token":"","user_secret":""}'
+        48:
+            id: 48
             config_name: "twitter_events"
             config_value: '{"create":0,"update":0}'

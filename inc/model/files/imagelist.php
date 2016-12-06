@@ -28,11 +28,22 @@
         
         /**
          * Gibt Dateiindex in Datenbank zurück
-         * @return array
+         * @param int $limit
+         * @param int $offset
+         * @return array:\fpcm\model\files\image
          */
-        public function getDatabaseList() {
-            $images = $this->dbcon->fetch($this->dbcon->select($this->table, '*', '1=1'.$this->dbcon->orderBy(array('filetime DESC'))), true);
+        public function getDatabaseList($limit = false, $offset = false) {
             
+            $where = '1=1'.$this->dbcon->orderBy(array('filetime DESC'));
+            if ($limit !== false && $offset !== false) {
+                $where .= ' '.$this->dbcon->limitQuery($limit, $offset);
+            }
+
+            $images = $this->dbcon->fetch(
+                $this->dbcon->select($this->table, '*', $where),
+                true
+            );
+
             $res = array();
             foreach ($images as $image) {
                 $imageObj = new image('', '', '', false);

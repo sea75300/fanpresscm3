@@ -59,6 +59,7 @@
      * @property int    $file_img_thumb_width Breite der Thumbnails
      * @property int    $file_img_thumb_height Höhe der Thumbnails
      * @property bool   $file_uploader_new jQuery-Uploader aktiv
+     * @property int    $file_list_limit Anzahl an Dateien pro Seite in Dateimanager
      * 
      * @property array  $twitter_data Daten für Twitter-Verbindung
      * @property array  $twitter_events Events, wenn Tweets erzeugt werden sollen

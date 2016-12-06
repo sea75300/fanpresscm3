@@ -165,9 +165,9 @@
                 );
                 $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             }
-            
-            $this->initViewAssigns(array(), array());
-            $this->initPermisions();
+
+            $this->initViewAssigns(array(), array(), \fpcm\classes\tools::calcPagination(false, 0, 0, 0));
+            $this->initPermissions();
             $this->view->render();
         }
 

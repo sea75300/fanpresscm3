@@ -88,6 +88,7 @@
                 $newconfig['comments_markspam_commentcount'] = (int) $newconfig['comments_markspam_commentcount'];
                 $newconfig['file_img_thumb_width']           = (int) $newconfig['file_img_thumb_width'];
                 $newconfig['file_img_thumb_height']          = (int) $newconfig['file_img_thumb_height'];
+                $newconfig['file_list_limit']                = (int) $newconfig['file_list_limit'];
                 $newconfig['system_updates_devcheck']        = (int) $newconfig['system_updates_devcheck'];
                 $newconfig['articles_revisions_limit']       = (int) $newconfig['articles_revisions_limit'];
                 $newconfig['articles_link_urlrewrite']       = (int) $newconfig['articles_link_urlrewrite'];

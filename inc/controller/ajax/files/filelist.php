@@ -59,16 +59,26 @@
         public function process() {
             if (!parent::process()) return false;
             
-            $fileList = new \fpcm\model\files\imagelist();
+            $fileList   = new \fpcm\model\files\imagelist();
 
-            $list = $fileList->getDatabaseList();            
+            $page       = $this->getRequestVar('page', array(9));            
+            $list       = $fileList->getDatabaseList(
+                $this->config->file_list_limit,
+                \fpcm\classes\tools::getPageOffset($page, $this->config->file_list_limit)
+            );            
+
+            $pagerData  = \fpcm\classes\tools::calcPagination(
+                $this->config->file_list_limit,
+                $page,
+                $fileList->getDatabaseFileCount(),
+                count($list)
+            );
+
             $list = $this->events->runEvent('reloadFileList', $list);
 
-            $userList = new \fpcm\model\users\userList();            
-            $users    = $userList->getUsersAll();
-
-            $this->initViewAssigns($list, $users);
-            $this->initPermisions();           
+            $userList = new \fpcm\model\users\userList();
+            $this->initViewAssigns($list, $userList->getUsersAll(), $pagerData);
+            $this->initPermissions();           
 
             $this->view->initAssigns();
             $this->view->render();

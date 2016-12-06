@@ -65,6 +65,7 @@
         'SYSTEM_OPTIONS_NEWSSHOWSHARELINKS'         => 'Show share buttons',
         'SYSTEM_OPTIONS_NEWSSHOWIMGTHUMBSIZE'       => 'Thumbnail size', 
         'SYSTEM_OPTIONS_NEWSSHOWMAXIMGSIZEPIXELS'   => 'Pixel',
+        'SYSTEM_OPTIONS_FILEMANAGER_LIMIT'          => 'Number of images per page',
         'SYSTEM_OPTIONS_NEWS_EDITOR'                => 'Select editor',
         'SYSTEM_OPTIONS_NEWS_EDITOR_STD'            => 'WYSIWYG view',
         'SYSTEM_OPTIONS_NEWS_EDITOR_CLASSIC'        => 'HTML view',
@@ -94,7 +95,7 @@
         'SYSTEM_OPTIONS_COMMENTFORMTEMPLATE'        => 'Comment form template',
         'SYSTEM_OPTIONS_ANTISPAMQUESTION'           => 'Spam captcha question',
         'SYSTEM_OPTIONS_ANTISPAMANSWER'             => 'Spam captcha answer',
-        'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'ACP article list limit',
+        'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'Articles per page in ACP',
         'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Login auto-lock',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Flood protection between two comments',
