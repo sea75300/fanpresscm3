@@ -20,8 +20,9 @@ class testBase extends \PHPUnit_Framework_TestCase {
     protected $backupGlobals = false;
 
     public function setUp() {        
-        $class = '\\fpcm\\model\\articles\\'.$this->className;
+        $class = '\\fpcm\\model\\'.$this->className;
         $this->object = new $class();
+        $this->name   = __CLASS__;
     }
 
     public function tearDown() {

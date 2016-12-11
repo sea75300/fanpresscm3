@@ -5,7 +5,7 @@ require_once dirname(dirname(__DIR__)).'/testBase.php';
 class articleTest extends testBase {
 
     public function setUp() {
-        $this->className = 'article';
+        $this->className = 'articles\\article';
         parent::setUp();
     }
 
