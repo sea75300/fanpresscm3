@@ -76,6 +76,8 @@ class commentTest extends testBase {
         $object = new fpcm\model\comments\comment($GLOBALS['objectId']);
         $this->assertFalse($object->exists());
         
+        $GLOBALS['objectId'] = null;
+        
     }
 
 }

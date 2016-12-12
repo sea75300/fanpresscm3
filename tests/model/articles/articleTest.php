@@ -92,6 +92,8 @@ class articleTest extends testBase {
             $this->assertFalse($object->exists());
         }
         
+        $GLOBALS['objectId'] = null;
+        
     }
 
 }
