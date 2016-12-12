@@ -30,7 +30,7 @@ class articleTest extends testBase {
         $result = $object->save();
         $this->assertGreaterThanOrEqual(1, $result);
         
-        $GLOBALS['article_id'] = $result;
+        $GLOBALS['objectId'] = $result;
     }
 
     public function testUpdate() {
@@ -49,7 +49,7 @@ class articleTest extends testBase {
     public function testGetArticle() {
         
         /* @var $object \fpcm\model\articles\article */
-        $object = new fpcm\model\articles\article($GLOBALS['article_id']);
+        $object = new fpcm\model\articles\article($GLOBALS['objectId']);
 
         $this->assertTrue($object->exists());
         $this->assertEquals($object->getTitle(), $GLOBALS['article_title']);
@@ -59,101 +59,29 @@ class articleTest extends testBase {
         $this->assertEquals($object->getCreateuser(), 1);
     }
 
-    public function testGetMinMaxDate() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getMinMaxDate();
-        $this->assertEquals($GLOBALS['article_created'], $result['maxDate']);
-        $this->assertGreaterThanOrEqual(0, $result['minDate']);
+    public function testCreateRevision() {
+
+        /* @var $object \fpcm\model\articles\article */
+        $object = new fpcm\model\articles\article($GLOBALS['objectId']);
+        $result = $object->createRevision(time());
+
+        $this->assertTrue($result);
     }
 
-    public function testCountArticlesByCondition() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->countArticlesByCondition();
-        $this->assertGreaterThanOrEqual(1, $result);
-    }
+    public function testGetRevisions() {
 
-    public function testGetArticlesByCondition() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getArticlesByCondition(array(
-            'datefrom' => time() - 60,
-            'dateto'   => time() + 60
-        ));
-        
-        $this->assertTrue(is_array($result));
-        $this->assertCount(1, $result);
-        $this->assertArrayHasKey($GLOBALS['article_id'], $result);
-        
-        $obj = $result[$GLOBALS['article_id']];
-        $this->assertTrue(is_a($obj, get_class($this->object)));
-        $this->assertEquals($GLOBALS['article_title'], $obj->getTitle());
-    }
+        /* @var $object \fpcm\model\articles\article */
+        $object = new fpcm\model\articles\article($GLOBALS['objectId']);
+        $revisions = $object->getRevisions();
 
-    public function testGetArticlesAll() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getArticlesAll();
-        
-        $this->assertTrue(is_array($result));
-        $this->assertGreaterThanOrEqual(1, $result);
-        $this->assertArrayHasKey($GLOBALS['article_id'], $result);
-        
-        $obj = $result[$GLOBALS['article_id']];
-        $this->assertTrue(is_a($obj, get_class($this->object)));
-        $this->assertEquals($GLOBALS['article_title'], $obj->getTitle());
-    }
-
-    public function testGetArticlesActive() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getArticlesActive();
-        
-        $this->assertTrue(is_array($result));
-        $this->assertGreaterThanOrEqual(1, $result);
-        $this->assertArrayHasKey($GLOBALS['article_id'], $result);
-        
-        $obj = $result[$GLOBALS['article_id']];
-        $this->assertTrue(is_a($obj, get_class($this->object)));
-        $this->assertEquals($GLOBALS['article_title'], $obj->getTitle());
-    }
-
-    public function testGetArticlesArchived() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getArticlesArchived();
-        
-        $this->assertTrue(is_array($result));
-        $this->assertGreaterThanOrEqual(0, $result);
-        $this->assertArrayNotHasKey($GLOBALS['article_id'], $result);
-    }
-
-    public function testGetArticlesPostponed() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getArticlesPostponed();
-        
-        $this->assertTrue(is_array($result));
-        $this->assertGreaterThanOrEqual(0, $result);
-        $this->assertArrayNotHasKey($GLOBALS['article_id'], $result);
-    }
-
-    public function testGetArticlesDraft() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getArticlesDraft();
-        
-        $this->assertTrue(is_array($result));
-        $this->assertGreaterThanOrEqual(0, $result);
-        $this->assertArrayNotHasKey($GLOBALS['article_id'], $result);
+        $this->assertTrue(is_array($revisions));
+        $this->assertGreaterThanOrEqual(1, count($revisions));
     }
 
     public function testDelete() {
-        
-        
+
         /* @var $object \fpcm\model\articles\article */
-        $object = new fpcm\model\articles\article($GLOBALS['article_id']);
+        $object = new fpcm\model\articles\article($GLOBALS['objectId']);
 
         $result = $object->delete();
         $this->assertTrue($result);
@@ -164,21 +92,6 @@ class articleTest extends testBase {
             $this->assertFalse($object->exists());
         }
         
-    }
-
-    public function testGetArticlesDeleted() {
-        
-        $list   = new fpcm\model\articles\articlelist();
-        $result = $list->getArticlesDeleted();
-        
-        $this->assertTrue(is_array($result));
-        $this->assertGreaterThanOrEqual(1, $result);
-        $this->assertArrayHasKey($GLOBALS['article_id'], $result);
-        
-        $obj = $result[$GLOBALS['article_id']];
-        $this->assertTrue(is_a($obj, get_class($this->object)));
-        $this->assertEquals($GLOBALS['article_title'], $obj->getTitle());
-        $this->assertEquals(1, $obj->getDeleted());
     }
 
 }

@@ -13,8 +13,11 @@ class yatdlTest extends testBase {
         $data = $this->object->getArray();
         $this->assertTrue(is_array($data));
 
+        $col = array_keys($data['cols']);
+        $col = array_shift($col);
+        
         $this->assertEquals('sample', $data['name']);
-        $this->assertEquals('id', array_shift(array_keys($data['cols'])));
+        $this->assertEquals('id', $col);
         $this->assertEquals('id', $data['primarykey']);
         $this->assertEquals('utf8', $data['charset']);
         $this->assertEquals('InnoDB', $data['engine']);

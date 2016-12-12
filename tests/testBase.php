@@ -21,7 +21,12 @@ class testBase extends \PHPUnit_Framework_TestCase {
 
     public function setUp() {        
         $class = '\\fpcm\\model\\'.$this->className;
-        $this->object = new $class();
+        
+        if (!isset($GLOBALS['objectId'])) {
+            $GLOBALS['objectId'] = null;
+        }
+        
+        $this->object = new $class($GLOBALS['objectId']);
         $this->name   = __CLASS__;
     }
 
