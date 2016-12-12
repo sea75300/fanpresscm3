@@ -52,11 +52,11 @@ class articleTest extends testBase {
         $object = new fpcm\model\articles\article($GLOBALS['objectId']);
 
         $this->assertTrue($object->exists());
-        $this->assertEquals($object->getTitle(), $GLOBALS['article_title']);
-        $this->assertEquals($object->getContent(), $GLOBALS['article_content']);
-        $this->assertEquals($object->getPinned(), 1);
-        $this->assertEquals($object->getComments(), 1);
-        $this->assertEquals($object->getCreateuser(), 1);
+        $this->assertEquals($GLOBALS['article_title'], $object->getTitle());
+        $this->assertEquals($GLOBALS['article_content'], $object->getContent());
+        $this->assertEquals(1, $object->getPinned());
+        $this->assertEquals(1, $object->getComments());
+        $this->assertEquals(1, $object->getCreateuser());
     }
 
     public function testCreateRevision() {
