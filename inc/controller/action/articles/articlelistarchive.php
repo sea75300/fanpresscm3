@@ -24,7 +24,7 @@
             $this->articleCount = $this->articleList->getArticlesArchived(false, array(), true);
             
             parent::request();
-            
+
             $this->articleItems = $this->articleList->getArticlesArchived(true, array($this->listShowLimit, $this->listShowStart));
             
             return true;

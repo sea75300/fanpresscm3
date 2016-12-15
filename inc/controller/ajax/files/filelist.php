@@ -61,7 +61,7 @@
             
             $fileList   = new \fpcm\model\files\imagelist();
 
-            $page       = $this->getRequestVar('page', array(9));            
+            $page       = $this->getRequestVar('page', array(9));
             $list       = $fileList->getDatabaseList(
                 $this->config->file_list_limit,
                 \fpcm\classes\tools::getPageOffset($page, $this->config->file_list_limit)

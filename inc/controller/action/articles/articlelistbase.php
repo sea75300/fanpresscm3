@@ -304,39 +304,21 @@
             $this->view->assign('nextBtn', false);
             $this->view->assign('listActionLimit', '');
             
-            $pageValue = 1;
-            $pageCount = ceil($this->articleCount / $this->listShowLimit);
-            
-            if ($this->getRequestVar('page')) {
-                $pageValue = (int) $this->getRequestVar('page');
-                
-                if ($pageValue) $this->listShowStart = ($pageValue - 1) * $this->listShowLimit;
-                
-                $backBtnValue = $pageValue - 1;                
-                $this->view->assign('backBtn', $backBtnValue);
-                
-                $nextBtnValue   = $pageValue + 1;
-                
-                $this->view->assign('nextBtn', ($nextBtnValue <= $pageCount ? $nextBtnValue : false));
-                $this->view->assign('listActionLimit', '&page='.$this->getRequestVar('page'));                
-            } elseif (!$this->getRequestVar('page') &&
-                      count($this->articleItems) < $this->articleCount &&
-                      !(2 * $this->listShowLimit >= $this->articleCount + $this->listShowLimit) ) {
+            $page       = $this->getRequestVar('page', array(9));
+            $pagerData  = \fpcm\classes\tools::calcPagination(
+                $this->listShowLimit,
+                $page,
+                $this->articleCount,
+                count($this->articleItems)
+            );
 
-                $this->view->assign('nextBtn', 2);
-            }
-            
-            $pageCount = ($pageCount ? $pageCount : 1);
-            
-            $pageSelectOptions = array();
-            for ($i=1; $i<=$pageCount; $i++) {
-                $pageSelectOptions[$this->lang->translate('GLOBAL_PAGER', array('{{current}}' => $i, '{{total}}' => $pageCount))] = $i;
-            }
+            $this->listShowStart = \fpcm\classes\tools::getPageOffset($page, $this->listShowLimit);
 
-            $this->view->assign('pageSelectOptions', $pageSelectOptions);            
-            $this->view->assign('pageCurrent', $pageValue);
-            $this->view->assign('pageCount', $pageCount);
             $this->view->assign('showPager', true);
+            foreach ($pagerData as $key => $value) {
+                $this->view->assign($key, $value);
+            }
+            
             $this->view->addJsVars(array('fpcmCurrentModule'=> $this->getRequestVar('module')));
         }
         
