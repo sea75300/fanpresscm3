@@ -78,8 +78,12 @@
                 $countConditions['archived'] = true;
                 if ($this->category !== 0) {
                     $countConditions['category'] = $this->category;
-                }                
+                }
                 
+                if ($this->config->articles_archive_datelimit) {
+                    $countConditions['datefrom'] = $this->config->articles_archive_datelimit;
+                }
+
                 $parsed[] = $this->createPagination($this->articleList->countArticlesByCondition($countConditions), 'fpcm/archive');
 
                 $parsed   = $this->events->runEvent('publicShowArchive', $parsed);

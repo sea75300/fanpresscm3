@@ -436,7 +436,18 @@
                 $where .= ' AND deleted = 0';
             }
 
-            return $this->dbcon->count($this->table, '*', $this->events->runEvent('articlesByConditionCount', $where));
+            $queryParams = array();
+            if (isset($condition['datefrom'])) {
+                $where .= ' AND createtime >= ?';
+                $queryParams[] = (int) $condition['datefrom'];
+            }
+
+            if (isset($condition['dateto'])) {
+                $where .= ' AND createtime <= ?';
+                $queryParams[] = (int) $condition['dateto'];
+            }
+
+            return $this->dbcon->count($this->table, '*', $this->events->runEvent('articlesByConditionCount', $where), $queryParams);
         }
         
         /**
