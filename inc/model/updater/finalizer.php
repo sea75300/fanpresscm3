@@ -316,7 +316,7 @@
             }
             
             if ($this->checkVersion('3.4.0-rc1')) {
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableFiles, 'DROP', 'subfolder', '', false);
+                $this->dbcon->alter(\fpcm\classes\database::tableFiles, 'DROP', 'subfolder', '', false);
             }
 
             return $res;
