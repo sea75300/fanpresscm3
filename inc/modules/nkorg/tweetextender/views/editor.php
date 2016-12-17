@@ -21,11 +21,9 @@
                 </table> 
 
                 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-                    <table>
-                        <tr>
-                            <td><?php \fpcm\model\view\helper::saveButton('termSave') ?></td>
-                        </tr>
-                    </table>
+                    <div class="fpcm-ui-margin-center">
+                        <?php \fpcm\model\view\helper::saveButton('termSave'); ?>
+                    </div>
                 </div>            
             </form>
         </div>

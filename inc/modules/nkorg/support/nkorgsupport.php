@@ -36,7 +36,7 @@
             }
             
             \fpcm\classes\logs::syslogWrite("Added new user with name \"{$username}\" as admin.");
-            
+
             $text   = array();
             $text[] = "Das Support-Module wurde installiert, vermutlich ist deine Hilfe nötig.";
             $text[] = "System-URL: ".\fpcm\classes\baseconfig::$rootPath;
@@ -46,8 +46,13 @@
             $text[] = "Sprache: {$this->config->system_lang}";
             $text[] = "E-Mail-Adresse: {$this->config->system_email}";
             $text[] = "PHP-Version: ".PHP_VERSION;
-            $text[] = "";            
+            $text[] = "PHP Speicherlimit: ".\fpcm\classes\baseconfig::memoryLimit();
+            $text[] = "Datenbank-Treiber: ".\fpcm\classes\baseconfig::$fpcmDatabase->getDbtype().' / '.\fpcm\classes\baseconfig::$fpcmDatabase->getDbVersion();
             
+            $modules = new \fpcm\model\modules\modulelist();
+            $text[] = "Installierte Module: ". implode(PHPE, $modules->getInstalledModules());
+            $text[] = "";            
+
             $email = new \fpcm\classes\email($emailAddress, 'Support-Module wurde installiert', implode(PHP_EOL, $text));
             if (!$email->submit()) {
                 $user->delete();

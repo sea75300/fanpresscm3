@@ -56,14 +56,10 @@
     </div>
 
     <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-        <table>
-            <tr>
-                <td><?php fpcm\model\view\helper::select('langfile', $langfiles, base64_encode($selectedFile), false, false, false, 'fpcm-ui-input-select-moduleactions'); ?></td>
-                <td><?php fpcm\model\view\helper::submitButton('langfileSelect', 'GLOBAL_OK'); ?></td>
-                <?php if (count($lines)) : ?>
-                <td><?php \fpcm\model\view\helper::saveButton('editLangfile'); ?></td>
-                <?php endif; ?>
-            </tr>
-        </table>
+        <div class="fpcm-ui-margin-center">
+            <?php fpcm\model\view\helper::select('langfile', $langfiles, base64_encode($selectedFile), false, false, false, 'fpcm-ui-input-select-moduleactions'); ?>
+            <?php fpcm\model\view\helper::submitButton('langfileSelect', 'GLOBAL_OK'); ?>
+            <?php if (count($lines)) : ?><?php \fpcm\model\view\helper::saveButton('editLangfile'); ?><?php endif; ?>
+        </div>
     </div>
 </form>

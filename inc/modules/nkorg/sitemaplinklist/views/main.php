@@ -26,13 +26,11 @@
             </ul>
         <?php endif; ?>
             
-        <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-articlelist-buttons">
-            <table>
-                <tr>
-                    <td><?php fpcm\model\view\helper::saveButton('saveSelectedLinks'); ?></td>
-                </tr>
-            </table>
-        </div>
+            <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-articlelist-buttons">
+                <div class="fpcm-ui-margin-center">
+                    <?php fpcm\model\view\helper::saveButton('saveSelectedLinks'); ?>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -38,11 +38,9 @@
     </div>
 
     <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-        <table>
-            <tr>
-                <td><?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'nkorg/inactivity_manager/addmessage', 'NKORGINACTIVITY_MANAGER_NEWMESSAGE') ?></td>
-                <td><?php \fpcm\model\view\helper::deleteButton('deleteTerms') ?></td>
-            </tr>
-        </table>
+        <div class="fpcm-ui-margin-center">
+            <?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'nkorg/inactivity_manager/addmessage', 'NKORGINACTIVITY_MANAGER_NEWMESSAGE'); ?>
+            <?php \fpcm\model\view\helper::deleteButton('deleteTerms'); ?>
+        </div>
     </div>
 </form>

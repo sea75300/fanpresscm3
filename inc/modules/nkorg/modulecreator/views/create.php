@@ -3,9 +3,7 @@
 <div id="fpcm-nkorgmodulecreator-createmsg"></div>
 
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?>">
-    <table>
-        <tr>
-            <td><?php fpcm\model\view\helper::button('submit', 'startCreation', 'GLOBAL_OK', 'fpcm-loader'); ?></td>
-        </tr>
-    </table>
+    <div class="fpcm-ui-margin-center">
+        <?php fpcm\model\view\helper::button('submit', 'startCreation', 'GLOBAL_OK', 'fpcm-loader'); ?></td>
+    </div>
 </div>
