@@ -105,26 +105,31 @@ var fpcmJs = function () {
     this.reloadFiles = function (page) {
         self.showLoader(true);
 
+        var pagestr = (page !== undefined ? '&page=' + page : '');
+
         fpcmAjax.action   = 'filelist';
-        fpcmAjax.query    = 'mode=' + fpcmFmgrMode + (page !== undefined ? '&page=' + page : '');
-        fpcmAjax.execDone = 'fpcmJs.reloadFilesDone(fpcmAjax.result);';
+        fpcmAjax.query    = 'mode=' + fpcmFmgrMode + pagestr;
+        fpcmAjax.execDone = 'fpcmJs.reloadFilesDone(fpcmAjax.result, ' + (pagestr ? 1 : 0) + ');';
         fpcmAjax.get();
         
         return false;
     };
     
-    this.reloadFilesDone = function (ajaxResult) {
+    this.reloadFilesDone = function (ajaxResult, hasPage) {
         fpcmJs.assignHtml("#tabs-files-list-content", ajaxResult);
         fpcmJs.assignButtons();
         fpcm.filemanager.assignButtons();
         var fpcmRFDinterval = setInterval(function(){
             if (jQuery('#fpcm-filelist-images-finished').length == 1) {
                 fpcmJs.showLoader(false);
-                clearInterval(fpcmRFDinterval);
                 fpcmJs.windowResize();
+                clearInterval(fpcmRFDinterval);
+                if (hasPage === 1) {
+                    jQuery(window).scrollTop(0);
+                }
                 return false;
             }
-        }, 1000);
+        }, 250);
     };
     
     this.relocate = function (url) {
