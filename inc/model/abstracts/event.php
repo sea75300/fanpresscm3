@@ -89,11 +89,13 @@
             $config->setUserSettings();
             
             if ($this->cache->isExpired()) {
-                $this->activeModules = $moduleList->getEnabledInstalledModules();
+                $this->activeModules = $moduleList->getEnabledInstalledModules();   
                 $this->cache->write($this->activeModules, $config->system_cache_timeout);
-            } else {
-                $this->activeModules = $this->cache->read();
+                return;
             }
+
+            $this->activeModules = $this->cache->read();
+
         }
         
         /**
@@ -179,7 +181,7 @@
             if (!count($this->activeModules)) {
                 return array();
             }
-            
+
             $classes = array();
             
             $eventBaseClass = '/events/'.$this->getEventClassBase().'.php';

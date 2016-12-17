@@ -1,5 +1,5 @@
 <div class="fpcm-content-wrapper">
-    <h1><span class="fa fa-ambulance fa-fw"></span> FanPress CM Support Module</h1>
+    <h1><span class="fa fa-ambulance fa-fw"></span> <?php $FPCM_LANG->write('NKORG_SUPPORT_HEADLINE'); ?></h1>
 
     <div class="fpcm-tabs-general">
         

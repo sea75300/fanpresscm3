@@ -189,14 +189,14 @@
                 return $cache->read();
             }
 
-            $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey', 'status = 1'), true);
-            
+            $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey', 'status = 1', array(), true), true);
+
             $keys = array();
             foreach ($modules as $module) {
                 $keys[] = $module->modkey;
             }
 
-            $cache->write($keys, $this->config->system_cache_timeout);
+            $cache->write(array_unique($keys), $this->config->system_cache_timeout);
 
             return $keys;
         }
