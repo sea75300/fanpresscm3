@@ -580,7 +580,7 @@
             
             $this->id = $this->dbcon->getLastInsertId();
             
-            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+            $this->cleanupCaches();
 
             if ($this->config->twitter_events['create'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
                 $this->createTweet();
@@ -610,7 +610,7 @@
                 $return = true;
             }
             
-            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+            $this->cleanupCaches();
             $this->init();
 
             if ($this->config->twitter_events['update'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
@@ -628,8 +628,9 @@
          */
         public function delete() {
 
+            $this->cleanupCaches();
+
             if ($this->config->articles_trash && !$this->forceDelete) {
-                $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
                 $this->deleted = 1;
                 
                 return $this->update();
@@ -882,5 +883,17 @@
             $this->imagepath = $this->wordbanList->replaceItems($this->imagepath);
             
             return true;
+        }
+
+        /**
+         * Bereinigt Caches
+         * @return void
+         * @since FPCM 3.4-rc3
+         */
+        private function cleanupCaches() {
+
+            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+            $this->cache->cleanup(false, \fpcm\model\abstracts\dashcontainer::CACHE_M0DULE_DASHBOARD);
+
         }
     }
