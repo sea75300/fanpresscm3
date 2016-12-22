@@ -239,8 +239,11 @@
          * Installer Step 6
          */
         protected function runStep6() {
-            
+
+            $data = $this->getRequestVar('conf');
+
             $user = new \fpcm\model\users\author();
+            $user->setEmail($data['system_email']);
 
             $this->view->assign('author', $user);
             $this->view->assign('userRolls', array($this->lang->translate('GLOBAL_ADMINISTRATOR') => 1));

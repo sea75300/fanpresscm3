@@ -122,6 +122,8 @@ fpcm.installer = {
             fpcm.installer.checkDBData();
             return false;
         });
+
+        fpcmJs.windowResize();
     }
 };
 
