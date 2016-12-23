@@ -39,7 +39,7 @@
             
             parent::request();
 
-            $this->cache = new \fpcm\classes\cache('articlelist'.$this->page.$this->category, 'articlelist');            
+            $this->cache = new \fpcm\classes\cache('articlelist'.$this->page.$this->category, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
             
             return true;
         }
