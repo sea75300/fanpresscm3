@@ -7,7 +7,7 @@ class testBase extends \PHPUnit_Framework_TestCase {
     /**
      * @var string
      */
-    protected $className;   
+    protected $className;
     
     /**
      * @var \fpcm\model\abstracts\model

@@ -254,7 +254,7 @@
             $params     = $this->events->runEvent('sessionUpdate', $params);
 
             $return = false;
-            if ($this->dbcon->update($this->table, $fields, array_values($params), 'sessionid '.$this->dbcon->dbLike().' ?')) {
+            if ($this->dbcon->update($this->table, $fields, array_values($params), 'sessionid = ?')) {
                 $return = true;
             }
             
@@ -373,6 +373,7 @@
                 $this->sessionExists = false;
                 return;
             }
+
             foreach ($data as $key => $value) {
                 $this->$key = $value;
             }
@@ -415,6 +416,22 @@
             }            
             
             parent::__set($name, $value);
+        }
+
+        /**
+         * Inittiert Objekt mit Daten aus der Datenbank, sofern ID vergeben wurde
+         */
+        public function pingExternal($sessionId) {
+            
+            $this->sessionid = $sessionId;
+            $this->init();
+
+            if (!$this->sessionExists) {
+                return false;
+            }
+
+            return true;
+
         }
 
     }

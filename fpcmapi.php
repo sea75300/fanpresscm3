@@ -204,5 +204,50 @@
             return $eventList->runEvent('apiCallFunction', $params);
         }
 
+        /**
+         * FPCM-Login für externe Anwendungen nutzen
+         * @param array $credentials
+         * @return boolean|string
+         * @since FPCM 3.4
+         */
+        public function loginExternal(array $credentials) {
+
+            $session = new \fpcm\model\system\session(false);
+            if (isset($credentials['sessionId']) && trim($credentials['sessionId']) && $session->pingExternal($credentials['sessionId'])) {
+                return true;
+            }
+
+            if (isset($credentials['username']) && isset($credentials['password']) && trim($credentials['username']) && trim($credentials['password'])) {
+                $result = $session->checkUser($credentials['username'], $credentials['password']);
+                if ($result === true && $session->save()) {
+                    return $session->getSessionId();
+                }
+            }
+
+            trigger_error('Invalid login credentials');
+            return false;
+
+        }
+
+        /**
+         * Logout für externe Anwendungen nutzen
+         * @param string $sessionId
+         * @return boolean|string
+         * @since FPCM 3.4
+         */
+        public function logoutExternal($sessionId) {
+
+            $session = new \fpcm\model\system\session(false);
+            if (!trim($sessionId) || !$session->pingExternal($sessionId)) {
+                trigger_error('Invalid session id');
+                return false;
+            }
+
+            $session->setLogout(time());
+            $session->update();
+
+            return true;
+
+        }
 
     }

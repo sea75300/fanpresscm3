@@ -1,16 +1,16 @@
 <?php
 
-    $installfile   = 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress3.4.0-rc4_full.zip';
+    $installfile   = 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress3.4.0_full.zip';
     
-    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.4.0-rc4.zip')
-               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.4.0-rc4.zip').'_'
-                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.4.0-rc4.zip').'$sig$'
+    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.4.0.zip')
+               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.4.0.zip').'_'
+                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.4.0.zip').'$sig$'
                : '');
 
     $versions = array(
         'default' => array(
-            'newversion'    => '3.4.0-rc4',
-            'file'      => 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.4.0-rc4.zip',
+            'newversion'    => '3.4.0',
+            'file'      => 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.4.0.zip',
             'force'     => 0,
             'message'   => 'Next minor release of FanPress CM 3.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-4-0-veroeffentlicht/',
