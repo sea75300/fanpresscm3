@@ -36,7 +36,7 @@
             $eventClasses = $this->getEventClasses();
             
             if (!count($eventClasses)) return $data;
-            
+
             $mdata = $data;
             foreach ($eventClasses as $eventClass) {
                 

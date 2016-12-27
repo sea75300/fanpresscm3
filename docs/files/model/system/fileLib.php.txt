@@ -66,7 +66,7 @@
          */
         private $cmCssFiles = array(
             'inc/lib/codemirror/lib/codemirror.css',
-            'inc/lib/codemirror/theme/mdn-like.css',
+            'inc/lib/codemirror/theme/fpcm.css',
             'inc/lib/codemirror/addon/hint/show-hint.css'
         );
         

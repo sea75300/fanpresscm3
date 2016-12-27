@@ -46,8 +46,9 @@
         'HL_TEMPLATE_PREVIEW'           => 'Template-Vorschau',
         
         'HL_PROFILE'                    => 'Profil',
-        'PROFILE_MENU_LOGGEDINSINCE'    => 'Eingeloggt seit',
-        'PROFILE_MENU_YOURIP'           => 'Deine IP-Adresse:',
+        'PROFILE_MENU_LOGGEDINAS'       => 'angemeldet als <em>{{username}}</em>',
+        'PROFILE_MENU_LOGGEDINSINCE'    => 'seit',
+        'PROFILE_MENU_YOURIP'           => 'IP-Adresse ist',
         
         'HELP_SELECT'                   => 'Klicke auf eine Überschrift, um den Hilfe-Eintrag zu öffnen',
         'HELP_BTN_OPEN'                 => 'Hilfe-Eintrag aufrufen',
@@ -62,7 +63,8 @@
         'CRONJOB_POSTPONEDARTICLES'    => 'geplante Artikel veröffentlichen',
         'CRONJOB_UPDATECHECK'          => 'Prüfung auf Updates',
         'CRONJOB_DBBACKUP'             => 'System-Datenbank sichern',
-        'CRONJOB_FILEINDEX'            => 'Dateiindex neu aufbauen'
+        'CRONJOB_FILEINDEX'            => 'Dateiindex neu aufbauen',
+        'CRONJOB_REMOVEREVISIONS'      => 'Artikel-Revisionen bereinigen'
     );
 
 ?>

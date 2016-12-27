@@ -259,7 +259,6 @@
          * @param string $class CSS-Klasse
          * @param string $value Wert
          * @param bool $readonly readonly Status
-         * @param string $wrapper Wrapper-DIV nutzen
          */
         public static function textArea($name, $class = '', $value = '', $readonly = false) {
             $html   = array();

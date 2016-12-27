@@ -52,6 +52,7 @@
          * Konstruktor
          */
         public function __construct() {
+
             $this->cacheName = 'recentcomments';
             
             parent::__construct();
@@ -60,7 +61,7 @@
             $this->currentUser  = $session->getUserId();
             $this->isAdmin      = $session->getCurrentUser()->isAdmin();
             $this->permissions  = new \fpcm\model\system\permissions($session->currentUser->getRoll());
-            $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser);
+            $this->cache        = new \fpcm\classes\cache($this->cacheName.'_'.$this->currentUser, self::CACHE_M0DULE_DASHBOARD);
             
             if ($this->cache->isExpired()) {
                 $this->renderContent();                
@@ -83,7 +84,7 @@
             
             $commenList  = new \fpcm\model\comments\commentList();
             $userlist    = new \fpcm\model\users\userList();            
-            $comments    = $commenList->getCommentsByLimit(0, 10);
+            $comments    = $commenList->getCommentsByLimit(10, 0);
 
             $users    = array_flip($userlist->getUsersNameList());
             
@@ -102,11 +103,11 @@
                 
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-articlelist-open">';
-                $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-openlink-btn" href="'.$comment->getArticleLink().'" target="_blank">'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'</a>';
+                $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-openlink-btn" href="'.$comment->getArticleLink().'" target="_blank" title="'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'">'.$this->language->translate('GLOBAL_FRONTEND_OPEN').'</a>';
                 if ($comment->getEditPermission()) {
-                    $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-loader" href="'.$comment->getEditLink().'&amp;mode=1">'.$this->language->translate('GLOBAL_EDIT').'</a>';
+                    $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-loader" href="'.$comment->getEditLink().'&amp;mode=1" title="'.$this->language->translate('GLOBAL_EDIT').'">'.$this->language->translate('GLOBAL_EDIT').'</a>';
                 } else {
-                    $content[] = '  <span class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly">'.$this->language->translate('GLOBAL_EDIT').'</span>';
+                    $content[] = '  <span class="fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly" title="'.$this->language->translate('GLOBAL_EDIT').'">'.$this->language->translate('GLOBAL_EDIT').'</span>';
                 }
                 $content[] = '  </td>';
                 

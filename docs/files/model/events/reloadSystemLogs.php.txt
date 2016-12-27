@@ -1,6 +1,6 @@
 <?php
     /**
-     * Module-Event: clearSystemLogs
+     * Module-Event: reloadSystemLogs
      * 
      * Event wird ausgeführt, wenn Systemlogs via AJAX neu geladen werden
      * Parameter: void
@@ -13,7 +13,7 @@
     namespace fpcm\model\events;
 
     /**
-     * Module-Event: clearSystemLogs
+     * Module-Event: reloadSystemLogs
      * 
      * Event wird ausgeführt, wenn Systemlogs via AJAX neu geladen werden
      * Parameter: void
@@ -40,7 +40,7 @@
             foreach ($eventClasses as $eventClass) {
                 
                 $classkey = $this->getModuleKeyByEvent($eventClass);                
-                $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'clearSystemLogs');
+                $eventClass = \fpcm\model\abstracts\module::getModuleEventNamespace($classkey, 'reloadSystemLogs');
                 
                 /**
                  * @var \fpcm\model\abstracts\event

@@ -71,7 +71,10 @@
         public static function button($type, $name, $descr, $class = '') {            
             $name  = ucfirst($name);            
             $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;
-            print "<button type=\"$type\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" name=\"btn{$name}\" id=\"btn".self::cleanIdName($name)."\">$descr</button>";
+            
+            $titleData = self::getTitleByCssClass($class, $descr);
+            
+            print "<button type=\"$type\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" name=\"btn{$name}\" id=\"btn".self::cleanIdName($name)."\" $titleData>$descr</button>";
         }
         
         /**
@@ -88,8 +91,10 @@
             if (!trim($id)) {
                 $id = uniqid('lnkbtn_');
             }
+            
+            $titleData = self::getTitleByCssClass($class, $descr);
 
-            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" id=\"".self::cleanIdName($id)."\" target=\"$target\">$descr</a>\n";
+            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" id=\"".self::cleanIdName($id)."\" target=\"$target\" $titleData>$descr</a>\n";
         }
         
         /**
@@ -98,8 +103,11 @@
          * @param string $class CSS-Klasse
          */
         public static function dummyButton($descr, $class = '') {
-            $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;            
-            print "<span class=\"fpcm-ui-button fpcm-ui-margin-icon $class\">$descr</span>\n";
+            $descr = self::$language->translate($descr) ? self::$language->translate($descr) : $descr;
+            
+            $titleData = self::getTitleByCssClass($class, $descr);
+            
+            print "<span class=\"fpcm-ui-button fpcm-ui-margin-icon $class\" $titleData>$descr</span>\n";
         }        
         
         /**
@@ -109,13 +117,15 @@
          * @param string $class CSS-Klasse
          */
         public static function editButton($href, $active = true, $class = '') {
-            
+
+            $descr = self::$language->translate('GLOBAL_EDIT');
+
             if (!$active) {
-                print "<span class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly\">".self::$language->translate('GLOBAL_EDIT')."</span>\n";
+                print "<span class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-ui-button-edit fpcm-ui-readonly\" title=\"$descr\">".$descr."</span>\n";
                 return;
             }
             
-            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-loader fpcm-ui-button-edit $class\">".self::$language->translate('GLOBAL_EDIT')."</a>\n";
+            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-loader fpcm-ui-button-edit $class\" title=\"$descr\">".$descr."</a>\n";
         }
         
         /**
@@ -249,7 +259,6 @@
          * @param string $class CSS-Klasse
          * @param string $value Wert
          * @param bool $readonly readonly Status
-         * @param string $wrapper Wrapper-DIV nutzen
          */
         public static function textArea($name, $class = '', $value = '', $readonly = false) {
             $html   = array();
@@ -471,6 +480,17 @@
          */
         private static function cleanIdName($text) {
             return trim(str_replace(array('[','(',')',']','-'), '', $text));
+        }
+
+        /**
+         * Erzeugt title-Attribut anhand von Klassen-Namen
+         * @param string $class
+         * @param string $descr
+         * @return string
+         * @since FPCM 3.4
+         */
+        private static function getTitleByCssClass($class, $descr) {
+            return strpos($class, 'fpcm-ui-button-blank') === false ? '' : 'title="'.$descr.'"';
         }
     }
 ?>

@@ -28,8 +28,6 @@
          * @param string $filename Dateiname
          * @param string $filepath Dateipfad
          * @param string $content Dateiinhalt
-         * @param bool $initDB Datenbank-Eintrag initialisieren
-         * @param bool $forceInit Initialisierung erzwingen
          */
         public function __construct($filename = '', $filepath = '', $content = '') {
             parent::__construct($filename, \fpcm\classes\baseconfig::$articleTemplatesDir.$filepath, $content);

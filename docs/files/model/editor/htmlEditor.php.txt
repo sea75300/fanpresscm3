@@ -88,9 +88,8 @@
                 'editorInsertSmiley' => $this->language->translate('EDITOR_INSERTSMILEY'),
                 'editorInsertSymbol' => $this->language->translate('EDITOR_INSERTSYMBOL'),
                 'editorInsertATpl'   => $this->language->translate('EDITOR_HTML_BUTTONS_ARTICLETPL'),
-                
-                
-                
+                'editorInsertUl'     => $this->language->translate('EDITOR_HTML_BUTTONS_LISTUL'),
+                'editorInsertOl'     => $this->language->translate('EDITOR_HTML_BUTTONS_LISTOL')
             );
         }
 

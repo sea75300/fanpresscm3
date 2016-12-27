@@ -53,7 +53,7 @@
          * @param string $controller
          * @param array $params
          * @return string
-         * @since FPCm 3.4
+         * @since FPCM 3.4
          */
         public static function getControllerLink($controller = '', array $params = array()) {
 
@@ -65,9 +65,13 @@
 
             return $redirectString.'&'.http_build_query($params);
         }
-
+        
         /**
          * Berechnet Werte für Seitennavigation
+         * @param type $pageLimit
+         * @param type $currentPage
+         * @param type $maxItemCount
+         * @param type $currentItemCount
          * @return array
          * @since FPCM 3.4
          */

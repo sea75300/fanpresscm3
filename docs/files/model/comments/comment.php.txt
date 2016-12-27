@@ -361,7 +361,7 @@
                 return false;
             }
             
-            $this->cache->cleanup();
+            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
 
             return $this->dbcon->getLastInsertId();
         }
@@ -385,8 +385,7 @@
                 $return = true;
             }
             
-            $this->cache->cleanup(); 
-            
+            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);             
             $this->init();
             
             return $return;
