@@ -19,11 +19,13 @@
          * Konstruktor
          */
         public function __construct() {
-            $this->cacheName = 'userlist';
+
+            $this->cacheName   = 'userlist';
+            $this->cacheModule = self::CACHE_M0DULE_DASHBOARD;
             
             parent::__construct();
 
-            $this->cache        = new \fpcm\classes\cache($this->cacheName);
+            $this->cache        = new \fpcm\classes\cache($this->cacheName, self::CACHE_M0DULE_DASHBOARD);
             
             if ($this->cache->isExpired()) {
                 $this->renderContent();                
@@ -55,7 +57,7 @@
                 
                 $content[] = '<tr class="fpcm-small-text">';
                 $content[] = '  <td class="fpcm-ui-editbutton-col">';
-                $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-email-btn" href="mailto:'.$emailAddress.'" target="_blank">'.$this->language->translate('GLOBAL_WRITEMAIL').'</a>';
+                $content[] = '  <a class="fpcm-ui-button fpcm-ui-button-blank fpcm-email-btn" href="mailto:'.$emailAddress.'" target="_blank" title="'.$this->language->translate('GLOBAL_WRITEMAIL').'">'.$this->language->translate('GLOBAL_WRITEMAIL').'</a>';
                 $content[] = '  </td>';
                 $content[] = '  <td>';
                 $content[] = '  <strong>'.\fpcm\model\view\helper::escapeVal($item->getDisplayname()).'</strong><br>';

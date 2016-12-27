@@ -37,6 +37,7 @@
         'TEMPLATE_ARTICLE_SHAREBUTTONS'     => 'Share-Buttons',
         'TEMPLATE_ARTICLE_STATUSPINNED'     => 'Hinweis, dass News gepinnt ist',
         'TEMPLATE_ARTICLE_ARTICLEIMAGE'     => 'Artikelbild',
+        'TEMPLATE_ARTICLE_SOURCES'          => 'Quellenverzeichnis',
         
         'TEMPLATE_COMMMENT_AUTHOR'          => 'Kommentar-Autor',
         'TEMPLATE_COMMMENT_EMAIL'           => 'Autor-Email',

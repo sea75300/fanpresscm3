@@ -419,7 +419,10 @@
         }
 
         /**
-         * Inittiert Objekt mit Daten aus der Datenbank, sofern ID vergeben wurde
+         * Prüft ob übergebene Session-ID existiert und noch gültig ist
+         * @param string $sessionId
+         * @return boolean
+         * @since FPCM 3.4
          */
         public function pingExternal($sessionId) {
             

@@ -438,9 +438,10 @@
         
         /**
          * Passwort für Benutzer zurücksetzten
+         * @param bool $resetOnly (@since FPCM3.4)
          * @return boolean
          */
-        public function resetPassword() {
+        public function resetPassword($resetOnly = false) {
 
             $this->disablePasswordSecCheck();
             
@@ -449,6 +450,13 @@
             $this->salt     = \fpcm\classes\security::createSalt($this->displayname.'-'.$this->username.'-'.$this->id);
             $this->passwd   = \fpcm\classes\security::createPasswordHash($password, $this->salt);
             
+            if ($resetOnly) {
+                return array(
+                    'updateOk' => $this->update(),
+                    'password' => $password
+                );
+            }
+
             $text = $this->language->translate('PASSWORD_RESET_TEXT', array('{{newpass}}' => $password));
             $email = new \fpcm\classes\email($this->email, $this->language->translate('PASSWORD_RESET_SUBJECT'), $text);
             $email->setHtml(true);

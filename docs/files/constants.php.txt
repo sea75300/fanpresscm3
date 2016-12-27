@@ -82,3 +82,11 @@
          */
         define ('FPCM_CACHEMODULE_DEBUG', false);
     }
+    
+    if (!defined('FPCM_NOJSCSSPHP_FILESIZE_HEADER')) {
+        /**
+         * Dateigröße in style.php und script.php nicht als Header mitschicken
+         * @since FPCM 3.4
+         */
+        define ('FPCM_NOJSCSSPHP_FILESIZE_HEADER', false);
+    }

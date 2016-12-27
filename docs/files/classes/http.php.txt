@@ -86,7 +86,7 @@
          * @return string
          */
         public static function getIp() {
-            return $_SERVER['REMOTE_ADDR'];
+            return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
         }
         
         /**
@@ -94,7 +94,7 @@
          * @return string
          */
         public static function getHttpHost() {
-            return $_SERVER['HTTP_HOST'];
+            return isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
         }
         
         /**

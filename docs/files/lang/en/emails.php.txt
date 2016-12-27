@@ -7,7 +7,7 @@
      */
 
     $lang = array(
-        'PASSWORD_RESET_SUBJECT'    => 'Request new password',
+        'PASSWORD_RESET_SUBJECT'    => 'Rquest for new password',
         'PASSWORD_RESET_TEXT'       => 'A new password was requested for you account. You can new login with '.
                                        '<b>{{newpass}}</b>. In case the new password was not requested by you, please contact '.
                                        'your system administrator.',        

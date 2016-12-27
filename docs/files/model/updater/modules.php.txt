@@ -42,6 +42,12 @@
         protected $cacheName = 'fpcmmoduleupdates'; 
         
         /**
+         * Cache module
+         * @var string
+         */
+        protected $cacheModule = 'pkgmgr';
+        
+        /**
          * Initialisiert System Updater
          */
         public function __construct() {

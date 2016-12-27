@@ -172,9 +172,9 @@
         
         /**
          * Tabellenzeile rendern
+         * @param string $iconClass
          * @param string $statusClass
          * @param string $statusText
-         * @param string $iconClass
          * @since FPCM 3.1.0
          */
         private function renderTable($iconClass, $statusClass, $statusText) {

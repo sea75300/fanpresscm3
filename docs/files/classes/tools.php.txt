@@ -53,7 +53,7 @@
          * @param string $controller
          * @param array $params
          * @return string
-         * @since FPCm 3.4
+         * @since FPCM 3.4
          */
         public static function getControllerLink($controller = '', array $params = array()) {
 
@@ -64,6 +64,69 @@
             }
 
             return $redirectString.'&'.http_build_query($params);
+        }
+        
+        /**
+         * Berechnet Werte für Seitennavigation
+         * @param type $pageLimit
+         * @param type $currentPage
+         * @param type $maxItemCount
+         * @param type $currentItemCount
+         * @return array
+         * @since FPCM 3.4
+         */
+        public static function calcPagination($pageLimit, $currentPage, $maxItemCount, $currentItemCount) {
+
+            $data = array(
+                'pageCurrent'       => 1,
+                'pageCount'         => 1,
+                'backBtn'           => false,
+                'nextBtn'           => false,
+                'pageSelectOptions' => array(),
+                'listActionLimit'   => $currentPage,
+            );
+
+            if ($pageLimit === false) {
+                return $data;
+            }
+
+            $pageCurrent = 1;
+            $data['pageCount'] = ceil($maxItemCount / $pageLimit);
+            
+            if ($currentPage) {
+                $pageCurrent = (int) $currentPage;
+
+                $backBtnValue    = $pageCurrent - 1;                
+                $data['backBtn'] = $backBtnValue;
+                
+                $nextBtnValue    = $pageCurrent + 1;                
+                $data['nextBtn'] = ($nextBtnValue <= $data['pageCount'] ? $nextBtnValue : false);
+
+                $data['listActionLimit'] = '&page='.$currentPage;
+            }
+            elseif (!$currentPage && $currentItemCount < $maxItemCount && !(2 * $pageLimit >= $maxItemCount + $pageLimit) ) {
+                $data['nextBtn'] = 2;
+            }
+            
+            $data['pageCount']   = ($data['pageCount'] ? $data['pageCount'] : 1);
+            $data['pageCurrent'] = $pageCurrent;
+
+            for ($i=1; $i<=$data['pageCount']; $i++) {
+                $data['pageSelectOptions'][baseconfig::$fpcmLanguage->translate('GLOBAL_PAGER', array('{{current}}' => $i, '{{total}}' => $data['pageCount']))] = $i;
+            }
+            
+            return $data;
+        }
+
+        /**
+         * Berechnet Limit anhand von Seite und Limit pro Seite
+         * @param int $page
+         * @param int $pageLimit
+         * @return int
+         * @since FPCM 3.4
+         */
+        public static function getPageOffset($page, $pageLimit) {
+            return ($page ? ($page - 1) * $pageLimit : 0);
         }
 
     }

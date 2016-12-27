@@ -50,12 +50,12 @@
         'GLOBAL_WRITEMAIL'              => 'E-Mail verfassen',
         'GLOBAL_CONFIRM'                => 'Bitte bestätigen',
 
-        'LOGIN_BTN'                     => 'Einloggen',
+        'LOGIN_BTN'                     => 'Anmelden',
         'LOGIN_NEWPASSWORD'             => 'Neues Passwort anfordern',
-        'LOGOUT_BTN'                    => 'Ausloggen',
+        'LOGOUT_BTN'                    => 'Abmelden',
         
-        'NAVIGATION_SHOW'               => 'Menü öffnen',
-        'PROFILE_MENU_OPENPROFILE'      => 'Profil aufrufen',
+        'NAVIGATION_SHOW'               => 'Menü',
+        'PROFILE_MENU_OPENPROFILE'      => 'Benutzerprofil',
         
         'ARTICLES_EDITOR'               => 'Artikel-Editor',
         'ARTICLES_TRASH'                => 'Papierkorb',
@@ -171,7 +171,6 @@
         'SYSCHECK_FOLDER_CONFIG'        => 'Config-Order',
         'SYSCHECK_FOLDER_LOGS'          => 'Logs-Order',
         'SYSCHECK_FOLDER_FILEMANAGER'   => 'Dateimanager-Temp-Order',
-        'SYSCHECK_FOLDER_REVISIONS'     => 'Revisionen-Order',
         'SYSCHECK_FOLDER_SMILEYS'       => 'Smiley-Order',
         'SYSCHECK_FOLDER_STYLES'        => 'Template-Order',
         'SYSCHECK_FOLDER_TEMP'          => 'Temporäre Dateien Order',

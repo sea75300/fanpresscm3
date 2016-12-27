@@ -32,9 +32,10 @@
          * Konstruktor
          */
         public function __construct() {
-            
-            $this->cacheName = 'syscheck';
-            
+
+            $this->cacheName   = 'syscheck';
+            $this->cacheModule = self::CACHE_M0DULE_DASHBOARD;
+
             parent::__construct();   
             
             $this->runCheck();

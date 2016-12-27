@@ -75,7 +75,7 @@
             
             $this->helpFile            = baseconfig::$langDir.$langCode.'/help.php';
             
-            $this->cache = new cache('langcache_'.$langCode);
+            $this->cache = new cache('langcache_'.$langCode, 'system');
             
             if (!$this->cache->isExpired()) {
                 $this->langData = $this->cache->read();                

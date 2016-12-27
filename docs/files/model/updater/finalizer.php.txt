@@ -191,72 +191,6 @@
         private function alterTables() {
 
             $res = true;
-            
-            if ($this->checkVersion('3.0.4')) {
-                $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "7, 'dbBackup', 0");                
-            }
-            
-            if ($this->checkVersion('3.1.4')) {
-                $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "`id`, `cjname`, `lastexec`", "8, 'fileindex', 0");                
-            }
-            
-            if ($this->checkVersion('3.1.0-rc1')) {
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD', '`imagepath`', 'TEXT NOT NULL');
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `title` )', '', false);
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `categories` )', '', false);
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `createuser` )', '', false);
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `createtime` )', '', false);
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `pinned` )', '', false);
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `postponed` )', '', false); 
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `deleted` )', '', false);
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `approval` )', '', false);
-                $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableArticles, 'ADD INDEX', '( `draft` )', '', false);
-            }
-            
-            if ($this->checkVersion('3.2.0-dev')) {
-                
-                if (method_exists($this->dbcon, 'getDbtype') && $this->dbcon->getDbtype() == 'pgsql') {
-                    $res = $res && $this->dbcon->alter(
-                        \fpcm\classes\database::tableCronjobs, 'ADD', '"execinterval"', '  BIGINT', false
-                    );                    
-                }
-                else {
-                    $res = $res && $this->dbcon->alter(
-                        \fpcm\classes\database::tablePermissions, 'CHANGE', '`permissionData`', '`permissiondata` BLOB NOT NULL', false
-                    );
-                    $res = $res && $this->dbcon->alter(
-                        \fpcm\classes\database::tablePermissions, 'CHANGE', '`rollId`', '`rollid` bigint(20) NOT NULL', false
-                    );
-                    $res = $res && $this->dbcon->alter(
-                        \fpcm\classes\database::tableCategories, 'CHANGE', '`iconPath`', '`iconpath` text NOT NULL', false
-                    );
-                    $res = $res && $this->dbcon->alter(
-                        \fpcm\classes\database::tableSessions, 'CHANGE', '`userId`', '`userid` BIGINT( 20 ) NOT NULL ', false
-                    );
-                    $res = $res && $this->dbcon->alter(
-                        \fpcm\classes\database::tableSessions, 'CHANGE', '`sessionId`', '`sessionid` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ', false
-                    );
-                    $res = $res && $this->dbcon->alter(
-                        \fpcm\classes\database::tableCronjobs, 'ADD', '`execinterval`', '  BIGINT( 20 ) NOT NULL', false
-                    );
-                }
-                
-                $rows = array(
-                    'anonymizeIps'      => 2419200,
-                    'clearLogs'         => 2419200,
-                    'clearTemp'         => 604800,
-                    'fmThumbs'          => 604800,
-                    'postponedArticles' => 600,
-                    'updateCheck'       => 86400,
-                    'dbBackup'          => 604800,
-                    'fileindex'         => 86400
-                );
-                
-                foreach ($rows as $key => $value) {
-                    $res = $res && $this->dbcon->update(\fpcm\classes\database::tableCronjobs, array('execinterval'), array($value, $key), "cjname = ? AND execinterval = 0");
-                }
-                
-            }
 
             if ($this->checkVersion('3.3.0-a1') && (!method_exists($this->dbcon, 'getDbtype') || $this->dbcon->getDbtype() == 'mysql')) {
                 $res = $res && $this->dbcon->alter(\fpcm\classes\database::tableComments, 'ADD INDEX', '( `name` )', '', false);
@@ -310,6 +244,14 @@
             if ($this->checkVersion('3.4.0-b2')) {
                 $res = $res && $this->dbcon->insert(\fpcm\classes\database::tableCronjobs, "cjname, lastexec, execinterval", "'removeRevisions', 0, 2419200");                
             }
+            
+            if ($this->checkVersion('3.4.0-b5')) {
+                $this->dbcon->createIndex(\fpcm\classes\database::tableRevisions, 'hashsum_idx', 'hashsum');
+            }
+            
+            if ($this->checkVersion('3.4.0-b6', '=')) {
+                $this->dbcon->alter(\fpcm\classes\database::tableFiles, 'DROP', 'subfolder', '', false);
+            }
 
             return $res;
         }
@@ -333,18 +275,7 @@
                 
                 $this->convertRevisions();
             }
-            
-            if ($this->checkVersion('3.2.0-dev')) {
-                
-                if (method_exists($this->dbcon, 'execYaTdl')) {
-                $res = $res && $this->dbcon->execYaTdl(\fpcm\classes\baseconfig::$dbStructPath.'14texts.yml');
-            }
-                else {
-                    $res = $res && $this->execYaTdl(\fpcm\classes\baseconfig::$dataDir.'dbstruct/14texts.yml');                    
-                }
-            
-            }
-            
+
             return $res;
         }
         
@@ -356,27 +287,6 @@
 
             if (file_exists(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php')) {
                 unlink(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php');
-            }
-
-            if ($this->checkVersion('3.2.0', '>=')) {
-                return true;
-            }
-
-            if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
-                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
-            }
-            
-            if (is_dir(\fpcm\classes\baseconfig::$dataDir.'dbstruct')) {
-                \fpcm\model\files\ops::deleteRecursive(\fpcm\classes\baseconfig::$dataDir.'dbstruct');
-            }
-            
-            if (file_exists(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js')) {
-                unlink(\fpcm\classes\baseconfig::$jsPath.'backupmgr.js');
-            }
-            
-            $libPath = \fpcm\classes\loader::libGetFilePath('jquery', 'jquery-2.1.4.min.js');
-            if ($libPath) {
-                unlink($libPath);
             }
             
             return true;

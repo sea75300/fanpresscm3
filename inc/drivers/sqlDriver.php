@@ -49,8 +49,8 @@
 
         /**
          * Erzeugt LIMIT-SQL-String
-         * @param int $offset
          * @param int $limit
+         * @param int $offset
          * @return string
          */
         public function limitQuery($limit, $offset);

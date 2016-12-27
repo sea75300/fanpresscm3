@@ -16,6 +16,18 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class article extends \fpcm\model\abstracts\model {
+
+        /**
+         * Cache-Name für einzelnen Artikel
+         * @since FPCM 3.4
+         */
+        const CACHE_ARTICLE_SINGLE = 'articlesingle';
+
+        /**
+         * Cache-Module-Name
+         * @since FPCM 3.4
+         */
+        const CACHE_ARTICLE_MODULE = 'articles';
         
         /**
          * News-Titel
@@ -568,7 +580,7 @@
             
             $this->id = $this->dbcon->getLastInsertId();
             
-            $this->cache->cleanup();
+            $this->cleanupCaches();
 
             if ($this->config->twitter_events['create'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
                 $this->createTweet();
@@ -598,7 +610,7 @@
                 $return = true;
             }
             
-            $this->cache->cleanup();             
+            $this->cleanupCaches();
             $this->init();
 
             if ($this->config->twitter_events['update'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
@@ -616,8 +628,9 @@
          */
         public function delete() {
 
+            $this->cleanupCaches();
+
             if ($this->config->articles_trash && !$this->forceDelete) {
-                $this->cache->cleanup();
                 $this->deleted = 1;
                 
                 return $this->update();
@@ -629,6 +642,14 @@
             $commentList->deleteCommentsByArticle($this->id);
 
             return parent::delete();
+        }
+
+        /**
+         *Artikel-Daten für Revision vorbereiten
+         * @since FPCM 3.4
+         */
+        public function prepareRevision() {
+            $this->data['preparedRevision'] = $this->getPreparedSaveParams();
         }
 
         /**
@@ -649,6 +670,14 @@
             $revision->setArticleId($this->id);
             $revision->setRevisionIdx($timer);
             $revision->setContent($content);
+            
+            $newHash = $revision->createHashSum();
+            $revision->setHashsum($newHash);
+
+            if (is_array($this->data['preparedRevision']) && $revision->createHashSum($this->data['preparedRevision']) === $newHash) {
+                return true;
+            }
+
             if (!$revision->save()) {
                 trigger_error('Unable to create revision for article '.$this->id);
                 return false;
@@ -854,5 +883,17 @@
             $this->imagepath = $this->wordbanList->replaceItems($this->imagepath);
             
             return true;
+        }
+
+        /**
+         * Bereinigt Caches
+         * @return void
+         * @since FPCM 3.4-rc3
+         */
+        private function cleanupCaches() {
+
+            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+            $this->cache->cleanup(false, \fpcm\model\abstracts\dashcontainer::CACHE_M0DULE_DASHBOARD);
+
         }
     }

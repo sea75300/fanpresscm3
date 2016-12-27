@@ -31,7 +31,7 @@
         /**
          * Konstruktor
          * @param string $viewName View-Name, ohne Endung .php
-         * @param string $viewPath View-Pfad unterhalb von core/views/installer/
+         * @param string $langCode Sprach-Code
          */
         public function __construct($viewName, $langCode) {
 
