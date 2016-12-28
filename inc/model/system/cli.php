@@ -343,26 +343,34 @@
                         $res = class_exists($moduleClass);
 
                         $moduleClassPath = \fpcm\classes\baseconfig::$moduleDir.$keyData[0].'/'.str_replace(array('\\', '/'), '', $keyData[0]).'.php';
+
                         if (!file_exists($moduleClassPath)) {
                             $this->output('Module class '.$moduleClass.' not found in "'.$moduleClassPath.'"!', true);
                         }
 
                         $modObj = new $moduleClass($pkg->getKey(), '', $module->getVersionRemote());                        
+                        $moduleItem = new \fpcm\model\modules\listitem($module->getKey(), '-', '', $module->getVersionRemote());
+
                         if (!is_a($modObj, '\fpcm\model\abstracts\module'))  {
                             $this->output('Module class '.$moduleClass.' must be an instance of "\fpcm\model\abstracts\module"!', true);
                         }
+
+                        $this->cache->cleanup(false, \fpcm\model\abstracts\module::FPCM_MODULES_CACHEFOLDER);
 
                         if ($this->funcParams[0] === self::FPCMCLI_PARAM_INSTALL) {
                             if ($module->isInstalled()) {
                                 $this->output('The selected module is already installed. Exiting...', true);
                             }                            
                             $res = $modObj->runInstall();
+                            $moduleItem->save();
                         }
                         elseif ($this->funcParams[0] === self::FPCMCLI_PARAM_UPGRADE) {
                             if (!$module->isInstalled()) {
                                 $this->output('The selected module is not installed. Exiting...', true);
                             }
+
                             $res = $modObj->runUpdate();
+                            $moduleItem->update();
                         }
 
                     }
@@ -373,6 +381,7 @@
 
                     $this->output('Perform cleanup...');
                     $success = $pkg->cleanup();
+                    $this->cache->cleanup();
 
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
                         $this->output('System update successfull. New version: '.$this->config->system_version);

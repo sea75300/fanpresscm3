@@ -18,6 +18,12 @@
     abstract class module implements \fpcm\model\interfaces\module {
 
         /**
+         * Cache-Modul für Module
+         * @since FPCM 3.4
+         */
+        const FPCM_MODULES_CACHEFOLDER = 'modules';
+        
+        /**
          * Datenbank-Objekt
          * @var \fpcm\classes\database
          */
@@ -409,7 +415,7 @@
          * Inittiert Objekt mit Daten aus der Datenbank, sofern ID vergeben wurde
          */
         protected function init() {
-            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "modkey ".$this->dbcon->dbLike()." ?", array($this->modkey)));
+            $data = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'modkey = ?', array($this->modkey)));
             if (!$data) {
                 return false;
             }
