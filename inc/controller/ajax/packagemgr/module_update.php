@@ -69,7 +69,9 @@
         public function process() {
 
             if (!parent::process()) return false;
-            
+
+            $this->cache->cleanup(false, \fpcm\model\abstracts\module::FPCM_MODULES_CACHEFOLDER);
+
             if ($this->canConnect) {
                 $keyData = \fpcm\model\packages\package::explodeModuleFileName($this->key);
                 $pkg = new \fpcm\model\packages\module('module', $keyData[0], $keyData[1]);
