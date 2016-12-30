@@ -99,6 +99,11 @@
          * @return array
          */
         public function getCategoriesCurrentUser() {
+
+            if (!is_object(\fpcm\classes\baseconfig::$fpcmSession) || !\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                return array();
+            }
+
             $groupId = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll();
 
             return $this->getCategoriesByGroup($groupId);
