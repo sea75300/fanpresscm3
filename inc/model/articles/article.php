@@ -786,11 +786,12 @@
         
         /**
          * Erzeugt einen Tweet bei Twitter, wenn Verbindung aktiv und Events ausgewählt
+         * @param bool $force
          * @return boolean
          */
-        public function createTweet() {
+        public function createTweet($force = false) {
 
-            if (!\fpcm\classes\baseconfig::canConnect() || (!$this->config->twitter_events['create'] && !$this->config->twitter_events['update'])) {
+            if (!\fpcm\classes\baseconfig::canConnect() || (!$this->config->twitter_events['create'] && !$this->config->twitter_events['update'] && !$force)) {
                 return false;
             }
 

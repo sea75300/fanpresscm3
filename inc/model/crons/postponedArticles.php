@@ -27,9 +27,34 @@
             if (!count($articleIds)) {
                 return true;
             }
-            
-            $articlesList->publishPostponedArticles($articleIds);
-            
+
+            if (!$articlesList->publishPostponedArticles($articleIds)) {
+                return false;
+            }
+
+            $params = array('ids' => $articleIds);
+            $articles = $articlesList->getArticlesByCondition($params, false);
+
+            $failed = array();
+            foreach ($articles as $article) {
+
+                /**
+                 * @var \fpcm\model\articles\article $article
+                 */
+                if ($article->createTweet(true)) {
+                    continue;
+                }
+
+                $failed[] = $article->getId();
+                sleep(1);
+
+            }
+
+            if (!count($failed)) {
+                return true;
+            }
+
+            trigger_error('Failed to create tweets for postponed articles. Affected article ids: '.PHP_EOL. implode(', ', $failed));
             return true;            
         }
         
