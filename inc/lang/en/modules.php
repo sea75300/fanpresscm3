@@ -26,7 +26,9 @@
         'MODULES_LIST_UPLOAD'           => 'Upload Module Package',
         'MODULES_LIST_RELOADPKGLIST'    => 'Update package list',
         'MODULES_LIST_EXTERNALLIST'     => 'Open external module list',
-        'MODULES_LIST_BACKTOLIST'       => 'Back to module list'
+        'MODULES_LIST_BACKTOLIST'       => 'Back to module list',
+        'MODULES_LIST_INSTALLING'       => 'Processing setup for {{modulekey}}',
+        'MODULES_LIST_UPDATING'         => 'Processing update for {{modulekey}}'
     );
 
 ?>

@@ -88,6 +88,7 @@
             $params['fpcmUpdaterMessages']['4_0']     = $this->lang->translate('MODULES_FAILED_UPDATE');
             $this->view->addJsVars($params);                        
 
+            $this->view->addJsLangVars(array('statusinfo' => $this->lang->translate('MODULES_LIST_UPDATING')));
             $this->view->render();
             
             $tempFile->delete();

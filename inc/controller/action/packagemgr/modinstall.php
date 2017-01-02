@@ -98,6 +98,8 @@
             $params['fpcmUpdaterMessages']['EXIT_1']  = $this->lang->translate('MODULES_SUCCESS_INSTALL');
             $params['fpcmUpdaterMessages']['4_0']     = $this->lang->translate('MODULES_FAILED_INSTALL');
             $this->view->addJsVars($params);
+
+            $this->view->addJsLangVars(array('statusinfo' => $this->lang->translate('MODULES_LIST_INSTALLING')));
             
             $this->view->render();
             

@@ -512,7 +512,7 @@
          * @return string
          */
         public function getArticleNicePath() {
-            return rawurlencode($this->id.'-'.strtolower($this->title));
+            return rawurlencode($this->id.'-'.str_replace(array(' ', '---'), '-', strtolower($this->title)));
         }
 
         /**
