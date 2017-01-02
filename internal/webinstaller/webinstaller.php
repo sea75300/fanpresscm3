@@ -23,8 +23,8 @@ class fpcmWebInstaller {
             $this->template();
         }
 
-        if (version_compare(phpversion(), '5.4.0', '<')) {
-            $this->texts[] = 'FanPress CM 3.x requires PHP version 5.4.0 or higher.';
+        if (version_compare(phpversion(), '5.5.3', '<')) {
+            $this->texts[] = 'FanPress CM 3.x requires PHP version 5.5.3 or higher.';
             $this->template();
         }
 

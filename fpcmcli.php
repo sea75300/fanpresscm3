@@ -25,8 +25,8 @@ class fpcmCLI {
             $this->output('FanPress CM 3 cli must be run from console!', true);
         }
 
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->output('FanPress CM 3 requires PHP 5.4.0 or better!', true);
+        if (version_compare(PHP_VERSION, FPCM_PHP_REQUIRED, '<')) {
+            $this->output('FanPress CM 3 requires PHP '.FPCM_PHP_REQUIRED.' or better!', true);
         }
 
     }

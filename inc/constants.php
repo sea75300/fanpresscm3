@@ -10,6 +10,13 @@
         include_once dirname(__DIR__).'/data/config/constants.custom.php';
     }
 
+    /**
+     * Mindest-PHP-Version
+     * @since FPCM 3.5
+     * @ignore
+     */
+    define ('FPCM_PHP_REQUIRED', '5.5.3');
+
     if (!defined('FPCM_DEBUG')) {
         /**
          * Debug-Modus aktivieren
@@ -36,14 +43,6 @@
          * aktiven Installer ignorieren
          */
         define ('FPCM_IGNORE_INSTALLER_DISABLED', false);
-    }
-
-    if (!defined('FPCM_CONTROLLER_SYSUPDATES')) {
-        /**
-         * System-Update-Controller-Action
-         * @deprecated since FPCM 3.3
-         */
-        define ('FPCM_CONTROLLER_SYSUPDATES', 'package/sysupdate');
     }
     
     if (!defined('FPCM_LANGCACHE_TIMEOUT')) {

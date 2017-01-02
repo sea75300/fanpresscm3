@@ -29,8 +29,8 @@
          */
         public function __construct() {
 
-            if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-                die('FanPress CM requires at least PHP 5.4.0 or better! :(');
+            if (version_compare(PHP_VERSION, FPCM_PHP_REQUIRED, '<')) {
+                die('FanPress CM requires at least PHP '.FPCM_PHP_REQUIRED.' or better!');
             }
 
             \fpcm\classes\http::init();

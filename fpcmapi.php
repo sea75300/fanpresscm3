@@ -38,7 +38,7 @@
          */
         public function __construct() {
 
-            if (version_compare(PHP_VERSION, '5.4.0', '<') || !\fpcm\classes\baseconfig::dbConfigExists() || \fpcm\classes\baseconfig::installerEnabled()) {
+            if (version_compare(PHP_VERSION, FPCM_PHP_REQUIRED, '<') || !\fpcm\classes\baseconfig::dbConfigExists() || \fpcm\classes\baseconfig::installerEnabled()) {
                 $this->versionFailed = true;
                 return;
             }            

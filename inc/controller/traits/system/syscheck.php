@@ -24,12 +24,11 @@
             $checkOptions     = array();
             
             $loadedExtensions = array_map('strtolower', get_loaded_extensions());            
-            
-            $phpVer = '5.4.0';
+
             $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_PHPVERSION')]    = array(
                 'current'   => phpversion(),
-                'recommend' => $phpVer,
-                'result'    => version_compare(phpversion(), $phpVer, '>='),
+                'recommend' => FPCM_PHP_REQUIRED,
+                'result'    => version_compare(phpversion(), FPCM_PHP_REQUIRED, '>='),
                 'helplink'  => 'http://php.net/',
                 'optional'  => 0
             );
