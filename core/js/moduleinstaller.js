@@ -42,8 +42,12 @@ var fpcmModuleInstaller = function () {
     };
     
     this.runInstall = function (key, moduleIndex, type) {
-        self.moduleListClass = 'fpcm-updater-list-'+ moduleIndex;
+
+        self.moduleListClass     = 'fpcm-updater-list-'+ moduleIndex;
+        self.moduleListSpinenrId = self.moduleListClass + '-spinner';
+        
         fpcmJs.appendHtml('.fpcm-updater-list', '<div class="' + self.moduleListClass + ' fpcm-ui-modules-installerbox"></div>');
+
         self.moduleListClass = '.' + self.moduleListClass;
 
         self.key = key;
@@ -64,6 +68,7 @@ var fpcmModuleInstaller = function () {
         var msgText = fpcmUpdaterMessages[idx + '_START'];
 
         if (idx == 1) {
+            fpcmJs.appendHtml(self.moduleListClass, '<p><span id="' + self.moduleListSpinenrId + '" class="fa fa-spinner fa-spin fa-fw fa-lg"></span><strong>' + fpcm.ui.translate('statusinfo').replace('{{modulekey}}', self.key.split('_version')[0]) + '</strong></p>');
             msgText = msgText.replace('{{pkglink}}', fpcmModuleUrl.replace('{{pkgkey}}', self.key));
         }
 
@@ -95,7 +100,8 @@ var fpcmModuleInstaller = function () {
 
         if (self.responseData.code && self.responseData.data.current == fpcmUpdaterMaxStep) {
             fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages['EXIT_1'] + '</p>');
-            
+            jQuery('#' + self.moduleListSpinenrId).removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-check');
+
             if (self.moduleKeyCount > self.idx) {
                 self.idx++;
                 self.progressbar(self.idx);           

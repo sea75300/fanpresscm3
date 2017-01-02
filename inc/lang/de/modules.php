@@ -26,7 +26,9 @@
         'MODULES_LIST_UPLOAD'           => 'Modul-Paketdatei hochladen',
         'MODULES_LIST_RELOADPKGLIST'    => 'Paketliste aktualisieren',
         'MODULES_LIST_EXTERNALLIST'     => 'externe Module-Liste öffnen',
-        'MODULES_LIST_BACKTOLIST'       => 'zurück zur Modul-Liste'
+        'MODULES_LIST_BACKTOLIST'       => 'zurück zur Modul-Liste',
+        'MODULES_LIST_INSTALLING'       => 'Installiere Modul {{modulekey}}',
+        'MODULES_LIST_UPDATING'         => 'Aktualisiere Modul {{modulekey}}'
     );
 
 ?>
