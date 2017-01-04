@@ -252,6 +252,10 @@
             if ($this->checkVersion('3.4.0-b6', '=')) {
                 $this->dbcon->alter(\fpcm\classes\database::tableFiles, 'DROP', 'subfolder', '', false);
             }
+            
+            if ($this->checkVersion('3.5.0')) {
+                $this->dbcon->update(\fpcm\classes\database::tableTexts, array('replacetxt'), array(1), 'replacetxt = 0');
+            }
 
             return $res;
         }

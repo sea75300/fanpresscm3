@@ -68,14 +68,15 @@
         /**
          * Ersetzt gefundene Wörter/ Zeichenketten durch Ersetzungstext
          * @param string $text
+         * @return string
          */
         public function replaceItems($text) {
             
-            $itemsCache = new \fpcm\classes\cache('wordbanItems');
+            $itemsCache = new \fpcm\classes\cache('wordbanItemsReplace');
             $data = array('search' => array(), 'replace' => array());
 
             if ($itemsCache->isExpired() || !is_array($itemsCache->read())) {
-                $items = $this->dbcon->fetch($this->dbcon->select($this->table), true);
+                $items = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'replacetxt = 1'), true);
 
                 if (!is_array($items) || !count($items)) {
                     return $text;
@@ -94,6 +95,72 @@
             }
 
             return str_replace($data['search'], $data['replace'], $text);
+
+        }
+
+        /**
+         * Prüft, ob Suchtext in $text angegeben ist um Artikel auf zu Prüfung zu setzen
+         * @param string $text
+         * @return bool
+         * @since FPCM 3.5
+         */
+        public function checkArticleApproval($text) {
+            
+            $itemsCache = new \fpcm\classes\cache('wordbanItemsArticleApproval');
+            $data = array();
+
+            if ($itemsCache->isExpired() || !is_array($itemsCache->read())) {
+                $items = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'lockarticle = 1'), true);
+
+                if (!is_array($items) || !count($items)) {
+                    return $text;
+                }
+
+                foreach ($items as $value) {
+                    $data[] = $value->searchtext;
+                }
+                
+                $data = implode('|', $data);
+                $itemsCache->write($data);
+                
+            } else {
+                $data = $itemsCache->read();
+            }
+
+            return preg_match_all('/('.$data.')/is', $text);
+
+        }
+
+        /**
+         * Prüft, ob Suchtext in $text angegeben ist um Kommentar auf zu Prüfung zu setzen
+         * @param string $text
+         * @return bool
+         * @since FPCM 3.5
+         */
+        public function checkCommentApproval($text) {
+            
+            $itemsCache = new \fpcm\classes\cache('wordbanItemsCommentApproval');
+            $data = array();
+
+            if ($itemsCache->isExpired() || !is_array($itemsCache->read())) {
+                $items = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'commentapproval = 1'), true);
+
+                if (!is_array($items) || !count($items)) {
+                    return $text;
+                }
+
+                foreach ($items as $value) {
+                    $data[] = $value->searchtext;
+                }
+
+                $data = implode('|', $data);
+                $itemsCache->write($data);
+                
+            } else {
+                $data = $itemsCache->read();
+            }
+
+            return preg_match_all('/('.$data.')/is', $text);
 
         }
 

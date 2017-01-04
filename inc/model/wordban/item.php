@@ -32,6 +32,27 @@
         protected $replacementtext;
         
         /**
+         * Text ersetzen
+         * @var bool
+         * @since FPCM 3.5
+         */
+        protected $replacetxt;
+        
+        /**
+         * Artikel muss freigeschalten werden
+         * @var bool
+         * @since FPCM 3.5
+         */
+        protected $lockarticle;
+        
+        /**
+         * Kommentar muss freigegeben werden
+         * @var bool
+         * @since FPCM 3.5
+         */
+        protected $commentapproval;
+        
+        /**
          * Action-String für edit-Action
          * @var string
          */        
@@ -65,8 +86,36 @@
         }
 
         /**
+         * Status das Text ersetzt wird
+         * @return bool
+         * @since FPCM 3.5
+         */
+        function getReplaceTxt() {
+            return $this->replacetxt;
+        }
+
+        /**
+         * Status ob Artikel überprüft werden muss
+         * @return bool
+         * @since FPCM 3.5
+         */
+        function getLockArticle() {
+            return $this->lockarticle;
+        }
+
+        /**
+         * Status ob Kommentar freigegeben werden muss
+         * @return bool
+         * @since FPCM 3.5
+         */
+        function getCommentApproval() {
+            return $this->commentapproval;
+        }
+
+        /**
          * gesuchter Text setzten
          * @param string $searchtext
+         * @since FPCM 3.5
          */
         public function setSearchtext($searchtext) {
             $this->searchtext = $searchtext;
@@ -75,11 +124,39 @@
         /**
          * Text für Ersetzung setzten
          * @param string $replacementtext
+         * @since FPCM 3.5
          */
         public function setReplacementtext($replacementtext) {
             $this->replacementtext = $replacementtext;
         }
 
+        /**
+         * Status das Text ersetzt wird setzen
+         * @param bool $replacetxt
+         * @since FPCM 3.5
+         */
+        function setReplaceTxt($replacetxt) {
+            $this->replacetxt = (int) $replacetxt;
+        }
+
+        /**
+         * Status ob Artikel überprüft werden muss setzen
+         * @param bool $lockarticle
+         * @since FPCM 3.5
+         */
+        function setLockArticle($lockarticle) {
+            $this->lockarticle = (int) $lockarticle;
+        }
+
+        /**
+         * Status ob Kommentar freigegeben werden muss setzen
+         * @param bool $commentapproval
+         * @since FPCM 3.5
+         */
+        function setCommentApproval($commentapproval) {
+            $this->commentapproval = (int) $commentapproval;
+        }
+        
         /**
          * Speichert Wortsperre
          * @return bool

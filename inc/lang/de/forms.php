@@ -49,6 +49,7 @@
         'GLOBAL_PREVIEW'                => 'Vorschau anzeigen',
         'GLOBAL_WRITEMAIL'              => 'E-Mail verfassen',
         'GLOBAL_CONFIRM'                => 'Bitte bestätigen',
+        'GLOBAL_ACTION_PERFORM'         => 'Auszuführende Aktion',
 
         'LOGIN_BTN'                     => 'Anmelden',
         'LOGIN_NEWPASSWORD'             => 'Neues Passwort anfordern',
@@ -158,6 +159,9 @@
         'WORDBAN_EDIT'                  => 'Begriff bearbeiten',
         'WORDBAN_NAME'                  => 'Begriff',
         'WORDBAN_ICON_PATH'             => 'Ersetzung',
+        'WORDBAN_REPLACETEXT'           => 'Text ersetzen',
+        'WORDBAN_APPROVE_ARTICLE'       => 'Artikel muss überprüft werden',
+        'WORDBAN_APPROVA_COMMENT'       => 'Kommentar muss freigeschalten werden',
         
         'PACKAGES_UPDATE'                 => 'Aktualisierung starten',
         'PACKAGES_UPDATE_CURRENT_VERSION' => 'Aktuelle Version',

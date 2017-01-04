@@ -43,6 +43,9 @@
                 
                 $this->item->setSearchtext($data['searchtext']);
                 $this->item->setReplacementtext($data['replacementtext']);
+                $this->item->setReplaceTxt(isset($data['replacetxt']) ? $data['replacetxt'] : 0);
+                $this->item->setLockArticle(isset($data['lockarticle']) ? $data['lockarticle'] : 0);
+                $this->item->setCommentApproval(isset($data['commentapproval']) ? $data['commentapproval'] : 0);
 
                 $res = $this->item->update();
 

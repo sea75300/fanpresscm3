@@ -882,7 +882,12 @@
             $this->title     = $this->wordbanList->replaceItems($this->title);
             $this->content   = $this->wordbanList->replaceItems($this->content);
             $this->imagepath = $this->wordbanList->replaceItems($this->imagepath);
-            
+
+            if ($this->wordbanList->checkArticleApproval($this->title) ||
+                $this->wordbanList->checkArticleApproval($this->content)) {
+                $this->setApproval(1);
+            }
+
             return true;
         }
 

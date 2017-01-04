@@ -761,7 +761,7 @@
                 }
 
                 $type   = $typeMap[$attr['type']];
-                if (in_array($attr['type'], $lenghtTypes)) {
+                if ($attr['length'] && in_array($attr['type'], $lenghtTypes)) {
                     $length = (int) $attr['length'];
                     $type .= "({$length})";
                 }

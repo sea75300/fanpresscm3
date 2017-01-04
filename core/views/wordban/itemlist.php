@@ -15,6 +15,7 @@
                         <th class="fpcm-ui-editbutton-col"></th>
                         <th><?php $FPCM_LANG->write('WORDBAN_NAME'); ?></th>
                         <th><?php $FPCM_LANG->write('WORDBAN_ICON_PATH'); ?></th>
+                        <th class="fpcm-td-articlelist-meta"></th>
                         <th class="fpcm-td-select-row"></th>         
                     </tr>
                     <?php \fpcm\model\view\helper::notFoundContainer($itemList, 4); ?>
@@ -26,6 +27,24 @@
                         <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($item->getEditLink()); ?></td>
                         <td><strong><?php print \fpcm\model\view\helper::escapeVal($item->getSearchtext()); ?></strong></td>
                         <td><?php print \fpcm\model\view\helper::escapeVal($item->getReplacementtext()); ?></td>
+                        <td class="fpcm-td-articlelist-meta">
+                            <div class="fpcm-ui-editor-metabox-right">
+                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $item->getReplaceTxt(); ?>" title="<?php $FPCM_LANG->write('WORDBAN_REPLACETEXT'); ?>">
+                                    <span class="fa fa-square fa-stack-2x"></span>
+                                    <span class="fa fa-search fa-stack-1x fa-inverse"></span>
+                                </span>
+
+                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $item->getLockArticle(); ?>" title="<?php $FPCM_LANG->write('WORDBAN_APPROVE_ARTICLE'); ?>">
+                                    <span class="fa fa-square fa-stack-2x"></span>
+                                    <span class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></span>
+                                </span>
+
+                                <span class="fa-stack fa-fw fpcm-ui-editor-metainfo fpcm-ui-status-<?php print $item->getCommentApproval(); ?>" title="<?php $FPCM_LANG->write('WORDBAN_APPROVA_COMMENT'); ?>">
+                                    <span class="fa fa-square fa-stack-2x"></span>
+                                    <span class="fa fa-check-circle-o fa-stack-1x fa-inverse"></span>
+                                </span>
+                            </div>
+                        </td>
                         <td class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('ids[]', 'fpcm-list-selectbox', $item->getId(), '', '', false); ?></td>
                     </tr>      
                     <?php endforeach; ?>

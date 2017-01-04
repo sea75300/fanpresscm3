@@ -20,4 +20,16 @@ cols:
         type: varchar
         length: 255
         params: NOT NULL
+    replacetxt:
+        type: bool
+        length: 
+        params: NOT NULL
+    lockarticle:
+        type: bool
+        length: 
+        params: NOT NULL
+    commentapproval:
+        type: bool
+        length: 
+        params: NOT NULL
 indices:     

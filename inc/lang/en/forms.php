@@ -49,6 +49,7 @@
         'GLOBAL_PREVIEW'                => 'Show preview',
         'GLOBAL_WRITEMAIL'              => 'Write an e-mail',
         'GLOBAL_CONFIRM'                => 'Please confirm',
+        'GLOBAL_ACTION_PERFORM'         => 'Action to perform',
 
         'LOGIN_BTN'                     => 'Login',
         'LOGIN_NEWPASSWORD'             => 'Request new password',
@@ -158,6 +159,9 @@
         'WORDBAN_EDIT'                  => 'Edit censored text',
         'WORDBAN_NAME'                  => 'Text',
         'WORDBAN_ICON_PATH'             => 'Replacement',
+        'WORDBAN_REPLACETEXT'           => 'Replace text',
+        'WORDBAN_APPROVE_ARTICLE'       => 'Approval of article required',
+        'WORDBAN_APPROVA_COMMENT'       => 'Approval of comment required',
         
         'PACKAGES_UPDATE'                 => 'Start update',
         'PACKAGES_UPDATE_CURRENT_VERSION' => 'Current version',
