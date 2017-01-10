@@ -406,17 +406,17 @@
          */
         private function removeBannedTexts() {
 
-            $this->name  = $this->wordbanList->replaceItems($this->name);
-            $this->email  = $this->wordbanList->replaceItems($this->email);
-            $this->website  = $this->wordbanList->replaceItems($this->website);
-            $this->text  = $this->wordbanList->replaceItems($this->text);
-
             if ($this->wordbanList->checkCommentApproval($this->name) ||
                 $this->wordbanList->checkCommentApproval($this->email) ||
                 $this->wordbanList->checkCommentApproval($this->website) ||
                 $this->wordbanList->checkCommentApproval($this->text)) {
                 $this->setApproved(0);
             }
+
+            $this->name  = $this->wordbanList->replaceItems($this->name);
+            $this->email  = $this->wordbanList->replaceItems($this->email);
+            $this->website  = $this->wordbanList->replaceItems($this->website);
+            $this->text  = $this->wordbanList->replaceItems($this->text);
             
             return true;
         }
