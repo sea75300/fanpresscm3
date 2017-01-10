@@ -113,7 +113,7 @@
                 $items = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'lockarticle = 1'), true);
 
                 if (!is_array($items) || !count($items)) {
-                    return $text;
+                    return false;
                 }
 
                 foreach ($items as $value) {
@@ -127,8 +127,11 @@
                 $data = $itemsCache->read();
             }
 
-            return preg_match_all('/('.$data.')/is', $text);
+            if (!trim($data)) {
+                return false;
+            }
 
+            return preg_match_all('/('.$data.')/is', $text);
         }
 
         /**
@@ -146,7 +149,7 @@
                 $items = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'commentapproval = 1'), true);
 
                 if (!is_array($items) || !count($items)) {
-                    return $text;
+                    return false;
                 }
 
                 foreach ($items as $value) {
@@ -158,6 +161,10 @@
                 
             } else {
                 $data = $itemsCache->read();
+            }
+
+            if (!trim($data)) {
+                return false;
             }
 
             return preg_match_all('/('.$data.')/is', $text);

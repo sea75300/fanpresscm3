@@ -12,7 +12,7 @@ class articlesTest extends testBase {
     public function testGetArticlesDraft() {
         
         $this->createArticle();
-        
+
         $data = $this->object->getArticlesDraft();
         
         $count = count($data);        
@@ -30,8 +30,10 @@ class articlesTest extends testBase {
         $this->assertEquals(0, $object->getDeleted());
         $this->assertEquals(1, $object->getDraft());
 
+        $GLOBALS['articleObj']->setApproval(0);
         $GLOBALS['articleObj']->setDraft(0);
         $this->assertTrue($GLOBALS['articleObj']->update());
+
     }
 
     public function testGetArticlesPostponed() {
@@ -49,6 +51,11 @@ class articlesTest extends testBase {
         $this->assertEquals(0, $object->getDeleted());
         $this->assertEquals(0, $object->getDraft());
         $this->assertEquals(0, $object->getApproval());
+
+        $GLOBALS['articleObj']->setPostponed(0);
+        $this->assertTrue($GLOBALS['articleObj']->update());
+        
+        usleep(1000);
 
     }
 
@@ -85,11 +92,12 @@ class articlesTest extends testBase {
     public function testGetArticlesByCondition() {
         
         $cond = [
-            'user'    => 1,
-            'deleted' => 0,
-            'limit'   => [1,0]
+            'user'     => 1,
+            'deleted'  => 0,
+            'limit'    => [1,0],
+            'orderby'  => ['id DESC']
         ];
-        
+
         $data = $this->object->getArticlesByCondition($cond);
 
         $this->assertTrue(is_array($data));
@@ -183,7 +191,7 @@ class articlesTest extends testBase {
 
         $GLOBALS['article_title']   = 'FPCM UnitTest Article '.microtime(true);
         $GLOBALS['article_content'] =  'FPCM UnitTest Article from https://nobody-knows.org!';
-        $GLOBALS['article_created'] = time() - 10;
+        $GLOBALS['article_created'] = time() - 600;
         
         $GLOBALS['articleObj']->setTitle($GLOBALS['article_title']);
         $GLOBALS['articleObj']->setContent($GLOBALS['article_content']);
@@ -192,7 +200,7 @@ class articlesTest extends testBase {
         $GLOBALS['articleObj']->setPinned(1);
         $GLOBALS['articleObj']->setComments(1);
         $GLOBALS['articleObj']->setSources('https://nobody-knows.org');
-        $GLOBALS['articleObj']->setCategories(array(1));
+        $GLOBALS['articleObj']->setCategories([1]);
         $GLOBALS['articleObj']->setDraft(1);
         $GLOBALS['articleObj']->setPostponed(1);
 

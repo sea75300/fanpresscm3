@@ -171,6 +171,8 @@
                 $return = true;
             }
 
+            $this->id = $this->dbcon->getLastInsertId();
+
             $this->cache->cleanup();
             
             return $return;     

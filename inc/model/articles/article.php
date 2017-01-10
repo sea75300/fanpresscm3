@@ -587,7 +587,7 @@
             }
             
             $this->events->runEvent('articleSaveAfter', $this->id);
-            
+
             return $this->id;
         }
 
@@ -867,7 +867,7 @@
         private function replaceDirtyTags($htmlTag) {
             $search = array("<{$htmlTag}><br>", "<{$htmlTag}><br/>", "<{$htmlTag}><br />");
             $this->content = str_replace($search, "<{$htmlTag}>", $this->content);
-            
+
             $search = array("</{$htmlTag}><br>", "</{$htmlTag}><br/>", "</{$htmlTag}><br />");
             $this->content = str_replace($search, "</{$htmlTag}>", $this->content);
         }
@@ -879,14 +879,14 @@
          */
         private function removeBannedTexts() {
 
-            $this->title     = $this->wordbanList->replaceItems($this->title);
-            $this->content   = $this->wordbanList->replaceItems($this->content);
-            $this->imagepath = $this->wordbanList->replaceItems($this->imagepath);
-
             if ($this->wordbanList->checkArticleApproval($this->title) ||
                 $this->wordbanList->checkArticleApproval($this->content)) {
                 $this->setApproval(1);
             }
+
+            $this->title     = $this->wordbanList->replaceItems($this->title);
+            $this->content   = $this->wordbanList->replaceItems($this->content);
+            $this->imagepath = $this->wordbanList->replaceItems($this->imagepath);
 
             return true;
         }
