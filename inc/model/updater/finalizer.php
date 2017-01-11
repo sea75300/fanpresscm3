@@ -289,9 +289,18 @@
          */
         private function checkFilesystem() {
 
-            if (file_exists(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php')) {
-                unlink(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php');
+            $files = [
+                \fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php',
+                \fpcm\classes\baseconfig::$viewsDir.'articles/lists/cronjobs.php',
+            ];
+
+            foreach ($files as $file) {
+
+                if (!file_exists($file)) continue;
+                unlink($file);
+
             }
+            
             
             return true;
         }

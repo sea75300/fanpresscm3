@@ -178,7 +178,8 @@
          * @return array
          */
         private function editorSubmenu() {
-            return array(
+
+            $menu = array(
                 array(
                     'url'               => 'articles/listall',
                     'permission'        => array('article' => 'edit', 'article' => 'editall'),
@@ -204,6 +205,19 @@
                     'icon'              => 'fa fa-book fa-fw'
                 )                
             );
+            
+            if ($this->config->articles_trash) {
+                $menu[] = array(
+                    'url'               => 'articles/trash',
+                    'permission'        => array('article' => 'delete'),
+                    'description'       => $this->language->translate('ARTICLES_TRASH'),
+                    'class'             => '',
+                    'id'                => '',
+                    'icon'              => 'fa fa-trash-o fa-fw'
+                );
+            }
+            
+            return $menu;
         }
 
         /**

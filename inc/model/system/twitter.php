@@ -109,17 +109,26 @@
             $responseData = json_decode($this->oAuth->response['response'], true);
 
             if (isset($responseData['errors'])) {
+                
+                $i = 0;
+                
                 foreach ($responseData['errors'] as $value) {
+
+                    if ($value['code'] == 187) {
+                        continue;
+                    }
+
+                    $i++;
                     trigger_error("Twitter error code {$value['code']} return. Message was: {$value['message']}");                    
                 }
-                
-                return false;
+
+                return $i ? false : true;
             }
-            
+
             if (isset($responseData['screen_name'])) {
                 $this->username = $responseData['screen_name'];
             }
-            
+
             return true;
         }
         

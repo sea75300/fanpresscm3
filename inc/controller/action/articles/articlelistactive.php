@@ -9,6 +9,12 @@
     
     class articlelistactive extends articlelistbase {
 
+        /**
+         *
+         * @var bool
+         */
+        protected $showDraftStatus = false;
+
         public function __construct() {
             parent::__construct();
             
@@ -16,11 +22,19 @@
         }
         
         public function request() {
-            $this->articleCount = $this->articleList->getArticlesActive(false, array(), true);
             
-            parent::request();
+            $conditions = array(
+                'draft'    => 0,
+                'archived' => 0,
+                'archived' => 0,
+                'limit'    => array($this->listShowLimit, $this->listShowStart)
+            );
             
-            $this->articleItems = $this->articleList->getArticlesActive(true, array($this->listShowLimit, $this->listShowStart));
+            $this->articleCount = $this->articleList->countArticlesByCondition($conditions);
+            
+            parent::request();            
+
+            $this->articleItems = $this->articleList->getArticlesByCondition($conditions, true);
             
             return true;
         }

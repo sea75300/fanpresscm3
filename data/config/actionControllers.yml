@@ -33,6 +33,7 @@ articles/edit: action/articles/articleedit
 articles/listall: action/articles/articlelistall
 articles/listactive: action/articles/articlelistactive
 articles/listarchive: action/articles/articlelistarchive
+articles/trash: action/articles/articlelisttrash
 comments/edit: action/comments/commentedit
 comments/list: action/comments/commentlist
 package/sysupdate: action/packagemgr/sysupdate

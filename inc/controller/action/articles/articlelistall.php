@@ -16,11 +16,16 @@
         }
         
         public function request() {
-            $this->articleCount = $this->articleList->getArticlesAll(false, array(), true);
+
+            $this->articleCount = $this->articleList->countArticlesByCondition();
             
             parent::request();            
             
-            $this->articleItems = $this->articleList->getArticlesAll(true, array($this->listShowLimit, $this->listShowStart));
+            $conditions = array(
+                'draft' => -1,
+                'limit' => array($this->listShowLimit, $this->listShowStart)
+            );
+            $this->articleItems = $this->articleList->getArticlesByCondition($conditions, true);
             
             return true;
         }

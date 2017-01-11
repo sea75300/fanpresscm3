@@ -776,11 +776,6 @@ table.fpcm-ui-table.fpcm-ui-iplist tr td.fpcm-td-iplist-meta {
     width: 150px;
 }
 
-table.fpcm-ui-table.fpcm-ui-article-revisions tr td.fpcm-ui-revision-time,
-table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-meta {
-    width: 175px;
-}
-
 .fpcm-ui-left    {
     text-align:left;
 }
@@ -1173,7 +1168,7 @@ table.fpcm-ui-articles .fpcm-ui-editor-metabox-left strong  {
 }
 
 table.fpcm-ui-articles .fpcm-ui-editor-metabox-right {
-    width:12em;
+    width:14em;
 }
 
 table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {

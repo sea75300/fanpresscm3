@@ -5,9 +5,9 @@
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all-trash', false); ?></th>
     </tr>
 
-    <?php \fpcm\model\view\helper::notFoundContainer($trash, 3); ?>
+    <?php \fpcm\model\view\helper::notFoundContainer($list, 3); ?>
 
-    <?php foreach($trash AS $articleMonth => $articles) : ?>
+    <?php foreach($list AS $articleMonth => $articles) : ?>
         <tr class="fpcm-td-spacer"><td></td></tr>
         <tr>
             <th></th>

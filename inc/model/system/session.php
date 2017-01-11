@@ -99,6 +99,7 @@
                     if ($this->lastaction <= time() - 60) {
                         $this->lastaction  = time();
                         $this->update();
+                        $this->updateCookie();
                     }
                 }               
             }
@@ -321,6 +322,15 @@
         public function setCookie() {       
             $expire = $this->getLogin() + $this->config->system_session_length;
             return setcookie(\fpcm\classes\security::getSessionCookieName(),$this->sessionid,$expire,'/','',false,true);
+        }
+        
+        /**
+         * Setzt Login-Cookie
+         * @return bool
+         */
+        public function updateCookie() {       
+            $expire = $this->getLastaction() + $this->config->system_session_length;
+            return setcookie(\fpcm\classes\security::getSessionCookieName(), $this->sessionid, $expire,'/','',false,true);
         }
                 
         /**

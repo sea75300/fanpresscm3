@@ -61,6 +61,12 @@
         
         /**
          *
+         * @var bool
+         */
+        protected $showDraftStatus = true;
+        
+        /**
+         *
          * @var int
          */
         protected $listShowLimit = 0;
@@ -98,8 +104,7 @@
                 $this->lang->translate('EDITOR_ARCHIVE')              => 'archive',
                 $this->lang->translate('ARTICLE_LIST_COMMENTS')       => 'comments',
                 $this->lang->translate('ARTICLE_LIST_NEWTWEET')       => 'newtweet',
-                $this->lang->translate('GLOBAL_DELETE')               => 'delete',
-                $this->lang->translate('ARTICLE_LIST_RESTOREARTICLE') => 'restore'
+                $this->lang->translate('GLOBAL_DELETE')               => 'delete'
             );
             
             $this->initPermissions();
@@ -115,30 +120,30 @@
                 $this->view->addErrorMessage('CSRF_INVALID');
                 return true;
             }
-            
-            if ($this->buttonClicked('clearTrash')) {
 
-                if (!$this->doTrash()) {
-                    $this->view->addErrorMessage('DELETE_FAILED_TRASH');                    
-                }
-                else {
-                    $this->view->addNoticeMessage('DELETE_SUCCESS_TRASH');
-                }
-
-                $this->initPagination();
-                return true;
-            }
-            
             if ($this->buttonClicked('doAction') && !is_null($this->getRequestVar('actions'))) {
                 
                 $actionData = $this->getRequestVar('actions');
 
+                if ($actionData['action'] === 'trash') {
+                    
+                    if (!$this->doTrash()) {
+                        $this->view->addErrorMessage('DELETE_FAILED_TRASH');                    
+                    }
+                    else {
+                        $this->view->addNoticeMessage('DELETE_SUCCESS_TRASH');
+                    }
+
+                    return true;
+                }
+
+                
                 if ((!isset($actionData['ids']) && $actionData['action'] != 'trash') || !$actionData['action']) {
                     $this->view->addErrorMessage('SELECT_ITEMS_MSG');
                     $this->initPagination();
                     return true;
                 }
-                
+
                 $ids = array_map('intval', $actionData['ids']);
                 
                 $action = in_array($actionData['action'], array_values($this->articleActions))
@@ -180,17 +185,12 @@
             $this->view->assign('users', array_flip($users));
             $this->view->assign('commentEnabledGlobal', $this->config->system_comments_enabled);
             $this->view->assign('showArchiveStatus', true);
-            $this->view->assign('showDraftStatus', false);
+            $this->view->assign('showDraftStatus', $this->showDraftStatus);
             $this->view->assign('articleActions', $this->articleActions);
-            $this->view->assign('showTrash', $this->config->articles_trash);
+            $this->view->assign('showTrash', false);
             $this->view->assign('deletePermissions', $this->deleteActions);
             
             $this->initSearchForm($users);
-            
-            if ($this->config->articles_trash) {
-                $this->view->assign('trash', $this->articleList->getArticlesDeleted(true));                
-            }
-            $this->view->assign('drafts', $this->articleList->getArticlesDraft(true));
 
             $commentCounts = $this->commentList->countComments($this->getArticleListIds());
 
@@ -203,7 +203,6 @@
             ));
             
             $this->translateCategories();
-            $this->view->assign('showDrafts', true);
             
             return true;
         }

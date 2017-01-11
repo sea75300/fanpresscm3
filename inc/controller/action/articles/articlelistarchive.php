@@ -9,6 +9,12 @@
     
     class articlelistarchive extends articlelistbase {
 
+        /**
+         *
+         * @var bool
+         */
+        protected $showDraftStatus = false;
+
         public function __construct() {
             parent::__construct();
             
@@ -44,7 +50,6 @@
                 'fpcmArticlSearchMinDate' => date('Y-m-d', $minMax['minDate'])
             ));
             $this->view->assign('permAdd', false);
-            $this->view->assign('showDrafts', false);
 
             $this->view->render();
         }
