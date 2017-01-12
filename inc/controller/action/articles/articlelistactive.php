@@ -24,8 +24,7 @@
         public function request() {
             
             $conditions = array(
-                'draft'    => 0,
-                'archived' => 0,
+                'draft'    => -1,
                 'archived' => 0,
                 'limit'    => array($this->listShowLimit, $this->listShowStart)
             );
