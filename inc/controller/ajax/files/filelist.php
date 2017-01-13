@@ -36,7 +36,7 @@
         public function __construct() {
             parent::__construct();
             
-            $this->checkPermission = array('article' => 'add', 'article' => 'edit', 'uploads' => 'add', 'uploads' => 'add');
+            $this->checkPermission = array('article' => 'add', 'article' => 'edit', 'uploads' => 'add');
             
             $this->view = new \fpcm\model\view\ajax('listinner', 'filemanager');
         }

@@ -71,6 +71,7 @@
         'SYSTEM_OPTIONS_NEWS_EDITOR_CLASSIC'        => 'HTML view',
         'SYSTEM_OPTIONS_NEWS_EDITOR_CSS'            => 'CSS classes in editor',
         'SYSTEM_OPTIONS_NEWS_EDITOR_FONTSIZE'       => 'Default editor font size',
+        'SYSTEM_OPTIONS_NEWS_EDITOR_IMGTOOLS'       => 'Save image changes in TinyMCE in file system',
         'SYSTEM_OPTIONS_NEWS_NEWUPLOADER'           => 'Use jQuery uploader',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT'          => 'Show articles in archiv from',
         'SYSTEM_OPTIONS_NEWS_ARCHIVELIMIT_EMPTY'    => 'keep empty for no limit',

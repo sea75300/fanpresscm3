@@ -46,6 +46,7 @@
      * @property int    $articles_archive_datelimit Datum, bis zu dem Artikel im Archiv maximal angezeigt werden sollen
      * @property int    $articles_revisions_limit Anzahl Revisionen, bei der alte Revisionen bereinigt werden
      * @property bool   $articles_link_urlrewrite URL-Rewriting aktivieren (ID + Artikel-Titel sind in Artikel-Link enthalten)
+     * @property bool   $articles_imageedit_persistence Änderungen an Bilder pber TinyMCE auf Server speichern
      * 
      * @property string $comments_template_active aktives Kommentar-Template
      * @property int    $comments_flood Sperre zwischen zwei Kommentaren

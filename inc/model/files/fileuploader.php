@@ -36,7 +36,7 @@
          * @return array
          */
         public function processUpload($userId) {
-            
+
             $this->uploader = $this->events->runEvent('fileUploadPhpBefore', $this->uploader);
             
             $tempNames = $this->uploader['tmp_name'];
