@@ -32,8 +32,10 @@
                     <br><?php include dirname(__DIR__).'/times.php'; ?>
                 </td>
                 <td><?php print implode(', ', $article->getCategories()); ?></td>
-                <td class="fpcm-ui-articlelist-comments <?php if (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId]) : ?>fpcm-ui-important-text<?php endif; ?>" <?php if (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId]) : ?>title="<?php $FPCM_LANG->write('ARTICLE_LIST_COMMENTNOTICE'); ?>"<?php endif; ?>>
+                <td class="fpcm-ui-articlelist-comments">
                     <?php print (isset($commentCount[$articleId])) ? $commentCount[$articleId] : 0; ?>
+                    <?php if (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId]) : ?>
+                    <span class="fa fa-comments-o fa-fw fa-lg fpcm-ui-important-text" title="<?php $FPCM_LANG->write('ARTICLE_LIST_COMMENTNOTICE'); ?>"></span><?php endif; ?>
                 </td>
                 <td class="fpcm-td-articlelist-meta"><?php include dirname(__DIR__).'/metainfo.php'; ?></td>
                 <td class="fpcm-td-select-row">

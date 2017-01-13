@@ -9,12 +9,6 @@
     
     class articlelistactive extends articlelistbase {
 
-        /**
-         *
-         * @var bool
-         */
-        protected $showDraftStatus = false;
-
         public function __construct() {
             parent::__construct();
             
@@ -22,19 +16,22 @@
         }
         
         public function request() {
-            
-            $conditions = array(
+
+            $conditions = [
                 'draft'    => -1,
-                'archived' => 0,
-                'limit'    => array($this->listShowLimit, $this->listShowStart)
-            );
+                'active'   => -1,
+                'archived' => -1,
+                'approval' => -1
+            ];
             
             $this->articleCount = $this->articleList->countArticlesByCondition($conditions);
-            
-            parent::request();            
 
-            $this->articleItems = $this->articleList->getArticlesByCondition($conditions, true);
-            
+            parent::request();
+
+            $conditions['archived'] = 0;
+            $conditions['limit']    = [$this->listShowLimit, $this->listShowStart];
+            $this->articleItems     = $this->articleList->getArticlesByCondition($conditions, true);
+
             return true;
         }
         
@@ -47,10 +44,10 @@
             $this->view->assign('showArchiveStatus', false);
 
             $minMax = $this->articleList->getMinMaxDate(0);
-            $this->view->addJsVars(array(
+            $this->view->addJsVars([
                 'fpcmArticleSearchMode'   => 0,
                 'fpcmArticlSearchMinDate' => date('Y-m-d', $minMax['minDate'])
-            ));
+            ]);
 
             $this->view->render();
         }

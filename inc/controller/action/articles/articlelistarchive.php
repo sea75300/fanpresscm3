@@ -27,12 +27,12 @@
         }
         
         public function request() {
-            $this->articleCount = $this->articleList->getArticlesArchived(false, array(), true);
+            $this->articleCount = $this->articleList->getArticlesArchived(false, [], true);
             
             parent::request();
 
-            $this->articleItems = $this->articleList->getArticlesArchived(true, array($this->listShowLimit, $this->listShowStart));
-            
+            $this->articleItems = $this->articleList->getArticlesArchived(true, [$this->listShowLimit, $this->listShowStart]);
+
             return true;
         }
         
@@ -41,7 +41,7 @@
 
             $this->view->assign('headlineVar', 'HL_ARTICLE_EDIT_ARCHIVE');
             $this->view->assign('listAction', 'articles/listarchive');            
-            $this->view->assign('list', $this->articleItems);
+//            $this->view->assign('list', $this->articleItems);
             $this->view->assign('showArchiveStatus', false);
             
             $minMax = $this->articleList->getMinMaxDate(1);

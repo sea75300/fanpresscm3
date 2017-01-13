@@ -63,7 +63,7 @@
          * @return array
          */        
         public function getArticlesActive($monthIndex = false, array $limits = array(), $countOnly = false) {
-            $where = 'draft = 0 AND archived = 0 AND deleted = 0';
+            $where = 'archived = 0 AND deleted = 0';
             
             if ($countOnly) return (int) $this->dbcon->count($this->table, 'id', $where);
             
@@ -252,7 +252,7 @@
             } elseif (!isset($conditions['approval'])) {
                 $where[] = "approval = 0";
             }
-            
+
             $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
 
             $eventData = $this->events->runEvent('articlesByCondition', array(
@@ -426,12 +426,24 @@
                 
                 $where .= '('.implode(' OR ', $valueParams).')';
             }
-            if (isset($condition['drafts'])) $where   .= ' AND draft = 1';
-            if (isset($condition['active'])) $where   .= ' AND archived = 0 AND draft = 0';
-            if (isset($condition['archived'])) $where .= ' AND archived = 1 AND draft = 0';
-            if (isset($condition['approval'])) $where .= ' AND approval = 1 AND draft = 0';
+
+            if (isset($condition['drafts'])) {
+                $where   .= ($condition['drafts'] === -1 ? '' : ' AND draft = 1');
+            }
+
+            if (isset($condition['active'])) {
+                $where   .= ($condition['active'] === -1 ? ' AND archived = 0' : ' AND archived = 0 AND draft = 0');
+            }
+
+            if (isset($condition['archived'])) {
+                $where .= ($condition['archived'] === -1 ? '' : ' AND archived = 1 AND draft = 0');
+            }
+
+            if (isset($condition['approval'])) {
+                $where .= ($condition['approval'] === -1 ? '' : ' AND approval = 1 AND draft = 0');
+            }
             if (isset($condition['deleted'])) {
-                $where  .= ' AND deleted = 1';
+                $where .= ($condition['deleted'] === -1 ? '' : ' AND deleted = 1');
             } else {
                 $where .= ' AND deleted = 0';
             }
@@ -447,7 +459,9 @@
                 $queryParams[] = (int) $condition['dateto'];
             }
 
-            return $this->dbcon->count($this->table, '*', $this->events->runEvent('articlesByConditionCount', $where), $queryParams);
+            $return = $this->dbcon->count($this->table, '*', $this->events->runEvent('articlesByConditionCount', $where), $queryParams);
+
+            return $return;
         }
         
         /**

@@ -31,7 +31,7 @@
          *
          * @var array
          */
-        protected $jsVars = array();
+        protected $jsVars = [];
 
         /**
          *
@@ -120,7 +120,7 @@
         protected function getUserFields() {
             $fields = $this->events->runEvent('editorAddUserFields');
             
-            if (!is_array($fields) || !count($fields)) return array();
+            if (!is_array($fields) || !count($fields)) return [];
             
             return $fields;
         }

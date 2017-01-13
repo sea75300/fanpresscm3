@@ -335,6 +335,8 @@ table.fpcm-ui-table.fpcm-dashboard-updates tr td:last-child {
     color: #666666;
 }
 
+
+.fpcm-dashboard-updates-versiondbfile,
 .fpcm-message-neutral {
     color: #363636;
 }
@@ -350,11 +352,6 @@ del,
     position: absolute;
     width: 100%;
     updates: 0.4em 0;
-}
-
-table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments.fpcm-ui-important-text {
-    font-weight: bold;
-    font-size: 1.25em;
 }
 
 /* Formulare */

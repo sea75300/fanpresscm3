@@ -45,13 +45,13 @@
          * Liste mit erlaubten Artikel-Aktionen
          * @var array
          */
-        protected $articleActions = array();
+        protected $articleActions = [];
 
         /**
          *
          * @var array
          */
-        protected $articleItems = array();
+        protected $articleItems = [];
         
         /**
          *
@@ -98,14 +98,14 @@
 
             $this->view             = new \fpcm\model\view\acp('listouter', 'articles');
             
-            $this->articleActions   = array(
+            $this->articleActions   = [
                 $this->lang->translate('ARTICLE_LIST_PINNED')         => 'pinn',
                 $this->lang->translate('ARTICLE_LIST_APPROVE')        => 'approval',
                 $this->lang->translate('EDITOR_ARCHIVE')              => 'archive',
                 $this->lang->translate('ARTICLE_LIST_COMMENTS')       => 'comments',
                 $this->lang->translate('ARTICLE_LIST_NEWTWEET')       => 'newtweet',
                 $this->lang->translate('GLOBAL_DELETE')               => 'delete'
-            );
+            ];
             
             $this->initPermissions();
         }
@@ -156,7 +156,7 @@
                     return true;                    
                 }
 
-                if (!call_user_func(array($this, 'do'.  ucfirst($action)), $ids)) {
+                if (!call_user_func([$this, 'do'.  ucfirst($action)], $ids)) {
                     $msg = ($action == 'delete')  ? 'DELETE_FAILED_ARTICLE' : 'SAVE_FAILED_ARTICLE';
                     $this->initPagination();
                     $this->view->addErrorMessage($msg);
@@ -189,6 +189,7 @@
             $this->view->assign('articleActions', $this->articleActions);
             $this->view->assign('showTrash', false);
             $this->view->assign('deletePermissions', $this->deleteActions);
+            $this->view->assign('list', $this->articleItems);
             
             $this->initSearchForm($users);
 
@@ -198,9 +199,7 @@
             $this->view->assign('commentPrivateUnapproved', $this->commentList->countUnapprovedPrivateComments($this->getArticleListIds()));            
             $this->view->assign('commentSum', $commentCounts && $this->articleCount ? array_sum($commentCounts) : 0);
             
-            $this->view->setViewJsFiles(array(
-                \fpcm\classes\baseconfig::$jsPath.'articlelist.js'
-            ));
+            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'articlelist.js']);
             
             $this->translateCategories();
             
@@ -212,7 +211,7 @@
          * @return array
          */
         protected function getArticleListIds() {
-            $articleIds = array();
+            $articleIds = [];
             foreach ($this->articleItems as $monthData) {
                 $articleIds = array_merge($articleIds, array_keys($monthData));
             }
@@ -303,7 +302,7 @@
             $this->view->assign('nextBtn', false);
             $this->view->assign('listActionLimit', '');
             
-            $page       = $this->getRequestVar('page', array(9));
+            $page       = $this->getRequestVar('page', [9]);
             $pagerData  = \fpcm\classes\tools::calcPagination(
                 $this->listShowLimit,
                 $page,
@@ -318,7 +317,7 @@
                 $this->view->assign($key, $value);
             }
             
-            $this->view->addJsVars(array('fpcmCurrentModule'=> $this->getRequestVar('module')));
+            $this->view->addJsVars(['fpcmCurrentModule'=> $this->getRequestVar('module')]);
         }
         
         /**
@@ -327,17 +326,17 @@
         protected function initPermissions() {
             if (!$this->permissions) return false;
             
-            $this->deleteActions = $this->permissions->check(array('article' => 'delete'));
+            $this->deleteActions = $this->permissions->check(['article' => 'delete']);
 
-            if (!$this->permissions->check(array('article' => 'delete'))) {
+            if (!$this->permissions->check(['article' => 'delete'])) {
                 unset($this->articleActions[$this->lang->translate('GLOBAL_DELETE')]);
             }
 
-            if (!$this->permissions->check(array('article' => 'archive'))) {
+            if (!$this->permissions->check(['article' => 'archive'])) {
                 unset($this->articleActions[$this->lang->translate('EDITOR_ARCHIVE')]);
             }
 
-            if ($this->permissions->check(array('article' => 'approve'))) {
+            if ($this->permissions->check(['article' => 'approve'])) {
                 unset($this->articleActions[$this->lang->translate('ARTICLE_LIST_APPROVE')]);
             }
             
@@ -350,49 +349,50 @@
          */
         private function initSearchForm($users) {
 
-            $users = array($this->lang->translate('ARTICLE_SEARCH_USER') => -1) + $users;
+            $users = [$this->lang->translate('ARTICLE_SEARCH_USER') => -1] + $users;
             $this->view->assign('searchUsers', $users);
             
-            $categories = array($this->lang->translate('ARTICLE_SEARCH_CATEGORY') => -1) + $this->categoryList->getCategoriesNameListCurrent();
+            $categories = [$this->lang->translate('ARTICLE_SEARCH_CATEGORY') => -1] + $this->categoryList->getCategoriesNameListCurrent();
             $this->view->assign('searchCategories', $categories);
 
-            $this->view->assign('searchTypes', array(
+            $this->view->assign('searchTypes', [
                 $this->lang->translate('ARTICLE_SEARCH_TYPE_ALL')   => -1,
                 $this->lang->translate('ARTICLE_SEARCH_TYPE_TITLE') => 0,
                 $this->lang->translate('ARTICLE_SEARCH_TYPE_TEXT')  => 1
-            ));
-            $this->view->assign('searchPinned', array(
+            ]);
+            $this->view->assign('searchPinned', [
                 $this->lang->translate('ARTICLE_SEARCH_PINNED') => -1,
                 $this->lang->translate('GLOBAL_YES') => 1,
                 $this->lang->translate('GLOBAL_NO')  => 0
-            ));  
-            $this->view->assign('searchPostponed', array(
+            ]);
+            $this->view->assign('searchPostponed', [
                 $this->lang->translate('ARTICLE_SEARCH_POSTPONED') => -1,
                 $this->lang->translate('GLOBAL_YES')  => 1,
                 $this->lang->translate('GLOBAL_NO') => 0
-            ));
-            $this->view->assign('searchComments', array(
+            ]);
+
+            $this->view->assign('searchComments', [
                 $this->lang->translate('ARTICLE_SEARCH_COMMENTS') => -1,
                 $this->lang->translate('GLOBAL_YES')  => 1,
                 $this->lang->translate('GLOBAL_NO') => 0
-            ));
-            $this->view->assign('searchApproval', array(
+            ]);
+            $this->view->assign('searchApproval', [
                 $this->lang->translate('ARTICLE_SEARCH_APPROVAL') => -1,
                 $this->lang->translate('GLOBAL_YES')  => 1,
                 $this->lang->translate('GLOBAL_NO') => 0
-            ));
-            $this->view->assign('searchCombination', array(
+            ]);
+            $this->view->assign('searchCombination', [
                 $this->lang->translate('ARTICLE_SEARCH_LOGICAND') => 0,
                 $this->lang->translate('ARTICLE_SEARCH_LOGICOR')  => 1
-            ));
+            ]);
 
-            $this->view->addJsLangVars(array(
+            $this->view->addJsLangVars([
                 'searchWaitMsg'      => $this->lang->translate('SEARCH_WAITMSG'),
                 'searchHeadline'     => $this->lang->translate('ARTICLES_SEARCH'),
                 'searchStart'        => $this->lang->translate('ARTICLE_SEARCH_START')
-            ));
+            ]);
 
-            $this->view->addJsVars(array('fpcmArticlesLastSearch' => 0));
+            $this->view->addJsVars(['fpcmArticlesLastSearch' => 0]);
         }
         
     }

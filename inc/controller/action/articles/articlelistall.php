@@ -14,19 +14,21 @@
             
             $this->checkPermission = array('article' => 'edit', 'article' => 'editall');
         }
-        
+
         public function request() {
 
-            $this->articleCount = $this->articleList->countArticlesByCondition();
+            $conditions = [
+                'draft'    => -1,
+                'approval' => -1
+            ];
+
+            $this->articleCount = $this->articleList->countArticlesByCondition($conditions);
             
             parent::request();            
             
-            $conditions = array(
-                'draft' => -1,
-                'limit' => array($this->listShowLimit, $this->listShowStart)
-            );
+            $conditions['limit'] = [$this->listShowLimit, $this->listShowStart];
             $this->articleItems = $this->articleList->getArticlesByCondition($conditions, true);
-            
+
             return true;
         }
         

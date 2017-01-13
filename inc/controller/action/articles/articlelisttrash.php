@@ -14,15 +14,16 @@
             parent::__construct();
 
             $this->view            = new \fpcm\model\view\acp('listtrash', 'articles');
-            $this->checkPermission = array('article' => 'edit', 'article' => 'editall');
+            $this->checkPermission = ['article' => 'edit', 'article' => 'editall'];
 
-            $this->articleActions   = array(
+            $this->articleActions   = [
                 $this->lang->translate('ARTICLE_LIST_RESTOREARTICLE') => 'restore',
                 $this->lang->translate('ARTICLE_LIST_EMPTYTRASH') => 'trash',
-            );
+            ];
         }
         
         public function request() {
+            $this->articleItems = $this->articleList->getArticlesDeleted(true);
             return parent::request();
         }
         
@@ -30,7 +31,6 @@
             if (!parent::process()) return false;
 
             $this->view->assign('listAction', 'articles/trash');
-            $this->view->assign('list', $this->articleList->getArticlesDeleted(true));
             $this->view->assign('showTrash', $this->config->articles_trash);
 
             $this->view->render();
