@@ -62,7 +62,28 @@
             if (!parent::process()) return false;
 
             $this->template = $this->getTemplateById($this->tid);
-            $this->getArticlesPreview();
+            switch ($this->tid) {
+                case 1 :
+                    $this->getArticlesPreview();
+                    break;
+                case 2 :
+                    $this->getArticlePreview();
+                    break;
+                case 3 :
+                    $this->getCommentPreview();
+                    break;
+                case 4 :
+                    $this->getCommentFormPreview();
+                    break;
+                case 5 :
+                    $this->getLatestNewsPreview();
+                    break;
+                default :
+                    $this->view = new \fpcm\model\view\error();
+                    $this->view->setMessage('Invalid template data');
+                    $this->view->render();
+                    return;
+            }
 
             $this->view->assign('showToolbars', false);
             $this->view->assign('hideDebug', true);
@@ -233,7 +254,7 @@
                 '{{submitButton}}'                   => '<button type="submit" name="btnSendComment">'.$this->lang->translate('GLOBAL_SUBMIT').'</button>',
                 '{{resetButton}}'                    => '<button type="reset">'.$this->lang->translate('GLOBAL_RESET').'</button>'
             );            
-           
+
             $this->template->setReplacementTags($replacementTags);            
             $this->view->assign('commentform', $this->template->parse());
         }
