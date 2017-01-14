@@ -42,9 +42,15 @@
         
         /**
          * Konstruktor
+         * @param string $fileName
          */
-        public function __construct() {
-            parent::__construct('comment_form.html', \fpcm\classes\baseconfig::$stylesDir.'common/');
+        public function __construct($fileName = null) {
+            
+            if (!$fileName) {
+                $fileName = 'comment_form';
+            }
+
+            parent::__construct($fileName.'.html', \fpcm\classes\baseconfig::$stylesDir.'common/');
         }
         
         /**

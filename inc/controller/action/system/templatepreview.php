@@ -9,6 +9,8 @@
     
     class templatepreview extends \fpcm\controller\abstracts\controller {
         
+        use \fpcm\controller\traits\system\templatepreview;
+        
         /**
          *
          * @var \fpcm\model\view\pub
@@ -59,30 +61,8 @@
         public function process() {
             if (!parent::process()) return false;
 
-            switch ($this->tid) {
-                case 1 :
-                    $this->template = new \fpcm\model\pubtemplates\article($this->config->articles_template_active);
-                    $this->getArticlesPreview();
-                    break;
-                case 2 :
-                    $this->template = new \fpcm\model\pubtemplates\article($this->config->article_template_active);
-                    $this->getArticlePreview();
-                    break;
-                case 3 :
-                    $this->template = new \fpcm\model\pubtemplates\comment($this->config->comments_template_active);
-                    $this->getCommentPreview();
-                    break;
-                case 4 :
-                    $this->template = new \fpcm\model\pubtemplates\commentform();
-                    $this->getCommentFormPreview();
-                    break;
-                case 5 :
-                    $this->template = new \fpcm\model\pubtemplates\latestnews();
-                    $this->getLatestNewsPreview();
-                    break;
-                default:
-                    return false;
-            }
+            $this->template = $this->getTemplateById($this->tid);
+            $this->getArticlesPreview();
 
             $this->view->assign('showToolbars', false);
             $this->view->assign('hideDebug', true);
@@ -97,7 +77,7 @@
         }        
         
         private function getArticlesPreview() {
-            
+
             $this->view         = new \fpcm\model\view\pub('showall', 'public');
 
             $parsed = array();

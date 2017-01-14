@@ -27,12 +27,18 @@
             '{{permaLink}}:{{/permaLink}}'      => '',
             '{{commentLink}}:{{/commentLink}}'  => ''
         );      
-        
+
         /**
          * Konstruktor
+         * @param string $fileName
          */
-        public function __construct() {
-            parent::__construct('latest.html', \fpcm\classes\baseconfig::$stylesDir.'common/');
+        public function __construct($fileName = null) {
+            
+            if (!$fileName) {
+                $fileName = 'latest';
+            }
+
+            parent::__construct($fileName.'.html', \fpcm\classes\baseconfig::$stylesDir.'common/');
         }
         
         /**

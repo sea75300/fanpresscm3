@@ -62,7 +62,12 @@
         private function getList($templates) {
             $templateList = array();
             foreach ($templates as $template) {
+
                 $basename = basename($template);
+                if (preg_match('/^(_preview)([0-9]+)(\.html)$/i', $basename)) {
+                    continue;
+                }
+
                 $templateList[$basename] = substr($basename, 0, -5);
             }
 

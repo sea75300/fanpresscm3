@@ -18,6 +18,9 @@ fpcm.templates = {
     getIdClass: function(id) {
 
         switch (id) {
+            case 1:
+                return 'templatearticle';
+                break;
             case 2:
                 return 'templatearticleSingle';
                 break;
@@ -47,7 +50,6 @@ fpcm.templates = {
             var idClass = fpcm.templates.getIdClass(fpcmTemplateId);
             if (idClass !== false && !fpcm.templates.enabledEditors['ed' + fpcmTemplateId]) {
                 fpcm.templates.initCodeMirror(idClass);
-                fpcm.templates.enabledEditors['ed' + fpcmTemplateId] = true;
             }
 
             if (fpcmTemplateId == 7) {
@@ -72,32 +74,49 @@ fpcm.templates = {
         });
         
         jQuery('#showpreview').click(function () {
-
-            fpcmJs.appendHtml('#fpcm-dialog-templatepreview-layer', '<iframe id="fpcm-dialog-templatepreview-layer-frame" class="fpcm-full-width" src="' + fpcmActionPath + 'system/templatepreview&tid=' + fpcmTemplateId + '"></iframe>');
-            fpcm.ui.dialog({
-                id         : 'templatepreview-layer',
-                dlWidth    : fpcm.ui.getDialogSizes().width,
-                dlHeight   : fpcm.ui.getDialogSizes().height,
-                resizable  : true,
-                title      : fpcm.ui.translate('previewHeadline'),
-                dlButtons  : [
-                    {
-                        text: fpcm.ui.translate('close'),
-                        icon: "ui-icon-closethick",                    
-                        click: function() {
-                            jQuery(this).dialog('close');
-                            jQuery('.fpcm-dialog-templatepreview-layer-frame').remove();
-                        }
-                    }                            
-                ],
-                dlOnClose: function( event, ui ) {
-                    jQuery(this).empty();
-                }
-            });
-            
+            fpcm.templates.saveTemplatePreview();
             return false;
         });
         
+    },
+
+    saveTemplatePreview: function() {
+
+        fpcmAjax.action = 'templates/savetemp'
+        fpcmAjax.data   = {
+            content: fpcm.templates.enabledEditors['ed' + fpcmTemplateId].getValue(),
+            tplid  : fpcmTemplateId
+        };
+        fpcmAjax.workData = fpcmTemplateId;
+        fpcmAjax.execDone = 'fpcm.templates.showTemplatePreview(' + fpcmAjax.workData + ')';
+        fpcmAjax.exec();
+
+    },
+
+    showTemplatePreview: function(tplId) {
+
+        fpcmJs.appendHtml('#fpcm-dialog-templatepreview-layer', '<iframe id="fpcm-dialog-templatepreview-layer-frame" class="fpcm-full-width" src="' + fpcmActionPath + 'system/templatepreview&tid=' + tplId + '"></iframe>');
+        fpcm.ui.dialog({
+            id         : 'templatepreview-layer',
+            dlWidth    : fpcm.ui.getDialogSizes().width,
+            dlHeight   : fpcm.ui.getDialogSizes().height,
+            resizable  : true,
+            title      : fpcm.ui.translate('previewHeadline'),
+            dlButtons  : [
+                {
+                    text: fpcm.ui.translate('close'),
+                    icon: "ui-icon-closethick",                    
+                    click: function() {
+                        jQuery(this).dialog('close');
+                        jQuery('.fpcm-dialog-templatepreview-layer-frame').remove();
+                    }
+                }                            
+            ],
+            dlOnClose: function( event, ui ) {
+                jQuery(this).empty();
+            }
+        });
+
     },
     
     initCodeMirror: function(id) {
@@ -120,8 +139,8 @@ fpcm.templates = {
             value: editorElement.innerHTML
         };
 
-        var editor = CodeMirror.fromTextArea(editorElement, editorParams);
-        editor.setOption('theme', 'fpcm');
+        fpcm.templates.enabledEditors['ed' + fpcmTemplateId] = CodeMirror.fromTextArea(editorElement, editorParams);
+        fpcm.templates.enabledEditors['ed' + fpcmTemplateId].setOption('theme', 'fpcm');
 
     }
 

@@ -131,7 +131,7 @@
                 $this->cache->cleanup();
                 
                 $templateContents = $this->getRequestVar('template');
-                
+
                 $tplSaveError = array();
                 $tplSaveOk = array();
                 foreach ($templateContents as $templateName => $newContent) {

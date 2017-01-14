@@ -26,3 +26,4 @@ ajax/modules/loadpkglist: ajax/modules/loadpkglist
 ajax/installer/checkdb: ajax/installer/checkdb
 ajax/installer/initdb: ajax/installer/initdb
 ajax/comments/search: ajax/comments/search
+ajax/templates/savetemp: ajax/system/savetemptpl
