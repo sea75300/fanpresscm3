@@ -286,7 +286,7 @@
         }
 
         /**
-         * Dateiname setzten
+         * Dateiname setzen
          * @param string $filename
          */
         public function setFilename($filename) {
@@ -294,7 +294,7 @@
         }
 
         /**
-         * Dateipfad setzten
+         * Dateipfad setzen
          * @param string $filepath
          */
         public function setFilepath($filepath) {
@@ -302,7 +302,7 @@
         }
 
         /**
-         * Dateiinhalt setzten
+         * Dateiinhalt setzen
          * @param string $content
          */
         public function setContent($content) {

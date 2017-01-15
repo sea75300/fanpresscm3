@@ -120,7 +120,7 @@
         }
 
         /**
-         * Daten, die für Rückgabe vorgesehen sind setzten
+         * Daten, die für Rückgabe vorgesehen sind setzen
          * @param mixed $returnData
          */
         public function setReturnData($returnData) {

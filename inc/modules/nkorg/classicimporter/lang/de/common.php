@@ -8,10 +8,10 @@
 
     $lang = array (
         'FPCM_CLASSICIMPORTER_HEADLINE'     => 'FanPress CM Classic Importer',
-        'FPCM_CLASSICIMPORTER_NOIMPORT'     => 'Der Classic Importer sollte nicht verwendet werden, da bereits Daten im System vorhanden sind. Bei Nutzung des Importers könnte es zu Problemen kommen. Falls du doch einen Import durchführen möchtest, verwende ggf. vorher die "System zurücksetzten"-Funktion.',
+        'FPCM_CLASSICIMPORTER_NOIMPORT'     => 'Der Classic Importer sollte nicht verwendet werden, da bereits Daten im System vorhanden sind. Bei Nutzung des Importers könnte es zu Problemen kommen. Falls du doch einen Import durchführen möchtest, verwende ggf. vorher die "System zurücksetzen"-Funktion.',
         'FPCM_CLASSICIMPORTER_CHECK'        => 'Bitte prüfe, ob alle Daten korrekt importiert wurden, <strong>bevor</strong> du mit dem Import fortfährst!',
         'FPCM_CLASSICIMPORTER_OPENMODULE'   => 'Modul aufrufen',
-        'FPCM_CLASSICIMPORTER_RESETSYSTEM'  => 'System zurücksetzten',
+        'FPCM_CLASSICIMPORTER_RESETSYSTEM'  => 'System zurücksetzen',
         
         'FPCM_CLASSICIMPORTER_IMPORT_FPCM2'                   => 'Verbindung zu FanPress CM 2.5.x',
         'FPCM_CLASSICIMPORTER_IMPORT_FPCM2_PATH'              => 'Pfad der zu importierenden FanPress CM 2.5.x',
@@ -37,7 +37,7 @@
         'FPCM_CLASSICIMPORTER_IMPORT_UPLAODS_TXT'   => 'Der Import von hochgeladenen Dateien kann u. U. sehr lange dauern insb. bei vielen großen Dateien. Schließe in der Zeit das Browserfenter nicht! Je nachdem besteht zudem die Möglichkeit, dass sich - insb. bei Vorschaubildern - Pfade ändern und in älteren Artikeln keine Bilder mehr angezeigt werden.',
         
         'FPCM_CLASSICIMPORTER_IMPORT_SMILEYS'       => 'Smileys importieren',
-        'FPCM_CLASSICIMPORTER_IMPORT_SMILEYS_TXT'   => 'Beim Import von Smileys werden nur solche importiert, welche noch nicht existieren. Hast du die Standard-Smileys durch andere Dateien mit gleichem Namen ersetzt, so musst du die Dateien manuell ersetzten.',
+        'FPCM_CLASSICIMPORTER_IMPORT_SMILEYS_TXT'   => 'Beim Import von Smileys werden nur solche importiert, welche noch nicht existieren. Hast du die Standard-Smileys durch andere Dateien mit gleichem Namen ersetzt, so musst du die Dateien manuell ersetzen.',
         
         'FPCM_CLASSICIMPORTER_IMPORT_IPS'           => 'Gesperrte IP-Adressen importieren',
         'FPCM_CLASSICIMPORTER_IMPORT_IPS_TXT'       => 'Gesperrte IP-Adressen verweigern nach dem Import wie in FanPress CM 2.x nur den Zugriff auf die Kommentare.',
@@ -53,7 +53,7 @@
         'FPCM_CLASSICIMPORTER_IMPORT_FINISHED'      => 'Import erfolgreich abgeschlossen.',
         'FPCM_CLASSICIMPORTER_IMPORT_ERROR'         => 'Beim Import ist ein Fehler aufgetreten! Werfe einen Blick in das Fehlerlog für weitere Details.',
         'FPCM_CLASSICIMPORTER_RESET_OK'             => 'Benutzer, Rollen, kategorien sowie Artikel und Kommentare wurden erfolgreich zurückgesetzt.',
-        'FPCM_CLASSICIMPORTER_RESET_ERROR'          => 'Beim Zurücksetzten des Systems ist ein Fehler aufgetreten.',
+        'FPCM_CLASSICIMPORTER_RESET_ERROR'          => 'Beim Zurücksetzen des Systems ist ein Fehler aufgetreten.',
         
         
         

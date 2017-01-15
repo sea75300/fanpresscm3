@@ -153,7 +153,7 @@
         }
 
         /**
-         * Session-ID-String setzten
+         * Session-ID-String setzen
          * @param string $sessionid
          */
         public function setSessionId($sessionid) {
@@ -161,7 +161,7 @@
         }
 
         /**
-         * Benutzer-ID setzten
+         * Benutzer-ID setzen
          * @param int $userid
          */
         public function setUserId($userid) {
@@ -169,7 +169,7 @@
         }
 
         /**
-         * Login-Zeit setzten
+         * Login-Zeit setzen
          * @param int $login
          */
         public function setLogin($login) {
@@ -177,7 +177,7 @@
         }
 
         /**
-         * Logout-Zeit setzten
+         * Logout-Zeit setzen
          * @param int $logout
          */
         public function setLogout($logout) {
@@ -185,7 +185,7 @@
         }
 
         /**
-         * Zeitpunkt letzter Aktion setzten
+         * Zeitpunkt letzter Aktion setzen
          * @param int $lastaction
          */
         public function setLastaction($lastaction) {
@@ -193,7 +193,7 @@
         }
 
         /**
-         * IP-Adresse setzten
+         * IP-Adresse setzen
          * @param string $ip
          */
         public function setIp($ip) {
@@ -201,7 +201,7 @@
         }
 
         /**
-         * Session-Status setzten
+         * Session-Status setzen
          * @param bool $sessionExists
          */
         public function setSessionExists($sessionExists) {

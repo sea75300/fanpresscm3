@@ -54,7 +54,7 @@
         }
 
         /**
-         * Header angezeigen Status setzten
+         * Header angezeigen Status setzen
          * @param bool $showHeader
          */
         public function setShowHeader($showHeader) {
@@ -62,7 +62,7 @@
         }
 
         /**
-         * Footer angezeigen Status setzten
+         * Footer angezeigen Status setzen
          * @param bool $showFooter
          */
         public function setShowFooter($showFooter) {

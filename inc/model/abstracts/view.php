@@ -169,7 +169,7 @@
         }
 
         /**
-         * String zum Setzten des aktuell aktiven Modules in Navigation
+         * String zum Setzen des aktuell aktiven Modules in Navigation
          * @return string
          * @since FPCM 3.4
          */
@@ -206,7 +206,7 @@
         }
 
         /**
-         * View-Name setzten
+         * View-Name setzen
          * @param string $viewPath
          */
         public function setViewPath($viewPath) {
@@ -214,7 +214,7 @@
         }
 
         /**
-         * View-Name setzten
+         * View-Name setzen
          * @param string $viewName
          */
         public function setViewName($viewName) {
@@ -238,7 +238,7 @@
         }
 
        /**
-        * View-Datei setzten
+        * View-Datei setzen
         * @param string $viewFile
         */
         public function setViewFile($viewFile) {
@@ -262,7 +262,7 @@
         }
 
         /**
-         * JavaScript-Variablen in View setzten
+         * JavaScript-Variablen in View setzen
          * @param array $viewJsFiles
          */
         public function setViewJsFiles(array $viewJsFiles) {

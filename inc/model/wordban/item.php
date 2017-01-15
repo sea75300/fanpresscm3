@@ -65,7 +65,7 @@
         }
 
         /**
-         * gesuchter Text setzten
+         * gesuchter Text setzen
          * @param string $searchtext
          */
         public function setSearchtext($searchtext) {
@@ -73,7 +73,7 @@
         }
 
         /**
-         * Text für Ersetzung setzten
+         * Text für Ersetzung setzen
          * @param string $replacementtext
          */
         public function setReplacementtext($replacementtext) {

@@ -114,7 +114,7 @@
         }
 
         /**
-         * Empfänger setzten
+         * Empfänger setzen
          * @param sring $to
          */
         function setTo($to) {
@@ -122,7 +122,7 @@
         }
 
         /**
-         * Absender setzten
+         * Absender setzen
          * @param sring $from
          */
         function setFrom($from) {
@@ -130,7 +130,7 @@
         }
 
         /**
-         * Betreff setzten
+         * Betreff setzen
          * @param sring $subject
          */
         function setSubject($subject) {
@@ -138,7 +138,7 @@
         }
 
         /**
-         * E-Mail-Inhalt setzten
+         * E-Mail-Inhalt setzen
          * @param sring $text
          */
         function setText($text) {

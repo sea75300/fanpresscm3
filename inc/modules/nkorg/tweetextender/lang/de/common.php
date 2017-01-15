@@ -9,8 +9,8 @@
     $lang = array (
         'NKORG_TWEETENTENDER_HEADLINE'      => 'FanPress CM Tweet Extender',
         'NKORG_TWEETENTENDER_TERMLIST'      => 'Verfügbare zu ersetzende Begriffe',
-        'NKORG_TWEETENTENDER_SEARCHTERM'    => 'zu ersetztender Text',
-        'NKORG_TWEETENTENDER_REPLACETERM'   => 'Text ersetzten mit',
+        'NKORG_TWEETENTENDER_SEARCHTERM'    => 'zu ersetzender Text',
+        'NKORG_TWEETENTENDER_REPLACETERM'   => 'Text ersetzen mit',
         'NKORG_TWEETENTENDER_NEWTERM'       => 'Begriff erzeugen',
         'NKORG_TWEETENTENDER_EDITTERM'      => 'Begriff-Editor',        
         

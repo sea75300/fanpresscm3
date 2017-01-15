@@ -174,7 +174,7 @@
         }
 
         /**
-         * Rollen-ID setzten
+         * Rollen-ID setzen
          * @param array $rollid
          */
         function setRollId($rollid) {
@@ -182,7 +182,7 @@
         }
 
         /**
-         * Berechtigungsdaten setzten
+         * Berechtigungsdaten setzen
          * @param array $permissiondata
          */
         function setPermissionData(array $permissiondata) {
