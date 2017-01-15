@@ -169,7 +169,7 @@
         }
 
         /**
-         * String zum Setzten des aktuell aktiven Modules in Navigation
+         * String zum Setzen des aktuell aktiven Modules in Navigation
          * @return string
          * @since FPCM 3.4
          */
