@@ -104,33 +104,30 @@ fpcm.articlelist = {
             return false;
         }
 
-        fpcmAjax.action     = 'articles/tweet';
-        fpcmAjax.data       = {ids: fpcmAjax.toJSON(articleIds)};
-        fpcmAjax.execDone   = "fpcm.articlelist.articleActionsTweetCallback(fpcmAjax.result);";
-        fpcmAjax.async      = false;
-        fpcmAjax.post();
-        fpcmAjax.reset();  
+        fpcm.ajax.post('articles/tweet', {
+            data    : {
+                ids : fpcm.ajax.toJSON(articleIds)
+            },
+            async   : false,
+            execDone: function(result) {
 
-    },
+                jQuery('#actionsaction').prop('selectedIndex',0);
+                jQuery('#actionsaction').selectmenu('refresh');
 
-    articleActionsTweetCallback: function(result) {
+                fpcmJs.showLoader(false);
+                result = fpcm.ajax.fromJSON(fpcm.ajax.getResult('articles/tweet'));
+                if (result.notice != 0) {
+                    fpcmJs.addAjaxMassage('notice', result.notice);
+                }
 
-        jQuery('#actionsaction').prop('selectedIndex',0);
-        jQuery('#actionsaction').selectmenu('refresh');
+                if (result.error != 0) {
+                    fpcmJs.addAjaxMassage('error', result.error);
+                }
 
-        self.showLoader(false);
-        
-        result = fpcmAjax.fromJSON(result);
-        if (result.notice != 0) {
-            fpcmJs.addAjaxMassage('notice', result.notice);
-        }
+            }
+        });
 
-        if (result.error != 0) {
-            fpcmJs.addAjaxMassage('error', result.error);
-        }
-
-    }
-    
+    }    
 }
 
 jQuery(document).ready(function() {

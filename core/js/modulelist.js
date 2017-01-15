@@ -42,9 +42,10 @@ var fpcmModulelist = function () {
         
         jQuery('#fpcmuireloadpkglist').click(function () {
             fpcmJs.showLoader(true);
-            fpcmAjax.action     = 'modules/loadpkglist';
-            fpcmAjax.execDone   = "fpcmJs.showLoader(false);";
-            fpcmAjax.get();           
+            fpcm.ajax.get('modules/loadpkglist', {
+                execDone: "fpcmJs.showLoader(false);"
+            });
+            return false;
         });
 
         if (noActionButtonAssign) return false;
@@ -139,28 +140,50 @@ var fpcmModulelist = function () {
     
     this.runActions = function (moduleAction, moduleKeys) {
         fpcmJs.showLoader(true);
-        fpcmAjax.action     = 'modules/actions';
-        fpcmAjax.data       = {keys:fpcmAjax.toJSON(moduleKeys),action:moduleAction};
-        fpcmAjax.execDone   = "fpcmJs.showLoader(false);fpcmJs.assignHtml('#modules-list-content', fpcmAjax.result);noActionButtonAssign=true;fpcmJs.assignButtons();fpcm.ui.prepareMessages();jQuery('#moduleActions').prop('selectedIndex',0);jQuery('#moduleActions').selectmenu('refresh');";
-        fpcmAjax.post();       
+        fpcm.ajax.post('modules/actions', {
+            data: {
+                keys: fpcm.ajax.toJSON(moduleKeys),
+                action:moduleAction
+            },
+            execDone: function() {
+                fpcmJs.showLoader(false);
+                fpcmJs.assignHtml('#modules-list-content', fpcm.ajax.getResult('modules/actions'));
+                noActionButtonAssign = true;
+                fpcmJs.assignButtons();
+                fpcm.ui.prepareMessages();
+                jQuery('#moduleActions').prop('selectedIndex',0);
+                jQuery('#moduleActions').selectmenu('refresh');
+            }
+        });
+
     };
     
     this.runInstall = function (moduleKeys) {
-        fpcmAjax.action     = 'modules/actions';
-        fpcmAjax.data       = {keys:moduleKeys,action:'install'};
-        fpcmAjax.execDone   = "fpcmJs.relocate(fpcmActionPath + 'package/modinstall');";
-        fpcmAjax.async      = false;
-        fpcmAjax.post();
-        fpcmAjax.reset();        
+        fpcm.ajax.post('modules/actions', {
+            data: {
+                keys:moduleKeys,
+                action:'install'
+            },
+            async: false,
+            execDone: function () {
+                fpcmJs.relocate(fpcmActionPath + 'package/modinstall');
+            }
+        });
     };
     
     this.runUpdate = function (moduleKeys) {
-        fpcmAjax.action     = 'modules/actions';
-        fpcmAjax.data       = {keys:moduleKeys,action:'update'};
-        fpcmAjax.execDone   = "fpcmJs.relocate(fpcmActionPath + 'package/modupdate');";
-        fpcmAjax.async      = false;
-        fpcmAjax.post();
-        fpcmAjax.reset();      
+
+        fpcm.ajax.post('modules/actions', {
+            data: {
+                keys:moduleKeys,
+                action:'update'
+            },
+            async: false,
+            execDone: function () {
+                fpcmJs.relocate(fpcmActionPath + 'package/modupdate');
+            }
+        });
+
     };
     
     this.doSingleAction = function (object_id, action) {

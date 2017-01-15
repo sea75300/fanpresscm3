@@ -16,7 +16,6 @@ var fpcmModuleInstaller = function () {
     this.key = '';
     this.type = '';
     this.moduleIndex = '';
-    this.ajaxHandler;
     this.moduleKeyCount = 0;
     
     this.init = function (type) {
@@ -27,7 +26,6 @@ var fpcmModuleInstaller = function () {
             self.progressbar(0);            
         }
 
-        self.ajaxHandler = new fpcmAjaxHandler();
         self.startTime   = (new Date().getTime());
         self.moduleKeyCount = fpcmModuleKeys.length;
 
@@ -74,47 +72,51 @@ var fpcmModuleInstaller = function () {
 
         fpcmJs.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', msgText);
 
-        self.ajaxHandler.action     = 'packagemgr/mod' + self.type;
-        self.ajaxHandler.data       = {step:idx,key:self.key,midx:self.moduleIndex};
-        self.ajaxHandler.execDone   = "fpcmModuleInstaller.responseData=fpcmModuleInstaller.ajaxHandler.result;fpcmModuleInstaller.ajaxCallback();";
-        self.ajaxHandler.post();
-        
-        return true;
-    };
-    
-    this.ajaxCallback = function() {
+        fpcm.ajax.post('packagemgr/mod' + self.type, {
 
-        self.responseData = fpcmAjax.fromJSON(self.responseData);
-        if (self.responseData.data === undefined) {
-            alert(fpcmAjaxResponseErrorMessage);
-            return false;
-        }
+            data: {
+                step : idx,
+                key  : self.key,
+                midx : self.moduleIndex
+            },
+           
+            execDone: function () {
+                self.responseData = fpcm.ajax.fromJSON(fpcm.ajax.getResult('packagemgr/mod' + self.type));
+                if (self.responseData.data === undefined) {
+                    alert(fpcm.ui.translate('ajaxErrorMessage'));
+                    return false;
+                }
 
-        if (self.responseData.code != self.responseData.data.current + '_' +1) {
-            fpcmJs.showLoader(false);
-            fpcmJs.appendHtml(self.moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
-            return false;
-        }
+                if (self.responseData.code != self.responseData.data.current + '_' +1) {
+                    fpcmJs.showLoader(false);
+                    fpcmJs.appendHtml(self.moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
+                    return false;
+                }
 
-        fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
+                fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
 
-        if (self.responseData.code && self.responseData.data.current == fpcmUpdaterMaxStep) {
-            fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages['EXIT_1'] + '</p>');
-            jQuery('#' + self.moduleListSpinenrId).removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-check');
+                if (self.responseData.code && self.responseData.data.current == fpcmUpdaterMaxStep) {
+                    fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages['EXIT_1'] + '</p>');
+                    jQuery('#' + self.moduleListSpinenrId).removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-check');
 
-            if (self.moduleKeyCount > self.idx) {
-                self.idx++;
-                self.progressbar(self.idx);           
-                self.runInstall(fpcmModuleKeys[(self.idx-1)], self.idx, self.type);            
+                    if (self.moduleKeyCount > self.idx) {
+                        self.idx++;
+                        self.progressbar(self.idx);           
+                        self.runInstall(fpcmModuleKeys[(self.idx-1)], self.idx, self.type);            
+                        return true;
+                    }
+
+                    self.addTimer();
+                    return true;
+                }
+
+                self.execRequest(self.responseData.data.nextstep);
+
                 return true;
             }
-            
-            self.addTimer();
-            return true;
-        }
-
-        self.execRequest(self.responseData.data.nextstep);
-
+        });
+        
+        
         return true;
     };
     

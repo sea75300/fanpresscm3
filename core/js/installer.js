@@ -19,39 +19,38 @@ fpcm.installer = {
             var objName = jQuery(obj).attr('id').replace('database', '');                                
             sParams[objName] = objVal;
         }); 
+        
+        fpcm.ajax.post('installer/checkdb', {
+            data: {
+                dbdata: sParams
+            },
+            async: false,
+            execDone: function () {
+                
+                var res = fpcm.ajax.getResult('installer/checkdb');
+                if (res === '1' || res === 1) {
+                    jQuery('#installerform').submit();
+                    return true;
+                }
 
-        fpcmAjax.action     = 'installer/checkdb';
-        fpcmAjax.data       = {dbdata: sParams};
-        fpcmAjax.execDone   = "fpcm.installer.checkDbCallback(fpcmAjax.result);";
-        fpcmAjax.async      = false;
-        fpcmAjax.post();
-        fpcmAjax.reset();
+                jQuery('#fpcm-messages').empty();
+                window.fpcmMsg = [];
+                window.fpcmMsg.push({
+                    txt  : fpcm.ui.translate('dbTestFailed'),
+                    type : 'error',
+                    id   : 'errordbtestfailed',
+                    icon : 'exclamation-triangle'
+                });
+
+                fpcm.ui.showMessages();
+                fpcm.ui.prepareMessages();
+                fpcm.ui.messagesInitClose();
+
+                return false;
+            }
+        });
         
         return false;
-    },
-    
-    checkDbCallback: function(res) {
-
-        if (res === '1' || res === 1) {
-            jQuery('#installerform').submit();
-            return true;
-        }
-
-        jQuery('#fpcm-messages').empty();
-        window.fpcmMsg = [];
-        window.fpcmMsg.push({
-            txt  : fpcm.ui.translate('dbTestFailed'),
-            type : 'error',
-            id   : 'errordbtestfailed',
-            icon : 'exclamation-triangle'
-        });
-
-        fpcm.ui.showMessages();
-        fpcm.ui.prepareMessages();
-        fpcm.ui.messagesInitClose();
-
-        return false;
-
     },
 
     initDatabase: function () {
@@ -71,12 +70,22 @@ fpcm.installer = {
 
             fpcmJs.appendHtml('#fpcm-installer-execlist', '<p><span class="fa fa-spinner fa-spin fa-fw"></span> ' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
 
-            fpcmAjax.action     = 'installer/initdb';
-            fpcmAjax.data       = {file: obj};
-            fpcmAjax.execDone   = "fpcm.installer.initDatabaseFailed(fpcmAjax.result);";
-            fpcmAjax.async      = false;
-            fpcmAjax.post();
-            fpcmAjax.reset();
+            fpcm.ajax.post('installer/initdb', {
+                data       = {
+                    file: obj
+                },
+                async: false,
+                execDone: function () {
+                    jQuery('#fpcm-installer-execlist').find('span.fa-spinner').remove();
+
+                    if(fpcm.ajax.getResult('installer/initdb') != 0){        
+                        return true;
+                    }
+
+                    fpcmJs.appendHtml('#fpcm-installer-execlist', "<p class='fpcm-ui-important-text'>FAILED!</p>");
+                    fpcm.installer.breakDbInit = false;
+                }
+            });
             
             if (fpcm.installer.breakDbInit) {
                 return false;
@@ -88,18 +97,6 @@ fpcm.installer = {
 
             pgVal++;
         });
-    },
-    
-    initDatabaseFailed: function (result) {
-
-        jQuery('#fpcm-installer-execlist').find('span.fa-spinner').remove();
-
-        if(result != 0){        
-            return true;
-        }
-
-        fpcmJs.appendHtml('#fpcm-installer-execlist', "<p class='fpcm-ui-important-text'>FAILED!</p>");
-        this.breakDbInit = false;
     },
     
     initUi: function() {

@@ -12,13 +12,16 @@ var nkorgRssImport = function () {
 
         fpcmJs.showLoader(true);
 
-        var ajaxHandler   = new fpcmAjaxHandler();
-        fpcmAjax.action   = 'nkorg/rssimport/checkpath';
-        fpcmAjax.data     = { feedPath: feedPath };
-        fpcmAjax.execDone = 'nkorgRssImportObj.ajaxCallBack(fpcmAjax.result);';
-        fpcmAjax.get();
+        fpcm.ajax.get('nkorg/rssimport/checkpath', {
+            data: {
+                feedPath: feedPath
+            },
+            execDone: function () {
+                nkorgRssImportObj.ajaxCallBack(fpcm.ajax.getResult('nkorg/rssimport/checkpath'));
+            }
+        });
     };
-    
+
     this.importFeed = function(feedPath) {
 
         if (feedPath == '' || feedPath == 'http://' || feedPath == 'https://') {
@@ -44,11 +47,18 @@ var nkorgRssImport = function () {
             return false;
         }
 
-        var ajaxHandler   = new fpcmAjaxHandler();
-        fpcmAjax.action   = 'nkorg/rssimport/runimport';
-        fpcmAjax.data     = { feedPath: feedPath, feedIds: ids, userid: jQuery('#userid').val(), categories: categoryIds };
-        fpcmAjax.execDone = 'nkorgRssImportObj.ajaxCallBack(fpcmAjax.result);';
-        fpcmAjax.get();
+        fpcm.ajax.get('nkorg/rssimport/runimport', {
+            data: {
+                feedPath: feedPath,
+                feedIds: ids,
+                userid: jQuery('#userid').val(),
+                categories: categoryIds
+            },
+            execDone: function () {
+                nkorgRssImportObj.ajaxCallBack(fpcm.ajax.getResult('nkorg/rssimport/runimport'));
+            }
+        });
+
     };
     
     this.ajaxCallBack = function(res) {

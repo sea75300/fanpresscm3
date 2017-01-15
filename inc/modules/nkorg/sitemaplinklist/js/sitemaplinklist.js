@@ -2,11 +2,15 @@ jQuery(document).ready(function() {
     fpcmJs.setFocus('xmlfilepath');
     
     jQuery('#btnSitemaplinklistCheckPath').click(function() {
-        
-        fpcmAjax.action = 'nkorg/sitemaplinklist/checkpath';
-        fpcmAjax.data   = {path:jQuery('#xmlfilepath').val()};
-        fpcmAjax.execDone = 'chechPathDone(fpcmAjax.result);';
-        fpcmAjax.post();        
+
+        fpcm.ajax.post('nkorg/sitemaplinklist/checkpath', {
+            data: {
+                path: jQuery('#xmlfilepath').val()
+            },
+            execDone: function () {
+                chechPathDone(fpcm.ajax.getResult('nkorg/sitemaplinklist/checkpath'));
+            }
+        });
         
         return false;
     });
@@ -16,11 +20,15 @@ jQuery(document).ready(function() {
         jQuery('.fpcm-sitemaplinklist-activelinks:checked').map(function (idx, item) {
             selectedLinks.push(jQuery(item).val());
         });
-        
-        fpcmAjax.action = 'nkorg/sitemaplinklist/savelinks';
-        fpcmAjax.data   = {selectedLinks:JSON.stringify(selectedLinks)};
-        fpcmAjax.execDone = 'saveLinksDone(fpcmAjax.result);';
-        fpcmAjax.post();   
+
+        fpcm.ajax.post('nkorg/sitemaplinklist/savelinks', {
+            data: {
+                selectedLinks: fpcm.ajax.toJSON(selectedLinks)
+            },
+            execDone: function () {
+                saveLinksDone(fpcm.ajax.getResult('nkorg/sitemaplinklist/savelinks'));
+            }
+        });
          
         return false;
     });

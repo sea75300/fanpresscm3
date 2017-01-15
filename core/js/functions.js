@@ -40,96 +40,94 @@ var fpcmJs = function () {
     this.clearCache = function () {
         
         self.showLoader(true);
-        
-        fpcmAjax.action   = 'cache';
-        fpcmAjax.execDone = 'fpcmJs.clearCacheDone(fpcmAjax.result)';
-        fpcmAjax.get();
+
+        fpcm.ajax.get('cache', {
+            execDone: function () {
+                fpcmJs.showLoader(false);
+                fpcm.ui.appendMessage(fpcm.ajax.getResult('cache'))
+            }
+        });
         
         return false;        
     };    
     
-    this.clearCacheDone = function (ajaxResult) {
-
-        fpcmJs.showLoader(false);
-        fpcm.ui.appendMessage(ajaxResult)
-
-    };
-    
     this.clearLogs = function(id) {
-        self.showLoader(true);
-        
-        var logType = id.split('_');
-        
-        fpcmAjax.action   = 'logs/clear';
-        fpcmAjax.query    = 'log=' + logType[1];
-        fpcmAjax.workData = id;
-        fpcmAjax.execDone = "fpcmJs.clearLogsDone(fpcmAjax.result, fpcmAjax.workData);";
-        fpcmAjax.get();
-        
-        return false;
-    };
-    
-    this.clearLogsDone = function(ajaxResult, workData) {
-        
-        fpcmJs.showLoader(false);
-        fpcmJs.reloadLogs(workData);        
-        fpcm.ui.appendMessage(ajaxResult)
 
+        self.showLoader(true);
+        var logType = id.split('_');
+
+        fpcm.ajax.get('logs/clear', {
+            workData: id,
+            data: {
+                log: logType[1]
+            },
+            execDone: function() {
+                fpcmJs.showLoader(false);
+                fpcmJs.reloadLogs(fpcm.ajax.getWorkData('logs/clear'));
+                fpcm.ui.appendMessage(fpcm.ajax.getResult('logs/clear'));
+            }
+        });
+
+        return false;
     };
     
     this.reloadLogs = function(id) {
+
         self.showLoader(true);
-        
         var logType = id.split('_');
 
-        fpcmAjax.action   = 'logs/reload';
-        fpcmAjax.query    = 'log=' + logType[1];
-        fpcmAjax.workData = logType[1];
-        fpcmAjax.execDone = "fpcmJs.reloadLogsDone(fpcmAjax.result, fpcmAjax.workData)";
-        fpcmAjax.get();
+        fpcm.ajax.get('logs/reload', {
+            workData: id,
+            data: {
+                log: logType[1]
+            },
+            execDone: function() {
+                fpcmJs.showLoader(false);
+
+                var tabId = fpcm.ajax.getWorkData('logs/reload');
+                fpcmJs.assignHtml('#fpcm-logcontent'+ tabId, fpcm.ajax.getResult('logs/reload'));
+
+                if (tabId == 4) {
+                    fpcm.ui.accordion('.fpcm-accordion-pkgmanager');
+                }
+            }
+        });
         
         return false;
-    };
-    
-    this.reloadLogsDone = function(ajaxResult, workData) {
-        
-        fpcmJs.showLoader(false);
-        fpcmJs.assignHtml('#fpcm-logcontent'+ workData, ajaxResult);
-
-        if (workData == 4) {
-            fpcm.ui.accordion('.fpcm-accordion-pkgmanager');
-        }
-
     };
     
     this.reloadFiles = function (page) {
         self.showLoader(true);
 
-        var pagestr = (page !== undefined ? '&page=' + page : '');
+        if (!page) {
+            page = 1;
+        }
 
-        fpcmAjax.action   = 'filelist';
-        fpcmAjax.query    = 'mode=' + fpcmFmgrMode + pagestr;
-        fpcmAjax.execDone = 'fpcmJs.reloadFilesDone(fpcmAjax.result, ' + (pagestr ? 1 : 0) + ');';
-        fpcmAjax.get();
+        fpcm.ajax.get('filelist', {
+            data: {
+                mode: fpcmFmgrMode,
+                page: page
+            },
+            execDone: function () {
+
+                fpcmJs.assignHtml("#tabs-files-list-content", fpcm.ajax.getResult('filelist'));
+                fpcmJs.assignButtons();
+                fpcm.filemanager.assignButtons();
+                var fpcmRFDinterval = setInterval(function(){
+                    if (jQuery('#fpcm-filelist-images-finished').length == 1) {
+                        fpcmJs.showLoader(false);
+                        fpcmJs.windowResize();
+                        clearInterval(fpcmRFDinterval);
+                        if (page) {
+                            jQuery(window).scrollTop(0);
+                        }
+                        return false;
+                    }
+                }, 250);
+            }
+        });
         
         return false;
-    };
-    
-    this.reloadFilesDone = function (ajaxResult, hasPage) {
-        fpcmJs.assignHtml("#tabs-files-list-content", ajaxResult);
-        fpcmJs.assignButtons();
-        fpcm.filemanager.assignButtons();
-        var fpcmRFDinterval = setInterval(function(){
-            if (jQuery('#fpcm-filelist-images-finished').length == 1) {
-                fpcmJs.showLoader(false);
-                fpcmJs.windowResize();
-                clearInterval(fpcmRFDinterval);
-                if (hasPage === 1) {
-                    jQuery(window).scrollTop(0);
-                }
-                return false;
-            }
-        }, 250);
     };
     
     this.relocate = function (url) {
@@ -269,22 +267,19 @@ var fpcmJs = function () {
         }
 
         self.showLoader(true);
-        
-        fpcmAjax.action     = 'articles/search';
-        fpcmAjax.data       = sParams;
-        fpcmAjax.execDone   = 'fpcmJs.startSearchDone(fpcmAjax.result)';
-        fpcmAjax.post();
-        
+
+        fpcm.ajax.post('articles/search', {
+            data: sParams,
+            execDone: function () {
+                fpcmJs.showLoader(false);
+                fpcmJs.assignHtml('#tabs-article-list', fpcm.ajax.getResult('articles/search'));
+                window.noActionButtonAssign = true;
+                fpcmJs.assignButtons();
+                fpcmJs.windowResize();
+            }
+        });
+
         fpcmArticlesLastSearch = (new Date()).getTime();
-    };
-    
-    this.startSearchDone = function (ajaxResult) {
-        
-        fpcmJs.showLoader(false);
-        fpcmJs.assignHtml('#tabs-article-list', ajaxResult);
-        noActionButtonAssign = true;
-        fpcmJs.assignButtons();
-        fpcmJs.windowResize();
     };
     
     this.startCommentSearch = function (sParams) {
@@ -295,55 +290,52 @@ var fpcmJs = function () {
 
         self.showLoader(true);
         
-        fpcmAjax.action     = 'comments/search';
-        fpcmAjax.data       = sParams;
-        fpcmAjax.execDone   = 'fpcmJs.startCommentSearchDone(fpcmAjax.result)';
-        fpcmAjax.post();
+        fpcm.ajax.post('comments/search', {
+            data: sParams,
+            execDone: function () {
+                fpcmJs.showLoader(false);
+                fpcmJs.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
+                window.noActionButtonAssign = true;
+                fpcmJs.assignButtons();
+                fpcmJs.initCommentSearch();
+                fpcm.ui.assignSelectmenu();
+                fpcmJs.windowResize();
+            }
+        });
 
         fpcmCommentsLastSearch = (new Date()).getTime();
-    };
-    
-    this.startCommentSearchDone = function (ajaxResult) {
-        
-        fpcmJs.showLoader(false);
-        fpcmJs.assignHtml('#tabs-comments-active', ajaxResult);
-        noActionButtonAssign = true;
-        fpcmJs.assignButtons();
-        fpcmJs.initCommentSearch();
-        fpcm.ui.assignSelectmenu();
-        fpcmJs.windowResize();
     };
     
     this.addAjaxMassage = function (type, message) {
 
         jQuery('.fpcm-messages').empty();
 
-        fpcmAjax.action     = 'addmsg';
-        fpcmAjax.data       = {
-            type:type,
-            msgtxt:message
-        };
-        fpcmAjax.execDone   = "fpcmJs.addAjaxMassageDone(fpcmAjax.result)";
-        fpcmAjax.post();
+        fpcm.ajax.post('addmsg', {
+            data: {
+                type  : type,
+                msgtxt: message
+            },
+            execDone: "fpcmJs.addAjaxMassageDone()"
+        });
 
     };
     
-    this.addAjaxMassageDone = function (ajaxResult) {
-
+    this.addAjaxMassageDone = function () {
         fpcmJs.showLoader(false);
-        fpcm.ui.appendMessage(ajaxResult);
+        fpcm.ui.appendMessage(fpcm.ajax.getResult('addmsg'));
     };
     
     this.systemCheck = function () {
         fpcmJs.showLoader(true);
-        fpcmAjax.action = 'syscheck';
-        fpcmAjax.execDone = 'fpcmJs.systemCheckDone(fpcmAjax.result);';
-        fpcmAjax.get();
+        fpcm.ajax.get('syscheck', {
+            execDone: 'fpcmJs.systemCheckDone();'
+        });
+        
     };
     
-    this.systemCheckDone = function (ajaxResult) {       
+    this.systemCheckDone = function () {
         fpcmJs.showLoader(false);
-        fpcmJs.assignHtml("#tabs-options-check", ajaxResult);
+        fpcmJs.assignHtml("#tabs-options-check", fpcm.ajax.getResult('syscheck'));
         fpcmJs.assignButtons();
         fpcmJs.windowResize();
     };
@@ -387,10 +379,7 @@ var fpcmJs = function () {
     
     this.runCronsAsync = function () {
         if (typeof fpcmCronAsyncDiabled != 'undefined' && fpcmCronAsyncDiabled) return;
-        fpcmAjax.reset();
-        fpcmAjax.action = 'cronasync';
-        fpcmAjax.get();
-        fpcmAjax.reset();
+        fpcm.ajax.get('cronasync');
     };
     
     this.pagerButtons = function() {
@@ -428,16 +417,18 @@ var fpcmJs = function () {
         if (!fpcmSessionCheckEnabled) {
             return false;
         }
-        
-        fpcmAjax.action   = 'session';
-        fpcmAjax.execDone = 'var chkres = fpcmAjax.result; fpcmJs.addCheckSessionMessage(fpcmAjax.result);';
-        fpcmAjax.get();
+
+        fpcm.ajax.exec('session', {
+            execDone: 'fpcmJs.addCheckSessionMessage();'
+        });
         
         return false;
     };
     
-    this.addCheckSessionMessage = function(sessionOk) {
+    this.addCheckSessionMessage = function() {
         
+        var sessionOk = fpcm.ajax.getResult('session');
+
         fpcmSessionCheckEnabled = false;
         if (sessionOk == '0') {
             fpcm.ui.dialog({
@@ -466,13 +457,13 @@ var fpcmJs = function () {
     };
     
     this.loadDashboardContainer = function() {
-        fpcmAjax.action   = 'dashboard';
-        fpcmAjax.execDone = 'fpcmJs.loadDashboardContainerCallback(fpcmAjax.result);';
-        fpcmAjax.get();        
+        fpcm.ajax.exec('dashboard', {
+            execDone: 'fpcmJs.loadDashboardContainerCallback();'
+        });
     };
     
-    this.loadDashboardContainerCallback = function(resultData) {
-        fpcmJs.assignHtml('#fpcm-dashboard-containers', resultData);
+    this.loadDashboardContainerCallback = function() {
+        fpcmJs.assignHtml('#fpcm-dashboard-containers', fpcm.ajax.getResult('dashboard'));
         fpcmJs.assignButtons();
     
         jQuery('.fpcm-updatecheck-manual').click(function () {
@@ -492,18 +483,23 @@ var fpcmJs = function () {
     
     this.execCronjobDemand = function(cronjobId) {
         self.showLoader(true);
-        fpcmAjax.action = 'cronasync';
-        fpcmAjax.data   = {cjId:cronjobId};
-        fpcmAjax.execDone = 'fpcmJs.showLoader(false);';
-        fpcmAjax.get();
+        fpcm.ajax.get('cronasync', {
+            data    : {
+                cjId: cronjobId
+            },
+            execDone: 'fpcmJs.showLoader(false);'
+        });
     };
     
     this.setCronjobInterval = function(cronjobId, cronjobInterval) {
         self.showLoader(true);
-        fpcmAjax.action = 'croninterval';
-        fpcmAjax.data   = {cjId:cronjobId,interval:cronjobInterval};
-        fpcmAjax.execDone = 'fpcmJs.showLoader(false);';
-        fpcmAjax.get();
+        fpcm.ajax.get('croninterval', {
+            data    : {
+                cjId:cronjobId,
+                interval:cronjobInterval
+            },
+            execDone: 'fpcmJs.showLoader(false);'
+        });
     };
 
     this.generatePasswdString = function() {

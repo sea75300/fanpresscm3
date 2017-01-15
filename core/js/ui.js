@@ -366,7 +366,7 @@ fpcm.ui = {
         }
         
         var msg = null;
-        for (var i = 0; i < fpcmMsg.length; i++) {
+        for (var i = 0; i < window.fpcmMsg.length; i++) {
 
             msg = fpcmMsg[i];
             msgCode  = '<div class="fpcm-message-box fpcm-message-' + msg.type + '" id="msgbox-' + msg.id + '">';
@@ -400,14 +400,13 @@ fpcm.ui = {
     appendMessage: function(value) {
 
         if (window.fpcmMsg === undefined) {
-            fpcmMsg = [];
+            window.fpcmMsg = [];
         }
 
-        value = fpcmAjax.fromJSON(value);
-
-        fpcmMsg = value.data;
+        window.fpcmMsg = fpcm.ajax.fromJSON(value).data;
         this.showMessages();
         this.prepareMessages();
+        this.messagesInitClose();
 
     },
     

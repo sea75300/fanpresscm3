@@ -31,31 +31,33 @@ var nkorgModulecreator = function () {
         jQuery('.fpcm-nkorgmodulecreator-eventcheckboxes:checked').map(function (idx, item) {
             dataArray.events.push(jQuery(item).val());
         });        
-        
+
         if (dataArray.events.length < 1) {
             fpcmJs.addAjaxMassage('neutral', 'NKORG_MODULECREATOR_MSG_EVENTSELECT');
             dataArray.events.push('acpConfig');
         }
-        
-        fpcmAjax.action = 'nkorg/modulecreator/creator';
-        fpcmAjax.data   = {newdata:dataArray};
-        fpcmAjax.execDone = 'nkorgModulecreatorObj.submitDataDone(fpcmAjax.result)';
-        fpcmAjax.post();
-        
+
+        fpcm.ajax.post('nkorg/modulecreator/creator', {
+            data: {
+                newdata: dataArray
+            },
+            execDone: function () {
+                fpcmJs.showLoader(false);
+
+                var ajaxResult = fpcm.ajax.getResult('nkorg/modulecreator/creator');
+                if (ajaxResult == '0' || ajaxResult == 0) {
+                    fpcmJs.addAjaxMassage('error', 'NKORG_MODULECREATOR_MSG_CREATION_ERROR');
+                    return false;
+                } else {
+                    fpcmJs.addAjaxMassage('notice', 'NKORG_MODULECREATOR_MSG_CREATION_OK');
+                    jQuery('#fpcm-nkorgmodulecreator-createmsg').append('<div class="fpcm-ui-margin-center fpcm-half-width"><div class="fpcm-ui-input-wrapper"><div class="fpcm-ui-input-wrapper-inner"><input type="text" class="fpcm-ui-input-text" value="' + ajaxResult + '"></div></div></div>');
+                }
+            }
+        });
+
         return true;
     };
-    
-    this.submitDataDone = function(ajaxResult) {
-        fpcmJs.showLoader(false);
 
-        if (ajaxResult == '0' || ajaxResult == 0) {
-            fpcmJs.addAjaxMassage('error', 'NKORG_MODULECREATOR_MSG_CREATION_ERROR');
-            return false;
-        } else {
-            fpcmJs.addAjaxMassage('notice', 'NKORG_MODULECREATOR_MSG_CREATION_OK');
-            jQuery('#fpcm-nkorgmodulecreator-createmsg').append('<div class="fpcm-ui-margin-center fpcm-half-width"><div class="fpcm-ui-input-wrapper"><div class="fpcm-ui-input-wrapper-inner"><input type="text" class="fpcm-ui-input-text" value="' + ajaxResult + '"></div></div></div>');
-        }
-    };
 };
 
 var nkorgModulecreatorObj = new nkorgModulecreator();

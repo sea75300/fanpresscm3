@@ -21,32 +21,18 @@ var fpcmAjaxHandler = function () {
     self.execFail       = false;
 
     this.exec = function() {
-        jQuery.ajax({
-            url         : self.ajaxPath + self.action + (self.query ? '&' + self.query : ''),
-            type        : self.method.toUpperCase(),
+        
+        console.warn('Using "fpcmAjaxHandler" class is deprecated as of version 3.5! Please use fpcm.ajax.exec');
+        
+        fpcm.ajax.exec(self.action, {
+            method      : self.method,
+            async       : self.async,
             data        : self.data,
-            async       : self.async
-        })
-        .done(function(result) {
-
-            if (result.search('FATAL ERROR:') === 3) {
-                console.log(fpcm.ui.translate('ajaxErrorMessage'));
-                console.log('ERROR MESSAGE: ' + errorThrown);
-            }
-            
-            self.result = result;
-            if (typeof self.execDone == 'string') {
-                eval(self.execDone);
-            }
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            console.log(fpcm.ui.translate('ajaxErrorMessage'));
-            console.log('ERROR MESSAGE: ' + errorThrown);
-
-            if (typeof self.execFail == 'string') {
-                eval(self.execFail);
-            }
-        });        
+            execDone    : self.execDone,
+            execFail    : self.execFail,
+            workData    : self.workData
+        });
+      
     };
 
     this.get = function() {
@@ -70,20 +56,151 @@ var fpcmAjaxHandler = function () {
         self.execDone       = false;
         self.execFail       = false;            
     };
-    
+
     this.fromJSON = function(data) {
-        return JSON.parse(data);
+        return fpcm.ajax.fromJSON(data);
     };
-    
+
     this.toJSON = function(data) {
+        return fpcm.ajax.toJSON(data);
+    };
+
+}
+
+/**
+ * FanPress CM Templates Namespace
+ * @article Stefan Seehafer <sea75300@yahoo.de>
+ * @copyright (c) 2017, Stefan Seehafer
+ * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+ */
+if (fpcm === undefined) {
+    var fpcm = {};
+}
+
+fpcm.ajax = {
+    
+    result   : [],
+    workData : [],
+    
+    exec: function(action, params) {
+
+        if (!params) {
+            params = {};
+        }
+
+        if (!params.method) {
+            params.method = 'POST';
+        }
+
+        if (!params.async) {
+            params.async = true;
+        }
+
+        if (!params.data) {
+            params.data = [];
+        }
+
+        if (!params.execDone) {
+            params.execDone = false;
+        }
+
+        if (!params.execFail) {
+            params.execFail = false;
+        }
+
+        if (params.workData) {
+            fpcm.ajax.workData[action] = params.workData;
+        }
+
+        jQuery.ajax({
+            url         : fpcmAjaxActionPath + action,
+            type        : params.method.toUpperCase(),
+            data        : params.data,
+            async       : params.async
+        })
+        .done(function(result) {
+
+            if (result.search('FATAL ERROR:') === 3) {
+                console.log(fpcm.ui.translate('ajaxErrorMessage'));
+                console.log('ERROR MESSAGE: ' + errorThrown);
+            }
+
+            if (result.cmd !== undefined) {
+                eval(result.cmd);
+                return true;
+            }
+
+            fpcm.ajax.result[action] = result;
+            fpcmAjaxHandler.result   = result;
+            if (typeof params.execDone == 'string') {
+                eval(params.execDone);
+            }
+
+            if (typeof params.execDone == 'function') {
+                params.execDone.call();
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log(fpcm.ui.translate('ajaxErrorMessage'));
+            console.log('ERROR MESSAGE: ' + errorThrown);
+
+            if (typeof params.execFail == 'string') {
+                eval(params.execFail);
+            }
+
+            if (typeof params.execFail == 'function') {
+                params.execFail.call();
+            }
+        });   
+
+    },
+    
+    get: function(action, params) {
+        
+        if (!params) {
+            params = {};
+        }
+        
+        params.method = 'GET';
+        fpcm.ajax.exec(action, params);
+    },
+    
+    post: function(action, params) {
+
+        if (!params) {
+            params = {};
+        }
+
+        params.method = 'POST';
+        fpcm.ajax.exec(action, params);
+    },
+
+    getResult: function(action) {
+        return fpcm.ajax.result[action] ? fpcm.ajax.result[action] : null;
+    },
+
+    getWorkData: function(action) {
+        return fpcm.ajax.workData[action] ? fpcm.ajax.workData[action] : null;
+    },
+
+    fromJSON: function(data) {
+        
+        if (data instanceof Object || data instanceof Array) {
+            return data;
+        }
+
+        return JSON.parse(data);
+    },
+    
+    toJSON: function(data) {
 
         var isArray = data instanceof Array ? true : false;
         var isObject = data instanceof Object ? true : false;
         if (!isArray || !isObject) {
             return '';
         }
-        
-        return JSON.stringify(data);
-    };
 
-}
+        return JSON.stringify(data);
+    }
+    
+};

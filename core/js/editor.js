@@ -634,15 +634,17 @@ var fpcmEditor = function () {
                     }
                 ],
                 dlOnOpen: function () {
-                    fpcmAjax.action     = 'editor/smileys';
-                    fpcmAjax.execDone   = "jQuery('#fpcm-dialog-editor-html-insertsmileys').append(fpcmAjax.result);";
-                    fpcmAjax.async      = false;
-                    fpcmAjax.post();
-                    fpcmAjax.reset();                
-
-                    jQuery('.fpcm-editor-htmlsmiley').click(function() {
-                        fpcmEditor.insertSmilies(jQuery(this).attr('smileycode'));
+                    
+                    fpcm.ajax.exec('editor/smileys', {
+                        async: false,
+                        execDone: function () {
+                            jQuery('#fpcm-dialog-editor-html-insertsmileys').append(fpcm.ajax.getResult('editor/smileys'));
+                            jQuery('.fpcm-editor-htmlsmiley').click(function() {
+                                fpcmEditor.insertSmilies(jQuery(this).attr('smileycode'));
+                            });
+                        }
                     });
+
                 },
                 dlOnClose: function() {
                     jQuery(this).empty();
@@ -691,10 +693,17 @@ var fpcmEditor = function () {
                         appendTo: '#fpcm-dialog-editor-html-insertdraft',
                         change: function( event, ui ) {
 
-                            fpcmAjax.action     = 'editor/draft';
-                            fpcmAjax.data       = {path: jQuery(this).val()};
-                            fpcmAjax.execDone   = 'fpcmEditor.htmlInserTemplateCallback(fpcmAjax.result)';
-                            fpcmAjax.post();
+                            fpcm.ajax.exec('editor/draft', {
+                                data    : {
+                                    path: jQuery(this).val()
+                                },
+                                execDone: function () {
+                                    var responseData = fpcm.ajax.fromJSON(fpcm.ajax.getResult('editor/draft'));
+
+                                    window.editor.doc.setValue(responseData.data);
+                                    jQuery('#fpcm-dialog-editor-html-insertdraft').dialog('close');
+                                }
+                            });
 
                             return false;
 
@@ -858,16 +867,6 @@ var fpcmEditor = function () {
             }                
         });    
     };
-    
-    this.htmlInserTemplateCallback = function(responseData) {
-
-        var responseData = fpcmAjax.fromJSON(responseData);
-
-        window.editor.doc.setValue(responseData.data);
-        jQuery('#fpcm-dialog-editor-html-insertdraft').dialog('close');
-
-        return true;
-    };
 
 };
 
@@ -952,11 +951,14 @@ jQuery(document).ready(function() {
     });
 
     jQuery('#fpcm-editor-html-removetags-btn').click(function() {
-        
-        fpcmAjax.action     = 'editor/cleartags';
-        fpcmAjax.data       = {text: editor.doc.getValue()};
-        fpcmAjax.execDone   = 'window.editor.doc.setValue(fpcmAjax.result);';
-        fpcmAjax.post();
+        fpcm.ajax.post('editor/cleartags', {
+            data: {
+                text: editor.doc.getValue()
+            },
+            execDone: function () {
+                window.editor.doc.setValue(fpcm.ajax.getResult('editor/cleartags'));
+            }
+        });
         
         return false;
     });
