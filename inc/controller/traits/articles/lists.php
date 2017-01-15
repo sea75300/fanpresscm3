@@ -30,7 +30,7 @@
         }
         
         /**
-         * Kategorien übersetzten
+         * Kategorien übersetzen
          * @return void
          */
         protected function translateCategories() {

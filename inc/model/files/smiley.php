@@ -115,7 +115,7 @@
         }
 
         /**
-         * Datensatz ID setzten
+         * Datensatz ID setzen
          * @param int $id
          */
         public function setId($id) {
@@ -123,7 +123,7 @@
         }
 
         /**
-         * Smiley-Code setzten
+         * Smiley-Code setzen
          * @param string $smileycode
          */
         public function setSmileycode($smileycode) {

@@ -43,7 +43,7 @@
         }
         
         /**
-         * Erzeugt Zuürcksetzten Button
+         * Erzeugt Zuürcksetzen Button
          * @param string $name Name des Buttons
          */        
         public static function resetButton($name) {           

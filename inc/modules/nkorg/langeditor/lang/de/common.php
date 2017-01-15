@@ -28,7 +28,7 @@
                                            'Spalte der Wert.</li>'.
                                            '<li>Nach jeder vorhandenen Sprachvariable ist eine leerzeile enthalten, über welche du einen '.
                                            'neuen Eintrag erzeugen kannst.</li>'.
-                                           '<li>Möchtest du in einem Text Zeilenumbrüche einfügen, so musst du diese durch "\\n" ersetzten.</li>'.
+                                           '<li>Möchtest du in einem Text Zeilenumbrüche einfügen, so musst du diese durch "\\n" ersetzen.</li>'.
                                            '<li>Um einen Wert zu löschen, aktiviere die Checkbox hinter der entsprechenden Zeile oder '.
                                            'entferne alle Werte aus der Zeile und klicke auf Speichern.</li>'.
                                            '<li><strong>Hinweis:</strong> Der Name einer Sprachvariable darf maximal 512 Zeichen lang '.

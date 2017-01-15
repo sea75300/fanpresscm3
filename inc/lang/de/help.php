@@ -77,13 +77,13 @@ Help language file
 
             <p>Unter <i>Kommentare</i> erhältst du eine Auflistung aller Kommentare, welche zu zum ausgewählten Artikel geschrieben wurden. Die Liste
             bietet dir die Möglichkeit, einzelne Kommentare zu löschen. Über einen Klick auf den Namen des Verfassern kannst du in einem einfachen
-            Editor die Kommentare bearbeiten, freischalten, auf privat setzten, etc. Den Zugriff auf die Kommentare können du über die
+            Editor die Kommentare bearbeiten, freischalten, auf privat setzen, etc. Den Zugriff auf die Kommentare können du über die
             Berechtigungen geregelt werden.</p>
 
             <p>FanPress CM besitzt ein einfaches Revisions-System, d. h. bei Änderungen wird der vorherige Zustand gesichert und kann
             jederzeit wiederhergestellt werden. Die Revisionen kannst du über den Tab <i>Versionen</i> verwalten. Die Revisionen können
             über die Systemeinstellungen (de)aktiviert werden. Eine Liste aller Revisionen findest du über den entsprechenden Reiter
-            im Editor. Dort kannst du jede Revision einzeln aufrufen bzw. den aktuelle Artikel auf eine Revision zurücksetzten.</p>
+            im Editor. Dort kannst du jede Revision einzeln aufrufen bzw. den aktuelle Artikel auf eine Revision zurücksetzen.</p>
         ]]>
         </text>
     </chapter>

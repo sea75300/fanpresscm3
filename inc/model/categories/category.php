@@ -83,7 +83,7 @@
         }
 
         /**
-         * Kategorie-Name setzten
+         * Kategorie-Name setzen
          * @param string $name
          */
         function setName($name) {
@@ -91,7 +91,7 @@
         }
 
         /**
-         * Kategorie-Icon-Pfad setzten
+         * Kategorie-Icon-Pfad setzen
          * @param string $iconpath
          */
         function setIconPath($iconpath) {
@@ -99,7 +99,7 @@
         }
         
         /**
-         * Gruppen, die diese Kategorie nutzen dürfen, setzten
+         * Gruppen, die diese Kategorie nutzen dürfen, setzen
          * @param array $groups
          */
         function setGroups($groups) {

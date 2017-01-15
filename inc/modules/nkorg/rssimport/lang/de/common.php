@@ -9,7 +9,7 @@
     $lang = array (
         'NKORG_RSSIMPORT_HEADLINE'        => 'RSS Import Assistent',
         'NKORG_RSSIMPORT_FILE'            => 'URL zum RSS-Feed',
-        'NKORG_RSSIMPORT_DEFAULTUSER'     => 'Benutzer setzten',
+        'NKORG_RSSIMPORT_DEFAULTUSER'     => 'Benutzer setzen',
         'NKORG_RSSIMPORT_DEFAULTCATEGORY' => 'Kategorie(n)',
         'NKORG_RSSIMPORT_START'           => 'Import starten',
         'NKORG_RSSIMPORT_CHECK'           => 'Pfad prüfen',

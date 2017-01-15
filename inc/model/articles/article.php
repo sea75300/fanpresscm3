@@ -334,7 +334,7 @@
         }
                    
         /**
-         * Ttiel setzten
+         * Ttiel setzen
          * @param string $title
          */
         public function setTitle($title) {
@@ -342,7 +342,7 @@
         }
 
         /**
-         * Inhalt setzten
+         * Inhalt setzen
          * @param string $content
          */
         public function setContent($content) {
@@ -350,7 +350,7 @@
         }
 
         /**
-         * Kategorien setzten
+         * Kategorien setzen
          * @param array $categories
          */
         public function setCategories(array $categories) {
@@ -358,7 +358,7 @@
         }
 
         /**
-         * Entwurf-Status setzten
+         * Entwurf-Status setzen
          * @param bool $draft
          */
         public function setDraft($draft) {
@@ -366,7 +366,7 @@
         }
 
         /**
-         * archiviert Status setzten
+         * archiviert Status setzen
          * @param bool $archived
          */
         public function setArchived($archived) {
@@ -382,7 +382,7 @@
         }
 
         /**
-         * Geplant-Status setzten
+         * Geplant-Status setzen
          * @param bool $postponed
          */
         public function setPostponed($postponed) {
@@ -390,7 +390,7 @@
         }
 
         /**
-         * Gelöscht Status setzten
+         * Gelöscht Status setzen
          * @param bool $deleted
          */
         public function setDeleted($deleted) {
@@ -398,7 +398,7 @@
         }
 
         /**
-         * Zeitpunk der Erzeugung setzten
+         * Zeitpunk der Erzeugung setzen
          * @param int $createtime
          */
         public function setCreatetime($createtime) {
@@ -406,7 +406,7 @@
         }
 
         /**
-         * Benutzer der Erzeugung setzten
+         * Benutzer der Erzeugung setzen
          * @param int $createuser
          */
         public function setCreateuser($createuser) {
@@ -414,7 +414,7 @@
         }
 
         /**
-         * Zeitpunk der letzten Änderung setzten
+         * Zeitpunk der letzten Änderung setzen
          * @param int $changetime
          */
         public function setChangetime($changetime) {
@@ -422,7 +422,7 @@
         }
 
         /**
-         * Benutzer der letzten Änderung setzten
+         * Benutzer der letzten Änderung setzen
          * @param int $changeuser
          */
         public function setChangeuser($changeuser) {
@@ -430,7 +430,7 @@
         }
 
         /**
-         * Kommentar-aktiv-Status setzten
+         * Kommentar-aktiv-Status setzen
          * @param bool $comments
          */
         public function setComments($comments) {
@@ -438,7 +438,7 @@
         }
 
         /**
-         * Freigabe-Status setzten
+         * Freigabe-Status setzen
          * @param bool $approval
          */
         public function setApproval($approval) {

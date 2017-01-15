@@ -178,7 +178,7 @@
         }
         
         /**
-         * Rollen-ID setzten
+         * Rollen-ID setzen
          * @param int $roll
          */
         public function setRoll($roll) {
@@ -194,7 +194,7 @@
         }
 
         /**
-         * Passwort-Salt setzten
+         * Passwort-Salt setzen
          * @param string $salt
          */
         public function setSalt($salt) {
@@ -219,7 +219,7 @@
         }
 
         /**
-         * Deaktiviert-Status setzten
+         * Deaktiviert-Status setzen
          * @param bool $disabled
          */
         public function setDisabled($disabled) {
@@ -273,7 +273,7 @@
         }
 
         /**
-         * Angezeigten Name setzten
+         * Angezeigten Name setzen
          * @param string $displayname
          */
         public function setDisplayName($displayname) {
@@ -281,7 +281,7 @@
         }
 
         /**
-         * E-Mail-Adresse setzten
+         * E-Mail-Adresse setzen
          * @param string $email
          */
         public function setEmail($email) {
@@ -289,7 +289,7 @@
         }
 
         /**
-         * Anmelde-Datum setzten
+         * Anmelde-Datum setzen
          * @param string $registertime
          */
         public function setRegistertime($registertime) {
@@ -297,7 +297,7 @@
         }
 
         /**
-         * Benutzername setzten
+         * Benutzername setzen
          * @param string $username
          */
         public function setUserName($username) {
@@ -305,7 +305,7 @@
         }
 
         /**
-         * Passwort-Hash setzten
+         * Passwort-Hash setzen
          * @param string $passwd
          */
         public function setPassword($passwd) {
@@ -313,7 +313,7 @@
         }
 
         /**
-         * ben.-def. Einstellungen setzten
+         * ben.-def. Einstellungen setzen
          * @param array $usrmeta
          */
         public function setUserMeta(array $usrmeta) {
@@ -437,7 +437,7 @@
         }
         
         /**
-         * Passwort für Benutzer zurücksetzten
+         * Passwort für Benutzer zurücksetzen
          * @param bool $resetOnly (@since FPCM3.4)
          * @return boolean
          */

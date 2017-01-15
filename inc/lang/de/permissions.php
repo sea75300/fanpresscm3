@@ -24,7 +24,7 @@
         'PERMISSION_COMMENT_EDITALL'    => 'Kommentare auf alle Artikel bearbeiten',
         'PERMISSION_COMMENT_DELETE'     => 'Kommentare löschen',
         'PERMISSION_COMMENT_APPROVE'    => 'Kommentare genehmigen',
-        'PERMISSION_COMMENT_PRIVATE'    => 'Kommentare auf "Privat" setzten',
+        'PERMISSION_COMMENT_PRIVATE'    => 'Kommentare auf "Privat" setzen',
         'PERMISSION_SYSTEM_USERS'       => 'Benutzer verwalten',
         'PERMISSION_SYSTEM_CATEGORIES'  => 'Kategorien verwalten',
         'PERMISSION_SYSTEM_ROLLS'       => 'Benutzer-Rollen verwalten',

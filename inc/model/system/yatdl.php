@@ -248,7 +248,7 @@
         }
         
         /**
-         * Auto Increment Angaben übersetzten
+         * Auto Increment Angaben übersetzen
          * @return boolean
          */
         private function createAutoincrement() {

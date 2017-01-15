@@ -65,7 +65,7 @@ var nkorgRssImport = function () {
         
         fpcmJs.showLoader(false);
         
-        res = JSON.parse(res);
+        res = fpcm.ajax.fromJSON(res);
         
         if (res.code === undefined || !res.code) {
             fpcmJs.addAjaxMassage('error', res.msg);

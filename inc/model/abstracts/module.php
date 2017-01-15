@@ -302,7 +302,7 @@
         }        
         
         /**
-         * Abhängigkeiten setzten
+         * Abhängigkeiten setzen
          * @param array $dependencies
          */
         public function setDependencies(array $dependencies) {
@@ -310,8 +310,8 @@
         }
 
         /**
-         * remote Version setzten
-         * @param setzten $versionRemote
+         * remote Version setzen
+         * @param setzen $versionRemote
          */
         public function setVersionRemote($versionRemote) {
             $this->versionRemote = $versionRemote;

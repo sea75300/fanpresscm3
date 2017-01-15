@@ -113,7 +113,7 @@
         }
 
         /**
-         * gesuchter Text setzten
+         * gesuchter Text setzen
          * @param string $searchtext
          * @since FPCM 3.5
          */
@@ -122,7 +122,7 @@
         }
 
         /**
-         * Text für Ersetzung setzten
+         * Text für Ersetzung setzen
          * @param string $replacementtext
          * @since FPCM 3.5
          */

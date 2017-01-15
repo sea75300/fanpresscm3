@@ -99,7 +99,7 @@
         public function getYaTDLDataTypes();
 
         /**
-         * Query-String um Index auf Tabellenspalte zu setzten
+         * Query-String um Index auf Tabellenspalte zu setzen
          * @param string $table
          * @param string $indexName
          * @param string $field

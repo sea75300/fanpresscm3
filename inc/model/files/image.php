@@ -193,7 +193,7 @@
         }
 
         /**
-         * Datensatz-ID setzten
+         * Datensatz-ID setzen
          * @param int $id
          */
         public function setId($id) {
@@ -201,7 +201,7 @@
         }        
         
         /**
-         * Benutzer-ID setzten
+         * Benutzer-ID setzen
          * @param int $userid
          */        
         public function setUserid($userid) {
@@ -209,7 +209,7 @@
         }
 
         /**
-         * Upload-Zeit setzten
+         * Upload-Zeit setzen
          * @param int $filetime
          */
         public function setFiletime($filetime) {
