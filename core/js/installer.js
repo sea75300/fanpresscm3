@@ -71,7 +71,7 @@ fpcm.installer = {
             fpcmJs.appendHtml('#fpcm-installer-execlist', '<p><span class="fa fa-spinner fa-spin fa-fw"></span> ' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
 
             fpcm.ajax.post('installer/initdb', {
-                data       = {
+                data: {
                     file: obj
                 },
                 async: false,
