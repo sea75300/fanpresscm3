@@ -22,7 +22,7 @@ var fpcmAjaxHandler = function () {
 
     this.exec = function() {
         
-        console.warn('Using "fpcmAjaxHandler" class is deprecated as of version 3.5! Please use fpcm.ajax.exec');
+        console.warn('Using "fpcmAjaxHandler.exec/get/post" class is deprecated as of version 3.5! Use fpcm.ajax.exec/get/post instead.');
         
         fpcm.ajax.exec(self.action, {
             method      : self.method,
@@ -31,7 +31,7 @@ var fpcmAjaxHandler = function () {
             execDone    : self.execDone,
             execFail    : self.execFail,
             workData    : self.workData
-        });
+        }, self);
       
     };
 
@@ -46,6 +46,9 @@ var fpcmAjaxHandler = function () {
     };
     
     this.reset = function() {
+        
+        console.warn('Using "fpcmAjaxHandler.reset" class is deprecated as of version 3.5!');
+        
         self.ajaxPath       = fpcmAjaxActionPath;
         self.action         = '';
         self.query          = false;
@@ -58,10 +61,16 @@ var fpcmAjaxHandler = function () {
     };
 
     this.fromJSON = function(data) {
+        
+        console.warn('Using "fpcmAjaxHandler.fromJSON" class is deprecated as of version 3.5!');
+        
         return fpcm.ajax.fromJSON(data);
     };
 
     this.toJSON = function(data) {
+        
+        console.warn('Using "fpcmAjaxHandler.toJSON" class is deprecated as of version 3.5!');
+        
         return fpcm.ajax.toJSON(data);
     };
 
@@ -82,7 +91,7 @@ fpcm.ajax = {
     result   : [],
     workData : [],
     
-    exec: function(action, params) {
+    exec: function(action, params, _legacy) {
 
         if (!params) {
             params = {};
@@ -131,7 +140,11 @@ fpcm.ajax = {
             }
 
             fpcm.ajax.result[action] = result;
-            fpcmAjaxHandler.result   = result;
+            
+            if (_legacy) {
+                _legacy.result = result;
+            }
+
             if (typeof params.execDone == 'string') {
                 eval(params.execDone);
             }
