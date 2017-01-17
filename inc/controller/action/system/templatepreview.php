@@ -101,7 +101,7 @@
 
             $this->view         = new \fpcm\model\view\pub('showall', 'public');
 
-            $parsed = array();
+            $parsed = [];
             
             $categoryTexts     = array('<span class="fpcm-pub-category-text">Category 1</span>', '<span class="fpcm-pub-category-text">Category 2</span>');
             $shareButtonParser = new \fpcm\model\pubtemplates\sharebuttons($this->config->system_url, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr!');
@@ -228,7 +228,7 @@
             $smileyList = new \fpcm\model\files\smileylist();
             $smileys    = $smileyList->getDatabaseList();            
 
-            $smileyHtml = array();
+            $smileyHtml = [];
             $smileyHtml[] = "<ul class=\"fpcm-pub-smileys\">";
             foreach ($smileys as $key => $smiley)  {
                 $smileyHtml[] = '<li><a class="fpcm-pub-commentsmiley" smileycode="'.$smiley->getSmileyCode().'" href="#"><img src="'.$smiley->getSmileyUrl().'" alt="'.$smiley->getSmileyCode().'()" '.$smiley->getWhstring().'></a></li>';

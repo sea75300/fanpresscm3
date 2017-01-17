@@ -10,7 +10,7 @@ if (fpcm === undefined) {
 
 fpcm.ui = {
 
-    load: function() {
+    init: function() {
 
         jQuery(document).tooltip();
 

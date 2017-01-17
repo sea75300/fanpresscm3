@@ -27,7 +27,3 @@ fpcm.options = {
     }
 
 };
-
-jQuery(document).ready(function () {
-    fpcm.options.init();
-});

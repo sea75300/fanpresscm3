@@ -41,7 +41,7 @@
             $this->view->assign('reloadSite', false);
             
             if ($this->buttonClicked('resetProfileSettings') && $pageTokenCheck) {
-                $author->setUserMeta(array());
+                $author->setUserMeta([]);
                 $author->disablePasswordSecCheck();
 
                 if ($author->update() === false) {
@@ -113,7 +113,7 @@
             $this->view->assign('userRolls', $userRolls->getUserRollsTranslated());
             $this->view->assign('languages', array_flip($this->lang->getLanguages()));
                         
-            $timezones = array();
+            $timezones = [];
             
             foreach ($this->getTimeZones() as $area => $zones) {
                 foreach ($zones as $zone) {

@@ -360,11 +360,13 @@
                 $this->lang->translate('ARTICLE_SEARCH_TYPE_TITLE') => 0,
                 $this->lang->translate('ARTICLE_SEARCH_TYPE_TEXT')  => 1
             ]);
+
             $this->view->assign('searchPinned', [
                 $this->lang->translate('ARTICLE_SEARCH_PINNED') => -1,
                 $this->lang->translate('GLOBAL_YES') => 1,
                 $this->lang->translate('GLOBAL_NO')  => 0
             ]);
+
             $this->view->assign('searchPostponed', [
                 $this->lang->translate('ARTICLE_SEARCH_POSTPONED') => -1,
                 $this->lang->translate('GLOBAL_YES')  => 1,
@@ -376,11 +378,19 @@
                 $this->lang->translate('GLOBAL_YES')  => 1,
                 $this->lang->translate('GLOBAL_NO') => 0
             ]);
+
             $this->view->assign('searchApproval', [
                 $this->lang->translate('ARTICLE_SEARCH_APPROVAL') => -1,
                 $this->lang->translate('GLOBAL_YES')  => 1,
                 $this->lang->translate('GLOBAL_NO') => 0
             ]);
+
+            $this->view->assign('searchDraft', [
+                $this->lang->translate('ARTICLE_SEARCH_DRAFT') => -1,
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ]);
+
             $this->view->assign('searchCombination', [
                 $this->lang->translate('ARTICLE_SEARCH_LOGICAND') => 0,
                 $this->lang->translate('ARTICLE_SEARCH_LOGICOR')  => 1

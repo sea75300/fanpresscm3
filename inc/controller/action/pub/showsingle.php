@@ -135,7 +135,7 @@
 
             $this->article = new \fpcm\model\articles\article($this->articleId);
 
-            if (!$this->article->exists()) {
+            if (!$this->article->exists() || $this->article->getDeleted()) {
                 $this->view->addErrorMessage('LOAD_FAILED_ARTICLE');
                 $this->article = false;
                 return true;

@@ -6,6 +6,12 @@ if (fpcm === undefined) {
 }
 
 fpcm.templates = {
+    
+    init: function() {
+        this.initCodeMirror('templatearticle');
+        this.initTemplatePreview();
+        fpcmJs.windowResize();
+    },
 
     enabledEditors: {
         ed2: false,
@@ -145,11 +151,3 @@ fpcm.templates = {
     }
 
 };
-
-jQuery(document).ready(function() {
-
-    fpcm.templates.initCodeMirror('templatearticle');
-    fpcm.templates.initTemplatePreview();
-    fpcmJs.windowResize();
-
-});

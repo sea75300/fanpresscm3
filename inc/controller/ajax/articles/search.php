@@ -122,14 +122,15 @@
             if ($filter['dateto'])          $sparams['dateto']     = strtotime($filter['dateto']);
             if ($filter['pinned'] > -1)     $sparams['pinned']     = (int) $filter['pinned'];
             if ($filter['postponed'] > -1)  $sparams['postponed']  = (int) $filter['postponed'];
-            if ($filter['comments'] > -1)   $sparams['comments']   = (int) $filter['comments'];            
+            if ($filter['comments'] > -1)   $sparams['comments']   = (int) $filter['comments'];
+            if ($filter['draft'] > -1)      $sparams['draft']      = (int) $filter['draft'];
             if ($this->mode != -1)          $sparams['archived']   = (int) $this->mode;
             
             $sparams['approval']    = (int) $filter['approval'];
             $sparams['combination'] = $filter['combination'] ? 'OR' : 'AND';
             
             $sparams = $this->events->runEvent('articlesPrepareSearch', $sparams);
-            
+
             $this->articleItems = $this->articleList->getArticlesByCondition($sparams, true);
             $this->translateCategories();
             
@@ -148,7 +149,7 @@
             $this->view->assign('users', array_flip($users));
             $this->view->assign('commentEnabledGlobal', $this->config->system_comments_enabled);
             $this->view->assign('showArchiveStatus', ($this->mode == -1) ? true : false);
-            $this->view->assign('showDraftStatus', false);
+            $this->view->assign('showDraftStatus', ($this->mode == -1) ? false : true);
             $this->view->assign('isSearch', true);
             $this->view->assign('showPager', false);
 

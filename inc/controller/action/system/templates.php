@@ -101,8 +101,8 @@
                 
                 $delFiles = array_map('base64_decode', $delFiles);
 
-                $deletedOk = array();
-                $deletedFailed = array();
+                $deletedOk = [];
+                $deletedFailed = [];
 
                 foreach ($delFiles as $delFile) {
                     
@@ -132,8 +132,8 @@
                 
                 $templateContents = $this->getRequestVar('template');
 
-                $tplSaveError = array();
-                $tplSaveOk = array();
+                $tplSaveError = [];
+                $tplSaveOk = [];
                 foreach ($templateContents as $templateName => $newContent) {
                     $tplObj = $this->{$templateName.'Template'};
                     $tplObj->setContent($newContent);

@@ -19,7 +19,12 @@ jQuery(document).ready(function () {
     fpcmJs = new fpcmJs();
     fpcmJs.runCronsAsync();
     
-    fpcm.ui.load();
+    jQuery.each(fpcm, function(idx, object) {
+        if (typeof object.init === 'function') {
+            object.init();
+        }
+    });
+
     fpcmJs.windowResize();
     
     jQuery(window).resize(function () {
@@ -47,40 +52,6 @@ jQuery(document).ready(function () {
             source: fpcmDtMasks
         });        
     };
-    
-    jQuery('.fpcm-logs-clear').click(function () {
-        var logId = jQuery(this).attr('id');
-        var size  = fpcm.ui.getDialogSizes(top, 0.35);
-        fpcm.ui.dialog({
-            title: fpcm.ui.translate('confirmHL'),
-            content: fpcm.ui.translate('confirmMessage'),
-            dlWidth: size.width,
-            dlButtons: [
-                {
-                    text: fpcm.ui.translate('yes'),
-                    icon: "ui-icon-check",                    
-                    click: function() {
-                        fpcmJs.clearLogs(logId); 
-                        jQuery(this).dialog('close');
-                    }
-                },
-                {
-                    text: fpcm.ui.translate('no'),
-                    icon: "ui-icon-closethick",
-                    click: function() {
-                        jQuery(this).dialog('close');
-                    }
-                }
-            ]
-        });
-        
-        return false;
-    });
-    
-    jQuery('.fpcm-logs-reload').click(function () {
-        fpcmJs.reloadLogs(jQuery(this).attr('id'));        
-        return false;
-    });
     
     jQuery('#tabs-files-list-reload').click(function () {
         fpcmJs.reloadFiles();

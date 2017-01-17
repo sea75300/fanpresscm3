@@ -10,6 +10,11 @@ if (fpcm === undefined) {
 
 fpcm.login = {
 
+    init: function() {
+        this.moveToCenter();
+        this.setFocus();
+    },
+
     moveToCenter: function () {
         
         if (jQuery(window).width() < 800) {
@@ -26,8 +31,3 @@ fpcm.login = {
     },
 
 };
-
-jQuery(document).ready(function () {
-    fpcm.login.moveToCenter();
-    fpcm.login.setFocus();
-});

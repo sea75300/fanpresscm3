@@ -27,7 +27,7 @@
         public function __construct() {
             parent::__construct();
 
-            $this->checkPermission = array();
+            $this->checkPermission = [];
             $this->view            = new \fpcm\model\view\acp('help', 'system');
             $this->cache           = new \fpcm\classes\cache('helpcache_'.$this->config->system_lang);
         }

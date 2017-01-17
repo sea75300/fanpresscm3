@@ -10,6 +10,11 @@ if (fpcm === undefined) {
 
 fpcm.installer = {
 
+    init: function() {
+        this.initUi();
+        this.initDatabase();
+    },
+
     checkDBData: function() {
         sfields = jQuery('.fpcm-installer-data');
         sParams = {};

@@ -82,6 +82,7 @@
         'ARTICLE_SEARCH_POSTPONED'      => 'geplante Artikel',
         'ARTICLE_SEARCH_COMMENTS'       => 'Kommentare aktiv',
         'ARTICLE_SEARCH_APPROVAL'       => 'freizuschaltende Artikel',
+        'ARTICLE_SEARCH_DRAFT'          => 'Entwürfe',
         'ARTICLE_SEARCH_TYPE_TITLE'     => 'nur Titel durchsuchen',
         'ARTICLE_SEARCH_TYPE_TEXT'      => 'nur Text durchsuchen',
         'ARTICLE_SEARCH_TYPE_ALL'       => 'Titel und Text durchsuchen',

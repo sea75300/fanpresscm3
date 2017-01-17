@@ -133,7 +133,7 @@
         public function process() {
             if (!parent::process()) return false;
             
-            $timezones = array();
+            $timezones = [];
             
             foreach ($this->getTimeZones() as $area => $zones) {
                 foreach ($zones as $zone) {

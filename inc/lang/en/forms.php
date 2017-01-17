@@ -82,6 +82,7 @@
         'ARTICLE_SEARCH_POSTPONED'      => 'only postponed articles',
         'ARTICLE_SEARCH_APPROVAL'       => 'articles awaiting for approval',
         'ARTICLE_SEARCH_COMMENTS'       => 'Comments are active',
+        'ARTICLE_SEARCH_DRAFT'          => 'Drafts',
         'ARTICLE_SEARCH_TYPE_TITLE'     => 'Search in title only',
         'ARTICLE_SEARCH_TYPE_TEXT'      => 'Search in content only',
         'ARTICLE_SEARCH_TYPE_ALL'       => 'Search in title and content',

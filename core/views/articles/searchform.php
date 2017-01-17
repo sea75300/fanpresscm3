@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <td><?php \fpcm\model\view\helper::select('approval', $searchApproval, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-articlesearch'); ?></td>
-            <td></td>
+            <td><?php \fpcm\model\view\helper::select('draft', $searchDraft, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-articlesearch'); ?></td>
             <td></td>
         </tr>
         <tr>    

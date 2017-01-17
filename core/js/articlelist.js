@@ -10,7 +10,9 @@ if (fpcm === undefined) {
 
 fpcm.articlelist = {
 
-    load: function() {
+    init: function() {
+        
+        fpcm.articlelist.initArticleSearch();
 
         jQuery('.fpcm-tabs-articles-headers a').click(function () {
 
@@ -129,10 +131,3 @@ fpcm.articlelist = {
 
     }    
 }
-
-jQuery(document).ready(function() {
-
-    fpcm.articlelist.load();
-    fpcm.articlelist.initArticleSearch();
-
-});

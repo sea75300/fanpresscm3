@@ -10,6 +10,11 @@ if (fpcm === undefined) {
 
 fpcm.filemanager = {
 
+    init: function() {
+        this.initJqUpload();
+        this.initUploadButtons();
+    },
+
     assignButtons: function () {
         fpcm.ui.assignCheckboxes();
         this.initInsertButtons();
@@ -254,8 +259,3 @@ fpcm.filemanager = {
 
     }
 };
-
-jQuery(document).ready(function () {
-    fpcm.filemanager.initJqUpload();
-    fpcm.filemanager.initUploadButtons();
-});

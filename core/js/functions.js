@@ -49,53 +49,8 @@ var fpcmJs = function () {
         });
         
         return false;        
-    };    
-    
-    this.clearLogs = function(id) {
-
-        self.showLoader(true);
-        var logType = id.split('_');
-
-        fpcm.ajax.get('logs/clear', {
-            workData: id,
-            data: {
-                log: logType[1]
-            },
-            execDone: function() {
-                fpcmJs.showLoader(false);
-                fpcmJs.reloadLogs(fpcm.ajax.getWorkData('logs/clear'));
-                fpcm.ui.appendMessage(fpcm.ajax.getResult('logs/clear'));
-            }
-        });
-
-        return false;
     };
-    
-    this.reloadLogs = function(id) {
 
-        self.showLoader(true);
-        var logType = id.split('_');
-
-        fpcm.ajax.get('logs/reload', {
-            workData: id,
-            data: {
-                log: logType[1]
-            },
-            execDone: function() {
-                fpcmJs.showLoader(false);
-
-                var tabId = fpcm.ajax.getWorkData('logs/reload');
-                fpcmJs.assignHtml('#fpcm-logcontent'+ tabId, fpcm.ajax.getResult('logs/reload'));
-
-                if (tabId == 4) {
-                    fpcm.ui.accordion('.fpcm-accordion-pkgmanager');
-                }
-            }
-        });
-        
-        return false;
-    };
-    
     this.reloadFiles = function (page) {
         self.showLoader(true);
 

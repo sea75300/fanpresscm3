@@ -35,11 +35,12 @@
             $userList = new \fpcm\model\users\userList();
             $this->view->assign('userList', $userList->getUsersAll());            
             $this->view->assign('sessionList', $this->session->getSessions());
-            $this->view->assign('errorLogs', array());
-            $this->view->assign('systemLogs', array());
-            $this->view->assign('databaseLogs', array());
-            $this->view->assign('packagesLogs', array());
-            $this->view->assign('customLogs', $this->events->runEvent('logsAddList', array()));
+            $this->view->assign('errorLogs', []);
+            $this->view->assign('systemLogs', []);
+            $this->view->assign('databaseLogs', []);
+            $this->view->assign('packagesLogs', []);
+            $this->view->assign('customLogs', $this->events->runEvent('logsAddList', []));
+            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'logs.js']);
             
             $this->view->render();
         }
