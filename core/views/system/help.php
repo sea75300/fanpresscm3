@@ -18,15 +18,3 @@
         </div>        
     </div>
 </div>
-
-<?php if ($defaultCapter !== false) : ?> 
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        jQuery('#tabs-help-general div.fpcm-tabs-accordion').accordion({
-            header: "h2",
-            heightStyle: "content",
-            active: <?php print $defaultCapter; ?>
-        });
-    });
-</script>
-<?php endif; ?> 

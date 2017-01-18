@@ -200,12 +200,15 @@ Help language file
                     <ul>
                         <li><em>Select editor:</em> Enables TinyMCE editor view or classic HTML editor view..</li>
                         <li><em>Default editor font size:</em> Default font size used in the article editor</li>
-                        <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
                         <li><em>Revisions enabled:</em> Enabled revision function to save changes on articles and make them
                         restorable.</li>
                         <li><em>Delete old revisions, if older then:</em> Remove all article revisions which are older then a amount of weeks</li>
                         <li><em>Enabled article trash:</em> Enable article trash to and be able to restore deleted articles.</li>
-                        <li><em>Maximum thumbnail size::</em> Maximum size of created thumbnails.</li>
+                        <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
+                        <li><em>Number of images per page:</em> Number of images displayed per page in file manager.</li>
+                        <li><em>Save image changes in TinyMCE in file system:</em> Save changes on images made using TinyMCE image tools
+                        as file in upload folder.</li>
+                        <li><em>Maximum thumbnail size:</em> Maximum size of created thumbnails.</li>
                         <li><em>CSS classes in editor:</em> CSS classes with can be used in article editor.</li>
                     </ul>
                 </li>            
@@ -295,10 +298,11 @@ Help language file
             </ul>
                 
             <h3>Censored texts</h3>
+            <p>Censored texts prevent certain words, texts, text groups and strings from beeing used in comments, articles, categories, users and user rolls.</p>
             <ul>
-                <li>Censored texts prevent certain words, texts, text groups and strings from beeing used in comments, articles,
-                    categories, users and user rolls.</li>
-                <li>Censored texts will be replaced by the "Replacement" text.</li>
+                <li><em>Replace text:</em> Censored texts will be replaced by the "Replacement" text, if this option is enabled.</li>
+                <li><em>Approval of article required:</em> Article is set to require an user approval, if the phrase is included.</li>
+                <li><em>Approval of comment required:</em> Comment is set to require an user approval, if the phrase is included.</li>
             </ul>
                 
             <h3>Categories</h3>
@@ -392,9 +396,16 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-            <p>FanPress CM includes a cache system to reduce load to database, file system and improve speed. If it's content is expired
-            it will be rebuild automatically. In case it's not, click <span class="fpcm-ui-button">Clear cache</span> at the page top
+            <p> In case it's not, click <span class="fpcm-ui-button">Clear cache</span> at the page top
             to cleanup the cache manually.</p>
+            
+            
+            <ul>
+                <li>FanPress CM includes a cache system to reduce load to database, file system and improve speed. If it's content is expired
+            it will be rebuild automatically.</li>
+                <li>In case it's not, click <span class="fpcm-ui-button" title="Cache leeren"><span class="fa fa-recycle fa-lg fa-fw"></span></span>
+                at the page top to cleanup the cache manually.</li>
+            </ul>
         ]]>
         </text>
     </chapter>

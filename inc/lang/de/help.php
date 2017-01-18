@@ -51,7 +51,7 @@ Help language file
                 <li><em>Artikelbild:</em> Mit dem Artikelbild kannst du einen Artikel eine zusätzliche Dekoration, optische
                     Beschreibung, etc. geben. Die Position und Größe des Artikelbildes kann über das Artikel-Template festgelegt werden.
                 </li>
-                <li><em>Quelleverzeichnis:</em> Der Inhalt dieses Feldes wird durch den Template-Tag "{{sources}}" dargestellt. Hier kannst du Links zu deinen Informationsquellen,
+                <li><em>Quellenverzeichnis:</em> Der Inhalt dieses Feldes wird durch den Template-Tag "{{sources}}" dargestellt. Hier kannst du Links zu deinen Informationsquellen,
                 Quellen von Bildern, Videos, etc. oder zu weiterführenden Informationen angeben. Links werden so weit es geht automatisch in HTML-Links umgewandelt.</li>
                 <li><em>Artikel freischalten:</em> Mittels dieser Option kannst du einen neuen Artikel verfassen und zu einem bestimmten
                     Zeitpunkt automatisch veröffentlichen lassen. Der Zeitpunkt kann maximal zwei Monate in der Zukunft liegen.</li>
@@ -222,12 +222,15 @@ Help language file
                         <li><em>Editor auswählen:</em> Welcher Editor soll genutzt werden, die reine HTML-Ansicht oder der auf
                         Basis von TinyMCE 4.</li>
                         <li><em>Standard-Schriftgröße im Editor:</em> Schriftgröße, die standardmäßig im Artikel-Editor genutzt wird</li>
-                        <li><em>jQuery Dateiupload verwenden:</em> Soll der moderne AJAX-Uploader genutzt werden, mit dem
-                        mehrere Dateien auf einmal hochgeladen werden können. Oder den klassischen PHP-Uploader nutzten.</li>
                         <li><em>Revisionen aktivieren:</em> Soll FanPress CM Revisionen beim Speichern eines Artikels anlegen.</li>
                         <li><em>Alte Revisionen löschen, wenn älter als:</em> Revisionen die älter als der angebene
                             Wert sind, werden beim nächsten Durchlauf des zugehörigen Cronjobs auf der Datenbank entfernt, wenn Wert ungleich "Nie"</li>
                         <li><em>Papierkorb aktivieren:</em> Artikel nicht direkt löschen sondern zuerst in Papierkorb verschieben, können bei Bedarf wiederherstellt werden.</li>
+                        <li><em>jQuery Dateiupload verwenden:</em> Soll der moderne AJAX-Uploader genutzt werden, mit dem
+                        mehrere Dateien auf einmal hochgeladen werden können. Oder den klassischen PHP-Uploader nutzten.</li>
+                        <li><em>Anzahl Bilder pro Seite:</em> Anzahl an Bildern, die im Dateimanager pro Seite angezeigt werden.</li>                        
+                        <li><em>Bilder-Änderungen in TinyMCE auf Server speichern:</em> Änderungen durch Bild-Bearbeitung in TinyMCE
+                        als Datei im Upload-Ordner speichern.</li>
                         <li><em>Maximale Größe des Vorschaubildes:</em> Größe der von FanPress CM erzeugten Thumbnails.</li>
                         <li><em>CSS-Klassen im Editor:</em> CSS-Klassen zur Nutzung im FanPress CM Editor.</li>
                     </ul>
@@ -339,10 +342,17 @@ Help language file
             </ul>
                 
             <h3>Textzensur</h3>
+            <p>Die Textzensur ermöglicht es, bestimmte Wörter, Textgruppen oder Zeichenketten für die Verwendung in Artikeln, Kommentaren, etc. zu sperren.</p>
             <ul>
-                <li>Die Textzensur ermöglicht es, bestimmte Wörter, Textgruppen oder Zeichenketten für die Verwendung zu sperren.</li>
-                <li>Diese Textstellen werden durch den angegeben Text ersetzt.</li>
-                <li>Die Textzensur wird beim Erstellen von Kommentaren, Artikeln, Kategorien, Benutzern und Benutzer-Rollen ausgeführt.</li>
+                <li><em>Text ersetzen:</em> Ist diese Checkbox markiert, so wird die entsprechende Textstelle durch den angegeben
+                    Text ersetzt. Die Textzensur wird beim Erstellen von Kommentaren, Artikeln, Kategorien, Benutzern und
+                    Benutzer-Rollen ausgeführt.
+                </li>
+                <li><em>Artikel muss überprüft werden:</em> Durch diese Option wird beim Speichern eines Artikels geprüft, ob die
+                    entsprechende Phrase enthalten ist. In diesem Fall wird - unabhängig von den eingestellten Berechtigungen - der
+                    Artikel markiert, dass er freigeschalten werden muss.</li>
+                <li><em>Kommentar muss freigeschalten werden:</em> Analog zur Option <em>Artikel muss überprüft werden</em>, allerdings
+                    wird hier der entsprechende Kommentar markiert, dass er manuell freigegeben werden muss.</li>
             </ul>
                 
             <h3>Kategorien</h3>
@@ -443,10 +453,13 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-            <p>FanPress CM besitzt ein Cache-System, welche die Ladenzeiten und System-Belastung deutlich reduzieren, da Daten nicht bei jedem
-            Seiten-Aufruf aus der Datenbank gezogen werden müssen. Bei Aktionen, in denen der Cache-Inhalt als veraltet gilt, wird er i. d. R
-            automatisch geleert. Sollte dies jedoch einmal nicht geschehen, so kann du über <span class="fpcm-ui-button">Cache leeren</span> neben dem Profil-Menü eine
-            manuelle Löschung des Caches anstoßen.</p>
+            <ul>
+                <li>FanPress CM besitzt ein Cache-System, welche die Ladenzeiten und System-Belastung deutlich reduzieren, da Daten nicht bei jedem
+                    Seiten-Aufruf aus der Datenbank gezogen werden müssen. Bei Aktionen, in denen der Cache-Inhalt als veraltet gilt, wird er i. d. R
+                    automatisch geleert.</li>
+                <li>Sollte dies jedoch einmal nicht geschehen, so kann du über <span class="fpcm-ui-button" title="Cache leeren"><span class="fa fa-recycle fa-lg fa-fw"></span></span>
+                    neben dem Profil-Menü eine manuelle Löschung des Caches anstoßen.</li>
+            </ul>
         ]]>
         </text>
     </chapter>

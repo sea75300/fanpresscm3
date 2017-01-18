@@ -11,7 +11,7 @@
         
         /**
          * Controller-View
-         * @var \fpcm\model\view\acp
+         * @var \fpcm\model\view\ajax
          */
         protected $view;
         
@@ -44,7 +44,8 @@
             }
 
             $this->getClasses();
-            
+
+            $this->view->setExcludeMessages(true);
             $this->view->assign('containers', $this->containers);
             $this->view->render();            
         }

@@ -1,5 +1,5 @@
 /**
- * FanPress CM UI Namespace
+ * FanPress CM Filemanager Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
  * @copyright (c) 2015, 2016, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
@@ -11,8 +11,19 @@ if (fpcm === undefined) {
 fpcm.filemanager = {
 
     init: function() {
+
         this.initJqUpload();
         this.initUploadButtons();
+        
+        if (fpcmLoadAjax) {
+            this.reloadFiles();
+            this.initActionButtons();
+        }
+    
+        jQuery('#tabs-files-list-reload').click(function () {
+            fpcm.filemanager.reloadFiles();
+            return false;
+        });
     },
 
     assignButtons: function () {
@@ -241,21 +252,56 @@ fpcm.filemanager = {
 
         fpcm.ui.selectmenu('#pageSelect', {
             select: function( event, ui ) {
-                fpcmJs.reloadFiles(ui.item.value);
+                fpcm.filemanager.reloadFiles(ui.item.value);
             }
         });
 
         jQuery('#fpcmpagernext').click(function() {
             var page = jQuery(this).attr('href').split('&page=');
-            fpcmJs.reloadFiles((page[1] === undefined) ? 1 : page[1]);
+            fpcm.filemanager.reloadFiles((page[1] === undefined) ? 1 : page[1]);
             return false;
         });
 
         jQuery('#fpcmpagerback').click(function() {
             var page = jQuery(this).attr('href').split('&page=');
-            fpcmJs.reloadFiles((page[1] === undefined) ? 1 : page[1]);
+            fpcm.filemanager.reloadFiles((page[1] === undefined) ? 1 : page[1]);
             return false;
         });
 
+    },
+
+    reloadFiles: function (page) {
+
+        fpcmJs.showLoader(true);
+
+        if (!page) {
+            page = 1;
+        }
+
+        fpcm.ajax.get('filelist', {
+            data: {
+                mode: fpcmFmgrMode,
+                page: page
+            },
+            execDone: function () {
+
+                fpcmJs.assignHtml("#tabs-files-list-content", fpcm.ajax.getResult('filelist'));
+                fpcmJs.assignButtons();
+                fpcm.filemanager.assignButtons();
+                var fpcmRFDinterval = setInterval(function(){
+                    if (jQuery('#fpcm-filelist-images-finished').length == 1) {
+                        fpcmJs.showLoader(false);
+                        fpcmJs.windowResize();
+                        clearInterval(fpcmRFDinterval);
+                        if (page) {
+                            jQuery(window).scrollTop(0);
+                        }
+                        return false;
+                    }
+                }, 250);
+            }
+        });
+        
+        return false;
     }
 };

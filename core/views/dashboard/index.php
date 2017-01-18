@@ -16,9 +16,3 @@
 
     <div class="fpcm-clear"></div>
 </div>
-
-<script type="text/javascript">
-jQuery(document).ready(function () {
-    fpcmJs.loadDashboardContainer();
-});
-</script>

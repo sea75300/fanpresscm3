@@ -73,8 +73,8 @@
                 
                 $fileNames = array_map('base64_decode', $this->getRequestVar('filenames'));
                 
-                $deletedOk = array();
-                $deletedFailed = array();
+                $deletedOk = [];
+                $deletedFailed = [];
                 foreach ($fileNames as $fileName) {
                     $image = new \fpcm\model\files\image($fileName, '', '', false);
                     
@@ -96,8 +96,8 @@
             if ($this->buttonClicked('createThumbs') && !is_null($this->getRequestVar('filenames'))) {
                 $fileNames = array_map('base64_decode', $this->getRequestVar('filenames'));
                 
-                $success = array();
-                $failed  = array();                
+                $success = [];
+                $failed  = [];                
                 foreach ($fileNames as $fileName) {
                     $image = new \fpcm\model\files\image($fileName, '', '', false);
                     
@@ -138,17 +138,16 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $loadAjax = ($this->fileList->getDatabaseFileCount() >= 1 ? true : false);
-            $this->view->assign('loadAjax', $loadAjax);
-            
-            $this->view->addJsVars(array(
+            $this->view->addJsVars([
                 'fpcmBaseUrl'      => \fpcm\classes\baseconfig::$rootPath,
                 'fpcmFmgrMode'     => $this->mode,
                 'fpcmEditorType'   => $this->config->system_editor,
-                'fpcmJqUploadInit' => $this->config->file_uploader_new
-            ));
-            
-            $this->view->addJsLangVars(array('newNameMsg' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME')));
+                'fpcmJqUploadInit' => $this->config->file_uploader_new,
+                'fpcmLoadAjax'     => ($this->fileList->getDatabaseFileCount() >= 1 ? true : false),
+                'fpcmCurrentModule'=> $this->getRequestVar('module')
+            ]);
+
+            $this->view->addJsLangVars(['newNameMsg' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME')]);
             
             $this->view->assign('newUploader', $this->config->file_uploader_new);
             $this->view->assign('jquploadPath', \fpcm\classes\loader::libGetFileUrl('jqupload'));
@@ -159,14 +158,14 @@
             } else {
                 $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('files/list', array('mode' => $this->mode)));
                 
-                $translInfo = array(
+                $translInfo = [
                     '{{filecount}}' => ini_get("max_file_uploads"),
                     '{{filesize}}'  => \fpcm\classes\tools::calcSize(\fpcm\classes\baseconfig::uploadFilesizeLimit(true), 0)
-                );
+                ];
                 $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             }
 
-            $this->initViewAssigns(array(), array(), \fpcm\classes\tools::calcPagination(1, 1, 0, 0));
+            $this->initViewAssigns([], [], \fpcm\classes\tools::calcPagination(1, 1, 0, 0));
             $this->initPermissions();
             $this->view->render();
         }

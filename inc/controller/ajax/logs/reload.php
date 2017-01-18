@@ -71,6 +71,7 @@
             $userList = new \fpcm\model\users\userList();
             
             $view = new \fpcm\model\view\ajax('sessions', 'logs');
+            $view->setExcludeMessages(true);
             $view->initAssigns();
             $view->assign('userList', $userList->getUsersAll());
             $view->assign('sessionList', $this->session->getSessions());
@@ -83,6 +84,7 @@
         private function loadLog1() {
             $view = new \fpcm\model\view\ajax('system', 'logs');
             $view->assign('systemLogs', array_map('json_decode', \fpcm\classes\logs::syslogRead()));
+            $view->setExcludeMessages(true);
             $view->initAssigns();
             $view->render();            
         }
@@ -93,6 +95,7 @@
         private function loadLog2() {
             $view = new \fpcm\model\view\ajax('errors', 'logs');
             $view->assign('errorLogs', array_map('json_decode', \fpcm\classes\logs::errorlogRead()));
+            $view->setExcludeMessages(true);
             $view->initAssigns();
             $view->render();            
         }
@@ -103,6 +106,7 @@
         private function loadLog3() {
             $view = new \fpcm\model\view\ajax('database', 'logs');
             $view->assign('databaseLogs', array_map('json_decode', \fpcm\classes\logs::sqllogRead()));
+            $view->setExcludeMessages(true);
             $view->initAssigns();
             $view->render();             
         }
@@ -113,6 +117,7 @@
         private function loadLog4() {
             $view = new \fpcm\model\view\ajax('packages', 'logs');
             $view->assign('packagesLogs', array_map('json_decode', \fpcm\classes\logs::pkglogRead()));
+            $view->setExcludeMessages(true);
             $view->initAssigns();
             $view->render();   
         }
@@ -125,6 +130,7 @@
             $view = new \fpcm\model\view\ajax('cronjobs', 'logs');
             $view->assign('cronjobList', $cronlist->getCronsData());
             $view->assign('currentTime', time());
+            $view->setExcludeMessages(true);
             $view->initAssigns();
             $view->render();
         }

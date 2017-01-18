@@ -52,6 +52,7 @@
         public function process() {
             
             $view = new \fpcm\model\view\ajax('syscheck', 'system');
+            $view->setExcludeMessages(true);
             $view->initAssigns();
 
             $view->assign('checkOptions', $this->getCheckOptions());

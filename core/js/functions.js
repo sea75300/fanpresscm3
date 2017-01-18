@@ -50,40 +50,6 @@ var fpcmJs = function () {
         
         return false;        
     };
-
-    this.reloadFiles = function (page) {
-        self.showLoader(true);
-
-        if (!page) {
-            page = 1;
-        }
-
-        fpcm.ajax.get('filelist', {
-            data: {
-                mode: fpcmFmgrMode,
-                page: page
-            },
-            execDone: function () {
-
-                fpcmJs.assignHtml("#tabs-files-list-content", fpcm.ajax.getResult('filelist'));
-                fpcmJs.assignButtons();
-                fpcm.filemanager.assignButtons();
-                var fpcmRFDinterval = setInterval(function(){
-                    if (jQuery('#fpcm-filelist-images-finished').length == 1) {
-                        fpcmJs.showLoader(false);
-                        fpcmJs.windowResize();
-                        clearInterval(fpcmRFDinterval);
-                        if (page) {
-                            jQuery(window).scrollTop(0);
-                        }
-                        return false;
-                    }
-                }, 250);
-            }
-        });
-        
-        return false;
-    };
     
     this.relocate = function (url) {
         window.location.href = url;
@@ -338,9 +304,12 @@ var fpcmJs = function () {
     };
     
     this.pagerButtons = function() {
-        
+
         fpcm.ui.selectmenu('#pageSelect', {
             select: function( event, ui ) {
+                
+                console.log(ui);
+                
                 if (ui.item.value == '1') {
                     window.location.href = fpcmActionPath + fpcmCurrentModule;
                     return true;
@@ -409,52 +378,6 @@ var fpcmJs = function () {
                 id: 'sessioncheck'
             });
         }        
-    };
-    
-    this.loadDashboardContainer = function() {
-        fpcm.ajax.exec('dashboard', {
-            execDone: 'fpcmJs.loadDashboardContainerCallback();'
-        });
-    };
-    
-    this.loadDashboardContainerCallback = function() {
-        fpcmJs.assignHtml('#fpcm-dashboard-containers', fpcm.ajax.getResult('dashboard'));
-        fpcmJs.assignButtons();
-    
-        jQuery('.fpcm-updatecheck-manual').click(function () {
-            fpcmJs.openManualCheckFrame();
-            return false;
-        });
-        
-        var fpcmRFDinterval = setInterval(function(){
-            if (jQuery('#fpcm-dashboard-finished').length == 1) {
-                jQuery('#fpcm-dashboard-containers-loading').remove();
-                clearInterval(fpcmRFDinterval);
-                fpcmJs.windowResize();
-                return false;
-            }
-        }, 250);
-    };
-    
-    this.execCronjobDemand = function(cronjobId) {
-        self.showLoader(true);
-        fpcm.ajax.get('cronasync', {
-            data    : {
-                cjId: cronjobId
-            },
-            execDone: 'fpcmJs.showLoader(false);'
-        });
-    };
-    
-    this.setCronjobInterval = function(cronjobId, cronjobInterval) {
-        self.showLoader(true);
-        fpcm.ajax.get('croninterval', {
-            data    : {
-                cjId:cronjobId,
-                interval:cronjobInterval
-            },
-            execDone: 'fpcmJs.showLoader(false);'
-        });
     };
 
     this.generatePasswdString = function() {

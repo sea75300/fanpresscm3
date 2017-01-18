@@ -80,6 +80,7 @@
             $this->initViewAssigns($list, $userList->getUsersAll(), $pagerData);
             $this->initPermissions();           
 
+            $this->view->setExcludeMessages(true);
             $this->view->initAssigns();
             $this->view->render();
         }

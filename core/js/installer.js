@@ -1,5 +1,5 @@
 /**
- * FanPress CM javascript installer functions
+ * FanPress CM Installer Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
  * @copyright (c) 2015, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3

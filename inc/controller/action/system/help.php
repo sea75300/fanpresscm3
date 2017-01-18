@@ -56,8 +56,9 @@
             $contents = $this->events->runEvent('extendHelp', $contents);
             $this->view->assign('chapters', $contents);
 
-            $pos = $this->chapterHeadline ? (int) array_search(strtoupper(base64_decode($this->chapterHeadline)), array_keys($contents)) : false;
-            $this->view->assign('defaultCapter', $pos);
+            $pos = $this->chapterHeadline ? (int) array_search(strtoupper(base64_decode($this->chapterHeadline)), array_keys($contents)) : 0;
+            $this->view->addJsVars(['fpcmDefaultCapter' => $pos]);
+            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'help.js']);
             
             $this->view->render();
         }

@@ -53,10 +53,3 @@
         <?php fpcm\model\view\helper::saveButton('commentSave'); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmEditor.initTinyMceComment();
-        fpcmJs.setFocus('commentname');
-    });
-</script>

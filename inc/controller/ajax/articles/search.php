@@ -22,7 +22,7 @@
         
         /**
          * Controller-View
-         * @var \fpcm\model\view\acp
+         * @var \fpcm\model\view\ajax
          */
         protected $view;
         
@@ -145,6 +145,8 @@
             
             $users = $this->userList->getUsersNameList();
             
+            $this->view->setExcludeMessages(true);
+
             $this->view->assign('timesMode', true);
             $this->view->assign('users', array_flip($users));
             $this->view->assign('commentEnabledGlobal', $this->config->system_comments_enabled);

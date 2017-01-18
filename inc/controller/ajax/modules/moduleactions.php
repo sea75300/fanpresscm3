@@ -146,6 +146,7 @@
             if (!parent::process()) return false;
 
             $this->assignModules($this->modulelist, false);
+            $this->view->setExcludeMessages(true);
             $this->view->initAssigns();
             $this->view->render();
             

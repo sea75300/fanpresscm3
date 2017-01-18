@@ -273,7 +273,7 @@
             $this->view->addJsLangVars(array('editorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT')));
             
             if (!$this->permissions->check(array('article' => 'approve')) && $this->article->getApproval()) {
-                $this->view->addMessage('Um den Artikel freizugeben, speichere ihn einfach erneut ab.');
+                $this->view->addMessage('SAVE_SUCCESS_APPROVAL_SAVE');
             }
             
             $this->initPermissions();

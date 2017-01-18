@@ -1,5 +1,5 @@
 /**
- * FanPress CM UI Namespace
+ * FanPress CM Permissions Namespace
  */
 if (fpcm === undefined) {
     var fpcm = {};

@@ -23,7 +23,7 @@
         
         /**
          *
-         * @var \fpcm\model\view\acp
+         * @var \fpcm\model\view\ajax
          */
         protected $view;
 
@@ -95,6 +95,7 @@
 
             $this->initCommentPermissions();
 
+            $this->view->setExcludeMessages(true);
             $this->view->assign('ownArticleIds', $this->articleList->getArticleIDsByUser($this->session->getUserId()));
             $this->view->assign('commentsMode', 1);
             $this->view->render();

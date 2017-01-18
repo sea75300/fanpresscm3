@@ -32,6 +32,7 @@
                 return false;
             }
 
+            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'dashboard.js']);
             $this->view->render();            
         }
     }

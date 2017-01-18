@@ -125,7 +125,8 @@
             } else {
                 $this->view->assign('changeInfo', $this->lang->translate('GLOBAL_NOCHANGE'));
             }
-            
+
+            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'comments.js'));
             $this->view->assign('ipWhoisLink', substr($this->comment->getIpaddress(), -1) === '*' ? false : true);
             $this->view->assign('comment', $this->comment);
             $this->view->assign('commentsMode', $mode);

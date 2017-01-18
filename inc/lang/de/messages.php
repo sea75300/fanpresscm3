@@ -59,6 +59,7 @@
         'SAVE_SUCCESS_SPAMMER'          => 'Die Spam-Markierung der Kommentars/e wurde geändert!',
         'SAVE_SUCCESS_UPLOADMODULE'     => 'Die Modul-Paket-Datei wurde hochgeladen!',
         'SAVE_SUCCESS_UPLOADTPLFILE'    => 'Die Vorlage wurde hochgeladen!',
+        'SAVE_SUCCESS_APPROVAL_SAVE'    => 'Um den Artikel freizugeben, speichere ihn einfach erneut ab!',
         
         'SAVE_FAILED_USER'              => 'Der Benutzer konnte nicht gespeichert werden!',
         'SAVE_FAILED_USER_PROFILE'      => 'Die Änderung am Profil konnten nicht gespeichert werden!',

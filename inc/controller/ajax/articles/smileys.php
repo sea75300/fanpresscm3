@@ -35,6 +35,7 @@
             $view = new \fpcm\model\view\ajax('smileys', 'articles/editors');
             
             $view->assign('smileys', array_values($smileyList->getDatabaseList()));
+            $view->setExcludeMessages(true);
             
             $view->render();
         }

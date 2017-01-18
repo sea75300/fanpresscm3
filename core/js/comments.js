@@ -1,13 +1,24 @@
 /**
- * FanPress CM javascript comment editor functions
+ * FanPress CM Comments Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2015, Stefan Seehafer
+ * @copyright (c) 2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @since FPCM 3.5
  */
+if (fpcm === undefined) {
+    var fpcm = {};
+}
 
-var fpcmEditor = function () {
-    
-    this.initTinyMceComment = function() {
+fpcm.comments = {
+
+    init: function () {
+
+        this.initTinyMceComment();
+        fpcmJs.setFocus('commentname');
+
+    },
+
+    initTinyMceComment: function() {
         tinymce.init({
             selector              : "textarea",
             skin                  : "fpcm",
@@ -28,10 +39,7 @@ var fpcmEditor = function () {
                     jQuery(this.iframeElement).removeAttr('title');
                 });
             }                
-        });    
+        });
     }
-};
 
-jQuery(document).ready(function() {    
-    fpcmEditor = new fpcmEditor();   
-});
+};

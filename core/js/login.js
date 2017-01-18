@@ -1,5 +1,5 @@
 /**
- * FanPress CM UI Namespace
+ * FanPress CM Login Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
  * @copyright (c) 2015, 2016, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3

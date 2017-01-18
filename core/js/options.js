@@ -1,5 +1,5 @@
 /**
- * FanPress CM UI Namespace
+ * FanPress CM Options Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
  * @copyright (c) 2015, 2016, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
@@ -18,7 +18,7 @@ fpcm.options = {
                 active: (showTwitter ? 7 : 6)
             });
             
-            jQuery('#tabs-options-syscheck').trigger('click');
+            fpcmJs.systemCheck();
         }
 
         fpcm.ui.datepicker('#articles_archive_datelimit', {

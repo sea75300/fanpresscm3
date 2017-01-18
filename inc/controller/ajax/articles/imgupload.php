@@ -41,8 +41,6 @@
 
                 $result = $uploader->processUpload($this->session->getUserId());
 
-                \fpcm\classes\logs::syslogWrite($result);
-
                 if (!count($result['error']) && count($result['success'])) {
                     die(json_encode(['location' => \fpcm\classes\baseconfig::$uploadRootPath.$name]));
                 }
