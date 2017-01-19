@@ -108,8 +108,8 @@
             $this->view->assign('usersRollList', $translatedRolls);
             $this->view->assign('usersRolls', array_flip($translatedRolls));
             $this->view->assign('articleCounts', $this->articleList->countArticlesByUsers());
-            
             $this->view->assign('rollPermissions', $this->permissions->check(array('system' => 'rolls')));
+            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'users.js']);
 
             $this->view->render();
         }

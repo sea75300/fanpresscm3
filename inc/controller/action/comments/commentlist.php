@@ -71,6 +71,7 @@
             $this->initCommentPermissions();
             $this->initSearchForm();
 
+            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'comments.js'));
             $this->view->assign('comments', $this->list->getCommentsAll());
             $this->view->assign('commentsMode', 1);
             $this->view->render();

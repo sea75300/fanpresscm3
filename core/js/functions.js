@@ -56,6 +56,7 @@ var fpcmJs = function () {
     };
     
     this.windowResize = function () {
+        console.warn('Using "fpcmJs.windowResize" class is deprecated as of version 3.5! Use "fpcm.ui.resize" instead.');
         fpcm.ui.resize();
     };
     
