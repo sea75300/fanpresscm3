@@ -1,7 +1,7 @@
 /**
  * FanPress CM AJAX Framework
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2015, Stefan Seehafer
+ * @copyright (c) 2015-2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  * @deprecated FPCM 3.5
  */
@@ -80,7 +80,7 @@ var fpcmAjaxHandler = function () {
 /**
  * FanPress CM AJAX Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2017, Stefan Seehafer
+ * @copyright (c) 2015-2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  * @since FPCM 3.5
  */

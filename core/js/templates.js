@@ -10,7 +10,7 @@ fpcm.templates = {
     init: function() {
         this.initCodeMirror('templatearticle');
         this.initTemplatePreview();
-        fpcmJs.windowResize();
+        fpcm.ui.resize();
     },
 
     enabledEditors: {

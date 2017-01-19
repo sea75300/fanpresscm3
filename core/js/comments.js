@@ -1,7 +1,7 @@
 /**
  * FanPress CM Comments Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2017, Stefan Seehafer
+ * @copyright (c) 2015-2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  * @since FPCM 3.5
  */
@@ -13,8 +13,14 @@ fpcm.comments = {
 
     init: function () {
 
-        this.initTinyMceComment();
-        fpcmJs.setFocus('commentname');
+        if (fpcmLang.searchHeadline) {
+            this.initCommentSearch();
+        }
+
+        if (window.tinymce) {
+            this.initTinyMceComment();
+            fpcmJs.setFocus('commentname');
+        }
 
     },
 
@@ -40,6 +46,87 @@ fpcm.comments = {
                 });
             }                
         });
+    },
+    
+    initCommentSearch: function() {
+
+        jQuery('#fpcmcommentsopensearch').click(function () {
+
+            fpcm.ui.selectmenu('.fpcm-ui-input-select-commentsearch', {
+                width: '100%',
+                appendTo: '#fpcm-dialog-comments-search'
+            });
+
+            fpcm.ui.datepicker('.fpcm-full-width-date');
+
+            var size = fpcm.ui.getDialogSizes();
+
+            fpcm.ui.dialog({
+                id      : 'comments-search',
+                dlWidth: size.width,
+                resizable: true,
+                title    : fpcm.ui.translate('searchHeadline'),
+                dlButtons  : [
+                    {
+                        text: fpcm.ui.translate('searchStart'),
+                        icon: "ui-icon-check",                        
+                        click: function() {                            
+                            var sfields = jQuery('.fpcm-comments-search-input');
+                            var sParams = {
+                                filter: {}
+                            };
+                            
+                            jQuery.each(sfields, function( key, obj ) {
+                                var objVal  = jQuery(obj).val();
+                                var objName = jQuery(obj).attr('name');                                
+                                sParams.filter[objName] = objVal;
+                            });
+
+                            fpcm.comments.startCommentSearch(sParams);
+                            jQuery(this).dialog('close');
+                        }
+                    },                    
+                    {
+                        text: fpcm.ui.translate('close'),
+                        icon: "ui-icon-closethick",                        
+                        click: function() {
+                            jQuery(this).dialog('close');
+                        }
+                    }                            
+                ],
+                dlOnOpen: function( event, ui ) {
+                    jQuery('#text').focus();
+                }
+            });
+
+            return false;
+        });
+
+    },
+
+    startCommentSearch: function (sParams) {
+
+        if (((new Date()).getTime() - fpcmCommentsLastSearch) < 10000) {
+            self.addAjaxMassage('error', fpcm.ui.translate('searchWaitMsg'));            
+            return false;
+        }
+
+        fpcmJs.showLoader(true);
+        
+        fpcm.ajax.post('comments/search', {
+            data: sParams,
+            execDone: function () {
+                fpcmJs.showLoader(false);
+                fpcmJs.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
+                window.noActionButtonAssign = true;
+                fpcmJs.assignButtons();
+                fpcm.comments.initCommentSearch();
+                fpcm.ui.assignSelectmenu();
+                fpcm.ui.resize();
+            }
+        });
+
+        fpcmCommentsLastSearch = (new Date()).getTime();
     }
 
 };

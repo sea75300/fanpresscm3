@@ -1,7 +1,7 @@
 /**
  * FanPress CM javascript functions
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2015, Stefan Seehafer
+ * @copyright (c) 2015-2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  */
 
@@ -55,20 +55,8 @@ var fpcmJs = function () {
         window.location.href = url;
     };
     
-    this.windowResize = function () {        
-        fpcm.ui.prepareMessages();
-        jQuery('#fpcm-ui-errorbox').css('top', jQuery(window).height() / 2 - jQuery('#fpcm-ui-errorbox').height() / 2);
-
-        var wrpl        = jQuery('#fpcm-wrapper-left');
-        var prof_btn    = jQuery('#fpcm-navigation-profile');
-        var wrpl_height = jQuery('body').height() < jQuery(window).height() ? jQuery(window).height() : jQuery('body').height();           
-
-        wrpl.css('min-height', '');
-        if (jQuery(window).width() > 800) {
-            jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').show();
-            wrpl.css('min-height', wrpl_height);
-        }
-
+    this.windowResize = function () {
+        fpcm.ui.resize();
     };
     
     this.assignButtons = function () {
@@ -89,7 +77,6 @@ var fpcmJs = function () {
         fpcm.ui.assignCheckboxesSub();
         self.articleActionsOkButton();
         self.commentActionButtons();
-        self.usersActionButtons();
         self.moduleActionButtons();
         self.assignDeleteButton();
         self.pagerButtons();
@@ -158,24 +145,6 @@ var fpcmJs = function () {
         });
     };
     
-    this.usersActionButtons = function () {
-        jQuery('.fpcm-ui-useractions-diable').click(function () {
-            if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
-                jQuery(this).addClass('fpcm-noloader');
-                return false;
-            }            
-        });
-                
-        jQuery('.fpcm-ui-useractions-enable').click(function () {
-            if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
-                jQuery(this).addClass('fpcm-noloader');
-                return false;
-            }
-        });
-    };
-    
     this.moduleActionButtons = function () {        
         if (typeof fpcmModulelist == 'undefined') return false;
         return fpcmModulelist.actionButtons();
@@ -196,35 +165,11 @@ var fpcmJs = function () {
                 fpcmJs.assignHtml('#tabs-article-list', fpcm.ajax.getResult('articles/search'));
                 window.noActionButtonAssign = true;
                 fpcmJs.assignButtons();
-                fpcmJs.windowResize();
+                fpcm.ui.resize();
             }
         });
 
         fpcmArticlesLastSearch = (new Date()).getTime();
-    };
-    
-    this.startCommentSearch = function (sParams) {
-        if (((new Date()).getTime() - fpcmCommentsLastSearch) < 10000) {
-            self.addAjaxMassage('error', fpcm.ui.translate('searchWaitMsg'));            
-            return false;
-        }
-
-        self.showLoader(true);
-        
-        fpcm.ajax.post('comments/search', {
-            data: sParams,
-            execDone: function () {
-                fpcmJs.showLoader(false);
-                fpcmJs.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
-                window.noActionButtonAssign = true;
-                fpcmJs.assignButtons();
-                fpcmJs.initCommentSearch();
-                fpcm.ui.assignSelectmenu();
-                fpcmJs.windowResize();
-            }
-        });
-
-        fpcmCommentsLastSearch = (new Date()).getTime();
     };
     
     this.addAjaxMassage = function (type, message) {
@@ -236,29 +181,25 @@ var fpcmJs = function () {
                 type  : type,
                 msgtxt: message
             },
-            execDone: "fpcmJs.addAjaxMassageDone()"
+            execDone: function () {
+                fpcmJs.showLoader(false);
+                fpcm.ui.appendMessage(fpcm.ajax.getResult('addmsg'));
+            }
         });
 
-    };
-    
-    this.addAjaxMassageDone = function () {
-        fpcmJs.showLoader(false);
-        fpcm.ui.appendMessage(fpcm.ajax.getResult('addmsg'));
     };
     
     this.systemCheck = function () {
         fpcmJs.showLoader(true);
         fpcm.ajax.get('syscheck', {
-            execDone: 'fpcmJs.systemCheckDone();'
+            execDone: function () {
+                fpcmJs.showLoader(false);
+                fpcmJs.assignHtml("#tabs-options-check", fpcm.ajax.getResult('syscheck'));
+                fpcmJs.assignButtons();
+                fpcm.ui.resize();
+            }
         });
         
-    };
-    
-    this.systemCheckDone = function () {
-        fpcmJs.showLoader(false);
-        fpcmJs.assignHtml("#tabs-options-check", fpcm.ajax.getResult('syscheck'));
-        fpcmJs.assignButtons();
-        fpcmJs.windowResize();
     };
     
     this.openManualCheckFrame = function () {
@@ -307,9 +248,6 @@ var fpcmJs = function () {
 
         fpcm.ui.selectmenu('#pageSelect', {
             select: function( event, ui ) {
-                
-                console.log(ui);
-                
                 if (ui.item.value == '1') {
                     window.location.href = fpcmActionPath + fpcmCurrentModule;
                     return true;
@@ -343,41 +281,37 @@ var fpcmJs = function () {
         }
 
         fpcm.ajax.exec('session', {
-            execDone: 'fpcmJs.addCheckSessionMessage();'
+            execDone: function() {
+                var sessionOk = fpcm.ajax.getResult('session');
+                fpcmSessionCheckEnabled = false;
+                if (sessionOk == '0') {
+                    fpcm.ui.dialog({
+                        content: fpcm.ui.translate('sessionCheckMsg'),
+                        dlButtons: buttons = [
+                            {
+                                text: fpcm.ui.translate('yes'),
+                                icon: "ui-icon-check",
+                                click: function() {
+                                    fpcmJs.relocate(fpcmActionPath + 'system/login');
+                                    jQuery(this).dialog('close');
+                                }
+                            },
+                            {
+                                text: fpcm.ui.translate('no'),
+                                icon: "ui-icon-closethick",
+                                click: function() {
+                                    fpcmSessionCheckEnabled = true;
+                                    jQuery(this).dialog('close');
+                                }
+                            }
+                        ],
+                        id: 'sessioncheck'
+                    });
+                }        
+            }
         });
         
         return false;
-    };
-    
-    this.addCheckSessionMessage = function() {
-        
-        var sessionOk = fpcm.ajax.getResult('session');
-
-        fpcmSessionCheckEnabled = false;
-        if (sessionOk == '0') {
-            fpcm.ui.dialog({
-                content: fpcm.ui.translate('sessionCheckMsg'),
-                dlButtons: buttons = [
-                    {
-                        text: fpcm.ui.translate('yes'),
-                        icon: "ui-icon-check",
-                        click: function() {
-                            fpcmJs.relocate(fpcmActionPath + 'system/login');
-                            jQuery(this).dialog('close');
-                        }
-                    },
-                    {
-                        text: fpcm.ui.translate('no'),
-                        icon: "ui-icon-closethick",
-                        click: function() {
-                            fpcmSessionCheckEnabled = true;
-                            jQuery(this).dialog('close');
-                        }
-                    }
-                ],
-                id: 'sessioncheck'
-            });
-        }        
     };
 
     this.generatePasswdString = function() {
@@ -388,60 +322,5 @@ var fpcmJs = function () {
         
         return false;
     };
-    
-    this.initCommentSearch = function() {
 
-        jQuery('#fpcmcommentsopensearch').click(function () {
-
-            fpcm.ui.selectmenu('.fpcm-ui-input-select-commentsearch', {
-                width: '100%',
-                appendTo: '#fpcm-dialog-comments-search'
-            });
-
-            fpcm.ui.datepicker('.fpcm-full-width-date');
-
-            var size = fpcm.ui.getDialogSizes();
-
-            fpcm.ui.dialog({
-                id      : 'comments-search',
-                dlWidth: size.width,
-                resizable: true,
-                title    : fpcm.ui.translate('searchHeadline'),
-                dlButtons  : [
-                    {
-                        text: fpcm.ui.translate('searchStart'),
-                        icon: "ui-icon-check",                        
-                        click: function() {                            
-                            var sfields = jQuery('.fpcm-comments-search-input');
-                            var sParams = {
-                                filter: {}
-                            };
-                            
-                            jQuery.each(sfields, function( key, obj ) {
-                                var objVal  = jQuery(obj).val();
-                                var objName = jQuery(obj).attr('name');                                
-                                sParams.filter[objName] = objVal;
-                            });
-
-                            fpcmJs.startCommentSearch(sParams);
-                            jQuery(this).dialog('close');
-                        }
-                    },                    
-                    {
-                        text: fpcm.ui.translate('close'),
-                        icon: "ui-icon-closethick",                        
-                        click: function() {
-                            jQuery(this).dialog('close');
-                        }
-                    }                            
-                ],
-                dlOnOpen: function( event, ui ) {
-                    jQuery('#text').focus();
-                }
-            });
-
-            return false;
-        });
-
-    };
 }

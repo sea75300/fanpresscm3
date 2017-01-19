@@ -1,7 +1,7 @@
 /**
  * FanPress CM Filemanager Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2015, 2016, Stefan Seehafer
+ * @copyright (c) 2015-2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  */
 if (fpcm === undefined) {
@@ -291,7 +291,7 @@ fpcm.filemanager = {
                 var fpcmRFDinterval = setInterval(function(){
                     if (jQuery('#fpcm-filelist-images-finished').length == 1) {
                         fpcmJs.showLoader(false);
-                        fpcmJs.windowResize();
+                        fpcm.ui.resize();
                         clearInterval(fpcmRFDinterval);
                         if (page) {
                             jQuery(window).scrollTop(0);

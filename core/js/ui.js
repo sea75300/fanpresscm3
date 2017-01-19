@@ -1,7 +1,7 @@
 /**
  * FanPress CM UI Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2016, Stefan Seehafer
+ * @copyright (c) 2015-2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  */
 if (fpcm === undefined) {
@@ -421,6 +421,21 @@ fpcm.ui = {
             jQuery(this).find('.fa.fa-square').addClass('fa-inverse');
             jQuery(this).find('.fa.fa-times').removeClass('fa-inverse');
         });
+    },
+    
+    resize: function () {
+        fpcm.ui.prepareMessages();
+        jQuery('#fpcm-ui-errorbox').css('top', jQuery(window).height() / 2 - jQuery('#fpcm-ui-errorbox').height() / 2);
+
+        var wrpl        = jQuery('#fpcm-wrapper-left');
+        var prof_btn    = jQuery('#fpcm-navigation-profile');
+        var wrpl_height = jQuery('body').height() < jQuery(window).height() ? jQuery(window).height() : jQuery('body').height();           
+
+        wrpl.css('min-height', '');
+        if (jQuery(window).width() > 800) {
+            jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').show();
+            wrpl.css('min-height', wrpl_height);
+        }
     }
     
 }

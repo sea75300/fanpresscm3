@@ -1,7 +1,7 @@
 /**
  * FanPress CM Dashboard Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2017, Stefan Seehafer
+ * @copyright (c) 2015-2017, Stefan Seehafer
  * @license http://www.gnu.org/licenses/gpl.txt GPLv3
  * @since FPCM 3.5
  */
@@ -30,7 +30,7 @@ fpcm.dashboard = {
                     if (jQuery('#fpcm-dashboard-finished').length == 1) {
                         jQuery('#fpcm-dashboard-containers-loading').remove();
                         clearInterval(fpcmRFDinterval);
-                        fpcmJs.windowResize();
+                        fpcm.ui.resize();
                         return false;
                     }
                 }, 250);
