@@ -89,3 +89,11 @@
          */
         define ('FPCM_NOJSCSSPHP_FILESIZE_HEADER', false);
     }
+    
+    if (!defined('FPCM_ARTICLE_LOCKED_INTERVAL')) {
+        /**
+         * Interval um Artikel auf "In Bearbeitung" zu setzten bzw. zu prüfen
+         * @since FPCM 3.5
+         */
+        define ('FPCM_ARTICLE_LOCKED_INTERVAL', 60);
+    }

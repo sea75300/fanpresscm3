@@ -745,7 +745,7 @@
             $structure = $this->getTableStructure($table);
 
             $lenghtTypes = array('varchar');
-            if ($isPg) {
+            if (!$isPg) {
                 $lenghtTypes += array('int', 'bigint', 'bool');
             }
 

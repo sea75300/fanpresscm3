@@ -63,6 +63,8 @@
         'EDITOR_STATUS_COMMENTS'        => 'Comments are enabled',
         'EDITOR_STATUS_REVISION'        => 'Revision is displayed (revision state = left, current state = right)',
         'EDITOR_STATUS_REVISION_SHOW'   => 'Open revision',
+        'EDITOR_STATUS_INEDIT'          => 'This article is already in edit mode by another user.',
+        'EDITOR_STATUS_NOTINEDIT'       => 'This article is not in edit mode anymore.',
         
         'EDITOR_HTML_BUTTONS_BOLD'      => 'Bold',
         'EDITOR_HTML_BUTTONS_ITALIC'    => 'Italic',

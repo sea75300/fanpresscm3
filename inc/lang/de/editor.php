@@ -63,6 +63,8 @@
         'EDITOR_STATUS_COMMENTS'        => 'Kommentare sind aktiv',
         'EDITOR_STATUS_REVISION'        => 'Revision anzeigen (Revision = links, Aktuell = rechts)',
         'EDITOR_STATUS_REVISION_SHOW'   => 'Revision öffnen',
+        'EDITOR_STATUS_INEDIT'          => 'Dieser Artikel befindet sich gerade in Bearbeitung durch einen anderen Benutzer.',
+        'EDITOR_STATUS_NOTINEDIT'       => 'Dieser Artikel ist nicht mehr in Bearbeitung.',
         
         'EDITOR_HTML_BUTTONS_BOLD'      => 'Fett',
         'EDITOR_HTML_BUTTONS_ITALIC'    => 'Kursiv',

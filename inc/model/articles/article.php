@@ -129,8 +129,16 @@
         /**
          * Artikel-Quellen
          * @var string
+         * @since FPCM 3.4
          */
         protected $sources          = '';
+
+        /**
+         * Artikel-Quellen
+         * @var int
+         * @since FPCM 3.5
+         */
+        protected $inedit           = '';
 
         /**
          * richtiges Löschen erzwingen
@@ -851,6 +859,30 @@
             $this->replaceBr();
             
             return true;
+        }
+
+        /**
+         * Sperrt Artikel als in Bearbeitung
+         * @return bool
+         * @since FPCM 3.5
+         */
+        public function setInEdit() {
+            return $this->dbcon->update($this->table, ['inedit'], [time().'-'.FPCM_USERID, $this->id], 'id = ?');
+        }
+
+        /**
+         * Ist Artikel in Bearbeitung
+         * @return bool
+         * @since FPCM 3.5
+         */
+        public function isInEdit() {
+            
+            if (!trim($this->inedit)) {
+                return false;
+            }
+
+            $data = explode('-', $this->inedit);
+            return $data[0] > time() - FPCM_ARTICLE_LOCKED_INTERVAL && $data[1] != FPCM_USERID ? true : false;
         }
 
         /**

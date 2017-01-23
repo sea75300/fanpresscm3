@@ -868,6 +868,38 @@ var fpcmEditor = function () {
         });    
     };
 
+    this.setInEdit = function(){
+        fpcm.ajax.post('editor/inedit', {
+            data: {
+                id: window.fpcmArticleId
+            },
+            execDone: function () {
+
+                var res = fpcm.ajax.fromJSON(fpcm.ajax.getResult('editor/inedit'));
+                if (fpcmCheckLastState == 1 && res.code == 0) {
+
+                    fpcm.ui.addMessage({
+                        type : 'notice',
+                        id   : 'fpcm-editor-notinedit',
+                        icon : 'check',
+                        txt  : fpcm.ui.translate('editor_status_notinedit')
+                    }, true);
+                }
+
+                if (fpcmCheckLastState == 0 && res.code == 1) {
+                    fpcm.ui.addMessage({
+                        type : 'neutral',
+                        id   : 'fpcm-editor-inedit',
+                        icon : 'pencil-square',
+                        txt  : fpcm.ui.translate('editor_status_inedit')
+                    }, true);
+                }
+
+                fpcmCheckLastState = res.code;
+            }
+        });            
+
+    };
 };
 
 jQuery(document).ready(function() {
@@ -875,7 +907,11 @@ jQuery(document).ready(function() {
     fpcmJs.setFocus('articletitle');
     
     fpcmEditor = new fpcmEditor();
-    
+    if (window.fpcmArticleId) {
+        fpcmEditor.setInEdit();
+        setInterval(fpcmEditor.setInEdit, window.fpcmCheckTimeout);
+    }
+
     fpcm.ui.checkboxradio('.fpcm-ui-editor-categories .fpcm-ui-input-checkbox', { icon: false });
 
     fpcm.ui.selectmenu('#fpcm-editor-paragraphs', {

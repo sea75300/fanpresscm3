@@ -264,16 +264,28 @@
             $this->view->assign('revisionCount', count($revisions));
             $this->view->assign('revisionPermission', $this->permissions->check(array('article' => 'revisions')));
             
-            $this->view->addJsVars(array(
+            $this->view->addJsVars([
                 'fpcmEditorCommentLayerSave'   => $this->lang->translate('GLOBAL_SAVE'),
                 'fpcmCanConnect'               => \fpcm\classes\baseconfig::canConnect() ? 1 : 0,
-                'fpcmNavigationActiveItemId'   => 'itemnav-id-editnews'
-            ));
+                'fpcmNavigationActiveItemId'   => 'itemnav-id-editnews',
+                'fpcmArticleId'                => $this->article->getId(),
+                'fpcmCheckTimeout'             => FPCM_ARTICLE_LOCKED_INTERVAL * 1000,
+                'fpcmCheckLastState'           => -1
+            ]);
             
-            $this->view->addJsLangVars(array('editorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT')));
+            $this->view->addJsLangVars([
+                'editor_status_inedit'    => $this->lang->translate('EDITOR_STATUS_INEDIT'),
+                'editor_status_notinedit' => $this->lang->translate('EDITOR_STATUS_NOTINEDIT'),
+            ]);
+            
+            $this->view->addJsLangVars(['editorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT')]);
             
             if (!$this->permissions->check(array('article' => 'approve')) && $this->article->getApproval()) {
                 $this->view->addMessage('SAVE_SUCCESS_APPROVAL_SAVE');
+            }
+
+            if ($this->article->isInEdit()) {
+                $this->view->addMessage('EDITOR_STATUS_INEDIT');
             }
             
             $this->initPermissions();

@@ -410,6 +410,19 @@ fpcm.ui = {
 
     },
     
+    addMessage: function(value, clear) {
+
+        if (window.fpcmMsg === undefined || clear) {
+            window.fpcmMsg = [];
+        }
+
+        window.fpcmMsg.push(value);
+        this.showMessages();
+        this.prepareMessages();
+        this.messagesInitClose();
+
+    },
+    
     messagesInitClose: function() {
         jQuery('#fpcm-messages').find('.fpcm-msg-close').click(function () {
             var closeId = jQuery(this).attr('id');

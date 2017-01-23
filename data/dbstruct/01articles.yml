@@ -80,6 +80,10 @@ cols:
         type: varchar
         length: 255
         params: NOT NULL
+    inedit:
+        type: varchar
+        length: 25
+        params: NOT NULL
 indices:
     title:
         col: title
