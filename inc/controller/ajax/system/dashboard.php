@@ -19,7 +19,7 @@
          * Dashboard-Container-Array
          * @var array
          */
-        protected $containers = array();
+        protected $containers = [];
 
         /**
          * Konstruktor
@@ -57,7 +57,7 @@
             $containers = array_map(array($this, 'parseClassname'), glob(\fpcm\classes\baseconfig::$dashcontainerDir.'*.php'));            
             $containers = $this->events->runEvent('dashboardContainersLoad', $containers);
             
-            $additional = array();
+            $additional = [];
             foreach ($containers as $container) {
                 
                 /* @var $containerObj \fpcm\model\abstracts\dashcontainer */

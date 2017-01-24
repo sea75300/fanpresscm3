@@ -57,10 +57,4 @@
 </div>
 <?php endif; ?>
 
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmJs.setFocus('username');
-    });
-</script>
-
 <?php \fpcm\model\view\helper::pageTokenField(); ?>

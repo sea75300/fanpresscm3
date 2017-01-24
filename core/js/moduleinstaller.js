@@ -44,7 +44,7 @@ var fpcmModuleInstaller = function () {
         self.moduleListClass     = 'fpcm-updater-list-'+ moduleIndex;
         self.moduleListSpinenrId = self.moduleListClass + '-spinner';
         
-        fpcmJs.appendHtml('.fpcm-updater-list', '<div class="' + self.moduleListClass + ' fpcm-ui-modules-installerbox"></div>');
+        fpcm.ui.appendHtml('.fpcm-updater-list', '<div class="' + self.moduleListClass + ' fpcm-ui-modules-installerbox"></div>');
 
         self.moduleListClass = '.' + self.moduleListClass;
 
@@ -66,11 +66,11 @@ var fpcmModuleInstaller = function () {
         var msgText = fpcmUpdaterMessages[idx + '_START'];
 
         if (idx == 1) {
-            fpcmJs.appendHtml(self.moduleListClass, '<p><span id="' + self.moduleListSpinenrId + '" class="fa fa-spinner fa-spin fa-fw fa-lg"></span><strong>' + fpcm.ui.translate('statusinfo').replace('{{modulekey}}', self.key.split('_version')[0]) + '</strong></p>');
+            fpcm.ui.appendHtml(self.moduleListClass, '<p><span id="' + self.moduleListSpinenrId + '" class="fa fa-spinner fa-spin fa-fw fa-lg"></span><strong>' + fpcm.ui.translate('statusinfo').replace('{{modulekey}}', self.key.split('_version')[0]) + '</strong></p>');
             msgText = msgText.replace('{{pkglink}}', fpcmModuleUrl.replace('{{pkgkey}}', self.key));
         }
 
-        fpcmJs.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', msgText);
+        fpcm.ui.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', msgText);
 
         fpcm.ajax.post('packagemgr/mod' + self.type, {
 
@@ -89,14 +89,14 @@ var fpcmModuleInstaller = function () {
 
                 if (self.responseData.code != self.responseData.data.current + '_' +1) {
                     fpcmJs.showLoader(false);
-                    fpcmJs.appendHtml(self.moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
+                    fpcm.ui.appendHtml(self.moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
                     return false;
                 }
 
-                fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
+                fpcm.ui.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
 
                 if (self.responseData.code && self.responseData.data.current == fpcmUpdaterMaxStep) {
-                    fpcmJs.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages['EXIT_1'] + '</p>');
+                    fpcm.ui.appendHtml(self.moduleListClass, '<p>' + fpcmUpdaterMessages['EXIT_1'] + '</p>');
                     jQuery('#' + self.moduleListSpinenrId).removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-check');
 
                     if (self.moduleKeyCount > self.idx) {
@@ -122,8 +122,8 @@ var fpcmModuleInstaller = function () {
     
     this.addTimer = function() {
         var updateTimer = ((new Date().getTime()) - self.startTime) / 1000;
-        fpcmJs.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
-        fpcmJs.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', '');
+        fpcm.ui.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
+        fpcm.ui.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', '');
         fpcmJs.showLoader(false);
     };
     

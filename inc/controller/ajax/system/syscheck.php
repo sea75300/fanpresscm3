@@ -66,7 +66,7 @@
          * @return array
          */
         private function getCheckOptions() {
-            $checkOptions     = array();            
+            $checkOptions     = [];            
             
             $updater = new \fpcm\model\updater\system();
             $updater->checkUpdates();
@@ -92,7 +92,7 @@
         
         public function processCli() {
             
-            $checkOptions     = array();            
+            $checkOptions     = [];            
             
             $updater = new \fpcm\model\updater\system();
             $updater->checkUpdates();

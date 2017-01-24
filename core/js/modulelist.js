@@ -127,7 +127,7 @@ var fpcmModulelist = function () {
             ],
             dlOnOpen: function (event, ui) {
                 jQuery.each(details, function(key, val) {
-                    fpcmJs.appendHtml('#fpcm-dialog-modulelist-infos-' + key, '<span>' + val + '</span>');
+                    fpcm.ui.appendHtml('#fpcm-dialog-modulelist-infos-' + key, '<span>' + val + '</span>');
                 });
             },
             dlOnClose: function(event, ui) {
@@ -147,7 +147,7 @@ var fpcmModulelist = function () {
             },
             execDone: function() {
                 fpcmJs.showLoader(false);
-                fpcmJs.assignHtml('#modules-list-content', fpcm.ajax.getResult('modules/actions'));
+                fpcm.ui.assignHtml('#modules-list-content', fpcm.ajax.getResult('modules/actions'));
                 noActionButtonAssign = true;
                 fpcmJs.assignButtons();
                 fpcm.ui.prepareMessages();

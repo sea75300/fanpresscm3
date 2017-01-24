@@ -130,4 +130,4 @@ fpcm.articlelist = {
         });
 
     }    
-}
+};

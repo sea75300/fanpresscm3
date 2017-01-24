@@ -77,7 +77,6 @@ var fpcmJs = function () {
         fpcm.ui.assignCheckboxes();
         fpcm.ui.assignCheckboxesSub();
         self.articleActionsOkButton();
-        self.commentActionButtons();
         self.moduleActionButtons();
         self.assignDeleteButton();
         self.pagerButtons();
@@ -113,7 +112,7 @@ var fpcmJs = function () {
             change: function( event, ui ) {
 
                 if (ui.item.value == articleActions.newtweet) {
-                    jQuery(articleActions.doActionBtn).removeClass('fpcm-loader');
+                    fpcm.ui.removeLoaderClass(articleActions.doActionBtn);
                 }
                 else if (!jQuery(articleActions.doActionBtn).hasClass('fpcm-loader')) {
                     jQuery(articleActions.doActionBtn).addClass('fpcm-loader');
@@ -136,16 +135,6 @@ var fpcmJs = function () {
         });
     };
     
-    this.commentActionButtons = function () {        
-        jQuery('.fpcm-ui-commentaction').click(function () {
-            if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
-                jQuery(this).addClass('fpcm-noloader');
-                return false;
-            }            
-        });
-    };
-    
     this.moduleActionButtons = function () {        
         if (typeof fpcmModulelist == 'undefined') return false;
         return fpcmModulelist.actionButtons();
@@ -163,7 +152,7 @@ var fpcmJs = function () {
             data: sParams,
             execDone: function () {
                 fpcmJs.showLoader(false);
-                fpcmJs.assignHtml('#tabs-article-list', fpcm.ajax.getResult('articles/search'));
+                fpcm.ui.assignHtml('#tabs-article-list', fpcm.ajax.getResult('articles/search'));
                 window.noActionButtonAssign = true;
                 fpcmJs.assignButtons();
                 fpcm.ui.resize();
@@ -195,7 +184,7 @@ var fpcmJs = function () {
         fpcm.ajax.get('syscheck', {
             execDone: function () {
                 fpcmJs.showLoader(false);
-                fpcmJs.assignHtml("#tabs-options-check", fpcm.ajax.getResult('syscheck'));
+                fpcm.ui.assignHtml("#tabs-options-check", fpcm.ajax.getResult('syscheck'));
                 fpcmJs.assignButtons();
                 fpcm.ui.resize();
             }
@@ -232,7 +221,7 @@ var fpcmJs = function () {
             ],
             dlOnOpen: function (event, ui) {
                 jQuery(this).empty();
-                self.appendHtml(this, '<iframe class="fpcm-full-width" style="height:100%;"  src="' + fpcmManualCheckUrl + '"></iframe>');
+                fpcm.ui.appendHtml(this, '<iframe class="fpcm-full-width" style="height:100%;"  src="' + fpcmManualCheckUrl + '"></iframe>');
             },
             dlOnClose: function( event, ui ) {
                 jQuery(this).empty();
@@ -260,19 +249,23 @@ var fpcmJs = function () {
     };
     
     this.setFocus = function(elemId) {
-        jQuery('#' + elemId).focus();
+        console.warn('Using "fpcmJs.setFocus" class is deprecated as of version 3.5! Use "fpcm.ui.setFocus" instead.');
+        fpcm.ui.setFocus(elemId);
     };
     
     this.assignHtml = function(elemId, data) {
-        jQuery(elemId).html(data);
+        console.warn('Using "fpcmJs.assignHtml" class is deprecated as of version 3.5! Use "fpcm.ui.assignHtml" instead.');
+        fpcm.ui.assignHtml(elemId, data);
     };
     
     this.assignText = function(elemId, data) {
-        jQuery(elemId).text(data);
+        console.warn('Using "fpcmJs.assignText" class is deprecated as of version 3.5! Use "fpcm.ui.assignText" instead.');
+        fpcm.ui.assignText(elemId, data);
     };
     
     this.appendHtml = function(elemId, data) {
-        jQuery(elemId).append(data);
+        console.warn('Using "fpcmJs.appendHtml" class is deprecated as of version 3.5! Use "fpcm.ui.appendHtml" instead.');
+        fpcm.ui.appendHtml(elemId, data);
     };
     
     this.checkSession = function() {

@@ -60,7 +60,11 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-wordban'));
+            $this->view->addJsVars(array(
+                'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-wordban',
+                'fpcmFieldSetAutoFocus'      => 'wbitemsearchtext'
+            ));
+
             $this->view->assign('item', $this->item);
             $this->view->render();
 

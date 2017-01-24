@@ -161,7 +161,7 @@
 
             $availableDrivers = \PDO::getAvailableDrivers();
             
-            $sqlDrivers = array();
+            $sqlDrivers = [];
             foreach (\fpcm\classes\database::$supportedDBMS as $driver => $name) {
              
                 if (!in_array($driver, $availableDrivers)) {
@@ -178,7 +178,7 @@
          * Installer Step 4
          */
         protected function runStep4() {
-            $sqlFiles = array();
+            $sqlFiles = [];
 
             $files = \fpcm\classes\database::getTableFiles();
             foreach ($files as $value) {
@@ -201,7 +201,7 @@
                 $this->view->addErrorMessage('SAVE_FAILED_OPTIONS');
             }
             
-            $timezones = array();
+            $timezones = [];
             
             foreach ($this->getTimeZones() as $area => $zones) {
                 foreach ($zones as $zone) {
@@ -299,7 +299,7 @@
             $user->setEmail($this->getRequestVar('email'));
             $user->setDisplayName($this->getRequestVar('displayname'));
             $user->setRoll(1);
-            $user->setUserMeta(array());
+            $user->setUserMeta([]);
             $user->setRegistertime(time());
 
             $newpass         = $this->getRequestVar('password');

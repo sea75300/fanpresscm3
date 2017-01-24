@@ -55,25 +55,25 @@
          * Benutzer-Array
          * @var array
          */
-        protected $users         = array();
+        protected $users         = [];
 
         /**
          * Benutzer-Array
          * @var array
          */
-        protected $usersEmails   = array();
+        protected $usersEmails   = [];
 
         /**
          * Kategorien-Array
          * @var array
          */
-        protected $categories    = array();
+        protected $categories    = [];
 
         /**
          * Kommentare pro Artikel
          * @var array
          */
-        protected $commentCounts = array();
+        protected $commentCounts = [];
         
         /**
          * Aktueller Listen-Offset
@@ -157,7 +157,7 @@
                 $this->users       = array_flip($this->userList->getUsersNameList());
                 $this->usersEmails = array_flip($this->userList->getUsersEmailList());
                 $this->categories = $this->categoryList->getCategoriesAll();
-                $this->commentCounts = ($this->config->system_comments_enabled) ? $this->commentList->countComments(array(), 0, 1) : array();
+                $this->commentCounts = ($this->config->system_comments_enabled) ? $this->commentList->countComments([], 0, 1) : [];
             }
         }
         
@@ -172,8 +172,8 @@
              */
             $tpl = $this->template;
 
-            $categoryTexts = array();
-            $categoryIcons = array();
+            $categoryTexts = [];
+            $categoryIcons = [];
 
             foreach ($article->getCategories() as $categoryId) {
 
@@ -227,7 +227,7 @@
             $parsed = $tpl->parse();
             
             if ($this->session->exists()) {
-                $html   = array();
+                $html   = [];
                 $html[] = '<div class="fpcm-pub-articletoolbar-article fpcm-pub-articletoolbar-article'.$article->getId().'">';
                 $html[] = '<a href="'.$article->getEditLink().'">'.$this->lang->translate('HL_ARTICLE_EDIT').'</a>';
                 $html[] = '</div>';

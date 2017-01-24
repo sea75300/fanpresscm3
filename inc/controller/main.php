@@ -22,7 +22,7 @@
          *
          * @var array
          */
-        protected $controllers = array();
+        protected $controllers = [];
 
         /**
          * Konstruktor

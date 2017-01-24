@@ -114,7 +114,7 @@
 
                     $this->keys = array_intersect($this->keys, $this->modulelist->getInstalledModules());
                     
-                    $versionKeys = array();
+                    $versionKeys = [];
                     foreach ($this->keys as $key) {
                         $versionKeys[] = $key.'_version'.$remotes[$key]['version'];
                     }

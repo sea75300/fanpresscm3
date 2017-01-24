@@ -37,13 +37,13 @@
          *
          * @var array
          */
-        protected $users         = array();
+        protected $users         = [];
 
         /**
          *
          * @var array
          */
-        protected $emails        = array();
+        protected $emails        = [];
         
         /**
          *

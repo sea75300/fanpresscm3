@@ -25,9 +25,3 @@
         </div>
     </form>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmJs.setFocus('rollname');
-    });
-</script>

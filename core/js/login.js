@@ -15,7 +15,7 @@ fpcm.login = {
         this.setFocus();
     },
 
-    moveToCenter: function () {
+    moveToCenter: function() {
         
         if (jQuery(window).width() < 800) {
             return;
@@ -26,8 +26,8 @@ fpcm.login = {
 
     },
 
-    setFocus: function () {
-        fpcmJs.setFocus('loginusername');
+    setFocus: function() {
+        fpcm.ui.setFocus('loginusername');
     },
 
 };

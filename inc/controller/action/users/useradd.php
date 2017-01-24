@@ -44,7 +44,7 @@
             $this->author->setEmail($this->getRequestVar('email'));
             $this->author->setDisplayName($this->getRequestVar('displayname'));
             $this->author->setRoll($this->getRequestVar('roll', array(9)));
-            $this->author->setUserMeta(array());
+            $this->author->setUserMeta([]);
             $this->author->setRegistertime(time());
 
             $newpass         = $this->getRequestVar('password');
@@ -79,8 +79,11 @@
             $this->view->assign('userRolls', $userRolls->getUserRollsTranslated());            
             $this->view->assign('author', $this->author);
             $this->view->assign('showDisableButton', false);
-            $this->view->setViewJsFiles(array(\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')));
-            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users'));
+            $this->view->setViewJsFiles([\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')]);
+            $this->view->addJsVars([
+                'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users',
+                'fpcmFieldSetAutoFocus'      => 'username'
+            ]);
             
             $this->view->render();            
         }

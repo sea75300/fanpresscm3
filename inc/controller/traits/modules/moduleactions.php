@@ -28,7 +28,7 @@
             $remote  = $moduleList->getModulesRemote();            
             $modules = array_merge($remote, $moduleList->getModulesLocal());
             
-            $jsInfo  = array();
+            $jsInfo  = [];
             foreach ($modules as $key => $moduleItem) {
 
                 if (isset($remote[$key])) {
@@ -37,7 +37,7 @@
                 
                 $dependencies = $moduleItem->getDependencies();
                 
-                $depencyData = array();
+                $depencyData = [];
                 if (count($dependencies)) {
                     foreach ($dependencies as $mkey => $version) {
                         $depencyData[] = $mkey.' - '.$this->lang->translate('VERSION').' '.$version;

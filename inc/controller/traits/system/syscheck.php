@@ -21,7 +21,7 @@
          * @return array
          */
         protected function getCheckOptionsSystem() {
-            $checkOptions     = array();
+            $checkOptions     = [];
             
             $loadedExtensions = array_map('strtolower', get_loaded_extensions());            
 

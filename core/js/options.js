@@ -12,10 +12,10 @@ fpcm.options = {
 
     init: function () {
         
-        if (syscheck) {
+        if (window.syscheck) {
 
             fpcm.ui.tabs('.fpcm-tabs-general', {
-                active: (showTwitter ? 7 : 6)
+                active: (window.showTwitter ? 7 : 6)
             });
             
             fpcmJs.systemCheck();
@@ -23,6 +23,10 @@ fpcm.options = {
 
         fpcm.ui.datepicker('#articles_archive_datelimit', {
             maxDate: "-3m"
+        });
+
+        jQuery('#tabs-options-syscheck').click(function () {
+            fpcmJs.systemCheck();
         });
     }
 

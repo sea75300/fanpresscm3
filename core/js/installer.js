@@ -73,7 +73,7 @@ fpcm.installer = {
 
         jQuery.each(window.fpcmSqlFiles, function( key, obj ) {
 
-            fpcmJs.appendHtml('#fpcm-installer-execlist', '<p><span class="fa fa-spinner fa-spin fa-fw"></span> ' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
+            fpcm.ui.appendHtml('#fpcm-installer-execlist', '<p><span class="fa fa-spinner fa-spin fa-fw"></span> ' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
 
             fpcm.ajax.post('installer/initdb', {
                 data: {
@@ -87,7 +87,7 @@ fpcm.installer = {
                         return true;
                     }
 
-                    fpcmJs.appendHtml('#fpcm-installer-execlist', "<p class='fpcm-ui-important-text'>FAILED!</p>");
+                    fpcm.ui.appendHtml('#fpcm-installer-execlist', "<p class='fpcm-ui-important-text'>FAILED!</p>");
                     fpcm.installer.breakDbInit = false;
                 }
             });
@@ -128,8 +128,3 @@ fpcm.installer = {
         fpcm.ui.resize();
     }
 };
-
-jQuery(document).ready(function () {
-    fpcm.installer.initUi();
-    fpcm.installer.initDatabase();
-});

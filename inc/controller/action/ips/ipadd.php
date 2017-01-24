@@ -58,6 +58,8 @@
         
         public function process() {
             if (!parent::process()) return false;
+            
+            $this->view->addJsVars(['fpcmFieldSetAutoFocus' => 'ipaddress']);
             $this->view->render();            
         }
 

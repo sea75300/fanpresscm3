@@ -18,6 +18,12 @@
         protected $view;
 
         /**
+         *
+         * @var bool
+         */
+        protected $reloadSite;
+
+        /**
          * Controller-Processing
          */
         public function __construct() {
@@ -38,8 +44,7 @@
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
 
-            $this->view->assign('reloadSite', false);
-            
+            $this->reloadSite = 0;
             if ($this->buttonClicked('resetProfileSettings') && $pageTokenCheck) {
                 $author->setUserMeta([]);
                 $author->disablePasswordSecCheck();
@@ -49,7 +54,7 @@
                 }
                 else {
                     $this->view->addNoticeMessage('SAVE_SUCCESS_RESETPROFILE');
-                    $this->view->assign('reloadSite', true);
+                    $this->reloadSite = 1;
                 }
 
             }
@@ -83,8 +88,7 @@
                         $this->view->addErrorMessage('SAVE_FAILED_USER_PROFILE');
                     }
                     elseif ($res === true) {
-                        $reloadSite = ($metaData['system_lang'] != $this->config->system_lang ? true : false);
-                        $this->view->assign('reloadSite', $reloadSite);
+                        $this->reloadSite = ($metaData['system_lang'] != $this->config->system_lang ? 1 : 0);
                         $this->view->addNoticeMessage('SAVE_SUCCESS_EDITUSER_PROFILE');
                     }
                     elseif ($res === \fpcm\model\users\author::AUTHOR_ERROR_PASSWORDINSECURE) {
@@ -126,13 +130,17 @@
             $this->view->assign('inProfile', true);
             
             $this->view->addJsVars(array(
-                'fpcmDtMasks' => \fpcm\classes\baseconfig::$dateTimeMasks
+                'fpcmDtMasks'    => \fpcm\classes\baseconfig::$dateTimeMasks,
+                'fpcmReloadPage' => $this->reloadSite
             ));
 
             $this->view->assign('articleLimitList', \fpcm\model\system\config::getAcpArticleLimits());
             $this->view->assign('defaultFontsizes', \fpcm\model\system\config::getDefaultFontsizes());
             $this->view->assign('showDisableButton', false);
-            $this->view->setViewJsFiles(array(\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')));
+            $this->view->setViewJsFiles([
+                \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js'),
+                \fpcm\classes\baseconfig::$jsPath.'profile.js'
+            ]);
             
             $this->view->render();            
         }

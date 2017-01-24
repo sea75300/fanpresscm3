@@ -47,16 +47,6 @@ jQuery(document).ready(function () {
         });        
     };
     
-    jQuery('.fpcm-ui-commentlist-link').click(function () {
-        var layerUrl = jQuery(this).attr('href');
-        fpcmEditor.showCommentLayer(layerUrl);
-        return false;
-    });
-
-    jQuery('#tabs-options-syscheck').click(function () {
-        fpcmJs.systemCheck();
-    });
-    
     jQuery('#password_confirm').focusout(function () {
         var password = jQuery('#password').val();
         var confirm  = jQuery(this).val();

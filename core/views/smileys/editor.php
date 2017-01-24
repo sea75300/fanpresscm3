@@ -27,9 +27,3 @@
         <?php \fpcm\model\view\helper::saveButton('saveSmiley'); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmJs.setFocus('smileycode');
-    });
-</script>

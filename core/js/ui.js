@@ -37,6 +37,10 @@ fpcm.ui = {
         jQuery('#fpcm-logo').click(function () {
             jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').fadeOut();
         });
+        
+        if (window.fpcmFieldSetAutoFocus) {
+            fpcm.ui.setFocus(window.fpcmFieldSetAutoFocus);
+        }
 
     },
     
@@ -282,7 +286,7 @@ fpcm.ui = {
         
         var dialogId = 'fpcm-dialog-'+  params.id;
         if (params.content !== undefined) {
-            fpcmJs.appendHtml('#fpcm-body', '<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="' + dialogId + '">' +  params.content + '</div>');
+            fpcm.ui.appendHtml('#fpcm-body', '<div class="fpcm-ui-dialog-layer fpcm-editor-dialog" id="' + dialogId + '">' +  params.content + '</div>');
         }
         
         var dlParams = {};
@@ -382,7 +386,7 @@ fpcm.ui = {
             msgCode += '    </div>';
             msgCode += '</div>';
             msgCode += '<div class="fpcm-clear"></div>';
-            fpcmJs.appendHtml('#fpcm-messages', msgCode);
+            fpcm.ui.appendHtml('#fpcm-messages', msgCode);
 
         }
         
@@ -449,6 +453,26 @@ fpcm.ui = {
             jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').show();
             wrpl.css('min-height', wrpl_height);
         }
+    },
+    
+    setFocus: function(elemId) {
+        jQuery('#' + elemId).focus();
+    },
+    
+    assignHtml: function(elemId, data) {
+        jQuery(elemId).html(data);
+    },
+    
+    assignText: function(elemId, data) {
+        jQuery(elemId).text(data);
+    },
+    
+    appendHtml: function(elemId, data) {
+        jQuery(elemId).append(data);
+    },
+    
+    removeLoaderClass: function(elemId) {
+        jQuery(elemId).removeClass('fpcm-loader');
     }
     
-}
+};

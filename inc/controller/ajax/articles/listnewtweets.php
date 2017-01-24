@@ -55,8 +55,8 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $resOk     = array();
-            $resError  = array();
+            $resOk     = [];
+            $resError  = [];
 
             foreach ($this->articleItems as $article) {
                 if (!$article->createTweet()) {

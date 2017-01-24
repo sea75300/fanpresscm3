@@ -18,7 +18,7 @@ fpcm.dashboard = {
     loadDashboardContainer: function() {
         fpcm.ajax.exec('dashboard', {
             execDone: function() {
-                fpcmJs.assignHtml('#fpcm-dashboard-containers', fpcm.ajax.getResult('dashboard'));
+                fpcm.ui.assignHtml('#fpcm-dashboard-containers', fpcm.ajax.getResult('dashboard'));
                 fpcmJs.assignButtons();
 
                 jQuery('.fpcm-updatecheck-manual').click(function () {

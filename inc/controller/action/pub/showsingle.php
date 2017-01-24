@@ -208,7 +208,7 @@
                         '{{systemurl}}'   => \fpcm\classes\baseconfig::$rootPath
                     ));
                     
-                    $to    = array();
+                    $to    = [];
                     if ($this->config->comments_notify != 1) {
                         $to[] = $this->config->system_email;                        
                     }
@@ -234,7 +234,7 @@
             
             parent::process();
             
-            $parsed = array();
+            $parsed = [];
             
             if (!$this->article) {
                 $this->view->render();
@@ -275,8 +275,8 @@
          * @return string
          */
         protected function assignArticleData() {
-            $categoryTexts = array();
-            $categoryIcons = array();
+            $categoryTexts = [];
+            $categoryIcons = [];
 
             $categories = $this->categoryList->getCategoriesAll();     
             
@@ -334,7 +334,7 @@
             $parsed = $this->articleTemplate->parse();
             
             if ($this->session->exists()) {
-                $html   = array();
+                $html   = [];
                 $html[] = '<div class="fpcm-pub-articletoolbar-article fpcm-pub-articletoolbar-article'.$this->articleId.'">';
                 $html[] = '<a href="'.$this->article->getEditLink().'">'.$this->lang->translate('HL_ARTICLE_EDIT').'</a>';
                 $html[] = '</div>';
@@ -355,7 +355,7 @@
             
             $comments = $this->commentList->getCommentsByCondition($this->articleId);
 
-            $parsed = array();
+            $parsed = [];
             $i      = 1;
             foreach ($comments as $comment) {
                 $tpl = $this->commentTemplate;
@@ -438,7 +438,7 @@
             $smileyList = new \fpcm\model\files\smileylist();
             $smileys    = $smileyList->getDatabaseList();            
 
-            $html = array();
+            $html = [];
             $html[] = "<ul class=\"fpcm-pub-smileys\">";
             foreach ($smileys as $key => $smiley)  {
                 $html[] = '<li><a class="fpcm-pub-commentsmiley" smileycode="'.$smiley->getSmileyCode().'" href="#"><img src="'.$smiley->getSmileyUrl().'" alt="'.$smiley->getSmileyCode().'()" '.$smiley->getWhstring().'></a></li>';

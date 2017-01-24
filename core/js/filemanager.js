@@ -15,7 +15,7 @@ fpcm.filemanager = {
         this.initJqUpload();
         this.initUploadButtons();
         
-        if (fpcmLoadAjax) {
+        if (window.fpcmLoadAjax) {
             this.reloadFiles();
             this.initActionButtons();
         }
@@ -157,7 +157,7 @@ fpcm.filemanager = {
                 }
 
                 for (var i=0;i<fileList.length;i++) {
-                    fpcmJs.appendHtml('#fpcm-ui-phpupload-filelist', '<tr><td>' + fileList[i].name +'</td></tr>')
+                    fpcm.ui.appendHtml('#fpcm-ui-phpupload-filelist', '<tr><td>' + fileList[i].name +'</td></tr>')
                 }
                 return false;
             });
@@ -285,7 +285,7 @@ fpcm.filemanager = {
             },
             execDone: function () {
 
-                fpcmJs.assignHtml("#tabs-files-list-content", fpcm.ajax.getResult('filelist'));
+                fpcm.ui.assignHtml("#tabs-files-list-content", fpcm.ajax.getResult('filelist'));
                 fpcmJs.assignButtons();
                 fpcm.filemanager.assignButtons();
                 var fpcmRFDinterval = setInterval(function(){

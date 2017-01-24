@@ -29,7 +29,7 @@
         protected function initCommentPermissions() {
             if (!$this->permissions) return false;
             
-            $commentActions = array();
+            $commentActions = [];
             if ($this->permissions->check(array('comment' => 'approve'))) {
                 $commentActions[$this->lang->translate('COMMMENT_SPAM_BTN')]    = $this->actions['COMMENTLIST_ACTION_SPAM'];
                 $commentActions[$this->lang->translate('COMMMENT_APPROVE_BTN')] = $this->actions['COMMENTLIST_ACTION_APPROVE'];

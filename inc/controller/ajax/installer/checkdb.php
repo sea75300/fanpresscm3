@@ -59,7 +59,7 @@
                 $config[$key] = $value;
             }
             
-            $content    = array();
+            $content    = [];
             $content[]  = '<?php';
             $content[]  = '/**';
             $content[]  = ' * FanPress CM databse connection configuration file';

@@ -38,7 +38,10 @@
             
             }
 
-            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users'));
+            $this->view->addJsVars([
+                'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users',
+                'fpcmFieldSetAutoFocus'      => 'rollname'
+            ]);
 
             return true;
             

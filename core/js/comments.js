@@ -19,9 +19,16 @@ fpcm.comments = {
 
         if (window.tinymce) {
             this.initTinyMceComment();
-            fpcmJs.setFocus('commentname');
+            fpcm.ui.setFocus('commentname');
         }
 
+        jQuery('.fpcm-ui-commentaction').click(function () {
+            if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
+                jQuery(this).addClass('fpcm-noloader');
+                return false;
+            }            
+        });
     },
 
     initTinyMceComment: function() {
@@ -117,7 +124,7 @@ fpcm.comments = {
             data: sParams,
             execDone: function () {
                 fpcmJs.showLoader(false);
-                fpcmJs.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
+                fpcm.ui.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
                 window.noActionButtonAssign = true;
                 fpcmJs.assignButtons();
                 fpcm.comments.initCommentSearch();

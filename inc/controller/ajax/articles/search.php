@@ -54,19 +54,19 @@
          * Liste mit erlaubten Artikel-Aktionen
          * @var array
          */
-        protected $articleActions = array();
+        protected $articleActions = [];
 
         /**
          * Array mir Artikel-Objekten
          * @var array
          */
-        protected $articleItems = array();
+        protected $articleItems = [];
         
         /**
          * Suchparameter
          * @var array
          */
-        protected $sparams = array();
+        protected $sparams = [];
         
         /**
          * Suchmodus
@@ -99,7 +99,7 @@
             $this->mode = $this->getRequestVar('mode');
             $filter     = $this->getRequestVar('filter');
 
-            $sparams = array();
+            $sparams = [];
             
             if ($filter['text'] != '') {
                 switch ($filter['searchtype']) {
@@ -172,7 +172,7 @@
          * @return array
          */
         protected function getArticleListIds() {
-            $articleIds = array();
+            $articleIds = [];
             foreach ($this->articleItems as $monthData) {
                 $articleIds = array_merge($articleIds, array_keys($monthData));
             }

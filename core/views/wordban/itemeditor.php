@@ -22,9 +22,3 @@
         <?php \fpcm\model\view\helper::saveButton('wbitemSave'); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmJs.setFocus('wbitemsearchtext');
-    });
-</script>

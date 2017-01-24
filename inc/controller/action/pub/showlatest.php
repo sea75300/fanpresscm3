@@ -37,7 +37,7 @@
          *
          * @var array
          */
-        protected $users         = array();
+        protected $users         = [];
         
         /**
          *
@@ -108,7 +108,7 @@
         public function process() {
             parent::process();
             
-            $parsed = array();
+            $parsed = [];
             
             if ($this->cache->isExpired() || $this->session->exists()) {
                 $this->users      = array_flip($this->userList->getUsersNameList());

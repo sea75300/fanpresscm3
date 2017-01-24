@@ -27,9 +27,3 @@
         </div>
     </form>
 </div>
-
-<?php if ($reloadSite) : ?>
-<script type="text/javascript">jQuery(document).ready(function(){
-    setTimeout('fpcmJs.showLoader(true);fpcmJs.relocate(fpcmActionPath + \'system/profile\')', 1500);
-});</script>
-<?php endif; ?>

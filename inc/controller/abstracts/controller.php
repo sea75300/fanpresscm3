@@ -27,7 +27,7 @@
          * Array mit zu prüfenden Berchtigungen
          * @var array
          */
-        protected $checkPermission = array();
+        protected $checkPermission = [];
 
 
         /**
@@ -95,7 +95,7 @@
          * Aktive Module für Prüfung von Controlelr-Ausführung
          * @var array
          */
-        protected $enabledModules   = array();
+        protected $enabledModules   = [];
 
         /**
          * Konstruktor
@@ -168,7 +168,7 @@
          * @param string $controller
          * @param array $params
          */
-        protected function redirect($controller = '', array $params = array()) {
+        protected function redirect($controller = '', array $params = []) {
             $redirectString = empty($controller) ? "Location: index.php" : "Location: index.php?module=$controller";
             if (count($params)) {
                 $redirectString .= '&'.http_build_query($params);
@@ -187,7 +187,7 @@
          * @param array $params
          * @return string
          */
-        protected function getControllerLink($controller = '', array $params = array()) {
+        protected function getControllerLink($controller = '', array $params = []) {
             return \fpcm\classes\tools::getControllerLink($controller, $params);
         }
 

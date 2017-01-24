@@ -21,7 +21,7 @@
          * Modul-Actions
          * @var array
          */
-        protected $moduleActions = array();
+        protected $moduleActions = [];
         
         /**
          * Modul-Liste

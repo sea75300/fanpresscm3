@@ -82,7 +82,7 @@ fpcm.logs = {
                 fpcmJs.showLoader(false);
 
                 var tabId = fpcm.ajax.getWorkData('logs/reload');
-                fpcmJs.assignHtml('#fpcm-logcontent'+ tabId, fpcm.ajax.getResult('logs/reload'));
+                fpcm.ui.assignHtml('#fpcm-logcontent'+ tabId, fpcm.ajax.getResult('logs/reload'));
 
                 if (tabId == 4) {
                     fpcm.ui.accordion('.fpcm-accordion-pkgmanager');

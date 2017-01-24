@@ -40,9 +40,3 @@
         <?php \fpcm\model\view\helper::pageTokenField(); ?>
     </form>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmJs.setFocus('ipaddress');
-    });
-</script>

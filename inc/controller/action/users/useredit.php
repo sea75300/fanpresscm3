@@ -32,7 +32,7 @@
         public function __construct() {
             parent::__construct();
             
-            $this->checkPermission = array('system' => 'users');
+            $this->checkPermission = ['system' => 'users'];
 
             $this->view = new \fpcm\model\view\acp('useredit', 'users');
         }
@@ -43,7 +43,7 @@
                 $this->redirect('users/list');
             }
 
-            $this->userId = $this->getRequestVar('userid', array(9));
+            $this->userId = $this->getRequestVar('userid', [9]);
             
             $author = new \fpcm\model\users\author($this->userId);
             
@@ -58,7 +58,7 @@
             }
 
             if ($this->buttonClicked('resetProfileSettings') && $checkPageToken) {
-                $author->setUserMeta(array());
+                $author->setUserMeta([]);
                 $author->disablePasswordSecCheck();
                 if ($author->update() === false) {
                     $this->view->addErrorMessage('SAVE_FAILED_USER_PROFILE');
@@ -73,11 +73,11 @@
                 $author->setUserName($this->getRequestVar('username'));
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
-                $author->setRoll($this->getRequestVar('roll', array(9)));
+                $author->setRoll($this->getRequestVar('roll', [9]));
                 $author->setUserMeta($this->getRequestVar('usermeta'));
                 
                 if ($this->getRequestVar('disabled') !== null) {
-                    $author->setDisabled($this->getRequestVar('disabled', array(9)));
+                    $author->setDisabled($this->getRequestVar('disabled', [9]));
                 }
 
                 $newpass         = $this->getRequestVar('password');
@@ -131,7 +131,7 @@
             $this->view->assign('userRolls', $userRolls->getUserRollsTranslated());
             $this->view->assign('languages', array_flip($this->lang->getLanguages()));
                         
-            $timezones = array();
+            $timezones = [];
             
             foreach ($this->getTimeZones() as $area => $zones) {
                 foreach ($zones as $zone) {
@@ -150,11 +150,12 @@
                                : true;
             
             $this->view->assign('showDisableButton', $showDisableButton);
-            $this->view->setViewJsFiles(array(\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')));
-            $this->view->addJsVars(array(
+            $this->view->setViewJsFiles([\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')]);
+            $this->view->addJsVars([
                 'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users',
-                'fpcmDtMasks' => \fpcm\classes\baseconfig::$dateTimeMasks
-            ));
+                'fpcmDtMasks'                => \fpcm\classes\baseconfig::$dateTimeMasks,
+                'fpcmFieldSetAutoFocus'      => 'username'
+            ]);
 
             $this->view->render();            
         }

@@ -51,7 +51,7 @@
             
             $this->view->assign('showToolbars', false);
             
-            $parsed = array();
+            $parsed = [];
             
             if ($this->cache->isExpired() || $this->session->exists()) {
                 $conditions = array(
@@ -74,7 +74,7 @@
                     $parsed[] = $this->assignData($article);
                 }
                 
-                $countConditions             = array();
+                $countConditions             = [];
                 $countConditions['archived'] = true;
                 if ($this->category !== 0) {
                     $countConditions['category'] = $this->category;

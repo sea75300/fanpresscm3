@@ -26,9 +26,3 @@
         </td>
     </tr>
 </table>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmEditor.initTinyMce();
-    });
-</script>

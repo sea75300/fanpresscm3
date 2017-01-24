@@ -51,7 +51,10 @@
                 $this->redirect('smileys/list', array('added' => 1));
             }
 
-            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-smileys'));
+            $this->view->addJsVars([
+                'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-smileys',
+                'fpcmFieldSetAutoFocus'      => 'smileycode'
+            ]);
             
             return true;            
         }
@@ -65,7 +68,7 @@
 
             $smileyList = new \fpcm\model\files\smileylist();
             
-            $files = array();
+            $files = [];
             foreach ($smileyList->getFolderList() as $file) {
                 $files[] = basename($file);
             }

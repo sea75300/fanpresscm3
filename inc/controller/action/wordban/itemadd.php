@@ -40,7 +40,10 @@
                 if ($res === true) $this->redirect('wordban/list', array('added' => 1));
             }
             
-            $this->view->addJsVars(array('fpcmNavigationActiveItemId' => 'submenu-itemnav-item-wordban'));
+            $this->view->addJsVars(array(
+                'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-wordban',
+                'fpcmFieldSetAutoFocus'      => 'wbitemsearchtext'
+            ));
             
             return true;
             

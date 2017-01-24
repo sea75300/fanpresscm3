@@ -29,9 +29,3 @@
         <?php \fpcm\model\view\helper::saveButton('categorySave'); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmJs.setFocus('categoryname');
-    });
-</script>
