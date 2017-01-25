@@ -372,6 +372,18 @@
         }
 
         /**
+         * Lädt config.php
+         * @return array
+         * @since FPCM 3.5
+         */
+        public static function getCryptConfig() {
+            if (!file_exists(self::$configDir.'crypt.php')) return null;
+            
+            include self::$configDir.'crypt.php';
+            return $config;            
+        }
+
+        /**
          * allow_url_fopen = 1
          * @return bool
          */

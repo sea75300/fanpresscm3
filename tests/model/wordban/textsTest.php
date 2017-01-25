@@ -30,7 +30,7 @@ class textsTest extends testBase {
         $this->assertTrue($result);
         
         $data = $this->object->getItems();
-        $this->assertCount(0, $data);
+        $this->assertFalse(isset($data[$GLOBALS['objectId']]));
     }
     
     private function createTextItem() {

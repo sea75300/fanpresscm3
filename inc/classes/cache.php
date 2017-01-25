@@ -51,6 +51,13 @@
         private $hasModule = false;
 
         /**
+         * Crypt Object
+         * @var crypt
+         * @since FPCM 3.5
+         */
+        private $crypt = false;
+
+        /**
          * Der Konstruktur
          * @param string $cacheName
          * @param string $module
@@ -58,6 +65,7 @@
         public function __construct($cacheName = null, $module = '') {
 
             $this->cacheName = $this->initCacheName($cacheName);
+            $this->crypt     = new crypt();
 
             if (is_null($this->cacheName)) {
                 return;

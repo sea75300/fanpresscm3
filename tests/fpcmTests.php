@@ -7,6 +7,7 @@ class fpcmTests extends \PHPUnit_Framework_TestCase {
         $suite = new \PHPUnit_Framework_TestSuite();
         
         $files = glob(__DIR__.'/*/*/*Test.php');
+
         if (!is_array($files)) {
             return $suite;
         }

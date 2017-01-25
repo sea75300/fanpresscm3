@@ -23,7 +23,7 @@
         protected function getCheckOptionsSystem() {
             $checkOptions     = [];
             
-            $loadedExtensions = array_map('strtolower', get_loaded_extensions());            
+            $loadedExtensions = array_map('strtolower', get_loaded_extensions());
 
             $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_PHPVERSION')]    = array(
                 'current'   => phpversion(),
@@ -173,6 +173,15 @@
                 'recommend' => 'true',
                 'result'    => (false || $current),
                 'helplink'  => 'http://php.net/manual/en/class.phar.php',
+                'optional'  => 1
+            );
+            
+            $current = in_array('openssl', $loadedExtensions);
+            $checkOptions['OpenSSL ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
+                'current'   => $current ? 'true' : 'false',
+                'recommend' => 'true',
+                'result'    => (true && $current),
+                'helplink'  => 'http://php.net/manual/de/book.openssl.php',
                 'optional'  => 1
             );
 
