@@ -18,7 +18,7 @@
         <tbody class="files"></tbody>
     </table>
     
-    <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fileupload-buttonbar">
+    <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> <?php if (!$styleLeftMargin) : ?>fpcm-buttons-fixed-full<?php endif; ?> fileupload-buttonbar">
         <div class="fileupload-buttons">
             <span class="fileinput-button">
                 <span><?php $FPCM_LANG->write('FILE_FORM_FILEADD'); ?></span>
