@@ -282,6 +282,13 @@
          * @var string 
          */
         private static $cronAsyncFile;
+        
+        /**
+         * Zwischenspecher für bestimmte Config-Informationen
+         * @var array
+         * @since FPCM 3.5
+         */
+        private static $cfgDat = [];
 
         /**
          * Initiiert Grundsystem
@@ -314,7 +321,7 @@
 
             if (php_sapi_name() !== 'cli') {
                 $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
-                self::$rootPath            = $http.$_SERVER['HTTP_HOST'].rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/').'/'.basename(self::$baseDir).'/';
+                self::$rootPath = $http.$_SERVER['HTTP_HOST'].rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/').'/'.basename(self::$baseDir).'/';
             }
             
 
@@ -388,7 +395,26 @@
          * @return bool
          */
         public static function canConnect() {
-            return (ini_get('allow_url_fopen') == 1) ? true : false;
+
+            if (!isset(self::$cfgDat[__FUNCTION__])) {
+                self::$cfgDat[__FUNCTION__] = (ini_get('allow_url_fopen') == 1) ? true : false;
+            }
+            
+            return self::$cfgDat[__FUNCTION__];
+
+        }
+
+        /**
+         * allow_url_fopen = 1
+         * @return bool
+         */
+        public static function canCrypt() {
+            
+            if (!isset(self::$cfgDat[__FUNCTION__])) {
+                self::$cfgDat[__FUNCTION__] = function_exists('openssl_encrypt') && function_exists('openssl_decrypt');
+            }
+
+            return self::$cfgDat[__FUNCTION__];
         }
         
         /**
@@ -398,13 +424,12 @@
          * @since FPCM 3.3
          */
         public static function memoryLimit($inByte = false) {
-            $limit = (int) substr(ini_get('memory_limit'), 0, -1);
-            
-            if (!$inByte) {
-                return $limit;
+
+            if (!isset(self::$cfgDat[__FUNCTION__])) {
+                self::$cfgDat[__FUNCTION__] = (int) substr(ini_get('memory_limit'), 0, -1);
             }
-            
-            return $limit * 1024 * 1024;
+
+            return $inByte ? self::$cfgDat[__FUNCTION__] * 1024 * 1024 : self::$cfgDat[__FUNCTION__];
         }
         
         /**
@@ -415,13 +440,11 @@
          */
         public static function uploadFilesizeLimit($inByte = false) {
 
-            $limit = (int) substr(ini_get('upload_max_filesize'), 0, -1);
-            
-            if (!$inByte) {
-                return $limit;
+            if (!isset(self::$cfgDat[__FUNCTION__])) {
+                self::$cfgDat[__FUNCTION__] = (int) substr(ini_get('upload_max_filesize'), 0, -1);
             }
-            
-            return $limit * 1024 * 1024;
+
+            return $inByte ? self::$cfgDat[__FUNCTION__] * 1024 * 1024 : self::$cfgDat[__FUNCTION__];
 
         }
 
@@ -462,7 +485,12 @@
          * @return bool
          */
         public static function dbConfigExists() {
-            return file_exists(self::$configDir.'database.php');
+
+            if (!isset(self::$cfgDat[__FUNCTION__])) {
+                self::$cfgDat[__FUNCTION__] = file_exists(self::$configDir.'database.php');
+            }
+
+            return self::$cfgDat[__FUNCTION__];
         }
         
         /**
@@ -482,6 +510,7 @@
          * @return bool
          */
         public static function enableInstaller($status) {
+
             if (self::installerEnabled() && !$status) {
                 return unlink(self::$installerEnabledFile);
             }

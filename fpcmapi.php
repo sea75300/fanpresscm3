@@ -250,4 +250,26 @@
 
         }
 
+        /**
+         * FPCM-interne Verschlüsselung nutzen - Verschlüsseln
+         * @param string $value
+         * @return string
+         * @since FPCM 3.5
+         */
+        public function fpcmEnCrypt($value) {
+            $crypt = new \fpcm\classes\crypt();
+            return $crypt->encrypt($value);
+        }
+
+        /**
+         * FPCM-interne Verschlüsselung nutzen - Entschlüsseln
+         * @param string $value
+         * @return string
+         * @since FPCM 3.5
+         */
+        public function fpcmDeCrypt($value) {
+            $crypt = new \fpcm\classes\crypt();
+            return $crypt->decrypt($value);
+        }
+
     }

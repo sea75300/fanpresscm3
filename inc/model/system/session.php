@@ -232,7 +232,7 @@
         public function save() {
             $params = $this->getPreparedSaveParams();
             $params = $this->events->runEvent('sessionCreate', $params);
-            
+
             $value_params = $this->getPreparedValueParams();
 
             $return = false;
@@ -321,7 +321,9 @@
          */
         public function setCookie() {       
             $expire = $this->getLastaction() + $this->config->system_session_length;
-            return setcookie(\fpcm\classes\security::getSessionCookieName(),$this->sessionid,$expire,'/','',false,true);
+            
+            $crypt = new \fpcm\classes\crypt();
+            return setcookie(\fpcm\classes\security::getSessionCookieName(), '_$$'.$crypt->encrypt($this->sessionid), $expire, '/', '', false, true);
         }
                 
         /**

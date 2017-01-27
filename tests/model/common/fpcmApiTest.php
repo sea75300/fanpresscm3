@@ -43,13 +43,18 @@ class fpcmAPiTest extends \PHPUnit_Framework_TestCase {
         
     }
     
-    public function testLogoutExternalPing() {
+    public function testFpcmEnCrypt() {
         
-        $result = $this->object->logoutExternal($GLOBALS['testSessionId']);
-        $this->assertTrue($result);
+        $GLOBALS['testSessionId2'] = $this->object->fpcmEnCrypt($GLOBALS['testSessionId']);
+        $this->assertTrue(is_string($GLOBALS['testSessionId2']));
         
-        $result2 = $this->object->loginExternal(['sessionId' => $GLOBALS['testSessionId']]);
-        $this->assertFalse($result2);
+    }
+    
+    public function testFpcmDeCrypt() {
+        
+        $result = $this->object->fpcmDeCrypt($GLOBALS['testSessionId2']);
+        $this->assertTrue(is_string($result));
+        $this->assertEquals($result, $GLOBALS['testSessionId']);
         
     }
     

@@ -324,3 +324,11 @@
     }
 
 }
+
+@media (min-width: 55em) AND (max-height: 800px) {
+    
+    div.fpcm-navigation #itemfpcm-options-submenu ul {
+        margin-top: -10em;
+    }
+
+}
