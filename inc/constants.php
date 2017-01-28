@@ -97,3 +97,11 @@
          */
         define ('FPCM_ARTICLE_LOCKED_INTERVAL', 60);
     }
+    
+    if (!defined('FPCM_ARTICLE_DISABLE_SHORTLINKS')) {
+        /**
+         * Erstellung von Artikel-Shortlink über is.gd deaktivieren
+         * @since FPCM 3.5
+         */
+        define ('FPCM_ARTICLE_DISABLE_SHORTLINKS', 60);
+    }

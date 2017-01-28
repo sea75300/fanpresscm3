@@ -544,6 +544,10 @@
          */
         public function getArticleShortLink() {
             
+            if (defined('FPCM_ARTICLE_DISABLE_SHORTLINKS') && FPCM_ARTICLE_DISABLE_SHORTLINKS) {
+                return urlencode($this->getArticleLink());
+            }
+
             $shortenerUrl = 'http://is.gd/create.php?format=simple&url='.urlencode($this->getArticleLink());
             
             if (!\fpcm\classes\baseconfig::canConnect()) return $shortenerUrl;
