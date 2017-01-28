@@ -295,6 +295,7 @@
             $files = [
                 \fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php',
                 \fpcm\classes\baseconfig::$viewsDir.'articles/lists/cronjobs.php',
+                \fpcm\classes\baseconfig::$jsPath.'editor_comments.js'
             ];
 
             foreach ($files as $file) {

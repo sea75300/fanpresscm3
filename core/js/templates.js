@@ -127,26 +127,10 @@ fpcm.templates = {
 
     initCodeMirror: function(id) {
 
-        var editorElement = document.getElementById(id);
-
-        var editorParams = {
-            lineNumbers: true,
-            matchBrackets: true,
-            lineWrapping: true,
-            autoCloseTags: true,
-            id: 'tpleditor-' + id,
-            mode: "text/html",
-            matchTags: {
-                bothTags: true
-            },
-            extraKeys: {
-                "Ctrl-Space": "autocomplete"
-            },
-            value: editorElement.innerHTML
-        };
-
-        fpcm.templates.enabledEditors['ed' + fpcmTemplateId] = CodeMirror.fromTextArea(editorElement, editorParams);
-        fpcm.templates.enabledEditors['ed' + fpcmTemplateId].setOption('theme', 'fpcm');
+        fpcm.templates.enabledEditors['ed' + fpcmTemplateId] = fpcm.editor_codemirror.create({
+           editorId  : 'tpleditor-' + id,
+           elementId : id,
+        });
 
     }
 

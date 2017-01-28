@@ -18,7 +18,17 @@ fpcm.comments = {
         }
 
         if (window.tinymce) {
-            this.initTinyMceComment();
+            fpcm.editor_tinymce.create({
+                language : fpcmTinyMceLang,
+                plugins  : fpcmTinyMcePlugins,
+                toolbar  : fpcmTinyMceToolbar,
+                onInit : function(ed) { 
+                    ed.on('init', function() {
+                        this.getBody().style.fontSize = fpcmTinyMceDefaultFontsize;
+                        jQuery(this.iframeElement).removeAttr('title');
+                    });
+                }    
+            });
             fpcm.ui.setFocus('commentname');
         }
 
@@ -28,30 +38,6 @@ fpcm.comments = {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
             }            
-        });
-    },
-
-    initTinyMceComment: function() {
-        tinymce.init({
-            selector              : "textarea",
-            skin                  : "fpcm",
-            theme                 : "modern",
-            language              : fpcmTinyMceLang,
-            plugins               : fpcmTinyMcePlugins,
-            toolbar1              : fpcmTinyMceToolbar,
-            menubar               : false,
-            relative_urls         : false,
-            image_advtab          : true,
-            resize                : true,
-            convert_urls          : true,
-            browser_spellcheck    : true,
-            autoresize_min_height : '250',
-            setup : function(ed) { 
-                ed.on('init', function() {
-                    this.getBody().style.fontSize = '14px';
-                    jQuery(this.iframeElement).removeAttr('title');
-                });
-            }                
         });
     },
     

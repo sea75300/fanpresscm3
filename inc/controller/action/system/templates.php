@@ -198,6 +198,7 @@
             
             $this->view->setViewJsFiles(array(
                 \fpcm\classes\baseconfig::$jsPath.'filemanager.js',
+                \fpcm\classes\baseconfig::$jsPath.'editor_codemirror.js',
                 \fpcm\classes\baseconfig::$jsPath.'templates.js'
             ));
             

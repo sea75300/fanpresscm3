@@ -40,7 +40,8 @@
 
             return array(
                 \fpcm\classes\loader::libGetFileUrl('tinymce4', 'tinymce.min.js'),
-                \fpcm\classes\baseconfig::$jsPath.'editor.js'
+                \fpcm\classes\baseconfig::$jsPath.'editor.js',
+                \fpcm\classes\baseconfig::$jsPath.'editor_tinymce.js'
             );
         }
 

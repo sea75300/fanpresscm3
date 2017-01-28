@@ -105,13 +105,17 @@
                 $this->view->setShowFooter(0);
             }
             
-            $this->view->setViewJsFiles(array(\fpcm\classes\loader::libGetFileUrl('tinymce4', 'tinymce.min.js'), \fpcm\classes\baseconfig::$jsPath.'editor_comments.js'));
-            $this->view->addJsVars(array(
+            $this->view->setViewJsFiles([
+                \fpcm\classes\loader::libGetFileUrl('tinymce4', 'tinymce.min.js'),
+                \fpcm\classes\baseconfig::$jsPath.'editor_tinymce.js'
+            ]);
+            $this->view->addJsVars([
                 'fpcmTinyMceLang'               => $this->config->system_lang,
+                'fpcmTinyMceDefaultFontsize'    => $this->config->system_editor_fontsize,
                 'fpcmTinyMcePlugins'            => 'autolink charmap code image link lists media nonbreaking wordcount fpcm_emoticons autoresize',
                 'fpcmTinyMceToolbar'            => 'fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist blockquote | link unlink anchor image media emoticons charmap | undo redo removeformat searchreplace fullscreen code',
-                'fpcmNavigationActiveItemId'    => 'itemnav-item-editcomments'
-            ));
+                'fpcmNavigationActiveItemId'    => 'itemnav-item-editcomments',
+            ]);
             
             if ($this->comment->getChangeuser() && $this->comment->getChangetime()) {
                 $changeUser = new \fpcm\model\users\author($this->comment->getChangeuser());

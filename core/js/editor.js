@@ -562,20 +562,11 @@ fpcm.editor = {
                 jQuery('#imagesalt').val(ui.item.label);
             }
         });
-
-        editor = CodeMirror.fromTextArea(
-            document.getElementById("articlecontent"), {
-            lineNumbers     : true,
-            matchBrackets   : true,
-            lineWrapping    : true,
-            autoCloseTags   : true,
-            id              : 'htmleditor',
-            mode            : "text/html",
-            matchTags       : {
-                bothTags: true
-            },            
-            extraKeys       : {
-                "Ctrl-Space": "autocomplete",
+        
+        editor = fpcm.editor_codemirror.create({
+           editorId  : 'htmleditor',
+           elementId : 'articlecontent',
+           extraKeys : {
                 "Ctrl-B"    : function() {
                     jQuery('#fpcm-editor-html-bold-btn').click();
                 },
@@ -649,10 +640,7 @@ fpcm.editor = {
                     jQuery('#fpcm-editor-html-removetags-btn').click();
                     return false;
                 }
-
-            },
-            value           : document.documentElement.innerHTML,
-            theme           : 'fpcm'
+            }
         });
         
         editor.on('paste', function(instance, event) {
@@ -1033,37 +1021,24 @@ fpcm.editor = {
     },
     
     initTinyMce: function() {
-        tinymce.init({
-            selector              : "textarea",
-            skin                  : "fpcm",
-            theme                 : "modern",
-            custom_elements       : fpcmTinyMceElements,
-            language              : fpcmTinyMceLang,
-            plugins               : fpcmTinyMcePlugins,
-            toolbar1              : fpcmTinyMceToolbar,
-            link_class_list       : fpcmTinyMceCssClasses,
-            image_class_list      : fpcmTinyMceCssClasses,
-            link_list             : fpcmTinyMceLinkList,
-            image_list            : fpcmTinyMceImageList,
-            textpattern_patterns  : fpcmTinyMceTextpattern,
-            templates             : fpcmTinyMceTemplatesList,
-            menubar               : false,
-            relative_urls         : false,
-            image_advtab                 : true,
-            resize                       : true,
-            convert_urls                 : true,
-            browser_spellcheck           : true,
-            default_link_target          : "_blank",
-            autoresize_min_height        : '500',
-            image_caption                : true,
+        
+        fpcm.editor_tinymce.create({
+            custom_elements              : fpcmTinyMceElements,
+            language                     : fpcmTinyMceLang,
+            plugins                      : fpcmTinyMcePlugins,
+            toolbar                      : fpcmTinyMceToolbar,
+            link_class_list              : fpcmTinyMceCssClasses,
+            image_class_list             : fpcmTinyMceCssClasses,
+            link_list                    : fpcmTinyMceLinkList,
+            image_list                   : fpcmTinyMceImageList,
+            textpattern_patterns         : fpcmTinyMceTextpattern,
+            templates                    : fpcmTinyMceTemplatesList,
             autosave_prefix              : fpcmTinyMceAutosavePrefix,
-            autosave_retention           : "15m",
-            autosave_restore_when_empty  : false,
-            link_assume_external_targets : true,
             images_upload_url            : fpcmTinyMceFileUpload ? fpcmAjaxActionPath + 'editor/imgupload' : false,
             automatic_uploads            : fpcmTinyMceFileUpload,
-            images_reuse_filename        : true,
-            file_picker_callback    : function(callback, value, meta) {
+            autoresize_min_height        : '500',
+            file_picker                  : function(callback, value, meta) {
+
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
                     title           : fpcm.ui.translate('fileManagerHeadline'),
@@ -1092,13 +1067,14 @@ fpcm.editor = {
                     }
                 });
             },
-            setup : function(ed) { 
+            onInit : function(ed) { 
                 ed.on('init', function() {
                     this.getBody().style.fontSize = fpcmTinyMceDefaultFontsize;
                     jQuery(this.iframeElement).removeAttr('title');
                 });
-            }                
-        });    
+            }              
+        });
+   
     },
 
     setInEdit: function(){
