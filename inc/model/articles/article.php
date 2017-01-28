@@ -543,20 +543,23 @@
          * @return string
          */
         public function getArticleShortLink() {
-            
-            if (defined('FPCM_ARTICLE_DISABLE_SHORTLINKS') && FPCM_ARTICLE_DISABLE_SHORTLINKS) {
-                return urlencode($this->getArticleLink());
-            }
 
             $shortenerUrl = 'http://is.gd/create.php?format=simple&url='.urlencode($this->getArticleLink());
             
-            if (!\fpcm\classes\baseconfig::canConnect()) return $shortenerUrl;
+            if (!\fpcm\classes\baseconfig::canConnect()) {
+                return $this->events->runEvent('articleShortLink', array('artikellink' => urlencode($this->getArticleLink()), 'url' => $shortenerUrl))['url'];
+            }
 
-            $remote = fopen($shortenerUrl, 'r');
-            
-            if (!$remote) return $shortenerUrl;
-
-            $url = fgetss($remote);
+            if (defined('FPCM_ARTICLE_DISABLE_SHORTLINKS') && FPCM_ARTICLE_DISABLE_SHORTLINKS) {
+                $url = $shortenerUrl;
+            }
+            else {
+                $remote = fopen($shortenerUrl, 'r');
+                if (!$remote) {
+                    return $this->events->runEvent('articleShortLink', array('artikellink' => urlencode($this->getArticleLink()), 'url' => $shortenerUrl))['url'];
+                }
+                $url = fgetss($remote);
+            }
             
             return $this->events->runEvent('articleShortLink', array('artikellink' => urlencode($this->getArticleLink()), 'url' => $url))['url'];
         }
