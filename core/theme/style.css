@@ -129,6 +129,12 @@ div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col {
     display: block;
 }
 
+#fpcm-loader {
+    z-index : 100;
+    position: fixed;
+    display : none;
+}
+
 .fpcm-wrapper {
     padding:0;
     margin: 0;

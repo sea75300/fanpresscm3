@@ -305,6 +305,7 @@
 
             }
             
+            \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js')));
             
             return true;
         }

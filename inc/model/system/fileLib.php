@@ -35,8 +35,6 @@
             'inc/lib/jquery/jquery-3.1.0.min.js',
             'inc/lib/jquery-ui/jquery-ui.min.js',
             'inc/lib/fancybox/jquery.fancybox.pack.js',
-            'inc/lib/spinjs/spin.min.js',
-            'inc/lib/spinjs/jquery.spin.js',
             'core/js/script.php'
         );
 

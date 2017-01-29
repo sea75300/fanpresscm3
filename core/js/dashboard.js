@@ -12,10 +12,8 @@ if (fpcm === undefined) {
 fpcm.dashboard = {
 
     init: function () {
-        this.loadDashboardContainer();
-    },
 
-    loadDashboardContainer: function() {
+        fpcmJs.showLoader(true, '<strong>' + fpcm.ui.translate('dashboard_loading') + '</strong>');
         fpcm.ajax.exec('dashboard', {
             execDone: function() {
                 fpcm.ui.assignHtml('#fpcm-dashboard-containers', fpcm.ajax.getResult('dashboard'));
@@ -26,9 +24,10 @@ fpcm.dashboard = {
                     return false;
                 });
 
+                fpcmJs.showLoader(false);
+
                 var fpcmRFDinterval = setInterval(function(){
                     if (jQuery('#fpcm-dashboard-finished').length == 1) {
-                        jQuery('#fpcm-dashboard-containers-loading').remove();
                         clearInterval(fpcmRFDinterval);
                         fpcm.ui.resize();
                         return false;
@@ -36,6 +35,7 @@ fpcm.dashboard = {
                 }, 250);
             }
         });
+
     }
 
 };

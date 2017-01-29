@@ -12,29 +12,22 @@ var fpcmJs = function () {
     
     var self = this;
     
-    this.spinJsOpts = {
-        lines: 15,
-        length: 5,
-        width: 8,
-        radius: 20,
-        corners: 1,
-        rotate: 0,
-        direction: 1,
-        color: '#2E6E9E',
-        speed: 0.8,
-        trail: 50,
-        shadow: false,
-        hwaccel: true,
-        className: 'spinner',
-        zIndex: 100,
-        top: '50%',
-        left: '50%'
-    };
-    
-    this.spinner = new Spinner(self.spinJsOpts);
-    
-    this.showLoader = function(show) {
-        return (show) ? self.spinner.spin(document.getElementById('fpcm-body')) : self.spinner.stop();
+    this.showLoader = function(show, addtext) {
+
+        if (!show) {
+            jQuery('#fpcm-loader').fadeOut('fast', function(){
+                jQuery(this).remove();
+            });
+            return false;
+        }
+
+        fpcm.ui.appendHtml('#fpcm-body', '<div class="fpcm-loader" id="fpcm-loader" style="' + window.spinnerParams + '"><span class="fa-stack ' + (addtext ? 'fa-lg' : 'fa-2x') + '"><span class="fa fa-square fa-stack-2x"></span><span class="fa fa-spinner fa-spin fa-fw fa-stack-1x fa-inverse"></span></span> ' + (addtext ? addtext : '') + '</div>');
+
+        jQuery('#fpcm-loader').css('top',  ( parseInt( (jQuery(window).height() * 0.5) - (jQuery('#fpcm-loader').height() / 2) ) + 'px' ) )
+                              .css('left', ( parseInt( (jQuery(window).width() * 0.5) - (jQuery('#fpcm-loader').width() / 2) ) + 'px' ) )
+                              .fadeIn('fast');
+
+        return true;
     };    
     
     this.clearCache = function () {
@@ -44,7 +37,7 @@ var fpcmJs = function () {
         fpcm.ajax.get('cache', {
             execDone: function () {
                 fpcmJs.showLoader(false);
-                fpcm.ui.appendMessage(fpcm.ajax.getResult('cache'))
+                fpcm.ui.appendMessage(fpcm.ajax.getResult('cache'));
             }
         });
         

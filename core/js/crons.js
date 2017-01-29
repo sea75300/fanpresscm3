@@ -15,7 +15,7 @@ fpcm.crons = {
 
         jQuery('.fpcm-cronjoblist-exec').click(function () {
             var cjId = jQuery(this).attr('id');
-            this.execCronjobDemand(cjId);
+            fpcm.crons.execCronjobDemand(cjId);
             return false;
         });
 
@@ -24,14 +24,14 @@ fpcm.crons = {
             var cronjob  = jQuery(this).attr('id').split('_');
             var interval = jQuery(this).val();
 
-            this.setCronjobInterval(cronjob[1], interval);
+            fpcm.crons.setCronjobInterval(cronjob[1], interval);
             return false;
         });
 
     },
 
     execCronjobDemand : function(cronjobId) {
-        self.showLoader(true);
+        fpcmJs.showLoader(true);
         fpcm.ajax.get('cronasync', {
             data    : {
                 cjId: cronjobId
@@ -41,7 +41,7 @@ fpcm.crons = {
     },
     
     setCronjobInterval : function(cronjobId, cronjobInterval) {
-        self.showLoader(true);
+        fpcmJs.showLoader(true);
         fpcm.ajax.get('croninterval', {
             data    : {
                 cjId:cronjobId,
