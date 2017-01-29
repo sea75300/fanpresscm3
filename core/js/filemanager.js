@@ -203,7 +203,13 @@ fpcm.filemanager = {
                 return true;
             }
 
-            fpcmJs.execCronjobDemand('fileindex');
+            fpcmJs.showLoader(true);
+            fpcm.ajax.get('cronasync', {
+                data    : {
+                    cjId: 'fileindex'
+                },
+                execDone: 'fpcmJs.showLoader(false);'
+            });
         });
 
         uploaderEl.addClass('fileupload-processing');
