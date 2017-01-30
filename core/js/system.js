@@ -7,26 +7,16 @@
 jQuery.noConflict();
 jQuery(document).ready(function () {
 
-    if (typeof fpcmSessionCheckEnabled !== 'undefined' && fpcmSessionCheckEnabled) {
-        setInterval(function() {
-            fpcmJs.checkSession();
-        }, 60000);
-    }
-
     fpcmAjax = new fpcmAjaxHandler();
 
     fpcmJs = new fpcmJs();
     fpcmJs.runCronsAsync();
-    
+    setInterval(fpcmJs.runMinuteIntervals, 60000);
+
     jQuery.each(fpcm, function(idx, object) {
         if (typeof object.init === 'function') {
             object.init();
         }
-    });
-
-    fpcm.ui.resize();
-    jQuery(window).resize(function () {
-        fpcm.ui.resize();
     });
     
     jQuery('.fpcm-loader').click(function () {

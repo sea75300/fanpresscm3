@@ -222,8 +222,16 @@ var fpcmJs = function () {
         });
     };
     
-    this.runCronsAsync = function () {
-        if (typeof fpcmCronAsyncDiabled != 'undefined' && fpcmCronAsyncDiabled) return;
+    this.runMinuteIntervals = function() {
+        self.runCronsAsync();
+        self.checkSession();
+    };
+    
+    this.runCronsAsync = function() {
+        if (window.fpcmCronAsyncDiabled) {
+            return false;
+        }
+        
         fpcm.ajax.get('cronasync');
     };
     
@@ -263,15 +271,15 @@ var fpcmJs = function () {
     
     this.checkSession = function() {
         
-        if (!fpcmSessionCheckEnabled) {
+        if (!window.fpcmSessionCheckEnabled) {
             return false;
         }
 
         fpcm.ajax.exec('session', {
             execDone: function() {
-                var sessionOk = fpcm.ajax.getResult('session');
-                fpcmSessionCheckEnabled = false;
-                if (sessionOk == '0') {
+                if (fpcm.ajax.getResult('session') == '0') {
+                    window.fpcmSessionCheckEnabled = false;
+
                     fpcm.ui.dialog({
                         content: fpcm.ui.translate('sessionCheckMsg'),
                         dlButtons: buttons = [

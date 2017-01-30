@@ -42,6 +42,10 @@ fpcm.ui = {
             fpcm.ui.setFocus(window.fpcmFieldSetAutoFocus);
         }
 
+        fpcm.ui.resize();
+        jQuery(window).resize(function () {
+            fpcm.ui.resize();
+        });
     },
     
     translate: function(langVar) {
