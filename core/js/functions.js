@@ -21,11 +21,11 @@ var fpcmJs = function () {
             return false;
         }
 
-        fpcm.ui.appendHtml('#fpcm-body', '<div class="fpcm-loader" id="fpcm-loader" style="' + window.spinnerParams + '"><span class="fa-stack ' + (addtext ? 'fa-lg' : 'fa-2x') + '"><span class="fa fa-square fa-stack-2x"></span><span class="fa fa-spinner fa-spin fa-fw fa-stack-1x fa-inverse"></span></span> ' + (addtext ? addtext : '') + '</div>');
+        fpcm.ui.appendHtml('#fpcm-body', '<div class="fpcm-loader" id="fpcm-loader" style="' + window.spinnerParams + '"><span class="fa-stack fa-fw ' + (addtext ? 'fa-lg' : 'fa-2x') + '"><span class="fa fa-circle fa-stack-2x"></span><span class="fa fa-spinner fa-pulse fa-stack-1x fa-inverse fa-fw"></span></span> ' + (addtext ? addtext : '') + '</div>');
 
         jQuery('#fpcm-loader').css('top',  ( parseInt( (jQuery(window).height() * 0.5) - (jQuery('#fpcm-loader').height() / 2) ) + 'px' ) )
                               .css('left', ( parseInt( (jQuery(window).width() * 0.5) - (jQuery('#fpcm-loader').width() / 2) ) + 'px' ) )
-                              .fadeIn('fast');
+                              .fadeIn(100);
 
         return true;
     };    
