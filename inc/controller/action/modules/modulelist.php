@@ -106,6 +106,7 @@
             );
             $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('modules/list'));
+            $this->view->assign('styleLeftMargin', true);
 
             $this->view->assign('moduleActions', $this->moduleActions);
             $this->view->render();

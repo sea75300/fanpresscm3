@@ -47,18 +47,19 @@
 
         public function request() {
             
+            $styleLeftMargin = true;
             if (!is_null($this->getRequestVar('mode'))) {
                 $this->mode = (int) $this->getRequestVar('mode');
                 
-                $styleLeftMargin = true;
                 if ($this->mode > 1) {
                     $this->view->setShowHeader(false);
                     $this->view->setShowFooter(false);
                     $styleLeftMargin = false;
                 }
-                $this->view->assign('styleLeftMargin', $styleLeftMargin);
                 
             }
+
+            $this->view->assign('styleLeftMargin', $styleLeftMargin);
             
             if (!is_null(\fpcm\classes\http::getFiles())) {
                 $uploader = new \fpcm\model\files\fileuploader(\fpcm\classes\http::getFiles());

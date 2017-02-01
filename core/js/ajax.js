@@ -1,83 +1,4 @@
 /**
- * FanPress CM AJAX Framework
- * @article Stefan Seehafer <sea75300@yahoo.de>
- * @copyright (c) 2015-2017, Stefan Seehafer
- * @license http://www.gnu.org/licenses/gpl.txt GPLv3
- * @deprecated FPCM 3.5
- */
-
-var fpcmAjaxHandler = function () {
-
-    var self = this;
-
-    self.ajaxPath       = fpcmAjaxActionPath;
-    self.action         = '';
-    self.query          = false;
-    self.method         = 'POST';
-    self.async          = true;
-    self.data           = [];
-    self.workData       = false;
-    self.result         = [];
-    self.execDone       = false;
-    self.execFail       = false;
-
-    this.exec = function() {
-        
-        console.warn('Using "fpcmAjaxHandler.exec/get/post" class is deprecated as of version 3.5! Use fpcm.ajax.exec/get/post instead.');
-        
-        fpcm.ajax.exec(self.action, {
-            method      : self.method,
-            async       : self.async,
-            data        : self.data,
-            execDone    : self.execDone,
-            execFail    : self.execFail,
-            workData    : self.workData
-        }, self);
-      
-    };
-
-    this.get = function() {
-        self.method = 'get';
-        self.exec();
-    };
-
-    this.post = function() {
-        self.method = 'post';
-        self.exec();
-    };
-    
-    this.reset = function() {
-        
-        console.warn('Using "fpcmAjaxHandler.reset" class is deprecated as of version 3.5!');
-        
-        self.ajaxPath       = fpcmAjaxActionPath;
-        self.action         = '';
-        self.query          = false;
-        self.method         = 'POST';
-        self.async          = true;
-        self.data           = [];
-        self.workData       = false;
-        self.execDone       = false;
-        self.execFail       = false;            
-    };
-
-    this.fromJSON = function(data) {
-        
-        console.warn('Using "fpcmAjaxHandler.fromJSON" class is deprecated as of version 3.5!');
-        
-        return fpcm.ajax.fromJSON(data);
-    };
-
-    this.toJSON = function(data) {
-        
-        console.warn('Using "fpcmAjaxHandler.toJSON" class is deprecated as of version 3.5!');
-        
-        return fpcm.ajax.toJSON(data);
-    };
-
-}
-
-/**
  * FanPress CM AJAX Namespace
  * @article Stefan Seehafer <sea75300@yahoo.de>
  * @copyright (c) 2015-2017, Stefan Seehafer
@@ -219,3 +140,82 @@ fpcm.ajax = {
     }
     
 };
+
+/**
+ * FanPress CM AJAX Framework
+ * @article Stefan Seehafer <sea75300@yahoo.de>
+ * @copyright (c) 2015-2017, Stefan Seehafer
+ * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+ * @deprecated FPCM 3.5
+ */
+
+var fpcmAjaxHandler = function () {
+
+    var self = this;
+
+    self.ajaxPath       = fpcmAjaxActionPath;
+    self.action         = '';
+    self.query          = false;
+    self.method         = 'POST';
+    self.async          = true;
+    self.data           = [];
+    self.workData       = false;
+    self.result         = [];
+    self.execDone       = false;
+    self.execFail       = false;
+
+    this.exec = function() {
+        
+        console.warn('Using "fpcmAjaxHandler.exec/get/post" class is deprecated as of version 3.5! Use fpcm.ajax.exec/get/post instead.');
+        
+        fpcm.ajax.exec(self.action, {
+            method      : self.method,
+            async       : self.async,
+            data        : self.data,
+            execDone    : self.execDone,
+            execFail    : self.execFail,
+            workData    : self.workData
+        }, self);
+      
+    };
+
+    this.get = function() {
+        self.method = 'get';
+        self.exec();
+    };
+
+    this.post = function() {
+        self.method = 'post';
+        self.exec();
+    };
+    
+    this.reset = function() {
+        
+        console.warn('Using "fpcmAjaxHandler.reset" class is deprecated as of version 3.5!');
+        
+        self.ajaxPath       = fpcmAjaxActionPath;
+        self.action         = '';
+        self.query          = false;
+        self.method         = 'POST';
+        self.async          = true;
+        self.data           = [];
+        self.workData       = false;
+        self.execDone       = false;
+        self.execFail       = false;            
+    };
+
+    this.fromJSON = function(data) {
+        
+        console.warn('Using "fpcmAjaxHandler.fromJSON" class is deprecated as of version 3.5!');
+        
+        return fpcm.ajax.fromJSON(data);
+    };
+
+    this.toJSON = function(data) {
+        
+        console.warn('Using "fpcmAjaxHandler.toJSON" class is deprecated as of version 3.5!');
+        
+        return fpcm.ajax.toJSON(data);
+    };
+
+}
