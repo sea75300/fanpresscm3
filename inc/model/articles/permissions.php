@@ -34,7 +34,7 @@
             }
             
             if (!$isAdmin && !$permEditAll && $permEditOwn &&
-                 $article->getCreateuser() == \fpcm\classes\baseconfig::$fpcmSession->getUserId()) {
+                $article->getCreateuser() == \fpcm\classes\baseconfig::$fpcmSession->getUserId()) {
                 $article->setEditPermission(true);
                 return true;                
             }

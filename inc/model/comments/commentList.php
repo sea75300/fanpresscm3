@@ -15,6 +15,8 @@
      */
     class commentList extends \fpcm\model\abstracts\tablelist {
 
+        use permissions;
+        
         /**
          * articlelist Objekt
          * @var \fpcm\model\articles\articlelist
@@ -356,41 +358,6 @@
             
             return $count >= $this->config->comments_markspam_commentcount ? true : false;
             
-        }
-
-        /**
-         * Führt Prüfung durch, ob Artikel bearbeitet werden kann
-         * @param \fpcm\model\comments\comment $comment
-         * @return boolean
-         */
-        public function checkEditPermissions(comment &$comment) {
-
-            if ($this->permissions === false) {
-                return true;
-            }
-
-            if (!is_array($this->ownArticleIds)) {                
-                $this->articleList   = new \fpcm\model\articles\articlelist();
-                $this->ownArticleIds = $this->articleList->getArticleIDsByUser(\fpcm\classes\baseconfig::$fpcmSession->getUserId());
-            }
-
-            $isAdmin     = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin();
-            $permEditAll = $this->permissions->check(array('comment' => 'editall'));            
-            $permEditOwn = $this->permissions->check(array('comment' => 'edit'));
-            
-            if ($isAdmin || $permEditAll) {
-                $comment->setEditPermission(true);
-                return true;
-            }
-            
-            if (!$isAdmin && !$permEditAll && $permEditOwn && in_array($comment->getArticleid(), $this->ownArticleIds)) {
-                $comment->setEditPermission(true);
-                return true;                
-            }
-
-            $comment->setEditPermission(false);
-            return true;
-
         }
 
         /**

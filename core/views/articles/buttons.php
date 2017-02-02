@@ -93,7 +93,7 @@
         <?php else : ?>
             <?php fpcm\model\view\helper::linkButton('#', 'GLOBAL_EXTENDED', 'fpcmeditorextended', 'fpcm-button-extended'); ?>
             <?php fpcm\model\view\helper::saveButton('articleSave'); ?>
-            <?php if ($editorMode) : ?><?php fpcm\model\view\helper::deleteButton('articleDelete'); ?><?php endif; ?>
+            <?php if ($editorMode && $permDeleteArticle) : ?><?php fpcm\model\view\helper::deleteButton('articleDelete'); ?><?php endif; ?>
         <?php endif; ?>
     </div>
 </div>
