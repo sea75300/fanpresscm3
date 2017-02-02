@@ -9,7 +9,8 @@
     
     class articleedit extends articlebase {
         
-        use \fpcm\controller\traits\comments\lists;
+        use \fpcm\controller\traits\comments\lists,
+            \fpcm\model\articles\permissions;
         
         /**
          *
@@ -76,10 +77,11 @@
                 $this->view->setNotFound('LOAD_FAILED_ARTICLE', 'articles/list');                
                 return true;
             }
-            
+
+            $this->checkEditPermissions($this->article);
             if (!$this->article->getEditPermission()) {
                 $this->view = new \fpcm\model\view\error();
-                $this->view->addErrorMessage('PERMISSIONS_REQUIRED');
+                $this->view->setMessage($this->lang->translate('PERMISSIONS_REQUIRED'));
                 $this->view->render();
                 return false;
             }
@@ -249,7 +251,7 @@
          */        
         public function process() {
             if (!parent::process()) return false;
-            
+
             $this->view->assign('editorAction', 'articles/edit&articleid='.$this->article->getId());
             $this->view->assign('editorMode', 1);
             $this->view->assign('showRevisions', true);
@@ -308,6 +310,7 @@
          */
         protected function initPermissions() {
             $this->view->assign('showComments', $this->permissions->check(array('article' => array('editall', 'edit'), 'comment' => array('editall', 'edit'))));
+            $this->view->assign('permDeleteArticle', $this->permissions->check(array('article' => 'delete')));
             $this->view->assign('deleteCommentsPermissions', $this->permissions->check(array('comment' => 'delete')));
             $this->view->assign('permApprove', $this->permissions->check(array('comment' => 'approve')));
             $this->view->assign('permPrivate', $this->permissions->check(array('comment' => 'private')));            

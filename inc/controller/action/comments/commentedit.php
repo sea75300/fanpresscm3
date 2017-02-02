@@ -8,7 +8,9 @@
     namespace fpcm\controller\action\comments;
     
     class commentedit extends \fpcm\controller\abstracts\controller {
-        
+
+        use \fpcm\model\comments\permissions;
+
         /**
          *
          * @var \fpcm\model\view\acp
@@ -20,10 +22,24 @@
          * @var \fpcm\model\comments\comment
          */
         protected $comment;
-        
+
+        /**
+         *
+         * @var bool
+         */
         protected $approve = false;
-        
+
+        /**
+         *
+         * @var bool
+         */
         protected $private = false;
+
+        /**
+         *
+         * @var array
+         */
+        protected $ownArticleIds = [];
 
         public function __construct() {
             parent::__construct();
@@ -51,9 +67,10 @@
                 return true;
             }
 
+            $this->checkEditPermissions($this->comment);
             if (!$this->comment->getEditPermission()) {
                 $this->view = new \fpcm\model\view\error();
-                $this->view->addErrorMessage('PERMISSIONS_REQUIRED');
+                $this->view->setMessage($this->lang->translate('PERMISSIONS_REQUIRED'));
                 $this->view->render();
                 return false;
             }
