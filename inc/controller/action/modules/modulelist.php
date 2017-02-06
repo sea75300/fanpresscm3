@@ -93,6 +93,7 @@
             }
             
             $this->view->assign('moduleManagerMode', true);
+            $this->view->assign('styleLeftMargin', true);
             
             if (!\fpcm\classes\baseconfig::canConnect()) {
                 unset($this->moduleActions[$this->lang->translate('MODULES_LIST_INSTALL')],
