@@ -68,12 +68,26 @@
             $articleList = new \fpcm\model\articles\articlelist();
             
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_ALL').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition().'</td></tr>';
-            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_ACTIVE').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition(array('active' => true)).'</td></tr>';
-            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_ARCHIVE').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition(array('archived' => true)).'</td></tr>';
-            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_DRAFT').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition(array('drafts' => true)).'</td></tr>';
-            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_TRASH').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition(array('deleted' => true)).'</td></tr>';
             
-            $count = $articleList->countArticlesByCondition(array('approval' => true));
+            $sObj = new \fpcm\model\articles\search();
+            $sObj->active = 1;
+            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_ACTIVE').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition($sObj).'</td></tr>';
+
+            $sObj = new \fpcm\model\articles\search();
+            $sObj->archived = 1;
+            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_ARCHIVE').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition($sObj).'</td></tr>';
+
+            $sObj = new \fpcm\model\articles\search();
+            $sObj->drafts = 1;
+            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_DRAFT').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition($sObj).'</td></tr>';
+
+            $sObj = new \fpcm\model\articles\search();
+            $sObj->deleted = 1;
+            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_TRASH').':</strong></td><td class="fpcm-ui-center">'.$articleList->countArticlesByCondition($sObj).'</td></tr>';
+
+            $sObj = new \fpcm\model\articles\search();
+            $sObj->approval = 1;
+            $count = $articleList->countArticlesByCondition($sObj);
             $this->tableContent[] = '<tr class="'.($count > 0 ? 'fpcm-ui-important-text' : 'fpcm-ui-text').'"><td><strong>'.$this->language->translate('SYSTEM_STATS_ARTICLES_APPROVAL').':</strong></td><td class="fpcm-ui-center">'.$count.'</td></tr>';
         }
         

@@ -41,10 +41,11 @@
                 return false;
             }
 
-            $sparams['ids'] = array_map('intval', json_decode($this->getRequestVar('ids', array(1,4,7)), true));
+            $conditions = new \fpcm\model\articles\search();
+            $conditions->ids = array_map('intval', json_decode($this->getRequestVar('ids', array(1,4,7)), true)); 
             
             $articleList = new \fpcm\model\articles\articlelist();            
-            $this->articleItems = $articleList->getArticlesByCondition($sparams, false);
+            $this->articleItems = $articleList->getArticlesByCondition($conditions, false);
             
             return true;
         }

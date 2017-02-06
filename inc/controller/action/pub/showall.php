@@ -54,15 +54,15 @@
             $parsed = [];
             
             if ($this->cache->isExpired() || $this->session->exists()) {
-                $conditions = array(
-                    'limit'     => array($this->limit, $this->listShowLimit),
-                    'archived'  => 0,
-                    'postponed' => 0,
-                    'orderby'   => array('pinned DESC, '.$this->config->articles_sort.' '.$this->config->articles_sort_order)
-                );
-                    
+                
+                $conditions = new \fpcm\model\articles\search();
+                $conditions->limit = [$this->limit, $this->listShowLimit];
+                $conditions->archived  = 0;
+                $conditions->postponed = 0;
+                $conditions->orderby   = ['pinned DESC, '.$this->config->articles_sort.' '.$this->config->articles_sort_order];
+
                 if ($this->category !== 0) {
-                    $conditions['category'] = $this->category;
+                    $conditions->category = $this->category;
                 }
 
                 $articles   = $this->articleList->getArticlesByCondition($conditions);
@@ -71,11 +71,11 @@
                     $parsed[] = $this->assignData($article);
                 }
 
-                $countConditions            = [];
-                $countConditions['active']  = true;
+                $countConditions         = new \fpcm\model\articles\search();
+                $countConditions->active = 1;
                 if ($this->category !== 0) {
-                    $countConditions['category'] = $this->category;
-                }                
+                    $countConditions->category = $this->category;
+                }
                 
                 $parsed[] = $this->createPagination($this->articleList->countArticlesByCondition($countConditions));                
                 $parsed   = $this->events->runEvent('publicShowAll', $parsed);

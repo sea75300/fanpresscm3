@@ -84,13 +84,13 @@
             
             $articleList = new \fpcm\model\articles\articlelist();
             $userlist    = new \fpcm\model\users\userList();
+
+            $conditions = new \fpcm\model\articles\search();
+            $conditions->draft    = -1;
+            $conditions->approval = -1;
+            $conditions->limit    = [10, 0];
+            $conditions->orderby  = ['createtime DESC'];
             
-            $conditions = array(
-                'draft'     => -1,
-                'approval'  => -1,
-                'limit'     => array(10, 0),
-                'orderby'   => array('createtime DESC')
-            );
             $articles = $articleList->getArticlesByCondition($conditions);
 
             $users    = array_flip($userlist->getUsersNameList());

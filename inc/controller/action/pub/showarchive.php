@@ -54,18 +54,18 @@
             $parsed = [];
             
             if ($this->cache->isExpired() || $this->session->exists()) {
-                $conditions = array(
-                    'limit'         => array($this->limit, $this->listShowLimit),
-                    'archived'      => 1,
-                    'postponed'     => 0
-                );
-                
+
+                $conditions = new \fpcm\model\articles\search();
+                $conditions->limit = [$this->limit, $this->listShowLimit];
+                $conditions->archived  = 1;
+                $conditions->postponed = 0;
+
                 if ($this->config->articles_archive_datelimit) {
-                    $conditions['datefrom'] = $this->config->articles_archive_datelimit;
+                    $conditions->datefrom = $this->config->articles_archive_datelimit;
                 }
                 
                 if ($this->category !== 0) {
-                    $conditions['category'] = $this->category;
+                    $conditions->category = $this->category;
                 }
                     
                 $articles   = $this->articleList->getArticlesByCondition($conditions);
@@ -74,14 +74,14 @@
                     $parsed[] = $this->assignData($article);
                 }
                 
-                $countConditions             = [];
-                $countConditions['archived'] = true;
+                $countConditions           = new \fpcm\model\articles\search();
+                $countConditions->archived = true;
                 if ($this->category !== 0) {
-                    $countConditions['category'] = $this->category;
+                    $countConditions->category = $this->category;
                 }
                 
                 if ($this->config->articles_archive_datelimit) {
-                    $countConditions['datefrom'] = $this->config->articles_archive_datelimit;
+                    $countConditions->datefrom = $this->config->articles_archive_datelimit;
                 }
 
                 $parsed[] = $this->createPagination($this->articleList->countArticlesByCondition($countConditions), 'fpcm/archive');

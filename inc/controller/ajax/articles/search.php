@@ -99,35 +99,35 @@
             $this->mode = $this->getRequestVar('mode');
             $filter     = $this->getRequestVar('filter');
 
-            $sparams = [];
+            $sparams = new \fpcm\model\articles\search();
             
             if ($filter['text'] != '') {
                 switch ($filter['searchtype']) {
                     case 0 :
-                        $sparams['title'] = $filter['text'];
+                        $sparams->title   = $filter['text'];
                         break;
                     case 1 :
-                        $sparams['content'] = $filter['text'];
+                        $sparams->content = $filter['text'];
                         break;
                     default:
-                        $sparams['title'] = $filter['text'];
-                        $sparams['content'] = $filter['text'];
+                        $sparams->title   = $filter['text'];
+                        $sparams->content = $filter['text'];
                         break;
                 }                
             }
             
-            if ($filter['userid'] > 0)      $sparams['user']       = (int) $filter['userid'];
-            if ($filter['categoryid'] > 0)  $sparams['category']   = (int) $filter['categoryid'];            
-            if ($filter['datefrom'])        $sparams['datefrom']   = strtotime($filter['datefrom']);
-            if ($filter['dateto'])          $sparams['dateto']     = strtotime($filter['dateto']);
-            if ($filter['pinned'] > -1)     $sparams['pinned']     = (int) $filter['pinned'];
-            if ($filter['postponed'] > -1)  $sparams['postponed']  = (int) $filter['postponed'];
-            if ($filter['comments'] > -1)   $sparams['comments']   = (int) $filter['comments'];
-            if ($filter['draft'] > -1)      $sparams['draft']      = (int) $filter['draft'];
-            if ($this->mode != -1)          $sparams['archived']   = (int) $this->mode;
+            if ($filter['userid'] > 0)      $sparams->user       = (int) $filter['userid'];
+            if ($filter['categoryid'] > 0)  $sparams->category   = (int) $filter['categoryid'];            
+            if ($filter['datefrom'])        $sparams->datefrom   = strtotime($filter['datefrom']);
+            if ($filter['dateto'])          $sparams->dateto     = strtotime($filter['dateto']);
+            if ($filter['pinned'] > -1)     $sparams->pinned     = (int) $filter['pinned'];
+            if ($filter['postponed'] > -1)  $sparams->postponed  = (int) $filter['postponed'];
+            if ($filter['comments'] > -1)   $sparams->comments   = (int) $filter['comments'];
+            if ($filter['draft'] > -1)      $sparams->draft      = (int) $filter['draft'];
+            if ($this->mode != -1)          $sparams->archived   = (int) $this->mode;
             
-            $sparams['approval']    = (int) $filter['approval'];
-            $sparams['combination'] = $filter['combination'] ? 'OR' : 'AND';
+            $sparams->approval    = (int) $filter['approval'];
+            $sparams->combination = $filter['combination'] ? 'OR' : 'AND';
             
             $sparams = $this->events->runEvent('articlesPrepareSearch', $sparams);
 

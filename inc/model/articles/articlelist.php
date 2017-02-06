@@ -149,30 +149,22 @@
         
         /**
          * Gibt Liste von Artikeln anhand einer Bedingung zurück
-         * @param array $conditions
-         * * ids => Artikel-IDs
-         * * title => via Title-Inhalt
-         * * content => via content-Inhalt
-         * * user => via Benutzer
-         * * category => via Category
-         * * datefrom => seit Datum X.Y.Z
-         * * dateto => bis Datum X.Y.Z
-         * * postponed => nur geplante Artikel
-         * * archived => nur archivierte Artikel
-         * * pinned => nur gepinnte Artikel
-         * * comment => commentare sind aktiv
-         * * deleted => nur gelöschte Artikel
-         * * draft => nur Entwürfe
-         * * orderby => Array von Sortierungen in SQL-Syntax
-         * * limit => Abfrage einschränken
+         * @param search $conditions
          * @param bool $monthIndex
          * @return array
          */      
-        public function getArticlesByCondition(array $conditions, $monthIndex = false) {
+        public function getArticlesByCondition($conditions, $monthIndex = false) {
 
             $where = array();
             $valueParams = array();
             
+            if (is_array($conditions) && count($conditions)) {
+                trigger_error('Using an array for '.__METHOD__.' is deprecated as of FPCM 3.5. Create an instance of "fpcm\model\articles\search" instead.');
+            }
+            elseif (is_object($conditions)) {
+                $conditions = $conditions->getData();
+            }
+
             if (isset($conditions['ids'])) {
                 $where[] = "id IN (".implode(', ', $conditions['ids']).")";
                 unset($conditions['ids']);
@@ -407,56 +399,59 @@
         
         /**
          * Zählt Artikel anhand von Bedingung
-         * @param array $condition
-         * * active => nur aktive Artikel
-         * * archived => nur archivierte Artikel
-         * * deleted => nur gelöschte Artikel
-         * * category => nur Artikel der Kategorie
+         * @param search $conditions
          * @return int
          */
-        public function countArticlesByCondition(array $condition = array()) {
+        public function countArticlesByCondition($conditions = array()) {
 
             $where = 'id > 0';
             
-            if (isset($condition['category'])) {
-                $condition['category'] = (int)$condition['category'];
-                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$condition['category']}'";
-                $valueParams[] = "categories ".$this->dbcon->dbLike()." '%;{$condition['category']}'";
-                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$condition['category']};%'";
+            if (is_array($conditions) && count($conditions)) {
+                trigger_error('Using an array for '.__METHOD__.' is deprecated as of FPCM 3.5. Create an instance of "fpcm\model\articles\search" instead.');
+            }
+            elseif (is_object($conditions)) {
+                $conditions = $conditions->getData();
+            }
+            
+            if (isset($conditions['category'])) {
+                $conditions['category'] = (int)$conditions['category'];
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$conditions['category']}'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '%;{$conditions['category']}'";
+                $valueParams[] = "categories ".$this->dbcon->dbLike()." '{$conditions['category']};%'";
                 
                 $where .= '('.implode(' OR ', $valueParams).')';
             }
 
-            if (isset($condition['drafts'])) {
-                $where   .= ($condition['drafts'] === -1 ? '' : ' AND draft = 1');
+            if (isset($conditions['drafts'])) {
+                $where   .= ($conditions['drafts'] === -1 ? '' : ' AND draft = 1');
             }
 
-            if (isset($condition['active'])) {
-                $where   .= ($condition['active'] === -1 ? ' AND archived = 0' : ' AND archived = 0 AND draft = 0');
+            if (isset($conditions['active'])) {
+                $where   .= ($conditions['active'] === -1 ? ' AND archived = 0' : ' AND archived = 0 AND draft = 0');
             }
 
-            if (isset($condition['archived'])) {
-                $where .= ($condition['archived'] === -1 ? '' : ' AND archived = 1 AND draft = 0');
+            if (isset($conditions['archived'])) {
+                $where .= ($conditions['archived'] === -1 ? '' : ' AND archived = 1 AND draft = 0');
             }
 
-            if (isset($condition['approval'])) {
-                $where .= ($condition['approval'] === -1 ? '' : ' AND approval = 1 AND draft = 0');
+            if (isset($conditions['approval'])) {
+                $where .= ($conditions['approval'] === -1 ? '' : ' AND approval = 1 AND draft = 0');
             }
-            if (isset($condition['deleted'])) {
-                $where .= ($condition['deleted'] === -1 ? '' : ' AND deleted = 1');
+            if (isset($conditions['deleted'])) {
+                $where .= ($conditions['deleted'] === -1 ? '' : ' AND deleted = 1');
             } else {
                 $where .= ' AND deleted = 0';
             }
 
             $queryParams = array();
-            if (isset($condition['datefrom'])) {
+            if (isset($conditions['datefrom'])) {
                 $where .= ' AND createtime >= ?';
-                $queryParams[] = (int) $condition['datefrom'];
+                $queryParams[] = (int) $conditions['datefrom'];
             }
 
-            if (isset($condition['dateto'])) {
+            if (isset($conditions['dateto'])) {
                 $where .= ' AND createtime <= ?';
-                $queryParams[] = (int) $condition['dateto'];
+                $queryParams[] = (int) $conditions['dateto'];
             }
 
             $return = $this->dbcon->count($this->table, '*', $this->events->runEvent('articlesByConditionCount', $where), $queryParams);

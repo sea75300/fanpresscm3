@@ -32,7 +32,8 @@
                 return false;
             }
 
-            $params = array('ids' => $articleIds);
+            $params = new \fpcm\model\articles\search();
+            $params->ids = $articleIds;
             $articles = $articlesList->getArticlesByCondition($params, false);
 
             $failed = array();

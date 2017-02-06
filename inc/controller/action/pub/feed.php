@@ -138,15 +138,14 @@
                 $channel->appendChild($gnrt);
                 $descr = $dom->createElement('description', 'FanPress CM News System RSS Feed');
                 $channel->appendChild($descr);
-                
-                $conditions = array(
-                    'limit'     => array($this->limit, 0),
-                    'archived'  => 0,
-                    'postponed' => 0
-                );
+
+                $conditions = new \fpcm\model\articles\search();
+                $conditions->limit     = [$this->limit, 0];
+                $conditions->archived  = 0;
+                $conditions->postponed = 0;
                 
                 if ($this->category !== 0) {
-                    $conditions['category'] = $this->category;
+                    $conditions->category = $this->category;
                 }
                 
                 $articles   = $this->articleList->getArticlesByCondition($conditions);

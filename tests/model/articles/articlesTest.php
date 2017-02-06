@@ -90,13 +90,12 @@ class articlesTest extends testBase {
     }
 
     public function testGetArticlesByCondition() {
-        
-        $cond = [
-            'user'     => 1,
-            'deleted'  => 0,
-            'limit'    => [1,0],
-            'orderby'  => ['id DESC']
-        ];
+
+        $cond = new \fpcm\model\articles\search();
+        $cond->user = 1;
+        $cond->deleted = 0;
+        $cond->limit   = [1,0];
+        $cond->orderby = ['id DESC'];
 
         $data = $this->object->getArticlesByCondition($cond);
 

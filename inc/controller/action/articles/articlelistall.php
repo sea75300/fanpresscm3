@@ -17,16 +17,16 @@
 
         public function request() {
 
-            $conditions = [
-                'draft'    => -1,
-                'approval' => -1
-            ];
-
+            $conditions = new \fpcm\model\articles\search();
+            $conditions->draft    = -1;
+            $conditions->drafts   = -1;
+            $conditions->approval = -1;
+            
             $this->articleCount = $this->articleList->countArticlesByCondition($conditions);
             
             parent::request();            
             
-            $conditions['limit'] = [$this->listShowLimit, $this->listShowStart];
+            $conditions->limit  = [$this->listShowLimit, $this->listShowStart];
             $this->articleItems = $this->articleList->getArticlesByCondition($conditions, true);
 
             return true;
