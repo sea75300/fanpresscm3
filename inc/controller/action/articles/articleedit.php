@@ -258,7 +258,12 @@
             $this->view->assign('postponedTimer', $this->article->getCreatetime());
             $this->view->assign('users', $this->userList->getUsersByIds(array($this->article->getCreateuser(), $this->article->getChangeuser())));
             $this->view->assign('commentCount', array_sum($this->commentList->countComments(array($this->article->getId()))));
-            $this->view->assign('comments', $this->commentList->getCommentsByCondition($this->article->getId(), -1, -1, -1));
+            
+            $search = new \fpcm\model\comments\search();
+            $search->articleid  = $this->article->getId();
+            $search->searchtype = 0;
+
+            $this->view->assign('comments', $this->commentList->getCommentsBySearchCondition($search));
             $this->view->assign('commentsMode', 2);
             
             $revisions = $this->article->getRevisions();

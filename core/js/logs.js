@@ -50,7 +50,7 @@ fpcm.logs = {
 
     clearLogs: function(id) {
 
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
         var logType = id.split('_');
 
         fpcm.ajax.get('logs/clear', {
@@ -59,7 +59,7 @@ fpcm.logs = {
                 log: logType[1]
             },
             execDone: function() {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 fpcm.logs.reloadLogs(fpcm.ajax.getWorkData('logs/clear'));
                 fpcm.ui.appendMessage(fpcm.ajax.getResult('logs/clear'));
             }
@@ -70,7 +70,7 @@ fpcm.logs = {
     
     reloadLogs: function(id) {
 
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
         var logType = id.split('_');
 
         fpcm.ajax.get('logs/reload', {
@@ -79,7 +79,7 @@ fpcm.logs = {
                 log: logType[1]
             },
             execDone: function() {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
 
                 var tabId = fpcm.ajax.getWorkData('logs/reload');
                 fpcm.ui.assignHtml('#fpcm-logcontent'+ tabId, fpcm.ajax.getResult('logs/reload'));

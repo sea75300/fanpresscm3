@@ -104,12 +104,12 @@ fpcm.comments = {
             return false;
         }
 
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
         
         fpcm.ajax.post('comments/search', {
             data: sParams,
             execDone: function () {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 fpcm.ui.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
                 window.noActionButtonAssign = true;
                 fpcmJs.assignButtons();

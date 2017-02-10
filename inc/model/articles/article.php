@@ -12,7 +12,7 @@
     /**
      * Artikel Objekt
      * 
-     * @package fpcm.model.articles
+     * @package fpcm\model\articles
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class article extends \fpcm\model\abstracts\model {

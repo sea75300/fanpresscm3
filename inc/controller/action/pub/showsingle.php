@@ -353,7 +353,9 @@
             
             if (!$this->config->system_comments_enabled || !$this->article->getComments()) return '';
             
-            $comments = $this->commentList->getCommentsByCondition($this->articleId);
+            $conditions = new \fpcm\model\comments\search();
+            $conditions->articleid = $this->articleId;
+            $comments = $this->commentList->getCommentsBySearchCondition($conditions);
 
             $parsed = [];
             $i      = 1;

@@ -53,13 +53,12 @@ class commentsTest extends testBase {
     }
 
     public function testCommentsBySearchCondition() {
-        
-        $cond = [
-            'articleid'  => 1,
-            'private'    => 1,
-            'spammer'    => 1,
-            'searchtype' => 0
-        ];
+
+        $cond = new \fpcm\model\comments\search();
+        $cond->articleid  = 1;
+        $cond->private    = 1;
+        $cond->spam       = 1;
+        $cond->searchtype = 0;
         
         $data = $this->object->getCommentsBySearchCondition($cond);
 

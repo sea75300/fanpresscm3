@@ -30,7 +30,7 @@ var fpcmModuleInstaller = function () {
         self.moduleKeyCount = fpcmModuleKeys.length;
 
         jQuery('.fpcm-updater-list').empty();
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
 
         self.idx = 1;
         self.progressbar(1);           
@@ -88,7 +88,7 @@ var fpcmModuleInstaller = function () {
                 }
 
                 if (self.responseData.code != self.responseData.data.current + '_' +1) {
-                    fpcmJs.showLoader(false);
+                    fpcm.ui.showLoader(false);
                     fpcm.ui.appendHtml(self.moduleListClass, '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[self.responseData.code] + '</p>');
                     return false;
                 }
@@ -124,7 +124,7 @@ var fpcmModuleInstaller = function () {
         var updateTimer = ((new Date().getTime()) - self.startTime) / 1000;
         fpcm.ui.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterProcessTime + ': ' + updateTimer + 'sec</p>');
         fpcm.ui.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', '');
-        fpcmJs.showLoader(false);
+        fpcm.ui.showLoader(false);
     };
     
     this.progressbar = function (pgValue) {

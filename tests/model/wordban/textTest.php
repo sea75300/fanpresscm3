@@ -10,7 +10,7 @@ class textTest extends testBase {
     }
 
     public function testSave() {
-        
+
         /* @var $object fpcm\model\wordban\item */
         $object = $this->object;
 
@@ -86,7 +86,7 @@ class textTest extends testBase {
         $GLOBALS['articleObj']->setContent('FPCM UnitTest Article from https://nobody-knows.org!'.PHP_EOL.$GLOBALS['text_search']);
         $GLOBALS['articleObj']->setCreatetime(time());
         $GLOBALS['articleObj']->setCreateuser(1);
-        $GLOBALS['articleObj']->setCategories([]);
+        $GLOBALS['articleObj']->setCategories([1]);
 
         $result = $GLOBALS['articleObj']->save();
         $this->assertGreaterThanOrEqual(1, $result);

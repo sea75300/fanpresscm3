@@ -13,7 +13,7 @@ fpcm.dashboard = {
 
     init: function () {
 
-        fpcmJs.showLoader(true, '<strong>' + fpcm.ui.translate('dashboard_loading') + '</strong>');
+        fpcm.ui.showLoader(true, '<strong>' + fpcm.ui.translate('dashboard_loading') + '</strong>');
         fpcm.ajax.exec('dashboard', {
             execDone: function() {
                 fpcm.ui.assignHtml('#fpcm-dashboard-containers', fpcm.ajax.getResult('dashboard'));
@@ -24,7 +24,7 @@ fpcm.dashboard = {
                     return false;
                 });
 
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
 
                 var fpcmRFDinterval = setInterval(function(){
                     if (jQuery('#fpcm-dashboard-finished').length == 1) {

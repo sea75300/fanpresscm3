@@ -31,23 +31,23 @@ fpcm.crons = {
     },
 
     execCronjobDemand : function(cronjobId) {
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
         fpcm.ajax.get('cronasync', {
             data    : {
                 cjId: cronjobId
             },
-            execDone: 'fpcmJs.showLoader(false);'
+            execDone: 'fpcm.ui.showLoader(false);'
         });
     },
     
     setCronjobInterval : function(cronjobId, cronjobInterval) {
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
         fpcm.ajax.get('croninterval', {
             data    : {
                 cjId:cronjobId,
                 interval:cronjobInterval
             },
-            execDone: 'fpcmJs.showLoader(false);'
+            execDone: 'fpcm.ui.showLoader(false);'
         });
     }
 

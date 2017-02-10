@@ -162,7 +162,7 @@ fpcm.editor = {
 
         jQuery('.fp-ui-button-restore').click(function() {
             if(!confirm(fpNewsListActionConfirmMsg)) {
-                fpcmJs.showLoader(true);
+                fpcm.ui.showLoader(true);
                 return false;
             }        
         });
@@ -214,7 +214,7 @@ fpcm.editor = {
         });
         
         jQuery('.fpcm-ui-commentlist-link').click(function () {
-            fpcmJs.showLoader(false);
+            fpcm.ui.showLoader(false);
             fpcm.editor.showCommentLayer(jQuery(this).attr('href'));
             return false;
         });
@@ -466,7 +466,7 @@ fpcm.editor = {
                     icon: "ui-icon-disk",                        
                     click: function() {
                         jQuery(this).children('#fpcm-editor-comment-frame').contents().find('#btnCommentSave').trigger('click');
-                        fpcmJs.showLoader(false);
+                        fpcm.ui.showLoader(false);
                     }
                 },
                 {
@@ -474,7 +474,7 @@ fpcm.editor = {
                     icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
-                        fpcmJs.showLoader(false);
+                        fpcm.ui.showLoader(false);
                         jQuery('.fpcm-ui-commentaction-buttons').fadeIn();
                     }
                 }                            
@@ -483,7 +483,7 @@ fpcm.editor = {
                 jQuery(this).empty();
             }
         });
-        fpcmJs.showLoader(false);
+        fpcm.ui.showLoader(false);
         return false;
     },
     

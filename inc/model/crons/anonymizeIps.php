@@ -23,11 +23,17 @@
             
             $to   = time() - $this->getIntervalTime() * 2;
             
+            $search = new \fpcm\model\comments\search();
+            $search->datefrom   = 0;
+            $search->dateto     = $to;
+            $search->approved   = 1;
+            $search->searchtype = 0;
+            
             $commentList = new \fpcm\model\comments\commentList();
-            $commentIds = $commentList->getCommentsByDate(0, $to);
-            
+            $commentIds = $commentList->getCommentsBySearchCondition($search);
+
             if (!count($commentIds)) return true;
-            
+
             foreach ($commentIds as $comment) {
                 $ipaddress  = $comment->getIpaddress();
                 

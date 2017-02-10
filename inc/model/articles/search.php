@@ -6,9 +6,9 @@
      * Article search wrapper object
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @copyright (c) 2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     * @package fpcm.model.articles
+     * @package fpcm\model\articles
      * @since FPCM 3.5
      * 
      *
@@ -33,19 +33,6 @@
      * @property array $limit Abfrage einschränken
      * @property array $orderby Array von Sortierungen in SQL-Syntax
      */ 
-    class search extends \fpcm\model\abstracts\staticModel {
-
-        
-        public function getData() {
-            
-            $conditions = [];
-            
-            foreach ($this->data as $key => $value) {
-                $conditions[$key] = $value;
-            }
-
-            return $conditions;
-            
-        }
+    class search extends \fpcm\model\abstracts\searchWrapper {
         
     }

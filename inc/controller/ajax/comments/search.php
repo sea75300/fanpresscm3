@@ -66,19 +66,21 @@
                         
             $filter     = $this->getRequestVar('filter');
 
-            $sparams    = array('searchtype' => (int) $filter['searchtype']);
-            if (trim($filter['text']))      $sparams['text'] = $filter['text'];
-            if ($filter['datefrom'])        $sparams['datefrom']   = strtotime($filter['datefrom']);
-            if ($filter['dateto'])          $sparams['dateto']     = strtotime($filter['dateto']);
-            if ($filter['spam'] > -1)       $sparams['spam']     = (int) $filter['spam'];
-            if ($filter['private'] > -1)    $sparams['private']  = (int) $filter['private'];
-            if ($filter['approved'] > -1)   $sparams['approved']   = (int) $filter['approved'];
+            $sparams             = new \fpcm\model\comments\search();
+            $sparams->searchtype = (int) $filter['searchtype'];
+            
+            if (trim($filter['text']))      $sparams->text       = $filter['text'];
+            if ($filter['datefrom'])        $sparams->datefrom   = strtotime($filter['datefrom']);
+            if ($filter['dateto'])          $sparams->dateto     = strtotime($filter['dateto']);
+            if ($filter['spam'] > -1)       $sparams->spam       = (int) $filter['spam'];
+            if ($filter['private'] > -1)    $sparams->private    = (int) $filter['private'];
+            if ($filter['approved'] > -1)   $sparams->approved   = (int) $filter['approved'];
 
-            $sparams['combination'] = $filter['combination'] ? 'OR' : 'AND';
+            $sparams->combination = $filter['combination'] ? 'OR' : 'AND';
 
             $sparams = $this->events->runEvent('commentsPrepareSearch', $sparams);
 
-            $list = (count($sparams) > 1
+            $list = ($sparams->hasParams()
                   ? $this->list->getCommentsBySearchCondition($sparams)
                   : $this->list->getCommentsAll());
 

@@ -98,14 +98,20 @@
             $commentList = new \fpcm\model\comments\commentList();
             
             $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_STATS_COMMENTS_ALL').':</strong></td><td class="fpcm-ui-center">'.$commentList->countCommentsByCondition().'</td></tr>';
-            
-            $count = $commentList->countCommentsByCondition(array('unapproved' => true));
+
+            $sObj = new \fpcm\model\comments\search();
+            $sObj->unapproved = true;
+            $count = $commentList->countCommentsByCondition($sObj);
             $this->tableContent[] = '<tr class="'.($count > 0 ? 'fpcm-ui-important-text' : 'fpcm-ui-text').'"><td><strong>'.$this->language->translate('SYSTEM_STATS_COMMENTS_UNAPPR').':</strong></td><td class="fpcm-ui-center">'.$count.'</td></tr>';
             
-            $count = $commentList->countCommentsByCondition(array('private' => true));
+            $sObj = new \fpcm\model\comments\search();
+            $sObj->private = true;
+            $count = $commentList->countCommentsByCondition($sObj);
             $this->tableContent[] = '<tr class="'.($count > 0 ? 'fpcm-ui-important-text' : 'fpcm-ui-text').'"><td><strong>'.$this->language->translate('SYSTEM_STATS_COMMENTS_PRIVATE').':</strong></td><td class="fpcm-ui-center">'.$count.'</td></tr>';
             
-            $count = $commentList->countCommentsByCondition(array('spam' => true));
+            $sObj = new \fpcm\model\comments\search();
+            $sObj->spam = true;
+            $count = $commentList->countCommentsByCondition($sObj);
             $this->tableContent[] = '<tr class="'.($count > 0 ? 'fpcm-ui-important-text' : 'fpcm-ui-text').'"><td><strong>'.$this->language->translate('SYSTEM_STATS_COMMENTS_SPAM').':</strong></td><td class="fpcm-ui-center">'.$count.'</td></tr>';
         }
         

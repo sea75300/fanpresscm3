@@ -11,7 +11,7 @@
     /**
      * Kommentar-Objekt
      * 
-     * @package fpcm.model.comments
+     * @package fpcm\model\comments
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */    
     class comment extends \fpcm\model\abstracts\model {

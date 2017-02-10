@@ -102,7 +102,7 @@ fpcm.articlelist = {
         });
 
         if (articleIds.length == 0) {
-            fpcmJs.showLoader(false);
+            fpcm.ui.showLoader(false);
             return false;
         }
 
@@ -116,7 +116,7 @@ fpcm.articlelist = {
                 jQuery('#actionsaction').prop('selectedIndex',0);
                 jQuery('#actionsaction').selectmenu('refresh');
 
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 result = fpcm.ajax.fromJSON(fpcm.ajax.getResult('articles/tweet'));
                 if (result.notice != 0) {
                     fpcmJs.addAjaxMassage('notice', result.notice);

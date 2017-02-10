@@ -57,9 +57,9 @@ fpcm.modulelist = {
         });
         
         jQuery('#fpcmuireloadpkglist').click(function() {
-            fpcmJs.showLoader(true);
+            fpcm.ui.showLoader(true);
             fpcm.ajax.get('modules/loadpkglist', {
-                execDone: fpcmJs.showLoader
+                execDone: fpcm.ui.showLoader
             });
             return false;
         });
@@ -85,7 +85,7 @@ fpcm.modulelist = {
                         });
 
                         if (moduleKeys.length == 0 || !jQuery('#moduleActions').val()) {
-                            fpcmJs.showLoader(false);
+                            fpcm.ui.showLoader(false);
                             fpcmJs.addAjaxMassage('error', 'SELECT_ITEMS_MSG');
                             return false;
                         }
@@ -111,7 +111,7 @@ fpcm.modulelist = {
                         jQuery('#moduleActions').selectmenu('refresh');
                         jQuery('.fpcm-list-selectbox:checked').prop('checked', false);
                         jQuery(this).dialog('close');
-                        fpcmJs.showLoader(false);
+                        fpcm.ui.showLoader(false);
                     }
                 }
             ]
@@ -151,14 +151,14 @@ fpcm.modulelist = {
     },
     
     runActions: function (moduleAction, moduleKeys) {
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
         fpcm.ajax.post('modules/actions', {
             data: {
                 keys  : fpcm.ajax.toJSON(moduleKeys),
                 action: moduleAction
             },
             execDone: function() {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 fpcm.ui.assignHtml('#modules-list-content', fpcm.ajax.getResult('modules/actions'));
                 noActionButtonAssign = true;
                 fpcm.modulelist.actionButtons();

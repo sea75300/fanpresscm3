@@ -23,9 +23,10 @@ fpcm.ui = {
         this.highlightModule();
         this.showMessages();
         this.messagesInitClose();
+        this.initDateTimeMasks();
 
         jQuery('.fpcm-navigation-noclick').click(function () {
-            fpcmJs.showLoader(false);
+            fpcm.ui.showLoader(false);
             return false;
         });
     
@@ -36,6 +37,15 @@ fpcm.ui = {
 
         jQuery('#fpcm-logo').click(function () {
             jQuery('li.fpcm-menu-level1.fpcm-menu-level1-show').fadeOut();
+        });
+
+        jQuery('#fpcm-clear-cache').click(function () {
+            return fpcmJs.clearCache();
+        });
+
+        jQuery('.fpcm-loader').click(function () {
+            if (jQuery(this).hasClass('fpcm-noloader') || jQuery(this).hasClass('fpcm-navigation-noclick')) return false;
+            fpcm.ui.showLoader(true);
         });
         
         if (window.fpcmFieldSetAutoFocus) {
@@ -477,6 +487,40 @@ fpcm.ui = {
     
     removeLoaderClass: function(elemId) {
         jQuery(elemId).removeClass('fpcm-loader');
+    },
+    
+    showLoader: function(show, addtext) {
+
+        if (!show) {
+            jQuery('#fpcm-loader').fadeOut('fast', function(){
+                jQuery(this).remove();
+            });
+            return false;
+        }
+
+        fpcm.ui.appendHtml('#fpcm-body', '<div class="fpcm-loader" id="fpcm-loader" style="' + window.spinnerParams + '"><span class="fa-stack fa-fw ' + (addtext ? 'fa-lg' : 'fa-2x') + '"><span class="fa fa-circle fa-stack-2x"></span><span class="fa fa-spinner fa-pulse fa-stack-1x fa-inverse fa-fw"></span></span> ' + (addtext ? '<span>' + addtext + '</span>' : '') + '</div>');
+
+        jQuery('#fpcm-loader').css('top',  ( parseInt( (jQuery(window).height() * 0.5) - (jQuery('#fpcm-loader').height() / 2) ) + 'px' ) )
+                              .css('left', ( parseInt( (jQuery(window).width() * 0.5) - (jQuery('#fpcm-loader').width() / 2) ) + 'px' ) )
+                              .fadeIn(100);
+
+        return true;
+    },
+    
+    initDateTimeMasks: function() {
+        
+        if (window.fpcmDtMasks === undefined) {
+            return false;
+        }
+
+        jQuery("#system_dtmask").autocomplete({
+            source: fpcmDtMasks
+        });
+
+        jQuery("#usermetasystem_dtmask").autocomplete({
+            source: fpcmDtMasks
+        });
+
     }
     
 };

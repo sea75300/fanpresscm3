@@ -37,14 +37,14 @@ fpcm.filemanager = {
     initActionButtons : function() {
         jQuery('#btnRenameFiles').click(function () {
             if (fpcmLang.newNameMsg === undefined) {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 return true;
             }
 
             var newName = prompt(fpcm.ui.translate('newNameMsg'), '');
             if (!newName || newName == '') {
                 jQuery(this).addClass('fpcm-noloader');
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 return false;
             }
 
@@ -203,12 +203,12 @@ fpcm.filemanager = {
                 return true;
             }
 
-            fpcmJs.showLoader(true);
+            fpcm.ui.showLoader(true);
             fpcm.ajax.get('cronasync', {
                 data    : {
                     cjId: 'fileindex'
                 },
-                execDone: 'fpcmJs.showLoader(false);'
+                execDone: 'fpcm.ui.showLoader(false);'
             });
         });
 
@@ -278,7 +278,7 @@ fpcm.filemanager = {
 
     reloadFiles: function (page) {
 
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
 
         if (!page) {
             page = 1;
@@ -296,7 +296,7 @@ fpcm.filemanager = {
                 fpcm.filemanager.assignButtons();
                 var fpcmRFDinterval = setInterval(function(){
                     if (jQuery('#fpcm-filelist-images-finished').length == 1) {
-                        fpcmJs.showLoader(false);
+                        fpcm.ui.showLoader(false);
                         fpcm.ui.resize();
                         clearInterval(fpcmRFDinterval);
                         if (page) {

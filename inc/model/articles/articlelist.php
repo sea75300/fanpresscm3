@@ -7,7 +7,7 @@
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
      * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     * @package fpcm.model.articles
+     * @package fpcm\model\articles
      */ 
     class articlelist extends \fpcm\model\abstracts\tablelist {
 
@@ -249,11 +249,13 @@
 
             $eventData = $this->events->runEvent('articlesByCondition', array(
                 'conditions' => $conditions,
-                'where'      => $where
+                'where'      => $where,
+                'values'     => $valueParams
             ));
 
-            $conditions = $eventData['conditions'];
-            $where      = $eventData['where'];
+            $conditions  = $eventData['conditions'];
+            $where       = $eventData['where'];
+            $valueParams = $eventData['values'];
 
             $where = implode(" {$combination} ", $where);
 

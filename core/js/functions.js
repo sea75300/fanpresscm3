@@ -13,21 +13,8 @@ var fpcmJs = function () {
     var self = this;
     
     this.showLoader = function(show, addtext) {
-
-        if (!show) {
-            jQuery('#fpcm-loader').fadeOut('fast', function(){
-                jQuery(this).remove();
-            });
-            return false;
-        }
-
-        fpcm.ui.appendHtml('#fpcm-body', '<div class="fpcm-loader" id="fpcm-loader" style="' + window.spinnerParams + '"><span class="fa-stack fa-fw ' + (addtext ? 'fa-lg' : 'fa-2x') + '"><span class="fa fa-circle fa-stack-2x"></span><span class="fa fa-spinner fa-pulse fa-stack-1x fa-inverse fa-fw"></span></span> ' + (addtext ? '<span>' + addtext + '</span>' : '') + '</div>');
-
-        jQuery('#fpcm-loader').css('top',  ( parseInt( (jQuery(window).height() * 0.5) - (jQuery('#fpcm-loader').height() / 2) ) + 'px' ) )
-                              .css('left', ( parseInt( (jQuery(window).width() * 0.5) - (jQuery('#fpcm-loader').width() / 2) ) + 'px' ) )
-                              .fadeIn(100);
-
-        return true;
+        console.warn('Using "fpcm.ui.showLoader" class is deprecated as of version 3.5! Use "fpcm.ui.showLoader" instead.');
+        fpcm.ui.showLoader(show, addtext);
     };    
     
     this.clearCache = function () {
@@ -36,7 +23,7 @@ var fpcmJs = function () {
 
         fpcm.ajax.get('cache', {
             execDone: function () {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 fpcm.ui.appendMessage(fpcm.ajax.getResult('cache'));
             }
         });
@@ -144,7 +131,7 @@ var fpcmJs = function () {
         fpcm.ajax.post('articles/search', {
             data: sParams,
             execDone: function () {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 fpcm.ui.assignHtml('#tabs-article-list', fpcm.ajax.getResult('articles/search'));
                 window.noActionButtonAssign = true;
                 fpcmJs.assignButtons();
@@ -165,7 +152,7 @@ var fpcmJs = function () {
                 msgtxt: message
             },
             execDone: function () {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 fpcm.ui.appendMessage(fpcm.ajax.getResult('addmsg'));
             }
         });
@@ -173,10 +160,10 @@ var fpcmJs = function () {
     };
     
     this.systemCheck = function () {
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
         fpcm.ajax.get('syscheck', {
             execDone: function () {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
                 fpcm.ui.assignHtml("#tabs-options-check", fpcm.ajax.getResult('syscheck'));
                 fpcmJs.assignButtons();
                 fpcm.ui.resize();

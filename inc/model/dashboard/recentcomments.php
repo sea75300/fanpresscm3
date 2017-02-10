@@ -83,10 +83,15 @@
             $allPermissions = $this->permissions->check(array('article' => 'editall'), array('comment' => 'editall'));
             
             $commenList  = new \fpcm\model\comments\commentList();
-            $userlist    = new \fpcm\model\users\userList();            
-            $comments    = $commenList->getCommentsByLimit(10, 0);
+            
+            $search             = new \fpcm\model\comments\search();
+            $search->searchtype = 0;
+            $search->limit      = array(10,0);
+            $search->orderby    = array('createtime DESC');
+            $comments           = $commenList->getCommentsBySearchCondition($search);
 
-            $users    = array_flip($userlist->getUsersNameList());
+            $userlist   = new \fpcm\model\users\userList();            
+            $users      = array_flip($userlist->getUsersNameList());
             
             $content    = array();
             $content[]  = '<table class="fpcm-ui-table fpcm-ui-articles fpcm-ui-large-td">';
