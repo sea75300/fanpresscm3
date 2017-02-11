@@ -77,6 +77,9 @@
             $content[]  = '?>';
             file_put_contents(\fpcm\classes\baseconfig::$configDir.'/database.php', implode(PHP_EOL, $content));
             
+            $crypt = new \fpcm\classes\crypt();
+            $crypt->initCrypt();
+            
             die('1');
         }
 

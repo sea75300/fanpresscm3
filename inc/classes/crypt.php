@@ -49,7 +49,7 @@
         public function __construct() {
 
             $this->hasCrypt = function_exists('openssl_encrypt') && function_exists('openssl_decrypt');
-            if (!$this->hasCrypt) {
+            if (!$this->hasCrypt || baseconfig::installerEnabled()) {
                 return false;
             }
 
