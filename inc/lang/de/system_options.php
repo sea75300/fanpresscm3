@@ -161,6 +161,7 @@
         'SYSTEM_OPTIONS_SYSCHECK_DBDRV_PGSQL'       => 'Postgres Datenbanktreiber',
         'SYSTEM_OPTIONS_SYSCHECK_DBDRV_ACTIVE'      => 'Aktiver Datenbanktreiber',
         'SYSTEM_OPTIONS_SYSCHECK_DBVERSION'         => 'Version des Datenbanksystems',
+        'SYSTEM_OPTIONS_SYSCHECK_SUBMITSTATS'       => 'Statistische Daten übermitteln',
 
         'SYSTEM_OPTIONS_CRONINTERVALS' => array(
             'bei jedem Aufruf'  => 0,

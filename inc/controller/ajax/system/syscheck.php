@@ -41,6 +41,11 @@
             if (!\fpcm\classes\baseconfig::installerEnabled() && \fpcm\classes\baseconfig::dbConfigExists() && !$this->session->exists()) {
                 return false;
             }
+
+            if ($this->getRequestVar('sendstats')) {
+                $this->submitStatsData();
+                return false;
+            }
             
             return true;
         }
@@ -50,13 +55,11 @@
          * Controller-Processing
          */
         public function process() {
-            
+
             $view = new \fpcm\model\view\ajax('syscheck', 'system');
             $view->setExcludeMessages(true);
             $view->initAssigns();
-
             $view->assign('checkOptions', $this->getCheckOptions());
-            $view->assign('installer', false);
             $view->render();
 
         }
@@ -90,6 +93,40 @@
             return $this->events->runEvent('runSystemCheck', $checkOptions);
         }
         
+        private function submitStatsData() {
+
+            $data = array_slice($this->processCli(), 0, 18);
+            
+            $text  = 'Statistical data '.hash(\fpcm\classes\security::defaultHashAlgo, \fpcm\classes\baseconfig::$rootPath).PHP_EOL.PHP_EOL;
+            
+            foreach ($data as $key => $value) {
+                
+                if (!trim($key)) {
+                    continue;
+                }
+
+                $text .= '- '.str_pad(trim($key), 40, '.').': '.$value['current'].PHP_EOL;
+            }
+
+            $text .= PHP_EOL;
+            
+            $stats = new \fpcm\model\dashboard\sysstats();
+            $data  = explode(PHP_EOL, strip_tags($stats->getContent()));
+
+            foreach ($data as $value) {
+                $value = explode(':', $value);
+                
+                if (!isset($value[0]) || !isset($value[1])) {
+                    continue;
+                }
+
+                $text .= '- '.str_pad(trim($value[0]), 40, '.').': '.$value[1].PHP_EOL;
+            }
+            
+            $email = new \fpcm\classes\email('sea75300@yahoo.de', 'FanPress CM Stats', $text);
+            $email->submit();
+        }
+
         public function processCli() {
             
             $checkOptions     = [];            

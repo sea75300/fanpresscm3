@@ -150,7 +150,6 @@
                 $this->view->addErrorMessage('INSTALLER_SYSCHECK_FAILEDMSG');
             }
 
-            $this->view->assign('installer', true);
             $this->view->assign('checkOptions', $sysCheckResults);           
         }
         

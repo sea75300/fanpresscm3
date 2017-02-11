@@ -12,7 +12,7 @@ fpcm.login = {
 
     init: function() {
         this.moveToCenter();
-        this.setFocus();
+        fpcm.ui.setFocus('loginusername');
     },
 
     moveToCenter: function() {
@@ -24,10 +24,6 @@ fpcm.login = {
         var loginTopPos = (jQuery(window).height() / 2 - jQuery('.fpcm-login-form').height() * 0.5);
         jQuery('.fpcm-login-form').css('margin-top', loginTopPos);
 
-    },
-
-    setFocus: function() {
-        fpcm.ui.setFocus('loginusername');
     },
 
 };

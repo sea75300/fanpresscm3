@@ -19,13 +19,5 @@
         <td class="fpcm-ui-center fpcm-ui-syscheck-recommend"><?php print $checkResult['recommend']; ?></td>
         <td><?php \fpcm\model\view\helper::boolToText($checkResult['result']); ?></td>
     </tr>
-<?php endforeach; ?>    
+<?php endforeach; ?>
 </table>
-
-<?php if ($installer) : ?>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcm.ui.button('.fpcm-ui-button');
-    });
-</script>
-<?php endif; ?>

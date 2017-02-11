@@ -11,7 +11,7 @@
     <?php if (!is_object($value)) continue; ?>
     <tr>
         <td><?php print $value->time; ?></td>
-        <td><?php print nl2br(\fpcm\model\view\helper::escapeVal($value->text)); ?></td>
+        <td class="fpcm-ui-monospace"><?php print nl2br(\fpcm\model\view\helper::escapeVal($value->text)); ?></td>
     </tr>
     <?php endforeach; ?>
 </table>

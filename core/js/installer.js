@@ -126,5 +126,6 @@ fpcm.installer = {
         });
 
         fpcm.ui.resize();
+        fpcm.ui.button('.fpcm-ui-button');
     }
 };

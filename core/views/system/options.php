@@ -261,6 +261,7 @@
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
             <div class="fpcm-ui-margin-center">
                 <?php fpcm\model\view\helper::saveButton('configSave', 'fpcm-loader'); ?>
+                <?php fpcm\model\view\helper::linkButton('#', 'SYSTEM_OPTIONS_SYSCHECK_SUBMITSTATS', 'fpcmsyschecksubmitstats', 'fpcm-hidden'); ?>
             </div>
         </div>
 

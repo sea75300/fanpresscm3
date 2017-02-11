@@ -11,13 +11,25 @@ if (fpcm === undefined) {
 fpcm.options = {
 
     init: function () {
+
+        fpcm.ui.tabs('.fpcm-tabs-general', {
+            active   : (!window.syscheck ?  0 : (window.showTwitter ? 7 : 6)),
+            activate : function(event, ui) {
+
+                if (jQuery(ui.newTab).attr('id') === 'tabs-options-syscheck') {
+                    jQuery('#fpcmsyschecksubmitstats').show();
+                    jQuery('#btnConfigSave').hide();
+                    return false;
+                }
+
+                jQuery('#btnConfigSave').show();
+                jQuery('#fpcmsyschecksubmitstats').hide();
+            }
+        });
         
         if (window.syscheck) {
-
-            fpcm.ui.tabs('.fpcm-tabs-general', {
-                active: (window.showTwitter ? 7 : 6)
-            });
-            
+            jQuery('#fpcmsyschecksubmitstats').show();
+            jQuery('#btnConfigSave').hide();
             fpcmJs.systemCheck();
         }
 
@@ -28,6 +40,23 @@ fpcm.options = {
         jQuery('#tabs-options-syscheck').click(function () {
             fpcmJs.systemCheck();
         });
+
+        jQuery('#fpcmsyschecksubmitstats').click(function () {
+            fpcm.options.submitStatsData();
+        });
+    },
+    
+    submitStatsData: function () {
+        fpcm.ui.showLoader(true);
+        fpcm.ajax.get('syscheck', {
+            data: {
+                sendstats: 1
+            },
+            execDone: function () {
+                fpcm.ui.showLoader(false);
+            }
+        });
+        
     }
 
 };
