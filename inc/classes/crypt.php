@@ -13,34 +13,48 @@
     final class crypt {
 
         /**
-         *
+         * Methode zur Verschlüsselung
          * @var string
          */
         protected $method = '';
 
         /**
-         *
+         * Passwort für Verschlüsselung
          * @var string
          */
         protected $passwd = '';
 
         /**
-         *
+         * IV-String für für Verschlüsselung
          * @var string
          */
         protected $iv     = '';
 
         /**
-         *
+         * Flag, ob OpenSSL für PHP verfügbvar ist
          * @var bool
          */
         protected $hasCrypt = false;
 
         /**
-         *
+         * Flag, ob Konfiguratzion verfügbvar ist
          * @var bool
          */
         protected $hasConfig = false;
+
+        /**
+         * Liste von Chipher für Verschlüsselung
+         * @var array
+         */
+        protected $checkChiphers = [
+            'aes256',
+            'aes192',
+            'aes128',
+            'blowfish',
+            'desx',
+            'des3',
+            'des',
+        ];
 
         /**
          * Konstruktor
@@ -54,8 +68,8 @@
             }
 
             $conf = baseconfig::getCryptConfig();
-            if (!is_array($conf)) {
-                trigger_error('Failure while initializing crypt module, no crypt config available!');
+            if (!is_array($conf) || !count($conf)) {
+                $this->hasConfig = false;
                 return false;
             }
             
@@ -77,7 +91,7 @@
                 $data = json_encode($data);
             }
 
-            if (!$this->hasCrypt) {
+            if (!$this->hasCrypt || !$this->hasConfig) {
                 return $this->simpleEncrypt($data);
             }
 
@@ -101,7 +115,7 @@
                 $data = json_decode($data);
             }
 
-            if (!$this->hasCrypt) {
+            if (!$this->hasCrypt || !$this->hasConfig) {
                 return $this->simpleDecrypt($data);
             }
 
@@ -127,15 +141,26 @@
             if ($this->hasConfig) {
                 return true;
             }
-            
-            $method = strtolower(openssl_get_cipher_methods()[OPENSSL_CIPHER_AES_256_CBC]);
+
+            $ciphers = array_diff(openssl_get_cipher_methods(), openssl_get_cipher_methods(true));
+            $ciphers = array_diff($this->checkChiphers, $ciphers);
+
+            if (!is_array($ciphers) || !count($ciphers)) {
+                return false;
+            }
+
+            $method  = array_shift($ciphers);
 
             $config = [
                 'method' => $method,
                 'passwd' => security::createPasswordHash(uniqid(mt_rand()), security::createSalt()),
                 'iv'     => substr(uniqid(mt_rand().microtime(true)), 0, openssl_cipher_iv_length($method))
             ];
-            
+
+            if (!$config['iv']) {
+                return false;
+            }
+
             return file_put_contents(baseconfig::$configDir.'crypt.php', '<?php'.PHP_EOL.' $config = '.var_export($config, true).PHP_EOL.'?>');
             
         }

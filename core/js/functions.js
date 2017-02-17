@@ -231,6 +231,10 @@ var fpcmJs = function () {
                     return true;
                 }
                 window.location.href = fpcmActionPath + fpcmCurrentModule + '&page=' + ui.item.value;
+            },
+            position: {
+                my: "left bottom",
+                at: "left top"
             }
         });
         
