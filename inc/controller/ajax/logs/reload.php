@@ -49,7 +49,7 @@
          * Controller-Processing
          */ 
         public function process() {
-            
+
             if (!parent::process()) return false;
             
             if (method_exists($this, 'loadLog'.$this->log)) {

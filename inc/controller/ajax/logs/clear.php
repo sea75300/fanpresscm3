@@ -49,7 +49,7 @@
          * Controller-Processing
          */ 
         public function process() {
-            
+
             if (!parent::process()) return false;
             
             $res = (is_numeric($this->log)

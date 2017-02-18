@@ -9,6 +9,11 @@ if (fpcm === undefined) {
 }
 
 fpcm.logs = {
+    
+    delimiter: 'log=',
+    reloadDataHref: '',
+    reloadDataDest: '',
+    currentTabItem: null,
 
     init: function () {
 
@@ -24,7 +29,7 @@ fpcm.logs = {
                         text: fpcm.ui.translate('yes'),
                         icon: "ui-icon-check",                    
                         click: function() {
-                            fpcm.logs.clearLogs(logId); 
+                            fpcm.logs.clearLogs(logId);
                             jQuery(this).dialog('close');
                         }
                     },
@@ -41,10 +46,28 @@ fpcm.logs = {
             return false;
         });
 
-        jQuery('.fpcm-logs-reload').click(function () {
-            fpcm.logs.reloadLogs(jQuery(this).attr('id'));        
-            return false;
+        fpcm.ui.tabs('.fpcm-tabs-general', {
+           
+            beforeLoad: function(event, ui) {
+
+                var tabId = ui.ajaxSettings.url.split(fpcm.logs.delimiter);
+                jQuery('button.fpcm-logs-clear').attr('id', 'fpcm-logs-clear_' + tabId[1]);
+
+                fpcm.ui.showLoader(true);
+                ui.jqXHR.done(function(result) {
+                    fpcm.ui.showLoader();
+                    fpcm.logs.initTabReload();
+                });
+
+            },
+            beforeActivate: function( event, ui ) {
+                jQuery(ui.oldTab).removeClass('fpcm-logs-reload');
+                fpcm.logs.currentTabItem = ui.newTab;
+            }
+            
         });
+
+        fpcm.logs.initTabReload();
 
     },
 
@@ -60,7 +83,7 @@ fpcm.logs = {
             },
             execDone: function() {
                 fpcm.ui.showLoader(false);
-                fpcm.logs.reloadLogs(fpcm.ajax.getWorkData('logs/clear'));
+                fpcm.logs.reloadLogs();
                 fpcm.ui.appendMessage(fpcm.ajax.getResult('logs/clear'));
             }
         });
@@ -68,10 +91,10 @@ fpcm.logs = {
         return false;
     },
     
-    reloadLogs: function(id) {
+    reloadLogs: function() {
 
         fpcm.ui.showLoader(true);
-        var logType = id.split('_');
+        var logType = fpcm.logs.reloadDataHref.split(fpcm.logs.delimiter);
 
         fpcm.ajax.get('logs/reload', {
             workData: logType[1],
@@ -82,7 +105,7 @@ fpcm.logs = {
                 fpcm.ui.showLoader(false);
 
                 var tabId = fpcm.ajax.getWorkData('logs/reload');
-                fpcm.ui.assignHtml('#fpcm-logcontent'+ tabId, fpcm.ajax.getResult('logs/reload'));
+                fpcm.ui.assignHtml('#' + fpcm.logs.reloadDataDest, fpcm.ajax.getResult('logs/reload'));
 
                 if (tabId == 4) {
                     fpcm.ui.accordion('.fpcm-accordion-pkgmanager');
@@ -91,6 +114,24 @@ fpcm.logs = {
         });
         
         return false;
+    },
+    
+    initTabReload: function() {
+
+        if (fpcm.logs.currentTabItem) {
+            jQuery(fpcm.logs.currentTabItem).addClass('fpcm-logs-reload');
+            fpcm.logs.currentTabItem = null;
+        }
+
+        var reloadEl             = jQuery('.fpcm-logs-reload');
+        fpcm.logs.reloadDataHref = reloadEl.find('a.ui-tabs-anchor').attr('href');
+        fpcm.logs.reloadDataDest = reloadEl.attr('aria-controls');
+
+        jQuery('.fpcm-logs-reload').click(function() {
+            fpcm.logs.reloadLogs();
+            return false;
+        });
+
     }
 
 };

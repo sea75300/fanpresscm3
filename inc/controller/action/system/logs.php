@@ -32,14 +32,8 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $userList = new \fpcm\model\users\userList();
-            $this->view->assign('userList', $userList->getUsersAll());            
-            $this->view->assign('sessionList', $this->session->getSessions());
-            $this->view->assign('errorLogs', []);
-            $this->view->assign('systemLogs', []);
-            $this->view->assign('databaseLogs', []);
-            $this->view->assign('packagesLogs', []);
             $this->view->assign('customLogs', $this->events->runEvent('logsAddList', []));
+            $this->view->assign('reloadBaseLink', \fpcm\classes\baseconfig::$rootPath.'index.php?module=ajax/logs/reload&log=');
             $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'logs.js']);
             
             $this->view->render();
