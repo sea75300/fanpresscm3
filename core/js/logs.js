@@ -10,10 +10,11 @@ if (fpcm === undefined) {
 
 fpcm.logs = {
     
-    delimiter: 'log=',
+    delimiter     : 'log=',
     reloadDataHref: '',
     reloadDataDest: '',
     currentTabItem: null,
+    oldTabItem    : null,
 
     init: function () {
 
@@ -61,7 +62,7 @@ fpcm.logs = {
 
             },
             beforeActivate: function( event, ui ) {
-                jQuery(ui.oldTab).removeClass('fpcm-logs-reload');
+                fpcm.logs.oldTabItem     = ui.oldTab;
                 fpcm.logs.currentTabItem = ui.newTab;
             }
             
@@ -118,8 +119,13 @@ fpcm.logs = {
     
     initTabReload: function() {
 
-        if (fpcm.logs.currentTabItem) {
+        jQuery('.fpcm-logs-reload').unbind('click');
+
+        if (fpcm.logs.currentTabItem && fpcm.logs.oldTabItem) {
+            jQuery(fpcm.logs.oldTabItem).removeClass('fpcm-logs-reload');
             jQuery(fpcm.logs.currentTabItem).addClass('fpcm-logs-reload');
+
+            fpcm.logs.oldTabItem     = null;
             fpcm.logs.currentTabItem = null;
         }
 

@@ -72,7 +72,7 @@
                 $this->hasConfig = false;
                 return false;
             }
-            
+
             $this->hasConfig = true;
             foreach ($conf as $key => $value) {
                 $this->$key = $value;
@@ -91,7 +91,7 @@
                 $data = json_encode($data);
             }
 
-            if (!$this->hasCrypt || !$this->hasConfig) {
+            if (!$this->hasCompleteConfig()) {
                 return $this->simpleEncrypt($data);
             }
 
@@ -115,7 +115,7 @@
                 $data = json_decode($data);
             }
 
-            if (!$this->hasCrypt || !$this->hasConfig) {
+            if (!$this->hasCompleteConfig()) {
                 return $this->simpleDecrypt($data);
             }
 
@@ -181,6 +181,19 @@
          */
         private function simpleDecrypt($data) {
             return base64_decode(str_rot13(base64_decode(str_rot13(base64_decode(str_rot13($data))))));
+        }
+
+        /**
+         * Check ob Konfiguration vollständig
+         * @return boolean
+         */
+        private function hasCompleteConfig() {
+
+            if (!$this->hasCrypt || !$this->hasConfig || !$this->method || !$this->passwd || !$this->iv) {
+                return false;
+            }
+
+            return true;
         }
 
     }
