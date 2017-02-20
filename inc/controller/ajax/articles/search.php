@@ -13,7 +13,7 @@
     /**
      * Artikelsuche
      * 
-     * @package fpcm.controller.ajax.articles.search
+     * @package fpcm\controller\ajax\articles\search
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class search extends \fpcm\controller\abstracts\ajaxController {

@@ -11,7 +11,7 @@
     /**
      * AJAX-Controller zum leeren der Systemlogs
      * 
-     * @package fpcm.controller.ajax.logs.clear
+     * @package fpcm\controller\ajax\logs\clear
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class clear extends \fpcm\controller\abstracts\ajaxController {

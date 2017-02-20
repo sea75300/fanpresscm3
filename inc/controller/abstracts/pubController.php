@@ -11,7 +11,7 @@
     /**
      * Basis für "public"-Controller
      * 
-     * @package fpcm.controller.abstracts.pubController
+     * @package fpcm\controller\abstracts\pubController
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @abstract
      */  

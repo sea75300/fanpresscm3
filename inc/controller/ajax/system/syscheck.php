@@ -10,7 +10,7 @@
     /**
      * AJAX-Controller - System Check
      * 
-     * @package fpcm.controller.ajax.system.syscheck
+     * @package fpcm\controller\ajax\system\syscheck
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */  
     class syscheck extends \fpcm\controller\abstracts\ajaxController {

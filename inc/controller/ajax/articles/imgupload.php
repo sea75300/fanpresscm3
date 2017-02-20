@@ -5,7 +5,7 @@
     /**
      * Änderungen an Bildern in TinyMCE auf Server Speichern
      * 
-     * @package fpcm.controller.ajax.articles.removeeditortags
+     * @package fpcm\controller\ajax\articles\removeeditortags
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.5
      */

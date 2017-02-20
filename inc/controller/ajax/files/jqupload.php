@@ -11,7 +11,7 @@
     /**
      * AJAX Controller für jQuery Datei uploader
      * 
-     * @package fpcm.controller.ajax.files.filelist
+     * @package fpcm\controller\ajax\files\jqupload
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class jqupload extends \fpcm\controller\abstracts\ajaxController {
@@ -22,6 +22,12 @@
         public function __construct() {
             $this->config       = \fpcm\classes\baseconfig::$fpcmConfig;
             $this->session      = \fpcm\classes\baseconfig::$fpcmSession;
+            
+            if (!$this->session->getCurrentUser()) {
+                return;
+            }
+
+            $this->permissions  = new \fpcm\model\system\permissions($this->session->getCurrentUser()->getRoll());
         }
         
         /**
@@ -29,7 +35,7 @@
          * @return boolean
          */
         public function request() {
-            return $this->session->exists();
+            return $this->session->exists() && is_object($this->permissions) && $this->permissions->check(['uploads' => 'add']);
         }
         
         /**

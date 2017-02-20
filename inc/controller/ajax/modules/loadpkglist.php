@@ -11,7 +11,7 @@
     /**
      * AJAX-Controller der einen Reload der Paketliste im Modul-Manager durchführt
      * 
-     * @package fpcm.controller.ajax.modules.loadpkglist
+     * @package fpcm\controller\ajax\modules\loadpkglist
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class loadpkglist extends \fpcm\controller\abstracts\ajaxController {

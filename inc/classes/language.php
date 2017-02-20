@@ -14,7 +14,7 @@
     /**
      * Language handler
      * 
-     * @package fpcm.classes.language
+     * @package fpcm\classes\language
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class language {

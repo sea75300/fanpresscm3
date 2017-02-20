@@ -12,7 +12,7 @@
     /**
      * AJAX session check controller
      * 
-     * @package fpcm.controller.ajax.commom.addmsg
+     * @package fpcm\controller\ajax\commom.addmsg
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.1.0
      */

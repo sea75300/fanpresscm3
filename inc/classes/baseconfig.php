@@ -12,7 +12,7 @@
     /**
      * Base config class
      * 
-     * @package fpcm.classes.baseconfig
+     * @package fpcm\classes\baseconfig
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */     
     final class baseconfig {

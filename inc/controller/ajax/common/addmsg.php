@@ -11,7 +11,7 @@
     /**
      * AJAX-Controller zum Erzeugen und Ausgeben einer neuen Nachricht
      * 
-     * @package fpcm.controller.ajax.commom.addmsg
+     * @package fpcm\controller\ajax\commom.addmsg
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class addmsg extends \fpcm\controller\abstracts\ajaxController {

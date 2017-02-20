@@ -10,7 +10,7 @@
     /**
      * AJAX-Controller Paketmanager - installierte Module aktualisieren
      * 
-     * @package fpcm.controller.ajax.packagemgr.module_update
+     * @package fpcm\controller\ajax\packagemgr\module_update
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */  
     class module_update extends \fpcm\controller\abstracts\ajaxController {

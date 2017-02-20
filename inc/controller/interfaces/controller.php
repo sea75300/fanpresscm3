@@ -13,7 +13,7 @@
     /**
      * Controller interface
      * 
-     * @package fpcm.controller.interfaces.controller
+     * @package fpcm\controller\interfaces\controller
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     interface controller {

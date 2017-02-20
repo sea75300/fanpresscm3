@@ -11,7 +11,7 @@
     /**
      * Basis für AJAX-Controller
      * 
-     * @package fpcm.controller.abstracts.ajaxController
+     * @package fpcm\controller\abstracts\ajaxController
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @abstract
      */

@@ -11,7 +11,7 @@
     /**
      * AJAX-Controller der die Aktionen im Module-Manager ausführt
      * 
-     * @package fpcm.controller.ajax.modules.moduleactions
+     * @package fpcm\controller\ajax\modules\moduleactions
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class moduleactions extends \fpcm\controller\abstracts\ajaxController {

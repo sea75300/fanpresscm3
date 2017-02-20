@@ -11,7 +11,7 @@
     /**
      * AJAX controller zum Cache leeren 
      * 
-     * @package fpcm.controller.ajax.common.cache
+     * @package fpcm\controller\ajax\common\cache
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */    
     class cache extends \fpcm\controller\abstracts\ajaxController {

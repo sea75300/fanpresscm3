@@ -11,7 +11,7 @@
     /**
      * AJAX Controller zum Laden der Dateiliste im Dateimanager
      * 
-     * @package fpcm.controller.ajax.files.filelist
+     * @package fpcm\controller\ajax\files\filelist
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class filelist extends \fpcm\controller\abstracts\ajaxController {

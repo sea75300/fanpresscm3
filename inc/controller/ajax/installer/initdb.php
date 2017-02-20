@@ -11,7 +11,7 @@
     /**
      * AJAX-Controller zur Initialisierung der Datenbank im Installer
      * 
-     * @package fpcm.controller.ajax.installer.initdb
+     * @package fpcm\controller\ajax\installer\initdb
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class initdb extends \fpcm\controller\abstracts\ajaxController {

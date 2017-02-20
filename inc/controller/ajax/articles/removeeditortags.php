@@ -11,7 +11,7 @@
     /**
      * Entfernt in HTML-Editor-Ansicht über entsprechenden Button alle HTML-Tags
      * 
-     * @package fpcm.controller.ajax.articles.removeeditortags
+     * @package fpcm\controller\ajax\articles\removeeditortags
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class removeeditortags extends \fpcm\controller\abstracts\ajaxController {

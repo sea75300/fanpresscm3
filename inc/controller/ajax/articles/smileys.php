@@ -13,7 +13,7 @@
     /**
      * Editor smiley ajax controller
      * 
-     * @package fpcm.controller.ajax.articles.smileys
+     * @package fpcm\controller\ajax\articles\smileys
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class smileys extends \fpcm\controller\abstracts\ajaxController {

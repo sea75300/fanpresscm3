@@ -11,7 +11,7 @@
     /**
      * AJAX-Controller zur Prüfung der eingegebenen Datenbank-Zugangsdaten im Installer
      * 
-     * @package fpcm.controller.ajax.installer.checkdb
+     * @package fpcm\controller\ajax\installer\checkdb
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class checkdb extends \fpcm\controller\abstracts\ajaxController {

@@ -10,7 +10,7 @@
     /**
      * AJAX-Controller - synchrone Ausführung von Cronjobs
      * 
-     * @package fpcm.controller.ajax.system.cronasync
+     * @package fpcm\controller\ajax\system\cronasync
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */  
     class cronasync extends \fpcm\controller\abstracts\ajaxController {

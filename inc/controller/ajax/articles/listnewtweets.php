@@ -13,7 +13,7 @@
     /**
      * AJAX Controller zum erzeugen von Tweets aus Artikelliste
      * 
-     * @package fpcm.controller.ajax.articles
+     * @package fpcm\controller\ajax\articles
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class listnewtweets extends \fpcm\controller\abstracts\ajaxController {

@@ -14,7 +14,7 @@
     /**
      * E-Mail-Objekt
      * 
-     * @package fpcm.classes.email
+     * @package fpcm\classes\email
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class email {

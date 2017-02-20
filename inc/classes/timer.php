@@ -13,7 +13,7 @@
     /**
      * Static timer class, internal only!
      * 
-     * @package fpcm.classes.timer
+     * @package fpcm\classes\timer
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.1.0
      */ 

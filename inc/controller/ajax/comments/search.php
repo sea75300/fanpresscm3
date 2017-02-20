@@ -13,7 +13,7 @@
     /**
      * Kommentar Suche
      * 
-     * @package fpcm.controller.ajax.comments.search
+     * @package fpcm\controller\ajax\comments\search
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.3
      */

@@ -11,7 +11,7 @@
     /**
      * Allgemeine Basis einen Controller
      * 
-     * @package fpcm.controller.abstracts.controller
+     * @package fpcm\controller\abstracts\controller
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @abstract
      */

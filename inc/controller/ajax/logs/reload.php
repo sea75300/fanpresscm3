@@ -11,7 +11,7 @@
     /**
      * AJAX-Controller zum Reload der Systemloads
      * 
-     * @package fpcm.controller.ajax.logs.relaod
+     * @package fpcm\controller\ajax\logs\relaod
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class reload extends \fpcm\controller\abstracts\ajaxController {

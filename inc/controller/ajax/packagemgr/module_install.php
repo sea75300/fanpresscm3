@@ -10,7 +10,7 @@
     /**
      * AJAX-Controller Paketmanager - Module installierten
      * 
-     * @package fpcm.controller.ajax.packagemgr.module_install
+     * @package fpcm\controller\ajax\packagemgr\module_install
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */  
     class module_install extends \fpcm\controller\abstracts\ajaxController {

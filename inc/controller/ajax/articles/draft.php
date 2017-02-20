@@ -5,7 +5,7 @@
     /**
      * Fügt den Inhalt einer ausgewählten HTML-Vorlage in Editor ein (HTML-Ansicht)
      * 
-     * @package fpcm.controller.ajax.articles.removeeditortags
+     * @package fpcm\controller\ajax\articles\removeeditortags
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.3
      */

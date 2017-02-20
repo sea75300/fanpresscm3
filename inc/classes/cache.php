@@ -14,7 +14,7 @@
     /**
      * Cache system
      * 
-     * @package fpcm.classes.cache
+     * @package fpcm\classes\cache
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class cache {

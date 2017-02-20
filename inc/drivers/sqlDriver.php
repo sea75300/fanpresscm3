@@ -12,7 +12,7 @@
     /**
      * Database driver base class
      * 
-     * @package fpcm.drivers.database
+     * @package fpcm\drivers\sqlDriver
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2
      */ 

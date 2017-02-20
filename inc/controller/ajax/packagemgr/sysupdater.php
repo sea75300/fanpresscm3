@@ -10,7 +10,7 @@
     /**
      * AJAX-Controller Paketmanager - System-Updater
      * 
-     * @package fpcm.controller.ajax.packagemgr.sysupdater
+     * @package fpcm\controller\ajax\packagemgr\sysupdater
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */      
     class sysupdater extends \fpcm\controller\abstracts\ajaxController {

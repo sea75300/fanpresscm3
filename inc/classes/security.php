@@ -14,7 +14,7 @@
     /**
      * Security class
      * 
-     * @package fpcm.classes.security
+     * @package fpcm\classes\security
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class security {

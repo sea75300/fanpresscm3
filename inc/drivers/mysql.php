@@ -12,7 +12,7 @@
     /**
      * MySQL database driver class
      * 
-     * @package fpcm.drivers.database
+     * @package fpcm\drivers\mysql
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2
      */ 

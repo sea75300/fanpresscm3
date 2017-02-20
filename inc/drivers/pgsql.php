@@ -12,7 +12,7 @@
     /**
      * Postgres database driver class
      * 
-     * @package fpcm.drivers.database
+     * @package fpcm\drivers\pgsql
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2
      */ 

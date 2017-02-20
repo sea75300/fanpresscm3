@@ -14,7 +14,7 @@
     /**
      * Database abstraction 
      * 
-     * @package fpcm.classes.database
+     * @package fpcm\classes\database
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class database {
