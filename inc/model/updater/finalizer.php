@@ -336,6 +336,7 @@
             $tables[] = \fpcm\classes\database::tableSessions;
             $tables[] = \fpcm\classes\database::tableSmileys;
             $tables[] = \fpcm\classes\database::tableTexts;
+            $tables[] = \fpcm\classes\database::tableRevisions;
             
             $tables = $this->events->runEvent('updaterAddOptimizeTables', $tables);
             foreach ($tables as $table) {
