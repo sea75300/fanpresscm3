@@ -50,27 +50,27 @@ cols:
         params: NOT NULL
     archived:
         type: bool
-        length: 20
+        length: 
         params: NOT NULL
     pinned:
         type: bool
-        length: 20
+        length: 
         params: NOT NULL
     postponed:
         type: bool
-        length: 20
+        length: 
         params: NOT NULL
     deleted:
         type: bool
-        length: 20
+        length: 
         params: NOT NULL
     comments:
         type: bool
-        length: 20
+        length: 
         params: NOT NULL
     approval:
         type: bool
-        length: 20
+        length: 
         params: NOT NULL
     imagepath:
         type: text
@@ -111,4 +111,7 @@ indices:
         isUnqiue: false
     draft:
         col: draft
+        isUnqiue: false
+    inedit:
+        col: inedit
         isUnqiue: false

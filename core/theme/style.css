@@ -723,7 +723,6 @@ table.fpcm-ui-table.fpcm-ui-modules tr td.fpcm-ui-modules-version {
 }
 
 table.fpcm-ui-table.fpcm-ui-options tr td:first-child,
-table.fpcm-ui-table.fpcm-ui-logs-sessions tr td,
 table.fpcm-ui-table.fpcm-ui-logs tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-options-twitter tr td:first-child {
     width: 25%;

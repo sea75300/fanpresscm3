@@ -53,6 +53,13 @@
         protected $ip;
         
         /**
+         * Kam Session durch externen Login via API zustande?
+         * @var bool
+         * @since FPCM 3.5
+         */
+        protected $external;
+        
+        /**
          * Existiert Session
          * @var bool
          */
@@ -154,6 +161,15 @@
         }
 
         /**
+         * Flag auslesen, ob externe Session
+         * @return int
+         * @since FPCM 3.5
+         */
+        public function getExternal() {
+            return (int) $this->external;
+        }
+
+        /**
          * Session-ID-String setzen
          * @param string $sessionid
          */
@@ -199,6 +215,14 @@
          */
         public function setIp($ip) {
             $this->ip = $ip;
+        }
+
+        /**
+         * Flag externer Login via API setzen
+         * @param bool $external
+         */
+        public function setExternal($external) {
+            $this->external = (int) $external;
         }
 
         /**
@@ -276,9 +300,10 @@
          * Prüft ob Kombination Benutzer und Passwort existiert
          * @param string $username
          * @param string $password
+         * @param bool $external
          * @return bool Ja, wenn Benutzer + Passwort vorhanden ist
          */
-        public function checkUser($username, $password) {
+        public function checkUser($username, $password, $external = false) {
 
             $userList = new \fpcm\model\users\userList();            
 
@@ -304,6 +329,7 @@
                 $this->userid        = $userid;
                 $this->sessionid     = \fpcm\classes\security::createSessionId();
                 $this->ip            = \fpcm\classes\http::getIp();
+                $this->external      = (int) $external;
                 $this->sessionExists = true;
                 
                 return true;
@@ -332,7 +358,7 @@
          */
         public function deleteCookie() {       
             $expire = $this->getLogin() - ($this->config->system_session_length * 5);
-            return setcookie(\fpcm\classes\security::getSessionCookieName(),0,$expire,'/','',false,true);
+            return setcookie(\fpcm\classes\security::getSessionCookieName(), 0, $expire, '/', '', false, true);
         }
         
         /**

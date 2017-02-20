@@ -36,4 +36,8 @@ cols:
         type: varchar
         length: 512
         params: NOT NULL
+    external:
+        type: bool
+        length: 
+        params: NOT NULL
 indices:     

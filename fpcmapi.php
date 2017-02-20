@@ -218,7 +218,7 @@
             }
 
             if (isset($credentials['username']) && isset($credentials['password']) && trim($credentials['username']) && trim($credentials['password'])) {
-                $result = $session->checkUser($credentials['username'], $credentials['password']);
+                $result = $session->checkUser($credentials['username'], $credentials['password'], true);
                 if ($result === true && $session->save()) {
                     return $session->getSessionId();
                 }

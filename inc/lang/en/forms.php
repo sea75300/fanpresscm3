@@ -50,6 +50,7 @@
         'GLOBAL_WRITEMAIL'              => 'Write an e-mail',
         'GLOBAL_CONFIRM'                => 'Please confirm',
         'GLOBAL_ACTION_PERFORM'         => 'Action to perform',
+        'GLOBAL_EXTERNAL'               => 'External',
 
         'LOGIN_BTN'                     => 'Login',
         'LOGIN_NEWPASSWORD'             => 'Request new password',
