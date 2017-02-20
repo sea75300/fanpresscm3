@@ -11,7 +11,7 @@
     /**
      * Modul-Interface
      * 
-     * @package fpcm.model.interfaces
+     * @package fpcm\model\interfaces
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     interface module {

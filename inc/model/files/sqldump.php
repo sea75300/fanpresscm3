@@ -12,7 +12,7 @@
     /**
      * Sql dump object (unfinished!!!!!!)
      * 
-     * @package fpcm.model.files
+     * @package fpcm\model\files
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2016, Stefan Seehafer
      * @since FPCM 3.x

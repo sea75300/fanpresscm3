@@ -11,7 +11,7 @@
     /**
      * Cronjob temp files cleanup
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class clearTemp extends \fpcm\model\abstracts\cron {

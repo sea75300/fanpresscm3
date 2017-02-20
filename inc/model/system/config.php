@@ -65,7 +65,7 @@
      * @property array  $twitter_data Daten für Twitter-Verbindung
      * @property array  $twitter_events Events, wenn Tweets erzeugt werden sollen
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class config extends \fpcm\model\abstracts\model {

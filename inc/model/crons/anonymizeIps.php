@@ -11,7 +11,7 @@
     /**
      * Cronjob comment author ipadress removal
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class anonymizeIps extends \fpcm\model\abstracts\cron {

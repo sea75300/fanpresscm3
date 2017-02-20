@@ -11,7 +11,7 @@
     /**
      * Cronjob filemanger thumbnail creation
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class fmThumbs extends \fpcm\model\abstracts\cron {

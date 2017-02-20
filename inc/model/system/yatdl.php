@@ -11,7 +11,7 @@
     /**
      * YaML Table Definition Language Parse
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2.0
      */

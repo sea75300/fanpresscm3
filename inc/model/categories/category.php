@@ -11,7 +11,7 @@
     /**
      * Kategorie-Objekt
      * 
-     * @package fpcm.model.categories
+     * @package fpcm\model\categories
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class category extends \fpcm\model\abstracts\model {

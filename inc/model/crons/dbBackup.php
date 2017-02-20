@@ -13,7 +13,7 @@
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
      * @copyright (c) 2011-2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class dbBackup extends \fpcm\model\abstracts\cron {

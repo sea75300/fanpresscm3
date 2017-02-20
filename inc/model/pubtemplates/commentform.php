@@ -11,7 +11,7 @@
     /**
      * Kommentar Form Template Objekt
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class commentform extends template {

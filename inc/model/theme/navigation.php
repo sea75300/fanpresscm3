@@ -11,7 +11,7 @@
     /**
      * ACP Menu Objekt
      * 
-     * @package fpcm.model.theme
+     * @package fpcm\model\theme
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class navigation extends \fpcm\model\abstracts\staticModel {

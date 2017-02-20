@@ -10,7 +10,7 @@
     /**
      * PHP fileupload handler
      * 
-     * @package fpcm.model.files
+     * @package fpcm\model\files
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class fileuploader extends \fpcm\model\abstracts\staticModel {

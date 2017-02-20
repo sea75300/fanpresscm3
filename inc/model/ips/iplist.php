@@ -10,7 +10,7 @@
     /**
      * IP-Listen Objekt
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class iplist extends \fpcm\model\abstracts\tablelist {

@@ -10,7 +10,7 @@
     /**
      * Module-Objekt für Module-Liste
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class listitem extends \fpcm\model\abstracts\module {

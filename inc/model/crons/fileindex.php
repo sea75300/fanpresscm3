@@ -12,7 +12,7 @@
     /**
      * Cronjob file index rebuild
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.1.4
      */

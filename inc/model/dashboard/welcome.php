@@ -11,7 +11,7 @@
     /**
      * Welcome dashboard container object
      * 
-     * @package fpcm.model.dashboard
+     * @package fpcm\model\dashboard
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class welcome extends \fpcm\model\abstracts\dashcontainer {

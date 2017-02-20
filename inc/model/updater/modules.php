@@ -10,7 +10,7 @@
     /**
      * Module Updater Objekt
      * 
-     * @package fpcm.model.updater
+     * @package fpcm\model\updater
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class modules extends \fpcm\model\abstracts\remoteModel {

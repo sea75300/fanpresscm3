@@ -11,7 +11,7 @@
     /**
      * Model base object
      * 
-     * @package fpcm.model.abstracts
+     * @package fpcm\model\abstracts
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     abstract class model implements \fpcm\model\interfaces\model {

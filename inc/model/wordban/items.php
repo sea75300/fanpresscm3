@@ -13,7 +13,7 @@
     /**
      * Word Ban Item Object List
      * 
-     * @package fpcm.model.wordban
+     * @package fpcm\model\wordban
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2.0
      */ 

@@ -11,7 +11,7 @@
     /**
      * View File library Loader Objekt
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class fileLib extends \fpcm\model\abstracts\staticModel {

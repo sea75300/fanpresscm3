@@ -11,7 +11,7 @@
     /**
      * AJAX View Objekt
      * 
-     * @package fpcm.model.view
+     * @package fpcm\model\view
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class ajax extends \fpcm\model\abstracts\view {

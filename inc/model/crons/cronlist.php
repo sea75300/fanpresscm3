@@ -11,7 +11,7 @@
     /**
      * Cronjob list object
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class cronlist extends \fpcm\model\abstracts\staticModel {

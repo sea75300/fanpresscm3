@@ -10,7 +10,7 @@
     /**
      * System Update Finalizer Objekt
      * 
-     * @package fpcm.model.updater
+     * @package fpcm\model\updater
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class finalizer extends \fpcm\model\abstracts\model {
@@ -145,7 +145,7 @@
             
             $res = true;
 
-            $newconf = array();
+            $newconf = [];
             if (!is_array($this->config->twitter_data)) {
                 $newconf['twitter_data'] = array(
                     'consumer_key'    => '',
@@ -321,7 +321,7 @@
                 return true;
             }
 
-            $tables   = array();
+            $tables   = [];
             $tables[] = \fpcm\classes\database::tableArticles;
             $tables[] = \fpcm\classes\database::tableAuthors;
             $tables[] = \fpcm\classes\database::tableCategories;

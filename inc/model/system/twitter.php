@@ -11,7 +11,7 @@
     /**
      * tmhOAuth wrapper Objekt für Twitter
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class twitter extends \fpcm\model\abstracts\staticModel {

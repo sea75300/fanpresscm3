@@ -11,7 +11,7 @@
     /**
      * Cronjob postponed article publishing
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class postponedArticles extends \fpcm\model\abstracts\cron {
