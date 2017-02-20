@@ -149,12 +149,12 @@
                 'optional'  => 0
             );
             
-            $externalCon = \fpcm\classes\baseconfig::canConnect();
-            $checkOptions['allow_url_fopen = 1 ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
-                'current'   => $externalCon ? 'true' : false,
+            $current = in_array('openssl', $loadedExtensions);
+            $checkOptions['OpenSSL ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
+                'current'   => $current ? 'true' : 'false',
                 'recommend' => 'true',
-                'result'    => (true && $externalCon),
-                'helplink'  => 'http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen',
+                'result'    => (true && $current),
+                'helplink'  => 'http://php.net/manual/de/book.openssl.php',
                 'optional'  => 1
             );
             
@@ -165,7 +165,16 @@
                 'result'    => (false || $current),
                 'helplink'  => 'http://php.net/manual/en/book.curl.php',
                 'optional'  => 1
-            );            
+            ); 
+            
+            $externalCon = \fpcm\classes\baseconfig::canConnect();
+            $checkOptions['allow_url_fopen = 1 ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
+                'current'   => $externalCon ? 'true' : false,
+                'recommend' => 'true',
+                'result'    => (true && $externalCon),
+                'helplink'  => 'http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen',
+                'optional'  => 1
+            );           
             
             $current = in_array('phar', $loadedExtensions);
             $checkOptions['Phar ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
@@ -173,15 +182,6 @@
                 'recommend' => 'true',
                 'result'    => (false || $current),
                 'helplink'  => 'http://php.net/manual/en/class.phar.php',
-                'optional'  => 1
-            );
-            
-            $current = in_array('openssl', $loadedExtensions);
-            $checkOptions['OpenSSL ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
-                'current'   => $current ? 'true' : 'false',
-                'recommend' => 'true',
-                'result'    => (true && $current),
-                'helplink'  => 'http://php.net/manual/de/book.openssl.php',
                 'optional'  => 1
             );
 
