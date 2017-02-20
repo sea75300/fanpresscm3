@@ -11,7 +11,7 @@
     /**
      * Cronjob system logs cleanup
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class clearLogs extends \fpcm\model\abstracts\cron {

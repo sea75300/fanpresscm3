@@ -12,7 +12,7 @@
     /**
      * Postgres database driver class
      * 
-     * @package fpcm.drivers.database
+     * @package fpcm\drivers\pgsql
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2
      */ 
@@ -102,7 +102,7 @@
         }
 
         /**
-         * Query-String um Index auf Tabellenspalte zu setzten
+         * Query-String um Index auf Tabellenspalte zu setzen
          * @param string $table
          * @param string $indexName
          * @param string $field

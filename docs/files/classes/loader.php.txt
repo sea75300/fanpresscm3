@@ -12,7 +12,7 @@
     /**
      * library loader
      * 
-     * @package fpcm.classes.loader
+     * @package fpcm\classes\loader
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class loader {

@@ -11,7 +11,7 @@
     /**
      * Remote data model
      * 
-     * @package fpcm.model.abstracts
+     * @package fpcm\model\abstracts
      * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 

@@ -11,10 +11,16 @@
     /**
      * AJAX View Objekt
      * 
-     * @package fpcm.model.view
+     * @package fpcm\model\view
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class ajax extends \fpcm\model\abstracts\view {
+
+        /**
+         * Messages-PHP ausschließen
+         * @var bool
+         */
+        private $excludeMessages = false;
         
         /**
          * Konstruktor
@@ -43,9 +49,13 @@
             $viewVars = $this->getViewVars();                
             $viewVars = $this->events->runEvent('viewRenderBefore', $viewVars);
 
-            foreach ($viewVars as $key => $value) { $$key = $value; }
+            foreach ($viewVars as $key => $value) {
+                $$key = $value;
+            }
 
-            include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+            if (!$this->excludeMessages) {
+                include_once \fpcm\classes\baseconfig::$viewsDir.'common/messages.php';
+            }
 
             if ($this->getViewFile()) include_once $this->getViewFile();
 
@@ -55,7 +65,25 @@
             ob_end_clean();
             die($data);                
         }
-        
+
+        /**
+         * kein Messages-DIV in View laden
+         * @return bool
+         * @since FPCM 3.5
+         */
+        function getExcludeMessages() {
+            return $this->excludeMessages;
+        }
+
+        /**
+         * Status, ob Messages-DIV in View laden, setzen
+         * @param bool $excludeMessages
+         * @since FPCM 3.5
+         */
+        function setExcludeMessages($excludeMessages) {
+            $this->excludeMessages = $excludeMessages;
+        }
+
         /**
          * View-Variablen initialisieren
          */

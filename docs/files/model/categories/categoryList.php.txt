@@ -11,7 +11,7 @@
     /**
      * Kategorie-Listen-Objekt
      * 
-     * @package fpcm.model.categories
+     * @package fpcm\model\categories
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class categoryList extends \fpcm\model\abstracts\tablelist {
@@ -99,6 +99,11 @@
          * @return array
          */
         public function getCategoriesCurrentUser() {
+
+            if (!is_object(\fpcm\classes\baseconfig::$fpcmSession) || !\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                return array();
+            }
+
             $groupId = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll();
 
             return $this->getCategoriesByGroup($groupId);

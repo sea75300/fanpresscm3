@@ -11,7 +11,7 @@
     /**
      * Recent articles dashboard container object
      * 
-     * @package fpcm.model.dashboard
+     * @package fpcm\model\dashboard
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class tinymceEditor extends \fpcm\model\abstracts\articleEditor {
@@ -40,7 +40,8 @@
 
             return array(
                 \fpcm\classes\loader::libGetFileUrl('tinymce4', 'tinymce.min.js'),
-                \fpcm\classes\baseconfig::$jsPath.'editor.js'
+                \fpcm\classes\baseconfig::$jsPath.'editor.js',
+                \fpcm\classes\baseconfig::$jsPath.'editor_tinymce.js'
             );
         }
 
@@ -77,7 +78,9 @@
                 'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize,
                 'fpcmTinyMceReadmoreBlockHL' => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE'),
                 'fpcmTinyMceTemplatesList'   => $this->getTemplateDrafts(),
-                'fpcmTinyMceAutosavePrefix'  => 'fpcm-editor-as-'.$this->session->getUserId()
+                'fpcmTinyMceAutosavePrefix'  => 'fpcm-editor-as-'.$this->session->getUserId(),
+                'fpcmTinyMceFileUpload'      => $this->config->articles_imageedit_persistence ? 1 : 0,
+                'fpcmEditorInitFunction'     => 'initTinyMce'
             );
             
             return $this->events->runEvent('editorInitTinymce', $params);

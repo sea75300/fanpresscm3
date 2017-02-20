@@ -68,10 +68,10 @@
         
         /**
          * Berechnet Werte für Seitennavigation
-         * @param type $pageLimit
-         * @param type $currentPage
-         * @param type $maxItemCount
-         * @param type $currentItemCount
+         * @param int $pageLimit
+         * @param int $currentPage
+         * @param int $maxItemCount
+         * @param int $currentItemCount
          * @return array
          * @since FPCM 3.4
          */

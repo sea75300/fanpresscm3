@@ -10,7 +10,7 @@
     /**
      * Image file objekt
      * 
-     * @package fpcm.model.files
+     * @package fpcm\model\files
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class image extends \fpcm\model\abstracts\file {
@@ -193,7 +193,7 @@
         }
 
         /**
-         * Datensatz-ID setzten
+         * Datensatz-ID setzen
          * @param int $id
          */
         public function setId($id) {
@@ -201,7 +201,7 @@
         }        
         
         /**
-         * Benutzer-ID setzten
+         * Benutzer-ID setzen
          * @param int $userid
          */        
         public function setUserid($userid) {
@@ -209,7 +209,7 @@
         }
 
         /**
-         * Upload-Zeit setzten
+         * Upload-Zeit setzen
          * @param int $filetime
          */
         public function setFiletime($filetime) {

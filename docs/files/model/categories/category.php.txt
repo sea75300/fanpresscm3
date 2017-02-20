@@ -11,7 +11,7 @@
     /**
      * Kategorie-Objekt
      * 
-     * @package fpcm.model.categories
+     * @package fpcm\model\categories
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     class category extends \fpcm\model\abstracts\model {
@@ -83,7 +83,7 @@
         }
 
         /**
-         * Kategorie-Name setzten
+         * Kategorie-Name setzen
          * @param string $name
          */
         function setName($name) {
@@ -91,7 +91,7 @@
         }
 
         /**
-         * Kategorie-Icon-Pfad setzten
+         * Kategorie-Icon-Pfad setzen
          * @param string $iconpath
          */
         function setIconPath($iconpath) {
@@ -99,7 +99,7 @@
         }
         
         /**
-         * Gruppen, die diese Kategorie nutzen dürfen, setzten
+         * Gruppen, die diese Kategorie nutzen dürfen, setzen
          * @param array $groups
          */
         function setGroups($groups) {

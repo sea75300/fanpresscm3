@@ -14,7 +14,7 @@
     /**
      * Security class
      * 
-     * @package fpcm.classes.security
+     * @package fpcm\classes\security
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class security {
@@ -56,8 +56,16 @@
          * gibt Inhalt von Session cookie zurück
          * @return string
          */
-        public static function getSessionCookieValue() {            
-            return http::cookieOnly(self::getSessionCookieName(), array(1,4,7));
+        public static function getSessionCookieValue() {
+
+            $value = http::cookieOnly(self::getSessionCookieName(), array(1,4,7));
+            
+            if (substr($value, 0, 3) !== '_$$') {
+                return $value;
+            }
+
+            $crypt = new crypt();
+            return $crypt->decrypt($value);
         }
                 
         /**
@@ -92,7 +100,9 @@
          * @return string
          */
         public static function createPageToken() {
-            $str = hash(self::defaultHashAlgo, '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$');
+
+            $crypt = new crypt();
+            $str = $crypt->encrypt(hash(self::defaultHashAlgo, '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$'));
 
             $cache = new cache(self::getPageTokenFieldName(), self::pageTokenCacheModule);
             $cache->cleanup(self::getPageTokenFieldName(), self::pageTokenCacheModule);

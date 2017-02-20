@@ -19,7 +19,11 @@
         public function getData() {
             return $this->data;
         }
-        
+
+        /**
+         * Funktion liefert Informationen zurpck, ob Suchparameter vorhanden
+         * @return bool
+         */
         public function hasParams() {
             return count($this->data) ? true : false;
         }

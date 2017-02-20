@@ -10,7 +10,7 @@
     /**
      * Moduleliste Objekt
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class modulelist extends \fpcm\model\abstracts\tablelist {
@@ -127,8 +127,10 @@
         protected function getModuleLocalFilesystem() {
             $localsDB = $this->getInstalledModules();
             $localsFs = glob(\fpcm\classes\baseconfig::$moduleDir.'*/*');
-            
+
             if (!is_array($localsFs) || !count($localsFs)) return false;
+
+            $count = 0;
             
             foreach ($localsFs as &$localFs) {
 
@@ -149,7 +151,14 @@
                     '',
                     false
                 );
+
                 $newModule->save();
+                
+                $count++;
+            }
+            
+            if ($count) {
+                $this->cache->cleanup(false, \fpcm\model\abstracts\module::FPCM_MODULES_CACHEFOLDER);
             }
             
             return true;
@@ -161,7 +170,7 @@
          */
         public function getDisabledInstalledModules() {
 
-            $cache = new \fpcm\classes\cache(__FUNCTION__, 'modules');
+            $cache = new \fpcm\classes\cache(__FUNCTION__, \fpcm\model\abstracts\module::FPCM_MODULES_CACHEFOLDER);
             if (!$cache->isExpired()) {
                 return $cache->read();
             }
@@ -184,7 +193,7 @@
          */
         public function getEnabledInstalledModules() {
 
-            $cache = new \fpcm\classes\cache(__FUNCTION__, 'modules');
+            $cache = new \fpcm\classes\cache(__FUNCTION__, \fpcm\model\abstracts\module::FPCM_MODULES_CACHEFOLDER);
             if (!$cache->isExpired()) {
                 return $cache->read();
             }
@@ -207,7 +216,7 @@
          */
         public function getInstalledModules() {
 
-            $cache = new \fpcm\classes\cache(__FUNCTION__, 'modules');
+            $cache = new \fpcm\classes\cache(__FUNCTION__, \fpcm\model\abstracts\module::FPCM_MODULES_CACHEFOLDER);
             if (!$cache->isExpired()) {
                 return $cache->read();
             }

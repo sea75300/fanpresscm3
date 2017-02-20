@@ -10,7 +10,7 @@
     /**
      * Image list object
      * 
-     * @package fpcm.model.files
+     * @package fpcm\model\files
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */    
     final class imagelist extends \fpcm\model\abstracts\filelist {

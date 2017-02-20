@@ -10,11 +10,13 @@
     /**
      * Kommentar-Listen-Objekt
      * 
-     * @package fpcm.model.comments
+     * @package fpcm\model\comments
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class commentList extends \fpcm\model\abstracts\tablelist {
 
+        use permissions;
+        
         /**
          * articlelist Objekt
          * @var \fpcm\model\articles\articlelist
@@ -85,47 +87,33 @@
          * @return array
          */
         public function getCommentsByCondition($articleId, $private = 0, $hideUnapproved = 1, $spam = 0) {
-            
-            $params = array($articleId, $private, $spam);
-            
-            $where   = array('articleid = ?', 'private = ?', 'spammer = ?');
 
-            if ($spam == -1) {
-                unset($params[1], $params[2], $where[1], $where[2]);
-            }
-            
-            if ($this->config->comments_confirm && $hideUnapproved != -1){
-                $where[]  = 'approved = ?';
-                $params[] = $hideUnapproved;
-            }
-            
-            $list = $this->dbcon->fetch($this->dbcon->select($this->table, '*', implode(' AND ', $where).$this->dbcon->orderBy(array('createtime ASC')), $params), true);            
-            return $this->createCommentResult($list);
+            $conditions             = new search();
+            $conditions->articleid  = $articleId;
+            $conditions->private    = $private;
+            $conditions->spam       = $spam;
+            $conditions->approved   = $hideUnapproved;
+            $conditions->searchtype = 0;
+
+            return $this->getCommentsBySearchCondition($conditions);
         }
         
         /**
          * Liefert ein array der Kommentare, welcher mit der Bedingung übereinstimmen
-         * @param array $conditions
-         * * title => via Title-Inhalt
-         * * content => via content-Inhalt
-         * * user => via Benutzer
-         * * category => via Category
-         * * datefrom => seit Datum X.Y.Z
-         * * dateto => bis Datum X.Y.Z
-         * * postponed => nur geplante Artikel
-         * * archived => nur archivierte Artikel
-         * * pinned => nur gepinnte Artikel
-         * * comment => commentare sind aktiv
-         * * deleted => nur gelöschte Artikel
-         * * draft => nur Entwürfe
-         * * orderby => Array von Sortierungen in SQL-Syntax
-         * * limit => Abfrage einschränken
+         * @param search $conditions
          * @return array
          */
-        public function getCommentsBySearchCondition(array $conditions) {
+        public function getCommentsBySearchCondition($conditions) {
             
             $where = array('1=1');
             $valueParams = array();
+            
+            if (is_array($conditions) && count($conditions)) {
+                trigger_error('Using an array for '.__METHOD__.' is deprecated as of FPCM 3.5. Create an instance of "fpcm\model\comments\search" instead.');
+            }
+            elseif (is_object($conditions)) {
+                $conditions = $conditions->getData();
+            }
 
             if (isset($conditions['text']) && $conditions['searchtype'] == 0) {
                 $where[] = "name ".$this->dbcon->dbLike()." ?";
@@ -148,9 +136,7 @@
             }
             
             if ($conditions['searchtype'] == 0) {
-                $textWhere = array();
-                $textWhere[] = '('.implode(' OR ', $where).')';
-                $where = $textWhere;
+                $where = ['('.implode(' OR ', $where).')'];
             }
             
             if (isset($conditions['datefrom'])) {
@@ -178,20 +164,42 @@
                 $valueParams[] = $conditions['approved'];
             }
             
+            if (isset($conditions['articleid'])) {
+                $where[] = "articleid = ?";
+                $valueParams[] = $conditions['articleid'];
+            }
+            
+            if (isset($conditions['ipaddress'])) {
+                $where[] = "ipaddress = ?";
+                $valueParams[] = $conditions['ipaddress'];
+            }
+
             $combination = isset($conditions['combination']) ? $conditions['combination'] : 'AND';
             
             $eventData = $this->events->runEvent('commentsByCondition', array(
                 'conditions' => $conditions,
-                'where'      => $where
+                'where'      => $where,
+                'values'     => $valueParams
             ));
 
-            $where      = $eventData['where'];
+            $where       = $eventData['where'];
+            $where       = implode(" {$combination} ", $where);
+            $valueParams = $eventData['values'];
+            
+            $where2   = array();
+            $where2[] = $this->dbcon->orderBy( ((isset($conditions['orderby'])) ? $conditions['orderby'] : array('createtime ASC')) );
+            
+            if (isset($conditions['limit'])) {
+                $where2[] = $this->dbcon->limitQuery($conditions['limit'][0], $conditions['limit'][1]);
+            }
 
-            $where = implode(" {$combination} ", $where);
+            unset($conditions['limit'], $conditions['orderby']);
+
+            $where .= ' '.implode(' ', $where2);
 
             $list = $this->dbcon->fetch(
                     $this->dbcon->select(
-                        $this->table, '*', $where.$this->dbcon->orderBy(array('createtime ASC')),
+                        $this->table, '*', $where,
                         $valueParams
                     ),
                     true
@@ -316,19 +324,23 @@
         
         /**
          * Zählt Kommentare anhand von Bedingung
-         * @param array $condition
-         * * private => nur private Kommentare
-         * * unapproved => nur nicht-genehmigte Kommentare
-         * * spam => Kommentare, die als Spam eingestuft wurden
+         * @param search $condition
          * @return int
          */
-        public function countCommentsByCondition(array $condition = array()) {
+        public function countCommentsByCondition($conditions = array()) {
 
-            $where = null;
+            if (is_array($conditions) && count($conditions)) {
+                trigger_error('Using an array for '.__METHOD__.' is deprecated as of FPCM 3.5. Create an instance of "fpcm\model\comments\search" instead.');
+            }
+            elseif (is_object($conditions)) {
+                $conditions = $conditions->getData();
+            }
             
-            if (isset($condition['private'])) $where = 'private = 1';
-            if (isset($condition['unapproved'])) $where = 'approved = 0';
-            if (isset($condition['spam'])) $where = 'spammer = 1';
+            $where = null;
+
+            if (isset($conditions['private'])) $where = 'private = 1';
+            if (isset($conditions['unapproved'])) $where = 'approved = 0';
+            if (isset($conditions['spam'])) $where = 'spammer = 1';
 
             $where  = $this->events->runEvent('commentsByConditionCount', $where);
 
@@ -356,41 +368,6 @@
             
             return $count >= $this->config->comments_markspam_commentcount ? true : false;
             
-        }
-
-        /**
-         * Führt Prüfung durch, ob Artikel bearbeitet werden kann
-         * @param \fpcm\model\comments\comment $comment
-         * @return boolean
-         */
-        public function checkEditPermissions(comment &$comment) {
-
-            if ($this->permissions === false) {
-                return true;
-            }
-
-            if (!is_array($this->ownArticleIds)) {                
-                $this->articleList   = new \fpcm\model\articles\articlelist();
-                $this->ownArticleIds = $this->articleList->getArticleIDsByUser(\fpcm\classes\baseconfig::$fpcmSession->getUserId());
-            }
-
-            $isAdmin     = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin();
-            $permEditAll = $this->permissions->check(array('comment' => 'editall'));            
-            $permEditOwn = $this->permissions->check(array('comment' => 'edit'));
-            
-            if ($isAdmin || $permEditAll) {
-                $comment->setEditPermission(true);
-                return true;
-            }
-            
-            if (!$isAdmin && !$permEditAll && $permEditOwn && in_array($comment->getArticleid(), $this->ownArticleIds)) {
-                $comment->setEditPermission(true);
-                return true;                
-            }
-
-            $comment->setEditPermission(false);
-            return true;
-
         }
 
         /**

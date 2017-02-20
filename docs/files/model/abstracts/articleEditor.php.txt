@@ -12,7 +12,7 @@
     /**
      * Article editor plugin base model
      * 
-     * @package fpcm.model.abstracts
+     * @package fpcm\model\abstracts
      * @abstract
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.1.0

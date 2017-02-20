@@ -11,7 +11,7 @@
     /**
      * Recent articles dashboard container object
      * 
-     * @package fpcm.model.dashboard
+     * @package fpcm\model\dashboard
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class recentarticles extends \fpcm\model\abstracts\dashcontainer {
@@ -84,13 +84,13 @@
             
             $articleList = new \fpcm\model\articles\articlelist();
             $userlist    = new \fpcm\model\users\userList();
+
+            $conditions = new \fpcm\model\articles\search();
+            $conditions->draft    = -1;
+            $conditions->approval = -1;
+            $conditions->limit    = [10, 0];
+            $conditions->orderby  = ['createtime DESC'];
             
-            $conditions = array(
-                'draft'     => -1,
-                'approval'  => -1,
-                'limit'     => array(10, 0),
-                'orderby'   => array('createtime DESC')
-            );
             $articles = $articleList->getArticlesByCondition($conditions);
 
             $users    = array_flip($userlist->getUsersNameList());

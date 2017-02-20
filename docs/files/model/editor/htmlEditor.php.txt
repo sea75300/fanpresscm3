@@ -11,7 +11,7 @@
     /**
      * Recent articles dashboard container object
      * 
-     * @package fpcm.model.dashboard
+     * @package fpcm\model\dashboard
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class htmlEditor extends \fpcm\model\abstracts\articleEditor {
@@ -43,6 +43,7 @@
                 array(
                     \fpcm\classes\loader::libGetFileUrl('leela-colorpicker', 'leela.colorpicker-1.0.2.jquery.min.js'),
                     \fpcm\classes\baseconfig::$jsPath.'editor.js',
+                    \fpcm\classes\baseconfig::$jsPath.'editor_codemirror.js',
                     \fpcm\classes\baseconfig::$jsPath.'editor_videolinks.js'
                 )
             );
@@ -67,7 +68,8 @@
                 'fpcmEditorAutocompleteLinks'   => $this->getEditorLinks(),
                 'fpcmEditorAutocompleteImages'  => $this->getFileList(),
                 'fpcmEditorHtmlElement'         => $this->language->translate('EDITOR_HTML_BUTTONS_LITEXT'),
-                'fpcmEditorAutosavePrefix'      => 'fpcm-editor-as-'.$this->session->getUserId().'draft'
+                'fpcmEditorAutosavePrefix'      => 'fpcm-editor-as-'.$this->session->getUserId().'draft',
+                'fpcmEditorInitFunction'        => 'initCodeMirror'
             );
         }
 

@@ -10,7 +10,7 @@
     /**
      * Module-Objekt für Module-Liste
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class listitem extends \fpcm\model\abstracts\module {
@@ -52,7 +52,7 @@
          * @return bool
          */
         final public function update() {
-            $this->dbcon->update($this->table, array('version'), array($this->versionRemote, $this->modkey), 'modkey '.$this->dbcon->dbLike().' ?');
+            $this->dbcon->update($this->table, array('version'), array($this->versionRemote, $this->modkey), 'modkey = ?');
         }
         
         /**

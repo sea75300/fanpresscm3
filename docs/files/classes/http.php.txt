@@ -13,7 +13,7 @@
     /**
      * HTTP handler class
      * 
-     * @package fpcm.classes.http
+     * @package fpcm\classes\http
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class http {

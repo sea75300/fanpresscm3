@@ -14,7 +14,7 @@
     /**
      * Logs
      * 
-     * @package fpcm.classes.logs
+     * @package fpcm\classes\logs
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class logs {

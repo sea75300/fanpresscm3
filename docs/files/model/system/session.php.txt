@@ -11,7 +11,7 @@
     /**
      * Session Objekt
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class session extends \fpcm\model\abstracts\model {
@@ -51,6 +51,13 @@
          * @var string
          */
         protected $ip;
+        
+        /**
+         * Kam Session durch externen Login via API zustande?
+         * @var bool
+         * @since FPCM 3.5
+         */
+        protected $external;
         
         /**
          * Existiert Session
@@ -99,6 +106,7 @@
                     if ($this->lastaction <= time() - 60) {
                         $this->lastaction  = time();
                         $this->update();
+                        $this->setCookie();
                     }
                 }               
             }
@@ -153,7 +161,16 @@
         }
 
         /**
-         * Session-ID-String setzten
+         * Flag auslesen, ob externe Session
+         * @return int
+         * @since FPCM 3.5
+         */
+        public function getExternal() {
+            return (int) $this->external;
+        }
+
+        /**
+         * Session-ID-String setzen
          * @param string $sessionid
          */
         public function setSessionId($sessionid) {
@@ -161,7 +178,7 @@
         }
 
         /**
-         * Benutzer-ID setzten
+         * Benutzer-ID setzen
          * @param int $userid
          */
         public function setUserId($userid) {
@@ -169,7 +186,7 @@
         }
 
         /**
-         * Login-Zeit setzten
+         * Login-Zeit setzen
          * @param int $login
          */
         public function setLogin($login) {
@@ -177,7 +194,7 @@
         }
 
         /**
-         * Logout-Zeit setzten
+         * Logout-Zeit setzen
          * @param int $logout
          */
         public function setLogout($logout) {
@@ -185,7 +202,7 @@
         }
 
         /**
-         * Zeitpunkt letzter Aktion setzten
+         * Zeitpunkt letzter Aktion setzen
          * @param int $lastaction
          */
         public function setLastaction($lastaction) {
@@ -193,7 +210,7 @@
         }
 
         /**
-         * IP-Adresse setzten
+         * IP-Adresse setzen
          * @param string $ip
          */
         public function setIp($ip) {
@@ -201,7 +218,15 @@
         }
 
         /**
-         * Session-Status setzten
+         * Flag externer Login via API setzen
+         * @param bool $external
+         */
+        public function setExternal($external) {
+            $this->external = (int) $external;
+        }
+
+        /**
+         * Session-Status setzen
          * @param bool $sessionExists
          */
         public function setSessionExists($sessionExists) {
@@ -231,7 +256,7 @@
         public function save() {
             $params = $this->getPreparedSaveParams();
             $params = $this->events->runEvent('sessionCreate', $params);
-            
+
             $value_params = $this->getPreparedValueParams();
 
             $return = false;
@@ -275,9 +300,10 @@
          * Prüft ob Kombination Benutzer und Passwort existiert
          * @param string $username
          * @param string $password
+         * @param bool $external
          * @return bool Ja, wenn Benutzer + Passwort vorhanden ist
          */
-        public function checkUser($username, $password) {
+        public function checkUser($username, $password, $external = false) {
 
             $userList = new \fpcm\model\users\userList();            
 
@@ -303,6 +329,7 @@
                 $this->userid        = $userid;
                 $this->sessionid     = \fpcm\classes\security::createSessionId();
                 $this->ip            = \fpcm\classes\http::getIp();
+                $this->external      = (int) $external;
                 $this->sessionExists = true;
                 
                 return true;
@@ -319,8 +346,10 @@
          * @return bool
          */
         public function setCookie() {       
-            $expire = $this->getLogin() + $this->config->system_session_length;
-            return setcookie(\fpcm\classes\security::getSessionCookieName(),$this->sessionid,$expire,'/','',false,true);
+            $expire = $this->getLastaction() + $this->config->system_session_length;
+            
+            $crypt = new \fpcm\classes\crypt();
+            return setcookie(\fpcm\classes\security::getSessionCookieName(), '_$$'.$crypt->encrypt($this->sessionid), $expire, '/', '', false, true);
         }
                 
         /**
@@ -329,7 +358,7 @@
          */
         public function deleteCookie() {       
             $expire = $this->getLogin() - ($this->config->system_session_length * 5);
-            return setcookie(\fpcm\classes\security::getSessionCookieName(),0,$expire,'/','',false,true);
+            return setcookie(\fpcm\classes\security::getSessionCookieName(), 0, $expire, '/', '', false, true);
         }
         
         /**

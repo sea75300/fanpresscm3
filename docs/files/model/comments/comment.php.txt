@@ -11,7 +11,7 @@
     /**
      * Kommentar-Objekt
      * 
-     * @package fpcm.model.comments
+     * @package fpcm\model\comments
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */    
     class comment extends \fpcm\model\abstracts\model {
@@ -405,6 +405,14 @@
          * @since FPCM 3.2.0
          */
         private function removeBannedTexts() {
+
+            if ($this->wordbanList->checkCommentApproval($this->name) ||
+                $this->wordbanList->checkCommentApproval($this->email) ||
+                $this->wordbanList->checkCommentApproval($this->website) ||
+                $this->wordbanList->checkCommentApproval($this->text)) {
+                $this->setApproved(0);
+            }
+
             $this->name  = $this->wordbanList->replaceItems($this->name);
             $this->email  = $this->wordbanList->replaceItems($this->email);
             $this->website  = $this->wordbanList->replaceItems($this->website);

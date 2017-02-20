@@ -14,7 +14,7 @@
     /**
      * Default captcha
      * 
-     * @package fpcm.model.captchas
+     * @package fpcm\model\captchas
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class fpcmDefault extends \fpcm\model\abstracts\spamCaptcha {

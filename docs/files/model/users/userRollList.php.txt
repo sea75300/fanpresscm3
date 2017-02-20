@@ -12,7 +12,7 @@
     /**
      * Benutzerrollen-Liste Objekt
      * 
-     * @package fpcm.model.user
+     * @package fpcm\model\user
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class userRollList extends \fpcm\model\abstracts\tablelist {

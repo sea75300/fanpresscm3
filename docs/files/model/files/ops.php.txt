@@ -10,7 +10,7 @@
     /**
      * Filesystem operations object
      * 
-     * @package fpcm.model.files
+     * @package fpcm\model\files
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class ops {

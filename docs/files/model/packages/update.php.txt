@@ -10,7 +10,7 @@
     /**
      * Update package objekt
      * 
-     * @package fpcm.model.packages
+     * @package fpcm\model\packages
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.1
      */

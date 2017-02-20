@@ -10,7 +10,7 @@
     /**
      * System Update Finalizer Objekt
      * 
-     * @package fpcm.model.updater
+     * @package fpcm\model\updater
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class finalizer extends \fpcm\model\abstracts\model {
@@ -42,6 +42,9 @@
                    $this->updateVersion() &&
                    $this->optimizeTables();
             
+            $crypt = new \fpcm\classes\crypt();
+            $res = true && $crypt->initCrypt();
+
             $this->config->setMaintenanceMode(false);
 
             return $res;
@@ -142,7 +145,7 @@
             
             $res = true;
 
-            $newconf = array();
+            $newconf = [];
             if (!is_array($this->config->twitter_data)) {
                 $newconf['twitter_data'] = array(
                     'consumer_key'    => '',
@@ -252,6 +255,10 @@
             if ($this->checkVersion('3.4.0-b6', '=')) {
                 $this->dbcon->alter(\fpcm\classes\database::tableFiles, 'DROP', 'subfolder', '', false);
             }
+            
+            if ($this->checkVersion('3.5.0')) {
+                $this->dbcon->update(\fpcm\classes\database::tableTexts, array('replacetxt'), array(1), 'replacetxt = 0');
+            }
 
             return $res;
         }
@@ -285,9 +292,20 @@
          */
         private function checkFilesystem() {
 
-            if (file_exists(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php')) {
-                unlink(\fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php');
+            $files = [
+                \fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php',
+                \fpcm\classes\baseconfig::$viewsDir.'articles/lists/cronjobs.php',
+                \fpcm\classes\baseconfig::$jsPath.'editor_comments.js'
+            ];
+
+            foreach ($files as $file) {
+
+                if (!file_exists($file)) continue;
+                unlink($file);
+
             }
+            
+            \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js')));
             
             return true;
         }
@@ -303,7 +321,7 @@
                 return true;
             }
 
-            $tables   = array();
+            $tables   = [];
             $tables[] = \fpcm\classes\database::tableArticles;
             $tables[] = \fpcm\classes\database::tableAuthors;
             $tables[] = \fpcm\classes\database::tableCategories;
@@ -318,6 +336,7 @@
             $tables[] = \fpcm\classes\database::tableSessions;
             $tables[] = \fpcm\classes\database::tableSmileys;
             $tables[] = \fpcm\classes\database::tableTexts;
+            $tables[] = \fpcm\classes\database::tableRevisions;
             
             $tables = $this->events->runEvent('updaterAddOptimizeTables', $tables);
             foreach ($tables as $table) {

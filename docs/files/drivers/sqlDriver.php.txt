@@ -12,7 +12,7 @@
     /**
      * Database driver base class
      * 
-     * @package fpcm.drivers.database
+     * @package fpcm\drivers\sqlDriver
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @since FPCM 3.2
      */ 
@@ -99,7 +99,7 @@
         public function getYaTDLDataTypes();
 
         /**
-         * Query-String um Index auf Tabellenspalte zu setzten
+         * Query-String um Index auf Tabellenspalte zu setzen
          * @param string $table
          * @param string $indexName
          * @param string $field

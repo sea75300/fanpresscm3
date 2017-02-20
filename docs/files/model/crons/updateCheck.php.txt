@@ -11,7 +11,7 @@
     /**
      * Cronjob update check
      * 
-     * @package fpcm.model.crons
+     * @package fpcm\model\crons
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class updateCheck extends \fpcm\model\abstracts\cron {

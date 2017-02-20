@@ -14,7 +14,7 @@
     /**
      * Database abstraction 
      * 
-     * @package fpcm.classes.database
+     * @package fpcm\classes\database
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class database {
@@ -745,7 +745,7 @@
             $structure = $this->getTableStructure($table);
 
             $lenghtTypes = array('varchar');
-            if ($isPg) {
+            if (!$isPg) {
                 $lenghtTypes += array('int', 'bigint', 'bool');
             }
 
@@ -761,7 +761,7 @@
                 }
 
                 $type   = $typeMap[$attr['type']];
-                if (in_array($attr['type'], $lenghtTypes)) {
+                if ($attr['length'] && in_array($attr['type'], $lenghtTypes)) {
                     $length = (int) $attr['length'];
                     $type .= "({$length})";
                 }

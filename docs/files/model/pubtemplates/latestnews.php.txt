@@ -11,7 +11,7 @@
     /**
      * Latest News Template Objekt
      * 
-     * @package fpcm.model.system
+     * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     final class latestnews extends template {
@@ -27,12 +27,18 @@
             '{{permaLink}}:{{/permaLink}}'      => '',
             '{{commentLink}}:{{/commentLink}}'  => ''
         );      
-        
+
         /**
          * Konstruktor
+         * @param string $fileName
          */
-        public function __construct() {
-            parent::__construct('latest.html', \fpcm\classes\baseconfig::$stylesDir.'common/');
+        public function __construct($fileName = null) {
+            
+            if (!$fileName) {
+                $fileName = 'latest';
+            }
+
+            parent::__construct($fileName.'.html', \fpcm\classes\baseconfig::$stylesDir.'common/');
         }
         
         /**
