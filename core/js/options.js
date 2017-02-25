@@ -24,7 +24,8 @@ fpcm.options = {
 
                 jQuery('#btnConfigSave').show();
                 jQuery('#fpcmsyschecksubmitstats').hide();
-            }
+            },
+            addTabScroll: true
         });
         
         if (window.syscheck) {

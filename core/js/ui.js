@@ -179,9 +179,23 @@ fpcm.ui = {
     },
     
     tabs: function(elemClassId, params) {
-
+    
         if (params === undefined) params = {};
-        jQuery(elemClassId).tabs(params);
+        var el = jQuery(elemClassId);
+        
+        el.tabs(params);
+        
+        if (params.addTabScroll) {
+
+            el.find('ul.ui-tabs-nav').wrap('<div class="fpcm-tabs-scroll"></div>');
+            fpcm.ui.initTabsScroll(elemClassId);
+            
+            jQuery(window).resize(function() {
+                fpcm.ui.initTabsScroll(elemClassId, true);
+            });
+
+        }
+
     },
 
     spinner: function(elemClassId, params) {
@@ -520,6 +534,34 @@ fpcm.ui = {
         jQuery("#usermetasystem_dtmask").autocomplete({
             source: fpcmDtMasks
         });
+
+    },
+    
+    initTabsScroll: function(elemClassId, isResize) {
+        
+        var el = jQuery(elemClassId);        
+        var tabNav       = el.find('ul.ui-tabs-nav');
+        var tabsMaxWidth = el.find('div.fpcm-tabs-scroll').width();
+        
+        var liElements       = el.find('li.ui-tabs-tab');
+        var tabsCurrentWidth = 0;
+
+        jQuery.each(liElements, function(key, item) {
+            tabsCurrentWidth += jQuery(item).width() + 5;
+        });
+
+        if (tabNav.attr('data-fpcmtabsscrollinit') && !isResize) {
+            return true;
+        }
+
+        tabNav.attr('data-fpcmtabsscrollinit', 1);
+        if (tabsCurrentWidth <= tabsMaxWidth) {
+            tabNav.width('auto');
+            return false;
+        }
+
+        tabNav.width(parseInt(tabsCurrentWidth));
+        return true;
 
     }
     

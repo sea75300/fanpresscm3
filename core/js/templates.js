@@ -10,6 +10,11 @@ fpcm.templates = {
     init: function() {
         this.initCodeMirror('templatearticle');
         this.initTemplatePreview();
+
+        fpcm.ui.tabs('.fpcm-tabs-general', {
+            addTabScroll: true
+        });
+
         fpcm.ui.resize();
     },
 

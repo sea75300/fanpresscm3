@@ -428,6 +428,15 @@ table.fpcm-ui-options div.fpcm-ui-input-wrapper {
     width: 195px;
 }
 
+.fpcm-tabs-general {
+    overflow: hidden;
+}
+
+.fpcm-tabs-scroll {
+    overflow: auto;
+    padding-bottom: 0.2em;
+}
+
 .ui-tabs-vertical {
     width: 99.5%;
 }

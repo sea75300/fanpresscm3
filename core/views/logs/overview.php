@@ -5,7 +5,7 @@
     </h1>
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/logs">
         
-        <div class="fpcm-tabs-general">
+        <div class="fpcm-tabs-general" id="fpcm-tabs-logs">
             <ul>
                 <li class="fpcm-logs-reload"><a href="<?php print $reloadBaseLink; ?>0"><?php $FPCM_LANG->write('HL_LOGS_SESSIONS'); ?></a></li>
                 <li><a href="<?php print $reloadBaseLink; ?>1"><?php $FPCM_LANG->write('HL_LOGS_SYSTEM'); ?></a></li>

@@ -47,7 +47,7 @@ fpcm.logs = {
             return false;
         });
 
-        fpcm.ui.tabs('.fpcm-tabs-general', {
+        fpcm.ui.tabs('#fpcm-tabs-logs', {
            
             beforeLoad: function(event, ui) {
 
@@ -64,7 +64,8 @@ fpcm.logs = {
             beforeActivate: function( event, ui ) {
                 fpcm.logs.oldTabItem     = ui.oldTab;
                 fpcm.logs.currentTabItem = ui.newTab;
-            }
+            },
+            addTabScroll: true
             
         });
 
