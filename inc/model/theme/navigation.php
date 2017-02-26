@@ -1,18 +1,14 @@
 <?php
-    /**
-     * ACP Menu Objekt
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2016, Stefan Seehafer
-     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     */
+
     namespace fpcm\model\theme;
 
     /**
-     * ACP Menu Objekt
+     * ACP navigation Objekt
      * 
+     * @author Stefan Seehafer aka imagine <sea75300@yahoo.de>
+     * @copyright (c) 2011-2017, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @package fpcm\model\theme
-     * @author Stefan Seehafer <sea75300@yahoo.de>
      */
     class navigation extends \fpcm\model\abstracts\staticModel {
 

@@ -55,7 +55,7 @@
          * @return string
          * @since FPCM 3.4
          */
-        public static function getControllerLink($controller = '', array $params = array()) {
+        public static function getControllerLink($controller = '', array $params = []) {
 
             $redirectString = "index.php?module={$controller}";
 
@@ -82,7 +82,7 @@
                 'pageCount'         => 1,
                 'backBtn'           => false,
                 'nextBtn'           => false,
-                'pageSelectOptions' => array(),
+                'pageSelectOptions' => [],
                 'listActionLimit'   => $currentPage,
             );
 
@@ -127,6 +127,26 @@
          */
         public static function getPageOffset($page, $pageLimit) {
             return ($page ? ($page - 1) * $pageLimit : 0);
+        }
+        
+        /**
+         * String zum Setzen des aktuell aktiven Modules in Navigation
+         * @return string
+         * @since FPCM 3.5
+         */
+        public static function getNavigationActiveCheckStr() {
+
+            $data = [];
+
+            $mode   = \fpcm\classes\http::getOnly('mode');
+            $key    = \fpcm\classes\http::getOnly('key');
+            
+            $data[] = \fpcm\classes\http::getOnly('module');
+            $data[] = ($mode ? '&mode='.$mode : '');
+            $data[] = ($key ? '&key='.$key : '');
+
+            return implode('', $data);
+            
         }
 
     }
