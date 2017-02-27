@@ -16,8 +16,13 @@
     class navigationSubmenuModulesAdd extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
-            \fpcm\modules\nkorg\example\model\logfile::logParams($params);
-            return $params;
+
+            return \fpcm\model\theme\navigationItem::createItemFromArray([
+                'url'               => 'modules/config&key='.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__),
+                'permission'        => array('system' => 'options'),
+                'description'       => $this->lang->translate('FPCM_EXAMPLE_HEADLINE')
+            ]);
+
         }
 
     }

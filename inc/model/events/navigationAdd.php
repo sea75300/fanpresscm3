@@ -51,6 +51,10 @@
                 if (!$this->is_a($module)) continue;
                 
                 $mdata = $module->run($mdata);
+                if (is_object($mdata) && is_a($mdata, '\\fpcm\\model\\theme\\navigationItem')) {
+                    $data[] = $mdata;
+                    $mdata = $data;
+                }
             }
             
             if (!$mdata) return $data;

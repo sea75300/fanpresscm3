@@ -342,7 +342,6 @@
                     'description'       => $this->language->translate('HL_MODULES_MNG'),                    
                     'class'             => '',
                     'id'                => '',
-                    'spacer'            => true,
                     'icon'              => 'fa fa-plug fa-fw'
                 ])
             );
