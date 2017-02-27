@@ -2,23 +2,24 @@
 <div class="fpcm-navigation-wrapper">
     <div class="fpcm-navigation">
         <ul id="fpcm-navigation-ul" class="fpcm-menu">
-    <?php foreach ($FPCM_NAVIGATION as $navigationGroup) : ?>            
+    <?php foreach ($FPCM_NAVIGATION as $navigationGroup) : ?>
         <?php foreach ($navigationGroup as $groupName => $navigationItem) : ?>     
-            <li <?php if ($navigationItem['id']) : ?>id="item<?php print $navigationItem['id']; ?>"<?php endif; ?> class="fpcm-menu-level1 fpcm-menu-level1-show fpcm-ui-center <?php if (substr($navigationItem['url'], 0, strlen($FPCM_NAVIGATION_ACTIVE)) === $FPCM_NAVIGATION_ACTIVE) : ?>fpcm-menu-active<?php endif; ?>">
-                <a href="<?php print $FPCM_BASEMODULELINK.$navigationItem['url']; ?>" title="<?php $navigationItem['description']; ?>" class="<?php print $navigationItem['class']; ?> fpcm-loader" <?php if ($navigationItem['id']) : ?>id="<?php print $navigationItem['id']; ?>"<?php endif; ?>>
-                    <span class="fpcm-ui-center fpcm-navicon <?php print $navigationItem['icon']; ?>"></span>
-                    <span class="fpcm-ui-center fpcm-navigation-descr"><?php print $navigationItem['description']; ?></span>
+            <li id="item<?php print $navigationItem->getId(); ?>" class="fpcm-menu-level1 fpcm-menu-level1-show fpcm-ui-center <?php if ($navigationItem->isActive()) : ?>fpcm-menu-active<?php endif; ?>">
+                <a href="<?php print $navigationItem->getFullUrl(); ?>" class="<?php print $navigationItem->getClass(); ?> fpcm-loader" id="<?php print $navigationItem->getId(); ?>">
+                    <span class="fpcm-ui-center fpcm-navicon <?php print $navigationItem->getIcon(); ?>"></span>
+                    <span class="fpcm-ui-center fpcm-navigation-descr"><?php print $navigationItem->getDescription(); ?></span>
                 </a>
-                <?php if (isset($navigationItem['submenu']) && count($navigationItem['submenu'])) : ?>
+                <?php if ($navigationItem->hasSubmenu()) : ?>
                     <ul class="fpcm-submenu">
-                        <?php foreach ($navigationItem['submenu'] as $submenuItem) : ?>
-                            <li <?php if ($submenuItem['id']) : ?>id="submenu-item<?php print $submenuItem['id']; ?>"<?php endif; ?> class="fpcm-menu-level2 <?php if (substr($submenuItem['url'], 0, strlen($FPCM_NAVIGATION_ACTIVE)) === $FPCM_NAVIGATION_ACTIVE) : ?>fpcm-menu-active<?php endif; ?>">
-                                <a href="<?php print $FPCM_BASEMODULELINK.$submenuItem['url']; ?>" title="<?php $submenuItem['description']; ?>" class="<?php print $submenuItem['class']; ?> fpcm-loader" <?php if ($submenuItem['id']) : ?>id="<?php print $submenuItem['id']; ?>"<?php endif; ?>>
-                                    <?php if (isset($submenuItem['icon'])) : ?><span class="fpcm-navicon <?php print $submenuItem['icon']; ?>"></span><?php endif; ?>
-                                    <span class="fpcm-navigation-descr"><?php print $submenuItem['description']; ?></span>
+                        <?php 
+                        foreach ($navigationItem->getSubmenu() as $submenuItem) : ?>
+                        <li id="submenu-item<?php print $submenuItem->getId(); ?>" class="fpcm-menu-level2 <?php if ($submenuItem->isActive()) : ?>fpcm-menu-active<?php endif; ?>">
+                                <a href="<?php print $submenuItem->getFullUrl(); ?>" class="<?php print $submenuItem->getClass(); ?> fpcm-loader" id="<?php print $submenuItem->getId(); ?>">
+                                    <?php if ($submenuItem->getIcon()) : ?><span class="fpcm-navicon <?php print $submenuItem->getIcon(); ?>"></span><?php endif; ?>
+                                    <span class="fpcm-navigation-descr"><?php print $submenuItem->getDescription(); ?></span>
                                 </a>
                             </li>
-                            <?php if (isset($submenuItem['spacer']) && $submenuItem['spacer']) :?>
+                            <?php if ($submenuItem->hasSpacer()) :?>
                                 <div class="fpcm-admin-nav-modmgr-link"></div>
                             <?php endif; ?>
                         <?php endforeach; ?>

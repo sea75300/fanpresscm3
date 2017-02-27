@@ -20,10 +20,10 @@
         protected $description  = '';
 
         /**
-         * Ziellink
+         * Zielurl
          * @var string
          */
-        protected $link         = '';
+        protected $url         = '';
 
         /**
          * CSS-Klassen für Icon
@@ -62,10 +62,10 @@
         protected $submenu      = [];
 
         /**
-         * Status, ob Zeil gerade aktiv ist
+         * Status, ob auf Element Platzhalter folgt
          * @var bool
          */
-        protected $active      = false;
+        protected $spacer      = false;
 
         /**
          * aktuell ausgewähltes Modul
@@ -78,7 +78,9 @@
          */
         public function __construct() {
             
-            parent::__construct();
+            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
+
             $this->id            = uniqid('fpcm-nav-item');
             $this->currentModule = \fpcm\classes\tools::getNavigationActiveCheckStr();
             
@@ -93,11 +95,19 @@
         }
 
         /**
-         * Ziellink zurückgeben
+         * Zielurl zurückgeben
          * @return string
          */
-        public function getLink() {
-            return $this->link;
+        public function getUrl() {
+            return $this->url;
+        }
+
+        /**
+         * Zielurl zurückgeben
+         * @return string
+         */
+        public function getFullUrl() {
+            return \fpcm\classes\baseconfig::$rootPath.'index.php?module='.$this->url;
         }
 
         /**
@@ -157,11 +167,11 @@
         }
 
         /**
-         * Ziellink setzen
-         * @param string $link
+         * Zielurl setzen
+         * @param string $url
          */
-        public function setLink($link) {
-            $this->link = $link;
+        public function setUrl($url) {
+            $this->url = $url;
         }
 
         /**
@@ -213,11 +223,75 @@
         }
 
         /**
+         * Status, dass Spacer nach Element angezeigt werden soll
+         * @param bool $spacer
+         */
+        public function setSpacer($spacer) {
+            $this->spacer = (bool) $spacer;
+        }
+
+        /**
+         * Status, ob Spacer nach Element angezeigt werden soll
+         * @return bool
+         */
+        public function hasSpacer() {
+            return (bool) $this->spacer;
+        }
+
+        /**
+         * Status, Untermenü-Einträge existieren
+         * @return bool
+         */
+        public function hasSubmenu() {
+            return count($this->submenu) ? true : false;
+        }
+
+        /**
+         * Status, Berechtigungen geprüft werden müssen
+         * @return bool
+         */
+        public function hasPermission() {
+            return count($this->permission) ? true : false;
+        }
+
+        /**
          * Status zurückgeben, ob Ziel aktiv ist
          * @return bool
          */
         public function isActive() {
-            return ( substr($this->link, 0, strlen($this->currentModule)) === $this->currentModule ? true : false );
+            return ( substr($this->url, 0, strlen($this->currentModule)) === $this->currentModule ? true : false );
+        }
+
+        /**
+         * navigationItem aus Array erzeugen
+         * @param array $data
+         * @return \fpcm\model\theme\navigationItem
+         */
+        public static function createItemFromArray(array $data) {
+            
+            $item = new navigationItem();
+            $item->setUrl(isset($data['url']) ? $data['url'] : '#');
+            $item->setDescription(isset($data['description']) ? $data['description'] : '');
+            $item->setIcon(isset($data['icon']) ? $data['icon'] : 'fa-square');
+            $item->setId(isset($data['id']) ? $data['id'] : '');
+            $item->setClass(isset($data['class']) ? $data['class'] : '');
+            $item->setPermission(isset($data['permission']) && is_array($data['permission']) ? $data['permission'] : []);
+            $item->setSubmenu(isset($data['submenu']) && is_array($data['submenu']) ? $data['submenu'] : []);
+            
+            return $item;
+        }
+
+        public function __sleep() {
+            $this->config     = null;
+            $this->language   = null;
+            
+            return ['description', 'url', 'icon', 'class', 'id', 'parent', 'permission', 'submenu', 'spacer'];
+        }
+
+        public function __wakeup() {
+            $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language      = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->currentModule = \fpcm\classes\tools::getNavigationActiveCheckStr();
         }
 
     }
