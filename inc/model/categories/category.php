@@ -123,7 +123,8 @@
                 $return = true;
             }
             
-            $this->cache->cleanup(); 
+            $this->id = $this->dbcon->getLastInsertId();
+            $this->cache->cleanup();
             
             return $return;              
         }
