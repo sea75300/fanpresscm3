@@ -65,6 +65,9 @@ fpcm.logs = {
                 fpcm.logs.oldTabItem     = ui.oldTab;
                 fpcm.logs.currentTabItem = ui.newTab;
             },
+            load: function( event, ui ) {
+                fpcm.ui.accordion('.fpcm-accordion-pkgmanager');
+            },
             addTabScroll: true
             
         });
