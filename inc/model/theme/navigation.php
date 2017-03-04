@@ -209,7 +209,7 @@
                     'description'       => $this->language->translate('HL_ARTICLE_EDIT_ARCHIVE'),
                     'class'             => '',
                     'id'                => '',
-                    'icon'              => 'fa fa-book fa-fw'
+                    'icon'              => 'fa fa-archive fa-fw'
                 ])                
             );
             
