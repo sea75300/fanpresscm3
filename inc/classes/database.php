@@ -744,9 +744,14 @@
 
             $structure = $this->getTableStructure($table);
 
-            $lenghtTypes = array('varchar');
+            $lenghtTypes = array('varchar', 'char');
             if (!$isPg) {
-                $lenghtTypes += array('int', 'bigint', 'bool');
+                $lenghtTypes[] = 'int';
+                $lenghtTypes[] = 'bigint';
+                $lenghtTypes[] = 'bool';
+                $lenghtTypes[] = 'smallint';
+                $lenghtTypes[] = 'float';
+                $lenghtTypes[] = 'double';
             }
 
             foreach ($data['cols'] as $col => $attr) {

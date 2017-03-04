@@ -65,13 +65,13 @@
          * Array mit SQL-Strings
          * @var array
          */
-        protected $sqlArray = array();
+        protected $sqlArray = [];
         
         /**
          * Feldtypen aus \fpcm\classes\database::getYaTDLDataTypes()
          * @var array
          */
-        protected $colTypes = array();
+        protected $colTypes = [];
         
         /**
          * fertige SQL-Query
@@ -93,6 +93,13 @@
         protected $tablePrefix = '';
 
         /**
+         * Datentypen mit Längen-Angabe
+         * @var array
+         * @since FPCM 3.5
+         */
+        protected $lenghtTypes = [];
+
+        /**
          * Konstruktor
          * @param string $filePath
          */
@@ -104,6 +111,16 @@
 
             include_once \fpcm\classes\loader::libGetFilePath('spyc', 'Spyc.php');
             $this->yamlArray = \Spyc::YAMLLoad($filePath);
+            
+            $this->lenghtTypes = ['varchar', 'char'];
+            if (!$this->isPg) {
+                $this->lenghtTypes[] = 'int';
+                $this->lenghtTypes[] = 'bigint';
+                $this->lenghtTypes[] = 'bool';
+                $this->lenghtTypes[] = 'smallint';
+                $this->lenghtTypes[] = 'float';
+                $this->lenghtTypes[] = 'double';
+            }
 
         }
 
@@ -122,7 +139,7 @@
          */
         public function parse() {
             
-            $this->sqlArray  = array();
+            $this->sqlArray  = [];
             $this->sqlString = '';
 
             if (!$this->checkYamlArray()) {
@@ -216,11 +233,6 @@
          */
         private function createColRows() {
 
-            $lenghtTypes = array('varchar');
-            if (!$this->isPg) {
-                $lenghtTypes += array('int', 'bigint', 'bool');
-            }
-            
             foreach ($this->yamlArray['cols'] as $colName => $col) {
                 
                 if (!$this->checkYamlColRow($colName, $col)) {
@@ -231,7 +243,7 @@
                 $sql = $this->isPg ? "{$colName}" : "`{$colName}`";
                 
                 $sql .= " {$this->colTypes[$col['type']]}";
-                $sql .= ($col['length'] && in_array($col['type'], $lenghtTypes))
+                $sql .= ($col['length'] && in_array($col['type'], $this->lenghtTypes))
                       ? "({$col['length']}) " 
                       : " ";
 
@@ -355,10 +367,10 @@
            
             $textTypes = array('varchar', 'text', 'mtext', 'bin');
 
-            $values = array();
+            $values = [];
             foreach ($this->yamlArray['defaultvalues']['rows'] as $row) {
 
-                $rowVal = array();
+                $rowVal = [];
                 foreach ($row as $col => $colval) {
                     $rowVal[] = (in_array($this->yamlArray['cols'][$col]['type'], $textTypes) ? "'{$colval}'" : $colval);                    
                 }

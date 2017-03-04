@@ -1,16 +1,16 @@
 <?php
 
-    $installfile   = 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress3.5.0-b1_full.zip';
+    $installfile   = 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress3.5.0-b2_full.zip';
     
-    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.5.0-b1.zip')
-               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.5.0-b1.zip').'_'
-                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.5.0-b1.zip').'$sig$'
+    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.5.0-b2.zip')
+               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.5.0-b2.zip').'_'
+                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.5.0-b2.zip').'$sig$'
                : '');
 
     $versions = array(
         'default' => array(
-            'newversion'    => '3.5.0-b1',
-            'file'      => 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.5.0-b1.zip',
+            'newversion'    => '3.5.0-b2',
+            'file'      => 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.5.0-b2.zip',
             'force'     => 0,
             'message'   => 'Next minor release of FanPress CM 3.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-5-0-veroeffentlicht/',
