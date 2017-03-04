@@ -67,6 +67,10 @@
                 return false;
             }
 
+            if (!function_exists('baseconfig::getCryptConfig')) {
+                return false;
+            }
+            
             $conf = baseconfig::getCryptConfig();
             if (!is_array($conf) || !count($conf)) {
                 $this->hasConfig = false;
