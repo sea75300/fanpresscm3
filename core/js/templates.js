@@ -16,6 +16,45 @@ fpcm.templates = {
         });
 
         fpcm.ui.resize();
+        
+        jQuery('.fpcm-articletemplates-edit').click(function() {
+
+            fpcm.ui.showLoader();
+
+            var frameHeight = parseInt(fpcm.ui.getDialogSizes().height);
+
+            fpcm.ui.dialog({
+                title     : fpcm.ui.translate('articleTplEditHeadline'),
+                content   : '<iframe id="fpcm-articletemplates-editor-frame" src="' + jQuery(this).attr('href') + '" class="fpcm-full-width"></iframe>',
+                dlHeight  : frameHeight,
+                resizable : true,
+                dlButtons : [
+                    {
+                        text: fpcm.ui.translate('saveArticleTemplate'),
+                        icon: "ui-icon-disk",                        
+                        click: function() {
+                            jQuery(this).children('#fpcm-articletemplates-editor-frame').contents().find('#btnSaveTemplate').trigger('click');
+                            fpcm.ui.showLoader(false);
+                        }
+                    },
+                    {
+                        text: fpcm.ui.translate('close'),
+                        icon: "ui-icon-closethick",                    
+                        click: function() {
+                            jQuery(this).dialog('close');
+                            fpcm.ui.showLoader(false);
+                        }
+                    }
+                ],
+                dlOnClose: function() {
+                    jQuery(this).remove();
+                }
+            });
+            
+            return false;
+            
+        });
+        
     },
 
     enabledEditors: {

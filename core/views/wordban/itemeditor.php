@@ -22,3 +22,5 @@
         <?php \fpcm\model\view\helper::saveButton('wbitemSave'); ?>
     </div>
 </div>
+
+<?php \fpcm\model\view\helper::pageTokenField(); ?>

@@ -16,7 +16,13 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     abstract class file {
-        
+
+        /**
+         * Flag für $content-Parameter, um gespeicherten Inhalt zu laden
+         * @since FPCM 3.5
+         */
+        const FPCM_FILE_LOADCONTENT = '###fpcmLdStg###';
+
         /**
          * Tabellen-Name
          * @var string
@@ -132,7 +138,7 @@
             $this->filename = $filename;
             $this->filepath = $filepath;
             $this->fullpath = $filepath.$filename;
-            $this->content  = $content;
+            $this->content  = ($content === self::FPCM_FILE_LOADCONTENT ? file_get_contents($this->fullpath) : $content);
             
             if ($this->exists()){
                 $ext = pathinfo($this->fullpath, PATHINFO_EXTENSION);
@@ -325,5 +331,20 @@
          */
         public function moveUploadedFile($uploadedPath) {
             return move_uploaded_file($uploadedPath, $this->fullpath);
+        }
+
+        /**
+         * Lädt Inhalt von gespeicherter Datei
+         * @return boolean
+         * @since FPCM 3.5
+         */
+        public function loadContent() {
+            $this->content = file_get_contents($this->fullpath);
+            
+            if (!trim($this->content)) {
+                return false;
+            }
+
+            return true;
         }
     }

@@ -191,7 +191,11 @@
             $this->view->assign('allowedTags', htmlentities($this->articleTemplate->getAllowedTags(', ')));
 
             $this->view->addJsVars(array('fpcmTemplateId' => 1, 'fpcmJqUploadInit' => 0));
-            $this->view->addJsLangVars(array('previewHeadline' => $this->lang->translate('HL_TEMPLATE_PREVIEW')));
+            $this->view->addJsLangVars([
+                'previewHeadline'        => $this->lang->translate('HL_TEMPLATE_PREVIEW'),
+                'articleTplEditHeadline' => $this->lang->translate('TEMPLATE_HL_DRAFTS_EDIT'),
+                'saveArticleTemplate'    => $this->lang->translate('GLOBAL_SAVE'),
+            ]);
             
             $tplfilelist = new \fpcm\model\files\templatefilelist();
             $this->view->assign('templateFiles', $tplfilelist->getFolderObjectList());

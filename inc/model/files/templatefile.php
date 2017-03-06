@@ -31,7 +31,6 @@
          */
         public function __construct($filename = '', $filepath = '', $content = '') {
             parent::__construct($filename, \fpcm\classes\baseconfig::$articleTemplatesDir.$filepath, $content);
-
         }
 
         /**
@@ -40,6 +39,34 @@
          */
         public function getFileUrl() {
             return \fpcm\classes\baseconfig::$rootPath.  ltrim(ops::removeBaseDir($this->fullpath), '/');
+        }
+
+        /**
+         * Liefert eine URL für Editor zurück
+         * @return string
+         * @since FPCM 3.5
+         */
+        public function getEditUrl() {
+            $crypt = new \fpcm\classes\crypt();
+            return \fpcm\classes\baseconfig::$rootPath.\fpcm\classes\tools::getControllerLink('system/templateedit', [
+                'file' => urlencode($crypt->encrypt($this->filename))
+            ]);
+        }
+        
+        /**
+         * Speichert Template in Dateisystem
+         * @return boolean
+         */
+        public function save() {
+
+            if (!$this->exists() || !$this->content) return false;
+
+            if (!file_put_contents($this->fullpath, $this->content)) {
+                trigger_error('Unable to update template '.$this->fullpath);
+                return false;
+            }
+            
+            return true;
         }
         
     }

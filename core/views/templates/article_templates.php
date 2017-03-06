@@ -1,4 +1,4 @@
-<table class="fpcm-ui-table fpcm-ui-backups">
+<table class="fpcm-ui-table fpcm-ui-articletemplates">
     <tr>
         <th class="fpcm-ui-editbutton-col"></th>
         <th><?php $FPCM_LANG->write('FILE_LIST_FILENAME'); ?></th>
@@ -10,7 +10,10 @@
     <tr class="fpcm-td-spacer"><td></td></tr>
     <?php foreach ($templateFiles as $templateFile) : ?>
     <tr>
-        <td class="fpcm-ui-editbutton-col fpcm-ui-center"><?php \fpcm\model\view\helper::linkButton($templateFile->getFileUrl(), 'GLOBAL_DOWNLOAD', '', 'fpcm-ui-button-blank fpcm-download-btn', '_blank'); ?></td>
+        <td class="fpcm-ui-editbutton-col fpcm-ui-center">
+            <?php \fpcm\model\view\helper::linkButton($templateFile->getFileUrl(), 'GLOBAL_DOWNLOAD', '', 'fpcm-ui-button-blank fpcm-download-btn', '_blank'); ?>
+            <?php fpcm\model\view\helper::editButton($templateFile->getEditUrl(), true, 'fpcm-articletemplates-edit'); ?>
+        </td>
         <td><?php print $templateFile->getFilename(); ?></td>
         <td><?php print \fpcm\classes\tools::calcSize($templateFile->getFilesize()); ?></td>
         <td class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('deltplfiles[]', 'fpcm-list-selectbox', base64_encode($templateFile->getFilename()), '', '', false); ?></td>

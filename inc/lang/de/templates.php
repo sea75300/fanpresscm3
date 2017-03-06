@@ -14,6 +14,7 @@
         'TEMPLATE_HL_LATESTNEWS'            => 'Latest News',
         'TEMPLATE_HL_TWEET'                 => 'Tweet',
         'TEMPLATE_HL_DRAFTS'                => 'Artikel-Vorlagen',
+        'TEMPLATE_HL_DRAFTS_EDIT'           => 'Artikel-Vorlage bearbeiten',
         
         'TEMPLATE_REPLACEMENTS'             => 'Verwendbare Platzhalter',
         'TEMPLATE_EDITOR'                   => 'Template-Editor',

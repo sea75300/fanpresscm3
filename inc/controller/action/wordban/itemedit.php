@@ -36,8 +36,13 @@
             if (!$this->item->exists()) {
                 $this->view->setNotFound('LOAD_FAILED_WORDBAN', 'wordban/list');
                 return true;
-            }            
-            
+            }
+
+            if ($this->buttonClicked('wbitemSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+
             if ($this->buttonClicked('wbitemSave')) {
                 $data = $this->getRequestVar('wbitem');
                 

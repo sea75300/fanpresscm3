@@ -9,6 +9,7 @@ system/permissions: action/system/permissions
 system/logs: action/system/logs
 system/templates: action/system/templates
 system/templatepreview: action/system/templatepreview
+system/templateedit: action/system/articleTemplateEditor
 system/help: action/system/help
 system/backups: action/system/backups
 system/crons: action/system/crons

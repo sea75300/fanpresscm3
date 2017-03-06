@@ -13,7 +13,8 @@
         'TEMPLATE_HL_COMMENTFORM'           => 'Comment Form',
         'TEMPLATE_HL_LATESTNEWS'            => 'Latest News',
         'TEMPLATE_HL_TWEET'                 => 'Tweet',
-        'TEMPLATE_HL_DRAFTS'                => 'Article Templates',
+        'TEMPLATE_HL_DRAFTS'                => 'Article Templates',        
+        'TEMPLATE_HL_DRAFTS_EDIT'           => 'Edit article template',
         
         'TEMPLATE_REPLACEMENTS'             => 'Available replacements',
         'TEMPLATE_EDITOR'                   => 'Template-Editor',

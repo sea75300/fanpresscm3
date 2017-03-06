@@ -767,7 +767,8 @@ table.fpcm-ui-table.fpcm-ui-articles tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-comments th.fpcm-ui-articlelist-open,
 table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-ui-articlelist-open,
 table.fpcm-ui-table.fpcm-ui-smileys tr td.fpcm-ui-smiley-listimg,
-table.fpcm-ui-table.fpcm-ui-editor-smileys td
+table.fpcm-ui-table.fpcm-ui-editor-smileys td,
+table.fpcm-ui-table.fpcm-ui-articletemplates td:first-child
 {
     width: 6em;
 }

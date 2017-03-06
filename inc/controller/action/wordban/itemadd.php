@@ -24,6 +24,11 @@
 
         public function request() {
 
+            if ($this->buttonClicked('wbitemSave') && !$this->checkPageToken()) {
+                $this->view->addErrorMessage('CSRF_INVALID');
+                return true;
+            }
+
             if ($this->buttonClicked('wbitemSave')) {
 
                 $data = $this->getRequestVar('wbitem');

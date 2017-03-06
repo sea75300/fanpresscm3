@@ -202,7 +202,14 @@
                     case 9 :
                         $filterString = (int) $filterString;
                     break;
-                }                
+                    case 10 :
+                        $crypt = new crypt();
+                        $filterString = $crypt->decrypt($filterString);
+                    break;
+                    case 11 :
+                        $filterString = urldecode($filterString);
+                    break;
+                }
             }            
             
             return $filterString;             
