@@ -148,7 +148,7 @@
                 'fpcmFmgrMode'     => $this->mode,
                 'fpcmEditorType'   => $this->config->system_editor,
                 'fpcmJqUploadInit' => $this->config->file_uploader_new,
-                'fpcmLoadAjax'     => ($this->fileList->getDatabaseFileCount() 1 ? 1 : 0),
+                'fpcmLoadAjax'     => ($this->fileList->getDatabaseFileCount() ? 1 : 0),
                 'fpcmCurrentModule'=> $this->getRequestVar('module')
             ]);
 
