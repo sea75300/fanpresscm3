@@ -281,6 +281,10 @@
             return $item;
         }
 
+        /**
+         * @ignore
+         * @return array
+         */
         public function __sleep() {
             $this->config     = null;
             $this->language   = null;
@@ -288,6 +292,10 @@
             return ['description', 'url', 'icon', 'class', 'id', 'parent', 'permission', 'submenu', 'spacer'];
         }
 
+        /**
+         * @ignore
+         * @return void
+         */
         public function __wakeup() {
             $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
             $this->language      = \fpcm\classes\baseconfig::$fpcmLanguage;

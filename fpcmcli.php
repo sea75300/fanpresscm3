@@ -31,6 +31,10 @@ class fpcmCLI {
 
     }
 
+    /**
+     * Befehlt an CLI ausführen
+     * @param array $params
+     */
     public function process($params) {
         
         $module   = ucfirst($params[0]);
@@ -47,7 +51,12 @@ class fpcmCLI {
         call_user_func(array($cli, $funcName));
         
     }
-    
+
+    /**
+     * Ausgabe der CLI
+     * @param string $str
+     * @param bool $die
+     */
     private function output($str, $die = false) {
         
         if ($die) {
