@@ -26,6 +26,12 @@
         private $events;
 
         /**
+         * Config-Objekt
+         * @var \fpcm\model\system\config
+         */
+        private $config;
+
+        /**
          * Empfänger
          * @var string
          */
@@ -71,6 +77,7 @@
             $this->html     = $html;
 
             $this->events   = baseconfig::$fpcmEvents;
+            $this->config   = baseconfig::$fpcmConfig;
         }
 
         /**
@@ -161,7 +168,7 @@
 
             $headers    = array();
             $headers[]  = 'FROM: '.$this->from;
-            $headers[]  = 'X-Mailer: FanPressCM3/PHP'.PHP_VERSION;
+            $headers[]  = 'X-Mailer: FanPressCM'.$this->config->system_version.'/PHP'.PHP_VERSION;
 
             if ($this->html) {
                 $headers[] = 'MIME-Version: 1.0';
@@ -189,6 +196,6 @@
             }
 
             return true;
-        }    
+        }
 
     }
