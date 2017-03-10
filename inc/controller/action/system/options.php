@@ -60,7 +60,7 @@
                 $newconfig = $this->getRequestVar();
 
                 if (!isset($newconfig['twitter_events'])) {
-                    $newconfig['twitter_events'] = array('create' => 0, 'update' => 0);
+                    $newconfig['twitter_events'] = ['create' => 0, 'update' => 0];
                 }
 
                 foreach ($this->config->twitter_events as $key => $value) {
@@ -70,15 +70,19 @@
                 $newconfig['twitter_events']            = json_encode($newconfig['twitter_events']);
                 
                 if (!isset($newconfig['twitter_data'])) {
-                    $newconfig['twitter_data'] = array('consumer_key' => '', 'consumer_secret' => '', 'user_token' => '', 'user_secret' => '');
+                    $newconfig['twitter_data'] = ['consumer_key' => '', 'consumer_secret' => '', 'user_token' => '', 'user_secret' => ''];
                 }
 
                 foreach ($this->config->twitter_data as $key => $value) {
                     $newconfig['twitter_data'][$key] = isset($newconfig['twitter_data'][$key]) ? $newconfig['twitter_data'][$key] : '';
                 }
 
-                $newconfig['twitter_data']           = json_encode($newconfig['twitter_data']);
-                
+                foreach ($this->config->smtp_settings as $key => $value) {
+                    $newconfig['smtp_settings'][$key] = isset($newconfig['smtp_settings'][$key]) ? $newconfig['smtp_settings'][$key] : '';
+                }
+
+                $newconfig['twitter_data']                   = json_encode($newconfig['twitter_data']);
+                $newconfig['smtp_settings']                  = json_encode($newconfig['smtp_settings']);
                 $newconfig['articles_limit']                 = (int) $newconfig['articles_limit'];
                 $newconfig['articles_acp_limit']             = (int) $newconfig['articles_acp_limit'];
                 $newconfig['system_cache_timeout']           = (int) $newconfig['system_cache_timeout'];
@@ -183,6 +187,13 @@
                 $this->lang->translate('SYSTEM_OPTIONS_COMMENT_NOTIFY_ALL')    => 2
             );
             $this->view->assign('notify', $notify);
+            
+            $smtpEncryption = array(
+                'SSL'  => 'ssl',
+                'TLS'  => 'tls',
+                'Auto' => 'auto'
+            );
+            $this->view->assign('smtpEncryption', $smtpEncryption);
 
             $this->view->assign('articleLimitList', \fpcm\model\system\config::getArticleLimits());
             $this->view->assign('articleLimitListAcp', \fpcm\model\system\config::getAcpArticleLimits());

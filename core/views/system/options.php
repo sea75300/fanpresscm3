@@ -234,18 +234,42 @@
             
             <div id="tabs-options-extended">
                 <table class="fpcm-ui-table fpcm-ui-options">
-                   <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_EMAILUPDATES'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::boolSelect('system_updates_emailnotify', $globalConfig['system_updates_emailnotify']); ?></td>		
-                   </tr>
-                   <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::boolSelect('system_updates_devcheck', $globalConfig['system_updates_devcheck']); ?></td>		
-                   </tr>
-                   <tr>			
-                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_UPDATESMANCHK'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::select('system_updates_manual', $FPCM_LANG->translate('SYSTEM_OPTIONS_UPDATESMANUAL'), $globalConfig['system_updates_manual'], false, false); ?></td>
-                   </tr>
+                    <tr>			
+                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_EMAILUPDATES'); ?>:</td>
+                         <td><?php fpcm\model\view\helper::boolSelect('system_updates_emailnotify', $globalConfig['system_updates_emailnotify']); ?></td>		
+                    </tr>
+                    <tr>			
+                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_DEVUPDATES'); ?>:</td>
+                         <td><?php fpcm\model\view\helper::boolSelect('system_updates_devcheck', $globalConfig['system_updates_devcheck']); ?></td>		
+                    </tr>
+                    <tr>			
+                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_UPDATESMANCHK'); ?>:</td>
+                         <td><?php fpcm\model\view\helper::select('system_updates_manual', $FPCM_LANG->translate('SYSTEM_OPTIONS_UPDATESMANUAL'), $globalConfig['system_updates_manual'], false, false); ?></td>
+                    </tr>
+                    <tr>	
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_ENABLED'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('smtp_enabled', $globalConfig['smtp_enabled']); ?></td>
+                    </tr>
+                    <tr>	
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_SERVER'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[srvurl]', '', $globalConfig['smtp_settings']['srvurl'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_PORT'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[port]', '', $globalConfig['smtp_settings']['port'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_USERNAME'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[user]', '', $globalConfig['smtp_settings']['user'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_PASSWORD'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[pass]', '', $globalConfig['smtp_settings']['pass'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                    </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_ENCRYPTED'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::select('smtp_settings[encr]', $smtpEncryption, $globalConfig['smtp_settings']['encr'], true, true, ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                    </tr>
                </table>
             </div>
 

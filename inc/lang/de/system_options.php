@@ -149,6 +149,13 @@
         'SYSTEM_OPTIONS_TWITTER_ACTIVE'             => 'Twitter-Verbindung ist aktiv! Verbunden mit Benutzer "{{screenname}}".',
         'SYSTEM_OPTIONS_TWITTER_EVENTCREATE'        => 'Veröffentlichen',
         'SYSTEM_OPTIONS_TWITTER_EVENTUPDATE'        => 'Aktualisieren',
+
+        'SYSTEM_OPTIONS_EMAIL_ENABLED'              => 'E-Mails via SMTP versenden',
+        'SYSTEM_OPTIONS_EMAIL_SERVER'               => 'SMTP-Server-Adresse',
+        'SYSTEM_OPTIONS_EMAIL_PORT'                 => 'SMTP-Server-Port',
+        'SYSTEM_OPTIONS_EMAIL_USERNAME'             => 'SMTP-Benutzername',
+        'SYSTEM_OPTIONS_EMAIL_PASSWORD'             => 'SMTP-Passwort',
+        'SYSTEM_OPTIONS_EMAIL_ENCRYPTED'            => 'SMTP-Verschlüsselung',
         
         'SYSTEM_OPTIONS_SYSCHECK_CURRENT'           => 'Aktueller Wert',
         'SYSTEM_OPTIONS_SYSCHECK_RECOMMEND'         => 'Empfohlener Wert',

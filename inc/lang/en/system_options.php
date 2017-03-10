@@ -150,6 +150,13 @@
         'SYSTEM_OPTIONS_TWITTER_EVENTCREATE'        => 'On create',
         'SYSTEM_OPTIONS_TWITTER_EVENTUPDATE'        => 'On update',
         
+        'SYSTEM_OPTIONS_EMAIL_ENABLED'              => 'Submit e-mail via SMTP',
+        'SYSTEM_OPTIONS_EMAIL_SERVER'               => 'SMTP server address',
+        'SYSTEM_OPTIONS_EMAIL_PORT'                 => 'SMTP server port',
+        'SYSTEM_OPTIONS_EMAIL_USERNAME'             => 'SMTP username',
+        'SYSTEM_OPTIONS_EMAIL_PASSWORD'             => 'SMTP password',
+        'SYSTEM_OPTIONS_EMAIL_ENCRYPTED'            => 'SMTP-Verschlüsselung',
+        
         'SYSTEM_OPTIONS_SYSCHECK_CURRENT'           => 'Current value',
         'SYSTEM_OPTIONS_SYSCHECK_RECOMMEND'         => 'Recommended value',
         'SYSTEM_OPTIONS_SYSCHECK_STATUS'            => 'value OK?',

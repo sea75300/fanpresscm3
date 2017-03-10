@@ -65,6 +65,9 @@
      * @property array  $twitter_data Daten für Twitter-Verbindung
      * @property array  $twitter_events Events, wenn Tweets erzeugt werden sollen
      * 
+     * @property array  $smtp_enabled E-Mail-Versand via SMTP aktiv
+     * @property array  $smtp_settings Konfiguration für E-Mail-Versand via SMTP
+     * 
      * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */
@@ -242,8 +245,9 @@
                     $this->data[$data->config_name] = $data->config_value;
                 }
 
-                $this->data['twitter_data'] = json_decode($this->data['twitter_data'], true);
+                $this->data['twitter_data']   = json_decode($this->data['twitter_data'], true);
                 $this->data['twitter_events'] = json_decode($this->data['twitter_events'], true);
+                $this->data['smtp_settings']  = json_decode($this->data['smtp_settings'], true);
 
                 $this->cache->write($this->data, $this->data['system_cache_timeout']);
                 
