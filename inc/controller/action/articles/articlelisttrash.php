@@ -18,11 +18,16 @@
 
             $this->articleActions   = [
                 $this->lang->translate('ARTICLE_LIST_RESTOREARTICLE') => 'restore',
-                $this->lang->translate('ARTICLE_LIST_EMPTYTRASH') => 'trash',
+                $this->lang->translate('ARTICLE_LIST_EMPTYTRASH')     => 'trash',
             ];
         }
         
         public function request() {
+            
+            if (!$this->config->articles_trash) {
+                return false;
+            }
+            
             $this->articleItems = $this->articleList->getArticlesDeleted(true);
             return parent::request();
         }
@@ -31,7 +36,7 @@
             if (!parent::process()) return false;
 
             $this->view->assign('listAction', 'articles/trash');
-            $this->view->assign('showTrash', $this->config->articles_trash);
+            $this->view->assign('listIcon', 'trash');
 
             $this->view->render();
         }

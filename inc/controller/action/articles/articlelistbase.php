@@ -187,7 +187,6 @@
             $this->view->assign('showArchiveStatus', true);
             $this->view->assign('showDraftStatus', $this->showDraftStatus);
             $this->view->assign('articleActions', $this->articleActions);
-            $this->view->assign('showTrash', false);
             $this->view->assign('deletePermissions', $this->deleteActions);
             $this->view->assign('list', $this->articleItems);
             
@@ -202,7 +201,7 @@
             $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'articlelist.js']);
             
             $this->translateCategories();
-            
+
             return true;
         }
         

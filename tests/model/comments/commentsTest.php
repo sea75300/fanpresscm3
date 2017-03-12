@@ -3,10 +3,22 @@
 require_once dirname(dirname(__DIR__)).'/testBase.php';
 
 class commentsTest extends testBase {
+    
+    /**
+     * @var \fpcm\model\comments\commentList
+     */
+    protected $object;
 
     public function setUp() {
         $this->className = 'comments\\commentList';
         parent::setUp();
+    }
+    
+    public function testCountAllComments() {
+        $GLOBALS['countAllComments'] = $this->object->countComments();
+        $this->assertArrayHasKey(1, $GLOBALS['countAllComments']);        
+        $GLOBALS['countAllComments'] = array_sum($GLOBALS['countAllComments']);
+        $this->assertGreaterThanOrEqual(1, $GLOBALS['countAllComments']);
     }
 
     public function testGetCommentsAll() {
@@ -30,6 +42,23 @@ class commentsTest extends testBase {
         $this->assertEquals(0, $object->getApproved());
         $this->assertEquals(1, $object->getPrivate());
 
+    }
+    
+    public function testCountCommentsByArticleIds() {
+        $GLOBALS['countCommentsByArticleIds'] = $this->object->countComments([1]);
+
+        $this->assertArrayHasKey(1, $GLOBALS['countCommentsByArticleIds']);
+        $this->assertGreaterThanOrEqual(1, $GLOBALS['countCommentsByArticleIds'][1]);
+
+        $data = $this->object->countComments();
+        $this->assertGreaterThanOrEqual(array_sum($data), ($GLOBALS['countAllComments'] + 1));
+
+    }
+    
+    public function testCountUnapprovedPrivateComments() {
+        $GLOBALS['countUnapprovedPrivateComments'] = $this->object->countUnapprovedPrivateComments();
+        $this->assertArrayHasKey(1, $GLOBALS['countUnapprovedPrivateComments']);
+        $this->assertGreaterThanOrEqual(1, array_sum($GLOBALS['countUnapprovedPrivateComments']));
     }
 
     public function testGetCommentsByCondition() {

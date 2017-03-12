@@ -893,6 +893,24 @@
         }
 
         /**
+         * Prüft, ob Artikel öffentlich sichtbar ist
+         * @return boolean
+         * @since FPCM 3.5
+         */
+        public function publicIsVisible() {
+
+            if (!$this->exists() || $this->getDeleted()) {
+                return false;
+            }
+
+            if (($this->getDraft() || $this->article->getPostponed()) && !\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
          * Ersetzt <br>, <br /> bzw. <br/> durch Leerzeichen
          */
         private function replaceBr() {

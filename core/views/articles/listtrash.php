@@ -19,7 +19,7 @@
             <div class="fpcm-ui-margin-center">
                 <?php \fpcm\model\view\helper::select('actions[action]', $articleActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?>
                 <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?>
-                <?php if ($showTrash && $deletePermissions) : ?><?php \fpcm\model\view\helper::submitButton('trash', 'ARTICLE_LIST_EMPTYTRASH', 'fpcm-delete-btn fpcm-loader fpcm-hidden'); ?><?php endif; ?>
+                <?php if ($deletePermissions) : ?><?php \fpcm\model\view\helper::submitButton('trash', 'ARTICLE_LIST_EMPTYTRASH', 'fpcm-delete-btn fpcm-loader fpcm-hidden'); ?><?php endif; ?>
             </div>
 
         </div>

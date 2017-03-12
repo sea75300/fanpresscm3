@@ -42,6 +42,7 @@
             $this->view->assign('listAction', 'articles/listactive');            
             $this->view->assign('list', $this->articleItems);
             $this->view->assign('showArchiveStatus', false);
+            $this->view->assign('listIcon', 'newspaper-o');
 
             $minMax = $this->articleList->getMinMaxDate(0);
             $this->view->addJsVars([

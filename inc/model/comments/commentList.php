@@ -106,7 +106,7 @@
         public function getCommentsBySearchCondition($conditions) {
             
             $where = array('1=1');
-            $valueParams = array();
+            $valueParams = [];
             
             if (is_array($conditions) && count($conditions)) {
                 trigger_error('Using an array for '.__METHOD__.' is deprecated as of FPCM 3.5. Create an instance of "fpcm\model\comments\search" instead.');
@@ -186,7 +186,7 @@
             $where       = implode(" {$combination} ", $where);
             $valueParams = $eventData['values'];
             
-            $where2   = array();
+            $where2   = [];
             $where2[] = $this->dbcon->orderBy( ((isset($conditions['orderby'])) ? $conditions['orderby'] : array('createtime ASC')) );
             
             if (isset($conditions['limit'])) {
@@ -285,7 +285,13 @@
          * @param bool $spam
          * @return bool
          */
-        public function countComments(array $articleIds = array(), $private = null, $approved = null, $spam = null) {            
+        public function countComments(array $articleIds = [], $private = null, $approved = null, $spam = null) {
+
+            $cacheName = __FUNCTION__.hash(\fpcm\classes\security::defaultHashAlgo, json_encode(func_get_args()));
+            $cache = new \fpcm\classes\cache($cacheName, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+            if (!$cache->isExpired()) {
+                return $cache->read();
+            }
             
             $where  = count($articleIds) ? "articleid IN (".  implode(',', $articleIds).")" : '1=1';
             $where .= is_null($private) ? '' : ' AND private = '.$private;
@@ -294,12 +300,15 @@
 
             $articleCounts = $this->dbcon->fetch($this->dbcon->select($this->table, 'articleid, count(id) AS count', "$where GROUP BY articleid"), true);
             
-            if (!count($articleCounts)) return array(0);
+            if (!count($articleCounts)) return [0];
             
-            $res = array();
+            $res = [];
             foreach ($articleCounts as $articleCount) {
                 $res[$articleCount->articleid] = $articleCount->count;
             }
+            
+            $cache->write($res, $this->config->system_cache_timeout);
+            
             return $res;
         }
         
@@ -308,17 +317,26 @@
          * @param array $articleIds
          * @return array
          */
-        public function countUnapprovedPrivateComments(array $articleIds = array()) {            
+        public function countUnapprovedPrivateComments(array $articleIds = []) {
+
+            $cacheName = __FUNCTION__.hash(\fpcm\classes\security::defaultHashAlgo, implode(':', $articleIds));
+            $cache = new \fpcm\classes\cache($cacheName, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+            if (!$cache->isExpired()) {
+                return $cache->read();
+            }
             
             $where = count($articleIds) ? "articleid IN (".  implode(',', $articleIds).")" : '1=1';            
             $articleCounts = $this->dbcon->fetch($this->dbcon->select($this->table, 'articleid, count(id) AS count', "$where AND (private = 1 OR approved = 0) GROUP BY articleid"), true);
             
-            if (!count($articleCounts)) return array(0);
+            if (!count($articleCounts)) return [0];
             
-            $res = array();
+            $res = [];
             foreach ($articleCounts as $articleCount) {
                 $res[$articleCount->articleid] = $articleCount->count;
             }
+
+            $cache->write($res, $this->config->system_cache_timeout);
+
             return $res;
         }
         
@@ -327,7 +345,7 @@
          * @param search $condition
          * @return int
          */
-        public function countCommentsByCondition($conditions = array()) {
+        public function countCommentsByCondition($conditions = []) {
 
             if (is_array($conditions) && count($conditions)) {
                 trigger_error('Using an array for '.__METHOD__.' is deprecated as of FPCM 3.5. Create an instance of "fpcm\model\comments\search" instead.');
@@ -376,7 +394,7 @@
          * @return array
          */
         private function createCommentResult($list) {
-            $res = array();
+            $res = [];
             
             foreach ($list as $listItem) {
                 $object = new comment();

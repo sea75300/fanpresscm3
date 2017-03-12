@@ -38,6 +38,7 @@
             $this->view->assign('headlineVar', 'HL_ARTICLE_EDIT_ALL');
             $this->view->assign('listAction', 'articles/listall');
             $this->view->assign('list', $this->articleItems);
+            $this->view->assign('listIcon', 'book');
             
             $minMax = $this->articleList->getMinMaxDate();
             $this->view->addJsVars(array(

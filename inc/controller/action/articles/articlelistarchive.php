@@ -40,9 +40,9 @@
             if (!parent::process()) return false;
 
             $this->view->assign('headlineVar', 'HL_ARTICLE_EDIT_ARCHIVE');
-            $this->view->assign('listAction', 'articles/listarchive');            
-//            $this->view->assign('list', $this->articleItems);
+            $this->view->assign('listAction', 'articles/listarchive');
             $this->view->assign('showArchiveStatus', false);
+            $this->view->assign('listIcon', 'archive');
             
             $minMax = $this->articleList->getMinMaxDate(1);
             $this->view->addJsVars(array(
