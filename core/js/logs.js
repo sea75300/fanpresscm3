@@ -43,6 +43,8 @@ fpcm.logs = {
                     }
                 ]
             });
+            
+            fpcm.ui.resize();
 
             return false;
         });
@@ -67,6 +69,7 @@ fpcm.logs = {
             },
             load: function( event, ui ) {
                 fpcm.ui.accordion('.fpcm-accordion-pkgmanager');
+                fpcm.ui.resize();
             },
             addTabScroll: true
             

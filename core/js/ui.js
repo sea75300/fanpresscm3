@@ -53,7 +53,7 @@ fpcm.ui = {
         }
 
         fpcm.ui.resize();
-        jQuery(window).resize(function () {
+        jQuery(window).resize(function() {
             fpcm.ui.resize();
         });
     },
@@ -172,7 +172,15 @@ fpcm.ui = {
                 header: "h2",
                 heightStyle: "content"
             };
-        }  
+        }
+        
+        if (params.activate === undefined) {
+
+            params.activate = function(event, ui) {
+                fpcm.ui.resize();
+            };
+
+        }
 
         jQuery(elemClassId).accordion(params);
 
@@ -472,9 +480,11 @@ fpcm.ui = {
         fpcm.ui.prepareMessages();
         jQuery('#fpcm-ui-errorbox').css('top', jQuery(window).height() / 2 - jQuery('#fpcm-ui-errorbox').height() / 2);
 
+
         var wrpl        = jQuery('#fpcm-wrapper-left');
-        var prof_btn    = jQuery('#fpcm-navigation-profile');
-        var wrpl_height = jQuery('body').height() < jQuery(window).height() ? jQuery(window).height() : jQuery('body').height();           
+        wrpl.css('min-height', jQuery(window).height());
+
+        var wrpl_height = jQuery('body').height() < jQuery(window).height() ? jQuery(window).height() : jQuery('body').height();
 
         wrpl.css('min-height', '');
         if (jQuery(window).width() > 800) {
