@@ -126,19 +126,19 @@
          * Paket-Inhalt
          * @var array
          */
-        protected $data         = array();
+        protected $data         = [];
         
         /**
          * Paket-Dateiliste
          * @var array
          */
-        protected $files        = array();
+        protected $files        = [];
         
         /**
          * Paket-Abhängigkeiten
          * @var array
          */
-        protected $dependencies    = array();
+        protected $dependencies    = [];
         
         /**
          * ZIP-Archiv-Object
@@ -169,7 +169,7 @@
          * @var array
          * @since FPCM 3.1.0
          */
-        protected $copyErrorPaths = array();
+        protected $copyErrorPaths = [];
 
         /**
          * Konstruktor
@@ -478,7 +478,7 @@
                 
                 if (is_dir($source)) {
                     if (!file_exists($dest) && !mkdir($dest, 0777)) {
-                        if (!is_array($res)) $res = array();
+                        if (!is_array($res)) $res = [];
                         $res[] = $dest;
                     }
                     continue;
@@ -500,7 +500,7 @@
                 }
                 
                 if (!copy($source, $dest)) {
-                    if (!is_array($res)) $res = array();                    
+                    if (!is_array($res)) $res = [];                    
                     $res[] = $dest;
                 }
                 

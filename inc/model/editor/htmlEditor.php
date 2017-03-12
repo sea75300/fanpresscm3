@@ -152,7 +152,7 @@
 
             $templatefilelist = new \fpcm\model\files\templatefilelist();
 
-            $ret = array();
+            $ret = [];
             foreach ($templatefilelist->getFolderList() as $file) {
                 
                 $basename = basename($file);

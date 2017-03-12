@@ -20,7 +20,7 @@
          * Container table content
          * @var array
          */
-        protected $tableContent = array();
+        protected $tableContent = [];
 
         /**
          * Konstruktor

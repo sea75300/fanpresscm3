@@ -32,7 +32,7 @@
         public function getCategoriesAll() {
             $list = $this->dbcon->fetch($this->dbcon->select($this->table), true);
             
-            $res = array();
+            $res = [];
             
             foreach ($list as $listItem) {
                 $object = new category();
@@ -53,7 +53,7 @@
 
             $categories = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, name'), true);
 
-            $res = array();
+            $res = [];
             foreach ($categories as $category) {
                 $res[$category->name] = $category->id;
             }
@@ -71,7 +71,7 @@
             
             $where = "groups = ? OR groups ".$this->dbcon->dbLike()." ? OR groups ".$this->dbcon->dbLike()." ? OR groups ".$this->dbcon->dbLike()." ?";
             
-            $valueParams = array();
+            $valueParams = [];
             $valueParams[] = "{$groupId}";
             $valueParams[] = "%;{$groupId};%";
             $valueParams[] = "{$groupId};%";
@@ -82,7 +82,7 @@
                     true
             );            
             
-            $res = array();
+            $res = [];
             
             foreach ($list as $listItem) {
                 $object = new category();
@@ -101,7 +101,7 @@
         public function getCategoriesCurrentUser() {
 
             if (!is_object(\fpcm\classes\baseconfig::$fpcmSession) || !\fpcm\classes\baseconfig::$fpcmSession->exists()) {
-                return array();
+                return [];
             }
 
             $groupId = \fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->getRoll();
@@ -116,7 +116,7 @@
         public function getCategoriesNameListCurrent() {
             $categories = $this->getCategoriesCurrentUser();
             
-            $res = array();
+            $res = [];
 
             foreach ($categories as $category) {
                 $res[$category->getName()] = $category->getId();

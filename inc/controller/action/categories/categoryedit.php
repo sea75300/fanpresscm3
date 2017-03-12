@@ -37,6 +37,11 @@
             if ($this->buttonClicked('categorySave')) {
                 $data = $this->getRequestVar('category');
                 
+                if (!trim($data['name']) || !trim($data['iconpath']) || !isset($data['groups']) || !count($data['groups'])) {
+                    $this->view->addErrorMessage('SAVE_FAILED_CATEGORY');
+                    return true;
+                }
+
                 $groups = implode(';', array_map('intval', $data['groups']));
                 $this->category->setGroups($groups);
                 $this->category->setIconPath($data['iconpath']);

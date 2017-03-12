@@ -77,7 +77,7 @@
          * Neue Konfiguration
          * @var array
          */        
-        protected $newConfig = array();
+        protected $newConfig = [];
         
         /**
          * this->data cachen
@@ -99,7 +99,7 @@
             $this->cache    = new \fpcm\classes\cache('config', 'system');
             $this->useCache = $useCache;
 
-            $this->data = array();
+            $this->data = [];
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
@@ -272,7 +272,7 @@
          */
         public static function getDefaultFontsizes() {
 
-            $defaultFontsizes = array();
+            $defaultFontsizes = [];
             for ($i=8; $i<=16;$i++) {
                 $defaultFontsizes[$i.' pt'] = $i.'pt';
             }

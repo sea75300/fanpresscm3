@@ -21,7 +21,7 @@
          * @return array
          */
         public function getCssFiles() {
-            return array();
+            return [];
         }
 
         /**
@@ -91,7 +91,7 @@
          * @return array
          */
         public function getViewVars() {
-            return array();
+            return [];
         }
         
         /**
@@ -99,11 +99,11 @@
          * @return array
          */
         protected function getEditorStyles() {
-            if (!$this->config->system_editor_css) return array();
+            if (!$this->config->system_editor_css) return [];
             
             $classes = explode(PHP_EOL, $this->config->system_editor_css);
             
-            $editorStyles = array();
+            $editorStyles = [];
             foreach ($classes as $class) {
                 $class = trim(str_replace(array('.', '{', '}'), '', $class));                
                 $editorStyles[] = array('title' => $class, 'value' => $class);
@@ -118,7 +118,7 @@
          */
         protected function getEditorLinks() {
             $links = $this->events->runEvent('editorAddLinks');
-            if (!is_array($links) || !count($links)) return array();
+            if (!is_array($links) || !count($links)) return [];
             return json_decode(str_replace('label', 'title', json_encode($links)), false);
         }
         
@@ -127,7 +127,7 @@
          * @return array
          */
         protected function getFileList() {
-            $data = array();            
+            $data = [];            
             foreach ($this->fileList->getDatabaseList() as $image) {
                 $data[] = array('title' => $image->getFilename(), 'value' => $image->getImageUrl());
             }
@@ -147,7 +147,7 @@
             
             $templatefilelist = new \fpcm\model\files\templatefilelist();
 
-            $ret = array();
+            $ret = [];
             foreach ($templatefilelist->getFolderList() as $file) {
                 
                 $basename = basename($file);
@@ -173,7 +173,7 @@
          * @since FPCM 3.3
          */
         public function getJsLangVars() {
-            return array();
+            return [];
         }
 
     }

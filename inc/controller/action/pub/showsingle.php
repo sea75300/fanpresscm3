@@ -135,7 +135,7 @@
 
             $this->article = new \fpcm\model\articles\article($this->articleId);
 
-            if ($this->article->publicIsVisible()) {
+            if (!$this->article->publicIsVisible()) {
                 $this->view->addErrorMessage('LOAD_FAILED_ARTICLE');
                 $this->article = false;
                 return true;

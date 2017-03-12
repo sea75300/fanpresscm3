@@ -95,7 +95,7 @@
 
             $users    = array_flip($userlist->getUsersNameList());
             
-            $content    = array();
+            $content    = [];
             $content[]  = '<table class="fpcm-ui-table fpcm-ui-articles fpcm-ui-large-td">';
             foreach ($articles as $article) {
                 

@@ -26,5 +26,18 @@
      * @property array $orderby Array von Sortierungen in SQL-Syntax
      */ 
     class search extends \fpcm\model\abstracts\searchWrapper {
+
+        /**
+         * Liefert Daten zurück, die über Eigenschaften erzeugt wurden
+         * @return array
+         */
+        public function getData() {
+            
+            if (!isset($this->data['searchtype'])) {
+                $this->data['searchtype'] = 0;
+            }
+            
+            return $this->data;
+        }
         
     }

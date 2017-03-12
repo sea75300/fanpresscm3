@@ -61,7 +61,7 @@
                 
                 if (is_dir($source)) {
                     if (!file_exists($dest) && !mkdir($dest, 0777)) {
-                        if (!is_array($res)) $res = array();
+                        if (!is_array($res)) $res = [];
                         $res[] = $dest;
                     }
                     continue;
@@ -83,7 +83,7 @@
                 }
 
                 if (!copy($source, $dest)) {
-                    if (!is_array($res)) $res = array();                    
+                    if (!is_array($res)) $res = [];                    
                     $res[] = $dest;
                 }
                 

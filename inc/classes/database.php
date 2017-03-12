@@ -709,15 +709,15 @@
 
             $result = $this->query($query);
             if ($result === false) {
-                return array();
+                return [];
             }
 
             $colRows = $this->fetch($result, true);
             if (!is_array($colRows) || !count($colRows)) {
-                return array();
+                return [];
             }
 
-            $data = array();
+            $data = [];
             foreach ($colRows as $colRow) {
                 $this->driver->prepareColRow($colRow, $data);
             }
@@ -808,12 +808,12 @@
             
             if (!is_dir($path)) {
                 trigger_error('Invalid path given, '.$path.' is not a directory');
-                return array();
+                return [];
             }
 
             $files = glob($path.'*.yml');
             if (!is_array($files) || !count($files)) {
-                return array();
+                return [];
             }
 
             return $files;

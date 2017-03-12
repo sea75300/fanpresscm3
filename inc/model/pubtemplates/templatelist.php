@@ -60,7 +60,7 @@
          * @return array
          */
         private function getList($templates) {
-            $templateList = array();
+            $templateList = [];
             foreach ($templates as $template) {
 
                 $basename = basename($template);

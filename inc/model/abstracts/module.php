@@ -129,7 +129,7 @@
          * Abhängigkeiten von anderen Modulen
          * @var array
          */
-        protected $dependencies     = array();        
+        protected $dependencies     = [];        
 
         /**
          * Konstruktor
@@ -392,7 +392,7 @@
             
             $path = \fpcm\classes\baseconfig::$moduleDir.$this->modkey.'/config/'.$filename.'.yml';
             
-            if (!file_exists($path)) return array();
+            if (!file_exists($path)) return [];
             
             include_once \fpcm\classes\loader::libGetFilePath('spyc', 'Spyc.php');
             return \Spyc::YAMLLoad($path);            
@@ -404,7 +404,7 @@
          */
         public function getDependencies() {
             
-            if (defined('FPCM_MODULE_IGNORE_DEPENDENCIES') && FPCM_MODULE_IGNORE_DEPENDENCIES) return array();
+            if (defined('FPCM_MODULE_IGNORE_DEPENDENCIES') && FPCM_MODULE_IGNORE_DEPENDENCIES) return [];
             
             if (count($this->dependencies)) return $this->dependencies;
             

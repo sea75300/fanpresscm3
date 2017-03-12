@@ -33,16 +33,22 @@
 
                 $data = $this->getRequestVar('wbitem');
                 
-                $this->item->setSearchtext($data['searchtext']);
-                $this->item->setReplacementtext($data['replacementtext']);
-                $this->item->setReplaceTxt(isset($data['replacetxt']) ? $data['replacetxt'] : 0);
-                $this->item->setLockArticle(isset($data['lockarticle']) ? $data['lockarticle'] : 0);
-                $this->item->setCommentApproval(isset($data['commentapproval']) ? $data['commentapproval'] : 0);
+                if (!trim($data['searchtext']) || !trim($data['replacementtext'])) {
+                    $this->view->addErrorMessage('SAVE_FAILED_WORDBAN');
+                }
+                else {
+                    $this->item->setSearchtext($data['searchtext']);
+                    $this->item->setReplacementtext($data['replacementtext']);
+                    $this->item->setReplaceTxt(isset($data['replacetxt']) ? $data['replacetxt'] : 0);
+                    $this->item->setLockArticle(isset($data['lockarticle']) ? $data['lockarticle'] : 0);
+                    $this->item->setCommentApproval(isset($data['commentapproval']) ? $data['commentapproval'] : 0);
 
-                $res = $this->item->save();
+                    $res = $this->item->save();
 
-                if ($res === false) $this->view->addErrorMessage('SAVE_FAILED_WORDBAN');
-                if ($res === true) $this->redirect('wordban/list', array('added' => 1));
+                    if ($res === false) $this->view->addErrorMessage('SAVE_FAILED_WORDBAN');
+                    if ($res === true) $this->redirect('wordban/list', array('added' => 1));
+                }
+                
             }
             
             $this->view->addJsVars(array(

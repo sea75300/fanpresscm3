@@ -33,7 +33,7 @@
         public function getUserRolls() {
             $rolls = $this->dbcon->fetch($this->dbcon->select($this->table), true);
             
-            $res = array();                       
+            $res = [];                       
             foreach ($rolls as $roll) {
                 $userRoll = new userRoll();
                 if ($userRoll->createFromDbObject($roll)) {
@@ -54,7 +54,7 @@
             $ids = array_map('intval', $ids);
             $rolls = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'id IN ('.  implode(',', $ids).')'), true);
             
-            $res = array();                       
+            $res = [];                       
             foreach ($rolls as $roll) {
                 $userRoll = new userRoll();
                 if ($userRoll->createFromDbObject($roll)) {
@@ -70,7 +70,7 @@
          * @return array
          */
         public function getUserRollsTranslated() {
-            $rollList = array();
+            $rollList = [];
             foreach ($this->getUserRolls() as $roll) {
                 $descr = $this->language->translate($roll->getRollName());
                 $descr = $descr ? $descr : $roll->getRollName();
@@ -87,7 +87,7 @@
          * @return array
          */
         public function getRollsbyIdsTranslated(array $ids) {
-            $rollList = array();
+            $rollList = [];
             foreach ($this->getUserRollsByIds($ids) as $roll) {
                 $descr = $this->language->translate($roll->getRollName());
                 $descr = is_null($descr) ? $roll->getRollName() : $descr;

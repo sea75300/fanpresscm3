@@ -38,7 +38,7 @@
             
             $dbconfig = \fpcm\classes\baseconfig::getDatabaseConfig();
             
-            $dumpSettings = array();
+            $dumpSettings = [];
             
             $this->dumpfile = \fpcm\classes\baseconfig::$dbdumpDir.'/'.$dbconfig['DBNAME'].'_'.date('Y-m-d_H-i-s').'.sql';
             if (function_exists('gzopen')) {

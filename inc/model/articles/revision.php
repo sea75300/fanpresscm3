@@ -82,7 +82,7 @@
 
             $data = json_decode($this->content, true);
             if (!is_array($data)) {
-                return array();
+                return [];
             }
 
             return $data;

@@ -50,7 +50,7 @@
 
             $shareButtonPath = \fpcm\classes\baseconfig::$shareRootPath;
             
-            $sharecode  = array();
+            $sharecode  = [];
             $sharecode[] = "<ul class=\"fpcm-pub-sharebuttons\">";
             $sharecode[] = "<li><a href=\"https://www.facebook.com/sharer/sharer.php?u={$this->link}&amp;t={$this->description}\" target=\"_blank\"><img src=\"{$shareButtonPath}default/facebook.png\" alt=\"Facebook\"></a></li>";
             $sharecode[] = "<li><a href=\"https://twitter.com/intent/tweet?source={$this->link}&amp;text={$this->description}\" target=\"_blank\" title=\"Tweet\"><img src=\"{$shareButtonPath}default/twitter.png\" alt=\"Twitter\"></a></li>";

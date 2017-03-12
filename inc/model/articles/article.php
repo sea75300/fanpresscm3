@@ -45,7 +45,7 @@
          * Kategorien
          * @var array
          */
-        protected $categories       = array();
+        protected $categories       = [];
         
         /**
          * Status: Entwurf
@@ -717,11 +717,11 @@
 
             $revisionSets = $this->dbcon->fetch($result, true);
             if (!is_array($revisionSets) || !count($revisionSets)) {
-                return array();
+                return [];
             }
             $revisionFiles = $this->events->runEvent('getRevisionsBefore', $revisionSets);            
             
-            $revisions = array();
+            $revisions = [];
             foreach ($revisionSets as $revisionSet) {
                 
                 $revisionObj = new revision($this->id);
@@ -903,7 +903,7 @@
                 return false;
             }
 
-            if (($this->getDraft() || $this->article->getPostponed()) && !\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+            if (($this->getDraft() || $this->getPostponed()) && !\fpcm\classes\baseconfig::$fpcmSession->exists()) {
                 return false;
             }
 

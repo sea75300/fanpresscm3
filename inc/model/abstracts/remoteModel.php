@@ -33,7 +33,7 @@
          * Datenparameter
          * @var array
          */
-        protected $checkParams  = array();
+        protected $checkParams  = [];
         
         /**
          * Verbindungen zu anderem Server möglich

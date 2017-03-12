@@ -46,7 +46,7 @@
 
             $userlist = new \fpcm\model\users\userList();
              
-            $content    = array();
+            $content    = [];
             $content[]  = '<table class="fpcm-ui-table fpcm-ui-users fpcm-ui-large-td">';
             
             $items = $userlist->getUsersActive();

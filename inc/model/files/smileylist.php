@@ -33,7 +33,7 @@
         public function getDatabaseList() {
             $smileys = $this->dbcon->fetch($this->dbcon->select($this->table), true);
             
-            $res = array();
+            $res = [];
             foreach ($smileys as $smiley) {
                 $smileyObj = new smiley($smiley->filename, false);
                 $smileyObj->setSmileycode($smiley->smileycode);
@@ -52,7 +52,7 @@
          */
         public function deleteSmileys(array $items) {
             
-            $where = array();
+            $where = [];
             foreach ($items as $item) {
                 $item = array_map('trim', array_map('strip_tags', $item));
                 

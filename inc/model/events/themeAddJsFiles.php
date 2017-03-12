@@ -35,9 +35,9 @@
             
             $eventClasses = $this->getEventClasses();
             
-            if (!count($eventClasses)) return array();
+            if (!count($eventClasses)) return [];
             
-            $mdata = array();
+            $mdata = [];
             foreach ($eventClasses as $eventClass) {
                 
                 $classkey = $this->getModuleKeyByEvent($eventClass);                

@@ -142,7 +142,7 @@
 
             $placeholder = self::$language->translate($placeholder) ? self::$language->translate($placeholder) : $placeholder;
 
-            $html   = array();
+            $html   = [];
             if ($wrapper) {
                 $wrapperClass = is_string($wrapper) ? $wrapper : '';
                 $html[] = "<div class=\"fpcm-ui-input-wrapper $wrapperClass\"><div class=\"fpcm-ui-input-wrapper-inner\">";
@@ -183,7 +183,7 @@
          * @param string $wrapper Wrapper-DIV nutzen
          */
         public static function passwordInput($name, $class = '', $value = '', $readonly = false, $maxlength = 255, $placeholder = false, $wrapper = true) {
-            $html   = array();
+            $html   = [];
             if ($wrapper) {
                 $wrapperClass = is_string($wrapper) ? $wrapper : '';
                 $html[] = "<div class=\"fpcm-ui-input-wrapper $wrapperClass\"><div class=\"fpcm-ui-input-wrapper-inner\">";
@@ -218,7 +218,7 @@
                 $id = uniqid('chkbox_');
             }
             
-            $html   = array();
+            $html   = [];
             $html[] = "<input type=\"checkbox\" class=\"fpcm-ui-input-checkbox $class\" name=\"$name\" id=\"".self::cleanIdName($id)."\" value=\"".htmlentities($value, ENT_QUOTES)."\"";
             if ($readonly) $html[] = " disabled=\"disabled\"";
             if ($selected) $html[] = " checked=\"checked\"";
@@ -244,7 +244,7 @@
                 $id = uniqid('rdbtn_');
             }
             
-            $html   = array();
+            $html   = [];
             $html[] = "<input type=\"radio\" class=\"fpcm-ui-input-checkbox $class\" name=\"$name\" id=\"".self::cleanIdName($id)."\" value=\"".htmlentities($value, ENT_QUOTES)."\"";
             if ($readonly) $html[] = " disabled=\"disabled\"";
             if ($selected) $html[] = " checked=\"checked\"";
@@ -261,7 +261,7 @@
          * @param bool $readonly readonly Status
          */
         public static function textArea($name, $class = '', $value = '', $readonly = false) {
-            $html   = array();
+            $html   = [];
             $html[] = "<textarea class=\"fpcm-ui-textarea $class\" name=\"$name\" id=\"".self::cleanIdName($name)."\"";
             if ($readonly) $html[] = " readonly=\"readonly\"";
             $html[] = ">".htmlentities($value, ENT_QUOTES)."</textarea>\n";
@@ -291,7 +291,7 @@
             
             $id = self::cleanIdName($name);
             
-            $html   = array();
+            $html   = [];
             $html[] = "<select name=\"$name\" id=\"$id\" class=\"fpcm-ui-input-select $class\"";
             if ($readonly) $html[] = " disabled=\"disabled\"";
             $html[] = ">$optionsString</select>\n";
@@ -316,7 +316,7 @@
             
             $id = self::cleanIdName($name);
             
-            $html   = array();
+            $html   = [];
             $html[] = "<select name=\"$name\" id=\"$id\" class=\"fpcm-ui-input-select\"";
             if ($readonly) $html[] = " disabled=\"disabled\"";
             $html[] = ">$optionsString</select>\n";
@@ -441,7 +441,7 @@
                          ? self::$language->translate($description)
                          : $description;
             
-            $html   = array();
+            $html   = [];
             
             if ($href) $html[] = "<a href=\"{$href}\" target=\"{$target}\">";
 

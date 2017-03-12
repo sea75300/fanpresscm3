@@ -36,7 +36,7 @@
             $params->ids = $articleIds;
             $articles = $articlesList->getArticlesByCondition($params, false);
 
-            $failed = array();
+            $failed = [];
             foreach ($articles as $article) {
 
                 /**

@@ -31,16 +31,16 @@
          */
         public function getModulesRemote($init = true) {
             
-            if (!\fpcm\classes\baseconfig::canConnect()) return array();
+            if (!\fpcm\classes\baseconfig::canConnect()) return [];
             
             $moduleUpdater = new \fpcm\model\updater\modules();
             $moduleUpdater->getModulelist();
             
             $remoteModues = $moduleUpdater->getRemoteData();
             
-            if (!is_array($remoteModues)) return array();
+            if (!is_array($remoteModues)) return [];
             
-            $modules = array();
+            $modules = [];
             foreach ($remoteModues as $key => $value) {
                 
                 if (version_compare($this->config->system_version, $value['minsysverion'], '<') || version_compare($this->config->system_version, $value['maxsysverion'], '>') ) continue;
@@ -89,7 +89,7 @@
                 $localModules = $this->dbcon->fetch($this->dbcon->select($this->table, '*'), true);
             }
             
-            $modules = array();
+            $modules = [];
             foreach ($localModules as $localModule) {
                 
                 if (!$localModule->modkey) continue;
@@ -177,7 +177,7 @@
 
             $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey', 'status = 0'), true);
             
-            $keys = array();
+            $keys = [];
             foreach ($modules as $module) {
                 $keys[] = $module->modkey;
             }
@@ -200,7 +200,7 @@
 
             $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey', 'status = 1', array(), true), true);
 
-            $keys = array();
+            $keys = [];
             foreach ($modules as $module) {
                 $keys[] = $module->modkey;
             }
@@ -223,7 +223,7 @@
 
             $modules = $this->dbcon->fetch($this->dbcon->select($this->table, 'modkey'), true);
             
-            $keys = array();
+            $keys = [];
             foreach ($modules as $module) {
                 $keys[] = $module->modkey;
             }
@@ -317,7 +317,7 @@
             
             $path = \fpcm\classes\baseconfig::$moduleDir.$moduleKey.'/config/'.$configFile.'.yml';
             
-            if (!file_exists($path)) return array();
+            if (!file_exists($path)) return [];
             
             include_once \fpcm\classes\loader::libGetFilePath('spyc', 'Spyc.php');
             return \Spyc::YAMLLoad($path);            

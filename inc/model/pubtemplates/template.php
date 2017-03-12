@@ -30,13 +30,13 @@
          * Template-Platzhalter
          * @var array
          */
-        protected $replacementTags      = array();
+        protected $replacementTags      = [];
 
         /**
          * Interne Platzhalter
          * @var array
          */
-        protected $replacementInternal  = array();
+        protected $replacementInternal  = [];
         
         /**
          * Smiley-Cache

@@ -34,7 +34,7 @@
             if ($this->buttonClicked('saveSmiley')) {
                 $smileyData = $this->getRequestVar('smiley');
                 
-                if (!$smileyData['filename'] || !$smileyData['code']) {
+                if (!isset($smileyData['filename']) || !trim($smileyData['filename']) || !$smileyData['code']) {
                     $this->view->addErrorMessage('SAVE_FAILED_SMILEY');
                     return true;                    
                 }

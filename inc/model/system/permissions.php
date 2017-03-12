@@ -26,7 +26,7 @@
          * Berechtigungsdaten
          * @var array
          */
-        protected $permissiondata = array();
+        protected $permissiondata = [];
         
         /**
          * Nicht in Datenbank zu speichernde Daten
@@ -323,7 +323,7 @@
         public function getPermissionsAll() {           
             $datasets = $this->dbcon->fetch($this->dbcon->select($this->table, 'rollid, permissiondata'));
             
-            $res = array();
+            $res = [];
             foreach ($datasets as $dataset) {
                 $res[$dataset->rollid] = json_decode($dataset->permissiondata, true);
             }

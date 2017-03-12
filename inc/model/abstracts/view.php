@@ -39,31 +39,31 @@
          * View-Variablen
          * @var array
          */
-        protected $viewVars       = array();
+        protected $viewVars       = [];
         
         /**
          * View-Javascript-Dateien
          * @var array
          */
-        protected $viewJsFiles    = array();
+        protected $viewJsFiles    = [];
         
         /**
          * View-CSS-Dateien
          * @var array
          */
-        protected $viewCssFiles   = array();
+        protected $viewCssFiles   = [];
 
         /**
          * View-Message-Informationen
          * @var array
          */
-        protected $messages       = array();
+        protected $messages       = [];
         
         /**
          * View-Javascript-Variablen
          * @var array
          */
-        protected $jsvars         = array();
+        protected $jsvars         = [];
         
         /**
          * View Filelib
@@ -156,8 +156,8 @@
          * Dateilibrary in AJAX-View initialisieren
          */
         private function initFileLibAjax() {
-            $this->viewCssFiles = array();
-            $this->viewJsFiles  = array();
+            $this->viewCssFiles = [];
+            $this->viewJsFiles  = [];
         }
         
         /**

@@ -96,7 +96,7 @@
          * Funktionsparameter
          * @var array
          */
-        protected $funcParams = array();
+        protected $funcParams = [];
 
         /**
          * Parameter für Funktion
@@ -112,7 +112,7 @@
          */
         public function processHelp() {
             
-            $lines   = array();
+            $lines   = [];
             $lines[] = '';
             $lines[] = 'Usage: php (path to FanPress CM/)fpcmcli.php <module name> <action params> <additional params>';
             $lines[] = '';
@@ -668,7 +668,7 @@
 
             $this->output(PHP_EOL.'Executing system check...'.PHP_EOL);
             
-            $lines = array();
+            $lines = [];
             foreach ($rows as $descr => $data) {
                 
                 $line = array(

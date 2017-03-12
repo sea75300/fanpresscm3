@@ -44,7 +44,7 @@
                 true
             );
 
-            $res = array();
+            $res = [];
             foreach ($images as $image) {
                 $imageObj = new image('', '', '', false);
                 $imageObj->createFromDbObject($image);
