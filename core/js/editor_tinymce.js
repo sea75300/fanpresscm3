@@ -97,7 +97,7 @@ fpcm.editor_tinymce = {
             params.autoresize_min_height = config.autoresize_min_height ? config.autoresize_min_height : '250';
         }
 
-        tinymce.init(params);   
+        tinymce.init(params);
 
     }
 

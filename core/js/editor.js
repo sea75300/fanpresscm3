@@ -1067,11 +1067,14 @@ fpcm.editor = {
                     }
                 });
             },
-            onInit : function(ed) { 
+            onInit : function(ed) {
+
                 ed.on('init', function() {
                     this.getBody().style.fontSize = fpcmTinyMceDefaultFontsize;
                     jQuery(this.iframeElement).removeAttr('title');
+                    fpcm.ui.resize();
                 });
+
             }              
         });
    
