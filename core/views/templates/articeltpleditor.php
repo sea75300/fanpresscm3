@@ -6,8 +6,8 @@
                 </td>
             </tr>  
         </table>
-        
+
         <div class="fpcm-hidden"><?php \fpcm\model\view\helper::saveButton('saveTemplate'); ?></div>
-        
+
         <?php \fpcm\model\view\helper::pageTokenField(); ?>
     </form>

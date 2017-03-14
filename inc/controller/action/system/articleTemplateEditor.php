@@ -48,7 +48,12 @@
             }
             
             $this->file = new \fpcm\model\files\templatefile($this->getRequestVar('file', [11,10]), '', \fpcm\model\abstracts\file::FPCM_FILE_LOADCONTENT);
-            
+
+            if (!$this->file->isWritable()) {
+                $this->view->addErrorMessage('FILE_NOT_WRITABLE');
+                return true;
+            }
+
             $newCode = $this->getRequestVar('templatecode', [7]);
             if ($this->buttonClicked('saveTemplate') && $newCode) {                
                 $this->file->setContent($newCode);

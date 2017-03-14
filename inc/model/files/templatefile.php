@@ -59,7 +59,7 @@
          */
         public function save() {
 
-            if (!$this->exists() || !$this->content) return false;
+            if (!$this->exists() || !$this->content || !$this->isWritable()) return false;
 
             if (!file_put_contents($this->fullpath, $this->content)) {
                 trigger_error('Unable to update template '.$this->fullpath);

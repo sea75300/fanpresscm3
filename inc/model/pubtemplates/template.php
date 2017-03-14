@@ -135,7 +135,7 @@
          * @return boolean
          */
         public function save() {
-            if (!$this->exists() || !$this->content) return false;
+            if (!$this->exists() || !$this->content || !$this->isWritable()) return false;
             
             $this->content = $this->events->runEvent('templateSave', array('file' => $this->fullpath, 'content' => $this->content))['content'];
             
