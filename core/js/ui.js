@@ -513,6 +513,25 @@ fpcm.ui = {
         jQuery(elemId).removeClass('fpcm-loader');
     },
     
+    createIFrame: function(params) {
+      
+        if (!params.src) {
+            console.warn('fpcm.ui.createIFrame requires a set and non-empty value.');
+            return '';
+        }
+      
+        if (!params.classes) {
+            params.classes = 'fpcm-full-width';
+        }
+      
+        if (!params.id) {
+            params.id = jQuery.uniqueId();
+        }
+
+        return '<iframe ' + params.src + ' id="' + params.id + '" class="' + params.classes + '"></iframe>';
+        
+    },
+    
     showLoader: function(show, addtext) {
 
         if (!show) {

@@ -134,7 +134,7 @@
 
             $res = $this->events->runEvent('editorGetFileList', array('label' => 'title', 'files' => $data));
             
-            return isset($res['files']) && count($res['files']) ? $res['files'] : array();
+            return isset($res['files']) && count($res['files']) ? $res['files'] : [];
         }
 
         /**
@@ -158,7 +158,7 @@
                     
                 $ret[] = array(
                     "title" => $basename,
-                    "url"   => \fpcm\model\files\ops::removeBaseDir($file, true)
+                    "url"   => \fpcm\classes\baseconfig::$rootPath.\fpcm\model\files\ops::removeBaseDir($file)
                 );
                 
             }

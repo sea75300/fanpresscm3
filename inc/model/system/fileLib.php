@@ -52,6 +52,8 @@
             'inc/lib/codemirror/addon/hint/show-hint.js',
             'inc/lib/codemirror/addon/hint/xml-hint.js',
             'inc/lib/codemirror/addon/hint/html-hint.js',
+            'inc/lib/codemirror/addon/runmode/runmode.js',
+            'inc/lib/codemirror/addon/runmode/colorize.js',
             'inc/lib/codemirror/mode/xml/xml.js',
             'inc/lib/codemirror/mode/javascript/javascript.js',
             'inc/lib/codemirror/mode/css/css.js',

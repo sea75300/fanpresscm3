@@ -895,10 +895,36 @@ fpcm.editor = {
  
         jQuery('#fpcm-dialog-editor-html-insertdraft-btn').click(function() {
             fpcm.ui.dialog({
-                id: 'editor-html-insertdraft',
-                dlWidth: fpcm.ui.getDialogSizes(top, 0.25).width,
-                title: fpcm.ui.translate('editorInsertATpl'),
+                id       : 'editor-html-insertdraft',
+                dlWidth  : fpcm.ui.getDialogSizes(top).width,
+                dlHeight : fpcm.ui.getDialogSizes(top).height,
+                title    : fpcm.ui.translate('editorInsertATpl'),
+                resizable: true,
                 dlButtons: [
+                    {
+                        text: fpcm.ui.translate('globalInsert'),
+                        icon: "ui-icon-copy",                        
+                        click: function() {
+
+                            var item = jQuery('#tpldraft').val();
+                            if (!item) {
+                                jQuery( this ).dialog( "close" );
+                                return false;
+                            }
+
+                            fpcm.ajax.exec('editor/draft', {
+                                data    : {
+                                    path: item
+                                },
+                                execDone: function () {                                    
+                                    var responseData = fpcm.ajax.fromJSON(fpcm.ajax.getResult('editor/draft'));
+                                    window.editor.doc.setValue(responseData.data);
+                                    jQuery('#fpcm-dialog-editor-html-insertdraft').dialog('close');
+                                }
+                            });
+
+                        }
+                    },
                     {
                         text: fpcm.ui.translate('close'),
                         icon: "ui-icon-closethick",                        
@@ -914,15 +940,24 @@ fpcm.editor = {
                         appendTo: '#fpcm-dialog-editor-html-insertdraft',
                         change: function( event, ui ) {
 
+                            var item = jQuery(this).val();
+                            if (!item) {
+                                jQuery('#fpcm-dialog-editor-html-insertdraft-preview').empty();
+                                return false;
+                            }
+
                             fpcm.ajax.exec('editor/draft', {
                                 data    : {
-                                    path: jQuery(this).val()
+                                    path: item
                                 },
                                 execDone: function () {
-                                    var responseData = fpcm.ajax.fromJSON(fpcm.ajax.getResult('editor/draft'));
 
-                                    window.editor.doc.setValue(responseData.data);
-                                    jQuery('#fpcm-dialog-editor-html-insertdraft').dialog('close');
+                                    var responseData = fpcm.ajax.fromJSON(fpcm.ajax.getResult('editor/draft'));
+                                    fpcm.editor_codemirror.highlight({
+                                        input   : responseData.data,
+                                        ouputId : 'fpcm-dialog-editor-html-insertdraft-preview'
+                                    });
+
                                 }
                             });
 
@@ -934,7 +969,11 @@ fpcm.editor = {
 
                 },
                 dlOnClose: function() {
-                    jQuery(this).empty();
+                    jQuery('#fpcm-dialog-editor-html-insertdraft-preview').empty();
+                    var selectEl = jQuery('#tpldraft');
+                    selectEl.prop('selectedIndex', 0);
+                    selectEl.val('');
+                    selectEl.selectmenu("refresh");
                 }
             });
 

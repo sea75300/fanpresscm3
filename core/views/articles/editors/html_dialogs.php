@@ -132,5 +132,10 @@
         <tr>
             <td><?php \fpcm\model\view\helper::select('tpldraft', $editorTemplatesList, ''); ?></td>
         </tr>
+        <tr>
+            <td>
+                <pre id="fpcm-dialog-editor-html-insertdraft-preview" class="CodeMirror cm-s-fpcm CodeMirror-wrap"></pre>
+            </td>
+        </tr>
     </table>
 </div>

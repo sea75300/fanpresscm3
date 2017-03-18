@@ -35,6 +35,10 @@ fpcm.editor_codemirror = {
 
         return CodeMirror.fromTextArea(document.getElementById(config.elementId), params);         
 
+    },
+
+    highlight: function(config) {
+        return CodeMirror.runMode(config.input, 'text/html', document.getElementById(config.ouputId));
     }
 
 };
