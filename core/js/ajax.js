@@ -24,7 +24,7 @@ fpcm.ajax = {
             params.method = 'POST';
         }
 
-        if (!params.async) {
+        if (params.async === undefined) {
             params.async = true;
         }
 
