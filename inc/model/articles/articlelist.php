@@ -190,8 +190,8 @@
                 $where[] = "(categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ?)";
                 $valueParams[] = "[{$conditions['category']}]";
                 $valueParams[] = "%,{$conditions['category']},%";
-                $valueParams[] = "{$conditions['category']},%";
-                $valueParams[] = "%,{$conditions['category']}";
+                $valueParams[] = "[{$conditions['category']},%";
+                $valueParams[] = "%,{$conditions['category']}]";
             }
             
             if (isset($conditions['datefrom'])) {
