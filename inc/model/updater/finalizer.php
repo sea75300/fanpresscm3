@@ -292,10 +292,20 @@
          */
         private function checkFilesystem() {
 
+            $fbPath = \fpcm\classes\loader::libGetFileUrl('fancybox');
+            
             $files = [
                 \fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php',
                 \fpcm\classes\baseconfig::$viewsDir.'articles/lists/cronjobs.php',
-                \fpcm\classes\baseconfig::$jsPath.'editor_comments.js'
+                \fpcm\classes\baseconfig::$jsPath.'editor_comments.js',
+                $fbPath.'blank.gif',
+                $fbPath.'fancybox_loading.gif',
+                $fbPath.'fancybox_loading@2x.gif',
+                $fbPath.'fancybox_overlay.png',
+                $fbPath.'fancybox_sprite.png',
+                $fbPath.'fancybox_sprite@2x.png',
+                $fbPath.'jquery.fancybox.css',
+                $fbPath.'jquery.fancybox.pack.js'
             ];
 
             foreach ($files as $file) {

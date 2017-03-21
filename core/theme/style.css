@@ -1316,12 +1316,6 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     padding: 0;
 }
 
-#fancybox-loading {
-    background: rgba(255,255,255,0.75);
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-}
-
 .mce-fpcm-emoticons {    
     padding: 0.3em !important;
     width: 350px !important;

@@ -22,7 +22,7 @@
          */
         private $csslib = array(
             'inc/lib/jquery-ui/jquery-ui.min.css',
-            'inc/lib/fancybox/jquery.fancybox.css',
+            'inc/lib/fancybox/jquery.fancybox.min.css',
             'inc/lib/font-awesome/css/font-awesome.min.css',
             'core/theme/style.php'
         );
@@ -34,7 +34,7 @@
         private $jslib = array(
             'inc/lib/jquery/jquery-3.1.0.min.js',
             'inc/lib/jquery-ui/jquery-ui.min.js',
-            'inc/lib/fancybox/jquery.fancybox.pack.js',
+            'inc/lib/fancybox/jquery.fancybox.min.js',
             'core/js/script.php'
         );
 

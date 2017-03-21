@@ -204,7 +204,7 @@ fpcm.editor = {
              return false;
         });
 
-        jQuery('.fpcm-articlelist-articleimage').fancybox();
+        jQuery('.fpcm-editor-articleimage').fancybox();
 
         jQuery('#fpcmuieditoraimgfmg').click(function () {
             fpcmFileManagerUrlMode = 3;

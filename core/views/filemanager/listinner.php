@@ -8,7 +8,9 @@
     <div class="fpcm-filelist-thumb-box">
         <div class="fpcm-filelist-thumb-box-inner">
             <div class="fpcm-ui-center">
-                <a href="<?php print $file->getImageUrl(); ?>" target="_blank" class="fpcm-link-fancybox" rel="fpcm-link-fancybox"><img src="<?php if (file_exists($file->getFileManagerThumbnail())) : ?><?php print $file->getFileManagerThumbnailUrl(); ?><?php else : ?><?php print $FPCM_THEMEPATH; ?>dummy.png<?php endif; ?>" width="100" height="100" title="<?php print $file->getFileName(); ?>"></a>
+                <a href="<?php print $file->getImageUrl(); ?>" target="_blank" class="fpcm-link-fancybox" data-fancybox="group" >
+                    <img src="<?php if (file_exists($file->getFileManagerThumbnail())) : ?><?php print $file->getFileManagerThumbnailUrl(); ?><?php else : ?><?php print $FPCM_THEMEPATH; ?>dummy.png<?php endif; ?>" width="100" height="100" title="<?php print $file->getFileName(); ?>">
+                </a>
             </div>
 
             <div class="fpcm-filelist-actions-box fpcm-ui-center">
