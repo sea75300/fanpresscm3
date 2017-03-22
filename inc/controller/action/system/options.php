@@ -210,9 +210,24 @@
             $this->view->assign('showTwitter', $showTwitter);
             $this->view->assign('twitterIsActive', $twitter->checkConnection());
             $this->view->assign('twitterScreenName', $twitter->getUsername());
+            
+            $smtpActive = false;
+            if ($this->config->smtp_enabled) {
+                $mail = new \fpcm\classes\email('', '', '');
+                $smtpActive = $mail->checkSmtp();
+            }
 
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'options.js'));
-            $this->view->addJsVars(array('showTwitter' => $showTwitter ? 1 : 0, 'syscheck' => $this->syscheck));
+            if ($smtpActive && $this->buttonClicked('configSave')) {
+                $this->view->addNoticeMessage('SYSTEM_OPTIONS_EMAIL_ACTIVE');
+            }
+
+            $this->view->assign('smtpActive', $smtpActive);
+
+            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'options.js']);
+            $this->view->addJsVars([
+                'showTwitter' => $showTwitter ? 1 : 0,
+                'syscheck' => $this->syscheck
+            ]);
             
             $this->view->render();            
         }

@@ -155,7 +155,8 @@
         'SYSTEM_OPTIONS_EMAIL_PORT'                 => 'SMTP server port',
         'SYSTEM_OPTIONS_EMAIL_USERNAME'             => 'SMTP username',
         'SYSTEM_OPTIONS_EMAIL_PASSWORD'             => 'SMTP password',
-        'SYSTEM_OPTIONS_EMAIL_ENCRYPTED'            => 'SMTP-Verschlüsselung',
+        'SYSTEM_OPTIONS_EMAIL_ENCRYPTED'            => 'SMTP-encryption',
+        'SYSTEM_OPTIONS_EMAIL_ACTIVE'               => 'Check of credentials successfully. E-mails are delivered via SMTP.',
         
         'SYSTEM_OPTIONS_SYSCHECK_CURRENT'           => 'Current value',
         'SYSTEM_OPTIONS_SYSCHECK_RECOMMEND'         => 'Recommended value',

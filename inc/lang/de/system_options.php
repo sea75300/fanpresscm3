@@ -156,6 +156,7 @@
         'SYSTEM_OPTIONS_EMAIL_USERNAME'             => 'SMTP-Benutzername',
         'SYSTEM_OPTIONS_EMAIL_PASSWORD'             => 'SMTP-Passwort',
         'SYSTEM_OPTIONS_EMAIL_ENCRYPTED'            => 'SMTP-Verschlüsselung',
+        'SYSTEM_OPTIONS_EMAIL_ACTIVE'               => 'Prüfung der Zugangsdaten war erfolgreich. E-Mail-Versand erfolgt via SMTP.',
         
         'SYSTEM_OPTIONS_SYSCHECK_CURRENT'           => 'Aktueller Wert',
         'SYSTEM_OPTIONS_SYSCHECK_RECOMMEND'         => 'Empfohlener Wert',

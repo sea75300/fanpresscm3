@@ -199,8 +199,44 @@
         }
 
         /**
+         * SMTP-Zugangsdaten testen
+         * @return boolean
+         * @since FPCM 3.5
+         */
+        public function checkSmtp() {
+
+            require_once loader::libGetFilePath('PHPMailer', 'class.phpmailer.php');
+            require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');
+            
+            $mail = new \PHPMailer();
+            $mail->isSMTP();
+            $mail->isHTML($this->html);
+            $mail->setFrom($this->config->smtp_settings['user']);
+            
+            $autoEncryption = ($this->config->smtp_settings['encr'] === 'auto' ? true : false);
+            
+            $mail->Host        = $this->config->smtp_settings['srvurl'];
+            $mail->Username    = $this->config->smtp_settings['user'];
+            $mail->Password    = $this->config->smtp_settings['pass'];
+            $mail->Port        = $this->config->smtp_settings['port'];
+            $mail->SMTPSecure  = !$autoEncryption ? $this->config->smtp_settings['encr'] : '';
+            $mail->SMTPAutoTLS = $autoEncryption;
+            $mail->SMTPAuth    = ($this->config->smtp_settings['user'] && $this->config->smtp_settings['pass']) ? true : false;
+            
+            if (!$mail->smtpConnect()) {
+                return false;
+            }
+
+            $mail->smtpClose();
+
+            return true;
+            
+        }
+
+        /**
          * E-Mail versenden via PHP mail() Funktion
          * @return boolean
+         * @since FPCM 3.5
          */
         private function submitPhp() {
 
@@ -215,12 +251,12 @@
         /**
          * E-Mail via SMTP versenden
          * @return bool
+         * @since FPCM 3.5
          */
         private function submitSmtp() {
             
             require_once loader::libGetFilePath('PHPMailer', 'class.phpmailer.php');
-            require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');
-            
+            require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');            
 
             $mail = new \PHPMailer();
             $mail->isSMTP();

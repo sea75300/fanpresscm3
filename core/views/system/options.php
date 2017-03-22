@@ -246,9 +246,18 @@
                          <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EXTENDED_UPDATESMANCHK'); ?>:</td>
                          <td><?php fpcm\model\view\helper::select('system_updates_manual', $FPCM_LANG->translate('SYSTEM_OPTIONS_UPDATESMANUAL'), $globalConfig['system_updates_manual'], false, false); ?></td>
                     </tr>
+                    <?php if ($smtpActive) : ?>
+                    <tr class="fpcm-td-spacer"><td colspan="2"></td></tr>
+                    <tr>
+                        <th></th>
+                        <th><span class="fa fa-check-square fa-align-right"></span> <?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_ACTIVE'); ?></th>
+                    </tr>
+                    <?php endif; ?>
                     <tr>	
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_ENABLED'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::boolSelect('smtp_enabled', $globalConfig['smtp_enabled']); ?></td>
+                        <td>
+                            <?php fpcm\model\view\helper::boolSelect('smtp_enabled', $globalConfig['smtp_enabled']); ?>
+                        </td>
                     </tr>
                     <tr>	
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_SERVER'); ?>:</td>
