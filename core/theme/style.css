@@ -1199,14 +1199,6 @@ table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
     padding: 0em;
 }
 
-.fpcm-ui-editor-contentdiff-left {
-    padding-right: 0.6em !important;
-}
-
-.fpcm-ui-editor-contentdiff-right {
-    padding-left: 0.6em !important;
-}
-
 div.fpcm-fpcm-editor-selectbox {
     display: block;
     float: left;

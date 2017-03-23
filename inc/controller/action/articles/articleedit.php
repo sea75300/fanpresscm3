@@ -40,7 +40,7 @@
          *
          * @var \fpcm\model\articles\article
          */
-        protected $currentArticle = null;
+        protected $revisionArticle = null;
         
         /**
          *
@@ -121,23 +121,21 @@
             
             if ($this->revisionId) {
                 
+                
                 include_once \fpcm\classes\loader::libGetFilePath('PHP-FineDiff', 'finediff.php');
                 
-                $this->currentArticle = clone $this->article;
+                $this->revisionArticle = clone $this->article;
                 
                 if (!$this->revisionId) {
                     $this->revisionId = (int) $this->getRequestVar('rev');
                 }                
-                
-                $this->showRevision   = ($this->article->getRevision($this->revisionId) ? true : false);
-                
-                $from = $this->currentArticle->getContent();
-                $to   = $this->article->getContent();
 
-                $opcode = \FineDiff::getDiffOpcodes($from, $to, \FineDiff::$sentenceGranularity);
+                $this->showRevision   = ($this->revisionArticle->getRevision($this->revisionId) ? true : false);
                 
-                $this->view->assign('textFrom', \FineDiff::renderDiffToHTMLFromOpcodes($from, $opcode));
-                $this->view->assign('textTo', \FineDiff::renderDiffToHTMLFromOpcodes($to, $opcode));
+                $from = $this->revisionArticle->getContent();
+                $opcode = \FineDiff::getDiffOpcodes($from, $this->article->getContent(), \FineDiff::$characterGranularity);
+                $this->view->assign('textDiff', \FineDiff::renderDiffToHTMLFromOpcodes($from, $opcode));
+
             }
 
             if ($this->buttonClicked('articleDelete') && !$this->showRevision && $this->checkPageToken) {
@@ -299,7 +297,7 @@
 
             $this->view->assign('isRevision', false);
             if ($this->showRevision) {
-                $this->view->assign('currentArticle', $this->currentArticle);
+                $this->view->assign('revisionArticle', $this->revisionArticle);
                 $this->view->assign('editorFile', \fpcm\classes\baseconfig::$viewsDir.'articles/editors/revisiondiff.php');
                 $this->view->assign('isRevision', true);
                 $this->view->assign('showRevisions', false);

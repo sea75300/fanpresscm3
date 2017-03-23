@@ -27,6 +27,10 @@ fpcm.editor = {
             icon: false
         });
 
+        jQuery('.fpcm-ui-editor-categories-revisiondiff .fpcm-ui-input-checkbox').click(function() {
+            return false;
+        });
+
         fpcm.ui.selectmenu('#fpcm-editor-paragraphs', {
             select: function( event, ui ) {
                 if (!ui.item.value) {
