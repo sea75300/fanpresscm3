@@ -31,7 +31,7 @@
         public function getIpAll() {
             $items = $this->dbcon->fetch($this->dbcon->select($this->table), true);
             
-            $res = array();
+            $res = [];
 
             foreach ($items as $item) {
                 $ipaddress = new ipaddress();
@@ -54,7 +54,7 @@
             
             $ipAddress      = explode($delim, \fpcm\classes\http::getIp());
             
-            $adresses       = array();
+            $adresses       = [];
             $adresses[]     = implode($delim, $ipAddress);
             
             $where = array('ipaddress '.$this->dbcon->dbLike().' ?');

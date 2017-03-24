@@ -54,7 +54,7 @@
             foreach ($tags as $replacement => $value) {
                 
                 $replacement = explode(':', $replacement);                
-                $values = array();
+                $values = [];
                 
                 switch ($replacement[0]) {
                     case '{{permaLink}}':

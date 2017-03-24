@@ -181,7 +181,10 @@
 
             $files = \fpcm\classes\database::getTableFiles();
             foreach ($files as $value) {
-                $sqlFiles[substr(basename($value, '.yml'), 2)] = base64_encode(str_rot13(base64_encode($value)));
+                $sqlFiles[] = [
+                    'descr' => substr(basename($value, '.yml'), 2),
+                    'path'  => base64_encode(str_rot13(base64_encode($value)))
+                ];
             }
 
             $this->view->addJsVars(array(

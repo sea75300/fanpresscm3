@@ -76,13 +76,13 @@
          * @return array
          */
         public static function syslogRead() {
-            if (!file_exists(baseconfig::$logFiles['syslog'])) return array();
+            if (!file_exists(baseconfig::$logFiles['syslog'])) return [];
             
             $content = file(baseconfig::$logFiles['syslog'], FILE_SKIP_EMPTY_LINES);
 
             if ($content === false) {
                 trigger_error('Unable to read data to system log');
-                return array();
+                return [];
             }
 
             return $content;
@@ -94,13 +94,13 @@
          * @return array
          */
         public static function errorlogRead() {            
-            if (!file_exists(baseconfig::$logFiles['phplog'])) return array();
+            if (!file_exists(baseconfig::$logFiles['phplog'])) return [];
             
             $content = file(baseconfig::$logFiles['phplog'], FILE_SKIP_EMPTY_LINES);
 
             if ($content === false) {
                 trigger_error('Unable to read data to system log');
-                return array();
+                return [];
             }
 
             return $content;
@@ -112,13 +112,13 @@
          * @return array
          */
         public static function sqllogRead() {
-            if (!file_exists(baseconfig::$logFiles['dblog'])) return array();
+            if (!file_exists(baseconfig::$logFiles['dblog'])) return [];
             
             $content = file(baseconfig::$logFiles['dblog'], FILE_SKIP_EMPTY_LINES);
 
             if ($content === false) {
                 trigger_error('Unable to read data to db log');
-                return array();
+                return [];
             }
 
             return $content;
@@ -131,13 +131,13 @@
          * @since FPCM 3.2.0
          */
         public static function pkglogRead() {
-            if (!file_exists(baseconfig::$logFiles['pkglog'])) return array();
+            if (!file_exists(baseconfig::$logFiles['pkglog'])) return [];
             
             $content = file(baseconfig::$logFiles['pkglog'], FILE_SKIP_EMPTY_LINES);
 
             if ($content === false) {
                 trigger_error('Unable to read data to package manager log');
-                return array();
+                return [];
             }
 
             return $content;

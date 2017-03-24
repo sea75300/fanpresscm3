@@ -34,9 +34,7 @@
          * @link http://php.net/manual/de/pdo.construct.php
          */        
         public function getPdoOptions() {
-            return [
-                \PDO::ATTR_EMULATE_PREPARES => true
-            ];
+            return [];
         }
         
         /**

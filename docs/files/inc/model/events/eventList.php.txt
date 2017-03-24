@@ -52,7 +52,7 @@
          */
         public function getSystemEventList() {
 
-            $list = array();
+            $list = [];
             foreach (glob(\fpcm\classes\baseconfig::$incDir.'model/events/*.php') as &$file) {                
                 if ($file == __FILE__) continue;                
                 $list[]  = basename($file, '.php');

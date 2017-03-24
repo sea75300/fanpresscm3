@@ -37,7 +37,7 @@
             
             $list = $this->dbcon->fetch($this->dbcon->select($this->table), true);
             
-            $res = array();
+            $res = [];
             foreach ($list as $item) {
                 $wbItem = new item();
                 if ($wbItem->createFromDbObject($item)) {                    
@@ -107,7 +107,7 @@
         public function checkArticleApproval($text) {
             
             $itemsCache = new \fpcm\classes\cache('wordbanItemsArticleApproval');
-            $data = array();
+            $data = [];
 
             if ($itemsCache->isExpired() || !is_array($itemsCache->read())) {
                 $items = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'lockarticle = 1'), true);
@@ -143,7 +143,7 @@
         public function checkCommentApproval($text) {
             
             $itemsCache = new \fpcm\classes\cache('wordbanItemsCommentApproval');
-            $data = array();
+            $data = [];
 
             if ($itemsCache->isExpired() || !is_array($itemsCache->read())) {
                 $items = $this->dbcon->fetch($this->dbcon->select($this->table, '*', 'commentapproval = 1'), true);

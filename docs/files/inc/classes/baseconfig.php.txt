@@ -221,13 +221,13 @@
          * Logdatein
          * @var array
          */
-        public static $logFiles         = array();
+        public static $logFiles         = [];
         
         /**
          * Controller-Dateien
          * @var array
          */
-        public static $controllerFiles  = array();
+        public static $controllerFiles  = [];
         
         /**
          * Datetime-Masken
@@ -372,7 +372,7 @@
          * @return array
          */
         public static function getDatabaseConfig() {
-            if (!file_exists(self::$configDir.'database.php')) return array();            
+            if (!file_exists(self::$configDir.'database.php')) return [];            
             
             include self::$configDir.'database.php';
             return $config;            
@@ -567,9 +567,9 @@
          */
         private static function initModuleControllers() {
             $moduleConfigs = glob(self::$moduleDir.'*/*/config/controllers.yml');
-            if (!$moduleConfigs || !count($moduleConfigs)) return array();
+            if (!$moduleConfigs || !count($moduleConfigs)) return [];
 
-            $modules = array();
+            $modules = [];
             foreach ($moduleConfigs as $moduleConfig) {
                 $modules = array_merge($modules, \Spyc::YAMLLoad($moduleConfig));
             }

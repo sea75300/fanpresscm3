@@ -97,6 +97,18 @@
         const tableRevisions  = 'revisions';
 
         /**
+         * Datenbank-TypKonstante MySQL
+         * @since FPCM 3.5
+         */
+        const DBTYPE_MYSQLMARIADB = 'mysql';
+
+        /**
+         * Datenbank-TypKonstante Postgres
+         * @since FPCM 3.5
+         */        
+        const DBTYPE_POSTGRES = 'pgsql';
+
+        /**
          * Liste mit unterstützten Datenbanksystemen
          * @since FPCM 3.3
          * mysql => MySQL 5.5 + oder MariaDB 10 +
@@ -260,6 +272,10 @@
          */
         public function updateMultiple($table, array $fields, array $params = [], array $where = []) {
 
+            if ($this->dbtype === self::DBTYPE_POSTGRES) {
+                $this->connection->setAttribute(\PDO::ATTR_EMULATE_PREPARES, true);
+            }
+
             $sql    = '';
             $values = [];
 
@@ -277,7 +293,13 @@
                 $sql    .= ';'.PHP_EOL;
             }
 
-            return $this->exec($sql, $values);
+            $res = $this->exec($sql, $values);
+
+            if ($this->dbtype === self::DBTYPE_POSTGRES) {
+                $this->connection->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+            }
+            
+            return $res;
 
         }
 

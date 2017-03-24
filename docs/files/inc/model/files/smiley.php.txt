@@ -194,7 +194,7 @@
          * @return array
          */        
         protected function getSaveValues() {
-            $values = array();
+            $values = [];
             foreach ($this->dbParams as $key) {
                 $values[$key] = ($this->$key) ? $this->$key : '';
             }

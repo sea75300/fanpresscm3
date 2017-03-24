@@ -9,6 +9,8 @@ if (fpcm === undefined) {
 }
 
 fpcm.installer = {
+    
+    currentDbFileIndex: 0,
 
     init: function() {
         this.initUi();
@@ -66,44 +68,52 @@ fpcm.installer = {
 
         fpcm.ui.progressbar('.fpcm-installer-progressbar', {
             max  : fpcmSqlFilesCount,
-            value: 0
+            value: fpcm.installer.currentDbFileIndex
         });
 
-        var pgVal = 1;
+        fpcm.installer.execDbFile();
 
-        jQuery.each(window.fpcmSqlFiles, function( key, obj ) {
+    },
 
-            fpcm.ui.appendHtml('#fpcm-installer-execlist', '<p><span class="fa fa-spinner fa-spin fa-fw"></span> ' + fpcmSqlFileExec.replace('{{tablename}}', key) + '</p>');
+    execDbFile: function() {
 
-            fpcm.ajax.post('installer/initdb', {
-                data: {
-                    file: obj
-                },
-                async: false,
-                execDone: function () {
-                    jQuery('#fpcm-installer-execlist').find('span.fa-spinner').remove();
+        if (window.fpcmSqlFiles[fpcm.installer.currentDbFileIndex] === undefined) {
+            return true;
+        }
 
-                    if(fpcm.ajax.getResult('installer/initdb') != 0){        
-                        return true;
-                    }
+        var obj = window.fpcmSqlFiles[fpcm.installer.currentDbFileIndex];
 
-                    fpcm.ui.appendHtml('#fpcm-installer-execlist', "<p class='fpcm-ui-important-text'>FAILED!</p>");
-                    fpcm.installer.breakDbInit = false;
+        fpcm.ui.appendHtml('#fpcm-installer-execlist', '<p><span class="fa fa-spinner fa-spin fa-fw"></span> ' + fpcmSqlFileExec.replace('{{tablename}}', obj.descr) + '</p>');
+
+        fpcm.ajax.post('installer/initdb', {
+            data: {
+                file: obj.path
+            },
+            execDone: function () {
+                jQuery('#fpcm-installer-execlist').find('span.fa-spinner').remove();
+
+                if(fpcm.ajax.getResult('installer/initdb') != 0){
+
+                    fpcm.installer.currentDbFileIndex++;
+
+                    fpcm.ui.progressbar('.fpcm-installer-progressbar', {
+                        value: fpcm.installer.currentDbFileIndex
+                    });
+
+                    fpcm.installer.execDbFile();
+                    return true;
+
                 }
-            });
-            
-            if (fpcm.installer.breakDbInit) {
+
+                fpcm.ui.appendHtml('#fpcm-installer-execlist', "<p class='fpcm-ui-important-text'>FAILED!</p>");
+                fpcm.installer.breakDbInit = false;
+
                 return false;
             }
-
-            fpcm.ui.progressbar('.fpcm-installer-progressbar', {
-                value: pgVal
-            });
-
-            pgVal++;
         });
+
     },
-    
+
     initUi: function() {
 
         fpcm.ui.tabs('#fpcm-tabs-installer', {

@@ -62,7 +62,7 @@
          * ggf. nötige Container-Berechtigungen
          * @var array
          */
-        protected $checkPermissions = array();
+        protected $checkPermissions = [];
 
         /**
          * Container-Position
@@ -132,7 +132,7 @@
          * @since FPCM 3.1.3
          */
         public function getJavascriptFiles() {
-            return array();
+            return [];
         }
 
         /**
@@ -141,7 +141,7 @@
          * @since FPCM 3.1.3
          */
         public function getJavascriptVars() {
-            return array();
+            return [];
         }
 
         /**
@@ -150,7 +150,7 @@
          * @since FPCM 3.1.3
          */
         public function getControllerViewVars() {
-            return array();
+            return [];
         }
         
         /**
@@ -159,7 +159,7 @@
          */
         public function __toString() {
 
-            $html   = array();
+            $html   = [];
             $html[] = '<div class="fpcm-dashboard-container fpcm-dashboard-container-'.$this->getName().' fpcm-dashboard-container-width-'.$this->getWidth().' fpcm-dashboard-container-height-'.$this->getHeight().'">';
             $html[] = ' <div class="fpcm-dashboard-container-inner ui-widget-content ui-corner-all ui-state-normal">';
             $html[] = '     <div class="fpcm-dashboard-container-header">';

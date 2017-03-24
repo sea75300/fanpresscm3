@@ -21,7 +21,7 @@
          * erlaute Dateierweiterungen
          * @var array
          */
-        protected $exts = array();
+        protected $exts = [];
         
         /**
          * Dateilisten-Basispfad
@@ -41,14 +41,14 @@
          */
         public function getFolderList() {            
 
-            $res = array();
+            $res = [];
             
             foreach ($this->exts as $ext) {
                 $extLower = glob($this->basepath.$this->pathprefix.'*.'.$ext);
                 $extUpper = glob($this->basepath.$this->pathprefix.'*.'.strtoupper($ext));
                 
-                if (!$extLower) $extLower = array();
-                if (!$extUpper) $extUpper = array();
+                if (!$extLower) $extLower = [];
+                if (!$extUpper) $extUpper = [];
                 
                 $res = array_merge($res, $extLower, $extUpper);
             }

@@ -119,7 +119,7 @@
         public function getArticlesPostponedIDs() {
             $list = $this->dbcon->fetch($this->dbcon->select($this->table, 'id', 'postponed = 1 AND approval = 0 AND createtime <= ? AND deleted = 0 AND draft = 0'.$this->dbcon->orderBy(array('createtime DESC')), array(time())), true);
             
-            $ids = array();
+            $ids = [];
             foreach ($list as $item) {
                 $ids[] = (int) $item->id;
             }
@@ -155,8 +155,8 @@
          */      
         public function getArticlesByCondition($conditions, $monthIndex = false) {
 
-            $where = array();
-            $valueParams = array();
+            $where = [];
+            $valueParams = [];
             
             if (is_array($conditions) && count($conditions)) {
                 trigger_error('Using an array for '.__METHOD__.' is deprecated as of FPCM 3.5. Create an instance of "fpcm\model\articles\search" instead.');
@@ -190,8 +190,8 @@
                 $where[] = "(categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ? OR categories ".$this->dbcon->dbLike()." ?)";
                 $valueParams[] = "[{$conditions['category']}]";
                 $valueParams[] = "%,{$conditions['category']},%";
-                $valueParams[] = "{$conditions['category']},%";
-                $valueParams[] = "%,{$conditions['category']}";
+                $valueParams[] = "[{$conditions['category']},%";
+                $valueParams[] = "%,{$conditions['category']}]";
             }
             
             if (isset($conditions['datefrom'])) {
@@ -259,7 +259,7 @@
 
             $where = implode(" {$combination} ", $where);
 
-            $where2 = array();
+            $where2 = [];
             $where2[] = $this->dbcon->orderBy( ((isset($conditions['orderby'])) ? $conditions['orderby'] : array($this->config->articles_sort.' '.$this->config->articles_sort_order)) );
             
             if (isset($conditions['limit'])) {
@@ -389,7 +389,7 @@
             $where = count($userIds) ? "createuser IN (".  implode(',', $userIds).")" : '1=1';
             $articleCounts = $this->dbcon->fetch($this->dbcon->select($this->table, 'createuser, count(id) AS count', "$where AND deleted = 0 GROUP BY createuser"), true);
             
-            $res = array();
+            $res = [];
             if (!count($articleCounts)) return $res;
             
             foreach ($articleCounts as $articleCount) {
@@ -445,7 +445,7 @@
                 $where .= ' AND deleted = 0';
             }
 
-            $queryParams = array();
+            $queryParams = [];
             if (isset($conditions['datefrom'])) {
                 $where .= ' AND createtime >= ?';
                 $queryParams[] = (int) $conditions['datefrom'];
@@ -469,7 +469,7 @@
         public function getArticleIDsByUser($userId) {
             $articles = $this->dbcon->fetch($this->dbcon->select($this->table, 'id', "createuser = ? AND deleted = 0", array($userId)), true);
             
-            $res = array();
+            $res = [];
             if (!count($articles)) return $res;
             
             foreach ($articles as $article) {
@@ -489,7 +489,7 @@
         public function getMinMaxDate($archived = false) {
             
             $where  = 'deleted = 0';
-            $params = array();
+            $params = [];
 
             if ($archived !== false) {
                 $where   .= " AND archived = ?";
@@ -513,7 +513,7 @@
          * @return array
          */
         private function createListResult($list, $monthIndex) {
-            $res = array();
+            $res = [];
             foreach ($list as $item) {
                 $article = new article();
                 if (!$article->createFromDbObject($item)) {

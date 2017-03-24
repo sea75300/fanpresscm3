@@ -23,13 +23,13 @@
          * Language data
          * @var array
          */
-        private $langData = array();
+        private $langData = [];
         
         /**
          * Languages list
          * @var array
          */
-        private $langList = array();
+        private $langList = [];
         
         /**
          * Language code

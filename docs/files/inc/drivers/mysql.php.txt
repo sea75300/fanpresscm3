@@ -34,7 +34,7 @@
          * @link http://php.net/manual/de/pdo.construct.php
          */        
         public function getPdoOptions() {
-            return array();
+            return [];
         }
         
         /**

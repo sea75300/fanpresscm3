@@ -96,9 +96,9 @@
         public function getCrons() {
             $cronFiles = glob(\fpcm\classes\baseconfig::$incDir.'model/crons/*.php');
             
-            if (!is_array($cronFiles)) return array();
+            if (!is_array($cronFiles)) return [];
 
-            $crons = array();
+            $crons = [];
             foreach ($cronFiles as $cronFile) {
                 if ($cronFile == __FILE__) continue;
                 $crons[] = basename($cronFile, '.php');
@@ -124,7 +124,7 @@
                     true
             );
 
-            $list = array();
+            $list = [];
             
             if (!count($res)) return $list;
 
@@ -159,7 +159,7 @@
         public function getCronsData() {
             $res = \fpcm\classes\baseconfig::$fpcmDatabase->fetch(\fpcm\classes\baseconfig::$fpcmDatabase->select(\fpcm\classes\database::tableCronjobs), true);
             
-            $list = array();
+            $list = [];
             
             if (!count($res)) return $list;
             

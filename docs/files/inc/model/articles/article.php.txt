@@ -45,7 +45,7 @@
          * Kategorien
          * @var array
          */
-        protected $categories       = array();
+        protected $categories       = [];
         
         /**
          * Status: Entwurf
@@ -717,11 +717,11 @@
 
             $revisionSets = $this->dbcon->fetch($result, true);
             if (!is_array($revisionSets) || !count($revisionSets)) {
-                return array();
+                return [];
             }
             $revisionFiles = $this->events->runEvent('getRevisionsBefore', $revisionSets);            
             
-            $revisions = array();
+            $revisions = [];
             foreach ($revisionSets as $revisionSet) {
                 
                 $revisionObj = new revision($this->id);
@@ -890,6 +890,24 @@
 
             $data = explode('-', $this->inedit);
             return $data[0] > time() - FPCM_ARTICLE_LOCKED_INTERVAL && $data[1] != FPCM_USERID ? true : false;
+        }
+
+        /**
+         * Prüft, ob Artikel öffentlich sichtbar ist
+         * @return boolean
+         * @since FPCM 3.5
+         */
+        public function publicIsVisible() {
+
+            if (!$this->exists() || $this->getDeleted()) {
+                return false;
+            }
+
+            if (($this->getDraft() || $this->getPostponed()) && !\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                return false;
+            }
+
+            return true;
         }
 
         /**

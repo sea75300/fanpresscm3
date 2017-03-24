@@ -45,7 +45,7 @@
          * Liste mit aktiven Modulen
          * @var array
          */
-        protected $activeModules = array();
+        protected $activeModules = [];
         
         /**
          * Event-Cache
@@ -57,7 +57,7 @@
          * Array mit zu prüfenden Berchtigungen
          * @var array
          */
-        protected $checkPermission = array();
+        protected $checkPermission = [];
         
         /**
          * Berechtigungen
@@ -179,10 +179,10 @@
         protected function getEventClasses() {
 
             if (!count($this->activeModules)) {
-                return array();
+                return [];
             }
 
-            $classes = array();
+            $classes = [];
             
             $eventBaseClass = '/events/'.$this->getEventClassBase().'.php';
             foreach ($this->activeModules as $module) {

@@ -91,7 +91,7 @@
             
             $eventClasses = $this->getEventClasses();
             
-            if (!count($eventClasses)) return array();
+            if (!count($eventClasses)) return [];
 
             $mdata = array(
                 'dummy_field' => array('name' => 'dummy', 'value' => 'dummy', 'class' => 'dummy', 'readonly' => false)

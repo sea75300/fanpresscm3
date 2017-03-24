@@ -53,7 +53,7 @@
 
             $files = $this->getFolderList();
             
-            $ret = array();
+            $ret = [];
             foreach ($files as $file) {
                 $ret[] = new templatefile(basename($file));
             }

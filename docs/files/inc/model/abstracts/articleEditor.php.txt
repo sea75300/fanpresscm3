@@ -92,11 +92,11 @@
          * @return array
          */
         protected function getEditorStyles() {
-            if (!$this->config->system_editor_css) return array();
+            if (!$this->config->system_editor_css) return [];
             
             $classes = explode(PHP_EOL, $this->config->system_editor_css);
             
-            $editorStyles = array();
+            $editorStyles = [];
             foreach ($classes as $class) {
                 $class = trim(str_replace(array('.', '{', '}'), '', $class));                
                 $editorStyles[$class] = $class;
@@ -111,7 +111,7 @@
          */
         protected function getEditorLinks() {
             $links = $this->events->runEvent('editorAddLinks');
-            if (!is_array($links) || !count($links)) return array();
+            if (!is_array($links) || !count($links)) return [];
             return $links;
         }
         
@@ -120,7 +120,7 @@
          * @return array
          */
         protected function getFileList() {
-            $data = array();            
+            $data = [];            
             foreach ($this->fileList->getDatabaseList() as $image) {
                 $data[] = array('label' => $image->getFilename(), 'value' => $image->getImageUrl());
             }

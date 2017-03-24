@@ -26,7 +26,7 @@
          * Table container
          * @var array
          */
-        protected $tableContent = array();
+        protected $tableContent = [];
 
         /**
          * Konstruktor

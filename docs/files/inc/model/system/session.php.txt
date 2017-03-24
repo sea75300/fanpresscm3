@@ -366,7 +366,7 @@
          * @return array
          */
         public function getSessions() {
-            $sessions = array();
+            $sessions = [];
             
             $listItems = $this->dbcon->fetch($this->dbcon->select($this->table, '*', "sessionid NOT ".$this->dbcon->dbLike()." ?", array($this->sessionid)), true);
             

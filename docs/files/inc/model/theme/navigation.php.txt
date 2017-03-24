@@ -201,7 +201,7 @@
                     'description'       => $this->language->translate('HL_ARTICLE_EDIT_ACTIVE'),
                     'class'             => '',
                     'id'                => '',
-                    'icon'              => 'fa fa-book fa-fw'
+                    'icon'              => 'fa fa-newspaper-o fa-fw'
                 ]),
                 navigationItem::createItemFromArray([
                     'url'               => 'articles/listarchive',

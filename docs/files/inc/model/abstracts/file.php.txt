@@ -347,5 +347,24 @@
 
             return true;
         }
+
+        /**
+         * ist Datei beschreibbar
+         * @return boolean
+         * @since FPCM 3.5
+         */
+        public function isWritable() {
+            return is_writable($this->fullpath) ? true : false;
+        }
+
+        /**
+         * ist Datei lesbar
+         * @return boolean
+         * @since FPCM 3.5
+         */
+        public function isReadable() {
+            return is_readable($this->fullpath) ? true : false;
+        }
+        
     }
 

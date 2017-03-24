@@ -41,7 +41,7 @@
             $result = $this->dbcon->select(array($this->table, \fpcm\classes\database::tableRoll), $item, $where);
             $users  = $this->dbcon->fetch($result, true);
             
-            $res = array();
+            $res = [];
 
             foreach ($users as $user) {
                 $author = new author();
@@ -60,7 +60,7 @@
         public function getUsersNameList() {
             $users = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, displayname'), true);
             
-            $res = array();
+            $res = [];
 
             foreach ($users as $user) {
                 $res[$user->displayname] = $user->id;
@@ -76,7 +76,7 @@
         public function getUsersEmailList() {
             $users = $this->dbcon->fetch($this->dbcon->select($this->table, 'id, email'), true);
             
-            $res = array();
+            $res = [];
 
             foreach ($users as $user) {
                 $res[$user->email] = $user->id;
@@ -103,7 +103,7 @@
             $users  = $this->dbcon->fetch($result, true);
 
             if (!$users || !count($users)) {
-                return array();
+                return [];
             }
 
             return $this->getUserListResult($users, $byGroup);
@@ -127,7 +127,7 @@
             $users  = $this->dbcon->fetch($result, true);
 
             if (!$users || !count($users)) {
-                return array();
+                return [];
             }
 
             return $this->getUserListResult($users, $byGroup);
@@ -161,7 +161,7 @@
             $users  = $this->dbcon->fetch($result, true);
 
             if (!$users || !count($users)) {
-                return array();
+                return [];
             }
 
             return $this->getUserListResult($users);
@@ -221,7 +221,7 @@
          */
         private function getUserListResult(array $users, $byGroup = false) {
             
-            $res = array();
+            $res = [];
             
             $functionName  = 'userListResultBy';
             $functionName .= $byGroup ? 'Group' : 'Id';

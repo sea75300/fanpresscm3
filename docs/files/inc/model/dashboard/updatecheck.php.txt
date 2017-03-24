@@ -26,7 +26,7 @@
          * Container table content
          * @var array
          */
-        protected $tableContent = array();
+        protected $tableContent = [];
 
         /**
          * Ergebnis der System-Update-Prüfung
@@ -149,7 +149,7 @@
         public function getJavascriptVars() {
             
             if (!$this->autoCheckFailed) {
-                return array();
+                return [];
             }
             
             return array(
@@ -166,7 +166,7 @@
         public function getControllerViewVars() {
             
             if (!$this->autoCheckFailed) {
-                return array();
+                return [];
             }
             
             return array(
