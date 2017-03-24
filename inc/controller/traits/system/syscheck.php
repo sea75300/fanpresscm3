@@ -54,8 +54,8 @@
             );
 
             $dbDrivers   = \PDO::getAvailableDrivers();
-            $resultMySql = in_array('mysql', $dbDrivers);
-            $resultPgSql = in_array('pgsql', $dbDrivers);
+            $resultMySql = in_array(\fpcm\classes\database::DBTYPE_MYSQLMARIADB, $dbDrivers);
+            $resultPgSql = in_array(\fpcm\classes\database::DBTYPE_POSTGRES, $dbDrivers);
             $sqlhelp     = 'http://php.net/manual/de/pdo.getavailabledrivers.php';
 
             $current = $resultMySql || $resultPgSql ? true : false;
