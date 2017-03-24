@@ -16,17 +16,14 @@
     class navigationAdd extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
-
-            $params['after'][] = array(
-                'url'               => 'modules/config&key='.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__),
-                'permission'        => array('system' => 'options'),
-                'description'       => $this->lang->translate('NKORGINACTIVITY_MANAGER_HEADLINE'),
-                'icon'              => 'fa fa-calendar fa-fw',
-                'class'             => '',
-                'id'                => ''
-            );
             
-            return $params;
+            $item = new \fpcm\model\theme\navigationItem();
+            $item->setUrl('modules/config&key='.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__));
+            $item->setDescription($this->lang->translate('NKORGINACTIVITY_MANAGER_HEADLINE'));
+            $item->setIcon('fa fa-calendar fa-fw');
+            $item->setPermission(['system' => 'options']);
+
+            return $item;
         }
 
     }

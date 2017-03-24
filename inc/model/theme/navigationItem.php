@@ -272,7 +272,7 @@
             $item = new navigationItem();
             $item->setUrl(isset($data['url']) ? $data['url'] : '#');
             $item->setDescription(isset($data['description']) ? $data['description'] : '');
-            $item->setIcon(isset($data['icon']) ? $data['icon'] : 'fa-square');
+            $item->setIcon(isset($data['icon']) ? $data['icon'] : 'fa fa-fw fa-square');
             $item->setId(isset($data['id']) ? $data['id'] : '');
             $item->setClass(isset($data['class']) ? $data['class'] : '');
             $item->setPermission(isset($data['permission']) && is_array($data['permission']) ? $data['permission'] : []);

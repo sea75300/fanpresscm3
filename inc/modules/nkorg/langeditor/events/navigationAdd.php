@@ -20,17 +20,15 @@
             if (!\fpcm\classes\baseconfig::$fpcmSession->getCurrentUser()->isAdmin()) {
                 return $params;
             }
-            
-            $params['after'][] = array(
-                'url'               => 'modules/config&key='.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__),
-                'permission'        => array('system' => 'options'),
-                'description'       => $this->lang->translate('NKORG_LANGEDITOR_HEADLINE'),
-                'icon'              => 'fa fa-language fa-fw',
-                'class'             => '',
-                'id'                => ''
-            );
-            
-            return $params;
+        
+            $item = new \fpcm\model\theme\navigationItem();
+            $item->setUrl('modules/config&key='.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__));
+            $item->setDescription($this->lang->translate('NKORG_LANGEDITOR_HEADLINE'));
+            $item->setIcon('fa fa-language fa-fw');
+            $item->setPermission(['system' => 'options']);
+
+            return $item;
+
         }
 
     }
