@@ -20,8 +20,6 @@ fpcm.editor = {
             fpcm.editor.setInEdit();
             setInterval(fpcm.editor.setInEdit, window.fpcmCheckTimeout);
         }
-        
-        this[fpcmEditorInitFunction].call();
 
         fpcm.ui.checkboxradio('.fpcm-ui-editor-categories .fpcm-ui-input-checkbox', {
             icon: false
@@ -30,6 +28,8 @@ fpcm.editor = {
         jQuery('.fpcm-ui-editor-categories-revisiondiff .fpcm-ui-input-checkbox').click(function() {
             return false;
         });
+        
+        this[fpcmEditorInitFunction].call();
 
         fpcm.ui.selectmenu('#fpcm-editor-paragraphs', {
             select: function( event, ui ) {

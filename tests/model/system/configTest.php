@@ -22,21 +22,29 @@ class configTest extends testBase {
         $GLOBALS['newKey']   = 'config_option_unittest';
         $GLOBALS['newValue'] = '1234567890';
 
+        $GLOBALS['newKey2']   = 'config_option_unittest2';
+        $GLOBALS['newValue2'] = '1234567890';
+
         $result = $this->object->add($GLOBALS['newKey'], $GLOBALS['newValue']);
+        $result = $this->object->add($GLOBALS['newKey2'], $GLOBALS['newValue2']);
         $this->assertGreaterThanOrEqual(1, $result);
         $this->assertEquals($GLOBALS['newValue'], $this->object->{$GLOBALS['newKey']});
         
     }
     
     public function testUpdateKey() {
+
         $GLOBALS['newValue'] = '9876543210';
+        $GLOBALS['newValue'] = 'This is a test...';
 
         $this->object->setNewConfig([
-            $GLOBALS['newKey'] => $GLOBALS['newValue']
+            $GLOBALS['newKey'] => $GLOBALS['newValue'],
+            $GLOBALS['newKey2'] => $GLOBALS['newValue2']
         ]);
 
         $this->assertTrue($this->object->update());
         $this->assertEquals($GLOBALS['newValue'], $this->object->{$GLOBALS['newKey']});
+        $this->assertEquals($GLOBALS['newValue2'], $this->object->{$GLOBALS['newKey2']});
 
     }
     
@@ -52,10 +60,12 @@ class configTest extends testBase {
     
     public function testRemoveKey() {
         $this->assertTrue($this->object->remove($GLOBALS['newKey']));
+        $this->assertTrue($this->object->remove($GLOBALS['newKey2']));
         $this->object->init();
 
         $this->object = new fpcm\model\system\config(false, false);
         $this->assertFalse($this->object->{$GLOBALS['newKey']});
+        $this->assertFalse($this->object->{$GLOBALS['newKey2']});
 
     }
 

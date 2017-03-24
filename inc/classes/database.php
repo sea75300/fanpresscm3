@@ -207,7 +207,7 @@
          * @param bool $distinct Distinct select
          * @return mixed
          */
-        public function select($table, $item = '*', $where = null, array $params = array(), $distinct = false) {            
+        public function select($table, $item = '*', $where = null, array $params = [], $distinct = false) {            
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = $distinct ? "SELECT DISTINCT $item FROM $table" : "SELECT $item FROM $table";
             if (!is_null($where)) $sql .= " WHERE $where";
@@ -223,7 +223,7 @@
          * @param array $params
          * @return bool|int
          */
-        public function insert($table, $fields, $values, array $params = array()) {
+        public function insert($table, $fields, $values, array $params = []) {
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "INSERT INTO $table ($fields) VALUES ($values);";
 
@@ -241,12 +241,44 @@
          * @param string $where
          * @return bool
          */
-        public function update($table, array $fields, array $params = array(), $where = null) {
-            $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";            
+        public function update($table, array $fields, array $params = [], $where = null) {
+            $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql = "UPDATE $table SET ";
             $sql .= implode(' = ?, ', $fields).' = ?';            
             if (!is_null($where)) $sql .= " WHERE $where";
             return $this->exec($sql, $params);            
+        }
+
+        /**
+         * Führt mehrere UPDATE-Befehl auf DB mit einmal aus
+         * @param string $table
+         * @param array $fields
+         * @param array $params
+         * @param array $where
+         * @return bool
+         * @since FPCM 3.5
+         */
+        public function updateMultiple($table, array $fields, array $params = [], array $where = []) {
+
+            $sql    = '';
+            $values = [];
+
+            $updateStr = 'UPDATE '.$this->getTablePrefixed($table).' SET '.implode(' = ?, ', $fields).' = ?';
+
+            foreach ($params as $i => $row) {
+
+                $sql .= $updateStr;
+
+                if (isset($where[$i])) {
+                    $sql .= " WHERE {$where[$i]}";
+                }
+
+                $values  = array_merge($values, $row);
+                $sql    .= ';'.PHP_EOL;
+            }
+
+            return $this->exec($sql, $values);
+
         }
 
         /**
@@ -256,7 +288,7 @@
          * @param array $params
          * @return bool
          */
-        public function delete($table, $where = null, array $params = array()) {
+        public function delete($table, $where = null, array $params = []) {
             $table = (is_array($table)) ? $this->dbprefix.'_'.implode(', '.$this->dbprefix.'_', $table) : $this->dbprefix."_$table";
             $sql    = "DELETE FROM $table";
             if (!is_null($where)) $sql .= " WHERE $where";
@@ -291,7 +323,7 @@
          * @param array $params
          * @return boolean
          */
-        public function count($table, $countitem = '*', $where = null, array $params = array()) {
+        public function count($table, $countitem = '*', $where = null, array $params = []) {
             $sql = "SELECT count(".$countitem.") AS counted FROM {$this->dbprefix}_{$table}";
             if (!is_null($where)) {
                 $sql .= " WHERE ".$where.";";                
@@ -365,7 +397,7 @@
          * @param array $bindParams Paramater, welche gebunden werden sollen
          * @return bool
          */
-        public function exec($command, array $bindParams = array()) {
+        public function exec($command, array $bindParams = []) {
             
             $this->queryCount++;
             
@@ -477,7 +509,7 @@
          * @param array $bindParams Paramater, welche gebunden werden sollen
          * @return PDOStatement Zeilen in der Datenbank
          */
-        public function query($command, array $bindParams = array()) {
+        public function query($command, array $bindParams = []) {
             
             $this->queryCount++;
             

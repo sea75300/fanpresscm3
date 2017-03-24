@@ -143,20 +143,22 @@
 
             $params = $this->events->runEvent('configUpdate', $this->newConfig);
 
+            $data  = [];
+            $where = [];
+            
             foreach ($params as $key => $value) {
 
                 if (!array_key_exists($key, $this->data) && !\fpcm\classes\baseconfig::installerEnabled()) {
                     continue;      
                 }
 
-                if (!$this->dbcon->update($this->table, array('config_value'), array($value, $key), "config_name ".$this->dbcon->dbLike()." ?")) {
-                    trigger_error('Unable to update config '.$key);
-                }
-
+                $data[$key]  = [$value, $key];
+                $where[$key] = 'config_name = ?';
             }
 
+            $this->dbcon->updateMultiple($this->table, ['config_value'], $data, $where);
             $this->refresh();
-            
+
             return true;            
         }
         
