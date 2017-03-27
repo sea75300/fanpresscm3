@@ -6,7 +6,7 @@
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $listAction.$listActionLimit; ?>">
         <div class="fpcm-tabs-general">
             <ul class="fpcm-tabs-articles-headers">
-                <li><a href="#tabs-article-list" data-tabid="1"><?php $FPCM_LANG->write('HL_ARTICLE_EDIT'); ?></a></li>
+                <li><a href="#tabs-article-list"><?php $FPCM_LANG->write('HL_ARTICLE_EDIT'); ?></a></li>
             </ul>
 
             <div id="tabs-article-list">

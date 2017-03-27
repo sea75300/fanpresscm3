@@ -11,29 +11,8 @@ if (fpcm === undefined) {
 fpcm.articlelist = {
 
     init: function() {
-        
         fpcm.articlelist.initArticleSearch();
-
-        jQuery('.fpcm-tabs-articles-headers a').click(function () {
-
-            jQuery('#fpcmarticlesopensearch').show();
-            jQuery('#fpcmarticleslistaddnew').show();
-            jQuery('#btnClearTrash').hide();
-
-            var tabId = jQuery(this).attr('data-tabid');
-
-            if (tabId > 1) {
-                jQuery('#fpcmarticlesopensearch').hide();
-            }
-            
-            if (tabId == 3) {
-                jQuery('#fpcmarticleslistaddnew').hide();
-                jQuery('#btnClearTrash').show();
-            }
-
-            fpcmJs.assignButtons();
-        });
-
+        fpcmJs.assignButtons();
     },
     
     initArticleSearch: function() {
