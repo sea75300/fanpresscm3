@@ -298,6 +298,8 @@
                 \fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php',
                 \fpcm\classes\baseconfig::$viewsDir.'articles/lists/cronjobs.php',
                 \fpcm\classes\baseconfig::$jsPath.'editor_comments.js',
+                \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-2.2.0.min.js',
+                \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-3.1.0.min.js',
                 $fbPath.'blank.gif',
                 $fbPath.'fancybox_loading.gif',
                 $fbPath.'fancybox_loading@2x.gif',
