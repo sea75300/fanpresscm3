@@ -56,9 +56,57 @@
         const FPCMPACKAGE_FILESCOPY_ERROR  = -8;
         
         /**
+         * Fehler bei Schreibrechte-Prüfung vorhandener Dateien
+         * @since FPCM 3.5
+         */
+        const FPCMPACKAGE_FILESCHECK_ERROR  = -9;
+        
+        /**
          * Packages-Unterordner auf Paket-Server
          */
         const FPCMPACKAGE_SERVER_PACKAGEPATH = 'packages/';
+        
+        /**
+         * Update-Schritt: Paket herunterladen
+         * @since FPCM 3.5
+         */
+        const FPCMPACKAGE_STEP_DOWNLOAD     = 'download';
+
+        /**
+         * Update-Schritt: lokale Daten prüfen, ob beschreibbar
+         * @since FPCM 3.5
+         */
+        const FPCMPACKAGE_STEP_CHECKFILES   = 'checkfiles';
+
+        /**
+         * Update-Schritt: Paket entpacken
+         * @since FPCM 3.5
+         */
+         const FPCMPACKAGE_STEP_EXTRACT      = 'extract';
+
+        /**
+         * Update-Schritt: Paket-Inhalt kopieren
+         * @since FPCM 3.5
+         */
+        const FPCMPACKAGE_STEP_COPY         = 'copy';
+
+        /**
+         * Update-Schritt: Datenbank und Dateisystem aktualisieren
+         * @since FPCM 3.5
+         */
+        const FPCMPACKAGE_STEP_UPGRADEDB    = 'upgradedb';
+
+        /**
+         * Update-Schritt: Aufräumen
+         * @since FPCM 3.5
+         */
+        const FPCMPACKAGE_STEP_CLEANUP      = 'cleanup';
+
+        /**
+         * Update-Schritt: Abschließen
+         * @since FPCM 3.5
+         */
+        const FPCMPACKAGE_STEP_FINISH       = 'finish';
         
         /**
          * Pfad auf Paket-Server
@@ -504,11 +552,60 @@
                     $res[] = $dest;
                 }
                 
-            }            
+            }
             
             return is_array($res) ? self::FPCMPACKAGE_FILESCOPY_ERROR : $res;
         }
+
         
+        public function checkFiles() {
+        
+            if (!file_exists($this->tempListFile)) {
+                \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
+                return false;
+            }
+            
+            $this->loadPackageFileListFromTemp();
+            
+            if (!count($this->files)) {
+                \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
+                return false;
+            }
+            
+            $vendorFolder = \fpcm\classes\baseconfig::$baseDir.$this->copyDestination.dirname($this->key);
+            if ($this->type == 'module' && !is_dir($vendorFolder) && !mkdir($vendorFolder) ) {
+                trigger_error('Unable to create module vendor folder: '.\fpcm\model\files\ops::removeBaseDir($vendorFolder, true));
+                \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
+                return false;
+            }
+            
+            $res = [];
+            foreach ($this->files as $zipFile) {
+
+                $source = $this->extractPath.$zipFile;
+
+                $dest   = ($this->type == 'module'
+                        ? \fpcm\classes\baseconfig::$baseDir.$this->copyDestination.str_replace(basename($this->key).'/', $this->key.'/', $zipFile)
+                        : dirname(\fpcm\classes\baseconfig::$baseDir).$this->copyDestination.$zipFile);
+
+                $dest   = $this->replaceFanpressDirString($dest);
+                
+                if (file_exists($dest) && !is_writable($dest)) {
+                    $res[] = $dest;
+                    continue;
+                }
+
+            }
+            
+            if (!count($res)) {
+                return true;
+            }          
+
+            $this->copyErrorPaths = $res;
+            return self::FPCMPACKAGE_FILESCHECK_ERROR;
+            
+        }
+
         /**
          * Lädt Paket-Dateiliste aus temporärer Datei
          * @return boolean

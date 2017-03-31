@@ -40,6 +40,12 @@
          * @var bool
          */
         protected $forceStep = false;
+        
+        /**
+         * Auszuführender Schritt
+         * @var bool
+         */
+        protected $legacy = true;
 
         public function __construct() {
             parent::__construct();

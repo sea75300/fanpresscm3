@@ -144,9 +144,7 @@
         'UPDATE_VERSIONCHECK_NOTES'     => 'Release-Notes und weitere Infos zu System- und Modul-Updates findest du in den aktuellen FanPress CM News.',
         'UPDATE_VERSIONCECK_FILEDB_ERR' => 'Die Version im Dateisystem und der Datenbank stimmen nicht überein. <a class="fpcm-ui-button fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Klicke hier</a> um den Updater zu starten.',
         'UPDATE_NOTAUTOCHECK'           => 'Es konnte keine automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
-        'UPDATE_WRITEERROR'             => 'Die Datei <strong>version.php</strong> im FanPress CM-Verzeichnis ist nicht beschreibbar, was u. U. auch auf andere Dateien deiner Installation zutrifft.<br>'.
-                                           'Dies kann durch falsche Dateirechte verursacht werden. Prüfe/ ändere die Rechte der - am Besten aller - Dateien via FTP, bis diese Meldung verschwindet.<br>'.
-                                           'Sollte dies nicht gelingen, wende dich bitte an deinen Host für weitere Hilfe.',
+        'UPDATE_WRITEERROR'             => 'Einige Dateien im Dateisystem sind nicht beschreibbar und können daher nicht ersetzt werden. Prüfe die Rechte der Dateien via FTP, eine Liste findest du im System-Log.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Für einige Module sind Updates verfügbar. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Updates anzeigen</a>',
         'UPDATE_MODULECHECK_CURRENT'     => 'Alle installierten Module sind <strong>aktuell</strong>!',
@@ -164,12 +162,14 @@
         'PACKAGES_FAILED_ADDITIONAL'     => 'Beim Ausführen der abschließenden Paket-Aktionen ist ein Fehler aufgetreten!',
 
         'PACKAGES_SUCCESS_DOWNLOAD'     => '<span class="fa fa-cloud-download fpcm-ui-booltext-yes fa-fw fa-lg"></span> Das Herunterladen der Paket-Datei war erfolgreich.',
+        'PACKAGES_SUCCESS_FILECHECK'    => '<span class="fa fa-pencil-square-o  fpcm-ui-booltext-yes fa-fw fa-lg"></span> Alle Dateien sind beschreibbar.',
         'PACKAGES_SUCCESS_EXTRACT'      => '<span class="fa fa-file-archive-o fpcm-ui-booltext-yes fa-fw fa-lg"></span> Das Entpacken der Paket-Datei war erfolgreich.',
         'PACKAGES_SUCCESS_COPY'         => '<span class="fa fa-random fpcm-ui-booltext-yes fa-fw fa-lg"></span> Der Inhalt der Paket-Datei konnte erfolgreich an sein Ziel kopiert werden.',
         'PACKAGES_SUCCESS_ADDITIONAL'   => '<span class="fa fa-refresh fpcm-ui-booltext-yes fa-fw fa-lg"></span> Das Ausführen der abschließenden Paket-Aktionen war erfolgreich!',
         'PACKAGES_SUCCESS_LOGDONE'      => '<span class="fa fa-file-text-o fpcm-ui-booltext-yes fa-fw fa-lg"></span> Aktualisierung des Paketmanager-Log war erfolgreich!',
         
         'PACKAGES_RUN_DOWNLOAD'         => 'Paket-Datei {{pkglink}} wird geladen...',
+        'PACKAGES_RUN_FILECHECK'        => 'Überprüfe Rechte existierender Dateien...',
         'PACKAGES_RUN_EXTRACT'          => 'Paket wird entpackt...',
         'PACKAGES_RUN_COPY'             => 'Paket-Inhalt wird an Ziel kopiert...',
         'PACKAGES_RUN_ADDITIONAL'       => 'Führe abschließende Paket-Aktionen durch...',

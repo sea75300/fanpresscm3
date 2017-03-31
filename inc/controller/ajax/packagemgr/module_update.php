@@ -116,7 +116,7 @@
                         $this->returnData['nextstep'] = 4;
                     } else {
                         \fpcm\classes\logs::syslogWrite('Error while moving module package content from '.$from.' to '.$dest);
-                        \fpcm\classes\logs::syslogWrite(implode('<br>', $pkg->getCopyErrorPaths()));
+                        \fpcm\classes\logs::syslogWrite(implode(PHP_EOL, $pkg->getCopyErrorPaths()));
                         $this->returnData['nextstep'] = 5;
                     }
                     break;

@@ -144,9 +144,7 @@
         'UPDATE_VERSIONCHECK_NOTES'     => 'Release notes and further information for system and module updates can be found in "Recent FanPress CM news".',
         'UPDATE_VERSIONCECK_FILEDB_ERR' => 'Mismatch of version information in file system and database. <a class="fpcm-ui-button fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to execute updater.',
         'UPDATE_NOTAUTOCHECK'           => 'Automatic update check failed! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Check manually</a>',
-        'UPDATE_WRITEERROR'             => 'The <strong>version.php</strong> file in FanPress CM root folder is not writable. This may affect other files of your installation too.<br>'.
-                                           'This can be caused by wrong file permissions. Please check/change permissions of - in case - all files until this message disappears after page reload.<br>'.
-                                           'In case you\'re unable to do so, contact you host for further help.',
+        'UPDATE_WRITEERROR'             => 'Various files in the file system are not writable. Please check the permissions of the files mentioned in system log via FTP access.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Module updates are available. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Show updates</a>',
         'UPDATE_MODULECHECK_CURRENT'     => 'All installed modules are <strong>up to date</strong>!',
@@ -164,6 +162,7 @@
         'PACKAGES_FAILED_ADDITIONAL'     => 'An error occurred while processing additional package steps!',
 
         'PACKAGES_SUCCESS_DOWNLOAD'     => '<span class="fa fa-cloud-download fpcm-ui-booltext-yes fa-fw fa-lg"></span> Download of package file has been successful.',
+        'PACKAGES_SUCCESS_FILECHECK'    => '<span class="fa fa-pencil-square-o  fpcm-ui-booltext-yes fa-fw fa-lg"></span> All files in file system are writable.',
         'PACKAGES_SUCCESS_EXTRACT'      => '<span class="fa fa-file-archive-o fpcm-ui-booltext-yes fa-fw fa-lg"></span> Extracting package file has been successful.',
         'PACKAGES_SUCCESS_COPY'         => '<span class="fa fa-random fpcm-ui-booltext-yes fa-fw fa-lg"></span> Copy of package file content has been successful.',
         'PACKAGES_SUCCESS_ADDITIONAL'   => '<span class="fa fa-refresh fpcm-ui-booltext-yes fa-fw fa-lg"></span> Execution of additional package steps has been successful!',

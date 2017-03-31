@@ -25,9 +25,15 @@
         
         /**
          * Auszuführender Schritt
-         * @var int
+         * @var mixed
          */
         protected $forceStep = false;
+        
+        /**
+         * Auszuführender Schritt
+         * @var bool
+         */
+        protected $legacy = false;
 
         /**
          * Konstruktor
@@ -45,7 +51,7 @@
          */
         public function request() {
             if ($this->getRequestVar('step')) {
-                $this->forceStep = (int) $this->getRequestVar('step');
+                $this->forceStep = $this->getRequestVar('step');
             }
             
             if ($this->getRequestVar('file')) {
@@ -78,11 +84,25 @@
             $updater->checkUpdates();
             $remoteFilePath = $updater->getRemoteData('filepath');
             
-            $params     = $this->initPkgManagerData();
-            $params['fpcmUpdaterMaxStep']             = 6;
-            $params['fpcmUpdaterStartStep']           = ($this->forceStep ? $this->forceStep : (\fpcm\classes\baseconfig::canConnect() ? 1 : 4));
-            $params['fpcmUpdaterMessages']['1_START'] = $this->lang->translate('PACKAGES_RUN_DOWNLOAD', array('{{pkglink}}' => is_array($remoteFilePath) ? '' : $remoteFilePath));
+            $params = $this->initPkgManagerData();
+            $params['fpcmUpdaterStartStep'] = ($this->forceStep
+                                            ? $this->forceStep
+                                            : (\fpcm\classes\baseconfig::canConnect()
+                                                    ? \fpcm\model\packages\package::FPCMPACKAGE_STEP_DOWNLOAD
+                                                    : \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB));
+            
+            $params['fpcmUpdaterMessages'][\fpcm\model\packages\package::FPCMPACKAGE_STEP_DOWNLOAD.'_START'] = $this->lang->translate('PACKAGES_RUN_DOWNLOAD', ['{{pkglink}}' => is_array($remoteFilePath) ? '' : $remoteFilePath]);
             $params['fpcmUpdaterMessages']['EXIT_1']  = $this->lang->translate('UPDATES_SUCCESS');
+            $params['fpcmUpdaterStepMap'] = [
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_DOWNLOAD   => 1,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_CHECKFILES => 2,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_EXTRACT    => 3,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_COPY       => 4,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB  => 4,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP    => 6,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_FINISH     => 7
+            ];
+            $params['fpcmUpdaterMaxStep']   = count($params['fpcmUpdaterStepMap']);
             
             $this->view->addJsVars($params);
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'updater.js'));

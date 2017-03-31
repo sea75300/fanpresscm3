@@ -29,18 +29,22 @@ fpcm.updater = {
 
     },
 
-    execRequest: function(idx) {
+    execRequest: function(stepName) {
 
+        if (fpcmUpdaterStepMap[stepName] === undefined) {
+            return false;
+        }
+
+        var idx = fpcmUpdaterStepMap[stepName];        
         if (idx > fpcmUpdaterMaxStep) {
             return false;
         }
 
-        fpcm.ui.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', fpcmUpdaterMessages[idx + '_START']);
-
+        fpcm.ui.assignHtml('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', fpcmUpdaterMessages[stepName + '_START']);
         fpcm.ajax.post('packagemgr/sysupdater', {
             data: {
-                step : idx,
-                force: (fpcmUpdaterStartStep > 1 ? 1 : 0)
+                step : stepName,
+                force: (idx > 1 ? 1 : 0),
             },
             execDone: function () {
                 fpcm.updater.responseData = fpcm.ajax.fromJSON(fpcm.ajax.getResult('packagemgr/sysupdater'));
@@ -51,13 +55,14 @@ fpcm.updater = {
 
                 fpcm.updater.progressbar(fpcm.updater.responseData.data.current);
 
-                if (fpcm.updater.responseData.data.current < fpcmUpdaterMaxStep &&
+                var currentIdx = fpcmUpdaterStepMap[fpcm.updater.responseData.data.current];
+                if (currentIdx < fpcmUpdaterMaxStep &&
                     fpcm.updater.responseData.code != fpcm.updater.responseData.data.current + '_' + 1) {
                     fpcm.ui.showLoader(false);
                     fpcm.ui.appendHtml('.fpcm-updater-list', '<p class="fpcm-ui-important-text">' + fpcmUpdaterMessages[fpcm.updater.responseData.code] + '</p>');
                     return false;
                 }
-                else if (fpcm.updater.responseData.data.current == 6) {
+                else if (currentIdx === fpcmUpdaterMaxStep) {
                     fpcm.ui.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterMessages[fpcm.updater.responseData.code] + ': ' + fpcm.updater.responseData.data.newver + '</p>');
                     fpcm.updater.ajaxCallbackFinal(fpcm.updater.responseDataresponseData);
                 }
@@ -65,11 +70,11 @@ fpcm.updater = {
                     fpcm.ui.appendHtml('.fpcm-updater-list', '<p>' + fpcmUpdaterMessages[fpcm.updater.responseData.code] + '</p>');
                 }
 
-                if (fpcm.updater.responseData.data.current < fpcmUpdaterMaxStep) {
+                if (currentIdx < fpcmUpdaterMaxStep) {
                     fpcm.updater.execRequest(fpcm.updater.responseData.data.nextstep);
                 }
 
-                if (fpcm.updater.responseData.data.current == fpcmUpdaterMaxStep) {
+                if (currentIdx == fpcmUpdaterMaxStep) {
                     fpcm.ui.assignText('div.fpcm-updater-progressbar div.fpcm-ui-progressbar-label', '');
                 }
             }
@@ -95,12 +100,12 @@ fpcm.updater = {
     },
 
     progressbar: function (pgValue) {
-        
+
         if (!window.fpcmUpdaterProgressbar) return false;  
 
         fpcm.ui.progressbar('.fpcm-updater-progressbar', {
-            max: fpcmUpdaterMaxStep,
-            value: pgValue
+            max: parseInt(fpcmUpdaterMaxStep),
+            value: parseInt(fpcmUpdaterStepMap[pgValue])
         });
 
     }

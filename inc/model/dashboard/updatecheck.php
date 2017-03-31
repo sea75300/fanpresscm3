@@ -84,7 +84,7 @@
         {
             include_once \fpcm\classes\baseconfig::$versionFile;
             if ($this->config->system_version !== $fpcmVersion) {
-                $ctrlParams = ['{{versionlink}}' => \fpcm\classes\tools::getControllerLink('package/sysupdate', ['step' => 4])];
+                $ctrlParams = ['{{versionlink}}' => \fpcm\classes\tools::getControllerLink('package/sysupdate', ['step' => \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB])];
                 $this->renderTable('fa-refresh', 'fpcm-dashboard-updates-versiondbfile', $this->language->translate('UPDATE_VERSIONCECK_FILEDB_ERR',  $ctrlParams));
             }
 
