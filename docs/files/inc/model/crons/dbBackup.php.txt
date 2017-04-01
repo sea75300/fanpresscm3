@@ -29,7 +29,7 @@
          */
         public function run() {
 
-            if (\fpcm\classes\baseconfig::$fpcmDatabase->getDbtype() == 'pgsql') {
+            if (\fpcm\classes\baseconfig::$fpcmDatabase->getDbtype() == \fpcm\classes\database::DBTYPE_POSTGRES) {
                 $this->updateLastExecTime();
                 return true;
             }

@@ -47,6 +47,7 @@
             
             $res = true;
             foreach ($this->files as $zipFile) {
+
                 $source = $this->extractPath.$zipFile;
 
                 $dest   = dirname(\fpcm\classes\baseconfig::$baseDir).$this->copyDestination.$zipFile;
