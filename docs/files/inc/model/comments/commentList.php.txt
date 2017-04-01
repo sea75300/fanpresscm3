@@ -342,7 +342,7 @@
         
         /**
          * Zählt Kommentare anhand von Bedingung
-         * @param search $condition
+         * @param search $conditions
          * @return int
          */
         public function countCommentsByCondition($conditions = []) {
