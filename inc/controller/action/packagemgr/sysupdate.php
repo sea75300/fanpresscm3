@@ -91,12 +91,13 @@
                                                     ? \fpcm\model\packages\package::FPCMPACKAGE_STEP_DOWNLOAD
                                                     : \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB));
             
+            $params['fpcmUpdaterForce'] = $this->forceStep ? 1 : 0;
             $params['fpcmUpdaterMessages'][\fpcm\model\packages\package::FPCMPACKAGE_STEP_DOWNLOAD.'_START'] = $this->lang->translate('PACKAGES_RUN_DOWNLOAD', ['{{pkglink}}' => is_array($remoteFilePath) ? '' : $remoteFilePath]);
             $params['fpcmUpdaterMessages']['EXIT_1']  = $this->lang->translate('UPDATES_SUCCESS');
             $params['fpcmUpdaterStepMap'] = [
                 \fpcm\model\packages\package::FPCMPACKAGE_STEP_DOWNLOAD   => 1,
-                \fpcm\model\packages\package::FPCMPACKAGE_STEP_CHECKFILES => 2,
-                \fpcm\model\packages\package::FPCMPACKAGE_STEP_EXTRACT    => 3,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_EXTRACT    => 2,
+                \fpcm\model\packages\package::FPCMPACKAGE_STEP_CHECKFILES => 3,
                 \fpcm\model\packages\package::FPCMPACKAGE_STEP_COPY       => 4,
                 \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB  => 4,
                 \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP    => 6,

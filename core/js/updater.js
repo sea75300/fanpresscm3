@@ -44,7 +44,7 @@ fpcm.updater = {
         fpcm.ajax.post('packagemgr/sysupdater', {
             data: {
                 step : stepName,
-                force: (idx > 1 ? 1 : 0),
+                force: fpcmUpdaterForce,
             },
             execDone: function () {
                 fpcm.updater.responseData = fpcm.ajax.fromJSON(fpcm.ajax.getResult('packagemgr/sysupdater'));

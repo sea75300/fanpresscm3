@@ -563,22 +563,14 @@
          * @since FPCM 3.5
          */
         public function checkFiles() {
-        
+
             if (!file_exists($this->tempListFile)) {
                 \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                 return false;
             }
             
             $this->loadPackageFileListFromTemp();
-            
             if (!count($this->files)) {
-                \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
-                return false;
-            }
-            
-            $vendorFolder = \fpcm\classes\baseconfig::$baseDir.$this->copyDestination.dirname($this->key);
-            if ($this->type == 'module' && !is_dir($vendorFolder) && !mkdir($vendorFolder) ) {
-                trigger_error('Unable to create module vendor folder: '.\fpcm\model\files\ops::removeBaseDir($vendorFolder, true));
                 \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
                 return false;
             }
@@ -593,14 +585,13 @@
                         : dirname(\fpcm\classes\baseconfig::$baseDir).$this->copyDestination.$zipFile);
 
                 $dest   = $this->replaceFanpressDirString($dest);
-                
-                if (file_exists($dest) && !is_writable($dest)) {
+                if (!$dest || file_exists($dest) && !is_writable($dest)) {
                     $res[] = $dest;
                     continue;
                 }
 
             }
-            
+
             if (!count($res)) {
                 return true;
             }          
@@ -615,6 +606,7 @@
          * @return boolean
          */
         public function loadPackageFileListFromTemp() {
+
             if (count($this->files)) {
                 return true;
             }
@@ -645,6 +637,7 @@
          * Baut Datei-Liste aus Archiv auf
          */
         protected function listArchiveFiles() {
+
             for ($i = 0; $i < $this->archive->numFiles; $i++) {
                 $this->files[] = $this->archive->getNameIndex($i);
             }

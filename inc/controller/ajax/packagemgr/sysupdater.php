@@ -108,8 +108,6 @@
             $this->returnData['current'] = $this->step;
             $fn = 'execStep'.(is_numeric($this->step) ? $this->step : ucfirst($this->step));
 
-            \fpcm\classes\logs::syslogWrite(__METHOD__.' '.$fn);
-            
             if (method_exists($this, $fn)) {
                 call_user_func([$this, $fn]);
             }
@@ -128,7 +126,7 @@
 
             if ($this->res === true) {
                 \fpcm\classes\logs::syslogWrite('Downloaded update package successfully from '.$this->pkg->getRemoteFile());
-                $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CHECKFILES;
+                $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_EXTRACT;
                 return true;
             }
 
@@ -147,7 +145,7 @@
 
             if ($this->res === true) {
                 \fpcm\classes\logs::syslogWrite('All local files are writable '.$this->pkg->getRemoteFile());
-                $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_EXTRACT;
+                $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_COPY;
                 return true;
             }
 
@@ -164,7 +162,7 @@
 
             if ($this->res === true) {
                 \fpcm\classes\logs::syslogWrite('Extracted update package successfully from '.$from);
-                $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_COPY;
+                $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CHECKFILES;
                 return true;
             }
 
@@ -214,6 +212,7 @@
 
             if ($this->canConnect) {
                 $this->pkg->loadPackageFileListFromTemp();
+                $this->pkg->cleanup();
                 \fpcm\classes\logs::pkglogWrite($this->pkg->getKey().' '.$this->pkg->getVersion(), $this->pkg->getFiles());
             }
 
