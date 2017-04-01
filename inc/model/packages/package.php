@@ -557,7 +557,11 @@
             return is_array($res) ? self::FPCMPACKAGE_FILESCOPY_ERROR : $res;
         }
 
-        
+        /**
+         * Prüft Dateien ob beschreibbar
+         * @return boolean
+         * @since FPCM 3.5
+         */
         public function checkFiles() {
         
             if (!file_exists($this->tempListFile)) {
