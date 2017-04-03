@@ -80,7 +80,7 @@ Help language file
             Editor die Kommentare bearbeiten, freischalten, auf privat setzen, etc. Den Zugriff auf die Kommentare können du über die
             Berechtigungen geregelt werden.</p>
 
-            <p>FanPress CM besitzt ein einfaches Revisions-System, d. h. bei Änderungen wird der vorherige Zustand gesichert und kann
+            <p>FanPress CM besitzt ein Revisions-System, d. h. bei Änderungen wird der vorherige Zustand gesichert und kann
             jederzeit wiederhergestellt werden. Die Revisionen kannst du über den Tab <i>Versionen</i> verwalten. Die Revisionen können
             über die Systemeinstellungen (de)aktiviert werden. Eine Liste aller Revisionen findest du über den entsprechenden Reiter
             im Editor. Dort kannst du jede Revision einzeln aufrufen bzw. den aktuelle Artikel auf eine Revision zurücksetzen.</p>
@@ -93,8 +93,8 @@ Help language file
         </headline>
         <text>
         <![CDATA[
-            <p>Im Bereich <b>Artikel bearbeiten</b> kannst findest du alle gespeicherten Artikel in FanPress CM. Über das Aktions-Menü unten rechts kannst
-            du verschiedene Dinge durchführen, bspw. Artikel löschen oder archivieren.</p>
+            <p>Im Bereich <b>Artikel verwalten</b> kannst findest du alle gespeicherten Artikel in FanPress CM. Über das Aktions-Menü
+            kannst du verschiedene Dinge durchführen, bspw. Artikel löschen oder archivieren.</p>
             <ul>
                 <li><em>Artikel an-/abpinnen:</em> Den bzw. die ausgewählten Artikel pinnen, so dass sie über allen anderen angezeigt
                     werden bzw. den abpinnen.</li>
@@ -111,8 +111,16 @@ Help language file
             </ul>
             <p>Über den Button <span class="fpcm-ui-button">Suche & Filter</span> kannst du mithilfe eines Dialogs die angezeigten Artikel anhand verschiedener Kriterien
             weiter eingrenzen. Über die Hauptnavigation kannst du bereits eine Vorauswahl treffen, welche Artikel dir angezeigt werden sollen.</p>
-            <p>Sofern aktiv hast du am oberen Rand den Reiter "Papierkorb". Hier findest du eine Übersicht aller gelöschten Artikel. Du
-            kannst diese hier wieder herstellen oder vollständig löschen.</p>
+            <p>Die Listen des Bereichs umfassen verschiedene Datensätze:</p>
+            <ul>
+                <li><em>Alle Artikel:</em> Diese Liste umfasst alle verfassten Artikel, inkl. aktiver und archivierter Artikel,
+                sowie Entwürfe.</li>
+                <li><em>Aktive Artikel:</em> Diese Liste umfasst ausschließlich Artikel, welche aktiv sind und entsprechend auf deiner
+                Webseite angezeigt werden sowie Entwürfe.</li>
+                <li><em>Archivierte Artikel:</em> Hier werden all diejenigen Artikel aufgeführt, welche archiviert wurden.</li>
+                <li><em>Papierkorb:</em> Sofern aktiv ist diese Option aktiv. Hier findest du eine Übersicht aller gelöschten Artikel.
+                Du kannst diese hier wieder herstellen oder vollständig löschen.</li>
+            </ul>
         ]]>
         </text>
     </chapter>
@@ -302,6 +310,15 @@ Help language file
                             Abstand ein Dialog angezeigt, welcher die Download-Seite auf
                             <a href="https://Nobody-Knows.org">Nobody-Knows.org</a> angezeigt. Mit dieser Einstellung kann
                             festgelegt werden, in welchem zeitlichen Abstand dies passiert.</li>
+
+                        <li><em>E-Mails via SMTP versenden:</em> Wenn diese Option aktiv ist, erfolgt der E-Mail-Versand unter
+                        Nutzung der E-Mail-Kontos, welche durch die SMTP-Zugangsdaten definiert wird.</li>
+                        <li><em>SMTP-Server-Adresse:</em> E-Mail-Server-Adresse</li>
+                        <li><em>SMTP-Server-Port:</em> E-Mail-Server-Port</li>
+                        <li><em>SMTP-Benutzername:</em> Benutzername</li>
+                        <li><em>SMTP-Passwort:</em> Passwort für das E-mail-Konto</li>
+                        <li><em>SMTP-Verschlüsselung:</em> Verschlüsslung für Verbindung zum E-Mail-Server aktivieren,
+                        muss vom Server unterstützt werden</li>
                     </ul>
                 </li>
                 <li><b>Systemprüfung:</b><br>
@@ -433,7 +450,7 @@ Help language file
             ohne Administrationsrechte sollten i. d. R. keine Möglichkeit haben, Module zu installieren bzw. Änderungen an ihrer
             Konfiguration vorzunehmen.</p>
             <p>Über den Buttons am Anfang einer Zeile kannst du Module einzeln verwalten. Um Änderungen an mehren Modulen mit einmal
-            vorzunehmen, aktivieren die Checkbox am Ende jeder Modul-Zeile und wähle unten rechts die Aktion aus.</p>
+            vorzunehmen, aktivieren die Checkbox am Ende jeder Modul-Zeile und wähle die Aktion aus.</p>
             <p>Am komfortabelsten kannst du Module verwalten, wenn dein Host Verbindungen zu anderen Servern zulässt (siehe Info im Dashboard).
             Musst du Erweiterungen manuell installieren/aktualisieren, verwende den Tab "Modul manuell installieren". Wähle die entspreche de ZIP-Datei aus
             und klicke auf <span class="fpcm-ui-button">Upload starten</span>. Die Datei wird nun auf den Server geschoben und automatisch in das richtige Verzeichnis unter

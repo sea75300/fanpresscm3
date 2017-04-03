@@ -100,8 +100,16 @@ Help language file
             </ul>
             <p>The <span class="fpcm-ui-button">Search & filter</span> button allows you to search or filter you articles by various conditions. The main menu
             let you made an additional pre selection for f. g. for active articles.</p>
-            <p>If the system trash is enabled in system settings, you'll find a third tab called <i>Trash</i> at the top.
-            Here you finally can delete articles or restore them in case you deleted on by mistake.</p>
+            <p></p>
+            <p>Die Listen des Bereichs umfassen verschiedene Datensätze:</p>
+            <ul>
+                <li><em>All Articles:</em> The first view lists all articles created within the system, except for deleted articles.</li>
+                <li><em>Active Articles:</em> The "active articles" view contains all articles to be displayed on your website as well
+                as articles saved as draft.</li>
+                <li><em>Archived Articles:</em> This list contains all archived articles.</li>
+                <li><em>Trash:</em> If enabled in system settings, you'll finde this list in the menu. Here you can manage deleted
+                articles or restore them.</li>
+            </ul>
         ]]>
         </text>
     </chapter>
@@ -266,6 +274,15 @@ Help language file
                             installation is unable to connect to the update server, a dialog will pop up from time to time
                             which includes the project page at <a href="https://Nobody-Knows.org">Nobody-Knows.org</a>.
                             This setting allows you to set the interval the dialog is displayed.</li>
+                        
+                        <li><em>Submit e-mail via SMTP:</em> If this setting is enabled, e-mail will be send using the e-mail-account
+                        defined within the following data.</li>
+                        <li><em>SMTP server address:</em> URL to the e-mail-server to use</li>
+                        <li><em>SMTP server port:</em> Mail server port</li>
+                        <li><em>SMTP username:</em> Username for e-mail account</li>
+                        <li><em>SMTP password:</em> Password for account</li>
+                        <li><em>SMTP-encryption:</em> Enable encryption for mail server connection. This must be supported
+                        by your mail server.</li>
                     </ul>
                 </li>
                 <li><b>System check:</b><br>
