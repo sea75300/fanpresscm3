@@ -27,6 +27,13 @@
          * @var bool
          */
         private $showFooter     = true;
+
+        /**
+         * Hilfe-Link-String
+         * @var string
+         * @since FPCM 3.5
+         */
+        private $helpLink     = '';
         
         /**
          * Konstruktor
@@ -67,6 +74,15 @@
          */
         public function setShowFooter($showFooter) {
             $this->showFooter = $showFooter;
+        }
+
+        /**
+         * Hilfe-Link setzen
+         * @param string $helpLink
+         * @since FPCM 3.5
+         */
+        public function setHelpLink($helpLink) {
+            $this->helpLink = $helpLink;
         }
         
         /**
@@ -190,6 +206,7 @@
             $this->assign('FPCM_DATETIME_ZONE', $this->config->system_timezone);
             $this->assign('FPCM_MAINTENANCE_MODE', $this->config->system_maintenance);
             $this->assign('FPCM_CRONJOBS_DISABLED', \fpcm\classes\baseconfig::asyncCronjobsEnabled());
+            $this->assign('FPCM_SHORTHELP_LINK', $this->helpLink);
             
             helper::init($this->config->system_lang);
         }
