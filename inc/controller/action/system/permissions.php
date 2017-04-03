@@ -89,6 +89,7 @@
             $this->view->assign('hideTitle', false);
 
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'permissions.js'));
+            $this->view->setHelpLink('hl_options');
             
             $this->view->render();            
         }

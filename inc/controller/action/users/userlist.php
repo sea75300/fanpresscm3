@@ -110,6 +110,7 @@
             $this->view->assign('articleCounts', $this->articleList->countArticlesByUsers());
             $this->view->assign('rollPermissions', $this->permissions->check(array('system' => 'rolls')));
             $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'users.js']);
+            $this->view->setHelpLink('hl_options');
 
             $this->view->render();
         }

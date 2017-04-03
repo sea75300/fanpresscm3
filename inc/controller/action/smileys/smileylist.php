@@ -59,7 +59,8 @@
             if (!parent::process()) return false;
 
             $list = $this->smileyList->getDatabaseList();
-            
+
+            $this->view->setHelpLink('hl_options');
             $this->view->assign('list', $list);            
             $this->view->render();
         }

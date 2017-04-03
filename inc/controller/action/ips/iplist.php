@@ -74,7 +74,8 @@
             
             $this->view->assign('ipList', $this->ipList->getIpAll());
             $this->view->assign('users', $userList->getUsersAll());
-            
+
+            $this->view->setHelpLink('hl_options');
             $this->view->render();            
         }
 

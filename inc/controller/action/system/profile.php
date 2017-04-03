@@ -128,6 +128,7 @@
             $this->view->assign('timezoneAreas', $timezones);
             $this->view->assign('externalSave', true);
             $this->view->assign('inProfile', true);
+            $this->view->setHelpLink('hl_profile');
             
             $this->view->addJsVars(array(
                 'fpcmDtMasks'    => \fpcm\classes\baseconfig::$dateTimeMasks,
@@ -141,7 +142,7 @@
                 \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js'),
                 \fpcm\classes\baseconfig::$jsPath.'profile.js'
             ]);
-            
+
             $this->view->render();            
         }
 

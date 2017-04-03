@@ -170,6 +170,7 @@
                 $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', $translInfo));
             }
 
+            $this->view->setHelpLink('hl_files_mng');
             $this->initViewAssigns([], [], \fpcm\classes\tools::calcPagination(1, 1, 0, 0));
             $this->initPermissions();
             $this->view->render();

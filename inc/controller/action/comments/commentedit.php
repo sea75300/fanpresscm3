@@ -153,6 +153,7 @@
             $this->view->assign('commentsMode', $mode);
             $this->view->assign('permApprove', $this->approve);
             $this->view->assign('permPrivate', $this->private);
+            $this->view->setHelpLink('hl_comments_mng');
             $this->view->render();
         }
 

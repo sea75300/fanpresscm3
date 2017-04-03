@@ -64,6 +64,7 @@
             $this->view->assign('userRolls', $userRolls->getUserRollsTranslated());               
             $this->view->assign('category', $this->category);
             $this->view->assign('selectedGroups', explode(';', $this->category->getGroups()));
+            $this->view->setHelpLink('hl_options');
             $this->view->addJsVars([
                 'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-categories',
                 'fpcmFieldSetAutoFocus'      => 'categoryname'

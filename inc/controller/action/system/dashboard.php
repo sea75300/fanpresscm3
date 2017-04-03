@@ -34,6 +34,7 @@
 
             $this->view->addJsLangVars(['dashboard_loading' => $this->lang->translate('DASHBOARD_LOADING')]);
             $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'dashboard.js']);
+            $this->view->setHelpLink('hl_dashboard');
             $this->view->render();            
         }
     }

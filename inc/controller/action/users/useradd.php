@@ -75,7 +75,8 @@
         public function process() {
             if (!parent::process()) return false;
             
-            $userRolls = new \fpcm\model\users\userRollList();            
+            $userRolls = new \fpcm\model\users\userRollList();         
+            $this->view->setHelpLink('hl_options');
             $this->view->assign('userRolls', $userRolls->getUserRollsTranslated());            
             $this->view->assign('author', $this->author);
             $this->view->assign('showDisableButton', false);

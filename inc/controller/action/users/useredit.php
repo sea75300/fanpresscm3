@@ -143,6 +143,7 @@
             $this->view->assign('externalSave', true);
             $this->view->assign('articleLimitList', \fpcm\model\system\config::getAcpArticleLimits());
             $this->view->assign('defaultFontsizes', \fpcm\model\system\config::getDefaultFontsizes());
+            $this->view->setHelpLink('hl_options');
             
             $userList = new \fpcm\model\users\userList();
             $showDisableButton = (!$this->userEnabled && ($this->userId == $this->session->getUserId() || $userList->countActiveUsers() == 1))

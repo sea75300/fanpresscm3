@@ -93,6 +93,7 @@
             $this->view->assign('isRevision', false);
             $this->view->assign('timesMode', false);
             $this->view->assign('userfields', $this->getUserFields());
+            $this->view->setHelpLink('articles_editor');
 
             $twitter = new \fpcm\model\system\twitter();
             $this->view->assign('showTwitter', $twitter->checkRequirements());

@@ -76,6 +76,7 @@
             ));
 
             $this->view->assign('item', $this->item);
+            $this->view->setHelpLink('hl_options');
             $this->view->render();
 
         }

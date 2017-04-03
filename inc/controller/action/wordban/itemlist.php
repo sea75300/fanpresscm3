@@ -55,6 +55,7 @@
             
             $itemList = $this->list->getItems();
             $this->view->assign('itemList', $itemList);
+            $this->view->setHelpLink('hl_options');
             
             $this->view->render();
         }

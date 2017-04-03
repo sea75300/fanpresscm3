@@ -1,7 +1,6 @@
 <div class="fpcm-content-wrapper">
     <h1>
         <span class="fa fa-<?php print $listIcon; ?>"></span> <?php $FPCM_LANG->write($headlineVar); ?>
-        <?php \fpcm\model\view\helper::helpButton('hl_article_edit'); ?>
     </h1>
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=<?php print $listAction.$listActionLimit; ?>">
         <div class="fpcm-tabs-general">

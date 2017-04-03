@@ -49,7 +49,8 @@
         
         public function process() {
             if (!parent::process()) return false;
-            
+
+            $this->view->setHelpLink('hl_options');
             $this->view->render();            
         }
 

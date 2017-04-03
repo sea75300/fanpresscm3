@@ -1,7 +1,6 @@
 <div class="fpcm-content-wrapper">
     <h1>
         <span class="fa fa-file-o"></span> <?php $FPCM_LANG->write('HL_CATEGORIES_MNG'); ?>
-        <?php \fpcm\model\view\helper::helpButton('hl_options'); ?>
     </h1>
     <form method="post" action="<?php print $FPCM_SELF; ?>?module=categories/list">
         <div class="fpcm-tabs-general">

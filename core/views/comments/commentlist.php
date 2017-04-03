@@ -2,7 +2,6 @@
 <div class="fpcm-content-wrapper">
     <h1>
         <span class="fa fa-comments"></span> <?php $FPCM_LANG->write('HL_COMMENTS_MNG'); ?>
-        <?php \fpcm\model\view\helper::helpButton('hl_comments_mng'); ?>
     </h1>
         <div class="fpcm-tabs-general">
             <ul>

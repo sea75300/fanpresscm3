@@ -42,6 +42,13 @@
                  <span class="fpcm-ui-center fpcm-navicon fa fa-play fa-lg fa-fw"></span>
              </a>
          </li>
+     <?php if ($FPCM_SHORTHELP_LINK) : ?>
+         <li class="fpcm-menu-top-level1">
+             <a href="<?php \fpcm\model\view\helper::printHelpLink($FPCM_SHORTHELP_LINK); ?>" title="<?php $FPCM_LANG->write('HELP_BTN_OPEN'); ?>">
+                 <span class="fa fa-question-circle fa-lg fa-fw"></span>
+             </a>
+         </li>
+     <?php endif; ?>
      <?php if ($FPCM_MAINTENANCE_MODE) : ?>
          <li class="fpcm-menu-top-level1"><span class="fa fa-lightbulb-o fa-lg fa-fw fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>..."></span></li>
      <?php endif; ?>
@@ -49,6 +56,7 @@
          <li class="fpcm-menu-top-level1"><span class="fa fa-terminal fa-lg fa-fw fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_CRONJOBS'); ?>..."></span></li>
      <?php endif; ?>
      </ul>
+
      <div class="fpcm-clear"></div>
  </div>
  <?php endif; ?> 

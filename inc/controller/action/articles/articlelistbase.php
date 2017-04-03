@@ -189,6 +189,7 @@
             $this->view->assign('articleActions', $this->articleActions);
             $this->view->assign('deletePermissions', $this->deleteActions);
             $this->view->assign('list', $this->articleItems);
+            $this->view->setHelpLink('hl_article_edit');
             
             $this->initSearchForm($users);
 

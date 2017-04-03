@@ -73,6 +73,7 @@
                 $files[] = basename($file);
             }
 
+            $this->view->setHelpLink('hl_options');
             $this->view->assign('smiley', $this->smiley);
             $this->view->assign('files', $files);
             $this->view->render();

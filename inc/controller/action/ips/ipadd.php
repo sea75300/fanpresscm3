@@ -60,6 +60,7 @@
             if (!parent::process()) return false;
             
             $this->view->addJsVars(['fpcmFieldSetAutoFocus' => 'ipaddress']);
+            $this->view->setHelpLink('hl_options');
             $this->view->render();            
         }
 

@@ -109,6 +109,7 @@
             $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('modules/list'));
             $this->view->assign('styleLeftMargin', true);
 
+            $this->view->setHelpLink('hl_modules');
             $this->view->assign('moduleActions', $this->moduleActions);
             $this->view->render();
             

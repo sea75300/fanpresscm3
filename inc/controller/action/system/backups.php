@@ -70,6 +70,7 @@
             rsort($files);
             
             $this->view->assign('folderList', $files);
+            $this->view->setHelpLink('hl_options');
             $this->view->render();
         }
         

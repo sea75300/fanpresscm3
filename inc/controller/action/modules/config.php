@@ -54,8 +54,8 @@
                 return $this->view->render();
             }
             
-            $this->events->runEvent('acpConfig', $this->moduleKey);                
-            
+            $this->events->runEvent('acpConfig', $this->moduleKey);
+            $this->view->setHelpLink('hl_modules');
             $this->view->render();
             
         }

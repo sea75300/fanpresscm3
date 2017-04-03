@@ -65,6 +65,7 @@
             }
             
             $this->view->assign('categorieList', $categoryList);
+            $this->view->setHelpLink('hl_options');
             
             $this->view->render();
         }

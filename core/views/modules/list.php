@@ -1,7 +1,6 @@
 <div class="fpcm-content-wrapper">
     <h1>
         <span class="fa fa-plug"></span> <?php $FPCM_LANG->write('HL_MODULES'); ?>
-        <?php \fpcm\model\view\helper::helpButton('hl_modules'); ?>
     </h1>
     <div class="fpcm-tabs-general">
         <ul>
