@@ -621,11 +621,6 @@ div.fpcm-status-info ul.fpcm-menu-top #fpcm-ui-showmenu-li {
     padding: 0.4em;
 }
 
-.fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top #fpcm-navigation-profile {
-    padding-right: 0.8em;
-    padding-left: 0.8em;
-}
-
 .fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top li li.fpcm-menu-top-level2 {
     float: none;
     display: block;

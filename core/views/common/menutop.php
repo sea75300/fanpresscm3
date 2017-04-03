@@ -1,6 +1,13 @@
 <?php if ($FPCM_LOGGEDIN) : ?>
  <div class="fpcm-status-info">
      <ul class="fpcm-menu-top">
+     <?php if ($FPCM_SHORTHELP_LINK) : ?>
+         <li class="fpcm-menu-top-level1">
+             <a href="<?php \fpcm\model\view\helper::printHelpLink($FPCM_SHORTHELP_LINK); ?>" title="<?php $FPCM_LANG->write('HELP_BTN_OPEN'); ?>">
+                 <span class="fa fa-question-circle fa-lg fa-fw"></span>
+             </a>
+         </li>
+     <?php endif; ?>
          <li class="fpcm-menu-top-level1" id="fpcm-ui-showmenu-li">
              <a href="#" id="fpcm-ui-showmenu">
                  <span class="fpcm-navicon fa fa-bars fa-fw fa-lg"></span>
@@ -42,13 +49,6 @@
                  <span class="fpcm-ui-center fpcm-navicon fa fa-play fa-lg fa-fw"></span>
              </a>
          </li>
-     <?php if ($FPCM_SHORTHELP_LINK) : ?>
-         <li class="fpcm-menu-top-level1">
-             <a href="<?php \fpcm\model\view\helper::printHelpLink($FPCM_SHORTHELP_LINK); ?>" title="<?php $FPCM_LANG->write('HELP_BTN_OPEN'); ?>">
-                 <span class="fa fa-question-circle fa-lg fa-fw"></span>
-             </a>
-         </li>
-     <?php endif; ?>
      <?php if ($FPCM_MAINTENANCE_MODE) : ?>
          <li class="fpcm-menu-top-level1"><span class="fa fa-lightbulb-o fa-lg fa-fw fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>..."></span></li>
      <?php endif; ?>
