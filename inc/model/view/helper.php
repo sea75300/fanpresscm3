@@ -424,6 +424,9 @@
          * @deprecated since FPCM 3.5
          */
         public static function helpButton($entry) {
+            
+            trigger_error(__METHOD__.' is deprecated as of FPCM 3.5! Use the view methode "setHelpLink" instead.');
+            
             $href = \fpcm\classes\baseconfig::$rootPath.'index.php?module=system/help&ref='.base64_encode(strtolower($entry));
             print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-helpbutton\" id=\"fpcmuihelpbutton\" target=\"_self\" title=\"".self::$language->translate('HELP_BTN_OPEN')."\"></a>\n";
         }
