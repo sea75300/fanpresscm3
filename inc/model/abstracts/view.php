@@ -88,7 +88,7 @@
          * @var string
          * @since FPCM 3.5
          */
-        private $helpLink     = '';
+        protected $helpLink     = '';
 
         /**
          * Konstruktor

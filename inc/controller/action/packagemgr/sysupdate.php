@@ -72,12 +72,6 @@
         public function process() {
             if (!parent::process()) return false;
 
-            if (!is_writable(\fpcm\classes\baseconfig::$versionFile)) {
-                $this->view->addErrorMessage('UPDATE_WRITEERROR');
-                $this->view->render();
-                return false;
-            }
-            
             $this->config->setMaintenanceMode(false);
             
             $updater = new \fpcm\model\updater\system();            
