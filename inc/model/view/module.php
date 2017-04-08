@@ -189,6 +189,7 @@
             $this->assign('FPCM_DATETIME_ZONE', $this->config->system_timezone);
             $this->assign('FPCM_MAINTENANCE_MODE', $this->config->system_maintenance);
             $this->assign('FPCM_CRONJOBS_DISABLED', \fpcm\classes\baseconfig::asyncCronjobsEnabled());
+            $this->assign('FPCM_SHORTHELP_LINK', $this->helpLink);
             
             /**
              * Current module

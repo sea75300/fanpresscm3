@@ -27,13 +27,6 @@
          * @var bool
          */
         private $showFooter     = true;
-
-        /**
-         * Hilfe-Link-String
-         * @var string
-         * @since FPCM 3.5
-         */
-        private $helpLink     = '';
         
         /**
          * Konstruktor
@@ -74,15 +67,6 @@
          */
         public function setShowFooter($showFooter) {
             $this->showFooter = $showFooter;
-        }
-
-        /**
-         * Hilfe-Link setzen
-         * @param string $helpLink
-         * @since FPCM 3.5
-         */
-        public function setHelpLink($helpLink) {
-            $this->helpLink = $helpLink;
         }
         
         /**

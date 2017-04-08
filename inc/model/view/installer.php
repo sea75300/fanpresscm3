@@ -112,6 +112,7 @@
             $this->assign('FPCM_THEMEPATH', \fpcm\classes\baseconfig::$themePath);
             $this->assign('FPCM_BASEMODULELINK', \fpcm\classes\baseconfig::$rootPath.'index.php?module=');
             $this->assign('FPCM_SELF', $_SERVER['PHP_SELF']);
+            $this->assign('FPCM_SHORTHELP_LINK', $this->helpLink);
             
             /**
              * Sprache

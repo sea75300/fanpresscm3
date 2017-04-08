@@ -84,6 +84,13 @@
         protected $moduleViewType     = 'acp';
 
         /**
+         * Hilfe-Link-String
+         * @var string
+         * @since FPCM 3.5
+         */
+        private $helpLink     = '';
+
+        /**
          * Konstruktor
          * @param string $viewName View-Name, ohne Endung .php
          * @param string $viewPath View-Pfad unterhalb von core/views/
@@ -394,7 +401,16 @@
                 'icon' => 'info-circle'
             );
 
-        }    
+        }
+
+        /**
+         * Hilfe-Link setzen
+         * @param string $helpLink
+         * @since FPCM 3.5
+         */
+        public function setHelpLink($helpLink) {
+            $this->helpLink = $helpLink;
+        }
         
         /**
          * Prüft, ob View-Datei vorhanden ist und lädt diese
