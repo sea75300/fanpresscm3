@@ -258,6 +258,10 @@
                             <?php fpcm\model\view\helper::boolSelect('smtp_enabled', $globalConfig['smtp_enabled']); ?>
                         </td>
                     </tr>
+                    <tr>			
+                        <td><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[addr]', '', $globalConfig['smtp_settings']['addr'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                    </tr>
                     <tr>	
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_SERVER'); ?>:</td>
                         <td><?php fpcm\model\view\helper::textInput('smtp_settings[srvurl]', '', $globalConfig['smtp_settings']['srvurl'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>

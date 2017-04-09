@@ -1,7 +1,7 @@
 <?php if ($FPCM_LOGGEDIN) : ?>
  <div class="fpcm-status-info">
      <ul class="fpcm-menu-top">
-     <?php if (isset($FPCM_SHORTHELP_LINK) && $FPCM_SHORTHELP_LINK) : ?>
+     <?php if ($FPCM_SHORTHELP_LINK) : ?>
          <li class="fpcm-menu-top-level1">
              <a href="<?php \fpcm\model\view\helper::printHelpLink($FPCM_SHORTHELP_LINK); ?>" title="<?php $FPCM_LANG->write('HELP_BTN_OPEN'); ?>">
                  <span class="fa fa-question-circle fa-lg fa-fw"></span>
@@ -16,18 +16,20 @@
          </li>
          <li class="fpcm-menu-top-level1 fpcm-ui-center" id="fpcm-navigation-profile">
              <a href="#" target="_blank" class="fpcm-navigation-noclick">
-                 <?php $FPCM_LANG->write('PROFILE_MENU_LOGGEDINAS',  array('{{username}}' => $FPCM_USER)); ?> <span class="fpcm-ui-center fpcm-navicon fa fa-user fa-lg fa-fw"></span>
+                <span class="fpcm-navicon fa fa-user fa-lg fa-fw"></span>
+                <?php $FPCM_LANG->write('PROFILE_MENU_LOGGEDINAS',  array('{{username}}' => $FPCM_USER)); ?>
+                <span class="fpcm-navicon fa fa-angle-down fa-lg fa-fw"></span>
              </a>
              <ul class="fpcm-submenu">
                  <li class="fpcm-menu-top-level2">
                      <a href="<?php print $FPCM_BASEMODULELINK; ?>system/profile" class="fpcm-loader">
-                         <span class="fpcm-navicon fa fa-wrench fa-fw"></span>
+                         <span class="fa fa-wrench fa-fw"></span>
                          <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('PROFILE_MENU_OPENPROFILE'); ?></span>
                      </a>
                  </li>
                  <li class="fpcm-menu-top-level2">
                      <a href="<?php print $FPCM_BASEMODULELINK; ?>system/logout" class="fpcm-loader">
-                         <span class="fpcm-navicon fa fa-sign-out fa-fw"></span>
+                         <span class="fa fa-sign-out fa-fw"></span>
                          <span class="fpcm-navigation-descr"><?php $FPCM_LANG->write('LOGOUT_BTN'); ?></span>
                      </a>
                  </li>

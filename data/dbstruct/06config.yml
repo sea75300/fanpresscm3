@@ -229,4 +229,4 @@ defaultvalues:
         51:
             id: 51
             config_name: "smtp_settings"
-            config_value: '{"srvurl":"","user":"","pass":"","encr":"","port":""}'
+            config_value: '{"srvurl":"","user":"","pass":"","encr":"","port":"25","addr":""}'

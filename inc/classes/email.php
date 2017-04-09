@@ -205,16 +205,10 @@
          */
         public function checkSmtp() {
 
-            require_once loader::libGetFilePath('PHPMailer', 'class.phpmailer.php');
-            require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');
-            
-            $mail = new \PHPMailer();
-            $mail->isSMTP();
-            $mail->isHTML($this->html);
-            $mail->setFrom($this->config->smtp_settings['user']);
-            
+            $mail = $this->getMailerObj();
+
             $autoEncryption = ($this->config->smtp_settings['encr'] === 'auto' ? true : false);
-            
+
             $mail->Host        = $this->config->smtp_settings['srvurl'];
             $mail->Username    = $this->config->smtp_settings['user'];
             $mail->Password    = $this->config->smtp_settings['pass'];
@@ -254,15 +248,9 @@
          * @since FPCM 3.5
          */
         private function submitSmtp() {
-            
-            require_once loader::libGetFilePath('PHPMailer', 'class.phpmailer.php');
-            require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');            
 
-            $mail = new \PHPMailer();
-            $mail->isSMTP();
-            $mail->isHTML($this->html);
-            $mail->setFrom($this->config->smtp_settings['user']);
-            
+            $mail = $this->getMailerObj();
+
             $recipients   = explode('; ', $this->to);
             foreach ($recipients as $recipient) {
                 $recipient = explode(' <', $recipient, 3);
@@ -297,6 +285,26 @@
             }
 
             return true;
+
+        }
+
+        /**
+         * Erzeugt neues PHPMailer-Objekt
+         * @return \PHPMailer
+         * @since FPCM 3.5
+         */
+        private function getMailerObj() {
+
+            require_once loader::libGetFilePath('PHPMailer', 'class.phpmailer.php');
+            require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');            
+
+            $mail = new \PHPMailer();
+            $mail->isSMTP();
+            $mail->isHTML($this->html);
+            $mail->setFrom($this->config->smtp_settings['addr']);
+            $mail->setLanguage($this->config->system_lang);
+
+            return $mail;
 
         }
 

@@ -161,7 +161,13 @@
                 $newconf['twitter_events'] = array('create' => 0, 'update' => 0);
                 $newconf['twitter_events'] = json_encode($newconf['twitter_events']);
             }
-            
+
+            if (!isset($this->config->smtp_settings['addr'])) {
+                $newconf['smtp_settings']         = $this->config->smtp_settings;
+                $newconf['smtp_settings']['addr'] = '';
+                $newconf['smtp_settings']         = json_encode($newconf['smtp_settings']);
+            }
+
             if (count($newconf)) {
                 $this->config->setNewConfig($newconf);
                 $res = $res && $this->config->update();
