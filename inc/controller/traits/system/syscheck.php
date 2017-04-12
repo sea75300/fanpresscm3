@@ -30,7 +30,8 @@
                 'recommend' => FPCM_PHP_REQUIRED,
                 'result'    => version_compare(phpversion(), FPCM_PHP_REQUIRED, '>='),
                 'helplink'  => 'http://php.net/',
-                'optional'  => 0
+                'optional'  => 0,
+                'isFolder'  => 0
             );
             
             $recomVal = 64;
@@ -40,7 +41,8 @@
                 'recommend' => $recomVal.' MiB',
                 'result'    => ($curVal >= $recomVal ? true : false),
                 'helplink'  => 'http://php.net/manual/de/info.configuration.php',
-                'optional'  => 1
+                'optional'  => 1,
+                'isFolder'  => 0
             );
             
             $recomVal = 10;
@@ -50,7 +52,8 @@
                 'recommend' => $recomVal.' sec',
                 'result'    => ($curVal >= $recomVal ? true : false),
                 'helplink'  => 'http://php.net/manual/de/info.configuration.php',
-                'optional'  => 1
+                'optional'  => 1,
+                'isFolder'  => 0
             );
 
             $dbDrivers   = \PDO::getAvailableDrivers();
@@ -65,7 +68,8 @@
                 'recommend' => 'true',
                 'result'    => $resultMySql,
                 'helplink'  => $sqlhelp,
-                'optional'  => (!$resultMySql && $resultPgSql ? 1 : 0)
+                'optional'  => (!$resultMySql && $resultPgSql ? 1 : 0),
+                'isFolder'  => 0
             );
             
             $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_DBDRV_PGSQL')]    = array(
@@ -73,7 +77,8 @@
                 'recommend' => 'true',
                 'result'    => $resultPgSql,
                 'helplink'  => $sqlhelp,
-                'optional'  => ($resultMySql ? 1 : 0)
+                'optional'  => ($resultMySql ? 1 : 0),
+                'isFolder'  => 0
             );
     
             if (is_object(\fpcm\classes\baseconfig::$fpcmDatabase)) {
@@ -82,7 +87,8 @@
                     'recommend' => implode(', ', array_intersect($dbDrivers, array_keys(\fpcm\classes\database::$supportedDBMS))),
                     'result'    => true,
                     'helplink'  => 'http://php.net/manual/de/pdo.getavailabledrivers.php',
-                    'optional'  => 0
+                    'optional'  => 0,
+                    'isFolder'  => 0
                 );
 
                 $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_DBVERSION')]    = array(
@@ -90,7 +96,8 @@
                     'recommend' => \fpcm\classes\baseconfig::$fpcmDatabase->getRecommendVersion(),
                     'result'    => \fpcm\classes\baseconfig::$fpcmDatabase->checkDbVersion(),
                     'helplink'  => 'http://php.net/manual/de/pdo.getattribute.php',
-                    'optional'  => 0
+                    'optional'  => 0,
+                    'isFolder'  => 0
                 );
             }
             
@@ -100,7 +107,8 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/en/class.pdo.php',
-                'optional'  => 0
+                'optional'  => 0,
+                'isFolder'  => 0
             );
 
             $current = (CRYPT_SHA256 == 1 ? true : false);
@@ -110,7 +118,8 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/en/function.hash-algos.php',
-                'optional'  => 0
+                'optional'  => 0,
+                'isFolder'  => 0
             );
             
             $current = in_array('gd', $loadedExtensions);
@@ -119,7 +128,8 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/en/book.image.php',
-                'optional'  => 0
+                'optional'  => 0,
+                'isFolder'  => 0
             );
             
             $current = in_array('json', $loadedExtensions);
@@ -128,7 +138,8 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/en/book.json.php',
-                'optional'  => 0
+                'optional'  => 0,
+                'isFolder'  => 0
             );
             
             $current = in_array('xml', $loadedExtensions) && in_array('simplexml', $loadedExtensions) && class_exists('DOMDocument');
@@ -137,7 +148,8 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/en/class.simplexmlelement.php',
-                'optional'  => 0
+                'optional'  => 0,
+                'isFolder'  => 0
             );
             
             $current = in_array('zip', $loadedExtensions);
@@ -146,7 +158,8 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/en/class.ziparchive.php',
-                'optional'  => 0
+                'optional'  => 0,
+                'isFolder'  => 0
             );
             
             $current = in_array('openssl', $loadedExtensions);
@@ -155,7 +168,8 @@
                 'recommend' => 'true',
                 'result'    => (true && $current),
                 'helplink'  => 'http://php.net/manual/de/book.openssl.php',
-                'optional'  => 1
+                'optional'  => 1,
+                'isFolder'  => 0
             );
             
             $current = in_array('curl', $loadedExtensions);
@@ -164,17 +178,29 @@
                 'recommend' => 'true',
                 'result'    => (false || $current),
                 'helplink'  => 'http://php.net/manual/en/book.curl.php',
-                'optional'  => 1
+                'optional'  => 1,
+                'isFolder'  => 0
             ); 
             
             $externalCon = \fpcm\classes\baseconfig::canConnect();
             $checkOptions['allow_url_fopen = 1 ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
-                'current'   => $externalCon ? 'true' : false,
+                'current'   => $externalCon ? 'true' : 'false',
                 'recommend' => 'true',
                 'result'    => (true && $externalCon),
                 'helplink'  => 'http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen',
-                'optional'  => 1
-            );           
+                'optional'  => 1,
+                'isFolder'  => 0
+            );
+            
+            $https = \fpcm\classes\baseconfig::canHttps();
+            $checkOptions[$this->lang->translate('SYSTEM_OPTIONS_SYSCHECK_HTTPS').' ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
+                'current'   => $https ? 'true' : 'false',
+                'recommend' => 'true',
+                'result'    => (true && $https),
+                'helplink'  => 'http://php.net/manual/en/reserved.variables.server.php',
+                'optional'  => 1,
+                'isFolder'  => 0
+            );  
             
             $current = in_array('phar', $loadedExtensions);
             $checkOptions['Phar ('.$this->lang->translate('GLOBAL_OPTIONAL').')']    = array(
@@ -182,7 +208,8 @@
                 'recommend' => 'true',
                 'result'    => (false || $current),
                 'helplink'  => 'http://php.net/manual/en/class.phar.php',
-                'optional'  => 1
+                'optional'  => 1,
+                'isFolder'  => 0
             );
 
             $checkFolders = $this->getCheckFolders();
@@ -190,11 +217,12 @@
                 $current = is_writable($folderPath);
                 
                 $pathOutput = \fpcm\model\files\ops::removeBaseDir($folderPath, true);
-                $checkOptions['<i>'.$description.' '.$pathOutput.'</i> '.$this->lang->translate('GLOBAL_WRITABLE')]    = array(
+                $checkOptions['<i>'.$description.'</i> '.$pathOutput]    = array(
                     'current'   => $current ? 'true' : 'false',
                     'recommend' => 'true',
                     'result'    => (true && $current),
-                    'optional'  => 0
+                    'optional'  => 0,
+                    'isFolder'  => 1
                 );                
             }
             

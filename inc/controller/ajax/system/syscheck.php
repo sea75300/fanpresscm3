@@ -82,6 +82,7 @@
                 'result'    => version_compare($this->config->system_version, $remoteVersion, '>='),
                 'helplink'  => 'https://nobody-knows.org/download/fanpress-cm/',
                 'actionbtn' => array('link' => $this->getControllerLink('package/sysupdate'), 'description' => 'PACKAGES_UPDATE'),
+                'isFolder'  => 0
             );      
             
             if (!$this->permissions->check(array('system' => 'update'))) {

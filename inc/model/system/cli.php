@@ -691,7 +691,7 @@
                     '   current value     : '.(string) $data['current'],
                     '   recommended value : '.(string) $data['recommend'],
                     '   result            : '.($data['result'] ? 'OK' : '!!'),
-                isset($data['notice']) && trim($data['notice']) ? '   '.$data['notice'].PHP_EOL : ''
+                    isset($data['notice']) && trim($data['notice']) ? ' '.$data['notice'].PHP_EOL : ''
                 );
                 
                 $lines[] = implode(PHP_EOL, $line);

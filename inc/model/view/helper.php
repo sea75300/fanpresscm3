@@ -351,8 +351,8 @@
          * Setzt bool-Wert in Text ja/nein um
          * @param bool $value Wert
          */
-        public static function boolToText($value) {
-            print ($value) ? '<span class="fa fa-check-square fpcm-ui-booltext-yes" title="'.self::$language->translate('GLOBAL_YES').'"></span>' : '<span class="fa fa-minus-square fpcm-ui-booltext-no" title="'.self::$language->translate('GLOBAL_NO').'"></span>';
+        public static function boolToText($value, $text = 'GLOBAL_YES') {
+            print ($value) ? '<span class="fa fa-check-square fpcm-ui-booltext-yes" title="'.self::$language->translate($text).'"></span>' : '<span class="fa fa-minus-square fpcm-ui-booltext-no" title="'.self::$language->translate('GLOBAL_NO').'"></span>';
         }
         
         /**
