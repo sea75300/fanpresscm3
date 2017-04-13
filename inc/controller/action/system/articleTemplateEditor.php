@@ -42,12 +42,12 @@
                 return false;
             }
             
+            $this->file = new \fpcm\model\files\templatefile($this->getRequestVar('file', [11,10]), '', \fpcm\model\abstracts\file::FPCM_FILE_LOADCONTENT);
+            
             if ($this->buttonClicked('saveTemplate') && !$this->checkPageToken()) {
                 $this->view->addErrorMessage('CSRF_INVALID');
                 return true;
             }
-            
-            $this->file = new \fpcm\model\files\templatefile($this->getRequestVar('file', [11,10]), '', \fpcm\model\abstracts\file::FPCM_FILE_LOADCONTENT);
 
             if (!$this->file->isWritable()) {
                 $this->view->addErrorMessage('FILE_NOT_WRITABLE');
