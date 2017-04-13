@@ -571,6 +571,10 @@ div.fpcm-navigation ul.fpcm-menu li ul,
     background: rgba(255,255,255,0.75);
 }
 
+.fpcm-wrapper div.fpcm-status-info ul.fpcm-menu-top li.fpcm-ui-helplink a {
+    color: #3399ff;
+}
+
 div.fpcm-navigation ul.fpcm-menu li ul {
     min-width: 15%;
     margin: -4em 0 0 15%;

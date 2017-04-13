@@ -2,7 +2,7 @@
  <div class="fpcm-status-info">
      <ul class="fpcm-menu-top">
      <?php if ($FPCM_SHORTHELP_LINK) : ?>
-         <li class="fpcm-menu-top-level1">
+         <li class="fpcm-menu-top-level1 fpcm-ui-helplink">
              <a href="<?php \fpcm\model\view\helper::printHelpLink($FPCM_SHORTHELP_LINK); ?>" title="<?php $FPCM_LANG->write('HELP_BTN_OPEN'); ?>">
                  <span class="fa fa-question-circle fa-lg fa-fw"></span>
              </a>
