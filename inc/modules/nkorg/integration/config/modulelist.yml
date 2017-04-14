@@ -5,6 +5,6 @@ vendor: nkorg
 key: integration
 author: Stefan
 link: https://nobody-knows.org/fanpress3
-version: 3.4.0
-sysversion: 3.4.0
+version: 3.5.0
+sysversion: 3.5.0
 description: "Helper module for integration of FanPress CM into your website."
