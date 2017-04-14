@@ -130,7 +130,12 @@
 
             $res = true;
             foreach ($data['defaultvalues']['rows'] as $option) {
-                $res = $res && $this->config->add($option['config_name'], $option['config_value']);
+
+                if ($option['config_name'] === 'smtp_setting') {
+                    continue;
+                }
+
+                $res = $res && $this->config->add($option['config_name'], trim($option['config_value']));
             }
 
             return $res;
@@ -162,10 +167,9 @@
                 $newconf['twitter_events'] = json_encode($newconf['twitter_events']);
             }
 
-            if (!isset($this->config->smtp_settings['addr'])) {
-                $newconf['smtp_settings']         = $this->config->smtp_settings;
-                $newconf['smtp_settings']['addr'] = '';
-                $newconf['smtp_settings']         = json_encode($newconf['smtp_settings']);
+            if (!is_array($this->config->smtp_settings)) {
+                $newconf['smtp_settings'] = ['srvurl' =>'', 'user' => '', 'pass' => '', 'encr' => '', 'port' => '25', 'addr' => '',];
+                $newconf['smtp_settings'] = json_encode($newconf['smtp_settings']);
             }
 
             if (count($newconf)) {
