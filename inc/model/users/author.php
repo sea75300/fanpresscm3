@@ -339,7 +339,7 @@
             $this->email = filter_var($this->email, FILTER_VALIDATE_EMAIL);
             if (!$this->email) return self::AUTHOR_ERROR_NOEMAIL;
             
-            $this->salt     = \fpcm\classes\security::createSalt($this->displayname.'-'.$this->username);
+            $this->salt     = \fpcm\classes\security::createSalt();
             $this->passwd   = \fpcm\classes\security::createPasswordHash($this->passwd, $this->salt);
             $this->disabled = 0;
             
@@ -351,7 +351,8 @@
             if ($insertRes) {
                 $return = true;
             }
-            
+
+            $this->id = $this->dbcon->getLastInsertId();
             $this->cache->cleanup();
 
             return $return;            
