@@ -281,7 +281,7 @@
          */
         public static function select($name, $options, $selected = null, $firstEmpty = false, $firstEnabled = true, $readonly = false, $class = '') {
             $optionsString = '';
-            
+
             if ($firstEnabled) $optionsString = ($firstEmpty) ? '<option value=""></option>' : '<option value="">'.self::$language->translate('GLOBAL_SELECT').'</option>';            
             foreach ($options as $key => $value) {
                 $optionsString .= "<option value=\"".htmlentities($value, ENT_QUOTES)."\"";

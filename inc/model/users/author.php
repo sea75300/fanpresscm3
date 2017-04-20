@@ -89,7 +89,7 @@
          * Meta-Daten für persönliche Einstellungen
          * @var array
          */
-        protected $usrmeta;
+        protected $usrmeta = '';
 
         /**
          * Übersetzter Gruppenname

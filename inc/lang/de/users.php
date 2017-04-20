@@ -22,5 +22,12 @@
         'USERS_ROLL_ADD'         => 'Benutzerrolle anlegen',
         'USERS_ROLL_EDIT'        => 'Benutzerrolle bearbeiten',
         'USERS_META_OPTIONS'     => 'Benutzereinstellungen',
-        'USERS_PASSGEN'          => 'Passwort generieren'
+        'USERS_PASSGEN'          => 'Passwort generieren',
+        'USERS_ARTICLES_SELECT'  => 'Bitte wähle aus, was mit Artikeln dieses Benutzer passieren soll',
+        'USERS_ARTICLES_USER'    => 'Benutzer auswählen',
+        'USERS_ARTICLES_LIST'    => [
+            'Nichts unternehmen'     => '',
+            'Artikel löschen'        => 'delete',
+            'Artikel verschieben zu' => 'move'
+        ]
     );

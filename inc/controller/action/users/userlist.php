@@ -69,19 +69,21 @@
             }
             
             if ($this->buttonClicked('disableUser') && !is_null($this->getRequestVar('useridsa'))) {
-                $this->disableUsers($this->getRequestVar('useridsa'));
+                $this->disableUsers($this->getRequestVar('useridsa', [9]));
             }
             
             if ($this->buttonClicked('enableUser') && !is_null($this->getRequestVar('useridsd'))) {
-                $this->enableUsers($this->getRequestVar('useridsd'));
+                $this->enableUsers($this->getRequestVar('useridsd', [9]));
             }
             
             if ($this->buttonClicked('deleteActive') && !is_null($this->getRequestVar('useridsa'))) {
-                $this->deleteUsers($this->getRequestVar('useridsa'));
+                $params = $this->getRequestVar();
+                $this->deleteUsers((int) $params['useridsa'], true, $params['articles']);
             }
             
             if ($this->buttonClicked('deleteDisabled') && !is_null($this->getRequestVar('useridsd'))) {
-                $this->deleteUsers($this->getRequestVar('useridsd'), false);
+                $params = $this->getRequestVar();
+                $this->deleteUsers((int) $params['useridsd'], false, $params['articles']);
             }
             
             if ($this->buttonClicked('deleteRoll') && !is_null($this->getRequestVar('rollids'))) {
@@ -104,6 +106,7 @@
             
             $this->view->assign('currentUser', $this->session->getUserId());
             $this->view->assign('usersActive', $this->userList->getUsersActive(true));
+            $this->view->assign('usersListSelect', $this->userList->getUsersNameList());
             $this->view->assign('usersDisabled', $this->userList->getUsersDisabled(true));
             $this->view->assign('usersRollList', $translatedRolls);
             $this->view->assign('usersRolls', array_flip($translatedRolls));
@@ -111,6 +114,10 @@
             $this->view->assign('rollPermissions', $this->permissions->check(array('system' => 'rolls')));
             $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'users.js']);
             $this->view->setHelpLink('hl_options');
+            $this->view->addJsLangVars([
+                'USERS_ARTICLES_SELECT' => $this->lang->translate('USERS_ARTICLES_SELECT'),
+                'GLOBAL_OK'             => $this->lang->translate('GLOBAL_OK')
+            ]);
 
             $this->view->render();
         }
@@ -134,9 +141,10 @@
             $user = new \fpcm\model\users\author($userId);
             if ($user->disable()) {
                 $this->view->addNoticeMessage('SAVE_SUCCESS_USER_DISABLE');
-            } else {
-                $this->view->addErrorMessage('SAVE_FAILED_USER_DISABLE');
+                return;
             }
+
+            $this->view->addErrorMessage('SAVE_FAILED_USER_DISABLE');
         }
         
         /**
@@ -152,18 +160,21 @@
             $user = new \fpcm\model\users\author($userId);
             if ($user->enable()) {
                 $this->view->addNoticeMessage('SAVE_SUCCESS_USER_ENABLE');
-            } else{
-                $this->view->addErrorMessage('SAVE_FAILED_USER_ENABLE');
+                return;
             }
+
+            $this->view->addErrorMessage('SAVE_FAILED_USER_ENABLE');
         }
         
         /**
          * Benutzer löschen
-         * @param array $userId
+         * @param int $userId
          * @param bool $check
-         * @return void
+         * @param array $articlesParams
+         * @return bool
          */
-        private function deleteUsers($userId, $check = true) {
+        private function deleteUsers($userId, $check = true, $articlesParams = false) {
+            
             if ($check && $this->userList->countActiveUsers() == 1) {
                 $this->view->addErrorMessage('DELETE_FAILED_USERS_LAST');
                 return;                    
@@ -173,13 +184,39 @@
                 $this->view->addErrorMessage('DELETE_FAILED_USERS_OWN');
                 return;
             }
-
+            
             $user = new \fpcm\model\users\author($userId);
-            if ($user->delete()) {
-                $this->view->addNoticeMessage('DELETE_SUCCESS_USERS');
-            } else {
-                $this->view->addErrorMessage('DELETE_FAILED_USERS');
+            if (is_array($articlesParams) && !isset($articlesParams['action']) && !isset($articlesParams['user'])) {
+
+                if ($user->delete()) {
+                    $this->view->addNoticeMessage('DELETE_SUCCESS_USERS');
+                } else {
+                    $this->view->addErrorMessage('DELETE_FAILED_USERS');
+                }
+
             }
+
+            if ($articlesParams['action'] === 'move' && $userId === (int) $articlesParams['user']) {
+                $this->view->addErrorMessage('DELETE_FAILED_USERSARTICLES');
+                return;
+            }
+
+            if (!$user->delete()) {
+                $this->view->addErrorMessage('DELETE_FAILED_USERS');
+                return false;
+            }
+            
+            $articleList = new \fpcm\model\articles\articlelist();
+            switch ($articlesParams['action']) {
+                case 'move' :
+                    $articleList->moveArticlesToUser($userId, (int) $articlesParams['user']);
+                    break;
+                case 'delete' :
+                    $articleList->deleteArticlesByUser($userId);
+                    break;
+            }
+
+            $this->view->addNoticeMessage('DELETE_SUCCESS_USERS');
         }
 
     }

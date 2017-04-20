@@ -23,6 +23,7 @@ class authorTest extends testBase {
         $object->setRegistertime(time());
         $object->setRoll(3);
         $object->setDisabled(0);
+        $object->setUserMeta([]);
 
         $result = $object->save();
         $this->assertTrue($result);
@@ -36,6 +37,9 @@ class authorTest extends testBase {
         $object = $this->object;
 
         $object->setDisabled(1);
+        $object->setEmail($GLOBALS['userEmail']);
+        $object->setPassword('fpcmTest2017');
+        $object->setUserMeta([]);
 
         $result = $object->update();
         $this->assertTrue($result);

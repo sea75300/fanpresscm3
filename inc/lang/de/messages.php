@@ -119,6 +119,7 @@
         'DELETE_FAILED_USERS'           => 'Der Benutzer konnte nicht gelöscht werden!',
         'DELETE_FAILED_USERS_OWN'       => 'Du kannst deinen eigenen Account nicht löschen!',
         'DELETE_FAILED_USERS_LAST'      => 'Der letzte Benutzer kann nicht gelöscht werden!',
+        'DELETE_FAILED_USERSARTICLES'   => 'Artikel können nicht zum zu löschenden Benutzer verschoben werden!',
         'DELETE_FAILED_ROLL'            => 'Die Benutzerrolle konnte nicht gelöscht werden!',
         'DELETE_FAILED_CATEGORIES'      => 'Die Kategorien konnten nicht gelöscht werden!',
         'DELETE_FAILED_NEWTHUMBS'       => 'Thumbnails konnten nicht erzeugt werden!<br>{{filenames}}',

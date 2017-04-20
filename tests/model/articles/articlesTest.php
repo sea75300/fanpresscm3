@@ -135,6 +135,11 @@ class articlesTest extends testBase {
 
     }
 
+    public function testMoveArticlesToUser() {        
+        $result = $this->object->moveArticlesToUser(1, 2);
+        $this->assertTrue($result);
+    }
+
     public function testGetArticlesArchived() {
         
         $data = $this->object->getArticlesArchived();
@@ -148,17 +153,28 @@ class articlesTest extends testBase {
         $this->assertEquals($GLOBALS['article_title'], $object->getTitle());
         $this->assertEquals(1, $object->getArchived());
         $this->assertEquals(0, $object->getDeleted());
+        $this->assertEquals(2, $object->getCreateuser());
 
     }
 
-    public function testDeleteArticles() {
-        
+    public function testDeleteArticles() {        
         $result = $this->object->deleteArticles([$GLOBALS['articleId']]);
         $this->assertTrue($result);
-
+    }
+    
+    public function testDeleteArticlesByUser() {
+        
+        $this->markTestSkipped('Deleted all articles while running');
+        
+        $result = $this->object->deleteArticlesByUser(2);
+        $this->assertTrue($result);
     }
 
     public function testGetArticlesDeleted() {
+        
+        if (!\fpcm\classes\baseconfig::$fpcmConfig->articles_trash) {
+            $this->markTestSkipped('Trash not enabled');
+        }
         
         $data = $this->object->getArticlesDeleted();
 
@@ -174,6 +190,11 @@ class articlesTest extends testBase {
     }
 
     public function testEmptyTrash() {
+        
+        if (!\fpcm\classes\baseconfig::$fpcmConfig->articles_trash) {
+            $this->markTestSkipped('Trash not enabled');
+        }
+
         $result = $this->object->emptyTrash();
         $this->assertTrue($result);
         

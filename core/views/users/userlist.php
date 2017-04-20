@@ -125,6 +125,8 @@
             <?php endif; ?>
         </div>
 
+        <?php include_once __DIR__.'/userlist_dialogs.php'; ?>
+        
         <?php \fpcm\model\view\helper::pageTokenField(); ?>
     </form>
 </div>

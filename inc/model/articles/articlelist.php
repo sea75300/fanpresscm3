@@ -296,7 +296,7 @@
             if ($res && !$this->config->articles_trash) {
                 $commentList = new \fpcm\model\comments\commentList();
                 $commentList->deleteCommentsByArticle($ids);
-            }
+            }            
 
             $this->cache->cleanup();
             
@@ -504,6 +504,54 @@
                 'minDate' => $data->mindate === null ? 0      : $data->mindate
             );
 
+        }
+
+        /**
+         * Verschiebt Artikel von einem Benutzer zu einem anderen
+         * @param int $userIdFrom
+         * @param int $userIdTo
+         * @since FPCM 3.5.1
+         * @return bool
+         */
+        public function moveArticlesToUser($userIdFrom, $userIdTo) {
+            
+            if (!$userIdFrom || !$userIdTo) {
+                return false;
+            }
+            
+            $return = $this->dbcon->update($this->table, ['createuser'],[$userIdTo, $userIdFrom], 'createuser = ?');
+            $this->cache->cleanup();
+            return $return;
+        }
+
+        /**
+         * Löscht alle Artikel eines Benutzers
+         * @param int $userIdFrom
+         * @param int $userIdTo
+         * @since FPCM 3.5.1
+         * @return bool
+         */
+        public function deleteArticlesByUser($userId) {
+            
+            if (!$userId) {
+                return false;
+            }
+
+            if ($this->config->articles_trash) {
+                $res = $this->dbcon->update($this->table, array('deleted', 'pinned'), [1,0, $userId], 'createuser = ?');
+                $this->cache->cleanup();
+                return $res;
+            }
+
+            $res = $this->dbcon->delete($this->table, 'createuser = ?', [$userId]);
+
+            if ($res) {
+                $subQuery = 'SELECT id FROM '. $this->dbcon->getTablePrefixed($this->table).' WHERE createuser = ?';
+                $this->dbcon->delete(\fpcm\classes\database::tableComments, 'articleid IN ('.$subQuery.')', [$userId]);
+            }
+
+            $this->cache->cleanup();
+            return $res;
         }
 
         /**

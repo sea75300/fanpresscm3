@@ -29,5 +29,95 @@ fpcm.users = {
             }
         });
 
+        jQuery('#btnDeleteActive').off('click');
+        jQuery('#btnDeleteDisabled').off('click');
+
+        jQuery('#btnDeleteActive').click(function () {
+            return fpcm.users.initMoveDeleteArticles('btnDeleteActive');
+        });
+
+        jQuery('#btnDeleteDisabled').click(function () {
+            return fpcm.users.initMoveDeleteArticles('btnDeleteDisabled');
+        });
+
+    },
+    
+    initMoveDeleteArticles: function(clickBtn) {
+
+        if (fpcm.users.continueDelete) {
+            return true;
+        }
+
+        var size = fpcm.ui.getDialogSizes();
+
+        fpcm.ui.showLoader(false);
+        fpcm.ui.dialog({
+            id         : 'users-select-delete',
+            dlWidth    : size.width,
+            title      : fpcm.ui.translate('USERS_ARTICLES_SELECT'),
+            dlButtons  : [
+                {
+                    text: fpcm.ui.translate('GLOBAL_OK'),
+                    icon: "ui-icon-check",                    
+                    click: function() {
+                        
+                        jQuery(this).dialog('close');
+
+                        fpcm.ui.dialog({
+                            title: fpcm.ui.translate('confirmHL'),
+                            content: fpcm.ui.translate('confirmMessage'),
+                            dlWidth: size.width,
+                            dlButtons: [
+                                {
+                                    text: fpcm.ui.translate('yes'),
+                                    icon: "ui-icon-check",                    
+                                    click: function() {
+                                        fpcm.users.continueDelete = true;
+                                        jQuery('#' + clickBtn).trigger('click');
+                                        jQuery(this).dialog('close');
+                                    }
+                                },
+                                {
+                                    text: fpcm.ui.translate('no'),
+                                    icon: "ui-icon-closethick",
+                                    click: function() {
+                                        jQuery(this).dialog('close');
+                                        jQuery('#articlesaction').val('').selectmenu("refresh");
+                                        jQuery('#articlesuser').val('').selectmenu("refresh");
+                                    }
+                                }
+                            ]
+                        });
+                    }
+                },
+                {
+                    text: fpcm.ui.translate('close'),
+                    icon: "ui-icon-closethick",                    
+                    click: function() {
+                        jQuery(this).dialog('close');
+                        jQuery('#articlesaction').val('').selectmenu("refresh");
+                        jQuery('#articlesuser').val('').selectmenu("refresh");
+                        fpcm.ui.showLoader(false);
+                    }
+                }                            
+            ],
+            dlOnOpen: function (event, ui) {
+
+                fpcm.ui.selectmenu('#articlesaction', {
+                    appendTo: '#fpcm-dialog-users-select-delete'
+                });
+
+                fpcm.ui.selectmenu('#articlesuser', {
+                    appendTo: '#fpcm-dialog-users-select-delete'
+                });
+
+            },
+            dlOnClose: function (event, ui) {
+                jQuery(this).dialog('destroy');
+            }
+        });
+
+        return false;
+
     }
 };

@@ -22,5 +22,12 @@
         'USERS_ROLL_ADD'         => 'Create user roll',
         'USERS_ROLL_EDIT'        => 'Edit user roll',
         'USERS_META_OPTIONS'     => 'User settings',
-        'USERS_PASSGEN'          => 'Generate password'
+        'USERS_PASSGEN'          => 'Generate password',
+        'USERS_ARTICLES_SELECT'  => 'Please select what to do with articles of the selected user',
+        'USERS_ARTICLES_USER'    => 'Select user',
+        'USERS_ARTICLES_LIST'    => [
+            'Don\'t perform any action' => '',
+            'Delete articles'           => 'delete',
+            'Move articles to'          => 'move'
+        ]
     );

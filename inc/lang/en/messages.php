@@ -119,6 +119,7 @@
         'DELETE_FAILED_USERS'           => 'Unable to delete the users!',
         'DELETE_FAILED_USERS_OWN'       => 'You cannot delete your own user account!',
         'DELETE_FAILED_USERS_LAST'      => 'You cannot delete the last user account!',
+        'DELETE_FAILED_USERSARTICLES'   => 'You cannot move articles to the users selected to delete!',
         'DELETE_FAILED_ROLL'            => 'Unable to delete users rolls!',
         'DELETE_FAILED_CATEGORIES'      => 'Unable to delete categories!',
         'DELETE_FAILED_NEWTHUMBS'       => 'Unable to create new image thumbnails!<br>{{filenames}}',
