@@ -163,9 +163,12 @@ class articlesTest extends testBase {
     }
     
     public function testDeleteArticlesByUser() {
-        
-        $this->markTestSkipped('Deleted all articles while running');
-        
+
+        $db = new \fpcm\classes\database();
+        if ($db->getDbtype() === \fpcm\classes\database::DBTYPE_POSTGRES) {
+            $this->markTestSkipped('Deletes all articles while running on Postgres');
+        }
+
         $result = $this->object->deleteArticlesByUser(2);
         $this->assertTrue($result);
     }
