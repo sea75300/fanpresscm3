@@ -310,6 +310,7 @@
                 \fpcm\classes\baseconfig::$jsPath.'editor_comments.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-2.2.0.min.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-3.1.0.min.js',
+                \fpcm\classes\baseconfig::$incDir.'model/system/cli.php',
                 $fbPath.'blank.gif',
                 $fbPath.'fancybox_loading.gif',
                 $fbPath.'fancybox_loading@2x.gif',
@@ -327,7 +328,7 @@
 
             }
             
-            \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js')));
+            \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js', '', false)));
             
             return true;
         }
