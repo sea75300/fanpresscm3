@@ -49,8 +49,8 @@ class fpcmCLI {
      */
     public function process() {
 
-        $moduleClass = '\\fpcm\model\\cli\\'. preg_replace('/([^A-Za-z0-9\_]+)/is', '', $this->params[0]);
-        if (!class_exists($moduleClass)) {
+        $moduleClass = '\\fpcm\model\\cli\\'. preg_replace('/([^A-Za-z0-9\_]+)/is', '', trim($this->params[0]));
+        if (!$moduleClass || !class_exists($moduleClass)) {
             $this->output('Invalid module given.', true);
         }
 
