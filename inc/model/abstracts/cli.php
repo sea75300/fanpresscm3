@@ -140,6 +140,21 @@
         }
 
         /**
+         * CLI Ausgabe
+         * @param string $str
+         * @param bool $die
+         */
+        protected function debug($str, $die = false) {
+
+            if (is_array($str)) {
+                $str = print_r($str, true);
+            }
+
+            $this->output($str, $die);
+
+        }
+
+        /**
          * CLI Eingabe
          * @param string $str
          * @param mixed

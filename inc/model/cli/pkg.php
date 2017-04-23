@@ -146,7 +146,7 @@
                     $this->cache->cleanup();
 
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
-                        $this->output('System update successfull. New version: '.$this->config->system_version);
+                        $this->output('System update successful. New version: '.$this->config->system_version);
                     }
 
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
@@ -166,7 +166,7 @@
                         $this->output('Update database and filesystem...');
                         $this->runFinalizer();
                         
-                        $this->output('Update successfull. New version: '.$this->config->system_version);
+                        $this->output('Update successful. New version: '.$this->config->system_version);
 
                     }                    
                     

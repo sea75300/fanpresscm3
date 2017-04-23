@@ -56,6 +56,7 @@
             $lines[] = '      - cache       cache actions';
             $lines[] = '      - config      action on system configuration';
             $lines[] = '      - help        displays this text';
+            $lines[] = '      - installer   runs the system installer on cli';
             $lines[] = '      - logs        logfile actions';
             $lines[] = '      - cron        cronjob actions';
             $lines[] = '      - module      module action';

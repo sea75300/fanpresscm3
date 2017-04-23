@@ -110,7 +110,7 @@ class fpcmWebInstaller {
             return false;
         }
 
-        $this->texts[]  = "<p>Download successfull... continue...</p>";
+        $this->texts[]  = "<p>Download successful... continue...</p>";
         
         return true;
     }
