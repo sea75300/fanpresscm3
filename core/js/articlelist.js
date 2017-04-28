@@ -12,7 +12,6 @@ fpcm.articlelist = {
 
     init: function() {
         fpcm.articlelist.initArticleSearch();
-        fpcmJs.assignButtons();
     },
     
     initArticleSearch: function() {

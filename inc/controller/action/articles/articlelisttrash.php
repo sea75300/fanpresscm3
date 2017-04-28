@@ -27,9 +27,11 @@
             if (!$this->config->articles_trash) {
                 return false;
             }
-            
+
+            $res = parent::request();
             $this->articleItems = $this->articleList->getArticlesDeleted(true);
-            return parent::request();
+
+            return $res;
         }
         
         public function process() {

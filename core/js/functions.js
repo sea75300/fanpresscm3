@@ -81,7 +81,7 @@ var fpcmJs = function () {
     
     this.articleActionsOkButton = function () {
 
-        if (noActionButtonAssign) return false;
+        if (window.noActionButtonAssign) return false;
 
         var articleActions = {
             newtweet: 'newtweet',

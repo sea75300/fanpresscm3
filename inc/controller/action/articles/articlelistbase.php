@@ -140,7 +140,6 @@
                 
                 if ((!isset($actionData['ids']) && $actionData['action'] != 'trash') || !$actionData['action']) {
                     $this->view->addErrorMessage('SELECT_ITEMS_MSG');
-                    $this->initPagination();
                     return true;
                 }
 
@@ -152,13 +151,11 @@
                 
                 if ($action === false) {
                     $this->view->addErrorMessage('SELECT_ITEMS_MSG');
-                    $this->initPagination();
                     return true;                    
                 }
 
                 if (!call_user_func([$this, 'do'.  ucfirst($action)], $ids)) {
                     $msg = ($action == 'delete')  ? 'DELETE_FAILED_ARTICLE' : 'SAVE_FAILED_ARTICLE';
-                    $this->initPagination();
                     $this->view->addErrorMessage($msg);
                     return true;
                 }
@@ -166,8 +163,6 @@
                 $msg = ($action == 'delete')  ? 'DELETE_SUCCESS_ARTICLE' : 'SAVE_SUCCESS_ARTICLE'.strtoupper($action);                
                 $this->view->addNoticeMessage($msg);
             }
-            
-            $this->initPagination();
             
             return true;
         }
@@ -178,6 +173,8 @@
          */
         public function process() {
             if (!parent::process()) return false;
+            
+            $this->initPagination();
             
             $users = $this->userList->getUsersNameList();
 
