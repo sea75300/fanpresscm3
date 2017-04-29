@@ -163,7 +163,8 @@
                 $msg = ($action == 'delete')  ? 'DELETE_SUCCESS_ARTICLE' : 'SAVE_SUCCESS_ARTICLE'.strtoupper($action);                
                 $this->view->addNoticeMessage($msg);
             }
-            
+
+            $this->initPagination();
             return true;
         }
         
