@@ -168,24 +168,24 @@
         public function process() {
             if (!parent::process()) return false;
 
-            $this->view->assign('replacementsArticle', $this->getReplacementTranslations('TEMPLATE_ARTICLE_', $this->articleTemplate->getReplacementTags()));
+            $this->view->assign('replacementsArticle', $this->articleTemplate->getReplacementTranslations('TEMPLATE_ARTICLE_'));
             $this->view->assign('contentArticle', $this->articleTemplate->getContent());
             
             if ($this->config->articles_template_active != $this->config->article_template_active) {
-                $this->view->assign('replacementsArticleSingle', $this->getReplacementTranslations('TEMPLATE_ARTICLE_', $this->articleSingleTemplate->getReplacementTags()));
+                $this->view->assign('replacementsArticleSingle', $this->articleSingleTemplate->getReplacementTranslations('TEMPLATE_ARTICLE_'));
                 $this->view->assign('contentArticleSingle', $this->articleSingleTemplate->getContent());                
             }
             
-            $this->view->assign('replacementsComment', $this->getReplacementTranslations('TEMPLATE_COMMMENT_', $this->commentTemplate->getReplacementTags()));
+            $this->view->assign('replacementsComment', $this->commentTemplate->getReplacementTranslations('TEMPLATE_COMMMENT_'));
             $this->view->assign('contentComment', $this->commentTemplate->getContent());
             
-            $this->view->assign('replacementsCommentForm', $this->getReplacementTranslations('TEMPLATE_COMMMENTFORM_', $this->commentFormTemplate->getReplacementTags()));
+            $this->view->assign('replacementsCommentForm', $this->commentFormTemplate->getReplacementTranslations('TEMPLATE_COMMMENTFORM_'));
             $this->view->assign('contentCommentForm', $this->commentFormTemplate->getContent());
             
-            $this->view->assign('replacementsLatestNews', $this->getReplacementTranslations('TEMPLATE_ARTICLE_', $this->latestNewsTemplate->getReplacementTags()));
+            $this->view->assign('replacementsLatestNews', $this->latestNewsTemplate->getReplacementTranslations('TEMPLATE_ARTICLE_'));
             $this->view->assign('contentLatestNews', $this->latestNewsTemplate->getContent());
             
-            $this->view->assign('replacementsTweet', $this->getReplacementTranslations('TEMPLATE_ARTICLE_', $this->tweetTemplate->getReplacementTags()));
+            $this->view->assign('replacementsTweet', $this->tweetTemplate->getReplacementTranslations('TEMPLATE_ARTICLE_'));
             $this->view->assign('contentTweet', $this->tweetTemplate->getContent());
             
             $this->view->assign('allowedTags', htmlentities($this->articleTemplate->getAllowedTags(', ')));
@@ -217,23 +217,6 @@
             
             $this->view->render();
         }
-        
-        /**
-         * Platzhalter-Übersetzungen
-         * @param string $prefix
-         * @param array $replacements
-         * @return array
-         */
-        private function getReplacementTranslations($prefix, array $replacements) {
-            
-            foreach ($replacements as $key => &$value) {
-                $key = explode(':', strtoupper(str_replace(array('{{', '}}'), '', $key)));
-                $value  = $this->lang->translate($prefix.$key[0]);
-            }
-            
-            return $replacements;
-            
-        }
-        
+
     }
 ?>

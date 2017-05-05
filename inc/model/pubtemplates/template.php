@@ -37,6 +37,13 @@
          * @var array
          */
         protected $replacementInternal  = [];
+
+        /**
+         * Platzhalter mit Sprachbezeichner
+         * @var array
+         * @since FPCM 3.5.2
+         */
+        protected $replacementTranslated  = [];
         
         /**
          * Smiley-Cache
@@ -164,6 +171,28 @@
         }
         
         /**
+         * Platzhalter-Übersetzungen
+         * @param string $prefix
+         * @param array $replacements
+         * @return array
+         * @since FPCM 3.5.2
+         */
+        public function getReplacementTranslations($prefix) {
+
+            if (count($this->replacementTranslated)) {
+                return $this->replacementTranslated;
+            }
+
+            foreach ($this->replacementTags as $key => $value) {
+                $data = explode(':', strtoupper(str_replace(array('{{', '}}'), '', $key)));
+                $this->replacementTranslated[$key] = $this->language->translate($prefix.$data[0]);
+            }
+
+            return $this->replacementTranslated;
+
+        }
+        
+        /**
          * Parst Smileys in Artikeln und Kommentaren
          * @param string $content
          * @return string
@@ -199,10 +228,13 @@
          * @param void $initDB
          */
         protected function init($initDB) {
-            if ($this->exists()) {
-                $this->content      = file_get_contents($this->fullpath);
-                $this->allowedTags  = $this->events->runEvent('publicTemplateHtmlTags', $this->allowedTags);
+
+            if (!$this->exists()) {
+                return false;
             }
+
+            $this->content      = file_get_contents($this->fullpath);
+            $this->allowedTags  = $this->events->runEvent('publicTemplateHtmlTags', $this->allowedTags);
         }
 
         /**

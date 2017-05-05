@@ -125,6 +125,7 @@ fpcm.editor = {
                 id: 'editor-extended',
                 dlWidth: size.width,
                 title: fpcm.ui.translate('extended'),
+                resizable: true,
                 dlButtons: [
                     {
                         text: fpcm.ui.translate('close'),

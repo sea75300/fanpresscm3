@@ -96,7 +96,22 @@
             $this->view->setHelpLink('articles_editor');
 
             $twitter = new \fpcm\model\system\twitter();
-            $this->view->assign('showTwitter', $twitter->checkRequirements());
+            $twitterOk = $twitter->checkRequirements();
+            
+            $twitterReplacements = '';
+            if ($twitterOk) {                
+                $tweetTpl = new \fpcm\model\pubtemplates\tweet();
+                $tags = $tweetTpl->getReplacementTranslations('TEMPLATE_ARTICLE_');
+                foreach ($tags as $tag => $descr) {
+                    $twitterReplacements[] = $descr.': '.$tag;
+                }
+
+                
+                $twitterReplacements = implode(' &bull; '.PHP_EOL.' ', $twitterReplacements);
+            }
+
+            $this->view->assign('twitterReplacements', $twitterReplacements);
+            $this->view->assign('showTwitter', $twitterOk);
             
             $this->jsVars  = $this->editorPlugin->getJsVars();
             $this->jsVars += array(

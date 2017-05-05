@@ -14,6 +14,18 @@
             <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-col-floatsmall"></div>
             <div class="fpcm-clear"></div>
         </div>
+        
+        <?php if ($showTwitter) : ?>
+        <div class="fpcm-ui-editor-extended-row">
+            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-twitter fa-fw fa-lg"></span></div>
+            <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-col-floatsmall fpcm-ui-editor-extended-col-large">
+                <?php fpcm\model\view\helper::textInput('article[tweettxt]', '', '', false, 512, 'EDITOR_TWEET_TEXT'); ?>
+                <p class="fpcm-ui-center"><span class="fpcm-small-text"><?php print $twitterReplacements; ?></span> <?php fpcm\model\view\helper::shortHelpButton('EDITOR_TWEET_TEXT_REPLACER', '', $FPCM_BASEMODULELINK.'system/templates', '_blank'); ?></p>
+            </div>
+            <div class="fpcm-ui-editor-extended-col"></div>
+            <div class="fpcm-clear"></div>
+        </div>
+        <?php endif; ?>
 
         <?php if (!$editorMode || $article->getPostponed()) : ?>
         <div class="fpcm-ui-editor-extended-row">
@@ -60,15 +72,6 @@
             <div class="fpcm-ui-editor-extended-col"></div>
             <div class="fpcm-clear"></div>
         </div>
-        <?php endif; ?>
-        
-        <?php if ($showTwitter) : ?>
-        <div class="fpcm-ui-editor-extended-row">
-            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-twitter fa-fw fa-lg"></span></div>
-            <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-col-floatsmall fpcm-ui-editor-extended-col-large"><?php fpcm\model\view\helper::textInput('article[tweettxt]', '', '', false, 512, 'EDITOR_TWEET_TEXT'); ?></div>
-            <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-col-floatsmall"><?php fpcm\model\view\helper::shortHelpButton('EDITOR_TWEET_TEXT_REPLACER', '', $FPCM_BASEMODULELINK.'system/templates', '_blank'); ?></div>
-            <div class="fpcm-clear"></div>
-        </div>        
         <?php endif; ?>
         
         <?php if ($changeAuthor) : ?>
