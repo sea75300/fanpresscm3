@@ -656,7 +656,10 @@
             $commentList = new \fpcm\model\comments\commentList();
             $commentList->deleteCommentsByArticle($this->id);
 
-            return parent::delete();
+            $return = parent::delete();
+            $this->deleted = 1;
+
+            return $return;
         }
 
         /**

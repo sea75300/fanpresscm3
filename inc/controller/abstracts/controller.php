@@ -132,7 +132,7 @@
          * @param array $filter
          * @return mixed
          */
-        public function getRequestVar($varname = null, array $filter = array(1,3,4,7)) {            
+        public function getRequestVar($varname = null, array $filter = [\fpcm\classes\http::FPCM_REQFILTER_STRIPTAGS,\fpcm\classes\http::FPCM_REQFILTER_HTMLENTITIES, \fpcm\classes\http::FPCM_REQFILTER_STRIPSLASHES,\fpcm\classes\http::FPCM_REQFILTER_TRIM]) {
             return \fpcm\classes\http::get($varname, $filter);
         }
         
@@ -196,6 +196,7 @@
          * @return void
          */
         protected function checkUpdates() {
+
             if (!$this->updateCheckEnabled) return;
             
             $asyncMail = $this->session->exists() ? false : true;            
@@ -217,10 +218,14 @@
                 
                 return;
                 
-            } elseif ($res === \fpcm\model\updater\system::SYSTEMUPDATER_FORCE_UPDATE) {
+            }
+            
+            if ($res === \fpcm\model\updater\system::SYSTEMUPDATER_FORCE_UPDATE) {
                 $this->redirect('package/sysupdate');
                 return;
-            } elseif ($res === false) {
+            }
+            
+            if ($res === false) {
 
                 $systemUpdates = new \fpcm\model\updater\system();
                 $replace = array(
@@ -229,6 +234,7 @@
                 );
                 $this->view->addErrorMessage('UPDATE_VERSIONCHECK_NEW', $replace);
             }
+
         }
         
         /**

@@ -17,6 +17,72 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */ 
     final class http {
+
+        /**
+         * HTTP Filter strip_tags
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_STRIPTAGS = 1;
+
+        /**
+         * HTTP Filter htmlspecialchars
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_HTMLSPECIALCHARS = 2;
+
+        /**
+         * HTTP Filter htmlentities
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_HTMLENTITIES = 3;
+
+        /**
+         * HTTP Filter stripslashes
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_STRIPSLASHES = 4;
+
+        /**
+         * HTTP Filter htmlspecialchars_decode
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_HTMLSPECIALCHARS_DECODE = 5;
+
+        /**
+         * HTTP Filter html_entity_decode
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_HTMLENTITY_DECODE = 6;
+
+        /**
+         * HTTP Filter trim
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_TRIM = 7;
+
+        /**
+         * HTTP Filter json_decode
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_JSON_DECODE = 8;
+
+        /**
+         * HTTP Filter intval
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_CASTINT = 9;
+
+        /**
+         * HTTP Filter crypt::decrypt
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_DECRYPT = 10;
+
+        /**
+         * HTTP Filter urldecode
+         * @since FPCM 3.5.2
+         */
+        const FPCM_REQFILTER_URLDECODE = 11;
         
         /**
          * HTTP-Reuqest aus $_REQUEST und $_COOKIE
@@ -38,7 +104,7 @@
          * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
          * @return mixed null wenn Variable nicht gesetzt
          */
-        public static function get($varname = null, array $filter = array(1,4,7)) {
+        public static function get($varname = null, array $filter = [self::FPCM_REQFILTER_STRIPTAGS,self::FPCM_REQFILTER_STRIPSLASHES,self::FPCM_REQFILTER_TRIM]) {
             if (is_null($varname)) return self::$request;
             $returnVal = (isset(self::$request[$varname])) ? self::filter(self::$request[$varname], $filter) : null;
             return $returnVal;            
@@ -51,7 +117,7 @@
          * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
          * @return mixed null wenn Variable nicht gesetzt
          */
-        public static function postOnly($varname = null, array $filter = array(1,4,7)) {
+        public static function postOnly($varname = null, array $filter = [self::FPCM_REQFILTER_STRIPTAGS,self::FPCM_REQFILTER_STRIPSLASHES,self::FPCM_REQFILTER_TRIM]) {
             if (is_null($varname)) return $_POST;
             $returnVal  = (isset($_POST[$varname])) ? self::filter($_POST[$varname], $filter) : null;
             return $returnVal;
@@ -64,7 +130,7 @@
          * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
          * @return mixed null wenn Variable nicht gesetzt
          */
-        public static function getOnly($varname = null, array $filter = array(1,4,7)) {
+        public static function getOnly($varname = null, array $filter = [self::FPCM_REQFILTER_STRIPTAGS,self::FPCM_REQFILTER_STRIPSLASHES,self::FPCM_REQFILTER_TRIM]) {
             if (is_null($varname)) return $_GET;
             $returnVal  = (isset($_GET[$varname])) ? self::filter($_GET[$varname], $filter) : null;
             return $returnVal;
@@ -77,7 +143,7 @@
          * @param array $filter Filter vor Rückgabe durchführen, @see http::filter()
          * @return mixed null wenn Variable nicht gesetzt
          */
-        public static function cookieOnly($varname = null, array $filter = array(1,4,7)) {
+        public static function cookieOnly($varname = null, array $filter = [self::FPCM_REQFILTER_STRIPTAGS,self::FPCM_REQFILTER_STRIPSLASHES,self::FPCM_REQFILTER_TRIM]) {
             return (isset($_COOKIE[$varname])) ? self::filter($_COOKIE[$varname], $filter) : null;
         }
         
@@ -175,38 +241,38 @@
             foreach ($filters as $filter) {          
                 $filter = (int) $filter;
                 switch ($filter) {
-                    case 1 :
+                    case self::FPCM_REQFILTER_STRIPTAGS :
                         $filterString = strip_tags($filterString, $allowedTags);
                     break;
-                    case 2 :
+                    case self::FPCM_REQFILTER_HTMLSPECIALCHARS :
                         $filterString = htmlspecialchars($filterString, $htmlMode);
                     break;
-                    case 3 :
+                    case self::FPCM_REQFILTER_HTMLENTITIES :
                         $filterString = htmlentities($filterString, $htmlMode);
                     break;
-                    case 4 :
+                    case self::FPCM_REQFILTER_STRIPSLASHES :
                         $filterString = stripslashes($filterString);
                     break;
-                    case 5 :
+                    case self::FPCM_REQFILTER_HTMLSPECIALCHARS_DECODE :
                         $filterString = htmlspecialchars_decode($filterString, $htmlMode);
                     break;
-                    case 6 :
+                    case self::FPCM_REQFILTER_HTMLENTITY_DECODE :
                         $filterString = html_entity_decode($filterString, $htmlMode);
                     break;
-                    case 7 :
+                    case self::FPCM_REQFILTER_TRIM :
                         $filterString = trim($filterString);
                     break;
-                    case 8 :
+                    case self::FPCM_REQFILTER_JSON_DECODE :
                         $filterString = json_decode($filterString, ($filters['object'] ? false : true));
                     break;
-                    case 9 :
+                    case self::FPCM_REQFILTER_CASTINT :
                         $filterString = (int) $filterString;
                     break;
-                    case 10 :
+                    case self::FPCM_REQFILTER_DECRYPT :
                         $crypt = new crypt();
                         $filterString = $crypt->decrypt($filterString);
                     break;
-                    case 11 :
+                    case self::FPCM_REQFILTER_URLDECODE :
                         $filterString = urldecode($filterString);
                     break;
                 }

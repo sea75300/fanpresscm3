@@ -842,7 +842,7 @@
         }
 
         /**
-         * 
+         * Datei data/config/database.php erzeugen
          * @param array $data
          * @return boolean
          * @since FPCM 3.5.1

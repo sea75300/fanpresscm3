@@ -22,13 +22,14 @@
          * @param string $libname
          * @param string $libfile
          * @param string $subpaths
+         * @param bool $exists
          * @return string
          */
-        public static function libGetFilePath($libname, $libfile, $subpaths = '') {      
+        public static function libGetFilePath($libname, $libfile, $subpaths = '', $exists = true) {      
 
             $path = baseconfig::$incDir.'lib/'.$libname.'/'.trim($subpaths, '/').$libfile;
             
-            if (!file_exists($path)) {
+            if ($exists && !file_exists($path)) {
                 trigger_error('Lib path '.$path.' does not exists!');
                 return '';
             }

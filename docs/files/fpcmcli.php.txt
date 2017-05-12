@@ -14,10 +14,16 @@ require_once __DIR__.'/inc/common.php';
 class fpcmCLI {
 
     /**
-     * Konstruktor, prüft PHP-Version, Installer-Status und Datenbank-Config-Status
-     * @return void
+     *
+     * @var array
      */
-    public function __construct() {
+    private $params = [];
+
+    /**
+     * Konstruktor, prüft PHP-Version, Installer-Status und Datenbank-Config-Status
+     * @param array $params
+     */
+    public function __construct(array $params) {
 
         $this->output(PHP_EOL.'--- FanPress CM 3 CLI - version '.\fpcm\classes\baseconfig::$fpcmConfig->system_version.' ---');
         
@@ -29,26 +35,27 @@ class fpcmCLI {
             $this->output('FanPress CM 3 requires PHP '.FPCM_PHP_REQUIRED.' or better!', true);
         }
 
+        if (!count($params)) {
+            $this->output('FanPress CM 3 CLi requires at least on parameter.', true);
+        }
+        
+        $this->params = $params;
+
     }
 
     /**
      * Befehlt an CLI ausführen
      * @param array $params
      */
-    public function process($params) {
-        
-        $module   = ucfirst($params[0]);
-        $funcName = 'process'.$module;
+    public function process() {
 
-        $cli = new fpcm\model\system\cli();
-        
-        if (!method_exists($cli, $funcName)) {
-            $this->output('Invalid module param on position 0.', true);
+        $moduleClass = '\\fpcm\model\\cli\\'. preg_replace('/([^A-Za-z0-9\_]+)/is', '', trim($this->params[0]));
+        if (!$moduleClass || !class_exists($moduleClass)) {
+            $this->output('Invalid module given.', true);
         }
 
-        $cli->setFuncParams(count($params) ? array_slice($params, 1) : array());
-
-        call_user_func(array($cli, $funcName));
+        $cli = new $moduleClass(array_slice($this->params, 1));
+        $cli->process();
         
     }
 
@@ -57,17 +64,17 @@ class fpcmCLI {
      * @param string $str
      * @param bool $die
      */
-    private function output($str, $die = false) {
+    final private function output($str, $die = false) {
         
         if ($die) {
             die($str.PHP_EOL);
         }
-        
+
         print $str.PHP_EOL;
-        
+
     }
     
 }
 
-$cli = new fpcmCLI();
-$cli->process(array_slice($argv, 1));
+$cli = new fpcmCLI(array_slice($argv, 1));
+$cli->process();

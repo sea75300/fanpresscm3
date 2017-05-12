@@ -21,9 +21,9 @@ class fpcmCLI {
 
     /**
      * Konstruktor, prüft PHP-Version, Installer-Status und Datenbank-Config-Status
-     * @return void
+     * @param array $params
      */
-    public function __construct($params) {
+    public function __construct(array $params) {
 
         $this->output(PHP_EOL.'--- FanPress CM 3 CLI - version '.\fpcm\classes\baseconfig::$fpcmConfig->system_version.' ---');
         

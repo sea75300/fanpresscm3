@@ -69,10 +69,15 @@
             $this->leveltitle = $this->events->runEvent('userrollSave', $this->leveltitle);
             
             $newId = $this->dbcon->insert($this->table, 'leveltitle', '?', array($this->leveltitle));
+            if (!$newId) {
+                trigger_error('Failed to create new user roll "'.$this->leveltitle.'"');
+                return false;
+            }
 
             $permission = new \fpcm\model\system\permissions();            
             $return     = $permission->addDefault($newId);
 
+            $this->id    = $newId;
             $this->cache->cleanup();
             
             return $return;

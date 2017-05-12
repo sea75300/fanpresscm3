@@ -281,7 +281,7 @@
          */
         public static function select($name, $options, $selected = null, $firstEmpty = false, $firstEnabled = true, $readonly = false, $class = '') {
             $optionsString = '';
-            
+
             if ($firstEnabled) $optionsString = ($firstEmpty) ? '<option value=""></option>' : '<option value="">'.self::$language->translate('GLOBAL_SELECT').'</option>';            
             foreach ($options as $key => $value) {
                 $optionsString .= "<option value=\"".htmlentities($value, ENT_QUOTES)."\"";
@@ -349,10 +349,11 @@
         
         /**
          * Setzt bool-Wert in Text ja/nein um
-         * @param bool $value Wert
+         * @param bool $value
+         * @param string $text
          */
-        public static function boolToText($value) {
-            print ($value) ? '<span class="fa fa-check-square fpcm-ui-booltext-yes" title="'.self::$language->translate('GLOBAL_YES').'"></span>' : '<span class="fa fa-minus-square fpcm-ui-booltext-no" title="'.self::$language->translate('GLOBAL_NO').'"></span>';
+        public static function boolToText($value, $text = 'GLOBAL_YES') {
+            print ($value) ? '<span class="fa fa-check-square fpcm-ui-booltext-yes" title="'.self::$language->translate($text).'"></span>' : '<span class="fa fa-minus-square fpcm-ui-booltext-no" title="'.self::$language->translate('GLOBAL_NO').'"></span>';
         }
         
         /**
@@ -424,6 +425,9 @@
          * @deprecated since FPCM 3.5
          */
         public static function helpButton($entry) {
+            
+            trigger_error(__METHOD__.' is deprecated as of FPCM 3.5! Use the view methode "setHelpLink" instead.');
+            
             $href = \fpcm\classes\baseconfig::$rootPath.'index.php?module=system/help&ref='.base64_encode(strtolower($entry));
             print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-helpbutton\" id=\"fpcmuihelpbutton\" target=\"_self\" title=\"".self::$language->translate('HELP_BTN_OPEN')."\"></a>\n";
         }

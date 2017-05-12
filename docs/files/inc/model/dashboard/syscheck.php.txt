@@ -51,34 +51,25 @@
          * Check ausführen
          */
         protected function runCheck() {
-            $checkFolders = array(
-                $this->language->translate('SYSCHECK_FOLDER_DATA')          => \fpcm\classes\baseconfig::$dataDir,
-                $this->language->translate('SYSCHECK_FOLDER_CACHE')         => \fpcm\classes\baseconfig::$cacheDir,
-                $this->language->translate('SYSCHECK_FOLDER_CONFIG')        => \fpcm\classes\baseconfig::$configDir,
-                $this->language->translate('SYSCHECK_FOLDER_FILEMANAGER')   => \fpcm\classes\baseconfig::$filemanagerTempDir,
-                $this->language->translate('SYSCHECK_FOLDER_LOGS')          => \fpcm\classes\baseconfig::$logDir,
-                $this->language->translate('SYSCHECK_FOLDER_MODULES')       => \fpcm\classes\baseconfig::$moduleDir,
-                $this->language->translate('SYSCHECK_FOLDER_SHARE')         => \fpcm\classes\baseconfig::$shareDir,
-                $this->language->translate('SYSCHECK_FOLDER_SMILEYS')       => \fpcm\classes\baseconfig::$smileyDir,
-                $this->language->translate('SYSCHECK_FOLDER_STYLES')        => \fpcm\classes\baseconfig::$stylesDir,
-                $this->language->translate('SYSCHECK_FOLDER_TEMP')          => \fpcm\classes\baseconfig::$tempDir,
-                $this->language->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir,
-                $this->language->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir,
-                $this->language->translate('SYSCHECK_FOLDER_DRAFTS')       => \fpcm\classes\baseconfig::$articleTemplatesDir
-            );
             
-            natcasesort($checkFolders);
-            
-            $this->tableContent[] = '<tr colspan="2"><td class="fpcm-ui-center"><a class="fpcm-ui-button fpcm-ui-margin-icon fpcm-syscheck-btn" href="index.php?module=system/options&syscheck=1">'.$this->language->translate('SYSCHECK_COMPLETE').'</a></td></tr>';
-            $this->tableContent[] = '<tr><td colspan="2" class="fpcm-td-spacer" style="padding-bottom:0.5em;"></td></tr>';
+            $sysCheckAction = new \fpcm\controller\ajax\system\syscheck();
+            $rows = $sysCheckAction->processCli();
 
-            foreach ($checkFolders as $description => $folderPath) {
-                $checkres = $this->boolToText(is_writable($folderPath));
-                $linePath = \fpcm\model\files\ops::removeBaseDir($folderPath, true);
-                $this->tableContent[] =  "<tr><td title=\"$linePath\"><strong>$description:</strong></td><td class=\"fpcm-ui-center\">$checkres</td></tr>";
+            $this->tableContent[] = '<tr><td class="fpcm-ui-center"><a class="fpcm-ui-button fpcm-ui-margin-icon fpcm-syscheck-btn" href="index.php?module=system/options&syscheck=1">'.$this->language->translate('SYSCHECK_COMPLETE').'</a></td></tr>';
+            $this->tableContent[] = '<tr><td class="fpcm-td-spacer" style="padding-bottom:0.5em;"></td></tr>';
+
+            $options = array_slice($rows, 16, 2);
+            foreach ($options as $description => $data) {
+                $checkres             = $this->boolToText2($data['result']);
+                $this->tableContent[] =  "<tr><td>{$checkres} {$description}</td></tr>";
             }
-            
-            $this->tableContent[] = '<tr><td><strong>'.$this->language->translate('SYSTEM_CHECK_CONNECT').':</strong></td><td class="fpcm-ui-center">'.$this->boolToText2(\fpcm\classes\baseconfig::canConnect()).'</td></tr>';
+
+            $folders = array_slice($rows, -13);
+            foreach ($folders as $description => $data) {
+                $checkres             = $this->boolToText($data['result']);
+                $this->tableContent[] =  "<tr><td>{$checkres} {$description}</td></tr>";
+            }
+
         }
         
         /**

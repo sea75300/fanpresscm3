@@ -416,6 +416,20 @@
 
             return self::$cfgDat[__FUNCTION__];
         }
+
+        /**
+         * HTTPS aktiv
+         * @return bool
+         * @since FPCM 3.5
+         */
+        public static function canHttps() {
+            
+            if (!isset(self::$cfgDat[__FUNCTION__])) {
+                self::$cfgDat[__FUNCTION__] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? true : false);
+            }
+
+            return self::$cfgDat[__FUNCTION__];
+        }
         
         /**
          * PHP Memory Limit

@@ -130,7 +130,12 @@
 
             $res = true;
             foreach ($data['defaultvalues']['rows'] as $option) {
-                $res = $res && $this->config->add($option['config_name'], $option['config_value']);
+
+                if ($option['config_name'] === 'smtp_setting') {
+                    continue;
+                }
+
+                $res = $res && $this->config->add($option['config_name'], trim($option['config_value']));
             }
 
             return $res;
@@ -161,7 +166,12 @@
                 $newconf['twitter_events'] = array('create' => 0, 'update' => 0);
                 $newconf['twitter_events'] = json_encode($newconf['twitter_events']);
             }
-            
+
+            if (!is_array($this->config->smtp_settings)) {
+                $newconf['smtp_settings'] = ['srvurl' =>'', 'user' => '', 'pass' => '', 'encr' => '', 'port' => '25', 'addr' => '',];
+                $newconf['smtp_settings'] = json_encode($newconf['smtp_settings']);
+            }
+
             if (count($newconf)) {
                 $this->config->setNewConfig($newconf);
                 $res = $res && $this->config->update();
@@ -300,6 +310,7 @@
                 \fpcm\classes\baseconfig::$jsPath.'editor_comments.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-2.2.0.min.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-3.1.0.min.js',
+                \fpcm\classes\baseconfig::$incDir.'model/system/cli.php',
                 $fbPath.'blank.gif',
                 $fbPath.'fancybox_loading.gif',
                 $fbPath.'fancybox_loading@2x.gif',
@@ -317,7 +328,7 @@
 
             }
             
-            \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js')));
+            \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js', '', false)));
             
             return true;
         }

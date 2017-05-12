@@ -16,7 +16,7 @@
             \fpcm\controller\traits\common\timezone;
 
         /**
-         *
+         * Installer Konfiguration aus YML-Datei
          * @var array
          */
         protected $conf = [];
@@ -43,7 +43,7 @@
         }
 
         /**
-         * 
+         * Prüfung, ob Installer aktiv ist
          * @return boolean
          */
         private function checkPreconditions() {
@@ -63,7 +63,7 @@
         }
 
         /**
-         * 
+         * Installer YML Konfiguration auslesen
          * @return boolean
          */
         private function loadConfig() {
@@ -85,7 +85,7 @@
         }
 
         /**
-         * 
+         * System Check ausführen
          * @return boolean
          */
         private function runSystemCheck() {
@@ -133,7 +133,7 @@
         }
 
         /**
-         * 
+         * Konfiguration für DB-Verbindung erzeugen
          * @return boolean
          */
         private function initDatabase() {
@@ -169,7 +169,7 @@
         }
 
         /**
-         * 
+         * Datenbank-Tabellen erzeugen
          * @return boolean
          */
         private function createTables() {
@@ -200,7 +200,7 @@
         }
 
         /**
-         * 
+         * System-Konfiguration erzeugen
          * @return boolean
          */
         private function initSystemConfig() {
@@ -239,7 +239,7 @@
         }
 
         /**
-         * 
+         * Ersten Benutzer erzeugen
          * @return boolean
          */
         private function createUserAccount() {
@@ -276,7 +276,7 @@
         }
 
         /**
-         * 
+         * System bereinigung
          * @return boolean
          */
         private function cleanupSystem() {

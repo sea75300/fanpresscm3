@@ -192,7 +192,7 @@
          * @return bool
          */
         public function diableUsers(array $ids) {
-            return $this->dbcon->update($this->table, 'disabled', array('1'), 'id IN ('.implode(',', $ids).')');
+            return $this->dbcon->update($this->table, ['disabled'], [1], 'id IN ('.implode(',', $ids).')');
         }
         
         /**
@@ -201,7 +201,7 @@
          * @return bool
          */
         public function enableUsers(array $ids) {
-            return $this->dbcon->update($this->table, 'disabled', array('0'), 'id IN ('.implode(',', $ids).')');
+            return $this->dbcon->update($this->table, ['disabled'], [0], 'id IN ('.implode(',', $ids).')');
         }
         
         /**
