@@ -1,14 +1,26 @@
-var nkorgModulecreator = function () {
-    
-    var self = this;
+if (fpcm === undefined) {
+    var fpcm = {};
+}
 
-    this.submitData = function() {
+fpcm.nkorg_modulecreator = {
+
+    init: function() {
+
+        jQuery('#btnStartCreation').click(function() {
+            fpcm.nkorg_modulecreator.submitData();
+            return false;
+        });
+
+        fpcm.ui.setFocus('nkorgmodulecreatorname');
+    },
+
+    submitData: function() {
         
         jQuery('#fpcm-nkorgmodulecreator-createmsg').empty();
         
         var dataArray = {            
-            'info'   : {},
-            'events' : []
+            info   : {},
+            events : []
         };
         
         var emptyVars = 0;
@@ -42,7 +54,7 @@ var nkorgModulecreator = function () {
                 newdata: dataArray
             },
             execDone: function () {
-                fpcmJs.showLoader(false);
+                fpcm.ui.showLoader(false);
 
                 var ajaxResult = fpcm.ajax.getResult('nkorg/modulecreator/creator');
                 if (ajaxResult == '0' || ajaxResult == 0) {
@@ -56,21 +68,6 @@ var nkorgModulecreator = function () {
         });
 
         return true;
-    };
+    }
 
 };
-
-var nkorgModulecreatorObj = new nkorgModulecreator();
-
-jQuery(document).ready(function () {
-    
-    
-    jQuery('#btnStartCreation').click(function() {
-        nkorgModulecreatorObj.submitData();
-        return false;
-    });
-    fpcmJs.setFocus('nkorgmodulecreatorname');
-});
-
-
-    

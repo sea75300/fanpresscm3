@@ -61,13 +61,6 @@
 
             $this->view->assign('msg', $this->message);
             $this->view->assign('additional', '');
-            $this->view->addJsVars(array(
-                'fpcmInactivityDatePicker'  => array(
-                    'daysfull'              => $this->lang->getDays(),
-                    'daysshort'             => $this->lang->getDaysShort(),
-                    'months'                => array_values($this->lang->getMonths())
-                )
-            ));
             $this->view->render();
             
         }

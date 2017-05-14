@@ -36,7 +36,7 @@ class rss20 extends feed {
             if (!in_array(md5($item->guid), $this->feedIds)) {
                 continue;
             }
-            
+
             $article = new \fpcm\model\articles\article();
             $article->setTitle((string) $item->title);
             $article->setContent((string) $item->description);

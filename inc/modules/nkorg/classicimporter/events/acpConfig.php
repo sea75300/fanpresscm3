@@ -41,7 +41,8 @@ class acpConfig extends \fpcm\model\abstracts\moduleEvent {
         ));
         $view->addJsVars(array(
             'fpcmClassicImporterOpenModule' => $this->lang->translate('FPCM_CLASSICIMPORTER_OPENMODULE'),
-            'fpcmClassicImporterArticleID' => $this->lang->translate('FPCM_CLASSICIMPORTER_IMPORT_ARTICLES_ID'),
+            'fpcmClassicImporterArticleID'  => $this->lang->translate('FPCM_CLASSICIMPORTER_IMPORT_ARTICLES_ID'),
+            'fpcmClassicImporterDoImport'   => $import ? 1 : 0
         ));
         $view->render();
     }

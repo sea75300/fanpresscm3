@@ -1,34 +1,49 @@
-var nkorgRssImport = function () {
+if (fpcm === undefined) {
+    var fpcm = {};
+}
+
+fpcm.nkorg_rssimporter = {
     
-    var self = this;
+    init: function() {
 
-    this.checkPath = function(feedPath) {
+        jQuery('#rsspath').blur(function() {
+            fpcm.nkorg_rssimporter.checkPath();
+        });
 
+        jQuery('#btnStartImport').click(function() {
+            fpcm.nkorg_rssimporter.importFeed();
+        });
+
+    },
+
+    checkPath: function() {
+
+        var feedPath = jQuery('#rsspath').val();
         jQuery('.fpcm-rssimport-artids-row').remove();
 
-        if (feedPath == '' || feedPath == 'http://' || feedPath == 'https://') {
+        if (!feedPath || feedPath == 'http://' || feedPath == 'https://') {
             return true;
         }
 
-        fpcmJs.showLoader(true);
-
+        fpcm.ui.showLoader(true);
         fpcm.ajax.get('nkorg/rssimport/checkpath', {
             data: {
                 feedPath: feedPath
             },
             execDone: function () {
-                nkorgRssImportObj.ajaxCallBack(fpcm.ajax.getResult('nkorg/rssimport/checkpath'));
+                fpcm.nkorg_rssimporter.ajaxCallBack(fpcm.ajax.getResult('nkorg/rssimport/checkpath'));
             }
         });
-    };
+    },
 
-    this.importFeed = function(feedPath) {
+    importFeed: function() {
 
-        if (feedPath == '' || feedPath == 'http://' || feedPath == 'https://') {
+        var feedPath = jQuery('#rsspath').val();
+        if (!feedPath || feedPath == 'http://' || feedPath == 'https://') {
             return true;
         }
 
-        fpcmJs.showLoader(true);
+        fpcm.ui.showLoader(true);
 
         var selectedIds = jQuery('.fpcm-rssimport-artids:checked');
         var ids         = [];
@@ -55,21 +70,21 @@ var nkorgRssImport = function () {
                 categories: categoryIds
             },
             execDone: function () {
-                nkorgRssImportObj.ajaxCallBack(fpcm.ajax.getResult('nkorg/rssimport/runimport'));
+                fpcm.nkorg_rssimporter.ajaxCallBack(fpcm.ajax.getResult('nkorg/rssimport/runimport'));
             }
         });
 
-    };
-    
-    this.ajaxCallBack = function(res) {
+    },
+
+    ajaxCallBack: function(res) {
         
-        fpcmJs.showLoader(false);
+        fpcm.ui.showLoader(false);
         
         res = fpcm.ajax.fromJSON(res);
         
         if (res.code === undefined || !res.code) {
             fpcmJs.addAjaxMassage('error', res.msg);
-            self.lastUrl = '';
+            fpcm.nkorg_rssimporter.lastUrl = '';
             return false;
         }
 
@@ -79,10 +94,11 @@ var nkorgRssImport = function () {
             return false;
         }
         
-        self.processList(res.list);
-    }
+        fpcm.nkorg_rssimporter.processList(res.list);
+    },
     
-    this.processList = function(list) {
+    processList: function(list) {
+
         var content = '';
         for (i = 0; i< list.length; i++) {
             var elem = list[i];
@@ -98,22 +114,5 @@ var nkorgRssImport = function () {
         
         fpcmJs.assignButtons();
 
-    };
+    }
 };
-
-var nkorgRssImportObj = new nkorgRssImport();
-
-jQuery(document).ready(function () {
-
-    jQuery('#rsspath').blur(function() {
-        nkorgRssImportObj.checkPath(jQuery(this).val());
-    });
-
-    jQuery('#btnStartImport').click(function() {
-        nkorgRssImportObj.importFeed(jQuery('#rsspath').val());
-    });
-    
-});
-
-
-    

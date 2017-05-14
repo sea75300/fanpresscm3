@@ -1,61 +1,67 @@
-jQuery(document).ready(function() {
+if (fpcm === undefined) {
+    var fpcm = {};
+}
 
-    fpcm.ui.accordion('.fpcm-tabs-accordion-integration');
-    
-    jQuery('#btnSpacerArticleTitle').click(function() {
-        fpcmJs.showLoader(true);
+fpcm.nkorg_integration = {
 
-        fpcm.ajax.post('nkorg/integration/articletitle', {
-            data: {
-                spacertext: jQuery('#spacertextArticle').val()
-            },
-            execDone: function () {
-                fpcmJs.showLoader(false);
-                fpcmJs.assignText('#codearticletitle', fpcm.ajax.getResult('nkorg/integration/articletitle'));
-            }
+    init: function() {
+
+        fpcm.ui.accordion('.fpcm-tabs-accordion-integration');
+
+        jQuery('#btnSpacerArticleTitle').click(function() {
+            fpcm.ui.showLoader(true);
+            fpcm.ajax.post('nkorg/integration/articletitle', {
+                data: {
+                    spacertext: jQuery('#spacertextArticle').val()
+                },
+                execDone: function () {
+                    fpcm.ui.showLoader(false);
+                    fpcm.ui.assignText('#codearticletitle', fpcm.ajax.getResult('nkorg/integration/articletitle'));
+                }
+            });
+
+            return false;
         });
 
-        return false;
-    });
+        jQuery('#btnSpacerPageTitle').click(function() {
+            fpcm.ui.showLoader(true);
+            fpcm.ajax.post('nkorg/integration/pagetitle', {
+                data: {
+                    spacertext: jQuery('#spacertextPage').val()
+                },
+                execDone: function () {
+                    fpcm.ui.showLoader(false);
+                    fpcm.ui.assignText('#codepagetitle', fpcm.ajax.getResult('nkorg/integration/pagetitle'));
+                }
+            });
 
-    jQuery('#btnSpacerPageTitle').click(function() {
-        fpcmJs.showLoader(true);
-
-        fpcm.ajax.post('nkorg/integration/pagetitle', {
-            data: {
-                spacertext: jQuery('#spacertextPage').val()
-            },
-            execDone: function () {
-                fpcmJs.showLoader(false);
-                fpcmJs.assignText('#codepagetitle', fpcm.ajax.getResult('nkorg/integration/articletitle'));
-            }
+            return false;
         });
 
-        return false;
-    });
-    
-    jQuery('#btnLimitListSetShowArticles').click(function() {
-        fpcmJs.showLoader(true);
-        jQuery('#limitListSpanShowArticles').text(jQuery('#limitListShowArticles').val());
-        fpcmJs.showLoader(false);
+        jQuery('#btnLimitListSetShowArticles').click(function() {
+            fpcm.ui.showLoader(true);
+            fpcm.ui.assignText('#limitListSpanShowArticles', jQuery('#limitListShowArticles').val());
+            fpcm.ui.showLoader(false);
+
+            return false;
+        });
+
+        jQuery('#btnLimitListSetShowArchive').click(function() {
+            fpcm.ui.showLoader(true);
+            fpcm.ui.assignText('#limitListSpanShowArchive', jQuery('#limitListShowArchive').val());
+            fpcm.ui.showLoader(false);
+
+            return false;
+        });
+
+        jQuery('#btnShowLatestLimitSet').click(function() {
+            fpcm.ui.showLoader(true);
+            fpcm.ui.assignText('#showLatestLimitSpan', jQuery('#showLatestLimit').val());
+            fpcm.ui.showLoader(false);
+
+            return false;
+        });
         
-        return false;
-    });
-    
-    jQuery('#btnLimitListSetShowArchive').click(function() {
-        fpcmJs.showLoader(true);
-        jQuery('#limitListSpanShowArchive').text(jQuery('#limitListShowArchive').val());
-        fpcmJs.showLoader(false);
-        
-        return false;
-    });
-    
-    jQuery('#btnShowLatestLimitSet').click(function() {
-        fpcmJs.showLoader(true);
-        jQuery('#showLatestLimitSpan').text(jQuery('#showLatestLimit').val());
-        fpcmJs.showLoader(false);
-        
-        return false;
-    });
-    
-});
+    }
+
+};

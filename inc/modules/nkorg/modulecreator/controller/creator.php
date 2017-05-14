@@ -76,9 +76,41 @@ class creator extends \fpcm\controller\abstracts\ajaxController {
         $folders = array('config', 'controller', 'model', 'events', 'js', 'lang', 'views', 'data');
         
         foreach ($folders as $folder) {
-            if (!mkdir($this->moddir.'/'.$folder)) {
-                trigger_error('Unable to create folder "'.$folder.'" for module folder structure');
+
+            $current = $this->moddir.DIRECTORY_SEPARATOR.$folder;
+            if (!mkdir($current)) {
+                trigger_error('Unable to create folder "'.$current.'" for module folder structure');
                 return false;
+            }
+            
+            if ($folder === 'lang') {
+                
+                $langs = $this->lang->getLanguages();
+                
+                foreach ($langs as $key => $descr) {
+                  
+                    $langDir = $current.DIRECTORY_SEPARATOR.$key;
+                    if (!file_exists($langDir) && !mkdir($langDir)) {                        
+                        trigger_error('Unable to create language folder in "'.$langDir);
+                        return false;
+                    }
+
+                    if (!file_put_contents($langDir.DIRECTORY_SEPARATOR.'lang.cfg', $descr)) {
+                        trigger_error('Unable to create language config file in "'.$langDir);
+                        return false;                        
+                    }
+
+                    $langFileContent = [
+                        strtoupper($this->info['vendor']).'_'.strtoupper($this->info['key']).'_HEADLINE' => $this->info['name']
+                    ];
+
+                    $langFileContent = '<?php'.PHP_EOL.PHP_EOL.var_export($langFileContent, true).PHP_EOL.PHP_EOL.'?>';
+                    if (!file_put_contents($langDir.DIRECTORY_SEPARATOR.'common.php', $langFileContent)) {
+                        trigger_error('Unable to create default language file in "'.$langDir);
+                        return false;                        
+                    }
+
+                }                
             }
         }
         

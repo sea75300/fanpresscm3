@@ -34,7 +34,7 @@
             <table id="feed-articles-list" class="fpcm-ui-table fpcm-ui-articles">
                 <tr class="fpcm-td-spacer"><td colspan="3"></td></tr>
                 <tr>
-                    <th colspan="2"><?php $FPCM_LANG->write('NKORG_RSSIMPORT_FOUND'); ?></th>
+                    <th colspan="3"><?php $FPCM_LANG->write('NKORG_RSSIMPORT_FOUND'); ?></th>
                 </tr>
                 <tr class="fpcm-td-spacer"><td colspan="3"></td></tr>
             </table>

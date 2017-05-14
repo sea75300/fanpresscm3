@@ -5,6 +5,6 @@ vendor: nkorg
 key: classicimporter
 author: imagine
 link: https://nobody-knows.org/
-version: 3.5.0
+version: 3.5.2
 sysversion: 3.5.0
 description: "Import module for FanPress CM 2.5"
