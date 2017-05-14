@@ -86,154 +86,22 @@
                 return false;
             }
 
-            if ($this->getRequestVar('revrestore')) {
-                $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLEREVRESTORE');
-            }
-            
             $this->checkPageToken = $this->checkPageToken();
             if ($this->buttonClicked('doAction') && !$this->checkPageToken) {
                 $this->view->addErrorMessage('CSRF_INVALID');
-            }
-            
-            $revisionIdsArray   = !is_null($this->getRequestVar('revisionIds'))
-                                ? array_map('intval', $this->getRequestVar('revisionIds'))
-                                : false;
-            
-            if ($this->buttonClicked('revisionDelete') && $revisionIdsArray && !$this->showRevision && $this->checkPageToken) {
-                if ($this->article->deleteRevisions($revisionIdsArray)) {
-                    $this->view->addNoticeMessage('DELETE_SUCCESS_REVISIONS');
-                } else {
-                    $this->view->addErrorMessage('DELETE_FAILED_REVISIONS');
-                }
-            }
-            
-            $this->revisionId   = !is_null($this->getRequestVar('rev'))
-                                ? (int) $this->getRequestVar('rev')
-                                : (is_array($revisionIdsArray) ? array_shift($revisionIdsArray) : false);
-            
-            if ($this->buttonClicked('articleRevisionRestore') && ($this->getRequestVar('rev') || $this->getRequestVar('revisionIds')) && $this->checkPageToken) {
-                if ($this->revisionId && $this->article->restoreRevision($this->revisionId)) {
-                    $this->redirect('articles/edit&articleid='.$this->article->getId().'&revrestore=1');
-                } else {
-                    $this->view->addErrorMessage('SAVE_FAILED_ARTICLEREVRESTORE');
-                }
-            }            
-            
-            if ($this->revisionId) {
                 
-                
-                include_once \fpcm\classes\loader::libGetFilePath('PHP-FineDiff', 'finediff.php');
-                
-                $this->revisionArticle = clone $this->article;
-                
-                if (!$this->revisionId) {
-                    $this->revisionId = (int) $this->getRequestVar('rev');
-                }                
+                $data = $this->getRequestVar('article', [
+                    \fpcm\classes\http::FPCM_REQFILTER_STRIPSLASHES,
+                    \fpcm\classes\http::FPCM_REQFILTER_TRIM
+                ]);
 
-                $this->showRevision   = ($this->revisionArticle->getRevision($this->revisionId) ? true : false);
-                
-                $from = $this->revisionArticle->getContent();
-                $opcode = \FineDiff::getDiffOpcodes($from, $this->article->getContent(), \FineDiff::$characterGranularity);
-                $this->view->assign('textDiff', \FineDiff::renderDiffToHTMLFromOpcodes($from, $opcode));
-
+                $this->assignArticleFormData($data, time());
             }
 
-            if ($this->buttonClicked('articleDelete') && !$this->showRevision && $this->checkPageToken) {
-                if ($this->article->delete()) {
-                    $this->redirect('articles/listall');
-                } else {
-                    $this->view->addErrorMessage('DELETE_FAILED_ARTICLE');
-                }
-            }
-            
-            $res = false;
-            
-            $allTimer = time();
-            
-            if ($this->buttonClicked('articleSave') && !$this->showRevision && $this->checkPageToken) {
-
-                $this->article->prepareRevision();
-                
-                $data = $this->getRequestVar('article', array(4,7));
-
-                $this->article->setTitle($data['title']);
-                $this->article->setContent($data['content']);
-                
-                $cats = $this->categoryList->getCategoriesCurrentUser();
-                
-                $categories = isset($data['categories']) ? array_map('intval', $data['categories']) : array(array_shift($cats)->getId());
-                $this->article->setCategories($categories);
-
-                if (isset($data['postponed']) && !isset($data['archived'])) {
-                    $timer = strtotime($data['postponedate'].' '.(int) $data['postponehour'].':'.(int) $data['postponeminute'].':00');
-                    
-                    $postpone = 1;
-                    if ($timer === false) {
-                        $timer = $allTimer;
-                        $postpone = 0;
-                    }   
-                    
-                    $this->article->setPostponed($postpone);
-                    $this->article->setCreatetime($timer);
-                } else {
-                    if ($this->article->getPostponed() || ($this->article->getDraft() && !isset($data['draft']))) {
-                        $this->article->setCreatetime($allTimer);
-                    }
-                    
-                    $this->article->setPostponed(0);
-                }
-                
-                $this->article->setPinned(isset($data['pinned']) ? 1 : 0);
-                $this->article->setDraft(isset($data['draft']) ? 1 : 0);
-                $this->article->setComments(isset($data['comments']) ? 1 : 0);
-                $this->article->setApproval($this->permissions->check(array('article' => 'approve')) ? 1 : 0);
-                $this->article->setImagepath(isset($data['imagepath']) ? $data['imagepath'] : '');
-                $this->article->setSources(isset($data['sources']) ? $data['sources'] : '');
-
-                if (isset($data['archived'])) {
-                    $this->article->setArchived(1);
-                    $this->article->setPinned(0);
-                    $this->article->setDraft(0);
-                } else {
-                    $this->article->setArchived(0);
-                }
-                
-                if (!$this->article->getTitle() || !$this->article->getContent()) {
-                    $this->view->addErrorMessage('SAVE_FAILED_ARTICLE_EMPTY');
-                    return true;
-                }
-
-                if (isset($data['author']) && trim($data['author'])) {
-                    $this->article->setCreateuser($data['author']);
-                }
-
-                if (isset($data['tweettxt']) && $data['tweettxt']) {
-                    $this->article->setTweetOverride($data['tweettxt']);
-                }
-
-                $this->article->setChangetime($allTimer);
-                $this->article->setChangeuser($this->session->getUserId());
-                $this->article->setMd5path($this->article->getArticleNicePath());
-
-                $this->article->prepareDataSave();
-                
-                $saved = true;
-                $res   = $this->article->update();
-                
-                if ($res) {
-                    $this->article->createRevision();
-                }
-            }
-            
+            $this->handleRevisionActions();
+            $this->handleDeleteAction();
+            $this->handleSaveAction();
             $this->handleCommentActions();
-            
-            if ($res || $this->getRequestVar('added') == 1) {
-                $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLE');
-            } elseif ($this->getRequestVar('added') == 2) {
-                $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLE_APPROVAL');
-            } elseif (isset ($saved) && !$res) {
-                $this->view->addErrorMessage('SAVE_FAILED_ARTICLE');                
-            }
 
             if (!$this->revisionId) {
                 $this->article->prepareDataLoad();
@@ -337,6 +205,186 @@
 
             $this->processCommentActions($this->commentList);
 
+        }
+        
+        private function handleDeleteAction() {
+            
+            if (!$this->buttonClicked('articleDelete') || $this->showRevision || !$this->checkPageToken) {
+                return true;
+            }
+            
+            if ($this->article->delete()) {
+                $this->redirect('articles/listall');
+                return true;
+            }
+
+            $this->view->addErrorMessage('DELETE_FAILED_ARTICLE');
+            return false;
+
+        }
+
+        private function handleSaveAction() {
+
+            $res = false;
+
+            $allTimer = time();
+            
+            if ($this->buttonClicked('articleSave') && !$this->showRevision && $this->checkPageToken) {
+
+                $this->article->prepareRevision();
+                
+                $data = $this->getRequestVar('article', [
+                    \fpcm\classes\http::FPCM_REQFILTER_STRIPSLASHES,
+                    \fpcm\classes\http::FPCM_REQFILTER_TRIM
+                ]);
+
+                $this->assignArticleFormData($data, $allTimer);
+                
+                if (!$this->article->getTitle() || !$this->article->getContent()) {
+                    $this->view->addErrorMessage('SAVE_FAILED_ARTICLE_EMPTY');
+                    return true;
+                }
+
+                if (isset($data['tweettxt']) && $data['tweettxt']) {
+                    $this->article->setTweetOverride($data['tweettxt']);
+                }
+
+                $this->article->setChangetime($allTimer);
+                $this->article->setChangeuser($this->session->getUserId());
+                $this->article->setMd5path($this->article->getArticleNicePath());
+                $this->article->prepareDataSave();
+                
+                $saved = true;
+                $res   = $this->article->update();
+                
+                if ($res) {
+                    $this->article->createRevision();
+                }
+            }
+
+            if ($res || $this->getRequestVar('added') == 1) {
+                $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLE');
+                return true;
+            }
+            
+            if ($this->getRequestVar('added') == 2) {
+                $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLE_APPROVAL');
+                return true;
+            }
+
+            if (isset ($saved) && !$res) {
+                $this->view->addErrorMessage('SAVE_FAILED_ARTICLE');
+                return false;
+            }
+
+            return true;
+        }
+
+        private function assignArticleFormData($data, $allTimer) {
+
+            $this->article->setTitle($data['title']);
+            $this->article->setContent($data['content']);
+
+            $cats = $this->categoryList->getCategoriesCurrentUser();
+
+            $categories = isset($data['categories']) ? array_map('intval', $data['categories']) : array(array_shift($cats)->getId());
+            $this->article->setCategories($categories);
+
+            if (isset($data['postponed']) && !isset($data['archived'])) {
+                $timer = strtotime($data['postponedate'].' '.(int) $data['postponehour'].':'.(int) $data['postponeminute'].':00');
+
+                $postpone = 1;
+                if ($timer === false) {
+                    $timer = $allTimer;
+                    $postpone = 0;
+                }   
+
+                $this->article->setPostponed($postpone);
+                $this->article->setCreatetime($timer);
+            }
+            else {
+                if ($this->article->getPostponed() || ($this->article->getDraft() && !isset($data['draft']))) {
+                    $this->article->setCreatetime($allTimer);
+                }
+
+                $this->article->setPostponed(0);
+            }
+
+            $this->article->setPinned(isset($data['pinned']) ? 1 : 0);
+            $this->article->setDraft(isset($data['draft']) ? 1 : 0);
+            $this->article->setComments(isset($data['comments']) ? 1 : 0);
+            $this->article->setApproval($this->permissions->check(array('article' => 'approve')) ? 1 : 0);
+            $this->article->setImagepath(isset($data['imagepath']) ? $data['imagepath'] : '');
+            $this->article->setSources(isset($data['sources']) ? $data['sources'] : '');
+
+            if (isset($data['archived'])) {
+                $this->article->setArchived(1);
+                $this->article->setPinned(0);
+                $this->article->setDraft(0);
+            } else {
+                $this->article->setArchived(0);
+            }
+
+            if (isset($data['author']) && trim($data['author'])) {
+                $this->article->setCreateuser($data['author']);
+            }
+
+            return true;
+        }
+
+        private function handleRevisionActions() {
+
+            if ($this->getRequestVar('revrestore')) {
+                $this->view->addNoticeMessage('SAVE_SUCCESS_ARTICLEREVRESTORE');
+            }
+
+            $revisionIdsArray   = !is_null($this->getRequestVar('revisionIds'))
+                                ? array_map('intval', $this->getRequestVar('revisionIds'))
+                                : false;
+
+            if ($this->buttonClicked('revisionDelete') && $revisionIdsArray && !$this->showRevision && $this->checkPageToken) {
+                if ($this->article->deleteRevisions($revisionIdsArray)) {
+                    $this->view->addNoticeMessage('DELETE_SUCCESS_REVISIONS');
+                }
+                else {
+                    $this->view->addErrorMessage('DELETE_FAILED_REVISIONS');
+                }
+            }
+            
+            $this->revisionId   = !is_null($this->getRequestVar('rev'))
+                                ? (int) $this->getRequestVar('rev')
+                                : (is_array($revisionIdsArray) ? array_shift($revisionIdsArray) : false);
+            
+            if ($this->buttonClicked('articleRevisionRestore') && $this->revisionId && $this->checkPageToken) {
+                
+                if ($this->article->restoreRevision($this->revisionId)) {
+                    $this->redirect('articles/edit&articleid='.$this->article->getId().'&revrestore=1');
+                } else {
+                    $this->view->addErrorMessage('SAVE_FAILED_ARTICLEREVRESTORE');
+                }
+
+                return true;
+            }            
+            
+            if (!$this->revisionId) {
+                return false;
+            }
+
+            include_once \fpcm\classes\loader::libGetFilePath('PHP-FineDiff', 'finediff.php');
+
+            $this->revisionArticle = clone $this->article;
+
+            if (!$this->revisionId) {
+                $this->revisionId = (int) $this->getRequestVar('rev');
+            }                
+
+            $this->showRevision   = ($this->revisionArticle->getRevision($this->revisionId) ? true : false);
+
+            $from = $this->revisionArticle->getContent();
+            $opcode = \FineDiff::getDiffOpcodes($from, $this->article->getContent(), \FineDiff::$characterGranularity);
+            $this->view->assign('textDiff', \FineDiff::renderDiffToHTMLFromOpcodes($from, $opcode));
+
+            return true;
         }
     }
 ?>

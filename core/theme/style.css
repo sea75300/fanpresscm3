@@ -787,6 +787,10 @@ table.fpcm-ui-table.fpcm-ui-iplist tr td.fpcm-td-iplist-meta {
     width: 150px;
 }
 
+.fpcm-ui-ellipsis    {
+    text-overflow: ellipsis;
+}
+
 .fpcm-ui-left    {
     text-align:left;
 }

@@ -28,8 +28,8 @@
                     <?php \fpcm\model\view\helper::editButton($article->getEditLink(), $article->getEditPermission() ); ?>
                 </td>
                 <td>
-                    <strong title="<?php print substr(\fpcm\model\view\helper::escapeVal(strip_tags($article->getContent())), 0, 128); ?>..."><?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?></strong>
-                    <br><?php include dirname(__DIR__).'/times.php'; ?>
+                    <div class="fpcm-ui-ellipsis"><strong title="<?php print substr(\fpcm\model\view\helper::escapeVal(strip_tags($article->getContent())), 0, 128); ?>..."><?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?></strong></div>
+                    <?php include dirname(__DIR__).'/times.php'; ?>
                 </td>
                 <td><?php print implode(', ', $article->getCategories()); ?></td>
                 <td class="fpcm-ui-articlelist-comments">

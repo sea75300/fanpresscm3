@@ -12,7 +12,7 @@
     <?php foreach($revisions AS $revisionTime => $revisionTitle) : ?>
         <tr>
             <td class="fpcm-ui-articlelist-open"><?php \fpcm\model\view\helper::linkButton($article->getEditLink().'&rev='.$revisionTime, 'EDITOR_STATUS_REVISION_SHOW', '', 'fpcm-ui-button-blank fpcm-openlink-btn'); ?></td>
-            <td><strong><?php print \fpcm\model\view\helper::escapeVal(strip_tags($revisionTitle)); ?></strong></td>
+            <td class="fpcm-ui-ellipsis"><strong><?php print \fpcm\model\view\helper::escapeVal(strip_tags($revisionTitle)); ?></strong></td>
             <td class="fpcm-ui-revision-time"><?php fpcm\model\view\helper::dateText($revisionTime); ?></td>
             <td class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('revisionIds[]', 'fpcm-list-selectboxrevisions', $revisionTime, '', 'chbx'.$revisionTime, false) ?></td>
         </tr>
