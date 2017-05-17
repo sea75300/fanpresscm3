@@ -105,6 +105,7 @@
 
             if (!$this->revisionId) {
                 $this->article->prepareDataLoad();
+                $this->article->enableTweetCreation( $this->config->twitter_events['update']);
             }
             
             return true;
@@ -196,6 +197,7 @@
         
         /**
          * Kommentar-Aktionen ausführen
+         * @return boolean
          */
         protected function handleCommentActions() {
 
@@ -206,7 +208,11 @@
             $this->processCommentActions($this->commentList);
 
         }
-        
+
+        /**
+         * 
+         * @return boolean
+         */
         private function handleDeleteAction() {
             
             if (!$this->buttonClicked('articleDelete') || $this->showRevision || !$this->checkPageToken) {
@@ -223,6 +229,10 @@
 
         }
 
+        /**
+         * 
+         * @return boolean
+         */
         private function handleSaveAction() {
 
             $res = false;
@@ -255,6 +265,7 @@
                 $this->article->prepareDataSave();
                 
                 $saved = true;
+                $this->article->enableTweetCreation(isset($data['tweet']) ? true : false);
                 $res   = $this->article->update();
                 
                 if ($res) {
@@ -280,7 +291,13 @@
             return true;
         }
 
-        private function assignArticleFormData($data, $allTimer) {
+        /**
+         * 
+         * @param array $data
+         * @param int $allTimer
+         * @return boolean
+         */
+        private function assignArticleFormData(array $data, $allTimer) {
 
             $this->article->setTitle($data['title']);
             $this->article->setContent($data['content']);
@@ -332,6 +349,10 @@
             return true;
         }
 
+        /**
+         * 
+         * @return boolean
+         */
         private function handleRevisionActions() {
 
             if ($this->getRequestVar('revrestore')) {

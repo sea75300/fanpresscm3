@@ -95,7 +95,8 @@
     
     div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-icon,
     div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button,
-    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col {
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col,
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-tweettext {
         float: none;
     }
     
@@ -114,7 +115,8 @@
         width: 25%;
     }
     
-    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-postponed {
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-postponed,
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-tweettext  {
         margin: 0.4em;
     }
 

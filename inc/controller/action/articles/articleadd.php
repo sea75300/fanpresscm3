@@ -26,7 +26,7 @@
             if ($this->buttonClicked('doAction') && !$checkPageToken) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
-            
+
             if ($this->buttonClicked('articleSave') && $checkPageToken) {
                 $data = $this->getRequestVar('article', array(4,7));
 
@@ -77,6 +77,8 @@
                     $this->article->setTweetOverride($data['tweettxt']);
                 }
 
+                $this->article->enableTweetCreation(isset($data['tweet']) ? true : false);
+
                 $this->article->prepareDataSave();
                 $id = $this->article->save();
                 if ($id === false) {
@@ -86,7 +88,9 @@
                     $this->redirect('articles/edit', array('articleid' => $id, 'added' => $addMsg));
                 }
             }
-            
+
+            $this->article->enableTweetCreation($this->config->twitter_events['create']);
+
             return true;
             
         }

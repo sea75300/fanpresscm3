@@ -150,7 +150,7 @@
          * Auszuschließende Elemente beim in save/update
          * @var array
          */
-        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission', 'tweetOverride');
+        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission', 'tweetOverride', 'tweetCreate');
         
         /**
          * Action-String für edit-Action
@@ -178,6 +178,13 @@
          * @since FPCM 3.3
          */
         protected $tweetOverride = false;
+
+        /**
+         * TWeet Erstellung aktivieren
+         * @var bool
+         * @since FPCM 3.5.2
+         */
+        protected $tweetCreate = null;
 
         /**
          * Konstruktor
@@ -339,6 +346,15 @@
          */
         public function getSources() {
             return $this->sources;
+        }
+        
+        /**
+         * Tweet-Erstellung aktiv?
+         * @return bool
+         * @since FPCM 3.5.2
+         */
+        function tweetCreationEnabled() {
+            return (bool) $this->tweetCreate;
         }
                    
         /**
@@ -514,6 +530,15 @@
         function setTweetOverride($tweetOverride) {
             $this->tweetOverride = $tweetOverride;
         }
+
+        /**
+         * Tweet-Erstellung aktivieren
+         * @param bool $tweetCreate
+         * @since FPCM 3.5.2
+         */
+        function enableTweetCreation($tweetCreate) {
+            $this->tweetCreate = (bool) $tweetCreate;
+        }
                 
         /**
          * schönen URL-Pfad zurückgeben
@@ -596,10 +621,7 @@
             $this->id = $this->dbcon->getLastInsertId();
             
             $this->cleanupCaches();
-
-            if ($this->config->twitter_events['create'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
-                $this->createTweet();
-            }
+            $this->createTweet();
             
             $this->events->runEvent('articleSaveAfter', $this->id);
 
@@ -627,11 +649,8 @@
             
             $this->cleanupCaches();
             $this->init();
+            $this->createTweet();
 
-            if ($this->config->twitter_events['update'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
-                $this->createTweet();
-            }
-            
             $this->events->runEvent('articleUpdateAfter', $this->id);
 
             return $return;            
@@ -810,6 +829,10 @@
         public function createTweet($force = false) {
 
             if (!\fpcm\classes\baseconfig::canConnect() || (!$this->config->twitter_events['create'] && !$this->config->twitter_events['update'] && !$force)) {
+                return false;
+            }
+
+            if (!$force && (!$this->tweetCreate || $this->approval || $this->postponed || $this->draft || $this->deleted || $this->archived)) {
                 return false;
             }
 
