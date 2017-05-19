@@ -53,8 +53,12 @@ Help language file
                 </li>
                 <li><em>Quellenverzeichnis:</em> Der Inhalt dieses Feldes wird durch den Template-Tag "{{sources}}" dargestellt. Hier kannst du Links zu deinen Informationsquellen,
                 Quellen von Bildern, Videos, etc. oder zu weiterführenden Informationen angeben. Links werden so weit es geht automatisch in HTML-Links umgewandelt.</li>
+                <li><em>Tweet erzeugen:</em> Über diese Option kann die Erzeugung eines Tweets bei aktiver Twitter-Verbindung manuell
+                    deaktiviert werden, wenn sie in den Systemoptionen aktiviert wurde.</li>
+                <li><em>Twitter-Beitrag-Text:</em> Über dieses Textfeld kann das Standard-Template für einen Beitrag bei Twitter
+                    überschrieben und durch einen eigenen Text ersetzt werden. Der Inhalt dieses Feldes wird nicht gespeichert.</li>
                 <li><em>Artikel freischalten:</em> Mittels dieser Option kannst du einen neuen Artikel verfassen und zu einem bestimmten
-                    Zeitpunkt automatisch veröffentlichen lassen. Der Zeitpunkt kann maximal zwei Monate in der Zukunft liegen.</li>
+                    Zeitpunkt automatisch veröffentlichen lassen. Der Zeitpunkt kann maximal zwei Monate in der Zukunft liegen.</li>                
                 <li><em>Artikel als Entwurf speichern:</em> Wird diese Option aktiviert, so wird der Artikel beim Speichern nicht als
                     Entwurf abgelegt. Entwürfe werden nicht sofort veröffentlicht, sondern sind nur für angemeldete Benutzer sichtbar
                     und können vor der Veröffentlichung noch bearbeitet werden.</li>
@@ -64,8 +68,6 @@ Help language file
                     ist die Option nicht aktiv, so können keine Kommentare auf der Artikel verfasst werden.</li>
                 <li><em>Artikel archivieren:</em> Bestehende Artikel können über diese Option in's Archiv verschoben werden bzw.
                     herausgenommen werden.</li>
-                <li><em>Twitter-Beitrag-Text:</em> Über dieses Textfeld kann das Standard-Template für einen Beitrag bei Twitter
-                    überschrieben und durch einen eigenen Text ersetzt werden. Der Inhalt dieses Feldes wird nicht gespeichert.</li>
                 <li><em>Autor ändern:</em> Benutzer mit entsprechenden Rechten können hierüber den Verfasser eines Artikeln ändern.</li>
             </ul>
 

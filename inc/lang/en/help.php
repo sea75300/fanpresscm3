@@ -49,6 +49,10 @@ Help language file
                     or so on.</li>
                 <li><em>List of sources:</em> The content of this field will show up in the "{{sources}}" template tag. You may enter links for credits for informations, images, videos and so on
                 or links for further information on a certain topic. Links will be converted to HTML link tags if possible</li>
+                <li><em>Tweet generation enabled:</em> Use this option to enable/disable the generation of a tweet and override the
+                    config set in system options.</li>                
+                <li><em>Tweet content:</em> This field allows you to override the content of posts on Twitter based on the default
+                    Tweet template. The content of this input field won't be saved anywhere.</li>
                 <li><em>Postpone article:</em> Postponed articles are not published immediately after saving it. You can set a date and
                     time when an article is published automatically. The time must be within a two month range.</li>
                 <li><em>Save article as draft:</em> Articles saved as draft are available for users, which signed in before only.
@@ -58,8 +62,6 @@ Help language file
                 <li><em>Comments enabled:</em> With this option you can enable or disable the comment system for a single article.
                     If the option is disabled, a visitor is unable to create a new comment.</li>
                 <li><em>Archive article:</em> Existing articles can be moved to the article archive if you enable this option..</li>
-                <li><em>Tweet content:</em> This field allows you to override the content of posts on Twitter based on the default
-                    Tweet template. The content of this input field won't be saved anywhere.</li>
                 <li><em>Change author:</em> Users with permissions can change the autor of a new or existing article.</li>
             </ul>
 
