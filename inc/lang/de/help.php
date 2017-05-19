@@ -83,7 +83,7 @@ Help language file
             Berechtigungen geregelt werden.</p>
 
             <p>FanPress CM besitzt ein Revisions-System, d. h. bei Änderungen wird der vorherige Zustand gesichert und kann
-            jederzeit wiederhergestellt werden. Die Revisionen kannst du über den Tab <i>Versionen</i> verwalten. Die Revisionen können
+            jederzeit wiederhergestellt werden. Die Revisionen kannst du über den Tab <i>Revisionen</i> verwalten. Die Revisionen können
             über die Systemeinstellungen (de)aktiviert werden. Eine Liste aller Revisionen findest du über den entsprechenden Reiter
             im Editor. Dort kannst du jede Revision einzeln aufrufen bzw. den aktuelle Artikel auf eine Revision zurücksetzen.</p>
         ]]>
