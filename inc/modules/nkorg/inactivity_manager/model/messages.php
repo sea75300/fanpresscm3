@@ -16,17 +16,29 @@ class messages extends \fpcm\model\abstracts\model {
     public function getMessages($filter = false, $nocomments = false) {
         
         $where = "id > 0";
+        $params = [];
+
         if ($filter) {
-            $timer  = time();
-            $where .= " AND starttime <= {$timer} AND stoptime >= {$timer}";
+            $dtz = new \DateTimeZone($this->config->system_timezone);
             
+            $start  = new \DateTime('now', $dtz);
+            $start->setTime(0, 0, 0);
+
+            $stop  = new \DateTime('now', $dtz);
+            $stop->setTime(23, 59, 59);
+
+            $where .= " AND starttime <= ? AND stoptime >= ?";
+            
+            $params[] = $start->getTimestamp();
+            $params[] = $stop->getTimestamp();
+
             if ($nocomments) {
                 $where .= " AND nocomments = 1";
             }
         }        
         
         $where .= " ORDER BY starttime ASC, stoptime ASC";        
-        $messageRows = $this->dbcon->fetch($this->dbcon->select($this->table, '*', $where), true);
+        $messageRows = $this->dbcon->fetch($this->dbcon->select($this->table, '*', $where, $params), true);
 
         $messages = array();
         foreach ($messageRows as $messageRow) {
