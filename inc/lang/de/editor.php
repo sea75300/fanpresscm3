@@ -8,7 +8,7 @@
 
     $lang = array(
         'EDITOR_ARTICLEURL'             => 'Artikel-URL',
-        'EDITOR_DRAFT'                  => 'Artikel als Entwurf speichern',
+        'EDITOR_DRAFT'                  => 'Artikel ist Entwurf',
         'EDITOR_PINNED'                 => 'Artikel pinnen',
         'EDITOR_POSTPONETO'             => 'Artikel freischalten',
         'EDITOR_ARCHIVE'                => 'Artikel archivieren',

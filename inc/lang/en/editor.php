@@ -8,7 +8,7 @@
 
     $lang = array(
         'EDITOR_ARTICLEURL'             => 'Article URL',
-        'EDITOR_DRAFT'                  => 'Save article as draft',
+        'EDITOR_DRAFT'                  => 'Article is draft',
         'EDITOR_PINNED'                 => 'Pin article',
         'EDITOR_POSTPONETO'             => 'Postpone article',
         'EDITOR_ARCHIVE'                => 'Archive article',

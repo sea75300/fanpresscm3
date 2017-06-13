@@ -145,83 +145,7 @@
             
             $this->articleTemplate = new \fpcm\model\pubtemplates\article($this->config->article_template_active);
 
-            if ($this->config->system_comments_enabled && $this->article->getComments()) {
-                $this->initSpamCaptcha();
-                
-                $this->newComment = new \fpcm\model\comments\comment();
-                
-                $this->commentTemplate = new \fpcm\model\pubtemplates\comment($this->config->comments_template_active);
-                $this->commentFormTemplate = new \fpcm\model\pubtemplates\commentform();
-
-                if ($this->buttonClicked('sendComment') && !is_null($this->getRequestVar('newcomment')) && !$this->iplist->ipIsLocked() && !$this->iplist->ipIsLocked('nocomments')) {
-                    $newCommentData = $this->getRequestVar('newcomment');
-                    
-                    $timer = time();
-                    
-                    if ($timer <= $this->commentList->getLastCommentTimeByIP() + $this->config->comments_flood) {
-                        $this->view->addErrorMessage('PUBLIC_FAILED_FLOOD', array('{{seconds}}' => $this->config->comments_flood));
-                        return true;                        
-                    }
-
-                    if (!$this->captcha->checkAnswer()) {
-                        $this->view->addErrorMessage('PUBLIC_FAILED_CAPTCHA');
-                        return true;
-                    }
-                    
-                    if (!$newCommentData['name']) {
-                        $this->view->addErrorMessage('PUBLIC_FAILED_NAME');
-                        return true;
-                    }
-                    
-                    $newCommentData['email'] = filter_var($newCommentData['email'], FILTER_VALIDATE_EMAIL);
-                    if ($this->config->comments_email_optional && !$newCommentData['email']) {
-                        $this->view->addErrorMessage('PUBLIC_FAILED_EMAIL');
-                        return true;
-                    }
-                    
-                    $newCommentData['website'] = filter_var($newCommentData['website'], FILTER_VALIDATE_URL);
-                    $newCommentData['website'] = $newCommentData['website'] ? $newCommentData['website'] : '';
-                    
-                    $this->newComment->setName($newCommentData['name']);
-                    $this->newComment->setEmail($newCommentData['email']);
-                    $this->newComment->setWebsite($newCommentData['website']);
-                    $this->newComment->setText(nl2br(strip_tags($newCommentData['text'], \fpcm\model\comments\comment::COMMENT_TEXT_HTMLTAGS_CHECK)));
-                    $this->newComment->setPrivate(isset($newCommentData['private']));
-                    $this->newComment->setIpaddress(\fpcm\classes\http::getIp());
-                    $this->newComment->setApproved($this->config->comments_confirm ? false : true);
-                    $this->newComment->setArticleid($this->articleId);
-                    $this->newComment->setCreatetime($timer);
-                    $this->newComment->setSpammer((!$this->session->exists() && $this->captcha->checkExtras() ? true : false));
-                    
-                    if (!$this->newComment->save()) {
-                        $this->view->addErrorMessage('SAVE_FAILED_COMMENT');
-                        return true;
-                    }
-                    
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_COMMENT');
-                    
-                    $text  = $this->lang->translate('PUBLIC_COMMENT_EMAIL_TEXT', array(
-                        '{{name}}'        => $this->newComment->getName(),
-                        '{{email}}'       => $this->newComment->getEmail(),
-                        '{{commenttext}}' => strip_tags($this->newComment->getText()),
-                        '{{articleurl}}'  => $this->article->getArticleLink(),
-                        '{{systemurl}}'   => \fpcm\classes\baseconfig::$rootPath
-                    ));
-                    
-                    $to    = [];
-                    if ($this->config->comments_notify != 1) {
-                        $to[] = $this->config->system_email;                        
-                    }
-                    if ($this->config->comments_notify > 0 && !$this->session->exists()) {
-                        $to[] = $this->userList->getEmailByUserId($this->article->getCreateuser());
-                    }                                        
-                    
-                    if (!count($to) || $this->session->exists()) return true;
-
-                    $email = new \fpcm\classes\email(implode(',', array_unique($to)), $this->lang->translate('PUBLIC_COMMENT_EMAIL_SUBJECT'), $text);
-                    $email->submit();                    
-                }
-            }
+            $this->saveComment();
 
             return true;
         }
@@ -242,7 +166,7 @@
             }
             
             $parsed = array('articles' => '', 'comments' => '');
-            if ($this->cache->isExpired()) {
+            if ($this->cache->isExpired() || $this->session->exists()) {
                 $parsed['articles'] = $this->assignArticleData();
                 $parsed['comments'] = $this->assignCommentsData();
                 
@@ -294,15 +218,34 @@
             $shareButtonParser = new \fpcm\model\pubtemplates\sharebuttons($this->article->getArticleLink(), $this->article->getTitle());
             
             $users = $this->userList->getUsersByIds(array($this->article->getCreateuser(), $this->article->getChangeuser()));
+
+            if ($this->session->exists()) {
+                $approvedOnly = null;
+                $privateNo    = null;
+                $spamNo       = null;
+                $useCache     = false;
+            }
+            else {
+                $approvedOnly = 1;
+                $privateNo    = 0;
+                $spamNo       = 0;
+                $useCache     = true;
+            }
+
+            $commentCounts = $this->commentList->countComments(
+                [$this->article->getId()],
+                $privateNo,
+                $approvedOnly,
+                $spamNo,
+                $useCache
+            );
             
-            $commentCounts = $this->commentList->countComments(array($this->article->getId()), 0, 1, 0);            
             $commentCount  = $this->config->system_comments_enabled && $this->article->getComments()
                            ? (isset($commentCounts[$this->article->getId()]) ? (int) $commentCounts[$this->article->getId()] : 0)
                            : '';
             
             $this->articleTemplate->setCommentsEnabled($this->config->system_comments_enabled && $this->article->getComments());
-            
-            
+
             if (isset($users[$this->article->getCreateuser()])) {                
                 $emailAddress = '<a href="mailto:'.$users[$this->article->getCreateuser()]->getEmail().'">'.$users[$this->article->getCreateuser()]->getDisplayname().'</a>';
             } else {
@@ -352,9 +295,12 @@
         protected function assignCommentsData() {
             
             if (!$this->config->system_comments_enabled || !$this->article->getComments()) return '';
-            
+
             $conditions = new \fpcm\model\comments\search();
             $conditions->articleid = $this->articleId;
+            $conditions->approved  = $this->session->exists() ? null : 1;
+            $conditions->private   = $this->session->exists() ? null : 0;
+            $conditions->spam      = $this->session->exists() ? null : 0;
             $comments = $this->commentList->getCommentsBySearchCondition($conditions);
 
             $parsed = [];
@@ -463,6 +409,94 @@
             }
             
             return $this->captcha;
+        }
+
+        /**
+         * Neuen Kommentar speichern
+         * @return boolean
+         */
+        protected function saveComment() {
+            
+            if (!$this->config->system_comments_enabled || !$this->article->getComments()) {
+                return true;
+            }
+                
+            $this->initSpamCaptcha();
+
+            $this->newComment = new \fpcm\model\comments\comment();
+
+            $this->commentTemplate     = new \fpcm\model\pubtemplates\comment($this->config->comments_template_active);
+            $this->commentFormTemplate = new \fpcm\model\pubtemplates\commentform();
+
+            if ($this->buttonClicked('sendComment') && !is_null($this->getRequestVar('newcomment')) && !$this->iplist->ipIsLocked() && !$this->iplist->ipIsLocked('nocomments')) {
+                $newCommentData = $this->getRequestVar('newcomment');
+
+                $timer = time();
+
+                if ($timer <= $this->commentList->getLastCommentTimeByIP() + $this->config->comments_flood) {
+                    $this->view->addErrorMessage('PUBLIC_FAILED_FLOOD', array('{{seconds}}' => $this->config->comments_flood));
+                    return true;                        
+                }
+
+                if (!$this->captcha->checkAnswer()) {
+                    $this->view->addErrorMessage('PUBLIC_FAILED_CAPTCHA');
+                    return true;
+                }
+
+                if (!$newCommentData['name']) {
+                    $this->view->addErrorMessage('PUBLIC_FAILED_NAME');
+                    return true;
+                }
+
+                $newCommentData['email'] = filter_var($newCommentData['email'], FILTER_VALIDATE_EMAIL);
+                if ($this->config->comments_email_optional && !$newCommentData['email']) {
+                    $this->view->addErrorMessage('PUBLIC_FAILED_EMAIL');
+                    return true;
+                }
+
+                $newCommentData['website'] = filter_var($newCommentData['website'], FILTER_VALIDATE_URL);
+                $newCommentData['website'] = $newCommentData['website'] ? $newCommentData['website'] : '';
+
+                $this->newComment->setName($newCommentData['name']);
+                $this->newComment->setEmail($newCommentData['email']);
+                $this->newComment->setWebsite($newCommentData['website']);
+                $this->newComment->setText(nl2br(strip_tags($newCommentData['text'], \fpcm\model\comments\comment::COMMENT_TEXT_HTMLTAGS_CHECK)));
+                $this->newComment->setPrivate(isset($newCommentData['private']));
+                $this->newComment->setIpaddress(\fpcm\classes\http::getIp());
+                $this->newComment->setApproved($this->config->comments_confirm ? false : true);
+                $this->newComment->setArticleid($this->articleId);
+                $this->newComment->setCreatetime($timer);
+                $this->newComment->setSpammer((!$this->session->exists() && $this->captcha->checkExtras() ? true : false));
+
+                if (!$this->newComment->save()) {
+                    $this->view->addErrorMessage('SAVE_FAILED_COMMENT');
+                    return true;
+                }
+
+                $this->view->addNoticeMessage('SAVE_SUCCESS_COMMENT');
+
+                $text  = $this->lang->translate('PUBLIC_COMMENT_EMAIL_TEXT', array(
+                    '{{name}}'        => $this->newComment->getName(),
+                    '{{email}}'       => $this->newComment->getEmail(),
+                    '{{commenttext}}' => strip_tags($this->newComment->getText()),
+                    '{{articleurl}}'  => $this->article->getArticleLink(),
+                    '{{systemurl}}'   => \fpcm\classes\baseconfig::$rootPath
+                ));
+
+                $to    = [];
+                if ($this->config->comments_notify != 1) {
+                    $to[] = $this->config->system_email;                        
+                }
+                if ($this->config->comments_notify > 0 && !$this->session->exists()) {
+                    $to[] = $this->userList->getEmailByUserId($this->article->getCreateuser());
+                }                                        
+
+                if (!count($to) || $this->session->exists()) return true;
+
+                $email = new \fpcm\classes\email(implode(',', array_unique($to)), $this->lang->translate('PUBLIC_COMMENT_EMAIL_SUBJECT'), $text);
+                $email->submit();                    
+            }
+            
         }
         
     }

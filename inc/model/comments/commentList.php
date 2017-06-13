@@ -285,11 +285,11 @@
          * @param bool $spam
          * @return bool
          */
-        public function countComments(array $articleIds = [], $private = null, $approved = null, $spam = null) {
+        public function countComments(array $articleIds = [], $private = null, $approved = null, $spam = null, $getCached = true) {
 
             $cacheName = __FUNCTION__.hash(\fpcm\classes\security::defaultHashAlgo, json_encode(func_get_args()));
             $cache = new \fpcm\classes\cache($cacheName, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
-            if (!$cache->isExpired()) {
+            if (!$cache->isExpired() && $getCached) {
                 return $cache->read();
             }
             
