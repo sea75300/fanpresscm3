@@ -42,16 +42,14 @@
         </div>       
         <?php endif; ?>
         
-        <?php if ((!$editorMode || $article->getDraft()) && !$article->getArchived()) : ?>
+        <?php if (!$article->getArchived()) : ?>
         <div class="fpcm-ui-editor-extended-row">
             <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-file-text-o fa-fw fa-lg"></span></div>
             <div class="fpcm-ui-editor-extended-button"><?php fpcm\model\view\helper::checkbox('article[draft]', '', 1, 'EDITOR_DRAFT', 'articledraft', $article->getDraft()); ?></div>
             <div class="fpcm-ui-editor-extended-col"></div>
             <div class="fpcm-clear"></div>
         </div>
-        <?php endif; ?>
-        
-        <?php if (!$article->getArchived()) : ?>
+
         <div class="fpcm-ui-editor-extended-row">
             <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-thumb-tack fa-rotate-90 fa-fw fa-lg"></span></div>
             <div class="fpcm-ui-editor-extended-button"><?php fpcm\model\view\helper::checkbox('article[pinned]', '', 1, 'EDITOR_PINNED', 'articlepinned', $article->getPinned()); ?></div>
