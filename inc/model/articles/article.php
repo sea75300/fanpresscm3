@@ -904,6 +904,15 @@
         }
 
         /**
+         * In Bearbeitung Informationen auslesen
+         * @return array
+         * @since FPCM 3.5.3
+         */
+        public function getInEdit() {
+            return explode('-', $this->inedit);
+        }
+
+        /**
          * Ist Artikel in Bearbeitung
          * @return bool
          * @since FPCM 3.5

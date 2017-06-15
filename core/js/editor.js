@@ -1125,6 +1125,11 @@ fpcm.editor = {
     },
 
     setInEdit: function(){
+        
+        if (!window.fpcmSessionCheckEnabled) {
+            return false;
+        }
+        
         fpcm.ajax.post('editor/inedit', {
             data: {
                 id: window.fpcmArticleId
@@ -1142,12 +1147,14 @@ fpcm.editor = {
                     }, true);
                 }
 
-                if (fpcmCheckLastState == 0 && res.code == 1) {
+                if (fpcmCheckLastState == 0 && res.code == 1 && res.username) {
+
+                    var msg = fpcm.ui.translate('editor_status_inedit');
                     fpcm.ui.addMessage({
                         type : 'neutral',
                         id   : 'fpcm-editor-inedit',
                         icon : 'pencil-square',
-                        txt  : fpcm.ui.translate('editor_status_inedit')
+                        txt  : msg.replace('{{username}}', res.username)
                     }, true);
                 }
 

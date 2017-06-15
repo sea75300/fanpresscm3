@@ -159,7 +159,16 @@
             }
 
             if ($this->article->isInEdit()) {
-                $this->view->addMessage('EDITOR_STATUS_INEDIT');
+                
+                $data = $this->article->getInEdit();
+
+                $username = $this->lang->translate('GLOBAL_NOTFOUND');
+                if (is_array($data)) {
+                    $user = new \fpcm\model\users\author($data[1]);
+                    if ($user->exists())$username = $user->getDisplayname();
+                }
+                
+                $this->view->addMessage('EDITOR_STATUS_INEDIT', ['{{username}}' => $username]);
             }
             
             $this->initPermissions();

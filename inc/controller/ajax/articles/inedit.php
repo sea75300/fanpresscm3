@@ -35,6 +35,17 @@
             
             if ($article->isInEdit()) {
                 $this->returnCode = 1;
+                
+                $data = $article->getInEdit();
+                
+                if (is_array($data)) {
+                    $user = new \fpcm\model\users\author($data[1]);
+
+                    $this->returnData['username'] = $user->exists()
+                                                  ? $user->getDisplayname()
+                                                  : $this->lang->translate('GLOBAL_NOTFOUND');
+                }
+
                 $this->getResponse();
             }
             
