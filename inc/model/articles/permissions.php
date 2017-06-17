@@ -20,6 +20,10 @@
          */
         public function checkEditPermissions(article &$article) {
 
+            if (!\fpcm\classes\baseconfig::$fpcmSession->exists()) {
+                return false;
+            }
+
             if ($this->permissions === false) {
                 return true;
             }
