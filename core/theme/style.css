@@ -1278,7 +1278,7 @@ table.fpcm-module-manager td.module-manager-list-td7 {
 }
 
 .fpcm-ui-progressbar {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
     overflow: hidden;
 }
