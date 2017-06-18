@@ -843,11 +843,12 @@
             
             $tpl = new \fpcm\model\pubtemplates\tweet();
             $tpl->setReplacementTags(array(
-                '{{headline}}'  => $eventResult->getTitle(),
-                '{{author}}'    => $author->getDisplayname(),
-                '{{date}}'      => date($this->config->system_dtmask),
-                '{{permaLink}}' => $eventResult->getArticleLink(),
-                '{{shortLink}}' => $eventResult->getArticleShortLink()
+                '{{headline}}'   => $eventResult->getTitle(),
+                '{{author}}'     => $author->getDisplayname(),
+                '{{date}}'       => date($this->config->system_dtmask),
+                '{{changeDate}}' => date('H:m:s', $this->getChangetime()),
+                '{{permaLink}}'  => $eventResult->getArticleLink(),
+                '{{shortLink}}'  => $eventResult->getArticleShortLink()
             ));
             
             if ($this->tweetOverride !== false) {
