@@ -96,6 +96,14 @@ fpcm.editor_tinymce = {
         if (config.autoresize_min_height !== undefined) {
             params.autoresize_min_height = config.autoresize_min_height ? config.autoresize_min_height : '250';
         }
+        
+        if (config.autoresize_min_height !== undefined) {
+            params.autoresize_min_height = config.autoresize_min_height ? config.autoresize_min_height : '250';
+        }
+        
+        if (config.onPaste !== undefined) {
+            params.paste_preprocess = config.onPaste;
+        }
 
         tinymce.init(params);
 

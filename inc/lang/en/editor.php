@@ -8,7 +8,7 @@
 
     $lang = array(
         'EDITOR_ARTICLEURL'             => 'Article URL',
-        'EDITOR_DRAFT'                  => 'Save article as draft',
+        'EDITOR_DRAFT'                  => 'Article is draft',
         'EDITOR_PINNED'                 => 'Pin article',
         'EDITOR_POSTPONETO'             => 'Postpone article',
         'EDITOR_ARCHIVE'                => 'Archive article',
@@ -64,7 +64,7 @@
         'EDITOR_STATUS_COMMENTS'        => 'Comments are enabled',
         'EDITOR_STATUS_REVISION'        => 'Revision is displayed (revision state = left, current state = right)',
         'EDITOR_STATUS_REVISION_SHOW'   => 'Open revision',
-        'EDITOR_STATUS_INEDIT'          => 'This article is already in edit mode by another user.',
+        'EDITOR_STATUS_INEDIT'          => 'This article is currently in edit mode by {{username}}.',
         'EDITOR_STATUS_NOTINEDIT'       => 'This article is not in edit mode anymore.',
         
         'EDITOR_HTML_BUTTONS_BOLD'      => 'Bold',

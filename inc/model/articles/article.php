@@ -843,11 +843,12 @@
             
             $tpl = new \fpcm\model\pubtemplates\tweet();
             $tpl->setReplacementTags(array(
-                '{{headline}}'  => $eventResult->getTitle(),
-                '{{author}}'    => $author->getDisplayname(),
-                '{{date}}'      => date($this->config->system_dtmask),
-                '{{permaLink}}' => $eventResult->getArticleLink(),
-                '{{shortLink}}' => $eventResult->getArticleShortLink()
+                '{{headline}}'   => $eventResult->getTitle(),
+                '{{author}}'     => $author->getDisplayname(),
+                '{{date}}'       => date($this->config->system_dtmask),
+                '{{changeDate}}' => date('H:m:s', $this->getChangetime()),
+                '{{permaLink}}'  => $eventResult->getArticleLink(),
+                '{{shortLink}}'  => $eventResult->getArticleShortLink()
             ));
             
             if ($this->tweetOverride !== false) {
@@ -901,6 +902,15 @@
          */
         public function setInEdit() {
             return $this->dbcon->update($this->table, ['inedit'], [time().'-'.FPCM_USERID, $this->id], 'id = ?');
+        }
+
+        /**
+         * In Bearbeitung Informationen auslesen
+         * @return array
+         * @since FPCM 3.5.3
+         */
+        public function getInEdit() {
+            return explode('-', $this->inedit);
         }
 
         /**

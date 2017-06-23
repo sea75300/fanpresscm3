@@ -403,7 +403,7 @@ fpcm.editor = {
         jQuery('#mediatype_a').prop( "checked", true );        
     },
     
-    insertFrame: function(url, params) {
+    insertFrame: function(url, params, returnOnly) {
         
         if (url === undefined) {
             url = 'http://';
@@ -413,7 +413,13 @@ fpcm.editor = {
             params = [];
         }
 
-        fpcm.editor.insert('<iframe src="' + url + '" class="fpcm-articletext-iframe" ' + params.join(' ') + '>','</iframe>');
+        var code = '<iframe src="' + url + '" class="fpcm-articletext-iframe" ' + params.join(' ') + '></iframe>';
+        if (!returnOnly) {
+            fpcm.editor.insert(code, '');
+            return true;
+        }
+
+        return code;
     },
     
     showFileManager: function() {
@@ -662,7 +668,7 @@ fpcm.editor = {
             }
 
             event.preventDefault();
-            fpcm.editor.insertFrame(chgText, ['width="500"', 'height="300"', 'frameborder="0"', 'allowfullscreen']);
+            fpcm.editor_videolinks.createFrame(chgText, false);
             return true;
 
         });
@@ -1119,12 +1125,26 @@ fpcm.editor = {
                     fpcm.ui.resize();
                 });
 
-            }              
+            },
+            onPaste: function(plugin, args) {
+
+                var content = fpcm.editor_videolinks.replace(args.content);
+                if (content === args.content) {
+                    return true;
+                }
+
+                args.content = fpcm.editor_videolinks.createFrame(content, true);
+            }
         });
    
     },
 
     setInEdit: function(){
+        
+        if (!window.fpcmSessionCheckEnabled) {
+            return false;
+        }
+        
         fpcm.ajax.post('editor/inedit', {
             data: {
                 id: window.fpcmArticleId
@@ -1142,12 +1162,14 @@ fpcm.editor = {
                     }, true);
                 }
 
-                if (fpcmCheckLastState == 0 && res.code == 1) {
+                if (fpcmCheckLastState == 0 && res.code == 1 && res.username) {
+
+                    var msg = fpcm.ui.translate('editor_status_inedit');
                     fpcm.ui.addMessage({
                         type : 'neutral',
                         id   : 'fpcm-editor-inedit',
                         icon : 'pencil-square',
-                        txt  : fpcm.ui.translate('editor_status_inedit')
+                        txt  : msg.replace('{{username}}', res.username)
                     }, true);
                 }
 

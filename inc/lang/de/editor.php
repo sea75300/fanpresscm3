@@ -8,7 +8,7 @@
 
     $lang = array(
         'EDITOR_ARTICLEURL'             => 'Artikel-URL',
-        'EDITOR_DRAFT'                  => 'Artikel als Entwurf speichern',
+        'EDITOR_DRAFT'                  => 'Artikel ist Entwurf',
         'EDITOR_PINNED'                 => 'Artikel pinnen',
         'EDITOR_POSTPONETO'             => 'Artikel freischalten',
         'EDITOR_ARCHIVE'                => 'Artikel archivieren',
@@ -64,7 +64,7 @@
         'EDITOR_STATUS_COMMENTS'        => 'Kommentare sind aktiv',
         'EDITOR_STATUS_REVISION'        => 'Revision anzeigen (Revision = links, Aktuell = rechts)',
         'EDITOR_STATUS_REVISION_SHOW'   => 'Revision öffnen',
-        'EDITOR_STATUS_INEDIT'          => 'Dieser Artikel befindet sich gerade in Bearbeitung durch einen anderen Benutzer.',
+        'EDITOR_STATUS_INEDIT'          => 'Dieser Artikel befindet sich momentan in Bearbeitung durch {{username}}.',
         'EDITOR_STATUS_NOTINEDIT'       => 'Dieser Artikel ist nicht mehr in Bearbeitung.',
         
         'EDITOR_HTML_BUTTONS_BOLD'      => 'Fett',

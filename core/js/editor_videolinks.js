@@ -12,7 +12,7 @@ fpcm.editor_videolinks = {
 
     replace: function(text) {
 
-        if (text.search('youtube.com') >= 0) {            
+        if (text.search('youtube.com') >= 0 && text.search('watch') >= 0) {
             return text.replace('watch?v=', 'embed/');            
         }
 
@@ -20,22 +20,21 @@ fpcm.editor_videolinks = {
             return text.replace('vimeo.com', 'player.vimeo.com/video');
         }
 
-        if (text.search('dailymotion.com') >= 0) {            
+        if (text.search('dailymotion.com/video/') >= 0) {            
             return text.replace('/video', '/embed/video');
         }
 
-        if (text.search('clipfish.de') >= 0) {
-
-            var regex = /.*?(video)\/([0-9]*)\/.*?/i;
-            var videoId = regex.exec(text);
-            if (videoId[2] !== undefined) {
-                return 'http://www.clipfish.de/embed_video/?vid=' + videoId[2];
-            }
-
+        if (text.search('twitter.com/i/videos/tweet') >= 0) {
+            var val = text.split('?');
+            return val[0];
         }
 
         return text;
 
     },
+    
+    createFrame: function (url, returnOnly) {
+        return fpcm.editor.insertFrame(url, ['width="500"', 'height="300"', 'frameborder="0"', 'allowfullscreen'], returnOnly);
+    }
 
 };

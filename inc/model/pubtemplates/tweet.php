@@ -21,11 +21,12 @@
          * @var array
          */
         protected $replacementTags = array(
-            '{{headline}}'  => '',
-            '{{author}}'    => '',
-            '{{date}}'      => '',
-            '{{permaLink}}' => '',
-            '{{shortLink}}' => ''
+            '{{headline}}'   => '',
+            '{{author}}'     => '',
+            '{{date}}'       => '',
+            '{{changeDate}}' => '',
+            '{{permaLink}}'  => '',
+            '{{shortLink}}'  => ''
         );     
         
         /**
