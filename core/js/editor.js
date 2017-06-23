@@ -660,15 +660,19 @@ fpcm.editor = {
                 return true;
             }
 
+            fpcm.ui.showLoader(true);
+
             var orgText = event.clipboardData.getData('Text');            
             var chgText = fpcm.editor_videolinks.replace(orgText);
 
             if (orgText === chgText) {
+                fpcm.ui.showLoader(false);
                 return false;
             }
 
             event.preventDefault();
             fpcm.editor_videolinks.createFrame(chgText, false);
+            fpcm.ui.showLoader(false);
             return true;
 
         });
@@ -1128,11 +1132,15 @@ fpcm.editor = {
             },
             onPaste: function(plugin, args) {
 
+                fpcm.ui.showLoader(true);
+
                 var content = fpcm.editor_videolinks.replace(args.content);
                 if (content === args.content) {
+                    fpcm.ui.showLoader(false);
                     return true;
                 }
 
+                fpcm.ui.showLoader(false);
                 args.content = fpcm.editor_videolinks.createFrame(content, true);
             }
         });
