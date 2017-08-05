@@ -79,8 +79,6 @@
                     $this->newconfig['twitter_events'][$key] = (isset($this->newconfig['twitter_events'][$key]) && $this->newconfig['twitter_events'][$key] ? 1 : 0);
                 }
 
-                $this->newconfig['twitter_events']            = json_encode($this->newconfig['twitter_events']);
-                
                 if (!isset($this->newconfig['twitter_data'])) {
                     $this->newconfig['twitter_data'] = ['consumer_key' => '', 'consumer_secret' => '', 'user_token' => '', 'user_secret' => ''];
                 }
@@ -93,29 +91,12 @@
                     $this->newconfig['smtp_settings'][$key] = isset($this->newconfig['smtp_settings'][$key]) ? $this->newconfig['smtp_settings'][$key] : '';
                 }
 
-                $this->newconfig['twitter_data']                   = json_encode($this->newconfig['twitter_data']);
-                $this->newconfig['smtp_settings']                  = json_encode($this->newconfig['smtp_settings']);
-                $this->newconfig['articles_limit']                 = (int) $this->newconfig['articles_limit'];
-                $this->newconfig['articles_acp_limit']             = (int) $this->newconfig['articles_acp_limit'];
-                $this->newconfig['system_cache_timeout']           = (int) $this->newconfig['system_cache_timeout'];
-                $this->newconfig['system_session_length']          = (int) $this->newconfig['system_session_length'];
-                $this->newconfig['comments_flood']                 = (int) $this->newconfig['comments_flood'];
-                $this->newconfig['system_loginfailed_locked']      = (int) $this->newconfig['system_loginfailed_locked'];
-                $this->newconfig['comments_markspam_commentcount'] = (int) $this->newconfig['comments_markspam_commentcount'];
-                $this->newconfig['file_img_thumb_width']           = (int) $this->newconfig['file_img_thumb_width'];
-                $this->newconfig['file_img_thumb_height']          = (int) $this->newconfig['file_img_thumb_height'];
-                $this->newconfig['file_list_limit']                = (int) $this->newconfig['file_list_limit'];
-                $this->newconfig['system_updates_devcheck']        = (int) $this->newconfig['system_updates_devcheck'];
-                $this->newconfig['articles_revisions_limit']       = (int) $this->newconfig['articles_revisions_limit'];
-                $this->newconfig['articles_link_urlrewrite']       = (int) $this->newconfig['articles_link_urlrewrite'];
-                $this->newconfig['articles_imageedit_persistence'] = (int) $this->newconfig['articles_imageedit_persistence'];
-                $this->newconfig['articles_archive_datelimit']     = $this->newconfig['articles_archive_datelimit']
-                                                             ? strtotime($this->newconfig['articles_archive_datelimit']) : 0;
+                $this->config->setNewConfig($this->newconfig);
+                $this->config->prepareDataSave();
 
                 $this->mainSettingsChanged = (hash(\fpcm\classes\security::defaultHashAlgo, json_encode($this->config->smtp_settings)) ===
-                                              hash(\fpcm\classes\security::defaultHashAlgo, $this->newconfig['smtp_settings']) ? false : true);
+                                              hash(\fpcm\classes\security::defaultHashAlgo, json_encode($this->newconfig['smtp_settings'])) ? false : true);
 
-                $this->config->setNewConfig($this->newconfig);
                 if (!$this->config->update()) {
                     $this->view->addErrorMessage('SAVE_FAILED_OPTIONS');
                     return true;

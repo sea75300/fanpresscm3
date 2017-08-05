@@ -41,6 +41,8 @@ class configTest extends testBase {
             $GLOBALS['newKey'] => $GLOBALS['newValue'],
             $GLOBALS['newKey2'] => $GLOBALS['newValue2']
         ]);
+        
+        $this->object->prepareDataSave();
 
         $this->assertTrue($this->object->update());
         $this->assertEquals($GLOBALS['newValue'], $this->object->{$GLOBALS['newKey']});

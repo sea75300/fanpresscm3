@@ -323,6 +323,15 @@
             }
             
             return array_fill(0, (int) $count, '?');            
+        }   
+        
+        /**
+         * Bereitet Daten für Speicherung in Datenbank vor
+         * @return boolean
+         * @since FPCM 3.6
+         */
+        public function prepareDataSave() {
+            return true;
         }
         
         /**
