@@ -73,6 +73,51 @@ fpcm.articlelist = {
 
     },
     
+    initArticleMassEdit: function() {
+        //jQuery('#fpcmarticlesopensearch').click(function () {
+
+            fpcm.ui.selectmenu('.fpcm-ui-input-select-massedit', {
+                width: '100%',
+                appendTo: '#fpcm-dialog-articles-massedit'
+            });
+
+            fpcm.ui.datepicker('.fpcm-full-width-date', {
+                minDate: fpcmArticlSearchMinDate
+            });
+
+            var size = fpcm.ui.getDialogSizes();
+
+            fpcm.ui.dialog({
+                id      : 'articles-massedit',
+                dlWidth: size.width,
+                resizable: true,
+                title    : fpcm.ui.translate('searchHeadline'),
+                dlButtons  : [
+                    {
+                        text: fpcm.ui.translate('searchStart'),
+                        icon: "ui-icon-check",
+                        click: function() {                            
+                            jQuery(this).dialog('close');
+                        }
+                    },                    
+                    {
+                        text: fpcm.ui.translate('close'),
+                        icon: "ui-icon-closethick" ,                        
+                        click: function() {
+                            jQuery(this).dialog('close');
+                        }
+                    }                            
+                ],
+                dlOnOpen: function( event, ui ) {
+                    jQuery('#text').focus();
+                }
+            });
+
+            return false;
+        //});
+
+    },
+    
     articleActionsTweet: function() {
 
         var articleIds = [];

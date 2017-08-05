@@ -30,4 +30,5 @@
     </form>
         
     <?php include __DIR__.'/searchform.php'; ?>
+    <?php if ($canEdit) : ?><?php include __DIR__.'/massedit.php'; ?><?php endif; ?>
 </div>

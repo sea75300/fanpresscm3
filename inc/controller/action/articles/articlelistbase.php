@@ -82,6 +82,12 @@
          * @var int
          */
         protected $articleCount = 0;
+        
+        /**
+         *
+         * @var array
+         */
+        protected $categories = [];
 
         /**
          * Konstruktor
@@ -98,16 +104,8 @@
 
             $this->view             = new \fpcm\model\view\acp('listouter', 'articles');
             
-            $this->articleActions   = [
-                $this->lang->translate('ARTICLE_LIST_PINNED')         => 'pinn',
-                $this->lang->translate('ARTICLE_LIST_APPROVE')        => 'approval',
-                $this->lang->translate('EDITOR_ARCHIVE')              => 'archive',
-                $this->lang->translate('ARTICLE_LIST_COMMENTS')       => 'comments',
-                $this->lang->translate('ARTICLE_LIST_NEWTWEET')       => 'newtweet',
-                $this->lang->translate('GLOBAL_DELETE')               => 'delete'
-            ];
-            
-            $this->initPermissions();
+            $this->initArticleActions();
+            $this->initEditPermisions();
         }
         
         /**
@@ -189,7 +187,10 @@
             $this->view->assign('list', $this->articleItems);
             $this->view->setHelpLink('hl_article_edit');
             
+            $this->categories = $this->categoryList->getCategoriesNameListCurrent();
+            
             $this->initSearchForm($users);
+            $this->initMassEditForm($users);
 
             $commentCounts = $this->commentList->countComments($this->getArticleListIds());
 
@@ -317,28 +318,39 @@
             
             $this->view->addJsVars(['fpcmCurrentModule'=> $this->getRequestVar('module')]);
         }
-        
-        /**
-         * Initialisiert Berechtigungen
-         */
-        protected function initPermissions() {
-            if (!$this->permissions) return false;
-            
-            $this->deleteActions = $this->permissions->check(['article' => 'delete']);
 
-            if (!$this->permissions->check(['article' => 'delete'])) {
-                unset($this->articleActions[$this->lang->translate('GLOBAL_DELETE')]);
-            }
 
-            if (!$this->permissions->check(['article' => 'archive'])) {
-                unset($this->articleActions[$this->lang->translate('EDITOR_ARCHIVE')]);
-            }
+        protected function initArticleActions() {
 
-            if ($this->permissions->check(['article' => 'approve'])) {
-                unset($this->articleActions[$this->lang->translate('ARTICLE_LIST_APPROVE')]);
+            if (!$this->permissions) {
+                return false;
             }
             
-            $this->initEditPermisions();
+            $canEdit = $this->permissions->check([ 'article' => ['edit', 'editall', 'approve', 'archive'] ]);
+            $this->view->assign('canEdit', $canEdit);
+            
+            if ($canEdit) {                
+                $this->articleActions[$this->lang->translate('GLOBAL_EDIT')]       = 'massedit';
+            }
+            
+            if ($this->permissions->check(['article' => 'delete'])) {
+                $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]     = 'delete';
+            }
+            
+            $this->articleActions[$this->lang->translate('ARTICLE_LIST_NEWTWEET')] = 'newtweet';
+            
+            if ($this->permissions->check(['article' => 'delete'])) {
+                $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]     = 'delete';
+            }
+            
+               // ,
+//                $this->lang->translate('ARTICLE_LIST_PINNED')         => 'pinn',
+//                $this->lang->translate('ARTICLE_LIST_APPROVE')        => 'approval',
+//                $this->lang->translate('EDITOR_ARCHIVE')              => 'archive',
+//                $this->lang->translate('ARTICLE_LIST_COMMENTS')       => 'comments',
+//                $this->lang->translate('ARTICLE_LIST_NEWTWEET')       => 'newtweet',
+//                $this->lang->translate('GLOBAL_DELETE')               => 'delete'
+//            ];    
         }
         
         /**
@@ -350,7 +362,7 @@
             $users = [$this->lang->translate('ARTICLE_SEARCH_USER') => -1] + $users;
             $this->view->assign('searchUsers', $users);
             
-            $categories = [$this->lang->translate('ARTICLE_SEARCH_CATEGORY') => -1] + $this->categoryList->getCategoriesNameListCurrent();
+            $categories = [$this->lang->translate('ARTICLE_SEARCH_CATEGORY') => -1] + $this->categories;
             $this->view->assign('searchCategories', $categories);
 
             $this->view->assign('searchTypes', [
@@ -401,6 +413,51 @@
             ]);
 
             $this->view->addJsVars(['fpcmArticlesLastSearch' => 0]);
+        }
+        
+        /**
+         * Initialisiert Suchformular-Daten
+         * @param array $users
+         */
+        private function initMassEditForm($users) {
+
+            $this->view->assign('massEditUsers', $users);
+            $this->view->assign('massEditCategories', $this->categories);
+
+            $this->view->assign('massEditPinned', [
+                $this->lang->translate('GLOBAL_YES') => 1,
+                $this->lang->translate('GLOBAL_NO')  => 0
+            ]);
+
+            $this->view->assign('massEditPostponed', [
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ]);
+
+            $this->view->assign('massEditComments', [
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ]);
+
+            $this->view->assign('massEditApproved', [
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ]);
+
+            $this->view->assign('massEditDraft', [
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ]);
+
+            $this->view->assign('massEditArchived', [
+                $this->lang->translate('GLOBAL_YES')  => 1,
+                $this->lang->translate('GLOBAL_NO') => 0
+            ]);
+
+            $this->view->addJsLangVars([
+                'masseditHeadline'   => $this->lang->translate('GLOBAL_EDIT'),
+            ]);
+
         }
         
     }
