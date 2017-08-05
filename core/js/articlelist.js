@@ -114,12 +114,10 @@ fpcm.articlelist = {
         
         jQuery('.fpcm-article-cache-clear').click(function() {
             
-            var cache = jQuery(this).attr('data-cache');
-            var objid = jQuery(this).attr('data-objid');
+            var obj = jQuery(this);
             
-            if (!cache || !objid) {
-                return false;
-            }
+            var cache = obj.attr('data-cache') ? obj.attr('data-cache') : '';
+            var objid = obj.attr('data-objid') ? obj.attr('data-objid') : 0;
 
             fpcmJs.clearCache({
                 cache: cache,

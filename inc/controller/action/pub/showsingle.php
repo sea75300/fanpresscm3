@@ -141,7 +141,7 @@
                 return true;
             }
 
-            $this->cache = new \fpcm\classes\cache(\fpcm\model\articles\article::CACHE_ARTICLE_SINGLE.$this->article, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+            $this->cache = new \fpcm\classes\cache(\fpcm\model\articles\article::CACHE_ARTICLE_SINGLE.$this->articleId, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
             
             $this->articleTemplate = new \fpcm\model\pubtemplates\article($this->config->article_template_active);
 

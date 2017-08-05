@@ -21,6 +21,7 @@
                 <?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcm-articles-opensearch', 'fpcm-articles-opensearch'); ?>
                 <?php \fpcm\model\view\helper::select('actions[action]', $articleActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?>
                 <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?>
+                <?php \fpcm\model\view\helper::clearCacheButton(['cache' => 'articles'], true, 'fpcm-article-cache-clear', true); ?>
             </div>
 
         </div>

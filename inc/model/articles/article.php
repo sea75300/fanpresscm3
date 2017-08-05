@@ -150,7 +150,7 @@
          * Auszuschließende Elemente beim in save/update
          * @var array
          */
-        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission', 'tweetOverride', 'tweetCreate');
+        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission', 'tweetOverride', 'tweetCreate', 'crypt');
         
         /**
          * Action-String für edit-Action

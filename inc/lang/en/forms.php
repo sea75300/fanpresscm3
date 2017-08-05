@@ -66,6 +66,7 @@
         'ARTICLES_PUBLIC_ARCHIVE'       => 'Open archive',
         'ARTICLES_PUBLIC_ACTIVE'        => 'Back to active articles',
         'ARTICLES_PUBLIC_READMORE'      => 'Read more...',
+        'ARTICLES_CACHE_CLEAR'          => 'Clear article cache',
         
         'ARTICLE_LIST_TITLE'            => 'Title',
         'ARTICLE_LIST_PINNED'           => 'Pin/ unpin articles',

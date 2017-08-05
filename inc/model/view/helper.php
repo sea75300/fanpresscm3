@@ -134,9 +134,9 @@
          * @param bool $active Button ist aktiv
          * @param string $class CSS-Klasse
          */
-        public static function clearCacheButton(array $params, $active = true, $class = '') {
+        public static function clearCacheButton(array $params, $active = true, $class = '', $isButton = false) {
 
-            $descr = self::$language->translate('GLOBAL_CACHE_CLEAR');
+            $descr = self::$language->translate('ARTICLES_CACHE_CLEAR');
 
             if (!$active) {
                 print "<span class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-loader fpcm-article-cache-clear fpcm-ui-readonly\" title=\"$descr\">".$descr."</span>\n";
@@ -149,7 +149,9 @@
 
             $params = implode(' ', $params);
 
-            print "<span class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-loader fpcm-button-recycle $class\" title=\"$descr\" {$params}>".$descr."</span>\n";
+            $tag = $isButton ? 'button' : 'span';
+            
+            print "<{$tag} class=\"fpcm-ui-button fpcm-ui-button-blank fpcm-loader fpcm-button-recycle $class\" title=\"$descr\" {$params}>".$descr."</{$tag}>\n";
         }
         
         /**

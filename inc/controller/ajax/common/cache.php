@@ -51,7 +51,7 @@
         public function process() {
             if (!parent::process()) return false;
 
-            if ($this->module && $this->objid) {
+            if ($this->module) {
 
                 $fn = 'cleanup'.ucfirst($this->module);
                 if (method_exists($this, $fn)) {
@@ -83,6 +83,19 @@
          * @return boolean
          */
         private function cleanupArticle() {
+
+            $this->cache->cleanup(\fpcm\model\articles\article::CACHE_ARTICLE_SINGLE.$this->objid,
+                                  \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+
+            return true;
+            
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
+        private function cleanupArticles() {
 
             $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
 
