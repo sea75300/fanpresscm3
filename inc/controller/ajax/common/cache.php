@@ -15,23 +15,58 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      */    
     class cache extends \fpcm\controller\abstracts\ajaxController {
-        
+
+        /**
+         *
+         * @var string
+         */
+        private $module;
+
+        /**
+         *
+         * @var string
+         */
+        private $objid;
+
         /**
          * Request-Handler
          * @return bool
          */
         public function request() {
-            return $this->session->exists();
+
+            if (!$this->session->exists()) {
+                return false;
+            }
+
+            $this->module = $this->getRequestVar('cache', [\fpcm\classes\http::FPCM_REQFILTER_URLDECODE, \fpcm\classes\http::FPCM_REQFILTER_DECRYPT]);
+            $this->objid  = $this->getRequestVar('objid', [\fpcm\classes\http::FPCM_REQFILTER_CASTINT]);
+
+            return true;
         }
         
         /**
          * Controller-Processing
+         * @return bool
          */
         public function process() {
             if (!parent::process()) return false;
+
+            if ($this->module && $this->objid) {
+
+                $fn = 'cleanup'.ucfirst($this->module);
+                if (method_exists($this, $fn)) {
+                    call_user_func([$this, $fn]);
+                }
+
+            }
+            else {
+                $this->cache->cleanup();
+            }
             
-            $this->cache->cleanup();
-            $this->events->runEvent('clearCache');
+            $this->events->runEvent('clearCache', [
+                'module' => $this->module,
+                'objid'  => $this->objid
+            ]);
 
             $this->returnData[] = array(
                 'txt'  => $this->lang->translate('CACHE_CLEARED_OK'),
@@ -41,6 +76,18 @@
             );
 
             $this->getResponse();
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
+        private function cleanupArticle() {
+
+            $this->cache->cleanup(false, \fpcm\model\articles\article::CACHE_ARTICLE_MODULE);
+
+            return true;
+            
         }
 
     }

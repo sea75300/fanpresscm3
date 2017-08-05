@@ -17,11 +17,16 @@ var fpcmJs = function () {
         fpcm.ui.showLoader(show, addtext);
     };    
     
-    this.clearCache = function () {
+    this.clearCache = function (params) {
+        
+        if (!params) {
+            params = {};
+        }
         
         self.showLoader(true);
 
         fpcm.ajax.get('cache', {
+            data: params,
             execDone: function () {
                 fpcm.ui.showLoader(false);
                 fpcm.ui.appendMessage(fpcm.ajax.getResult('cache'));
@@ -113,6 +118,7 @@ var fpcmJs = function () {
                 return false;
             }
         });
+
     };
     
     this.moduleActionButtons = function () {        
@@ -135,6 +141,7 @@ var fpcmJs = function () {
                 fpcm.ui.assignHtml('#tabs-article-list', fpcm.ajax.getResult('articles/search'));
                 window.noActionButtonAssign = true;
                 fpcmJs.assignButtons();
+                fpcm.articlelist.clearArticleCache();
                 fpcm.ui.resize();
             }
         });

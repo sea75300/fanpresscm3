@@ -12,6 +12,7 @@ fpcm.articlelist = {
 
     init: function() {
         fpcm.articlelist.initArticleSearch();
+        fpcm.articlelist.clearArticleCache();
     },
     
     initArticleSearch: function() {
@@ -107,5 +108,26 @@ fpcm.articlelist = {
             }
         });
 
-    }    
+    },
+    
+    clearArticleCache: function() {
+        
+        jQuery('.fpcm-article-cache-clear').click(function() {
+            
+            var cache = jQuery(this).attr('data-cache');
+            var objid = jQuery(this).attr('data-objid');
+            
+            if (!cache || !objid) {
+                return false;
+            }
+
+            fpcmJs.clearCache({
+                cache: cache,
+                objid: objid
+            });
+            
+            return false;
+        });
+
+    }
 };

@@ -26,6 +26,7 @@
                 <td class="fpcm-ui-articlelist-open">
                     <?php \fpcm\model\view\helper::linkButton($article->getArticleLink(), 'GLOBAL_FRONTEND_OPEN', '', 'fpcm-ui-button-blank fpcm-openlink-btn', '_blank'); ?>
                     <?php \fpcm\model\view\helper::editButton($article->getEditLink(), $article->getEditPermission() ); ?>
+                    <?php \fpcm\model\view\helper::clearCacheButton($article->getArticleCacheParams(), $article->getEditPermission(), 'fpcm-article-cache-clear'); ?>
                 </td>
                 <td>
                     <div class="fpcm-ui-ellipsis"><strong title="<?php print substr(\fpcm\model\view\helper::escapeVal(strip_tags($article->getContent())), 0, 128); ?>..."><?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?></strong></div>

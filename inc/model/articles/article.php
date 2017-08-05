@@ -164,6 +164,13 @@
          * @since FPCM 3.2.0
          */
         protected $wordbanList;
+        
+        /**
+         * Crypto-Objekt
+         * @var \fpcm\classes\crypt
+         * @since FPCM 3.6
+         */
+        protected $crypt;
 
         /**
          * Status ob Artikel bearbeitet werden kann
@@ -191,8 +198,9 @@
          * @param int $id
          */
         public function __construct($id = null) {
-            $this->table = \fpcm\classes\database::tableArticles;
-            $this->wordbanList = new \fpcm\model\wordban\items();
+            $this->table        = \fpcm\classes\database::tableArticles;
+            $this->wordbanList  = new \fpcm\model\wordban\items();
+            $this->crypt        = new \fpcm\classes\crypt();
             
             parent::__construct($id);
         }
@@ -561,6 +569,15 @@
             }
 
             return $this->config->system_url.'?module=fpcm/article&id='.$idParam;
+        }
+
+        /**
+         * Link zum Löschen des Artikel-Caches
+         * @return string
+         * @since FPCM 3.6
+         */
+        public function getArticleCacheParams() {
+            return ['cache' => urlencode($this->crypt->encrypt('article')), 'objid' => $this->id];
         }
         
         /**
