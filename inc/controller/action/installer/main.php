@@ -229,6 +229,7 @@
             
             $config = new \fpcm\model\system\config(false, false);
             $config->setNewConfig($newconfig);
+            $config->prepareDataSave();
             
             if (!$config->update()) {
                 $this->redirect('installer', array('step' => '5', 'cserr' => '1', 'language' => $this->langCode));
