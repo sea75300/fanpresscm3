@@ -301,7 +301,7 @@
             $this->view->assign('nextBtn', false);
             $this->view->assign('listActionLimit', '');
             
-            $page       = $this->getRequestVar('page', [9]);
+            $page       = $this->getRequestVar('page', [\fpcm\classes\http::FPCM_REQFILTER_CASTINT]);
             $pagerData  = \fpcm\classes\tools::calcPagination(
                 $this->listShowLimit,
                 $page,
@@ -343,14 +343,6 @@
                 $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]     = 'delete';
             }
             
-               // ,
-//                $this->lang->translate('ARTICLE_LIST_PINNED')         => 'pinn',
-//                $this->lang->translate('ARTICLE_LIST_APPROVE')        => 'approval',
-//                $this->lang->translate('EDITOR_ARCHIVE')              => 'archive',
-//                $this->lang->translate('ARTICLE_LIST_COMMENTS')       => 'comments',
-//                $this->lang->translate('ARTICLE_LIST_NEWTWEET')       => 'newtweet',
-//                $this->lang->translate('GLOBAL_DELETE')               => 'delete'
-//            ];    
         }
         
         /**
@@ -421,41 +413,48 @@
          */
         private function initMassEditForm($users) {
 
-            $this->view->assign('massEditUsers', $users);
+            $this->view->assign('massEditUsers', [$this->lang->translate('GLOBAL_NOCHANGE_APPLY') => -1] + $users);
             $this->view->assign('massEditCategories', $this->categories);
 
             $this->view->assign('massEditPinned', [
-                $this->lang->translate('GLOBAL_YES') => 1,
-                $this->lang->translate('GLOBAL_NO')  => 0
+                $this->lang->translate('GLOBAL_NOCHANGE_APPLY') => -1,
+                $this->lang->translate('GLOBAL_YES')            => 1,
+                $this->lang->translate('GLOBAL_NO')             => 0
             ]);
 
             $this->view->assign('massEditPostponed', [
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
+                $this->lang->translate('GLOBAL_NOCHANGE_APPLY') => -1,
+                $this->lang->translate('GLOBAL_YES')            => 1,
+                $this->lang->translate('GLOBAL_NO')             => 0
             ]);
 
             $this->view->assign('massEditComments', [
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
+                $this->lang->translate('GLOBAL_NOCHANGE_APPLY') => -1,
+                $this->lang->translate('GLOBAL_YES')            => 1,
+                $this->lang->translate('GLOBAL_NO')             => 0
             ]);
 
             $this->view->assign('massEditApproved', [
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
+                $this->lang->translate('GLOBAL_NOCHANGE_APPLY') => -1,
+                $this->lang->translate('GLOBAL_YES')            => 1,
+                $this->lang->translate('GLOBAL_NO')             => 0
             ]);
 
             $this->view->assign('massEditDraft', [
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
+                $this->lang->translate('GLOBAL_NOCHANGE_APPLY') => -1,
+                $this->lang->translate('GLOBAL_YES')            => 1,
+                $this->lang->translate('GLOBAL_NO')             => 0
             ]);
 
             $this->view->assign('massEditArchived', [
-                $this->lang->translate('GLOBAL_YES')  => 1,
-                $this->lang->translate('GLOBAL_NO') => 0
+                $this->lang->translate('GLOBAL_NOCHANGE_APPLY') => -1,
+                $this->lang->translate('GLOBAL_YES')            => 1,
+                $this->lang->translate('GLOBAL_NO')             => 0
             ]);
 
             $this->view->addJsLangVars([
-                'masseditHeadline'   => $this->lang->translate('GLOBAL_EDIT'),
+                'masseditHeadline'  => $this->lang->translate('GLOBAL_EDIT'),
+                'masseditSave'      => $this->lang->translate('GLOBAL_SAVE'),
             ]);
 
         }

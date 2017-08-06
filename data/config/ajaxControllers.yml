@@ -9,6 +9,7 @@ ajax/filelist: ajax/files/filelist
 ajax/jqupload: ajax/files/jqupload
 ajax/articles/search: ajax/articles/search
 ajax/articles/tweet: ajax/articles/listnewtweets
+ajax/articles/massedit: ajax/articles/massedit
 ajax/editor/cleartags: ajax/articles/removeeditortags
 ajax/editor/smileys: ajax/articles/smileys
 ajax/editor/draft: ajax/articles/draft

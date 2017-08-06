@@ -73,58 +73,9 @@ fpcm.articlelist = {
 
     },
     
-    initArticleMassEdit: function() {
-        //jQuery('#fpcmarticlesopensearch').click(function () {
-
-            fpcm.ui.selectmenu('.fpcm-ui-input-select-massedit', {
-                width: '100%',
-                appendTo: '#fpcm-dialog-articles-massedit'
-            });
-
-            fpcm.ui.datepicker('.fpcm-full-width-date', {
-                minDate: fpcmArticlSearchMinDate
-            });
-
-            var size = fpcm.ui.getDialogSizes();
-
-            fpcm.ui.dialog({
-                id      : 'articles-massedit',
-                dlWidth: size.width,
-                resizable: true,
-                title    : fpcm.ui.translate('searchHeadline'),
-                dlButtons  : [
-                    {
-                        text: fpcm.ui.translate('searchStart'),
-                        icon: "ui-icon-check",
-                        click: function() {                            
-                            jQuery(this).dialog('close');
-                        }
-                    },                    
-                    {
-                        text: fpcm.ui.translate('close'),
-                        icon: "ui-icon-closethick" ,                        
-                        click: function() {
-                            jQuery(this).dialog('close');
-                        }
-                    }                            
-                ],
-                dlOnOpen: function( event, ui ) {
-                    jQuery('#text').focus();
-                }
-            });
-
-            return false;
-        //});
-
-    },
-    
     articleActionsTweet: function() {
 
-        var articleIds = [];
-        jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
-            articleIds.push(jQuery(item).val());
-        });
-
+        var articleIds = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
         if (articleIds.length == 0) {
             fpcm.ui.showLoader(false);
             return false;
@@ -155,6 +106,78 @@ fpcm.articlelist = {
 
     },
     
+    articleActionsMassEdit: function() {
+
+        var articleIds = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
+        if (articleIds.length == 0) {
+            fpcm.ui.showLoader(false);
+            return false;
+        }
+
+        fpcm.ui.selectmenu('.fpcm-ui-input-select-massedit', {
+            width: '100%',
+            appendTo: '#fpcm-dialog-articles-massedit'
+        });
+
+        fpcm.ui.datepicker('.fpcm-full-width-date', {
+            minDate: fpcmArticlSearchMinDate
+        });
+
+        var size = fpcm.ui.getDialogSizes();
+
+        fpcm.ui.dialog({
+            id       : 'articles-massedit',
+            dlWidth  : size.width,
+            resizable: true,
+            title    : fpcm.ui.translate('masseditHeadline'),
+            dlButtons  : [
+                {
+                    text: fpcm.ui.translate('masseditSave'),
+                    icon: "ui-icon-check",
+                    click: function() {
+                        
+                        var mefields = jQuery('.fpcm-ui-input-massedit');
+                        var params = {
+                            fields: {},
+                            ids   : fpcm.ajax.toJSON(articleIds)
+                        };
+
+                        jQuery.each(mefields, function (key, obj) {
+                            var objVal  = jQuery(obj).val();
+                            var objName = jQuery(obj).attr('name'); 
+                            params.fields[objName] = objVal;
+                        });
+
+                        params.fields.categories = fpcm.ui.getCheckboxCheckedValues('.fpcm-ui-input-massedit-categories');
+                        fpcm.ajax.post('articles/massedit', {
+                            data     : params,
+                            execDone : function () {
+                                //fpcmJs.relocate(window.location.href);
+                            }
+                        });
+
+                        jQuery(this).dialog('close');
+                    }
+                },                    
+                {
+                    text: fpcm.ui.translate('close'),
+                    icon: "ui-icon-closethick" ,                        
+                    click: function() {
+                        jQuery(this).dialog('close');
+                    }
+                }                            
+            ],
+            dlOnOpen: function( event, ui ) {
+                jQuery('#text').focus();
+            },
+            dlOnClose: function( event, ui ) {
+                fpcm.ui.showLoader(false);
+            }
+        });
+
+        return false;
+    },
+
     clearArticleCache: function() {
         
         jQuery('.fpcm-article-cache-clear').click(function() {

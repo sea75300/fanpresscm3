@@ -42,6 +42,7 @@
         'GLOBAL_WRITABLE'               => 'beschreibbar',
         'GLOBAL_NOT_WRITABLE'           => 'nicht beschreibbar',
         'GLOBAL_NOCHANGE'               => 'Keine Änderungen durchgeführt',
+        'GLOBAL_NOCHANGE_APPLY'         => 'Keine Änderungen',
         'GLOBAL_INFO'                   => 'Informationen',
         'GLOBAL_OPENNEWWIN'             => 'In neuem Fenster öffnen',
         'GLOBAL_PAGER'                  => 'Seite {{current}} von {{total}}',

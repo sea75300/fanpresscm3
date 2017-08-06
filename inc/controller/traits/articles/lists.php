@@ -26,7 +26,11 @@
             $this->view->assign('permEditOwn', $this->permissions->check(array('article' => 'edit')));
             $this->view->assign('permEditAll', $this->permissions->check(array('article' => 'editall')));
             $this->view->assign('currentUserId', $this->session->getUserId());
-            $this->view->assign('isAdmin', $this->session->getCurrentUser()->isAdmin());               
+            $this->view->assign('isAdmin', $this->session->getCurrentUser()->isAdmin());  
+            
+            $this->view->assign('canArchive', $this->permissions->check(['article' => 'archive']));
+            $this->view->assign('canApprove', $this->permissions->check(['article' => 'approve']));
+            $this->view->assign('canChangeAuthor', $this->permissions->check(['article' => 'authors']));
         }
         
         /**

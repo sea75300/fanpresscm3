@@ -42,6 +42,7 @@
         'GLOBAL_WRITABLE'               => 'writable',
         'GLOBAL_NOT_WRITABLE'           => 'not writable',
         'GLOBAL_NOCHANGE'               => 'Nothing was changed',
+        'GLOBAL_NOCHANGE_APPLY'         => 'No change',
         'GLOBAL_INFO'                   => 'Information',
         'GLOBAL_OPENNEWWIN'             => 'Open in new window',
         'GLOBAL_PAGER'                  => 'Page {{current}} of {{total}}',

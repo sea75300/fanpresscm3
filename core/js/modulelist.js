@@ -79,11 +79,7 @@ fpcm.modulelist = {
                     text: fpcm.ui.translate('yes'),
                     icon: "ui-icon-check",                    
                     click: function() {
-                        var moduleKeys = [];
-                        jQuery('.fpcm-list-selectbox:checked').map(function (idx, item) {
-                            moduleKeys.push(jQuery(item).val());
-                        });
-
+                        var moduleKeys = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
                         if (moduleKeys.length == 0 || !jQuery('#moduleActions').val()) {
                             fpcm.ui.showLoader(false);
                             fpcmJs.addAjaxMassage('error', 'SELECT_ITEMS_MSG');

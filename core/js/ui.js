@@ -592,6 +592,17 @@ fpcm.ui = {
         tabNav.width(parseInt(tabsCurrentWidth));
         return true;
 
+    },
+    
+    getCheckboxCheckedValues: function(id) {
+        
+        var data = [];
+        jQuery(id + ':checked').map(function (idx, item) {
+            data.push(jQuery(item).val());
+        });
+
+        return data;
+
     }
     
 };

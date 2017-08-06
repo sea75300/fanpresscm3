@@ -90,6 +90,7 @@ var fpcmJs = function () {
 
         var articleActions = {
             newtweet: 'newtweet',
+            massedit: 'massedit',
             doActionBtn: '#btnDoAction'
         }
         
@@ -107,7 +108,14 @@ var fpcmJs = function () {
         });
         
         jQuery('.fpcm-ui-articleactions-ok').click(function () {
+
             if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
+
+            if (jQuery('#actionsaction').val() == articleActions.massedit) {
+                fpcm.articlelist.articleActionsMassEdit();
+                return false;
+            }
+
             if (!confirm(fpcm.ui.translate('confirmMessage'))) {
                 jQuery(this).addClass('fpcm-noloader');
                 return false;
