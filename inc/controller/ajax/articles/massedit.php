@@ -25,7 +25,13 @@
          * Artikel-IDs
          * @var array
          */
-        protected $articleIds= [];
+        protected $articleIds = [];
+
+        /**
+         * Artikel-Informationen
+         * @var array
+         */
+        protected $data = [];
 
         /**
          * Konstruktor
@@ -40,12 +46,13 @@
          */
         public function request() {
 
-            if (!$this->permissions->check([ 'article' => ['edit', 'editall', 'approve', 'archive'] ])) {
+            if (!$this->permissions->check(['article' => ['edit', 'editall', 'approve', 'archive'] ])) {
                 return false;
             }
 
             $this->articleList = new \fpcm\model\articles\articlelist();
-            $this->articleIds  = array_map('intval', json_decode($this->getRequestVar('ids', array(\fpcm\classes\http::FPCM_REQFILTER_STRIPTAGS,\fpcm\classes\http::FPCM_REQFILTER_STRIPSLASHES,\fpcm\classes\http::FPCM_REQFILTER_TRIM)), true));
+            $this->articleIds  = array_map('intval', $this->getRequestVar('ids', [\fpcm\classes\http::FPCM_REQFILTER_JSON_DECODE, 'object' => false]));
+            $this->data        = $this->getRequestVar('fields', [\fpcm\classes\http::FPCM_REQFILTER_JSON_DECODE, 'object' => false]);
             
             return true;
         }
@@ -55,7 +62,42 @@
          */
         public function process() {
             if (!parent::process()) return false;
+
+            $fields = [];
             
+            if (isset($this->data['categories'])) {
+                $fields['categories'] = json_encode(array_map('intval', $this->data['categories']));
+            }
+            
+            if (isset($this->data['userid'])) {
+                $fields['createuser'] = (int) $this->data['userid'];
+            }
+            
+            if (isset($this->data['comments'])) {
+                $fields['comments'] = (int) $this->data['comments'];
+            }
+            
+            if (isset($this->data['pinned'])) {
+                $fields['pinned'] = (int) $this->data['pinned'];
+            }
+            
+            if (isset($this->data['approval'])) {
+                $fields['approval'] = (int) $this->data['approval'];
+            }
+            
+            if (isset($this->data['draft'])) {
+                $fields['draft'] = (int) $this->data['draft'];
+            }
+            
+            if (isset($this->data['archived'])) {
+                $fields['archived'] = (int) $this->data['archived'];
+            }
+            
+            $result = $this->articleList->editArticlesByMass($this->articleIds, $fields);
+            
+            
+            $this->returnCode = $result ? 1 : 0;
+            $this->getResponse();
         }
 
     }

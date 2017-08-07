@@ -217,51 +217,6 @@
             
             return $articleIds;
         }
-
-        /**
-         * Artikel pinnen
-         * @param array $ids
-         * @return bool
-         */
-        protected function doPinn(array $ids) {
-            return $this->articleList->togglePinned($ids);
-        }
-        
-        /**
-         * Artikel archivieren
-         * @param array $ids
-         * @return bool
-         */
-        protected function doArchive(array $ids) {
-            return $this->articleList->archiveArticles($ids);
-        }
-        
-        /**
-         * Kommentare de/aktivieren
-         * @param array $ids
-         * @return bool
-         */
-        protected function doComments(array $ids) {
-            return $this->articleList->toggleComments($ids);
-        }
-        
-        /**
-         * Kommentare de/aktivieren
-         * @param array $ids
-         * @return bool
-         */
-        protected function doApproval(array $ids) {
-            return $this->articleList->toggleApproval($ids);
-        }
-        
-        /**
-         * nicht verwendet
-         * @param array $ids
-         * @return boolean
-         */
-        protected function doNewtweet(array $ids) {
-            return true;
-        }
         
         /**
          * Artikel löschen
@@ -270,7 +225,6 @@
          */
         protected function doDelete(array $ids) {
             if (!$this->deleteActions) return false;
-
             return $this->articleList->deleteArticles($ids);
         }
         
@@ -333,7 +287,7 @@
                 $this->articleActions[$this->lang->translate('GLOBAL_EDIT')]       = 'massedit';
             }
             
-            if ($this->permissions->check(['article' => 'delete'])) {
+            if ($this->deleteActions) {
                 $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]     = 'delete';
             }
             
@@ -453,8 +407,9 @@
             ]);
 
             $this->view->addJsLangVars([
-                'masseditHeadline'  => $this->lang->translate('GLOBAL_EDIT'),
-                'masseditSave'      => $this->lang->translate('GLOBAL_SAVE'),
+                'masseditHeadline'   => $this->lang->translate('GLOBAL_EDIT'),
+                'masseditSave'       => $this->lang->translate('GLOBAL_SAVE'),
+                'masseditSaveFailed' => $this->lang->translate('SAVE_FAILED_ARTICLES')
             ]);
 
         }

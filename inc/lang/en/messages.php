@@ -87,6 +87,7 @@
         'SAVE_FAILED_TEMPLATE_CF_URLMISSING' => 'Unable to save comment form template, because {{submitUrl}} replacement is missing!',
         'SAVE_FAILED_ARTICLETEMPLATE'   => 'Unable to save article template!',
         'SAVE_FAILED_ARTICLE'           => 'Unable to save the article!',
+        'SAVE_FAILED_ARTICLES'          => 'Unable to save changes to selected articles!',
         'SAVE_FAILED_ARTICLE_EMPTY'     => 'Please insert an article title and text before save it!',
         'SAVE_FAILED_ARTICLEPINN'       => 'Unable to un/pin the article!',
         'SAVE_FAILED_ARTICLEARCHIVE'    => 'Unable to archive the article!',

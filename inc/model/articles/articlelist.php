@@ -555,6 +555,57 @@
         }
 
         /**
+         * Massenbearbeitung
+         * @param array $articleIds
+         * @param array $fields
+         * @since FPCM 3.6
+         */
+        public function editArticlesByMass(array $articleIds, array $fields) {
+
+            if (!count($articleIds)) {
+                return false;
+            }
+
+            if (isset($fields['categories']) && is_array($fields['categories'])) {
+                unset($fields['categories']);
+            }
+            
+            if (isset($fields['createuser']) && $fields['createuser'] === -1) {
+                unset($fields['createuser']);
+            }
+            
+            if (isset($fields['comments']) && $fields['comments'] === -1) {
+                unset($fields['comments']);
+            }
+            
+            if (isset($fields['pinned']) && $fields['pinned'] === -1) {
+                unset($fields['pinned']);
+            }
+            
+            if (isset($fields['approval']) && $fields['approval'] === -1) {
+                unset($fields['approval']);
+            }
+            
+            if (isset($fields['draft']) && $fields['draft'] === -1) {
+                unset($fields['draft']);
+            }
+            
+            if (isset($fields['archived']) && $fields['archived'] === -1) {
+                unset($fields['archived']);
+            }
+
+            if (!count($fields)) {
+                return false;
+            }
+
+            $where = 'id IN ('.implode(',', $articleIds).')';
+            $result = $this->dbcon->update($this->table, array_keys($fields), array_values($fields), $where);
+            
+            $this->cache->cleanup();
+            return $result;
+        }
+
+        /**
          * Erzeugt Listen-Result-Array
          * @param array $list
          * @param bool $monthIndex

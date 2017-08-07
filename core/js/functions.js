@@ -93,38 +93,27 @@ var fpcmJs = function () {
             massedit: 'massedit',
             doActionBtn: '#btnDoAction'
         }
-        
-        fpcm.ui.selectmenu('#actionsaction', {
-            change: function( event, ui ) {
 
-                if (ui.item.value == articleActions.newtweet) {
-                    fpcm.ui.removeLoaderClass(articleActions.doActionBtn);
-                }
-                else if (!jQuery(articleActions.doActionBtn).hasClass('fpcm-loader')) {
-                    jQuery(articleActions.doActionBtn).addClass('fpcm-loader');
-                }
-
-            }
-        });
-        
         jQuery('.fpcm-ui-articleactions-ok').click(function () {
-
-            if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
 
             if (jQuery('#actionsaction').val() == articleActions.massedit) {
                 fpcm.articlelist.articleActionsMassEdit();
-                return false;
-            }
-
-            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
-                jQuery(this).addClass('fpcm-noloader');
+                fpcm.ui.removeLoaderClass(this);
                 return false;
             }
 
             if (jQuery('#actionsaction').val() == articleActions.newtweet) {
                 fpcm.articlelist.articleActionsTweet();
+                fpcm.ui.removeLoaderClass(this);
                 return false;
             }
+
+            fpcm.ui.removeLoaderClass(this);
+            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
+                jQuery(this).addClass('fpcm-noloader');
+                return false;
+            }
+
         });
 
     };

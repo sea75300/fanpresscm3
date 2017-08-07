@@ -31,6 +31,8 @@
             $this->view->assign('canArchive', $this->permissions->check(['article' => 'archive']));
             $this->view->assign('canApprove', $this->permissions->check(['article' => 'approve']));
             $this->view->assign('canChangeAuthor', $this->permissions->check(['article' => 'authors']));
+            
+            $this->deleteActions = $this->permissions->check(['article' => 'delete']);
         }
         
         /**

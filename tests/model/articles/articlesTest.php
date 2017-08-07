@@ -157,6 +157,25 @@ class articlesTest extends testBase {
 
     }
 
+    public function testEditArticlesByMass() {
+        
+        $result = $this->object->editArticlesByMass([$GLOBALS['articleId']], [
+            'categories' => json_encode([1,2]),
+            'archived'   => 0,
+            'pinned'     => -1
+        ]);
+        
+        $this->assertTrue($result);
+ 
+        /* @var $object \fpcm\model\articles\article */
+        $object = new fpcm\model\articles\article($GLOBALS['articleId']);
+        $this->assertEquals($GLOBALS['article_title'], $object->getTitle());
+        $this->assertEquals(0, $object->getArchived());
+        $this->assertEquals(0, $object->getDeleted());
+        $this->assertEquals(2, $object->getCreateuser());
+
+    }
+
     public function testDeleteArticles() {        
         $result = $this->object->deleteArticles([$GLOBALS['articleId']]);
         $this->assertTrue($result);

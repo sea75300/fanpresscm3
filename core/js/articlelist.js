@@ -152,7 +152,21 @@ fpcm.articlelist = {
                         fpcm.ajax.post('articles/massedit', {
                             data     : params,
                             execDone : function () {
-                                //fpcmJs.relocate(window.location.href);
+                                
+                                var res = fpcm.ajax.fromJSON(fpcm.ajax.getResult('articles/massedit'));
+                                
+                                if (res.code == 1) {
+                                    fpcmJs.relocate(window.location.href);
+                                    return true;
+                                }
+
+                                fpcm.ui.addMessage({
+                                    type : 'error',
+                                    id   : 'fpcm-articles-massedit',
+                                    icon : 'exclamation-triangle',
+                                    txt  : fpcm.ui.translate('masseditSaveFailed')
+                                }, true);
+                                
                             }
                         });
 

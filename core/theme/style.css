@@ -1312,6 +1312,10 @@ table.fpcm-module-manager td.module-manager-list-td7 {
     width: 3em;
 }
 
+#fpcm-dialog-articles-massedit div.fpcm-ui-editor-extended-button label {
+    line-height: 2em;
+}
+
 .ui-spinner input,
 .ui-spinner input:hover,
 .ui-spinner input:focus,

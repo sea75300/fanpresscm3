@@ -87,6 +87,7 @@
         'SAVE_FAILED_TEMPLATE_CF_URLMISSING' => 'Das Kommentar-Formular-Template konnte nicht gespeichert werden. Der Platzhalter {{submitUrl}} fehlt!',
         'SAVE_FAILED_ARTICLETEMPLATE'   => 'Die Artikel-Vorlage konnte nicht gespeichert werden!',
         'SAVE_FAILED_ARTICLE'           => 'Der Artikel konnte nicht gespeichert werden!',
+        'SAVE_FAILED_ARTICLES'          => 'Die Änderungen an den Artikeln konnte nicht gespeichert werden!',
         'SAVE_FAILED_ARTICLE_EMPTY'     => 'Du musst einen Titel und einen Text eingeben, bevor du den Artikel speichern kannst!',
         'SAVE_FAILED_ARTICLEPINN'       => 'Die Artikel konnten nicht (ab)gepinnt werden!',
         'SAVE_FAILED_ARTICLEARCHIVE'    => 'Die Artikel konnten nicht archiviert werden!',
