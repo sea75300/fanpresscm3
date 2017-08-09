@@ -88,23 +88,9 @@ var fpcmJs = function () {
 
         if (window.noActionButtonAssign) return false;
 
-        var articleActions = {
-            newtweet: 'newtweet',
-            massedit: 'massedit',
-            doActionBtn: '#btnDoAction'
-        }
-
         jQuery('.fpcm-ui-articleactions-ok').click(function () {
 
-            if (jQuery('#actionsaction').val() == articleActions.massedit) {
-                fpcm.articlelist.articleActionsMassEdit();
-                fpcm.ui.removeLoaderClass(this);
-                return false;
-            }
-
-            if (jQuery('#actionsaction').val() == articleActions.newtweet) {
-                fpcm.articlelist.articleActionsTweet();
-                fpcm.ui.removeLoaderClass(this);
+            if (fpcm.articlelist && typeof fpcm.articlelist.assignActions === 'function' && fpcm.articlelist.assignActions() === -1) {
                 return false;
             }
 

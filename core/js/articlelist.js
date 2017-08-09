@@ -15,6 +15,30 @@ fpcm.articlelist = {
         fpcm.articlelist.clearArticleCache();
     },
     
+    assignActions: function() {
+
+        var articleActions = {
+            newtweet: 'newtweet',
+            massedit: 'massedit'
+        }
+        
+        var action = jQuery('#actionsaction').val();
+
+        if (action == articleActions.massedit) {
+            fpcm.articlelist.articleActionsMassEdit();
+            fpcm.ui.removeLoaderClass(this);
+            return -1;
+        }
+
+        if (action == articleActions.newtweet) {
+            fpcm.articlelist.articleActionsTweet();
+            fpcm.ui.removeLoaderClass(this);
+            return -1;
+        }
+        
+        return true;
+    },
+    
     initArticleSearch: function() {
         jQuery('#fpcmarticlesopensearch').click(function () {
 
@@ -74,12 +98,102 @@ fpcm.articlelist = {
     },
     
     articleActionsTweet: function() {
+        fpcm.ui.confirmDialog({
+            clickYes: function() {
+                var articleIds = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
+                if (articleIds.length == 0) {
+                    fpcm.ui.showLoader(false);
+                    return false;
+                }
 
-        var articleIds = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
-        if (articleIds.length == 0) {
-            fpcm.ui.showLoader(false);
-            return false;
-        }
+                fpcm.articlelist.execNewTweet(articleIds);
+                jQuery(this).dialog('close');
+            },
+            clickNo: function() {
+                jQuery(this).dialog('close');
+            }
+        });
+
+    },
+    
+    articleActionsMassEdit: function() {
+
+        fpcm.ui.selectmenu('.fpcm-ui-input-select-massedit', {
+            width: '100%',
+            appendTo: '#fpcm-dialog-articles-massedit'
+        });
+
+        fpcm.ui.datepicker('.fpcm-full-width-date', {
+            minDate: fpcmArticlSearchMinDate
+        });
+
+        var size = fpcm.ui.getDialogSizes();
+
+        fpcm.ui.dialog({
+            id       : 'articles-massedit',
+            dlWidth  : size.width,
+            resizable: true,
+            title    : fpcm.ui.translate('masseditHeadline'),
+            dlButtons  : [
+                {
+                    text: fpcm.ui.translate('masseditSave'),
+                    icon: "ui-icon-check",
+                    click: function() {
+
+                        fpcm.ui.confirmDialog({
+                            clickYes: function() {
+
+                                var articleIds = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
+                                if (articleIds.length == 0) {
+                                    fpcm.ui.showLoader(false);
+                                    return false;
+                                }
+
+                                var mefields = jQuery('.fpcm-ui-input-massedit');
+                                var params = {
+                                    fields: {},
+                                    ids   : fpcm.ajax.toJSON(articleIds)
+                                };
+
+                                jQuery.each(mefields, function (key, obj) {
+                                    var objVal  = jQuery(obj).val();
+                                    var objName = jQuery(obj).attr('name'); 
+                                    params.fields[objName] = objVal;
+                                });
+
+                                params.fields.categories = fpcm.ui.getCheckboxCheckedValues('.fpcm-ui-input-massedit-categories');
+                                fpcm.articlelist.execMassEdit(params);
+
+                                jQuery(this).dialog('close');
+                                
+                            },
+                           
+                            clickNo: function() {
+                                jQuery(this).dialog('close');
+                            }
+                        });
+                    }
+                },                    
+                {
+                    text: fpcm.ui.translate('close'),
+                    icon: "ui-icon-closethick" ,                        
+                    click: function() {
+                        jQuery(this).dialog('close');
+                    }
+                }                            
+            ],
+            dlOnOpen: function( event, ui ) {
+                jQuery('#text').focus();
+            },
+            dlOnClose: function( event, ui ) {
+                fpcm.ui.showLoader(false);
+            }
+        });
+
+        return false;
+    },
+    
+    execNewTweet: function(articleIds) {
 
         fpcm.ajax.post('articles/tweet', {
             data    : {
@@ -105,91 +219,28 @@ fpcm.articlelist = {
         });
 
     },
-    
-    articleActionsMassEdit: function() {
 
-        var articleIds = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
-        if (articleIds.length == 0) {
-            fpcm.ui.showLoader(false);
-            return false;
-        }
+    execMassEdit: function(params) {
+        fpcm.ajax.post('articles/massedit', {
+            data     : params,
+            execDone : function () {
 
-        fpcm.ui.selectmenu('.fpcm-ui-input-select-massedit', {
-            width: '100%',
-            appendTo: '#fpcm-dialog-articles-massedit'
-        });
+                var res = fpcm.ajax.fromJSON(fpcm.ajax.getResult('articles/massedit'));
 
-        fpcm.ui.datepicker('.fpcm-full-width-date', {
-            minDate: fpcmArticlSearchMinDate
-        });
+                if (res.code == 1) {
+                    fpcmJs.relocate(window.location.href);
+                    return true;
+                }
 
-        var size = fpcm.ui.getDialogSizes();
+                fpcm.ui.addMessage({
+                    type : 'error',
+                    id   : 'fpcm-articles-massedit',
+                    icon : 'exclamation-triangle',
+                    txt  : fpcm.ui.translate('masseditSaveFailed')
+                }, true);
 
-        fpcm.ui.dialog({
-            id       : 'articles-massedit',
-            dlWidth  : size.width,
-            resizable: true,
-            title    : fpcm.ui.translate('masseditHeadline'),
-            dlButtons  : [
-                {
-                    text: fpcm.ui.translate('masseditSave'),
-                    icon: "ui-icon-check",
-                    click: function() {
-                        
-                        var mefields = jQuery('.fpcm-ui-input-massedit');
-                        var params = {
-                            fields: {},
-                            ids   : fpcm.ajax.toJSON(articleIds)
-                        };
-
-                        jQuery.each(mefields, function (key, obj) {
-                            var objVal  = jQuery(obj).val();
-                            var objName = jQuery(obj).attr('name'); 
-                            params.fields[objName] = objVal;
-                        });
-
-                        params.fields.categories = fpcm.ui.getCheckboxCheckedValues('.fpcm-ui-input-massedit-categories');
-                        fpcm.ajax.post('articles/massedit', {
-                            data     : params,
-                            execDone : function () {
-                                
-                                var res = fpcm.ajax.fromJSON(fpcm.ajax.getResult('articles/massedit'));
-                                
-                                if (res.code == 1) {
-                                    fpcmJs.relocate(window.location.href);
-                                    return true;
-                                }
-
-                                fpcm.ui.addMessage({
-                                    type : 'error',
-                                    id   : 'fpcm-articles-massedit',
-                                    icon : 'exclamation-triangle',
-                                    txt  : fpcm.ui.translate('masseditSaveFailed')
-                                }, true);
-                                
-                            }
-                        });
-
-                        jQuery(this).dialog('close');
-                    }
-                },                    
-                {
-                    text: fpcm.ui.translate('close'),
-                    icon: "ui-icon-closethick" ,                        
-                    click: function() {
-                        jQuery(this).dialog('close');
-                    }
-                }                            
-            ],
-            dlOnOpen: function( event, ui ) {
-                jQuery('#text').focus();
-            },
-            dlOnClose: function( event, ui ) {
-                fpcm.ui.showLoader(false);
             }
         });
-
-        return false;
     },
 
     clearArticleCache: function() {
