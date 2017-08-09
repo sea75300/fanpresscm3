@@ -12,6 +12,7 @@
         'GLOBAL_NO'                     => 'No',
         'GLOBAL_SAVE'                   => 'Save',
         'GLOBAL_EDIT'                   => 'Edit',
+        'GLOBAL_EDIT_SELECTED'          => 'Edit selected',
         'GLOBAL_EXTENDED'               => 'Extended',
         'GLOBAL_DELETE'                 => 'Delete',
         'GLOBAL_RELOAD'                 => 'Reload',

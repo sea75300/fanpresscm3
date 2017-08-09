@@ -12,6 +12,7 @@
         'GLOBAL_NO'                     => 'Nein',
         'GLOBAL_SAVE'                   => 'Speichern',
         'GLOBAL_EDIT'                   => 'Bearbeiten',
+        'GLOBAL_EDIT_SELECTED'          => 'Ausgewählte Bearbeiten',
         'GLOBAL_EXTENDED'               => 'Erweitert',
         'GLOBAL_DELETE'                 => 'Löschen',
         'GLOBAL_RELOAD'                 => 'Aktualisieren',

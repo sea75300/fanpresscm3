@@ -22,21 +22,21 @@
     </div>
     <?php endif; ?>
     
-    <?php if ($commentEnabledGlobal) : ?>
-    <div class="fpcm-ui-editor-extended-row">
-        <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-comments-o fa-fw fa-lg"></span></div>
-        <div class="fpcm-ui-editor-extended-button"><label><?php $FPCM_LANG->write('EDITOR_COMMENTS'); ?></label></div>
-        <div class="fpcm-ui-editor-extended-col"><?php \fpcm\model\view\helper::select('comments', $massEditComments, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-massedit fpcm-ui-input-massedit'); ?></div>
-        <div class="fpcm-clear"></div>
-    </div>
-    <?php endif; ?>
-    
     <div class="fpcm-ui-editor-extended-row">
         <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-thumb-tack fa-rotate-90 fa-fw fa-lg"></span></div>
         <div class="fpcm-ui-editor-extended-button"><label><?php $FPCM_LANG->write('EDITOR_PINNED'); ?></label></div>
         <div class="fpcm-ui-editor-extended-col"><?php \fpcm\model\view\helper::select('pinned', $massEditPinned, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-massedit fpcm-ui-input-massedit'); ?></div>
         <div class="fpcm-clear"></div>
     </div>
+    
+    <?php if ($showDraftStatus) : ?>
+    <div class="fpcm-ui-editor-extended-row">
+        <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-file-text-o fa-fw fa-lg"></span></div>
+        <div class="fpcm-ui-editor-extended-button"><label><?php $FPCM_LANG->write('EDITOR_DRAFT'); ?></label></div>
+        <div class="fpcm-ui-editor-extended-col"><?php \fpcm\model\view\helper::select('draft', $massEditDraft, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-massedit fpcm-ui-input-massedit'); ?></div>
+        <div class="fpcm-clear"></div>
+    </div>
+    <?php endif; ?>
 
     <?php if (!$canApprove) : ?>
     <div class="fpcm-ui-editor-extended-row">
@@ -47,11 +47,11 @@
     </div>
     <?php endif; ?>
     
-    <?php if ($showDraftStatus) : ?>
+    <?php if ($commentEnabledGlobal) : ?>
     <div class="fpcm-ui-editor-extended-row">
-        <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-file-text-o fa-fw fa-lg"></span></div>
-        <div class="fpcm-ui-editor-extended-button"><label><?php $FPCM_LANG->write('EDITOR_DRAFT'); ?></label></div>
-        <div class="fpcm-ui-editor-extended-col"><?php \fpcm\model\view\helper::select('draft', $massEditDraft, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-massedit fpcm-ui-input-massedit'); ?></div>
+        <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-comments-o fa-fw fa-lg"></span></div>
+        <div class="fpcm-ui-editor-extended-button"><label><?php $FPCM_LANG->write('EDITOR_COMMENTS'); ?></label></div>
+        <div class="fpcm-ui-editor-extended-col"><?php \fpcm\model\view\helper::select('comments', $massEditComments, null, false, false, false, 'fpcm-articles-search-input fpcm-ui-input-select-massedit fpcm-ui-input-massedit'); ?></div>
         <div class="fpcm-clear"></div>
     </div>
     <?php endif; ?>

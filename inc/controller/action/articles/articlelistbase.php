@@ -284,17 +284,17 @@
             $this->view->assign('canEdit', $canEdit);
             
             if ($canEdit) {                
-                $this->articleActions[$this->lang->translate('GLOBAL_EDIT')]       = 'massedit';
+                $this->articleActions[$this->lang->translate('GLOBAL_EDIT_SELECTED')]   = 'massedit';
             }
             
             if ($this->deleteActions) {
-                $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]     = 'delete';
+                $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]          = 'delete';
             }
             
-            $this->articleActions[$this->lang->translate('ARTICLE_LIST_NEWTWEET')] = 'newtweet';
+            $this->articleActions[$this->lang->translate('ARTICLE_LIST_NEWTWEET')]      = 'newtweet';
             
             if ($this->permissions->check(['article' => 'delete'])) {
-                $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]     = 'delete';
+                $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]          = 'delete';
             }
             
         }
@@ -407,7 +407,7 @@
             ]);
 
             $this->view->addJsLangVars([
-                'masseditHeadline'   => $this->lang->translate('GLOBAL_EDIT'),
+                'masseditHeadline'   => $this->lang->translate('GLOBAL_EDIT_SELECTED'),
                 'masseditSave'       => $this->lang->translate('GLOBAL_SAVE'),
                 'masseditSaveFailed' => $this->lang->translate('SAVE_FAILED_ARTICLES')
             ]);
