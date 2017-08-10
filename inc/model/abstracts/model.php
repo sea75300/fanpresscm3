@@ -44,7 +44,7 @@
          * Eigenschaften, welche beim Speichern in DB nicht von getPreparedSaveParams() zurückgegeben werden sollen
          * @var array
          */
-        protected $dbExcludes;
+        protected $dbExcludes = [];
 
         /**
          * $this->data beim Speichern nicht berücksichtigen
@@ -300,15 +300,15 @@
                 $params['wordbanList']
             );
             
-            if ($this->nodata) unset($params['data']);
-
-            if (count($this->dbExcludes)) {
-                foreach ($this->dbExcludes AS $exclude) {
-                    unset($params[$exclude]);
-                }
+            if ($this->nodata) {
+                unset($params['data']);
             }
-            
-            return $params;
+
+            if (!count($this->dbExcludes)) {
+                return $params;
+            }
+
+            return array_diff_key($params,array_flip($this->dbExcludes));
         }
         
         /**
