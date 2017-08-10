@@ -51,7 +51,7 @@
 
                 $res = false;
                 foreach ($permissionData as $groupId => $permissions) {
-                    $permissions = array_map(array($this, 'intval'), $permissions);
+                    $permissions = array_map([$this, 'intval'], $permissions);
                     
                     if ($groupId == 1) {
                         $permissions['system']['permissions'] = 1;
