@@ -154,6 +154,7 @@
             }
 
             if (!is_array($cacheFiles) || !count($cacheFiles)) return false;
+            
 
             foreach ($cacheFiles as $cacheFile) {
 

@@ -150,7 +150,7 @@
          * Auszuschließende Elemente beim in save/update
          * @var array
          */
-        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission', 'tweetOverride');
+        protected $dbExcludes = array('defaultPermissions', 'forceDelete', 'editPermission', 'tweetOverride', 'tweetCreate', 'crypt');
         
         /**
          * Action-String für edit-Action
@@ -164,6 +164,13 @@
          * @since FPCM 3.2.0
          */
         protected $wordbanList;
+        
+        /**
+         * Crypto-Objekt
+         * @var \fpcm\classes\crypt
+         * @since FPCM 3.6
+         */
+        protected $crypt;
 
         /**
          * Status ob Artikel bearbeitet werden kann
@@ -180,12 +187,20 @@
         protected $tweetOverride = false;
 
         /**
+         * TWeet Erstellung aktivieren
+         * @var bool
+         * @since FPCM 3.5.2
+         */
+        protected $tweetCreate = null;
+
+        /**
          * Konstruktor
          * @param int $id
          */
         public function __construct($id = null) {
-            $this->table = \fpcm\classes\database::tableArticles;
-            $this->wordbanList = new \fpcm\model\wordban\items();
+            $this->table        = \fpcm\classes\database::tableArticles;
+            $this->wordbanList  = new \fpcm\model\wordban\items();
+            $this->crypt        = new \fpcm\classes\crypt();
             
             parent::__construct($id);
         }
@@ -339,6 +354,15 @@
          */
         public function getSources() {
             return $this->sources;
+        }
+        
+        /**
+         * Tweet-Erstellung aktiv?
+         * @return bool
+         * @since FPCM 3.5.2
+         */
+        function tweetCreationEnabled() {
+            return (bool) $this->tweetCreate;
         }
                    
         /**
@@ -514,6 +538,15 @@
         function setTweetOverride($tweetOverride) {
             $this->tweetOverride = $tweetOverride;
         }
+
+        /**
+         * Tweet-Erstellung aktivieren
+         * @param bool $tweetCreate
+         * @since FPCM 3.5.2
+         */
+        function enableTweetCreation($tweetCreate) {
+            $this->tweetCreate = (bool) $tweetCreate;
+        }
                 
         /**
          * schönen URL-Pfad zurückgeben
@@ -536,6 +569,15 @@
             }
 
             return $this->config->system_url.'?module=fpcm/article&id='.$idParam;
+        }
+
+        /**
+         * Link zum Löschen des Artikel-Caches
+         * @return string
+         * @since FPCM 3.6
+         */
+        public function getArticleCacheParams() {
+            return ['cache' => urlencode($this->crypt->encrypt('article')), 'objid' => $this->id];
         }
         
         /**
@@ -596,10 +638,7 @@
             $this->id = $this->dbcon->getLastInsertId();
             
             $this->cleanupCaches();
-
-            if ($this->config->twitter_events['create'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
-                $this->createTweet();
-            }
+            $this->createTweet();
             
             $this->events->runEvent('articleSaveAfter', $this->id);
 
@@ -627,11 +666,8 @@
             
             $this->cleanupCaches();
             $this->init();
+            $this->createTweet();
 
-            if ($this->config->twitter_events['update'] && !$this->approval && !$this->postponed && !$this->draft && !$this->deleted && !$this->archived) {
-                $this->createTweet();
-            }
-            
             $this->events->runEvent('articleUpdateAfter', $this->id);
 
             return $return;            
@@ -813,6 +849,10 @@
                 return false;
             }
 
+            if (!$force && (!$this->tweetCreate || $this->approval || $this->postponed || $this->draft || $this->deleted || $this->archived)) {
+                return false;
+            }
+
             /* @var $eventResult article */
             $eventResult = $this->events->runEvent('articleCreateTweet', $this);
 
@@ -820,11 +860,12 @@
             
             $tpl = new \fpcm\model\pubtemplates\tweet();
             $tpl->setReplacementTags(array(
-                '{{headline}}'  => $eventResult->getTitle(),
-                '{{author}}'    => $author->getDisplayname(),
-                '{{date}}'      => date($this->config->system_dtmask),
-                '{{permaLink}}' => $eventResult->getArticleLink(),
-                '{{shortLink}}' => $eventResult->getArticleShortLink()
+                '{{headline}}'   => $eventResult->getTitle(),
+                '{{author}}'     => $author->getDisplayname(),
+                '{{date}}'       => date($this->config->system_dtmask),
+                '{{changeDate}}' => date('H:m:s', $this->getChangetime()),
+                '{{permaLink}}'  => $eventResult->getArticleLink(),
+                '{{shortLink}}'  => $eventResult->getArticleShortLink()
             ));
             
             if ($this->tweetOverride !== false) {
@@ -878,6 +919,15 @@
          */
         public function setInEdit() {
             return $this->dbcon->update($this->table, ['inedit'], [time().'-'.FPCM_USERID, $this->id], 'id = ?');
+        }
+
+        /**
+         * In Bearbeitung Informationen auslesen
+         * @return array
+         * @since FPCM 3.5.3
+         */
+        public function getInEdit() {
+            return explode('-', $this->inedit);
         }
 
         /**

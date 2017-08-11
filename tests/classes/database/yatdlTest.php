@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(dirname(__DIR__)).'/testBase.php';
+require_once dirname(dirname(dirname(__DIR__))).'/inc/lib/nkorg/yatdl/parser.php';
 
 class yatdlTest extends testBase {
 
@@ -51,10 +52,10 @@ class yatdlTest extends testBase {
     public function testParse() {
 
         $haystack = [
-            fpcm\model\system\yatdl::ERROR_YAMLCHECK_FAILED,
-            fpcm\model\system\yatdl::ERROR_YAMLPARSER_COLS,
-            fpcm\model\system\yatdl::ERROR_YAMLPARSER_AUTOINCREMENT,
-            fpcm\model\system\yatdl::ERROR_YAMLPARSER_INDICES,
+            \nkorg\yatdl\parser::ERROR_YAMLCHECK_FAILED,
+            \nkorg\yatdl\parser::ERROR_YAMLPARSER_COLS,
+            \nkorg\yatdl\parser::ERROR_YAMLPARSER_AUTOINCREMENT,
+            \nkorg\yatdl\parser::ERROR_YAMLPARSER_INDICES,
             0
         ];
         
@@ -65,7 +66,8 @@ class yatdlTest extends testBase {
     
     public function testGetSqlString() {
 
-        $this->object->parse();
+        $this->assertTrue($this->object->parse());
+        
         $data = $this->object->getSqlString();
 
         if (fpcm\classes\baseconfig::$fpcmDatabase->getDbtype() === 'pgsql') {

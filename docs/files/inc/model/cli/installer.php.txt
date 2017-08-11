@@ -226,6 +226,7 @@
 
             $config = new \fpcm\model\system\config(false, false);
             $config->setNewConfig($newconfig);
+            $config->prepareDataSave();
             usleep(250000);
             
             if (!$config->update()) {

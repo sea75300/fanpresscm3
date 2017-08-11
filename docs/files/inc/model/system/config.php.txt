@@ -258,7 +258,89 @@
             
             $this->data = $this->cache->read();
         }
-        
+
+        /**
+         * Bereitet Daten für Speicherung in Datenbank vor
+         * @return boolean
+         * @since FPCM 3.6
+         */
+        public function prepareDataSave() {
+
+            if (isset($this->newConfig['twitter_events']) && is_array($this->newConfig['twitter_events'])) {
+                $this->newConfig['twitter_events'] = json_encode($this->newConfig['twitter_events']);
+            }
+
+            if (isset($this->newConfig['twitter_data']) && is_array($this->newConfig['twitter_data'])) {
+                $this->newConfig['twitter_data'] = json_encode($this->newConfig['twitter_data']);
+            }
+
+            if (isset($this->newConfig['smtp_settings']) && is_array($this->newConfig['smtp_settings'])) {
+                $this->newConfig['smtp_settings'] = json_encode($this->newConfig['smtp_settings']);
+            }
+
+            if (isset($this->newConfig['articles_limit'])) {
+                $this->newConfig['articles_limit'] = (int) $this->newConfig['articles_limit'];
+            }
+
+            if (isset($this->newConfig['articles_acp_limit'])) {
+                $this->newConfig['articles_acp_limit'] = (int) $this->newConfig['articles_acp_limit'];
+            }
+
+            if (isset($this->newConfig['system_cache_timeout'])) {
+                $this->newConfig['system_cache_timeout'] = (int) $this->newConfig['system_cache_timeout'];
+            }
+
+            if (isset($this->newConfig['system_session_length'])) {
+                $this->newConfig['system_session_length'] = (int) $this->newConfig['system_session_length'];
+            }
+
+            if (isset($this->newConfig['comments_flood'])) {
+                $this->newConfig['comments_flood'] = (int) $this->newConfig['comments_flood'];
+            }
+
+            if (isset($this->newConfig['system_loginfailed_locked'])) {
+                $this->newConfig['system_loginfailed_locked'] = (int) $this->newConfig['system_loginfailed_locked'];
+            }
+
+            if (isset($this->newConfig['comments_markspam_commentcount'])) {
+                $this->newConfig['comments_markspam_commentcount'] = (int) $this->newConfig['comments_markspam_commentcount'];
+            }
+
+            if (isset($this->newConfig['file_img_thumb_width'])) {
+                $this->newConfig['file_img_thumb_width'] = (int) $this->newConfig['file_img_thumb_width'];
+            }
+
+            if (isset($this->newConfig['file_img_thumb_height'])) {
+                $this->newConfig['file_img_thumb_height'] = (int) $this->newConfig['file_img_thumb_height'];
+            }
+
+            if (isset($this->newConfig['file_list_limit'])) {
+                $this->newConfig['file_list_limit'] = (int) $this->newConfig['file_list_limit'];
+            }
+
+            if (isset($this->newConfig['system_updates_devcheck'])) {
+                $this->newConfig['system_updates_devcheck'] = (int) $this->newConfig['system_updates_devcheck'];
+            }
+
+            if (isset($this->newConfig['articles_revisions_limit'])) {
+                $this->newConfig['articles_revisions_limit'] = (int) $this->newConfig['articles_revisions_limit'];
+            }
+
+            if (isset($this->newConfig['articles_link_urlrewrite'])) {
+                $this->newConfig['articles_link_urlrewrite'] = (int) $this->newConfig['articles_link_urlrewrite'];
+            }
+
+            if (isset($this->newConfig['articles_imageedit_persistence'])) {
+                $this->newConfig['articles_imageedit_persistence'] = (int) $this->newConfig['articles_imageedit_persistence'];
+            }
+
+            if (isset($this->newConfig['articles_archive_datelimit'])) {
+                $this->newConfig['articles_archive_datelimit'] = $this->newConfig['articles_archive_datelimit']
+                                                               ? strtotime($this->newConfig['articles_archive_datelimit']) : 0;
+            }
+            
+            return true;
+        }
         /**
          * Config-Refresh
          */

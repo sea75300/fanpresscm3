@@ -379,7 +379,7 @@
         }
 
         /**
-         * Lädt config.php
+         * Lädt crypt.php
          * @return array
          * @since FPCM 3.5
          */
@@ -387,6 +387,18 @@
             if (!file_exists(self::$configDir.'crypt.php')) return null;
             
             include self::$configDir.'crypt.php';
+            return $config;            
+        }
+
+        /**
+         * Lädt sec.php
+         * @return array
+         * @since FPCM 3.6
+         */
+        public static function getSecurityConfig() {
+            if (!file_exists(self::$configDir.'sec.php')) return null;
+            
+            include self::$configDir.'sec.php';
             return $config;            
         }
 

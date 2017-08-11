@@ -27,12 +27,18 @@
          * @var array
          */
         protected $permissiondata = [];
+
+        /**
+         * Berechtigungsdaten - bereits geprüft
+         * @var array
+         */
+        protected $checkedData = [];
         
         /**
          * Nicht in Datenbank zu speichernde Daten
          * @var array
          */
-        protected $dbExcludes = array('defaultPermissions', 'permissionSet');
+        protected $dbExcludes = array('defaultPermissions', 'permissionSet', 'checkedData');
 
         /**
          * Standard-Berechtigungsset für Anlegen einer neuen Gruppe
@@ -270,6 +276,11 @@
         public function check(array $permissionArray) {                 
             $res = true;
             
+            $permissionArrayHash = hash(\fpcm\classes\security::defaultHashAlgo, json_encode($permissionArray));
+            if (isset($this->checkedData[$permissionArrayHash])) {
+                return $this->checkedData[$permissionArrayHash];
+            }
+
             $permissionArray = $this->events->runEvent('permissionsCheck', $permissionArray);
 
             foreach ($permissionArray as $module => $permission) {
@@ -292,6 +303,8 @@
                 
                 $res    = $res && $check;
             }
+            
+            $this->checkedData[$permissionArrayHash] = $res;
             
             return $res;
         }
