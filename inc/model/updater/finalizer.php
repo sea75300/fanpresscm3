@@ -43,7 +43,9 @@
                    $this->optimizeTables();
             
             $crypt = new \fpcm\classes\crypt();
-            $res = true && $crypt->initCrypt();
+            $res   = true && $crypt->initCrypt();
+            
+            $res   = true && \fpcm\classes\security::initSecurityConfig();
 
             $this->config->setMaintenanceMode(false);
 

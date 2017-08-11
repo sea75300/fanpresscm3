@@ -37,11 +37,39 @@
         const pageTokenCacheModule = "pgtkn";
         
         /**
+         * Session Cookie Name
+         * @since FPCM 3.6
+         */
+        private static $cookieName;
+        
+        /**
+         * Session Cookie Name
+         * @since FPCM 3.6
+         */
+        private static $pageTokenName;
+        
+        /**
          * Cookie-Name zurückgeben
          * @return string
          */
         public static function getSessionCookieName() {
-            return 'fpcm_sid'.md5(baseconfig::$rootPath.'_'.date('d-m-Y'));
+            
+            if (self::$cookieName) {
+                return self::$cookieName;
+            }
+
+            self::$cookieName = 'fpcm_sid'.md5(baseconfig::$rootPath.'_'.date('d-m-Y'));
+            if (isset($_COOKIE[self::$cookieName])) {
+                return self::$cookieName;
+            }
+            
+            $conf = baseconfig::getSecurityConfig();
+            if (!is_array($conf) || !isset($conf['cookieName'])) {
+                return false;
+            }
+            
+            self::$cookieName = 'fpcmsid'.$conf['cookieName'];
+            return self::$cookieName;
         }
         
         /**
@@ -49,7 +77,17 @@
          * @return string
          */
         public static function getPageTokenFieldName() {
-            return hash(self::defaultHashAlgo, 'pagetoken'.baseconfig::$rootPath.'_'.date('d-m-Y').'$'.http::getOnly('module'));
+            
+            if (self::$pageTokenName) {
+                return self::$pageTokenName;
+            }
+            
+            $conf = baseconfig::getSecurityConfig();
+            self::$pageTokenName    = (is_array($conf) && isset($conf['pageTokenBase']))
+                                    ? $conf['pageTokenBase']
+                                    : hash(self::defaultHashAlgo, 'fpcmpgtk'.baseconfig::$rootPath.'_'.date('d-m-Y').'$'.http::getOnly('module'));
+
+            return self::$pageTokenName;
         }
         
         /**
@@ -110,6 +148,27 @@
             unset($cache);
             
             return $str;
+        }
+
+        /**
+         * Config für Sicherheitsconfig
+         * @return boolean
+         * @since FPCM 3.6
+         */
+        public static function initSecurityConfig() {
+            
+            $secConf = baseconfig::getSecurityConfig();
+            if (is_array($secConf) && count($secConf)) {
+                return true;
+            }
+            
+            $secConf = [
+                'cookieName'    => hash(self::defaultHashAlgo, 'cookie'.uniqid('fpcm', true).baseconfig::$rootPath),
+                'pageTokenBase' => hash(self::defaultHashAlgo, 'pgToken'.baseconfig::$rootPath.'$'.http::getOnly('module'))
+            ];
+            
+            return file_put_contents(baseconfig::$configDir.'sec.php', '<?php'.PHP_EOL.' $config = '.var_export($secConf, true).PHP_EOL.'?>');
+            
         }
 
         /**

@@ -58,6 +58,8 @@
             $crypt = new \fpcm\classes\crypt();
             $crypt->initCrypt();
             
+            \fpcm\classes\security::initSecurityConfig();
+            
             die('1');
         }
 
