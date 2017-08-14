@@ -19,7 +19,7 @@
         'CRONJOB_UPDATES_NEWVERSION_TEXT' => "FanPress CM version {{version}} was just released and is available to update. Please log into your FanPress CM system to start update.\n\n{{acplink}}",
 
         'CRONJOB_DBBACKUPS_SUBJECT'       => 'Database dump created',
-        'CRONJOB_DBBACKUPS_TEXT'          => "A new database dump was created on {{filetime}} which includes the FanPress CM tables. The dump was saved in {{dumpfile}}."
+        'CRONJOB_DBBACKUPS_TEXT'          => "A new database dump was created on {{filetime}} which includes the FanPress CM tables. The dump was saved in {{dumpfile}} and attached to this message."
         
     );
 

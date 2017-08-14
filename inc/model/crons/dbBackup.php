@@ -91,9 +91,22 @@
 
             $text  = \fpcm\classes\baseconfig::$fpcmLanguage->translate('CRONJOB_DBBACKUPS_TEXT', array(
                 '{{filetime}}' => date(\fpcm\classes\baseconfig::$fpcmConfig->system_dtmask, $this->getLastExecTime()),
-                '{{dumpfile}}' => \fpcm\model\files\ops::removeBaseDir($this->dumpfile, true)
+                '{{dumpfile}}' => \fpcm\model\files\ops::removeBaseDir($this->dumpfile)
             ));
-            $email = new \fpcm\classes\email(\fpcm\classes\baseconfig::$fpcmConfig->system_email, \fpcm\classes\baseconfig::$fpcmLanguage->translate('CRONJOB_DBBACKUPS_SUBJECT'), $text);
+
+            $email = new \fpcm\classes\email(
+                \fpcm\classes\baseconfig::$fpcmConfig->system_email,
+                \fpcm\classes\baseconfig::$fpcmLanguage->translate('CRONJOB_DBBACKUPS_SUBJECT'),
+                $text
+            );
+
+            if (filesize($this->dumpfile) <= \fpcm\classes\baseconfig::memoryLimit() / 8) {                
+                $email->setAttachments([
+                    $this->dumpfile
+                ]);
+            }
+            
+
             $email->submit();
             
             return true;

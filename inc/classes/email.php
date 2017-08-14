@@ -1,13 +1,4 @@
 <?php
-    /**
-     * FanPress CM e-mail object
-     * 
-     * Objekt für Verwaltung einer E-Mail
-     * 
-     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2016, Stefan Seehafer
-     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     */
 
     namespace fpcm\classes;
 
@@ -15,7 +6,9 @@
      * E-Mail-Objekt
      * 
      * @package fpcm\classes\email
-     * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */ 
     final class email {
 
@@ -62,10 +55,23 @@
         private $headers    = [];
 
         /**
+         * E-Mail-Anhänge
+         * @var array
+         * @since FPCM 3.6
+         */
+        private $attachments = [];
+
+        /**
          * HTML-E-Mail-Status
          * @var bool
          */
         private $html       = false;
+
+        /**
+         * PHPMailer Object
+         * @var \PHPMailer
+         */
+        private $mailer     = null;
 
         /**
          * Konstruktor
@@ -90,7 +96,7 @@
          * Empfänger auslesen
          * @return sring
          */
-        function getTo() {
+        public function getTo() {
             return $this->to;
         }
 
@@ -98,7 +104,7 @@
          * Absender auslesen
          * @return sring
          */
-        function getFrom() {
+        public function getFrom() {
             return $this->from;
         }
 
@@ -106,7 +112,7 @@
          * Betreff auslesen
          * @return sring
          */
-        function getSubject() {
+        public function getSubject() {
             return $this->subject;
         }
 
@@ -114,15 +120,24 @@
          * E-Mail-Inhalt auslesen
          * @return sring
          */
-        function getText() {
+        public function getText() {
             return $this->text;
+        }
+
+        /**
+         * Array mit Dateipfaden der Anhänge auslesen
+         * @return array
+         * @since FPCN 3.6
+         */
+        public function getAttachments() {
+            return $this->attachments;
         }
 
         /**
          * HTMl-E-Mail ja/nein
          * @return bool
          */
-        function isHtml() {
+        public function isHtml() {
             return $this->html;
         }
 
@@ -130,7 +145,7 @@
          * Empfänger setzen
          * @param sring $to
          */
-        function setTo($to) {
+        public function setTo($to) {
             $this->to = $to;
         }
 
@@ -138,7 +153,7 @@
          * Absender setzen
          * @param sring $from
          */
-        function setFrom($from) {
+        public function setFrom($from) {
             $this->from = $from;
         }
 
@@ -146,7 +161,7 @@
          * Betreff setzen
          * @param sring $subject
          */
-        function setSubject($subject) {
+        public function setSubject($subject) {
             $this->subject = $subject;
         }
 
@@ -154,7 +169,7 @@
          * E-Mail-Inhalt setzen
          * @param sring $text
          */
-        function setText($text) {
+        public function setText($text) {
             $this->text = $text;
         }
 
@@ -162,23 +177,24 @@
          * E-Mail- als HTML-E-Mail markieren
          * @param bool $html
          */
-        function setHtml($html) {
+        public function setHtml($html) {
             $this->html = $html;
         }
 
+        /**
+         * Array mit Pfaden der Anhänge setzen
+         * @param array $attachments
+         * @since FPCN 3.6
+         */
+        public function setAttachments(array $attachments) {
+            $this->attachments = $attachments;
+        }
+        
         /**
          * Versendet E-Mail
          * @return boolean
          */
         public function submit() {
-
-            $this->headers['headerFrom']   = 'FROM: '.$this->from;
-            $this->headers['headerMailer'] = 'X-Mailer: FanPressCM'.$this->config->system_version.'/PHP'.PHP_VERSION;
-
-            if ($this->html) {
-                $this->headers['headerMime']    = 'MIME-Version: 1.0';
-                $this->headers['headerContent'] = 'Content-type: text/html; charset=utf-8';
-            }
 
             $eventData = $this->events->runEvent('emailSubmit', array(
                 'headers'     => $this->headers,
@@ -186,16 +202,46 @@
                     'to'      => $this->to,
                     'from'    => $this->from,
                     'subject' => utf8_decode($this->subject),
-                    'text'    => ($this->html ? $this->text : utf8_decode($this->text))
-                )
+                    'text'    => ($this->html ? $this->text : utf8_decode($this->text)),
+                ),
+                'attachments' => $this->attachments
             ));
 
-            $this->headers = $eventData['headers'];
+            $this->headers      = $eventData['headers'];
+            $this->attachments  = $eventData['attachments'];
             foreach ($eventData['maildata'] as $key => $value) {
                 $this->$key = $value;
             }
 
-            return call_user_func([$this, 'submit'.($this->config->smtp_enabled ? 'Smtp' : 'Php')]);
+            $this->getMailerObj();
+
+            $recipients   = explode('; ', $this->to);
+            foreach ($recipients as $recipient) {
+                $recipient = explode(' <', $recipient, 3);
+                $this->mailer->addAddress($recipient[0], isset($recipient[1]) ? trim(str_replace(['<', '>'], '', $recipient[1])) : '');
+            }
+
+            $this->mailer->Subject = $this->subject;
+            $this->mailer->Body    = $this->text;
+            if ($this->html) {
+                $this->mailer->AltBody = $this->mailer->html2text($this->text);
+            }
+            $this->mailer->XMailer = 'FanPressCM'.$this->config->system_version;
+            $this->mailer->CharSet = 'utf-8';
+
+            if (count($this->headers)) {
+                foreach ($this->headers as $name => $value) {
+                    $this->mailer->addCustomHeader($name, $value);
+                }
+            }
+
+            if (count($this->attachments)) {
+                foreach ($this->attachments as $attachment) {
+                    $this->mailer->addAttachment($attachment);
+                }
+            }
+
+            return call_user_func([$this, 'submit'.($this->config->smtp_enabled ? 'Smtp' : 'Php')]);            
         }
 
         /**
@@ -205,37 +251,43 @@
          */
         public function checkSmtp() {
 
-            $mail = $this->getMailerObj();
-
-            $autoEncryption = ($this->config->smtp_settings['encr'] === 'auto' ? true : false);
-
-            $mail->Host        = $this->config->smtp_settings['srvurl'];
-            $mail->Username    = $this->config->smtp_settings['user'];
-            $mail->Password    = $this->config->smtp_settings['pass'];
-            $mail->Port        = $this->config->smtp_settings['port'];
-            $mail->SMTPSecure  = !$autoEncryption ? $this->config->smtp_settings['encr'] : '';
-            $mail->SMTPAutoTLS = $autoEncryption;
-            $mail->SMTPAuth    = ($this->config->smtp_settings['user'] && $this->config->smtp_settings['pass']) ? true : false;
+            if (!$this->config->smtp_enabled) {
+                return false;
+            }
             
-            if (!$mail->smtpConnect()) {
+            $this->getMailerObj();
+            $this->mailer->isSMTP();
+
+            $autoEncryption            = ($this->config->smtp_settings['encr'] === 'auto' ? true : false);
+
+            $this->mailer->Host        = $this->config->smtp_settings['srvurl'];
+            $this->mailer->Username    = $this->config->smtp_settings['user'];
+            $this->mailer->Password    = $this->config->smtp_settings['pass'];
+            $this->mailer->Port        = $this->config->smtp_settings['port'];
+            $this->mailer->SMTPSecure  = !$autoEncryption ? $this->config->smtp_settings['encr'] : '';
+            $this->mailer->SMTPAutoTLS = $autoEncryption;
+            $this->mailer->SMTPAuth    = ($this->config->smtp_settings['user'] && $this->config->smtp_settings['pass']) ? true : false;
+            
+            if (!$this->mailer->smtpConnect()) {
+                trigger_error("Unable to connect to mail server with given setting.----------\n\n{$this->mailer->ErrorInfo}");
                 return false;
             }
 
-            $mail->smtpClose();
+            $this->mailer->smtpClose();
 
             return true;
             
         }
 
         /**
-         * E-Mail versenden via PHP mail() Funktion
+         * E-Mail versenden via PHP versenden
          * @return boolean
          * @since FPCM 3.5
          */
         private function submitPhp() {
 
-            if (!mail($this->to, $this->subject, $this->text, implode(PHP_EOL, $this->headers))) {
-                trigger_error("Unable to send e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}");
+            if (!$this->mailer->send()) {
+                trigger_error("Unable to send PHP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$this->mailer->ErrorInfo}");
                 return false;
             }
 
@@ -248,39 +300,21 @@
          * @since FPCM 3.5
          */
         private function submitSmtp() {
-
-            $mail = $this->getMailerObj();
-
-            $recipients   = explode('; ', $this->to);
-            foreach ($recipients as $recipient) {
-                $recipient = explode(' <', $recipient, 3);
-                $mail->addAddress($recipient[0], isset($recipient[1]) ? trim(str_replace(['<', '>'], '', $recipient[1])) : '');
-            }
-
-            $mail->Subject = $this->subject;
-            $mail->Body    = $this->text;
-            $mail->XMailer = $this->headers['headerMailer'];
-
-            unset($this->headers['headerFrom'], $this->headers['headerMailer'],  $this->headers['headerMime'], $this->headers['headerContent']);
-            
-            if (count($this->headers)) {
-                foreach ($this->headers as $name => $value) {
-                    $mail->addCustomHeader($name, $value);
-                }
-            }
             
             $autoEncryption = ($this->config->smtp_settings['encr'] === 'auto' ? true : false);
             
-            $mail->Host        = $this->config->smtp_settings['srvurl'];
-            $mail->Username    = $this->config->smtp_settings['user'];
-            $mail->Password    = $this->config->smtp_settings['pass'];
-            $mail->Port        = $this->config->smtp_settings['port'];
-            $mail->SMTPSecure  = !$autoEncryption ? $this->config->smtp_settings['encr'] : '';
-            $mail->SMTPAutoTLS = $autoEncryption;
-            $mail->SMTPAuth    = ($this->config->smtp_settings['user'] && $this->config->smtp_settings['pass']) ? true : false;
+            $this->mailer->Host        = $this->config->smtp_settings['srvurl'];
+            $this->mailer->Username    = $this->config->smtp_settings['user'];
+            $this->mailer->Password    = $this->config->smtp_settings['pass'];
+            $this->mailer->Port        = $this->config->smtp_settings['port'];
+            $this->mailer->SMTPSecure  = !$autoEncryption ? $this->config->smtp_settings['encr'] : '';
+            $this->mailer->SMTPAutoTLS = $autoEncryption;
+            $this->mailer->SMTPAuth    = ($this->config->smtp_settings['user'] && $this->config->smtp_settings['pass']) ? true : false;
 
-            if (!$mail->send()) {
-                trigger_error("Unable to send SMTP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$mail->ErrorInfo}");
+            $this->mailer->isSMTP();
+
+            if (!$this->mailer->send()) {
+                trigger_error("Unable to send SMTP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$this->mailer->ErrorInfo}");
                 return false;
             }
 
@@ -290,7 +324,7 @@
 
         /**
          * Erzeugt neues PHPMailer-Objekt
-         * @return \PHPMailer
+         * @return boolean
          * @since FPCM 3.5
          */
         private function getMailerObj() {
@@ -298,13 +332,12 @@
             require_once loader::libGetFilePath('PHPMailer', 'class.phpmailer.php');
             require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');            
 
-            $mail = new \PHPMailer();
-            $mail->isSMTP();
-            $mail->isHTML($this->html);
-            $mail->setFrom($this->config->smtp_settings['addr']);
-            $mail->setLanguage($this->config->system_lang);
+            $this->mailer = new \PHPMailer();
+            $this->mailer->isHTML($this->html);
+            $this->mailer->setFrom($this->config->smtp_settings['addr']);
+            $this->mailer->setLanguage($this->config->system_lang);
 
-            return $mail;
+            return true;
 
         }
 

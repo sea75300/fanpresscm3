@@ -18,7 +18,7 @@
         'CRONJOB_UPDATES_NEWVERSION_TEXT' => "Es ist eine neue Version {{version}} von FanPress CM verfügbar. Bitte melde dich im ACP an, um das Update durchzuführen.\n\n{{acplink}}",
 
         'CRONJOB_DBBACKUPS_SUBJECT'       => 'Datenbank-Sicherung wurde erzeugt',
-        'CRONJOB_DBBACKUPS_TEXT'          => "Um {{filetime}} wurde durch den Cronjob eine Sicherung der FanPress CM Datenbank-Tabellen erzeugt. Die Datei findest du unter {{dumpfile}}."
+        'CRONJOB_DBBACKUPS_TEXT'          => "Um {{filetime}} wurde durch den Cronjob eine Sicherung der FanPress CM Datenbank-Tabellen erzeugt. Die Datei findest du unter {{dumpfile}} und als Anhang an dieser E-Mail."
         
     );
 

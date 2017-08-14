@@ -46,7 +46,6 @@ fpcm.system = {
 jQuery.noConflict();
 jQuery(document).ready(function () {
 
-    fpcmAjax = new fpcmAjaxHandler();
     fpcmJs   = new fpcmJs();
 
     jQuery.each(fpcm, function(idx, object) {
