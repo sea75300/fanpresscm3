@@ -50,11 +50,6 @@
                 $this->cache->cleanup();
                 $this->redirect('smileys/list', array('added' => 1));
             }
-
-            $this->view->addJsVars([
-                'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-smileys',
-                'fpcmFieldSetAutoFocus'      => 'smileycode'
-            ]);
             
             return true;            
         }
@@ -67,12 +62,26 @@
             }
 
             $smileyList = new \fpcm\model\files\smileylist();
-            
+
             $files = [];
             foreach ($smileyList->getFolderList() as $file) {
-                $files[] = basename($file);
+                
+                $fileName   = basename($file);
+                $url        = \fpcm\classes\baseconfig::$smileyRootPath.$fileName;
+                
+                $files[] = [
+                    'label' => $url,
+                    'value' => $fileName
+                ];
             }
+            
+            $this->view->addJsVars([
+                'fpcmSmileyFiles'            => $files,
+                'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-smileys',
+                'fpcmFieldSetAutoFocus'      => 'smileycode'
+            ]);
 
+            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'smileys.js']);
             $this->view->setHelpLink('hl_options');
             $this->view->assign('smiley', $this->smiley);
             $this->view->assign('files', $files);

@@ -12,18 +12,13 @@ var fpcmJs = function () {
     
     var self = this;
     
-    this.showLoader = function(show, addtext) {
-        console.warn('Using "fpcm.ui.showLoader" class is deprecated as of version 3.5! Use "fpcm.ui.showLoader" instead.');
-        fpcm.ui.showLoader(show, addtext);
-    };    
-    
     this.clearCache = function (params) {
         
         if (!params) {
             params = {};
         }
-        
-        self.showLoader(true);
+
+        fpcm.ui.showLoader(true);
 
         fpcm.ajax.get('cache', {
             data: params,
@@ -115,7 +110,7 @@ var fpcmJs = function () {
             return false;
         }
 
-        self.showLoader(true);
+        fpcm.ui.showLoader(true);
 
         fpcm.ajax.post('articles/search', {
             data: sParams,

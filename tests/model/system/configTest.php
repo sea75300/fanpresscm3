@@ -8,11 +8,6 @@ class configTest extends testBase {
      * @var fpcm\model\system\config
      */
     protected $object;
-    
-    /**
-     * @var fpcm\classes\cache
-     */
-    protected $cache;
 
     public function setUp() {
         $this->object = new fpcm\model\system\config(false, false);

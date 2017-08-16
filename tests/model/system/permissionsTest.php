@@ -8,11 +8,6 @@ class permissionsTest extends testBase {
      * @var fpcm\model\system\permissions
      */
     protected $object;
-    
-    /**
-     * @var fpcm\classes\cache
-     */
-    protected $cache;
 
     public function setUp() {
         

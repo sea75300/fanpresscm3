@@ -398,6 +398,19 @@
         public function getArticleLink() {
             return $this->config->system_url.'?module=fpcm/article&id='.$this->articleid.'#comments';
         }
+
+        /**
+         * 
+         * @return boolean
+         * @since FPCM 3.6
+         */
+        public function prepareDataSave() {
+            
+            $search = ['onload', 'onclick', 'onblur', 'onkey', 'onmouse'];
+            $this->text = str_replace($search, 'forbidden', $this->text);
+
+            return true;
+        }
         
         /**
          * Führt Ersetzung von gesperrten Texten in Kommentar-Daten durch

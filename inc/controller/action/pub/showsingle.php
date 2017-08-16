@@ -467,6 +467,7 @@
                 $this->newComment->setArticleid($this->articleId);
                 $this->newComment->setCreatetime($timer);
                 $this->newComment->setSpammer((!$this->session->exists() && $this->captcha->checkExtras() ? true : false));
+                $this->newComment->prepareDataSave();
 
                 if (!$this->newComment->save()) {
                     $this->view->addErrorMessage('SAVE_FAILED_COMMENT');

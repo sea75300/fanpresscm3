@@ -1244,6 +1244,16 @@ div.fpcm-fpcm-editor-selectbox {
     line-height: 25px;
 }
 
+li.fpcm-ui-smileylist-preview {
+    line-height: 30px;
+}
+
+img.fpcm-ui-smileylist-preview {
+    max-width:30px;
+    max-height:30px;
+    margin-right: 0.4em;
+}
+
 .fpcm-editor-htmlsmiley {
     cursor: pointer;
 }
@@ -1358,6 +1368,12 @@ table.fpcm-module-manager td.module-manager-list-td7 {
 
 .ui-accordion.ui-state-disabled {
     opacity: 1;
+}
+
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 div.fpcm-accordion-pkgmanager ul {
