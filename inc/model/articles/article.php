@@ -781,6 +781,22 @@
             return $revisions;
 
         }
+        
+        /**
+         * Anzahl Revisionen des Artikels
+         * @return array
+         * @since FPCM 3.6
+         */
+        public function getRevisionsCount() {
+
+            return $this->dbcon->count(
+                \fpcm\classes\database::tableRevisions,
+                'id',
+                'article_id = ? ',
+                [$this->id]
+            );
+
+        }
 
         /**
          * Lädt Revision eines Artikels

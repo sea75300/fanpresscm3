@@ -217,15 +217,24 @@ fpcm.editor = {
             fpcmFileManagerUrlMode = 2;
             return false;
         });
-        
-        jQuery('.fpcm-ui-commentlist-link').click(function () {
-            fpcm.ui.showLoader(false);
-            fpcm.editor.showCommentLayer(jQuery(this).attr('href'));
-            return false;
-        });
+
 
         fpcm.ui.checkboxradio('#fpcm-dialog-editor-extended .fpcm-ui-input-checkbox', {
             icon: false
+        });
+        
+        fpcm.ui.tabs('#fpcm-editor-tabs', {
+            beforeLoad: function(event, ui) {
+                fpcm.ui.showLoader(true);
+            },
+            load: function(event, ui) {
+                fpcm.editor.initCommentListActions();
+                fpcm.ui.resize();
+                fpcmJs.assignButtons();
+                fpcm.ui.assignSelectmenu();
+                fpcm.ui.showLoader(false);
+            },
+            addTabScroll: true
         });
 
         /**
@@ -1182,6 +1191,16 @@ fpcm.editor = {
                 fpcmCheckLastState = res.code;
             }
         });            
+
+    },
+    
+    initCommentListActions: function () {
+        
+        jQuery('.fpcm-ui-commentlist-link').click(function () {
+            fpcm.ui.showLoader(false);
+            fpcm.editor.showCommentLayer(jQuery(this).attr('href'));
+            return false;
+        });
 
     }
 };

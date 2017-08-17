@@ -18,3 +18,12 @@
         </tr>
     <?php endforeach; ?>
 </table>
+
+<?php if ($revisionPermission) : ?>                
+<div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+    <div class="fpcm-ui-margin-center">
+        <?php fpcm\model\view\helper::submitButton('articleRevisionRestore', 'EDITOR_REVISION_RESTORE', 'fpcm-ui-revision-restore fpcm-loader'); ?>
+        <?php fpcm\model\view\helper::deleteButton('revisionDelete'); ?>
+    </div>
+</div>
+<?php endif; ?>

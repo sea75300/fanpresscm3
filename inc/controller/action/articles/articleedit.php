@@ -124,18 +124,10 @@
             $this->view->assign('showRevisions', true);
             $this->view->assign('postponedTimer', $this->article->getCreatetime());
             $this->view->assign('users', $this->userList->getUsersByIds(array($this->article->getCreateuser(), $this->article->getChangeuser())));
-            $this->view->assign('commentCount', array_sum($this->commentList->countComments(array($this->article->getId()))));
-            
-            $search = new \fpcm\model\comments\search();
-            $search->articleid  = $this->article->getId();
-            $search->searchtype = 0;
+            $this->view->assign('commentCount', array_sum($this->commentList->countComments( [$this->article->getId()] )));
 
-            $this->view->assign('comments', $this->commentList->getCommentsBySearchCondition($search));
             $this->view->assign('commentsMode', 2);
-            
-            $revisions = $this->article->getRevisions();
-            $this->view->assign('revisions', $revisions);
-            $this->view->assign('revisionCount', count($revisions));
+            $this->view->assign('revisionCount', $this->article->getRevisionsCount());
             $this->view->assign('revisionPermission', $this->permissions->check(array('article' => 'revisions')));
             
             $this->view->addJsVars([
@@ -198,10 +190,7 @@
             $this->view->assign('permEditOwn', $this->permissions->check(array('comment' => 'edit')));
             $this->view->assign('permEditAll', $this->permissions->check(array('comment' => 'editall')));
             $this->view->assign('currentUserId', $this->session->getUserId());
-            $this->view->assign('isAdmin', $this->session->getCurrentUser()->isAdmin());
-
-            $this->initCommentPermissions();
-            
+            $this->view->assign('isAdmin', $this->session->getCurrentUser()->isAdmin());            
         }
         
         /**
