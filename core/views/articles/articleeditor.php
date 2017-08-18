@@ -6,10 +6,10 @@
         <li><a href="#tabs-article"><?php $FPCM_LANG->write('ARTICLES_EDITOR'); ?></a></li>
         <?php endif; ?>
         <?php if ($showComments && !$isRevision) : ?>
-        <li><a href="<?php print \fpcm\classes\tools::getControllerLink('ajax/editor/editorlist', ['id' => $article->getId(), 'view' => 'comments']); ?>"><?php $FPCM_LANG->write('HL_COMMENTS_MNG'); ?> (<?php print $commentCount; ?>)</a></li>
+        <li><a href="<?php print $FPCM_BASELINK.\fpcm\classes\tools::getControllerLink('ajax/editor/editorlist', ['id' => $article->getId(), 'view' => 'comments']); ?>"><?php $FPCM_LANG->write('HL_COMMENTS_MNG'); ?> (<?php print $commentCount; ?>)</a></li>
         <?php endif; ?>
         <?php if ($showRevisions) : ?>
-        <li><a href="<?php print \fpcm\classes\tools::getControllerLink('ajax/editor/editorlist', ['id' => $article->getId(), 'view' => 'revisions']); ?>"><?php $FPCM_LANG->write('HL_ARTICLE_EDIT_REVISIONS'); ?> (<?php print $revisionCount; ?>)</a></li>
+        <li><a href="<?php print $FPCM_BASELINK.\fpcm\classes\tools::getControllerLink('ajax/editor/editorlist', ['id' => $article->getId(), 'view' => 'revisions']); ?>"><?php $FPCM_LANG->write('HL_ARTICLE_EDIT_REVISIONS'); ?> (<?php print $revisionCount; ?>)</a></li>
         <?php endif; ?>
     </ul>            
 
