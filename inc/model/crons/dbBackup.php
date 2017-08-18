@@ -100,7 +100,7 @@
                 $text
             );
 
-            if (filesize($this->dumpfile) <= \fpcm\classes\baseconfig::memoryLimit() / 8) {                
+            if (filesize($this->dumpfile) <= \fpcm\classes\baseconfig::memoryLimit(true) / 8) {                
                 $email->setAttachments([
                     $this->dumpfile
                 ]);
