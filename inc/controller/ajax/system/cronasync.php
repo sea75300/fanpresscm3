@@ -27,7 +27,13 @@
          * @return bool
          */
         public function request() {
-            return \fpcm\classes\baseconfig::asyncCronjobsEnabled();
+            
+            if (!\fpcm\classes\baseconfig::asyncCronjobsEnabled()) {
+                fpcmLogCron('Asynchronous cronjob execution was disabled');
+                return false;
+            }
+            
+            return true;
         }
         
         /**
