@@ -15,11 +15,11 @@
             return false;
         }
 
-        $class = str_replace(array('fpcm\\', '\\'), array('', DIRECTORY_SEPARATOR), $class);
+        $class       = str_replace(array('fpcm\\', '\\'), array('', DIRECTORY_SEPARATOR), $class);
         $includePath = fpcm\classes\baseconfig::$baseDir.DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARATOR.$class.'.php';
         
         if (file_exists($includePath)) {
-            include_once $includePath;
+            require $includePath;
             return true;   
         }
         
@@ -29,7 +29,7 @@
             if (!file_exists($includePath)) {
                 continue;
             }
-            include_once $includePath;
+            require $includePath;
             break;
         } 
         
@@ -60,7 +60,88 @@
 
         return true;
     }
-    
+
+    /**
+     * Systemlog schreiben
+     * @param mixed $data
+     * @return boolean
+     * @since FPCM 3.6
+     */
+    function fpcmLogSystem($data) {
+        
+        $data   = is_array($data) || is_object($data)
+                ? print_r($data, true)
+                : $data;
+
+        if (file_put_contents(\fpcm\classes\baseconfig::$logFiles['syslog'], json_encode(array('time' => date('Y-m-d H:i:s'),'text' => $data)).PHP_EOL, FILE_APPEND) === false) {
+            trigger_error('Unable to write data to system log');
+            return false;
+        }
+
+        return true;
+        
+    }
+
+    /**
+     * Datenbanklog schreiben
+     * @param mixed $data
+     * @return boolean
+     * @since FPCM 3.6
+     */
+    function fpcmLogSql($data) {
+        
+        $data   = is_array($data) || is_object($data)
+                ? print_r($data, true)
+                : $data;
+
+        if (file_put_contents(\fpcm\classes\baseconfig::$logFiles['dblog'], json_encode(array('time' => date('Y-m-d H:i:s'),'text' => $data)).PHP_EOL, FILE_APPEND) === false) {
+            trigger_error('Unable to write data to sql log');
+            return false;
+        }
+
+        return true;
+        
+    }
+
+    /**
+     * Paketmanagerlog schreiben
+     * @param string $packageName
+     * @param mixed $data
+     * @return boolean
+     * @since FPCM 3.6
+     */
+    function fpcmLogPackages($packageName, array $data) {
+        
+        if (file_put_contents(\fpcm\classes\baseconfig::$logFiles['pkglog'], json_encode(array('time' => date('Y-m-d H:i:s'), 'pkgname' => $packageName, 'text' => $data)).PHP_EOL, FILE_APPEND) === false) {
+            trigger_error('Unable to write data to package manager log');
+            return false;
+        }
+
+        return true;
+        
+    }
+
+    /**
+     * Cronlog schreiben
+     * @param mixed $data
+     * @return boolean
+     * @since FPCM 3.6
+     */
+    function fpcmLogCron($data) {
+        
+        $data   = is_array($data) || is_object($data)
+                ? print_r($data, true)
+                : $data;
+
+        if (file_put_contents(\fpcm\classes\baseconfig::$logFiles['cronlog'], json_encode(array('time' => date('Y-m-d H:i:s'),'text' => $data)).PHP_EOL, FILE_APPEND) === false) {
+            trigger_error('Unable to write data to cronlog');
+            return false;
+        }
+
+        return true;
+        
+    }
+
     /**
      * Debug-Ausgabe am Ende der Seite
      */

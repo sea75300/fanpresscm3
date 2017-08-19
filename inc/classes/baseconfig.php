@@ -338,7 +338,8 @@
                 'phplog'    => self::$logDir.'phplog.txt',
                 'syslog'    => self::$logDir.'syslog.txt',
                 'dblog'     => self::$logDir.'dblog.txt',
-                'pkglog'    => self::$logDir.'packages.txt'
+                'pkglog'    => self::$logDir.'packages.txt',
+                'cronlog'   => self::$logDir.'cronlog.txt'
             );
             
             

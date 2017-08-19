@@ -82,57 +82,49 @@
          * Lädt System-Log (Typ 1)
          */
         private function loadLog1() {
-            $view = new \fpcm\model\view\ajax('system', 'logs');
-            $view->assign('systemLogs', array_map('json_decode', \fpcm\classes\logs::syslogRead()));
-            $view->setExcludeMessages(true);
-            $view->initAssigns();
-            $view->render();            
+            $this->readStandard('system', 'systemLogs');
         }
         
         /**
          * Lädt PHP-Error-Log (Typ 2)
          */        
-        private function loadLog2() {
-            $view = new \fpcm\model\view\ajax('errors', 'logs');
-            $view->assign('errorLogs', array_map('json_decode', \fpcm\classes\logs::errorlogRead()));
-            $view->setExcludeMessages(true);
-            $view->initAssigns();
-            $view->render();            
+        private function loadLog2() {           
+            $this->readStandard('errors', 'errorLogs');
         }
         
         /**
          * Lädt Datenbank-Log (Typ 3)
          */
         private function loadLog3() {
-            $view = new \fpcm\model\view\ajax('database', 'logs');
-            $view->assign('databaseLogs', array_map('json_decode', \fpcm\classes\logs::sqllogRead()));
-            $view->setExcludeMessages(true);
-            $view->initAssigns();
-            $view->render();             
+            $this->readStandard('database', 'databaseLogs');
         }
         
         /**
          * Lädt Cronjob-Log (Typ 4)
          */
         private function loadLog4() {
-            $view = new \fpcm\model\view\ajax('packages', 'logs');
-            $view->assign('packagesLogs', array_map('json_decode', \fpcm\classes\logs::pkglogRead()));
-            $view->setExcludeMessages(true);
-            $view->initAssigns();
-            $view->render();   
+            $this->readStandard('packages', 'packagesLogs');
         }
         
         /**
          * Lädt Cronjob-Log (Typ 5)
          */
         private function loadLog5() {
-            $cronlist = new \fpcm\model\crons\cronlist();
-            $view = new \fpcm\model\view\ajax('cronjobs', 'logs');
-            $view->assign('cronjobList', $cronlist->getCronsData());
-            $view->assign('currentTime', time());
+            $this->readStandard('cronjobs', 'cronjobLogs');
+        }
+
+        /**
+         * Logdatei in standardmäßigem Weg behandeln
+         * @param string $tpl
+         * @param string $varName
+         */
+        private function readStandard($tpl, $varName) {
+            $logFile = new \fpcm\model\files\logfile($this->log);            
+            $view = new \fpcm\model\view\ajax($tpl, 'logs');
+            $view->assign($varName, $logFile->fetchData());
             $view->setExcludeMessages(true);
             $view->initAssigns();
-            $view->render();
+            $view->render();  
         }
 
     }

@@ -32,6 +32,7 @@
 
             $tempFiles = glob(\fpcm\classes\baseconfig::$tempDir.'*');
             if (!is_array($tempFiles) || !count($tempFiles)) {
+                fpcmLogCron('Nothing to do in '.\fpcm\classes\baseconfig::$tempDir);
                 return true;
             }
 
@@ -48,7 +49,8 @@
                 unlink($tempFile);
             }
 
-            \fpcm\classes\logs::syslogWrite('Temp files cleanup in '.\fpcm\classes\baseconfig::$tempDir);
+            fpcmLogCron('Temp files removed in '.\fpcm\classes\baseconfig::$tempDir);
+            
             return true;
         }
         

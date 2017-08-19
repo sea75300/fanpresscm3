@@ -56,12 +56,19 @@
                 return null;
             }
 
+            fpcmLogCron('Start cronjob "'.$cron->getCronName().'"...');
+            \fpcm\classes\timer::start(__METHOD__);
+
             $cron->setAsyncCurrent($async);
             $cron->run();
             
             $cron->updateLastExecTime();
+            
+            fpcmLogCron('Finished cronjob "'.$cron->getCronName().'" in '.\fpcm\classes\timer::cal(__METHOD__).' sec');
 
-            if (!is_null($cron->getReturnData())) return $cron->getReturnData();
+            if (!is_null($cron->getReturnData())) {
+                return $cron->getReturnData();
+            }
             
             return true;            
         }
@@ -83,8 +90,15 @@
                 return false;
             }
 
+            fpcmLogCron('Start cronjob "'.$cron->getCronName().'" via AJAX...');
+            \fpcm\classes\timer::start(__METHOD__);            
+
             $cron->run();
             $cron->updateLastExecTime();
+            
+            usleep(500000);
+
+            fpcmLogCron('Finished cronjob "'.$cron->getCronName().'" via AJAX in '.\fpcm\classes\timer::cal(__METHOD__).' sec');
             
             return true;            
         }

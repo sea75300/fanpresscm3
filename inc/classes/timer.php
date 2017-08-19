@@ -23,39 +23,43 @@
          * Start micro time
          * @var int
          */
-        private static $start = 0;
+        private static $start = [];
         
         /**
          * Stop micro time
          * @var int
          */
-        private static $stop = 0;
+        private static $stop = [];
 
         /**
          * Start timer
          */
-        public static function start() {
-            self::$start = microtime(true);
+        public static function start($which = 'sys') {
+            self::$start[$which] = microtime(true);
         }
 
         /**
          * stop timer
          */
-        public static function stop() {
-            self::$stop = microtime(true);
+        public static function stop($which = 'sys') {
+            self::$start[$which] = microtime(true);
         }
 
         /**
-         * Calc stiff, calls @see timer::stop if not called before
+         * Calc diff, calls @see timer::stop if not called before
          * @return int
          */
-        public static function cal() {
+        public static function cal($which = 'sys') {
             
-            if (!self::$stop) {
-                self::$stop = microtime(true);
+            if (!isset(self::$stop[$which]) || !self::$stop[$which]) {
+                self::$stop[$which] = microtime(true);
             }
             
-            return number_format(self::$stop - self::$start, 4);
+            if (self::$stop[$which] < self::$start[$which]) {
+                return number_format(self::$start[$which] - self::$stop[$which], 4);
+            }
+            
+            return number_format(self::$stop[$which] - self::$start[$which], 4);
         }
 
     }

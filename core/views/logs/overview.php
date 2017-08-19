@@ -11,6 +11,7 @@
                 <li><a href="<?php print $reloadBaseLink; ?>2"><?php $FPCM_LANG->write('HL_LOGS_ERROR'); ?></a></li>
                 <li><a href="<?php print $reloadBaseLink; ?>3"><?php $FPCM_LANG->write('HL_LOGS_DATABASE'); ?></a></li>
                 <li><a href="<?php print $reloadBaseLink; ?>4"><?php $FPCM_LANG->write('HL_LOGS_PACKAGES'); ?></a></li>
+                <li><a href="<?php print $reloadBaseLink; ?>5"><?php $FPCM_LANG->write('HL_LOGS_CRONJOBS'); ?></a></li>
                 <?php foreach ($customLogs as $customLog) : ?>
                 <li><a href="<?php print $reloadBaseLink.$customLog['id']; ?>"><?php $FPCM_LANG->write($customLog['title']); ?></a></li>
                 <?php endforeach; ?>
