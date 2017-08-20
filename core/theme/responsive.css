@@ -124,14 +124,6 @@
         width: 90%;
     }
     
-    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-ui-articlelist-comments,
-    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments,
-    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-times,
-    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-times,
-    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-meta {
-        width: 6em;
-    }
-    
     table.fpcm-ui-articles .fpcm-ui-editor-metabox-right {
         width: auto;
     }
@@ -206,8 +198,6 @@
         margin-bottom: 0.8em;
     }
     
-    table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-ui-articlelist-comments,
-    table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-ui-articlelist-comments,
     table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-times,
     table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-times,
     table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-meta,

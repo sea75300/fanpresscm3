@@ -196,7 +196,6 @@
 
             $this->view->assign('commentCount', $commentCounts);
             $this->view->assign('commentPrivateUnapproved', $this->commentList->countUnapprovedPrivateComments($this->getArticleListIds()));            
-            $this->view->assign('commentSum', $commentCounts && $this->articleCount ? array_sum($commentCounts) : 0);
             
             $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'articlelist.js']);
             

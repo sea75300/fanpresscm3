@@ -11,6 +11,11 @@ if (fpcm === undefined) {
 fpcm.articlelist = {
 
     init: function() {
+        
+        fpcm.ui.checkboxradio('.fpcm-ui-massedit-categories .fpcm-ui-input-checkbox', {
+            icon: false
+        });
+        
         fpcm.articlelist.initArticleSearch();
         fpcm.articlelist.clearArticleCache();
     },

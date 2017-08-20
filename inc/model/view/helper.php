@@ -500,6 +500,21 @@
         }
 
         /**
+         * CSS-basierter Badge
+         * @param array $params [class, value, title]
+         * @since FPCM 3.6
+         */
+        public static function badge(array $params) {
+            
+            if (!isset($params['class'])) {
+                $params['class'] = '';
+            }
+            
+            $params['title'] = self::$language->translate($params['title']);
+            print "<span class=\"fpcm-ui-badge {$params['class']}\" title=\"{$params['title']}\">{$params['value']}</span>\n";
+        }    
+
+        /**
          * IDs aufräumen
          * @param string $text ID-String
          * @return string

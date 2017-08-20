@@ -4,10 +4,12 @@
         <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-tags fa-fw fa-lg"></span></div>
         <div class="fpcm-ui-editor-extended-button"><label><?php $FPCM_LANG->write('TEMPLATE_ARTICLE_CATEGORYTEXTS'); ?></label></div>
         <div class="fpcm-ui-editor-extended-col">
-            <div class="fpcm-ui-buttonset">
-            <?php foreach ($massEditCategories as $name => $id) : ?>
-                <?php fpcm\model\view\helper::checkbox('categories[]', 'fpcm-ui-input-massedit-categories', $id, $name, 'cat'.$id, false); ?>
-            <?php endforeach; ?>
+            <div class="fpcm-ui-massedit-categories">
+                <div class="fpcm-ui-buttonset">
+                    <?php foreach ($massEditCategories as $name => $id) : ?>
+                        <?php fpcm\model\view\helper::checkbox('categories[]', 'fpcm-ui-input-massedit-categories', $id, $name, 'cat'.$id, false); ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
         <div class="fpcm-clear"></div>

@@ -3,7 +3,6 @@
         <th></th>
         <th><?php $FPCM_LANG->write('ARTICLE_LIST_TITLE'); ?></th>
         <th class="fpcm-ui-center"><?php $FPCM_LANG->write('HL_CATEGORIES_MNG'); ?></th>
-        <th class="fpcm-ui-center fpcm-ui-articlelist-comments"><?php $FPCM_LANG->write('HL_COMMENTS_MNG'); ?> (<?php print $commentSum; ?>)</th>
         <th class="fpcm-td-articlelist-meta"></th>
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
     </tr>
@@ -11,12 +10,11 @@
     <?php \fpcm\model\view\helper::notFoundContainer($list, 6); ?>
 
     <?php foreach($list AS $articleMonth => $articles) : ?>
-        <tr class="fpcm-td-spacer"><td colspan="6"></td></tr>
+        <tr class="fpcm-td-spacer"><td colspan="5"></td></tr>
         <tr>
             <th></th>
             <th><?php $FPCM_LANG->writeMonth(fpcm\model\view\helper::dateText($articleMonth, 'n', true)); ?> <?php print fpcm\model\view\helper::dateText($articleMonth, 'Y', true); ?> (<?php print count($articles); ?>)</th> 
             <th></th>
-            <th class="fpcm-ui-center fpcm-ui-articlelist-comments"></th>
             <th class="fpcm-td-articlelist-meta"></th>
             <th class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-allsub', 'fpcm-select-allsub', $articleMonth, '', 'fpcm-select-allsub'.$articleMonth, false); ?></th>
         </tr>
@@ -29,15 +27,22 @@
                     <?php \fpcm\model\view\helper::clearCacheButton($article->getArticleCacheParams(), $article->getEditPermission(), 'fpcm-ui-button-blank fpcm-article-cache-clear'); ?>
                 </td>
                 <td>
-                    <div class="fpcm-ui-ellipsis"><strong title="<?php print substr(\fpcm\model\view\helper::escapeVal(strip_tags($article->getContent())), 0, 128); ?>..."><?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?></strong></div>
+                    <div class="fpcm-ui-ellipsis">
+                        <strong title="<?php print substr(\fpcm\model\view\helper::escapeVal(strip_tags($article->getContent())), 0, 128); ?>...">
+                            <?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?>
+                        </strong>
+                        
+                    </div>
+
+                    <?php \fpcm\model\view\helper::badge([
+                        'value' => (isset($commentCount[$articleId]) ? $commentCount[$articleId] : 0),
+                        'title' => (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId] ? 'ARTICLE_LIST_COMMENTNOTICE' : 'HL_COMMENTS_MNG'),
+                        'class' => (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId] ? 'fpcm-ui-badge-red fpcm-ui-badge-comments' : 'fpcm-ui-badge-comments')]);
+                    ?>
+
                     <?php include dirname(__DIR__).'/times.php'; ?>
-                </td>
+                </td>                
                 <td><?php print implode(', ', $article->getCategories()); ?></td>
-                <td class="fpcm-ui-articlelist-comments">
-                    <?php print (isset($commentCount[$articleId])) ? $commentCount[$articleId] : 0; ?>
-                    <?php if (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId]) : ?>
-                    <span class="fa fa-comments-o fa-fw fa-lg fpcm-ui-important-text" title="<?php $FPCM_LANG->write('ARTICLE_LIST_COMMENTNOTICE'); ?>"></span><?php endif; ?>
-                </td>
                 <td class="fpcm-td-articlelist-meta"><?php include dirname(__DIR__).'/metainfo.php'; ?></td>
                 <td class="fpcm-td-select-row">
                 <?php if ($article->getEditPermission()) : ?>                    
