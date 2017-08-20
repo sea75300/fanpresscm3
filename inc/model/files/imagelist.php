@@ -114,7 +114,7 @@
 
                 if (filesize($folderFile) >= $filesizeLimit) {
                     $msgPath = ops::removeBaseDir($folderFile);
-                    \fpcm\classes\logs::syslogWrite("Skip filemanager thumbnail generation for {$msgPath} because of image dimension. You may reduce file size?");
+                    fpcmLogSystem("Skip filemanager thumbnail generation for {$msgPath} because of image dimension. You may reduce file size?");
                     continue;
                 }
                 

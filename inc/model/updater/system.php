@@ -92,7 +92,7 @@
 
             $version = version_compare($this->config->system_version, $this->remoteData['version'], '<');
             if ($version && isset($this->remoteData['phpversion']) && version_compare(phpversion(), $this->remoteData['phpversion'], '<')) {
-                \fpcm\classes\logs::syslogWrite('FanPress CM version '.$this->remoteData['version'].' is available, but requires newer PHP version '.$this->remoteData['phpversion'].' or higher.');
+                fpcmLogSystem('FanPress CM version '.$this->remoteData['version'].' is available, but requires newer PHP version '.$this->remoteData['phpversion'].' or higher.');
                 return true;
             }
             

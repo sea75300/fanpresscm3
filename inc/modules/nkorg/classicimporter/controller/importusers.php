@@ -62,7 +62,7 @@
             }
             
             if (!count($ids)) {
-                \fpcm\classes\logs::syslogWrite('Classic Importer: No user ids found, maybe no users imported...');
+                fpcmLogSystem('Classic Importer: No user ids found, maybe no users imported...');
                 die('0');
             }
             

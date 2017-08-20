@@ -46,7 +46,7 @@
             }
             
             if (!count($ids)) {
-                \fpcm\classes\logs::syslogWrite('Classic Importer: No category ids found, maybe no categories imported...');
+                fpcmLogSystem('Classic Importer: No category ids found, maybe no categories imported...');
                 die('0');
             }
             

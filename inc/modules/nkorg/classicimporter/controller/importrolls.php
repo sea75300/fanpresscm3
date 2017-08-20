@@ -32,7 +32,7 @@
             }
             
             if (!count($ids)) {
-                \fpcm\classes\logs::syslogWrite('Classic Importer: No user roll ids found, maybe no user rolls imported...');
+                fpcmLogSystem('Classic Importer: No user roll ids found, maybe no user rolls imported...');
                 die('0');
             }
             

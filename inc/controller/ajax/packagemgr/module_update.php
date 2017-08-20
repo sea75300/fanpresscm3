@@ -89,10 +89,10 @@
                     $res = $pkg->download();
                     $from = $pkg->getRemoteFile();
                     if ($res === true) {
-                        \fpcm\classes\logs::syslogWrite('Downloaded module package successfully from '.$from);
+                        fpcmLogSystem('Downloaded module package successfully from '.$from);
                         $this->returnData['nextstep'] = 2;
                     } else {
-                        \fpcm\classes\logs::syslogWrite('Error while downloading module package from'.$from);
+                        fpcmLogSystem('Error while downloading module package from'.$from);
                         $this->returnData['nextstep'] = 5;
                     }
                     break;
@@ -100,10 +100,10 @@
                     $res = $pkg->extract();
                     $from = \fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile());
                     if ($res === true) {
-                        \fpcm\classes\logs::syslogWrite('Extracted module package successfully from '.$from);
+                        fpcmLogSystem('Extracted module package successfully from '.$from);
                         $this->returnData['nextstep'] = 3;
                     } else {
-                        \fpcm\classes\logs::syslogWrite('Error while extracting module package from '.$from);
+                        fpcmLogSystem('Error while extracting module package from '.$from);
                         $this->returnData['nextstep'] = 5;
                     }
                     break;
@@ -112,11 +112,11 @@
                     $dest = \fpcm\model\files\ops::removeBaseDir(\fpcm\classes\baseconfig::$baseDir).$pkg->getCopyDestination().$pkg->getKey();
                     $from = \fpcm\model\files\ops::removeBaseDir($pkg->getExtractPath().basename($pkg->getKey()));
                     if ($res === true) {                        
-                        \fpcm\classes\logs::syslogWrite('Moved module package content successfully from '.$from.' to '.$dest);
+                        fpcmLogSystem('Moved module package content successfully from '.$from.' to '.$dest);
                         $this->returnData['nextstep'] = 4;
                     } else {
-                        \fpcm\classes\logs::syslogWrite('Error while moving module package content from '.$from.' to '.$dest);
-                        \fpcm\classes\logs::syslogWrite(implode(PHP_EOL, $pkg->getCopyErrorPaths()));
+                        fpcmLogSystem('Error while moving module package content from '.$from.' to '.$dest);
+                        fpcmLogSystem(implode(PHP_EOL, $pkg->getCopyErrorPaths()));
                         $this->returnData['nextstep'] = 5;
                     }
                     break;
@@ -149,15 +149,15 @@
                     $this->returnData['nextstep'] = 5;
 
                     if ($res === true) {
-                        \fpcm\classes\logs::syslogWrite('Run final module install steps successfully for '.$pkg->getKey());
+                        fpcmLogSystem('Run final module install steps successfully for '.$pkg->getKey());
                     } else {
-                        \fpcm\classes\logs::syslogWrite('Error while running final module install steps for '.$pkg->getKey());
+                        fpcmLogSystem('Error while running final module install steps for '.$pkg->getKey());
                     }
                     break;
                 case 5 :
                     if ($this->canConnect) {
                         $pkg->loadPackageFileListFromTemp();
-                        \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
+                        fpcmLogPackages($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
                         $pkg->cleanup();
                     }
                     

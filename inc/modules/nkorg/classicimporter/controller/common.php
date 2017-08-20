@@ -30,7 +30,7 @@
             try {
                 $db = new \fpcm\classes\database($databaseInfo, false);                
             } catch (\PDOException $exc) {
-                \fpcm\classes\logs::sqllogWrite($exc->getMessage());
+                fpcmLogSql($exc->getMessage());
                 return 0;
             }
             

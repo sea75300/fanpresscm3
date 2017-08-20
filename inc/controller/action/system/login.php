@@ -120,7 +120,7 @@
                 if ($user->getEmail() == $this->getRequestVar('email') && $user->resetPassword()) {
                     $this->view->addNoticeMessage('LOGIN_PASSWORD_RESET');
                 } else {
-                    \fpcm\classes\logs::syslogWrite("Passwort reset for user id {$user->getUsername()} failed.");
+                    fpcmLogSystem("Passwort reset for user id {$user->getUsername()} failed.");
                     $this->view->addErrorMessage('LOGIN_PASSWORD_RESET_FAILED');
                 }
                 

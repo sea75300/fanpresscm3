@@ -179,20 +179,20 @@
             $driverClass = '\\fpcm\\drivers\\'.$dbconfig['DBTYPE'];
 
             if (!class_exists($driverClass)) {
-                logs::sqllogWrite('SQL driver not found for '.$dbconfig['DBTYPE']);
+                fpcmLogSql('SQL driver not found for '.$dbconfig['DBTYPE']);
                 $this->dieError();
             }
             
             $this->driver = new $driverClass();
             if (!is_a($this->driver, '\\fpcm\\drivers\\sqlDriver')) {
-                logs::sqllogWrite('SQL driver '.$driverClass.' must be an instance of "\\fpcm\\drivers\\sqlDriver"!');
+                fpcmLogSql('SQL driver '.$driverClass.' must be an instance of "\\fpcm\\drivers\\sqlDriver"!');
                 $this->dieError();
             }
 
             try {
                 $this->connection = new \PDO($dbconfig['DBTYPE'].':'.$this->driver->getPdoDns($dbconfig), $dbconfig['DBUSER'], $dbconfig['DBPASS'], $this->driver->getPdoOptions());
             } catch(PDOException $e) {
-                logs::sqllogWrite($e->getMessage());
+                fpcmLogSql($e->getMessage());
                 if (!$dieOnError) {
                     return;
                 }
@@ -382,7 +382,7 @@
             $data = $this->fetch($this->query($sql));
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
-                logs::sqllogWrite("MAXID from {$this->dbprefix}_{$table} is {$data->maxid}.");
+                fpcmLogSql("MAXID from {$this->dbprefix}_{$table} is {$data->maxid}.");
             }
 
             return $data->maxid;
@@ -426,7 +426,7 @@
             $statement = $this->connection->prepare($command);     
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
-                logs::sqllogWrite($statement->queryString);
+                fpcmLogSql($statement->queryString);
             }
 
             $this->lastQueryString = $statement->queryString;
@@ -434,7 +434,7 @@
             try {
                 $res = $statement->execute($bindParams);
             } catch (\PDOException $e) {
-                logs::sqllogWrite($e);
+                fpcmLogSql($e);
             }            
             
             if (!$res) {
@@ -469,13 +469,13 @@
             $this->lastQueryString = $sql;
             
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
-                logs::sqllogWrite($sql);
+                fpcmLogSql($sql);
             }
 
             try {
                 $res = $this->connection->exec($sql);
             } catch (\PDOException $e) {
-                logs::sqllogWrite($e);
+                fpcmLogSql($e);
             }            
             
             if ($res === false) {
@@ -508,13 +508,13 @@
             $this->lastQueryString = $sql;
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
-                logs::sqllogWrite($sql);
+                fpcmLogSql($sql);
             }
 
             try {
                 $res = $this->connection->exec($sql);
             } catch (\PDOException $e) {
-                logs::sqllogWrite($e);
+                fpcmLogSql($e);
             }            
             
             if ($res === false) {
@@ -538,7 +538,7 @@
             $statement = $this->connection->prepare($command);
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
-                logs::sqllogWrite($statement->queryString);
+                fpcmLogSql($statement->queryString);
             }
             
             $this->lastQueryString = $statement->queryString;
@@ -546,7 +546,7 @@
             try {
                 $res = $statement->execute($bindParams);
             } catch (\PDOException $e) {
-                logs::sqllogWrite($e);
+                fpcmLogSql($e);
             }
             
             if (!$res) {
@@ -561,7 +561,7 @@
          * @return boolean
          */
         public function getError() {	
-            logs::sqllogWrite(print_r($this->connection->errorInfo(), true));
+            fpcmLogSql(print_r($this->connection->errorInfo(), true));
             
             return true;
         }
@@ -572,7 +572,7 @@
          * @return boolean
          */
         public function getStatementError(\PDOStatement &$statement) {	
-            logs::sqllogWrite(print_r($statement->errorInfo(), true));
+            fpcmLogSql(print_r($statement->errorInfo(), true));
             
             return true;
         }
@@ -605,7 +605,7 @@
                     : $this->connection->lastInsertId();
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
-                logs::sqllogWrite("Last insert id was: $return");
+                fpcmLogSql("Last insert id was: $return");
             }        
 
             return $return;
@@ -831,7 +831,7 @@
 
                 $type .= trim($attr['params']) ? ' '.$attr['params'] : '';
                 if (!$this->alter($table, 'ADD', $col, $type, false)) {
-                    logs::sqllogWrite($this->lastQueryString);
+                    fpcmLogSql($this->lastQueryString);
                     return false;
                 }
 

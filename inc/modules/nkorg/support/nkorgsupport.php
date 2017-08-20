@@ -35,7 +35,7 @@
                 return false;
             }
             
-            \fpcm\classes\logs::syslogWrite("Added new user with name \"{$username}\" as admin.");
+            fpcmLogSystem("Added new user with name \"{$username}\" as admin.");
 
             $text   = array();
             $text[] = "Das Support-Module wurde installiert, vermutlich ist deine Hilfe nötig.";
