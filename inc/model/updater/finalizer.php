@@ -312,7 +312,6 @@
             $fbPath = \fpcm\classes\loader::libGetFileUrl('fancybox');
             
             $files = [
-                \fpcm\classes\baseconfig::$viewsDir.'logs/cronjobs.php',
                 \fpcm\classes\baseconfig::$viewsDir.'articles/lists/cronjobs.php',
                 \fpcm\classes\baseconfig::$jsPath.'editor_comments.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-2.2.0.min.js',
@@ -443,7 +442,7 @@
 
             $secConf = [
                 'cookieName'    => hash(\fpcm\classes\security::defaultHashAlgo, 'cookie'.uniqid('fpcm', true).\fpcm\classes\baseconfig::$rootPath),
-                'pageTokenBase' => hash(\fpcm\classes\security::defaultHashAlgo, 'pgToken'.\fpcm\classes\baseconfig::$rootPath.'$'.http::getOnly('module'))
+                'pageTokenBase' => hash(\fpcm\classes\security::defaultHashAlgo, 'pgToken'.\fpcm\classes\baseconfig::$rootPath.'$'. \fpcm\classes\http::getOnly('module'))
             ];
             
             return file_put_contents(\fpcm\classes\baseconfig::$configDir.'sec.php', '<?php'.PHP_EOL.' $config = '.var_export($secConf, true).PHP_EOL.'?>');

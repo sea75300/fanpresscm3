@@ -52,9 +52,21 @@
 
             if (!parent::process()) return false;
             
-            $res = (is_numeric($this->log)
-                 ? \fpcm\classes\logs::clearLog($this->log)
-                 : $this->events->runEvent('clearSystemLog', $this->log));
+            if (is_numeric($this->log)) {
+                
+                if ($this->log < 1) {
+                    $res = \fpcm\classes\baseconfig::$fpcmSession->clearSessions();
+                }
+                else {
+                    $logfile = new \fpcm\model\files\logfile($this->log);
+                    $res     = $logfile->clear();
+                }
+
+            }
+            else {
+                $res = $this->events->runEvent('clearSystemLog', $this->log);
+            }
+            
 
             $this->events->runEvent('clearSystemLogs');
 

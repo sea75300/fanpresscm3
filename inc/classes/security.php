@@ -164,7 +164,7 @@
             
             $secConf = [
                 'cookieName'    => hash(self::defaultHashAlgo, 'cookie'.uniqid('fpcm', true).baseconfig::$rootPath),
-                'pageTokenBase' => hash(self::defaultHashAlgo, 'pgToken'.baseconfig::$rootPath.'$'.http::getOnly('module'))
+                'pageTokenBase' => hash(self::defaultHashAlgo, 'pgToken'.baseconfig::$rootPath.'$')
             ];
             
             return file_put_contents(baseconfig::$configDir.'sec.php', '<?php'.PHP_EOL.' $config = '.var_export($secConf, true).PHP_EOL.'?>');
