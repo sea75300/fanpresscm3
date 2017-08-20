@@ -44,8 +44,13 @@
             
             $crypt = new \fpcm\classes\crypt();
             $res   = true && $crypt->initCrypt();
-            
-            $res   = true && \fpcm\classes\security::initSecurityConfig();
+
+            if (method_exists('\fpcm\classes\security', 'initSecurityConfig')) {
+                $res = true && \fpcm\classes\security::initSecurityConfig();
+            }
+            else {
+                $res = true && $this->initSecurityConfig();
+            }
 
             $this->config->setMaintenanceMode(false);
 
@@ -420,7 +425,32 @@
 
         }
 
-                /**
+        /**
+         * Sicherheitsconfig ab v3.6
+         * @return boolean
+         */
+        private function initSecurityConfig() {
+
+            if (!method_exists('\fpcm\classes\security', 'getSecurityConfig')) {
+                $secConf = [];
+            }
+            else {
+                $secConf = \fpcm\classes\baseconfig::getSecurityConfig();
+                if (is_array($secConf) && count($secConf)) {
+                    return true;
+                }
+            }
+
+            $secConf = [
+                'cookieName'    => hash(\fpcm\classes\security::defaultHashAlgo, 'cookie'.uniqid('fpcm', true).\fpcm\classes\baseconfig::$rootPath),
+                'pageTokenBase' => hash(\fpcm\classes\security::defaultHashAlgo, 'pgToken'.\fpcm\classes\baseconfig::$rootPath.'$'.http::getOnly('module'))
+            ];
+            
+            return file_put_contents(\fpcm\classes\baseconfig::$configDir.'sec.php', '<?php'.PHP_EOL.' $config = '.var_export($secConf, true).PHP_EOL.'?>');
+            
+        }
+
+        /**
          * nicht genutzt
          * @return void
          */
