@@ -35,11 +35,6 @@ var fpcmJs = function () {
         window.location.href = url;
     };
     
-    this.windowResize = function () {
-        console.warn('Using "fpcmJs.windowResize" class is deprecated as of version 3.5! Use "fpcm.ui.resize" instead.');
-        fpcm.ui.resize();
-    };
-    
     this.assignButtons = function () {
 
         fpcm.ui.controlgroup('.fpcm-ui-buttonset');
@@ -193,20 +188,7 @@ var fpcmJs = function () {
             }
         });
     };
-    
-    this.runMinuteIntervals = function() {
-        self.runCronsAsync();
-        self.checkSession();
-    };
-    
-    this.runCronsAsync = function() {
-        if (window.fpcmCronAsyncDiabled) {
-            return false;
-        }
-        
-        fpcm.ajax.get('cronasync');
-    };
-    
+
     this.pagerButtons = function() {
 
         fpcm.ui.selectmenu('#pageSelect', {
@@ -223,66 +205,6 @@ var fpcmJs = function () {
             }
         });
         
-    };
-    
-    this.setFocus = function(elemId) {
-        console.warn('Using "fpcmJs.setFocus" class is deprecated as of version 3.5! Use "fpcm.ui.setFocus" instead.');
-        fpcm.ui.setFocus(elemId);
-    };
-    
-    this.assignHtml = function(elemId, data) {
-        console.warn('Using "fpcmJs.assignHtml" class is deprecated as of version 3.5! Use "fpcm.ui.assignHtml" instead.');
-        fpcm.ui.assignHtml(elemId, data);
-    };
-    
-    this.assignText = function(elemId, data) {
-        console.warn('Using "fpcmJs.assignText" class is deprecated as of version 3.5! Use "fpcm.ui.assignText" instead.');
-        fpcm.ui.assignText(elemId, data);
-    };
-    
-    this.appendHtml = function(elemId, data) {
-        console.warn('Using "fpcmJs.appendHtml" class is deprecated as of version 3.5! Use "fpcm.ui.appendHtml" instead.');
-        fpcm.ui.appendHtml(elemId, data);
-    };
-    
-    this.checkSession = function() {
-        
-        if (!window.fpcmSessionCheckEnabled) {
-            return false;
-        }
-
-        fpcm.ajax.exec('session', {
-            execDone: function() {
-                if (fpcm.ajax.getResult('session') == '0') {
-                    window.fpcmSessionCheckEnabled = false;
-
-                    fpcm.ui.dialog({
-                        content: fpcm.ui.translate('sessionCheckMsg'),
-                        dlButtons: buttons = [
-                            {
-                                text: fpcm.ui.translate('yes'),
-                                icon: "ui-icon-check",
-                                click: function() {
-                                    fpcmJs.relocate(fpcmActionPath + 'system/login');
-                                    jQuery(this).dialog('close');
-                                }
-                            },
-                            {
-                                text: fpcm.ui.translate('no'),
-                                icon: "ui-icon-closethick",
-                                click: function() {
-                                    fpcmSessionCheckEnabled = true;
-                                    jQuery(this).dialog('close');
-                                }
-                            }
-                        ],
-                        id: 'sessioncheck'
-                    });
-                }        
-            }
-        });
-        
-        return false;
     };
 
     this.generatePasswdString = function() {
