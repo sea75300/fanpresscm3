@@ -13,6 +13,12 @@
      */
     final class logfile extends \fpcm\model\abstracts\file {
         
+        const FPCM_LOGFILETYPE_SYSTEM   = 1;
+        const FPCM_LOGFILETYPE_PHP      = 2;
+        const FPCM_LOGFILETYPE_SQL      = 3;
+        const FPCM_LOGFILETYPE_PKGMGR   = 4;
+        const FPCM_LOGFILETYPE_CRON     = 5;
+        
         protected $fileMap = [];
 
         /**
@@ -23,11 +29,11 @@
         public function __construct($logFile) {
             
             $this->fileMap = [
-                1 => \fpcm\classes\baseconfig::$logFiles['syslog'],
-                2 => \fpcm\classes\baseconfig::$logFiles['phplog'],
-                3 => \fpcm\classes\baseconfig::$logFiles['dblog'],
-                4 => \fpcm\classes\baseconfig::$logFiles['pkglog'],
-                5 => \fpcm\classes\baseconfig::$logFiles['cronlog']
+                static::FPCM_LOGFILETYPE_SYSTEM => \fpcm\classes\baseconfig::$logFiles['syslog'],
+                static::FPCM_LOGFILETYPE_PHP    => \fpcm\classes\baseconfig::$logFiles['phplog'],
+                static::FPCM_LOGFILETYPE_SQL    => \fpcm\classes\baseconfig::$logFiles['dblog'],
+                static::FPCM_LOGFILETYPE_PKGMGR => \fpcm\classes\baseconfig::$logFiles['pkglog'],
+                static::FPCM_LOGFILETYPE_CRON   => \fpcm\classes\baseconfig::$logFiles['cronlog']
             ];
 
             if (!isset($this->fileMap[$logFile])) {
