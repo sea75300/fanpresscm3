@@ -207,13 +207,4 @@ var fpcmJs = function () {
         
     };
 
-    this.generatePasswdString = function() {
-      
-        var passwd = generatePassword(12, false, /[\w\d\?\-]/);
-        jQuery('#password').val(passwd);
-        jQuery('#password_confirm').val(passwd);
-        
-        return false;
-    };
-
 }

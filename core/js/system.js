@@ -35,7 +35,7 @@ fpcm.system = {
         });
 
         jQuery("#generatepasswd" ).click(function () {
-            fpcmJs.generatePasswdString();
+            fpcm.system.generatePasswdString();
             return false;
         });
 
@@ -99,6 +99,18 @@ fpcm.system = {
     runMinuteIntervals: function() {
         fpcm.system.runCronsAsync();
         fpcm.system.checkSession();
+    },
+    
+    generatePasswdString: function() {
+
+        var randVal = new Int8Array(1);
+        crypto.getRandomValues(randVal);
+        var passwd  = generatePassword(12, false, /[\w\d\?\-]/) + randVal[0];
+
+        jQuery('#password').val(passwd);
+        jQuery('#password_confirm').val(passwd);
+        
+        return false;
     }
 
 };

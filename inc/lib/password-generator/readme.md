@@ -2,13 +2,13 @@
 
 Memorable password generator. For the command line, Node.js and browsers.
 
-[![Build Status](https://secure.travis-ci.org/bermi/password-generator.png?branch=master)](http://travis-ci.org/bermi/password-generator)
 
-[![browser support](http://ci.testling.com/bermi/password-generator.png)](http://ci.testling.com/bermi/password-generator)
+[![Build Status](https://api.travis-ci.org/bermi/password-generator.svg)](http://travis-ci.org/bermi/password-generator)  [![Dependency Status](https://david-dm.org/bermi/password-generator.svg)](https://david-dm.org/bermi/password-generator) [![](http://img.shields.io/npm/v/password-generator.svg) ![](http://img.shields.io/npm/dm/password-generator.svg)](https://www.npmjs.org/package/password-generator)
+
 
 ## Installation
 
-    $ npm install password-generator
+    $ npm install password-generator -g
 
 ## Usage
 
@@ -65,25 +65,30 @@ Combine multiple strategies 6 memorable and 3 numbers
 
     <script src="https://raw.github.com/bermi/password-generator/master/dist/password-generator.min.js" type="text/javascript"></script>
 
-#### Usage
 
-##### Default settings (memorable 10 letters)
+### Browser support
+
+Since v2.0.0 this library relies on cryptographic random values generated via [`crypto.getRandomValues`](https://developer.mozilla.org/en/docs/Web/API/RandomSource/getRandomValues). IE11 was the first IE version to include this method. Check [caniuse.com](http://caniuse.com/#feat=getrandomvalues) for details.
+
+### Usage
+
+#### Default settings (memorable 10 letters)
 
     generatePassword() // -> xexeyimahi
 
-##### Custom length not memorable
+#### Custom length not memorable
 
     generatePassword(12, false) // -> 76PAGEaq6i5c
 
-##### Characters should match a pattern
+#### Characters should match a pattern
 
     generatePassword(12, false, /\d/) // -> 252667390298
 
-##### Customize the password prefix
+#### Customize the password prefix
 
     generatePassword(12, false, /\d/, 'foo-') // -> foo-67390298
 
-##### Example with custom validation rules
+#### Example with custom validation rules
 
 Given the pattern regexp can only match a single character
 you can build a function that generates multiple passwords until you
@@ -154,7 +159,7 @@ console.log(customPassword()); // => 2hP5v?1KKNx7_a-W
 
 (The MIT License)
 
-Copyright (c) 2011-2012 Bermi Ferrer &lt;bermi@bermilabs.com&gt;
+Copyright (c) 2011-2016 Bermi Ferrer &lt;bermi@bermilabs.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
