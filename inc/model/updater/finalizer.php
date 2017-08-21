@@ -312,7 +312,6 @@
             $fbPath = \fpcm\classes\loader::libGetFileUrl('fancybox');
             
             $files = [
-                \fpcm\classes\baseconfig::$viewsDir.'articles/lists/cronjobs.php',
                 \fpcm\classes\baseconfig::$jsPath.'editor_comments.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-2.2.0.min.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-3.1.0.min.js',
@@ -335,6 +334,7 @@
             }
             
             \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js', '', false)));
+            \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('mobile_detect', 'Mobile_Detect.php', '', false)));
             
             return true;
         }

@@ -15,6 +15,8 @@ class commentsTest extends testBase {
     }
     
     public function testCountAllComments() {
+        $this->createComment();
+
         $GLOBALS['countAllComments'] = $this->object->countComments();
         $this->assertArrayHasKey(1, $GLOBALS['countAllComments']);        
         $GLOBALS['countAllComments'] = array_sum($GLOBALS['countAllComments']);
@@ -22,8 +24,6 @@ class commentsTest extends testBase {
     }
 
     public function testGetCommentsAll() {
-        
-        $this->createComment();
 
         $data = $this->object->getCommentsAll();
 

@@ -107,12 +107,6 @@
             
             $className = explode('\\', get_class($this));
             call_user_func(array($this, 'initFileLib'.ucfirst(array_pop($className))));
-            
-            include_once \fpcm\classes\loader::libGetFilePath('mobile_detect', 'Mobile_Detect.php');
-            
-            $mobileDetect   = new \Mobile_Detect();
-            $this->isMobile = $mobileDetect->isMobile();
-            
         }
         
         /**
