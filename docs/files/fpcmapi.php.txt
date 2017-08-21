@@ -167,7 +167,9 @@
         
         /**
          * PHP-Magic-Methode __call, ruft Event apiCallFunction auf
-         * @param string $name, Form: MODULEKEY mit _ statt _ + "_" +  FUNCTIONNAME (Bsp.: nkorg_example_foo)
+         * Form: MODULEKEY mit _ statt _ + "_" +  FUNCTIONNAME (Bsp.: nkorg_example_foo)
+         * 
+         * @param string $name
          * @param array $arguments
          * @return mixed
          * @since FPCM 3.1.5
@@ -187,7 +189,9 @@
         
         /**
          * PHP-Magic-Methode __callStatic, ruft Event apiCallFunction auf
-         * @param string $name, Form: MODULEKEY mit _ statt _ + "_" +  FUNCTIONNAME (Bsp.: nkorg_example_foo)
+         * Form: MODULEKEY mit _ statt _ + "_" +  FUNCTIONNAME (Bsp.: nkorg_example_foo)
+         * 
+         * @param string $name
          * @param array $arguments
          * @return mixed
          * @since FPCM 3.1.5

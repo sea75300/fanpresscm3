@@ -338,7 +338,8 @@
                 'phplog'    => self::$logDir.'phplog.txt',
                 'syslog'    => self::$logDir.'syslog.txt',
                 'dblog'     => self::$logDir.'dblog.txt',
-                'pkglog'    => self::$logDir.'packages.txt'
+                'pkglog'    => self::$logDir.'packages.txt',
+                'cronlog'   => self::$logDir.'cronlog.txt'
             );
             
             
@@ -560,7 +561,7 @@
         public static function enableAsyncCronjobs($status) {
 
             if (self::asyncCronjobsEnabled() && !$status) {
-                logs::syslogWrite('Asynchronous cron job execution disabled.');
+                fpcmLogSystem('Asynchronous cron job execution disabled.');
                 return file_put_contents(self::$cronAsyncFile, '');
             }
 
@@ -568,7 +569,7 @@
                 return false;
             }
             
-            logs::syslogWrite('Asynchronous cron job execution enabled.');
+            fpcmLogSystem('Asynchronous cron job execution enabled.');
             return unlink(self::$cronAsyncFile);            
         }
 

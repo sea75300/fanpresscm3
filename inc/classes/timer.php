@@ -30,23 +30,26 @@
          * @var int
          */
         private static $stop = [];
-
+        
         /**
          * Start timer
+         * @param string $which
          */
         public static function start($which = 'sys') {
             self::$start[$which] = microtime(true);
         }
 
         /**
-         * stop timer
+         * Stop timer
+         * @param string $which
          */
         public static function stop($which = 'sys') {
             self::$start[$which] = microtime(true);
         }
-
+        
         /**
          * Calc diff, calls @see timer::stop if not called before
+         * @param string $which
          * @return int
          */
         public static function cal($which = 'sys') {

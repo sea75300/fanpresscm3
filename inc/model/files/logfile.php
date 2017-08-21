@@ -12,19 +12,41 @@
      * @since FPCM 3.6
      */
     final class logfile extends \fpcm\model\abstracts\file {
-        
+
+        /**
+         * Systemlog
+         */
         const FPCM_LOGFILETYPE_SYSTEM   = 1;
+
+        /**
+         * Error-Log
+         */
         const FPCM_LOGFILETYPE_PHP      = 2;
+
+        /**
+         * SQl-Log
+         */
         const FPCM_LOGFILETYPE_SQL      = 3;
+
+        /**
+         * Paket Manager Log
+         */
         const FPCM_LOGFILETYPE_PKGMGR   = 4;
+
+        /**
+         * Cronjobs Log
+         */
         const FPCM_LOGFILETYPE_CRON     = 5;
-        
+
+        /**
+         *
+         * @var array
+         */
         protected $fileMap = [];
 
         /**
          * Konstruktor
-         * @param string $filename Dateiname
-         * @param string $content Dateiinhalt
+         * @param string $logFile Dateiname
          */
         public function __construct($logFile) {
             

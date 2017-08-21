@@ -400,7 +400,7 @@
         }
 
         /**
-         * 
+         * Bereitet Daten für Speicherung in Datenbank vor
          * @return boolean
          * @since FPCM 3.6
          */

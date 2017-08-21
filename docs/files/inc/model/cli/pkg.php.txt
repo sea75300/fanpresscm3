@@ -139,7 +139,7 @@
 
                     $this->output('Update package manager log...');
                     $pkg->loadPackageFileListFromTemp();
-                    \fpcm\classes\logs::pkglogWrite($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
+                    fpcmLogPackages($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
 
                     $this->output('Perform cleanup...');
                     $success = $pkg->cleanup();

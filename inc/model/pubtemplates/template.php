@@ -173,7 +173,6 @@
         /**
          * Platzhalter-Übersetzungen
          * @param string $prefix
-         * @param array $replacements
          * @return array
          * @since FPCM 3.5.2
          */

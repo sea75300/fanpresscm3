@@ -133,6 +133,7 @@
          * @param array $params Array mit Paramatern
          * @param bool $active Button ist aktiv
          * @param string $class CSS-Klasse
+         * @param bool $isButton
          */
         public static function clearCacheButton(array $params, $active = true, $class = '', $isButton = false) {
 
@@ -444,21 +445,6 @@
         }
 
         /**
-         * Erzeugt eine "Hilfe"-Button welcher Hilfe-Seite aufruft und entsprechende Kapitel öffnet
-         * @param string $entry Name der Sprach-Variable für Überschrift
-         * @see inc/lang/de/help.php <headline>-Elemente
-         * @since FPCM 3.1.0
-         * @deprecated since FPCM 3.5
-         */
-        public static function helpButton($entry) {
-            
-            trigger_error(__METHOD__.' is deprecated as of FPCM 3.5! Use the view methode "setHelpLink" instead.');
-            
-            $href = \fpcm\classes\baseconfig::$rootPath.'index.php?module=system/help&ref='.base64_encode(strtolower($entry));
-            print "<a href=\"$href\" class=\"fpcm-ui-button fpcm-ui-helpbutton\" id=\"fpcmuihelpbutton\" target=\"_self\" title=\"".self::$language->translate('HELP_BTN_OPEN')."\"></a>\n";
-        }
-
-        /**
          * Erzeugt Link für "Hilfe"-Button welcher Hilfe-Seite aufruft und entsprechende Kapitel öffnet
          * @param string $entry
          * @return string
@@ -513,6 +499,21 @@
             if (!$progressbarName) return;
             include_once \fpcm\classes\baseconfig::$viewsDir.'components/progress.php';
         }
+
+        /**
+         * CSS-basierter Badge
+         * @param array $params [class, value, title]
+         * @since FPCM 3.6
+         */
+        public static function badge(array $params) {
+            
+            if (!isset($params['class'])) {
+                $params['class'] = '';
+            }
+            
+            $params['title'] = self::$language->translate($params['title']);
+            print "<span class=\"fpcm-ui-badge {$params['class']}\" title=\"{$params['title']}\">{$params['value']}</span>\n";
+        }    
 
         /**
          * IDs aufräumen

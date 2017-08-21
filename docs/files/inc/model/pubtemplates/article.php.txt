@@ -114,7 +114,7 @@
                 
                 $content = str_replace($keys, $this->cleanup($values), $content);
             }            
-            
+
             return $this->parseSmileys($content);
         }
         

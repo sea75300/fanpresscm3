@@ -526,8 +526,7 @@
 
         /**
          * Löscht alle Artikel eines Benutzers
-         * @param int $userIdFrom
-         * @param int $userIdTo
+         * @param int $userId
          * @since FPCM 3.5.1
          * @return bool
          */

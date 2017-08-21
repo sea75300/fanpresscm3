@@ -31,24 +31,28 @@
 
             $logFileSystem = \fpcm\classes\baseconfig::$logFiles['syslog'];
             if (file_exists($logFileSystem) && filesize($logFileSystem) >= $this->maxsize) {
+                fpcmLogCron('Cleanup system log...');
                 copy($logFileSystem, $logFileSystem.'.'.$dateStr);
                 \fpcm\classes\logs::clearLog(1);                
             }
             
             $logFilePhp = \fpcm\classes\baseconfig::$logFiles['phplog'];
             if (file_exists($logFilePhp) && filesize($logFilePhp) >= $this->maxsize) {
+                fpcmLogCron('Cleanup php log...');
                 copy($logFilePhp, $logFilePhp.'.'.$dateStr);
                 \fpcm\classes\logs::clearLog(2);                
             }
 
             $logFileDbms = \fpcm\classes\baseconfig::$logFiles['dblog'];
             if (file_exists($logFileDbms) && filesize($logFileDbms) >= $this->maxsize) {
+                fpcmLogCron('Cleanup sql log...');
                 copy($logFileDbms, $logFileDbms.'.'.$dateStr);
                 \fpcm\classes\logs::clearLog(3);                
             }
 
             $logFilePkgMgr = \fpcm\classes\baseconfig::$logFiles['pkglog'];
             if (file_exists($logFilePkgMgr) && filesize($logFilePkgMgr) >= $this->maxsize) {
+                fpcmLogCron('Cleanup package manager log...');
                 copy($logFilePkgMgr, $logFilePkgMgr.'.'.$dateStr);
                 \fpcm\classes\logs::clearLog(4);                
             }

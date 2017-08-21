@@ -14,7 +14,7 @@ require_once __DIR__.'/inc/common.php';
 class fpcmCLI {
 
     /**
-     *
+     * CLI-params
      * @var array
      */
     private $params = [];

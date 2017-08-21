@@ -133,6 +133,7 @@
          * @param array $params Array mit Paramatern
          * @param bool $active Button ist aktiv
          * @param string $class CSS-Klasse
+         * @param bool $isButton
          */
         public static function clearCacheButton(array $params, $active = true, $class = '', $isButton = false) {
 
