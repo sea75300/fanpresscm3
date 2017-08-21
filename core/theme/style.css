@@ -1409,7 +1409,7 @@ div.fpcm-filelist-actions-box div.fpcm-filelist-actions-checkbox {
 div.fpcm-filelist-thumb-box img {
     width: 100px !important;
     height: 100px !important;
-    borde:: 5px solid #A6C9E2;
+    border: 5px solid #A6C9E2;
 }
 
 table.fpcm-ui-table.fpcm-ui-uploadlist td.jqupload-row-buttons {
