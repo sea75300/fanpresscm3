@@ -26,7 +26,7 @@
             if ($this->buttonClicked('categorySave')) {
                 $data = $this->getRequestVar('category');
                 
-                if (!trim($data['name']) || !isset($data['groups']) || !count($data['groups'])) {
+                if (!trim($data['name']) || empty($data['groups'])) {
                     $this->view->addErrorMessage('SAVE_FAILED_CATEGORY');
                     return true;
                 }
