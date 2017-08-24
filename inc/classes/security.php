@@ -136,7 +136,7 @@
         
         /**
          * Erzeugt Page-Token zur Absicherung gegen CSRF-Angriffe
-         * @param bool $ajax
+         * @param bool $overrideModule
          * @return string
          */
         public static function createPageToken($overrideModule = '') {
