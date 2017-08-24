@@ -1326,7 +1326,7 @@ span.fpcm-ui-badge.fpcm-ui-badge-comments {
     width: 3em;
 }
 
-#fpcm-dialog-articles-massedit div.fpcm-ui-editor-extended-button label {
+div.fpcm-massedit-dialog div.fpcm-ui-editor-extended-button label {
     line-height: 2em;
 }
 

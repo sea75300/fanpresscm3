@@ -24,9 +24,6 @@ span.fpcm-ui-badge.fpcm-ui-badge-comments:before {
 .fpcm-ui-button.fpcm-delete-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-clear-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-ui-revision-restore span.ui-button-text:before,
-.fpcm-ui-button.fpcm-ui-commentaction-spam span.ui-button-text:before,
-.fpcm-ui-button.fpcm-ui-commentaction-approve span.ui-button-text:before,
-.fpcm-ui-button.fpcm-ui-commentaction-private span.ui-button-text:before,
 .fpcm-ui-button.fpcm-newthumb-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-syscheck-btn span.ui-button-text:before,
 .fpcm-ui-button.fpcm-cacheclear-btn span.ui-button-text:before,
@@ -124,18 +121,6 @@ span.fpcm-ui-badge.fpcm-ui-badge-comments:before {
 
 .fpcm-ui-button.fpcm-ui-revision-restore:before {
     content: '\f0e2';
-}
-
-.fpcm-ui-button.fpcm-ui-commentaction-spam:before {
-    content: '\f024';
-}
-
-.fpcm-ui-button.fpcm-ui-commentaction-approve:before {
-    content: '\f05d';
-}
-
-.fpcm-ui-button.fpcm-ui-commentaction-private:before {
-    content: '\f070';
 }
 
 .fpcm-ui-button.fpcm-newthumb-btn:before,

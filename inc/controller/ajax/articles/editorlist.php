@@ -76,6 +76,7 @@
             $this->view->assign('comments', $commentList->getCommentsBySearchCondition($search));
             $this->view->assign('commentsMode', 2);
             
+            $this->initCommentMassEditForm(true);
             $this->initCommentPermissions();
 
         }

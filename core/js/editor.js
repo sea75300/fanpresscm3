@@ -1196,6 +1196,8 @@ fpcm.editor = {
     
     initCommentListActions: function () {
         
+        fpcm.comments.assignActions();
+        
         jQuery('.fpcm-ui-commentlist-link').click(function () {
             fpcm.ui.showLoader(false);
             fpcm.editor.showCommentLayer(jQuery(this).attr('href'));

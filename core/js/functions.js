@@ -80,8 +80,10 @@ var fpcmJs = function () {
 
         jQuery('.fpcm-ui-articleactions-ok').click(function () {
 
-            if (fpcm.articlelist && typeof fpcm.articlelist.assignActions === 'function' && fpcm.articlelist.assignActions() === -1) {
-                return false;
+            for (var object in fpcm) {
+                if (typeof fpcm[object].assignActions === 'function' && fpcm[object].assignActions() === -1) {
+                    return false;
+                }
             }
 
             fpcm.ui.removeLoaderClass(this);

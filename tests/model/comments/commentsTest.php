@@ -115,6 +115,27 @@ class commentsTest extends testBase {
         $this->assertLessThanOrEqual(5, count($data));
     }
 
+    public function testEditCommentByMass() {
+        
+        $result = $this->object->editCommentsByMass([$GLOBALS['objectId']], [
+            'spammer'   => 0,
+            'approved'  => 1,
+            'private'   => -1
+        ]);
+        
+        $this->assertTrue($result);
+ 
+        /* @var $object \fpcm\model\comments\comment */
+        $object = new fpcm\model\comments\comment($GLOBALS['objectId']);
+        $this->assertEquals($GLOBALS['commentName'], $object->getName());
+        $this->assertEquals($GLOBALS['commentEmail'], $object->getEmail());
+        $this->assertEquals($GLOBALS['commentWebsite'], $object->getWebsite());
+        $this->assertEquals($GLOBALS['commentContent'], $object->getText());
+        $this->assertEquals(0, $object->getSpammer());
+        $this->assertEquals(1, $object->getApproved());
+        $this->assertEquals(1, $object->getPrivate());
+    }
+
     public function testDeleteComments() {
 
         $result = $this->object->deleteComments([$GLOBALS['objectId']]);

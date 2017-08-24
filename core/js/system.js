@@ -111,7 +111,101 @@ fpcm.system = {
         jQuery('#password_confirm').val(passwd);
         
         return false;
-    }
+    },
+    
+    initMassEditDialog: function(func, dialogId, list) {
+
+        fpcm.ui.selectmenu('.fpcm-ui-input-select-massedit', {
+            width: '100%',
+            appendTo: '#fpcm-dialog-' + dialogId
+        });
+
+        var size = fpcm.ui.getDialogSizes();
+
+        fpcm.ui.dialog({
+            id       : dialogId,
+            dlWidth  : size.width,
+            resizable: true,
+            title    : fpcm.ui.translate('masseditHeadline'),
+            dlButtons  : [
+                {
+                    text: fpcm.ui.translate('masseditSave'),
+                    icon: "ui-icon-check",
+                    click: function() {
+
+                        fpcm.ui.confirmDialog({
+                            clickYes: function() {
+
+                                var objectIDs = fpcm.ui.getCheckboxCheckedValues('.fpcm-list-selectbox');
+                                if (objectIDs.length == 0) {
+                                    fpcm.ui.showLoader(false);
+                                    return false;
+                                }
+
+                                var mefields = jQuery('.fpcm-ui-input-massedit');
+                                var params = {
+                                    fields: {},
+                                    ids     : fpcm.ajax.toJSON(objectIDs),
+                                    pageTkn : masseditPageToken
+                                };
+
+                                jQuery.each(mefields, function (key, obj) {
+                                    var objVal  = jQuery(obj).val();
+                                    var objName = jQuery(obj).attr('name'); 
+                                    params.fields[objName] = objVal;
+                                });
+
+                                params.fields.categories = fpcm.ui.getCheckboxCheckedValues('.fpcm-ui-input-massedit-categories');
+                                fpcm.system.execMassEdit(func, params);
+
+                                jQuery(this).dialog('close');
+                                
+                            },
+                           
+                            clickNo: function() {
+                                jQuery(this).dialog('close');
+                            }
+                        });
+                    }
+                },                    
+                {
+                    text: fpcm.ui.translate('close'),
+                    icon: "ui-icon-closethick" ,                        
+                    click: function() {
+                        jQuery(this).dialog('close');
+                    }
+                }                            
+            ],
+            dlOnClose: function( event, ui ) {
+                fpcm.ui.showLoader(false);
+            }
+        });
+
+        return false;
+    },
+    
+    execMassEdit: function(func, params) {
+        fpcm.ajax.post(func, {
+            data     : params,
+            execDone : function () {
+
+                var res = fpcm.ajax.fromJSON(fpcm.ajax.getResult(func));
+
+                if (res !== null && res.code == 1) {
+                    fpcmJs.relocate(window.location.href);
+                    return true;
+                }
+
+                fpcm.ui.addMessage({
+                    type : 'error',
+                    id   : 'fpcm-articles-massedit',
+                    icon : 'exclamation-triangle',
+                    txt  : fpcm.ui.translate('masseditSaveFailed')
+                }, true);
+
+            }
+        });
+    },
 
 };
 

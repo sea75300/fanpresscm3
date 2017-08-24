@@ -142,9 +142,8 @@
             $this->view->addJsLangVars([
                 'editor_status_inedit'    => $this->lang->translate('EDITOR_STATUS_INEDIT'),
                 'editor_status_notinedit' => $this->lang->translate('EDITOR_STATUS_NOTINEDIT'),
+                'editorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT')
             ]);
-            
-            $this->view->addJsLangVars(['editorCommentLayerHeader' => $this->lang->translate('COMMENTS_EDIT')]);
             
             if (!$this->permissions->check(array('article' => 'approve')) && $this->article->getApproval()) {
                 $this->view->addMessage('SAVE_SUCCESS_APPROVAL_SAVE');
@@ -182,9 +181,17 @@
          * Initialisiert Berechtigungen
          */
         protected function initPermissions() {
-            $this->view->assign('showComments', $this->permissions->check(array('article' => array('editall', 'edit'), 'comment' => array('editall', 'edit'))));
+            
+            $editComments = $this->permissions->check(array('article' => array('editall', 'edit'), 'comment' => array('editall', 'edit')));
+
+            $this->view->assign('showComments', $editComments);
+            
+            if ($editComments) {
+                $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'comments.js']);
+                $this->initCommentMassEditForm();
+            }
+            
             $this->view->assign('permDeleteArticle', $this->permissions->check(array('article' => 'delete')));
-            $this->view->assign('deleteCommentsPermissions', $this->permissions->check(array('comment' => 'delete')));
             $this->view->assign('permApprove', $this->permissions->check(array('comment' => 'approve')));
             $this->view->assign('permPrivate', $this->permissions->check(array('comment' => 'private')));            
             $this->view->assign('permEditOwn', $this->permissions->check(array('comment' => 'edit')));

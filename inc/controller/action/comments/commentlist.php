@@ -70,6 +70,7 @@
 
             $this->initCommentPermissions();
             $this->initSearchForm();
+            $this->initCommentMassEditForm();
 
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'comments.js'));
             $this->view->assign('comments', $this->list->getCommentsAll());

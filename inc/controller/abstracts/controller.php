@@ -278,7 +278,7 @@
             if (\fpcm\classes\http::getPageToken() == $tokenData) {
                 return true;
             }
-            
+
             return false;
         }
 

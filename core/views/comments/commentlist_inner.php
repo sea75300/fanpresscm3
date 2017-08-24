@@ -41,3 +41,5 @@
     </div>
 </div>
 <?php endif; ?>
+
+<?php if ($canEditComments) : ?><?php include __DIR__.'/massedit.php'; ?><?php endif; ?>

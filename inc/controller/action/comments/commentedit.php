@@ -132,6 +132,7 @@
                 'fpcmTinyMcePlugins'            => 'autolink charmap code image link lists media nonbreaking wordcount fpcm_emoticons autoresize',
                 'fpcmTinyMceToolbar'            => 'fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist blockquote | link unlink anchor image media emoticons charmap | undo redo removeformat searchreplace fullscreen code',
                 'fpcmNavigationActiveItemId'    => 'itemnav-item-editcomments',
+                'fpcmCommentsEdit'              => 1
             ]);
             
             if ($this->comment->getChangeuser() && $this->comment->getChangetime()) {

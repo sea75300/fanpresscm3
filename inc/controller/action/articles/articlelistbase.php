@@ -282,24 +282,22 @@
             $canEdit = $this->permissions->check([ 'article' => ['edit', 'editall', 'approve', 'archive'] ]);
             $this->view->assign('canEdit', $canEdit);
             
+            $this->deleteActions = $this->permissions->check(['article' => 'delete']);
+            
             if ($canEdit) {                
                 $this->articleActions[$this->lang->translate('GLOBAL_EDIT_SELECTED')]   = 'massedit';
             }
             
+            $this->articleActions[$this->lang->translate('ARTICLE_LIST_NEWTWEET')]      = 'newtweet';
+            
             if ($this->deleteActions) {
                 $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]          = 'delete';
             }
-            
-            $this->articleActions[$this->lang->translate('ARTICLE_LIST_NEWTWEET')]      = 'newtweet';
-            
-            if ($this->permissions->check(['article' => 'delete'])) {
-                $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]          = 'delete';
-            }
-            
+
         }
         
         /**
-         * Initialisiert Suchformular-Daten
+         * Initialisiert Suchformular
          * @param array $users
          */
         private function initSearchForm($users) {
@@ -361,7 +359,7 @@
         }
         
         /**
-         * Initialisiert Suchformular-Daten
+         * Initialisiert Massenbearbeitung
          * @param array $users
          */
         private function initMassEditForm($users) {
@@ -409,6 +407,10 @@
                 'masseditHeadline'   => $this->lang->translate('GLOBAL_EDIT_SELECTED'),
                 'masseditSave'       => $this->lang->translate('GLOBAL_SAVE'),
                 'masseditSaveFailed' => $this->lang->translate('SAVE_FAILED_ARTICLES')
+            ]);
+            
+            $this->view->addJsVars([
+                'masseditPageToken'  => \fpcm\classes\security::createPageToken('articles/massedit')
             ]);
 
         }

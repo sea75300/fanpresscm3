@@ -46,7 +46,7 @@
          */
         public function request() {
 
-            if (!$this->permissions->check(['article' => ['edit', 'editall', 'approve', 'archive'] ])) {
+            if (!$this->permissions->check(['article' => ['edit', 'editall', 'approve', 'archive'] ]) || !$this->checkPageToken('articles/massedit')) {
                 return false;
             }
 

@@ -17,7 +17,7 @@ fpcm.comments = {
             this.initCommentSearch();
         }
 
-        if (window.tinymce) {
+        if (window.tinymce && window.fpcmCommentsEdit) {
             fpcm.editor_tinymce.create({
                 language : fpcmTinyMceLang,
                 plugins  : fpcmTinyMcePlugins,
@@ -32,13 +32,20 @@ fpcm.comments = {
             fpcm.ui.setFocus('commentname');
         }
 
-        jQuery('.fpcm-ui-commentaction').click(function () {
-            if (jQuery(this).hasClass('fpcm-noloader')) jQuery(this).removeClass('fpcm-noloader');
-            if (!confirm(fpcm.ui.translate('confirmMessage'))) {
-                jQuery(this).addClass('fpcm-noloader');
-                return false;
-            }            
-        });
+        fpcm.comments.assignActions();
+    },
+
+    assignActions: function() {
+
+        var action = jQuery('#commentAction').val();
+
+        if (action == 1) {
+            fpcm.system.initMassEditDialog('comments/massedit', 'comments-massedit', fpcm.comments);
+            fpcm.ui.removeLoaderClass(this);
+            return -1;
+        }
+        
+        return true;
     },
     
     initCommentSearch: function() {
