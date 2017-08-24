@@ -14,9 +14,8 @@
         'COMMMENT_LASTCHANGE'   => '<strong>Zuletzt geändert:</strong> {{username}} am {{time}}',
         'COMMMENT_TEXT'         => 'Kommentar-Text',
         'COMMMENT_PRIVATE'      => 'Kommentar ist privat',
-        'COMMMENT_PRIVATE_BTN'  => 'Privat-Status ändern',
         'COMMMENT_APPROVE'      => 'Kommentar ist genehmigt',
-        'COMMMENT_APPROVE_BTN'  => 'Genehmigung ändern',
         'COMMMENT_SPAM'         => 'Kommentar ist Spam',
-        'COMMMENT_SPAM_BTN'     => 'Spam-Markierung ändern',
+        'COMMMENT_MOVE'         => 'Zu anderem Artikel verschieben',
+        'COMMMENT_SELETDEST'    => 'Bitte den Ziel-Artikel auswählen',
     );

@@ -744,7 +744,9 @@ table.fpcm-ui-table.fpcm-ui-article-revisions th:first-child,
 table.fpcm-ui-table.fpcm-ui-article-revisions tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-rssnews tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr th:first-child,
-table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr td:first-child
+table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr td:first-child,
+table.fpcm-ui-table.fpcm-ui-users tr th:first-child,
+table.fpcm-ui-table.fpcm-ui-users tr td:first-child
 {
     width: 3em;
 }
@@ -768,7 +770,9 @@ table.fpcm-ui-table.fpcm-ui-articles tr td:first-child
 
 table.fpcm-ui-table.fpcm-ui-comments tr td.fpcm-td-commentlist-meta,
 table.fpcm-ui-table.fpcm-ui-modules th:first-child,
-table.fpcm-ui-table.fpcm-ui-modules tr td:first-child {
+table.fpcm-ui-table.fpcm-ui-modules tr td:first-child,
+table.fpcm-ui-table.fpcm-ui-users tr th.fpcm-ui-users-registeredtime,
+table.fpcm-ui-table.fpcm-ui-users tr td.fpcm-ui-users-registeredtime {
     width: 10em;
 }
 
@@ -1310,14 +1314,17 @@ span.fpcm-ui-badge {
     padding: 0.3em 0.5em;
     z-index: 999;
     border-radius: 5px;
+    text-align: center;
 }
 
 span.fpcm-ui-badge.fpcm-ui-badge-red {
     background: #cc0000;
 }
 
-span.fpcm-ui-badge.fpcm-ui-badge-comments {
+span.fpcm-ui-badge.fpcm-ui-badge-comments,
+span.fpcm-ui-badge.fpcm-ui-badge-userarticles {
     font-size: 0.9em;
+    min-width: 3em;
 }
 
 /* jQuery UI Hooks */
