@@ -102,6 +102,8 @@
             if ($twitterOk) {                
                 $tweetTpl = new \fpcm\model\pubtemplates\tweet();
                 $tags = $tweetTpl->getReplacementTranslations('TEMPLATE_ARTICLE_');
+
+                $twitterReplacements = [];
                 foreach ($tags as $tag => $descr) {
                     $twitterReplacements[] = $descr.': '.$tag;
                 }
