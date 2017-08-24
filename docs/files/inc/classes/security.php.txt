@@ -74,17 +74,18 @@
         
         /**
          * Page-Token-Feld-Name zurückgeben
+         * @param string $overrideModule
          * @return string
          */
-        public static function getPageTokenFieldName() {
+        public static function getPageTokenFieldName($overrideModule = '') {
             
             if (self::$pageTokenName) {
                 return self::$pageTokenName;
             }
             
-            $conf = baseconfig::getSecurityConfig();
+            $conf                   = baseconfig::getSecurityConfig();
             self::$pageTokenName    = (is_array($conf) && isset($conf['pageTokenBase']))
-                                    ? $conf['pageTokenBase']
+                                    ? hash(self::defaultHashAlgo, $conf['pageTokenBase'].(trim($overrideModule) ? trim($overrideModule) : http::getOnly('module')))
                                     : hash(self::defaultHashAlgo, 'fpcmpgtk'.baseconfig::$rootPath.'_'.date('d-m-Y').'$'.http::getOnly('module'));
 
             return self::$pageTokenName;
@@ -134,16 +135,22 @@
         }
         
         /**
-         * Erzeugt Page-Token zur Absicherung gegen 
+         * Erzeugt Page-Token zur Absicherung gegen CSRF-Angriffe
+         * @param bool $ajax
          * @return string
          */
-        public static function createPageToken() {
+        public static function createPageToken($overrideModule = '') {
 
+            $str   = '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().
+                     '$'.(trim($overrideModule) ? trim($overrideModule) : http::getOnly('module')).
+                     '$'. uniqid();
+;            
             $crypt = new crypt();
-            $str = $crypt->encrypt(hash(self::defaultHashAlgo, '$'.baseconfig::$rootPath.'$pageToken$'.self::getSessionCookieValue().'$'.http::getOnly('module').'$'));
-
-            $cache = new cache(self::getPageTokenFieldName(), self::pageTokenCacheModule);
-            $cache->cleanup(self::getPageTokenFieldName(), self::pageTokenCacheModule);
+            $str   = $crypt->encrypt(hash(self::defaultHashAlgo, $str));
+            
+            $cacheName = self::getPageTokenFieldName($overrideModule);            
+            $cache     = new cache($cacheName, self::pageTokenCacheModule);
+            $cache->cleanup($cacheName, self::pageTokenCacheModule);
             $cache->write($str, FPCM_PAGETOKENCACHE_TIMEOUT);            
             unset($cache);
             

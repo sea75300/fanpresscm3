@@ -18,7 +18,7 @@
          */
         public function process() {
 
-            if (!isset($this->funcParams[1]) || !trim($this->funcParams[1])) {
+            if (empty($this->funcParams[1])) {
                 $this->output('Invalid params', true);
             }
             

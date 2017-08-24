@@ -50,13 +50,13 @@
             
             foreach ($result as $index => $row) {
 
-                if (!isset($row['id']) || !trim($row['id'])) {
+                if (empty($row['id'])) {
                     trigger_error('Invalid params, missing index "id" for log '.$index);
                     trigger_error(implode(PHP_EOL, $row));
                     return $data;
                 }
 
-                if (!isset($row['title']) || !trim($row['title'])) {
+                if (empty($row['title'])) {
                     trigger_error('Invalid params, missing index "title" for log '.$index);
                     trigger_error(implode(PHP_EOL, $row));
                     return $data;

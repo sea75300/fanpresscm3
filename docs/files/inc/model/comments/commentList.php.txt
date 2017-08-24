@@ -390,6 +390,41 @@
         }
 
         /**
+         * Massenbearbeitung
+         * @param array $commentIds
+         * @param array $fields
+         * @since FPCM 3.6
+         */
+        public function editCommentsByMass(array $commentIds, array $fields) {
+
+            if (!count($commentIds)) {
+                return false;
+            }
+
+            if (isset($fields['spammer']) && $fields['spammer'] === -1) {
+                unset($fields['spammer']);
+            }
+            
+            if (isset($fields['approved']) && $fields['approved'] === -1) {
+                unset($fields['approved']);
+            }
+            
+            if (isset($fields['private']) && $fields['private'] === -1) {
+                unset($fields['private']);
+            }
+
+            if (!count($fields)) {
+                return false;
+            }
+
+            $where = 'id IN ('.implode(',', $commentIds).')';
+            $result = $this->dbcon->update($this->table, array_keys($fields), array_values($fields), $where);
+            
+            $this->cache->cleanup();
+            return $result;
+        }
+
+        /**
          * Erzeugt Listen-Result-Array
          * @param array $list
          * @return array

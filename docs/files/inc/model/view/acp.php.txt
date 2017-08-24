@@ -177,11 +177,6 @@
             $this->assign('FPCM_LOGGEDIN', $this->session->exists());
             
             /**
-             * Aufruf durch mobile Endgerät
-             */
-            $this->assign('FPCM_ISMOBILE', $this->isMobile);
-            
-            /**
              * System config data
              */
             $this->assign('FPCM_VERSION', $this->config->system_version);
