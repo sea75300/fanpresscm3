@@ -1,10 +1,14 @@
 <?php
+    /**
+     * FanPress CM 3.x
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
     namespace fpcm\model\cli;
 
     /**
      * FanPress CM cli logs module
      * 
-     * @package fpcm\model\system
+     * @package fpcm\model\cli
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3

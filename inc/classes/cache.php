@@ -1,21 +1,16 @@
 <?php
     /**
-     * FanPress CM cache class
-     * 
-     * Cache system
-     * 
-     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
-
     namespace fpcm\classes;
 
     /**
      * Cache system
      * 
      * @package fpcm\classes\cache
-     * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2016, Stefan Seehafer
      */ 
     final class cache {
         

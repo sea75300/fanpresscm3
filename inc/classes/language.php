@@ -1,29 +1,19 @@
 <?php
     /**
-     * FanPress CM language class
-     * 
-     * Lanuages handler
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * FanPress CM 3.x
+     * @copyright (c) 2011-2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
-
     namespace fpcm\classes;
 
     /**
-     * Language handler
+     * FanPress CM Language handler
      * 
      * @package fpcm\classes\language
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2016, Stefan Seehafer
      */ 
     final class language {
-        
-        /**
-         * Language data
-         * @var array
-         */
-        private $langData = [];
         
         /**
          * Languages list
@@ -63,6 +53,8 @@
                 return false;
             }
             
+            $GLOBALS['langdata'] = [];
+            
             $this->langCode = $langCode;
 
             $confFile = baseconfig::$langDir.$langCode.'/lang.cfg';            
@@ -78,7 +70,7 @@
             $this->cache = new cache('langcache_'.$langCode, 'system');
             
             if (!$this->cache->isExpired()) {
-                $this->langData = $this->cache->read();                
+                $GLOBALS['langdata'] = $this->cache->read();                
                 return;
             }            
             
@@ -104,10 +96,10 @@
                     continue;
                 }
                 
-                $this->langData = array_merge($this->langData, $lang);
+                $GLOBALS['langdata'] = array_merge($GLOBALS['langdata'], $lang);
             }
 
-            $this->cache->write($this->langData, FPCM_LANGCACHE_TIMEOUT);
+            $this->cache->write($GLOBALS['langdata'], FPCM_LANGCACHE_TIMEOUT);
         }
         
         /**
@@ -153,7 +145,7 @@
          */
         public function translate($langvar, array $replaceParams = array()) {
             $langvar  = strtoupper($langvar);
-            $langData = isset($this->langData[$langvar]) ? $this->langData[$langvar] : null;            
+            $langData = isset($GLOBALS['langdata'][$langvar]) ? $GLOBALS['langdata'][$langvar] : null;            
             return is_null($langData) ? $langData : str_replace(array_keys($replaceParams), array_values($replaceParams), $langData);
         }
         
@@ -162,7 +154,7 @@
          * @param int $monthId
          */
         public function writeMonth($monthId) {
-            print isset($this->langData['SYSTEM_MONTHS'][$monthId]) ? $this->langData['SYSTEM_MONTHS'][$monthId] : null;
+            print isset($GLOBALS['langdata']['SYSTEM_MONTHS'][$monthId]) ? $GLOBALS['langdata']['SYSTEM_MONTHS'][$monthId] : null;
         }
         
         /**
@@ -170,7 +162,7 @@
          * @return array
          */
         public function getMonths() {
-            return $this->langData['SYSTEM_MONTHS'];
+            return $GLOBALS['langdata']['SYSTEM_MONTHS'];
         }
         
         /**
@@ -178,7 +170,7 @@
          * @return array
          */
         public function getDays() {
-            return $this->langData['SYSTEM_DAYS'];
+            return $GLOBALS['langdata']['SYSTEM_DAYS'];
         }
         
         /**

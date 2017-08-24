@@ -125,12 +125,12 @@
             }
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Downloaded update package successfully from '.$this->pkg->getRemoteFile());
+                $this->syslog('Downloaded update package successfully from '.$this->pkg->getRemoteFile());
                 $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_EXTRACT;
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while downloading update package from '.$this->pkg->getRemoteFile());
+            $this->syslog('Error while downloading update package from '.$this->pkg->getRemoteFile());
             $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
 
         }
@@ -144,13 +144,13 @@
             }
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('All local files are writable '.$this->pkg->getRemoteFile());
+                $this->syslog('All local files are writable '.$this->pkg->getRemoteFile());
                 $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_COPY;
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('A few files in local file system where not writable '.$this->pkg->getRemoteFile());
-            \fpcm\classes\logs::syslogWrite(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
+            $this->syslog('A few files in local file system where not writable '.$this->pkg->getRemoteFile());
+            $this->syslog(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
             $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
    
         }
@@ -161,12 +161,12 @@
             $from = \fpcm\model\files\ops::removeBaseDir($this->pkg->getLocalFile());
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Extracted update package successfully from '.$from);
+                $this->syslog('Extracted update package successfully from '.$from);
                 $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CHECKFILES;
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while extracting update package from '.$from);
+            $this->syslog('Error while extracting update package from '.$from);
             $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
 
         }
@@ -179,13 +179,13 @@
             $from = \fpcm\model\files\ops::removeBaseDir($this->pkg->getExtractPath());
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Moved update package content successfully from '.$from.' to '.$dest);
+                $this->syslog('Moved update package content successfully from '.$from.' to '.$dest);
                 $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB;
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while moving update package content from '.$from.' to '.$dest);
-            \fpcm\classes\logs::syslogWrite(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
+            $this->syslog('Error while moving update package content from '.$from.' to '.$dest);
+            $this->syslog(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
             $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
             
         }
@@ -200,11 +200,11 @@
                                           : \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Run final update steps successfully!');
+                $this->syslog('Run final update steps successfully!');
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while running final update steps!');
+            $this->syslog('Error while running final update steps!');
             
         }
 
@@ -213,7 +213,7 @@
             if ($this->canConnect) {
                 $this->pkg->loadPackageFileListFromTemp();
                 $this->pkg->cleanup();
-                \fpcm\classes\logs::pkglogWrite($this->pkg->getKey().' '.$this->pkg->getVersion(), $this->pkg->getFiles());
+                $this->pkglog($this->pkg->getKey().' '.$this->pkg->getVersion(), $this->pkg->getFiles());
             }
 
             \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
@@ -244,12 +244,12 @@
             }
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Downloaded update package successfully from '.$this->pkg->getRemoteFile());
+                $this->syslog('Downloaded update package successfully from '.$this->pkg->getRemoteFile());
                 $this->returnData['nextstep'] = 2;
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while downloading update package from '.$this->pkg->getRemoteFile());
+            $this->syslog('Error while downloading update package from '.$this->pkg->getRemoteFile());
             $this->returnData['nextstep'] = 5;
 
         }
@@ -260,12 +260,12 @@
             $from = \fpcm\model\files\ops::removeBaseDir($this->pkg->getLocalFile());
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Extracted update package successfully from '.$from);
+                $this->syslog('Extracted update package successfully from '.$from);
                 $this->returnData['nextstep'] = 3;
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while extracting update package from '.$from);
+            $this->syslog('Error while extracting update package from '.$from);
             $this->returnData['nextstep'] = 5;
             
         }
@@ -278,13 +278,13 @@
             $from = \fpcm\model\files\ops::removeBaseDir($this->pkg->getExtractPath());
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Moved update package content successfully from '.$from.' to '.$dest);
+                $this->syslog('Moved update package content successfully from '.$from.' to '.$dest);
                 $this->returnData['nextstep'] = 4;
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while moving update package content from '.$from.' to '.$dest);
-            \fpcm\classes\logs::syslogWrite(implode('<br>', $this->pkg->getCopyErrorPaths()));
+            $this->syslog('Error while moving update package content from '.$from.' to '.$dest);
+            $this->syslog(implode('<br>', $this->pkg->getCopyErrorPaths()));
             $this->returnData['nextstep'] = 5;
 
         }
@@ -296,11 +296,11 @@
             $this->returnData['nextstep'] = $this->forceStep ? 6 : 5;
 
             if ($this->res === true) {
-                \fpcm\classes\logs::syslogWrite('Run final update steps successfully!');
+                $this->syslog('Run final update steps successfully!');
                 return true;
             }
 
-            \fpcm\classes\logs::syslogWrite('Error while running final update steps!');
+            $this->syslog('Error while running final update steps!');
 
         }
         
@@ -308,7 +308,7 @@
 
             if ($this->canConnect) {
                 $this->pkg->loadPackageFileListFromTemp();
-                \fpcm\classes\logs::pkglogWrite($this->pkg->getKey().' '.$this->pkg->getVersion(), $this->pkg->getFiles());
+                $this->pkglog($this->pkg->getKey().' '.$this->pkg->getVersion(), $this->pkg->getFiles());
             }
 
             \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
@@ -328,6 +328,26 @@
                 $this->versionDataFile->delete();
             }
 
+        }
+        
+        private function syslog($data) {
+
+            if (function_exists('fpcmLogSystem')) {
+                return fpcmLogSystem($data);
+            }
+            
+            return \fpcm\classes\logs::syslogWrite($data);
+            
+        }
+        
+        private function pkglog($packageName, $data) {
+
+            if (function_exists('fpcmLogPackages')) {
+                return fpcmLogPackages($packageName, $data);
+            }
+            
+            return \fpcm\classes\logs::pkglogWrite($packageName, $data);
+            
         }
     }
 ?>
