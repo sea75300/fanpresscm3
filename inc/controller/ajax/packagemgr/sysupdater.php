@@ -212,13 +212,16 @@
 
             if ($this->canConnect) {
 
+                $list = [];
                 if (method_exists($this->pkg, 'getProtocol')) {
                     $list = $this->pkg->getProtocol();
                 }
-                else {                    
+
+                if (!count($list)) {
                     $this->pkg->loadPackageFileListFromTemp();
                     $list = $this->pkg->getFiles();
                 }
+
 
                 $this->pkglog($this->pkg->getKey().' '.$this->pkg->getVersion(), $list);
             }
