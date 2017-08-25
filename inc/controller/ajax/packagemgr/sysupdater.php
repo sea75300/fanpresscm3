@@ -211,9 +211,16 @@
         private function execStepCleanup() {
 
             if ($this->canConnect) {
-                $this->pkg->loadPackageFileListFromTemp();
-                $this->pkg->cleanup();
-                $this->pkglog($this->pkg->getKey().' '.$this->pkg->getVersion(), $this->pkg->getFiles());
+
+                if (method_exists($this->pkg, 'getProtocol')) {
+                    $list = $this->pkg->getProtocol();
+                }
+                else {                    
+                    $this->pkg->loadPackageFileListFromTemp();
+                    $list = $this->pkg->getFiles();
+                }
+
+                $this->pkglog($this->pkg->getKey().' '.$this->pkg->getVersion(), $list);
             }
 
             \fpcm\classes\baseconfig::enableAsyncCronjobs(true);
@@ -307,8 +314,16 @@
         private function execStep5() {
 
             if ($this->canConnect) {
-                $this->pkg->loadPackageFileListFromTemp();
-                $this->pkglog($this->pkg->getKey().' '.$this->pkg->getVersion(), $this->pkg->getFiles());
+
+                if (method_exists($this->pkg, 'getProtocol')) {
+                    $list = $this->pkg->getProtocol();
+                }
+                else {                    
+                    $this->pkg->loadPackageFileListFromTemp();
+                    $list = $this->pkg->getFiles();
+                }
+
+                $this->pkglog($this->pkg->getKey().' '.$this->pkg->getVersion(), $list);
             }
 
             \fpcm\classes\baseconfig::enableAsyncCronjobs(true);

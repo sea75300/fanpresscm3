@@ -156,8 +156,7 @@
                     break;
                 case 5 :
                     if ($this->canConnect) {
-                        $pkg->loadPackageFileListFromTemp();
-                        fpcmLogPackages($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
+                        fpcmLogPackages($pkg->getKey().' '.$pkg->getVersion(), $pkg->getProtocol());
                         $pkg->cleanup();
                     }
                     
