@@ -85,6 +85,14 @@
                         $this->output('Download failed. ERROR CODE: '.$success, true);
                     }
 
+                    $this->output('Check files in local file system...');
+
+                    $success = $pkg->checkFiles();
+                    if ($success !== true) {
+                        $this->output('Check failed, one or more files are not wriatble. ERROR CODE: '.$success);
+                        $this->output(implode(PHP_EOL, $pkg->getCopyErrorPaths()), true);
+                    }
+
                     $this->output('Unpacking package file '.\fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile(), true).'...');
                     $success = $pkg->extract();
                     if ($success !== true) {
