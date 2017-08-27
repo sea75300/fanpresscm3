@@ -115,10 +115,17 @@ fpcm.system = {
     
     initMassEditDialog: function(func, dialogId, list) {
 
+        
+        var dialogIdCom = '#fpcm-dialog-' + dialogId;
+
         fpcm.ui.selectmenu('.fpcm-ui-input-select-massedit', {
             width: '100%',
-            appendTo: '#fpcm-dialog-' + dialogId
+            appendTo: dialogIdCom
         });
+
+        if (typeof list.initWidgets === 'function') {
+            list.initWidgets(dialogIdCom);
+        }
 
         var size = fpcm.ui.getDialogSizes();
 

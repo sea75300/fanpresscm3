@@ -412,6 +412,10 @@
             if (isset($fields['private']) && $fields['private'] === -1) {
                 unset($fields['private']);
             }
+            
+            if (isset($fields['articleid']) && $fields['articleid'] < 1) {
+                unset($fields['articleid']);
+            }
 
             if (!count($fields)) {
                 return false;

@@ -17,7 +17,7 @@
 
         /**
          * Artikel-Liste
-         * @var \fpcm\model\articles\articlelist
+         * @var \fpcm\model\comments\commentList
          */
         protected $commentList;
 
@@ -75,6 +75,10 @@
             
             if (isset($this->data['isPrivate'])) {
                 $fields['private'] = (int) $this->data['isPrivate'];
+            }
+            
+            if (isset($this->data['moveToArticle']) && is_numeric($this->data['moveToArticle'])) {
+                $fields['articleId'] = (int) $this->data['moveToArticle'];
             }
             
             $result = $this->commentList->editCommentsByMass($this->commentIds, $fields);

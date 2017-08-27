@@ -16,6 +16,6 @@
         'COMMMENT_PRIVATE'      => 'Kommentar ist privat',
         'COMMMENT_APPROVE'      => 'Kommentar ist genehmigt',
         'COMMMENT_SPAM'         => 'Kommentar ist Spam',
-        'COMMMENT_MOVE'         => 'Zu anderem Artikel verschieben',
+        'COMMMENT_MOVE'         => 'Kommentar zu Artikel mit ID verschieben',
         'COMMMENT_SELETDEST'    => 'Bitte den Ziel-Artikel auswählen',
     );

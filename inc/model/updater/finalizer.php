@@ -79,7 +79,9 @@
             $data = $permission->getPermissionsAll();
 
             foreach ($data as $groupId => &$permissions) {
-                
+
+                $old = hash(\fpcm\classes\security::defaultHashAlgo, json_encode($permissions));
+
                 if (!isset($permissions['article']['revisions'])) {
                     $permissions['article']['revisions'] = $groupId < 3 ? 1 : 0;
                 }
@@ -110,6 +112,14 @@
                 
                 if (!isset($permissions['uploads']['visible'])) {
                     $permissions['uploads']['visible'] = 1;
+                }
+
+                if (!isset($permissions['comment']['move'])) {
+                    $permissions['comment']['move'] = $groupId < 3 ? 1 : 0;
+                }
+
+                if ($old === hash(\fpcm\classes\security::defaultHashAlgo, json_encode($permissions))) {
+                    continue;
                 }
 
                 $permission->setPermissionData($permissions);

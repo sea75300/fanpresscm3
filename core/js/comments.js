@@ -40,11 +40,22 @@ fpcm.comments = {
         var action = jQuery('#commentAction').val();
 
         if (action == 1) {
-            fpcm.system.initMassEditDialog('comments/massedit', 'comments-massedit', fpcm.comments);
+            fpcm.system.initMassEditDialog('comments/massedit', 'comments-massedit', this);
             fpcm.ui.removeLoaderClass(this);
             return -1;
         }
         
+        return true;
+    },
+    
+    initWidgets: function(dialogId) {
+
+        fpcm.ui.autocomplete('#moveToArticle', {
+            source: fpcmAjaxActionPath + 'autocomplete&src=articles',
+            appendTo: dialogId,
+            minLength: 3
+        });
+
         return true;
     },
     
@@ -118,7 +129,6 @@ fpcm.comments = {
             execDone: function () {
                 fpcm.ui.showLoader(false);
                 fpcm.ui.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
-                window.noActionButtonAssign = true;
                 fpcmJs.assignButtons();
                 fpcm.comments.initCommentSearch();
                 fpcm.ui.assignSelectmenu();

@@ -351,6 +351,15 @@ fpcm.ui = {
         return true;
     },
     
+    autocomplete: function(elemClassId, params) {
+        
+        if (params.minLength === undefined) {
+            params.minLength = 0;
+        }
+
+        return jQuery(elemClassId).autocomplete(params);
+    },
+    
     highlightModule: function() {
 
         if (window.fpcmNavigationActiveItemId !== undefined) {
@@ -555,15 +564,14 @@ fpcm.ui = {
         if (window.fpcmDtMasks === undefined) {
             return false;
         }
-
-        jQuery("#system_dtmask").autocomplete({
+        
+        fpcm.ui.autocomplete('#system_dtmask', {
             source: fpcmDtMasks
         });
 
-        jQuery("#usermetasystem_dtmask").autocomplete({
+        fpcm.ui.autocomplete('#usermetasystem_dtmask', {
             source: fpcmDtMasks
         });
-
     },
     
     initTabsScroll: function(elemClassId, isResize) {

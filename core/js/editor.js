@@ -563,21 +563,19 @@ fpcm.editor = {
             onSelect    : function(colorCode) {
                 jQuery('#fpcmdialogeditorhtmlcolorhexcode').val(colorCode);
             }
-        });    
-
-        jQuery('#linksurl').autocomplete({
+        });
+        
+        fpcm.ui.autocomplete('#linksurl', {
             source: fpcmEditorAutocompleteLinks,
             appendTo: "#fpcm-dialog-editor-html-insertlink",
-            minLength: 0,
             select: function( event, ui ) {
                 jQuery('#linkstext').val(ui.item.label);
             }
-        });    
+        });
 
-        jQuery('#imagespath').autocomplete({
+        fpcm.ui.autocomplete('#imagespath', {
             source: fpcmEditorAutocompleteImages,
             appendTo: "#fpcm-dialog-editor-html-insertimage",
-            minLength: 0,
             select: function( event, ui ) {
                 jQuery('#imagesalt').val(ui.item.label);
             }

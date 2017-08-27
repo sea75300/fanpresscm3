@@ -118,9 +118,10 @@ class commentsTest extends testBase {
     public function testEditCommentByMass() {
         
         $result = $this->object->editCommentsByMass([$GLOBALS['objectId']], [
-            'spammer'   => 0,
-            'approved'  => 1,
-            'private'   => -1
+            'spammer'    => 0,
+            'approved'   => 1,
+            'private'    => -1,
+            'articleid'  => 2,
         ]);
         
         $this->assertTrue($result);
@@ -131,6 +132,7 @@ class commentsTest extends testBase {
         $this->assertEquals($GLOBALS['commentEmail'], $object->getEmail());
         $this->assertEquals($GLOBALS['commentWebsite'], $object->getWebsite());
         $this->assertEquals($GLOBALS['commentContent'], $object->getText());
+        $this->assertEquals(2, $object->getArticleid());
         $this->assertEquals(0, $object->getSpammer());
         $this->assertEquals(1, $object->getApproved());
         $this->assertEquals(1, $object->getPrivate());

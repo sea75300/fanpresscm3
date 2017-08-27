@@ -96,6 +96,7 @@
             if (!parent::process()) return false;
 
             $this->initCommentPermissions();
+            $this->initCommentMassEditForm();
 
             $this->view->setExcludeMessages(true);
             $this->view->assign('ownArticleIds', $this->articleList->getArticleIDsByUser($this->session->getUserId()));

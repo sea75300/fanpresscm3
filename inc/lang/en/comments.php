@@ -16,6 +16,6 @@
         'COMMMENT_PRIVATE'      => 'Comment is private',
         'COMMMENT_APPROVE'      => 'Comment is approved',
         'COMMMENT_SPAM'         => 'Comment is spam',
-        'COMMMENT_MOVE'         => 'Move comment to article',
+        'COMMMENT_MOVE'         => 'Move comment to article with ID',
         'COMMMENT_SELETDEST'    => 'Please select article destination',
     );

@@ -37,6 +37,7 @@
             $this->view->assign('canEditComments', $canEdit);
             $this->view->assign('canApprove', $canApprove);
             $this->view->assign('canPrivate', $canPrivate);
+            $this->view->assign('canMove', $this->permissions->check(['comment' => 'move']));
             
             if ($canEdit && ($canApprove || $canPrivate)) {                
                 $commentActions[$this->lang->translate('GLOBAL_EDIT_SELECTED')]   = $this->actions['COMMENTLIST_ACTION_MASSEDIT'];

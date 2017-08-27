@@ -38,7 +38,7 @@
         /**
          * JSON-codiertes Array mit Rückgabe-Code und ggf. Rückgabe-Daten erzeugen
          * @return void
-         * @since FPCM 3.2.0
+         * @since FPCM 3.2
          */
         protected function getResponse() {
             
@@ -49,6 +49,15 @@
             
             die(json_encode($data));
             
+        }
+     
+        /**
+         * JSON-codiertes Array nur mit Nutzdaten als Rückgabe erzeugen
+         * @return void
+         * @since FPCM 3.6
+         */
+        protected function getSimpleResponse() {
+            die(json_encode($this->returnData));
         }
         
     }

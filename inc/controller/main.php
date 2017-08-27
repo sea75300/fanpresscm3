@@ -1,11 +1,6 @@
 <?php
     /**
-     * Main controller
-     * 
-     * Main controller used by index.php
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\controller;
@@ -13,8 +8,10 @@
     /**
      * Main controller
      * 
-     * @package fpcm.controller.main
+     * @package fpcm\controller\main
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     class main {
 
@@ -55,13 +52,12 @@
         public function exec() {
             $this->registerController();
 
-            $module = (!is_null(\fpcm\classes\http::get('module'))) ? \fpcm\classes\http::get('module', array(1,4,7)) : false;
-
+            $module = \fpcm\classes\http::get('module');
             if (!$module) {
                 header('Location: index.php?module=system/login');
                 return true;
             }
-            
+
             $controllerName = (isset($this->controllers[$module]) ? $this->controllers[$module] : '');
             if (strpos($controllerName, 'fpcm/modules/') === false) $controllerName  = "fpcm/controller/".$controllerName;
             $controllerName  = str_replace('/', '\\', $controllerName);
@@ -81,7 +77,13 @@
                 die("Controller class <b>$module</b> must be an instance of <b>fpcm\controller\abstracts\controller</b>. <span class=\"fa fa-frown-o\"></span>");
             }
 
-            if (!$controller->request()) return false;
+            if (!$controller->request()) {
+                return false;
+            }
+
+            if (method_exists($controller, 'hasAccess') && !$controller->hasAccess()) {
+                return false;
+            }
 
             $controller->process();         
         }

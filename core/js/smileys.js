@@ -13,11 +13,11 @@ fpcm.smileys = {
 
     init: function () {
 
-        jQuery('#smileyfilename').autocomplete({
-            source: fpcmSmileyFiles,
-            minLength: 0
-        }).
-        autocomplete('instance').
+        var acObject = fpcm.ui.autocomplete('#smileyfilename', {
+            source: fpcmSmileyFiles
+        });
+
+        acObject.autocomplete('instance').
         _renderItem = function( ul, item ) {
             return  jQuery('<li>').
                     addClass('fpcm-ui-smileylist-preview').

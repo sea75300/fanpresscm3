@@ -25,6 +25,7 @@
         'PERMISSION_COMMENT_DELETE'     => 'Delete comments',
         'PERMISSION_COMMENT_APPROVE'    => 'Approve comments',
         'PERMISSION_COMMENT_PRIVATE'    => 'Set private status for comments',
+        'PERMISSION_COMMENT_MOVE'       => 'Move comment to other article',
         'PERMISSION_SYSTEM_USERS'       => 'Can manage users',
         'PERMISSION_SYSTEM_CATEGORIES'  => 'Can manage categories',
         'PERMISSION_SYSTEM_ROLLS'       => 'Can manage user rolls',
