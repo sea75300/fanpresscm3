@@ -70,6 +70,7 @@
                 if (file_exists($dest)) {
                     
                     if (sha1_file($source) == sha1_file($dest)) {
+                        $this->updateProtocol($zipFile, -1);
                         continue;
                     }
 
@@ -82,13 +83,16 @@
 
                 }
 
-                if (!copy($source, $dest)) {
+                $success = copy($source, $dest);
+                if (!$success) {
                     if (!is_array($res)) $res = [];                    
                     $res[] = $dest;
                 }
-                
-            }            
-            
+
+                $this->updateProtocol($zipFile, $success);
+            }
+
+            $this->saveProtocolTemp();
             return is_array($res) ? self::FPCMPACKAGE_FILESCOPY_ERROR : $res;
         }
 

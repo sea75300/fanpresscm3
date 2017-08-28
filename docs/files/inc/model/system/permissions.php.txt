@@ -60,7 +60,8 @@
                 'editall'           => 0,
                 'delete'            => 0,
                 'approve'           => 1,
-                'private'           => 1
+                'private'           => 1,
+                'move'              => 0
             ),
             'system' => array(
                 'categories'        => 0,
@@ -112,7 +113,8 @@
                 'editall'           => 0,
                 'delete'            => 0,
                 'approve'           => 0,
-                'private'           => 0
+                'private'           => 0,
+                'move'              => 0,
             ),
             'system' => array(
                 'categories'        => 0,

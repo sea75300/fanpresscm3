@@ -1,10 +1,14 @@
 <?php
+    /**
+     * FanPress CM 3.x
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
     namespace fpcm\model\cli;
 
     /**
      * FanPress CM cli help module
      * 
-     * @package fpcm\model\system
+     * @package fpcm\model\cli
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
@@ -79,6 +83,14 @@
                     $success = $pkg->download();
                     if ($success !== true) {
                         $this->output('Download failed. ERROR CODE: '.$success, true);
+                    }
+
+                    $this->output('Check files in local file system...');
+
+                    $success = $pkg->checkFiles();
+                    if ($success !== true) {
+                        $this->output('Check failed, one or more files are not wriatble. ERROR CODE: '.$success);
+                        $this->output(implode(PHP_EOL, $pkg->getCopyErrorPaths()), true);
                     }
 
                     $this->output('Unpacking package file '.\fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile(), true).'...');

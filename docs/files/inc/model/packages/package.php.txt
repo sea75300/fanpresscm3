@@ -218,6 +218,13 @@
          * @since FPCM 3.1.0
          */
         protected $copyErrorPaths = [];
+        
+        /**
+         * Kopie-Protokoll
+         * @var array
+         * @since FPCM 3.6
+         */
+        protected $protocol = [];
 
         /**
          * Konstruktor
@@ -408,6 +415,30 @@
         public function getCopyErrorPaths() {
             return $this->copyErrorPaths;
         }
+
+        /**
+         * Protokoll laden
+         * @return array
+         * @since FPCM 3.6
+         */
+        public function getProtocol() {
+            
+            if (count($this->protocol)) {
+                return $this->protocol;
+            }
+
+            $tempfile = new \fpcm\model\files\tempfile('protocol'.$this->localFile);
+            if (!$tempfile->exists()) {
+                return $this->protocol = [];
+            }
+            
+            $this->protocol = json_decode(base64_decode($tempfile->getContent()), true);
+            if (!is_array($this->protocol)) {
+                $this->protocol = [];
+            }
+
+            return $this->protocol;
+        }
                 
         /**
          * Lädt Package in Abhängigkeit von Einstellungen herunter
@@ -535,6 +566,7 @@
                 if (file_exists($dest)) {
                     
                     if (sha1_file($source) == sha1_file($dest)) {
+                        $this->updateProtocol($zipFile, -1);
                         continue;
                     }
 
@@ -547,13 +579,16 @@
 
                 }
                 
-                if (!copy($source, $dest)) {
+                $success = copy($source, $dest);
+                if (!$success) {
                     if (!is_array($res)) $res = [];                    
                     $res[] = $dest;
                 }
-                
+
+                $this->updateProtocol($zipFile, $success);
             }
-            
+
+            $this->saveProtocolTemp();
             return is_array($res) ? self::FPCMPACKAGE_FILESCOPY_ERROR : $res;
         }
 
@@ -711,6 +746,30 @@
          */
         public static function explodeModuleFileName($filename) {            
             return explode('_version', $filename);            
+        }
+
+        /**
+         * copy-Protokoll
+         * @param string $file
+         * @param bool $success
+         * @return boolean
+         * @see package::copy
+         * @since FPCM 3.6
+         */
+        protected function updateProtocol($file, $success) {
+            $this->protocol[] = $file.' ('.($success === -1 ? 'SKIPPED' : ($success ? 'OK' : 'FAILED')).')';
+            return true;
+        }
+
+        /**
+         * copy-Protokoll in temporäre Datei speichern
+         * @return boolean
+         * @since FPCM 3.6
+         */
+        protected function saveProtocolTemp() {
+            $tempfile = new \fpcm\model\files\tempfile('protocol'.$this->localFile);
+            $tempfile->setContent(base64_encode(json_encode($this->protocol)));
+            return $tempfile->save();
         }
 
     }

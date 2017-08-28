@@ -42,14 +42,19 @@
         const FPCM_LOGFILETYPE_CRON     = 5;
 
         /**
-         *
+         * Mapping für Integer-Logtyp auf intere Datei
+         * * 1 = Systemlog
+         * * 2 = Errorlog
+         * * 3 = Sqlog
+         * * 4 = Paketmanagerlog
+         * * 5 = Cronjobslog
          * @var array
          */
         protected $fileMap = [];
 
         /**
          * Konstruktor
-         * @param string $logFile Dateiname
+         * @param int $logFile Dateiname
          */
         public function __construct($logFile) {
             

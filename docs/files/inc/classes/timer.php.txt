@@ -1,20 +1,17 @@
 <?php
     /**
-     * Static timer class, internal only!
-     * 
-     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     * @since FPCM 3.1.0
      */
-
     namespace fpcm\classes;
 
     /**
      * Static timer class, internal only!
      * 
      * @package fpcm\classes\timer
-     * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @since FPCM 3.1.0
      */ 
     final class timer {

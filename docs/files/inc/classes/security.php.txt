@@ -1,21 +1,17 @@
 <?php
     /**
-     * FanPress CM Security class
-     * 
-     * Security class
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
-
     namespace fpcm\classes;
     
     /**
-     * Security class
+     * Security layer class
      * 
      * @package fpcm\classes\security
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */ 
     final class security {
         

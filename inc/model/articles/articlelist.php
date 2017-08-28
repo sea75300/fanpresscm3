@@ -342,6 +342,7 @@
          * Archiviert Artikel
          * @param array $ids
          * @return bool
+         * @deprecated FPCM 3.6
          */
         public function archiveArticles(array $ids) {   
             $values = array(
@@ -358,6 +359,7 @@
          * Wechselt Kommentar-Aktiv-Status von Artikeln
          * @param array $ids
          * @return bool
+         * @deprecated FPCM 3.6
          */
         public function toggleComments(array $ids) {
             $this->cache->cleanup();
@@ -368,6 +370,7 @@
          * Wechselt Freigeben-Status von Artikeln
          * @param array $ids
          * @return bool
+         * @deprecated FPCM 3.6
          */
         public function toggleApproval(array $ids) {
             $this->cache->cleanup();            
@@ -378,6 +381,7 @@
          * Wechselt Pinned-Status von Artikeln
          * @param array $ids
          * @return bool
+         * @deprecated FPCM 3.6
          */
         public function togglePinned(array $ids) {
             $this->cache->cleanup();

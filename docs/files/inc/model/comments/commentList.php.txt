@@ -251,6 +251,7 @@
          * Schaltet Genehmigt-Status um
          * @param array $ids
          * @return bool
+         * @deprecated FPCM 3.6
          */
         public function toggleApprovement(array $ids) { 
             $this->cache->cleanup();  
@@ -261,6 +262,7 @@
          * Schaltet Privat-Status um
          * @param array $ids
          * @return bool
+         * @deprecated FPCM 3.6
          */
         public function togglePrivate(array $ids) {
             $this->cache->cleanup();
@@ -271,6 +273,7 @@
          * Schaltet Spam-Status um
          * @param array $ids
          * @return bool
+         * @deprecated FPCM 3.6
          */
         public function toggleSpammer(array $ids) {
             $this->cache->cleanup();
@@ -411,6 +414,10 @@
             
             if (isset($fields['private']) && $fields['private'] === -1) {
                 unset($fields['private']);
+            }
+            
+            if (isset($fields['articleid']) && $fields['articleid'] < 1) {
+                unset($fields['articleid']);
             }
 
             if (!count($fields)) {

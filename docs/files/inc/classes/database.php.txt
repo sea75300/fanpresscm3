@@ -1,21 +1,16 @@
 <?php
     /**
-     * FanPress CM database abstraction class
-     * 
-     * Database abstraction layer
-     * 
-     * @article Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
-
     namespace fpcm\classes;
 
     /**
-     * Database abstraction 
+     * FanPress CM Database abstraction layer
      * 
      * @package fpcm\classes\database
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2017, Stefan Seehafer
      */ 
     final class database {
 

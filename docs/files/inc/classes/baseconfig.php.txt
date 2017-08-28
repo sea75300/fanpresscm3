@@ -1,9 +1,6 @@
 <?php
     /**
-     * Base config class
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
 
@@ -14,6 +11,7 @@
      * 
      * @package fpcm\classes\baseconfig
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2016, Stefan Seehafer
      */     
     final class baseconfig {
         
