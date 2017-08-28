@@ -456,7 +456,6 @@ fpcm.editor = {
                     icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
-                        jQuery('#fpcm-dialog-editor-html-filemanager').remove();
                     }
                 }                            
             ],
