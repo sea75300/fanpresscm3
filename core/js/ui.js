@@ -381,23 +381,14 @@ fpcm.ui = {
 
         win_with = jQuery(el).width();
         
-        if (scale_factor === undefined) {            
-            if (win_with >= 800) {
-                scale_factor = 0.65;
-            } else if (win_with >= 480) {
-                scale_factor = 0.75;
-            } else if (win_with <= 480) {
-                scale_factor = 0.95;
-            } else {
-                scale_factor = 0.5;
-            }
+        if (win_with <= 700) {
+            scale_factor = 0.95;
         }
-        else {
-            if (win_with <= 480) {
-                scale_factor = 0.95;
-            } else if (win_with < 700) {
-                scale_factor = 0.65;
-            }
+        else if (scale_factor === undefined && win_with <= 1024) {            
+            scale_factor = 0.65;
+        }
+        else if (scale_factor === undefined) {
+            scale_factor = 0.5;
         }
 
         var ret = {

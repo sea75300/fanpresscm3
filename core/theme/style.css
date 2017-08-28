@@ -1162,7 +1162,6 @@ table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta {
 
 table.fpcm-ui-articles tr td.fpcm-ui-dashboard-recentarticles-meta,
 .fpcm-ui-editor-metabox-right {
-    font-size: 1.4em;
     color:#3399ff;
 }
 
@@ -1174,9 +1173,20 @@ table.fpcm-ui-comments .fpcm-ui-editor-metabox-right
     float: none; 
 }
 
-table.fpcm-ui-articles .fpcm-ui-editor-metabox-left {
+table.fpcm-ui-articles .fpcm-ui-editor-metabox-left,
+table.fpcm-ui-comment-editor .fpcm-ui-editor-metabox-left,
+div.fpcm-ui-editor-metabox .fpcm-ui-editor-metabox-left div.fpcm-ui-ellipsis {
     font-size: 0.85em;
-    padding: 0.4em 0em 0.2em;
+}
+
+table.fpcm-ui-articles .fpcm-ui-editor-metabox-left,
+div.fpcm-ui-editor-metabox .fpcm-ui-editor-metabox-left div.fpcm-ui-ellipsis,
+.fpcm-ui-editor-metabox-right {
+    padding: 0.4em 0em;
+}
+
+div.fpcm-ui-editor-metabox .fpcm-ui-editor-metabox-left div.fpcm-ui-ellipsis {
+    padding: 0.2em 0em 0.2em;
 }
 
 table.fpcm-ui-articles .fpcm-ui-editor-metabox-left strong  {

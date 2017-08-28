@@ -1,4 +1,4 @@
-<table class="fpcm-ui-table">
+<table class="fpcm-ui-table fpcm-ui-comment-editor">
     <tr>
         <td colspan="2">
             <div class="fpcm-ui-editor-metabox">

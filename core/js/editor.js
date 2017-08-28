@@ -433,7 +433,7 @@ fpcm.editor = {
     
     showFileManager: function() {
         
-        var size = fpcm.ui.getDialogSizes();
+        var size = fpcm.ui.getDialogSizes(top, 0.75);
         
         fpcm.ui.appendHtml('#fpcm-dialog-editor-html-filemanager', '<iframe id="fpcm-dialog-editor-html-filemanager-frame" class="fpcm-full-width" src="' + fpcmFileManagerUrl + fpcmFileManagerUrlMode + '"></iframe>');
         fpcm.ui.dialog({
@@ -456,6 +456,7 @@ fpcm.editor = {
                     icon: "ui-icon-closethick",                    
                     click: function() {
                         jQuery(this).dialog('close');
+                        jQuery('#fpcm-dialog-editor-html-filemanager').remove();
                     }
                 }                            
             ],
@@ -472,7 +473,7 @@ fpcm.editor = {
         fpcm.ui.appendHtml('#fpcm-dialog-editor-comments', '<iframe id="fpcm-editor-comment-frame" name="fpcmeditorcommentframe" class="fpcm-full-width" src="' + layerUrl + '"></iframe>');
         jQuery('.fpcm-ui-commentaction-buttons').fadeOut();
 
-        var size = fpcm.ui.getDialogSizes();
+        var size = fpcm.ui.getDialogSizes(top, 0.75);
 
         fpcm.ui.dialog({
             id       : 'editor-comments',
@@ -685,12 +686,13 @@ fpcm.editor = {
 
         fpcm.editor.initCodeMirrorAutosave();
         
-        var size = fpcm.ui.getDialogSizes();
+        var sizeSmall = fpcm.ui.getDialogSizes(top, 0.35);
+        var sizeLarge = fpcm.ui.getDialogSizes();
 
         jQuery('#fpcm-dialog-editor-html-insertlink-btn').click(function() {           
             fpcm.ui.dialog({
                 id: 'editor-html-insertlink',
-                dlWidth: size.width,
+                dlWidth: sizeLarge.width,
                 title: fpcm.ui.translate('editorInsertLink'),
                 dlButtons: [
                     {
@@ -730,7 +732,7 @@ fpcm.editor = {
         jQuery('#fpcm-dialog-editor-html-insertimage-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertimage',
-                dlWidth: size.width,
+                dlWidth: sizeLarge.width,
                 title: fpcm.ui.translate('editorInsertPic'),
                 dlButtons: [
                     {
@@ -779,7 +781,7 @@ fpcm.editor = {
 
             fpcm.ui.dialog({
                 id: 'editor-html-inserttable',
-                dlWidth: size.width,
+                dlWidth: sizeSmall.width,
                 title: fpcm.ui.translate('editorInsertTable'),
                 dlButtons: [
                     {
@@ -812,7 +814,7 @@ fpcm.editor = {
         jQuery('#fpcm-dialog-editor-html-insertcolor-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertcolor',
-                dlWidth: size.width,
+                dlWidth: sizeSmall.width,
                 title: fpcm.ui.translate('editorInsertColor'),
                 dlButtons: [
                     {
@@ -838,7 +840,7 @@ fpcm.editor = {
         jQuery('#fpcm-dialog-editor-html-insertmedia-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertmedia',
-                dlWidth: size.width,
+                dlWidth: sizeSmall.width,
                 title: fpcm.ui.translate('editorInsertMedia'),
                 dlButtons: [
                     {
@@ -864,7 +866,7 @@ fpcm.editor = {
         jQuery('#fpcm-dialog-editor-html-insertsmiley-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertsmileys',
-                dlWidth: size.width,
+                dlWidth: sizeSmall.width,
                 title: fpcm.ui.translate('editorInsertSmiley'),
                 dlButtons: [
                     {
@@ -898,8 +900,8 @@ fpcm.editor = {
         jQuery('#fpcm-dialog-editor-html-insertsymbol-btn').click(function() {
             fpcm.ui.dialog({
                 id: 'editor-html-insertsymbol',
-                dlWidth: size.width,
-                dlHeight: size.height,
+                dlWidth: sizeLarge.width,
+                dlHeight: sizeLarge.height,
                 title: fpcm.ui.translate('editorInsertSymbol'),
                 dlButtons: [
                     {
@@ -917,8 +919,8 @@ fpcm.editor = {
         jQuery('#fpcm-dialog-editor-html-insertdraft-btn').click(function() {
             fpcm.ui.dialog({
                 id       : 'editor-html-insertdraft',
-                dlWidth  : fpcm.ui.getDialogSizes(top).width,
-                dlHeight : fpcm.ui.getDialogSizes(top).height,
+                dlWidth  : sizeLarge.width,
+                dlHeight : sizeLarge.height,
                 title    : fpcm.ui.translate('editorInsertATpl'),
                 resizable: true,
                 dlButtons: [
@@ -1010,7 +1012,7 @@ fpcm.editor = {
 
             fpcm.ui.dialog({
                 id: 'editor-html-insertlist',
-                dlWidth: size.width,
+                dlWidth: sizeSmall.width,
                 title: fpcm.ui.translate('editorInsertUl'),
                 dlButtons: [
                     {
@@ -1048,7 +1050,7 @@ fpcm.editor = {
 
             fpcm.ui.dialog({
                 id: 'editor-html-insertlist',
-                dlWidth: size.width,
+                dlWidth: sizeSmall.width,
                 title: fpcm.ui.translate('editorInsertOl'),
                 dlButtons: [
                     {
@@ -1099,11 +1101,13 @@ fpcm.editor = {
             autoresize_min_height        : '500',
             file_picker                  : function(callback, value, meta) {
 
+                var fmSize = fpcm.ui.getDialogSizes(top, 0.75);
+
                 tinymce.activeEditor.windowManager.open({
                     file            : fpcmFileManagerUrl + fpcmFileManagerUrlMode,
                     title           : fpcm.ui.translate('fileManagerHeadline'),
-                    width           : fpcm.ui.getDialogSizes().width,
-                    height          : fpcm.ui.getDialogSizes().height,
+                    width           : fmSize.width,
+                    height          : fmSize.height,
                     close_previous  : false,
                     buttons  : [
                         {
