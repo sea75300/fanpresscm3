@@ -257,8 +257,10 @@
         }
 
         /**
-         * 
+         * Paket bearbeiten
          * @param \fpcm\model\packages\package $pkg
+         * @return bool
+         * @since FPCM 3.6
          */
         private function processPkg($pkg) {
             $this->output('Download package from '.$pkg->getRemoteFile().'...');

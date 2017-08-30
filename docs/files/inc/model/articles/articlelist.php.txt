@@ -572,6 +572,15 @@
             if (!count($articleIds)) {
                 return false;
             }
+            
+            $result = $this->events->runEvent('articlesMassEditBefore', [
+                'fields'        => $fields,
+                'articleIds'    => $articleIds
+            ]);
+
+            foreach ($result as $key => $val) {
+                ${$key} = $val;
+            }
 
             if (isset($fields['categories']) && is_array($fields['categories'])) {
                 unset($fields['categories']);

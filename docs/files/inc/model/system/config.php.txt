@@ -230,7 +230,7 @@
          * @return bool
          */
         public function setMaintenanceMode($mode) {
-            $this->newConfig = array('system_maintenance' => (int) $mode);
+            $this->newConfig = ['system_maintenance' => (int) $mode];
             return $this->update();
         }
 

@@ -13,7 +13,7 @@
      * Rückgabe: array mit Daten für Autocomplete
      * 
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @copyright (c) 2011-2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @package fpcm/model/events
      * @since FPCm 3.6
@@ -29,7 +29,7 @@
         }
 
         /**
-         * wird ausgeführt, wenn Systemlogs angezeigt werden
+         * wird ausgeführt, wenn autocomplete-Controller aufgerufen wird
          * @param array $data
          * @return array
          */
