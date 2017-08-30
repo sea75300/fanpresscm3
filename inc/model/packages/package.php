@@ -676,8 +676,13 @@
             for ($i = 0; $i < $this->archive->numFiles; $i++) {
                 $this->files[] = $this->archive->getNameIndex($i);
             }
+
+            if (!file_put_contents($this->tempListFile, base64_encode(json_encode($this->files)))) {
+                trigger_error('Failed to create temporary package file list');
+                return false;
+            }
             
-            file_put_contents($this->tempListFile, base64_encode(json_encode($this->files)));
+            return true;
         }
 
         /**
