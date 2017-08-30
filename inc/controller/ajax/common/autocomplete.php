@@ -45,7 +45,11 @@
                 $this->getSimpleResponse();
             }
 
-            call_user_func([$this, $fn]);
+            call_user_func([$this, $fn]);            
+            $this->returnData = $this->events->runEvent('autocompleteGetData', [
+                'module'     => $this->module,
+                'returnData' => $this->returnData
+            ]);
             $this->getSimpleResponse();
         }
         
@@ -81,6 +85,5 @@
 
             return true;
         }
-
     }
 ?>

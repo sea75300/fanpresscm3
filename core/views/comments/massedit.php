@@ -26,9 +26,9 @@
     <?php endif; ?>
     <?php if ($commentsMode === 1 && $canMove) : ?>    
     <div class="fpcm-ui-editor-extended-row">
-        <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-arrows fa-fw fa-lg"></span></div>
+        <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-clipboard fa-fw fa-lg"></span></div>
         <div class="fpcm-ui-editor-extended-button"><label><?php $FPCM_LANG->write('COMMMENT_MOVE'); ?></label></div>
-        <div class="fpcm-ui-editor-extended-col"><?php \fpcm\model\view\helper::textInput('moveToArticle', 'fpcm-ui-input-massedit'); ?></div>
+        <div class="fpcm-ui-editor-extended-col"><?php \fpcm\model\view\helper::textInput('moveToArticle', 'fpcm-ui-input-massedit', '', false, 20); ?></div>
         <div class="fpcm-clear"></div>
     </div>
     <?php endif; ?>
