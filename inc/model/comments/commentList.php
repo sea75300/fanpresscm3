@@ -406,7 +406,7 @@
             
             $result = $this->events->runEvent('commentsMassEditBefore', [
                 'fields'        => $fields,
-                'articleIds'    => $articleIds
+                'commentIds'    => $commentIds
             ]);
 
             foreach ($result as $key => $val) {

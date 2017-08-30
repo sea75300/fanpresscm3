@@ -36,7 +36,7 @@
         public function run($data = null) {
             
             $result = parent::run($data);
-            if (!count($result) || !isset($result['fields']) || !isset($result['articleIds'])) {
+            if (!count($result) || !isset($result['fields']) || !isset($result['commentIds'])) {
                 return $data;
             }
 
