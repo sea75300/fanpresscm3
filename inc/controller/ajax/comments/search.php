@@ -62,8 +62,10 @@
          */
         public function request() {
 
-            parent::request();            
-                        
+            if (!$this->session->exists()) {
+                return false;
+            }
+           
             $filter     = $this->getRequestVar('filter');
 
             $sparams             = new \fpcm\model\comments\search();

@@ -46,6 +46,10 @@
          */
         public function request() {
 
+            if (!$this->session->exists()) {
+                return false;
+            }
+
             if (!$this->permissions->check(['article' => ['edit', 'editall', 'approve', 'archive'] ]) || !$this->checkPageToken('articles/massedit')) {
                 return false;
             }

@@ -35,7 +35,10 @@
          * @return boolean
          */
         public function request() {
-            parent::request();            
+
+            if (!$this->session->exists()) {
+                return false;
+            }
                         
             if (is_null($this->getRequestVar('ids'))) {
                 return false;

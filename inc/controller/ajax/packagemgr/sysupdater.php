@@ -63,9 +63,9 @@
          * @return boolean
          */
         public function request() {
-            
+
             $this->step      = $this->getRequestVar('step');          
-            $this->forceStep = $this->getRequestVar('force', array(9));
+            $this->forceStep = $this->getRequestVar('force', [\fpcm\classes\http::FPCM_REQFILTER_CASTINT]);
             
             return true;
         }

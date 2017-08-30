@@ -94,8 +94,11 @@
          * @return boolean
          */
         public function request() {
-            parent::request();            
-                        
+
+            if (!$this->session->exists()) {
+                return false;
+            }
+
             $this->mode = $this->getRequestVar('mode');
             $filter     = $this->getRequestVar('filter');
 

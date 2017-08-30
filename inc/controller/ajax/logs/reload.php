@@ -35,6 +35,10 @@
          */
         public function request() {
             
+            if (!$this->session->exists()) {
+                return false;
+            }
+            
             if (!$this->permissions->check(array('system' => 'logs'))) {
                 return false;
             }

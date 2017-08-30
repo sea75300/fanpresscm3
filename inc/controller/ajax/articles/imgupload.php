@@ -16,7 +16,13 @@
          * @return bool
          */
         public function request() {
-            return $this->session->exists();
+
+            if ($this->session->exists() && is_object($this->permissions) && $this->permissions->check(['uploads' => 'add'])) {
+                return true;
+            }
+
+            header("HTTP/1.0 500 Server Error");
+            return false;
         }
 
         /**

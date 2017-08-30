@@ -46,6 +46,10 @@
          */
         public function request() {
 
+            if (!$this->session->exists()) {
+                return false;
+            }
+
             if (!$this->permissions->check(['article' => ['editall', 'edit'], 'comment' => ['editall', 'edit', 'approve', 'private']]) || !$this->checkPageToken('comments/massedit')) {
                 return false;
             }
