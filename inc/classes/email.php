@@ -16,18 +16,6 @@
     final class email {
 
         /**
-         * Event-Liste
-         * @var \fpcm\model\events\eventList
-         */
-        private $events;
-
-        /**
-         * Config-Objekt
-         * @var \fpcm\model\system\config
-         */
-        private $config;
-
-        /**
          * Empfänger
          * @var string
          */
@@ -72,7 +60,7 @@
 
         /**
          * PHPMailer Object
-         * @var \PHPMailer
+         * @var \PHPMailer\PHPMailer\PHPMailer
          */
         private $mailer     = null;
 
@@ -90,9 +78,6 @@
             $this->subject  = $subject;
             $this->text     = is_array($text) ? implode(PHP_EOL, $text) : $text;
             $this->html     = $html;
-
-            $this->events   = baseconfig::$fpcmEvents;
-            $this->config   = baseconfig::$fpcmConfig;
         }
 
         /**
@@ -199,7 +184,7 @@
          */
         public function submit() {
 
-            $eventData = $this->events->runEvent('emailSubmit', array(
+            $eventData = baseconfig::$fpcmEvents->runEvent('emailSubmit', array(
                 'headers'     => $this->headers,
                 'maildata'    => array(
                     'to'      => $this->to,
@@ -229,7 +214,7 @@
             if ($this->html) {
                 $this->mailer->AltBody = $this->mailer->html2text($this->text);
             }
-            $this->mailer->XMailer = 'FanPressCM'.$this->config->system_version;
+            $this->mailer->XMailer = 'FanPressCM'.baseconfig::$fpcmConfig->system_version;
             $this->mailer->CharSet = 'utf-8';
 
             if (count($this->headers)) {
@@ -244,7 +229,7 @@
                 }
             }
 
-            return call_user_func([$this, 'submit'.($this->config->smtp_enabled ? 'Smtp' : 'Php')]);            
+            return call_user_func([$this, 'submit'.(baseconfig::$fpcmConfig->smtp_enabled ? 'Smtp' : 'Php')]);            
         }
 
         /**
@@ -254,32 +239,32 @@
          */
         public function checkSmtp() {
 
-            if (!$this->config->smtp_enabled) {
+            if (!baseconfig::$fpcmConfig->smtp_enabled) {
                 return false;
             }
             
             $this->getMailerObj();
             $this->mailer->isSMTP();
 
-            $autoEncryption            = ($this->config->smtp_settings['encr'] === 'auto' ? true : false);
+            $autoEncryption            = (baseconfig::$fpcmConfig->smtp_settings['encr'] === 'auto' ? true : false);
 
-            $this->mailer->Host        = $this->config->smtp_settings['srvurl'];
-            $this->mailer->Username    = $this->config->smtp_settings['user'];
-            $this->mailer->Password    = $this->config->smtp_settings['pass'];
-            $this->mailer->Port        = $this->config->smtp_settings['port'];
-            $this->mailer->SMTPSecure  = !$autoEncryption ? $this->config->smtp_settings['encr'] : '';
+            $this->mailer->Host        = baseconfig::$fpcmConfig->smtp_settings['srvurl'];
+            $this->mailer->Username    = baseconfig::$fpcmConfig->smtp_settings['user'];
+            $this->mailer->Password    = baseconfig::$fpcmConfig->smtp_settings['pass'];
+            $this->mailer->Port        = baseconfig::$fpcmConfig->smtp_settings['port'];
+            $this->mailer->SMTPSecure  = !$autoEncryption ? baseconfig::$fpcmConfig->smtp_settings['encr'] : '';
             $this->mailer->SMTPAutoTLS = $autoEncryption;
-            $this->mailer->SMTPAuth    = ($this->config->smtp_settings['user'] && $this->config->smtp_settings['pass']) ? true : false;
-            
-            if (!$this->mailer->smtpConnect()) {
-                trigger_error("Unable to connect to mail server with given setting.----------\n\n{$this->mailer->ErrorInfo}");
+            $this->mailer->SMTPAuth    = (baseconfig::$fpcmConfig->smtp_settings['user'] && baseconfig::$fpcmConfig->smtp_settings['pass']) ? true : false;
+
+            try {
+                $res = $this->mailer->smtpConnect();
+            } catch (\PHPMailer\PHPMailer\Exception $e) {
+                trigger_error("Unable to send SMTP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$this->mailer->ErrorInfo}\n----------\n\n".$e->getTraceAsString());
                 return false;
             }
 
             $this->mailer->smtpClose();
-
-            return true;
-            
+            return $res ? true : false;
         }
 
         /**
@@ -289,12 +274,14 @@
          */
         private function submitPhp() {
 
-            if (!$this->mailer->send()) {
-                trigger_error("Unable to send PHP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$this->mailer->ErrorInfo}");
+            try {                
+                $res = $this->mailer->send();
+            } catch (\PHPMailer\PHPMailer\Exception $e) {
+                trigger_error("Unable to send PHP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$this->mailer->ErrorInfo}\n----------\n\n".$e->getTraceAsString());
                 return false;
             }
 
-            return true;
+            return $res ? true : false;
         }
 
         /**
@@ -304,25 +291,25 @@
          */
         private function submitSmtp() {
             
-            $autoEncryption = ($this->config->smtp_settings['encr'] === 'auto' ? true : false);
+            $autoEncryption = (baseconfig::$fpcmConfig->smtp_settings['encr'] === 'auto' ? true : false);
             
-            $this->mailer->Host        = $this->config->smtp_settings['srvurl'];
-            $this->mailer->Username    = $this->config->smtp_settings['user'];
-            $this->mailer->Password    = $this->config->smtp_settings['pass'];
-            $this->mailer->Port        = $this->config->smtp_settings['port'];
-            $this->mailer->SMTPSecure  = !$autoEncryption ? $this->config->smtp_settings['encr'] : '';
+            $this->mailer->Host        = baseconfig::$fpcmConfig->smtp_settings['srvurl'];
+            $this->mailer->Username    = baseconfig::$fpcmConfig->smtp_settings['user'];
+            $this->mailer->Password    = baseconfig::$fpcmConfig->smtp_settings['pass'];
+            $this->mailer->Port        = baseconfig::$fpcmConfig->smtp_settings['port'];
+            $this->mailer->SMTPSecure  = !$autoEncryption ? baseconfig::$fpcmConfig->smtp_settings['encr'] : '';
             $this->mailer->SMTPAutoTLS = $autoEncryption;
-            $this->mailer->SMTPAuth    = ($this->config->smtp_settings['user'] && $this->config->smtp_settings['pass']) ? true : false;
-
+            $this->mailer->SMTPAuth    = (baseconfig::$fpcmConfig->smtp_settings['user'] && baseconfig::$fpcmConfig->smtp_settings['pass']) ? true : false;
             $this->mailer->isSMTP();
 
-            if (!$this->mailer->send()) {
-                trigger_error("Unable to send SMTP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$this->mailer->ErrorInfo}");
+            try {                
+                $res = $this->mailer->send();
+            } catch (\PHPMailer\PHPMailer\Exception $e) {
+                trigger_error("Unable to send SMTP e-mail \"{$this->subject}\" to \"{$this->to}\".\n----------\n{$this->text}\n----------\n\n{$this->mailer->ErrorInfo}\n----------\n\n".$e->getTraceAsString());
                 return false;
             }
 
-            return true;
-
+            return $res ? true : false;
         }
 
         /**
@@ -332,13 +319,14 @@
          */
         private function getMailerObj() {
 
-            require_once loader::libGetFilePath('PHPMailer', 'class.phpmailer.php');
-            require_once loader::libGetFilePath('PHPMailer', 'class.smtp.php');            
+            require_once loader::libGetFilePath('PHPMailer', 'PHPMailer.php');
+            require_once loader::libGetFilePath('PHPMailer', 'SMTP.php');            
+            require_once loader::libGetFilePath('PHPMailer', 'Exception.php');            
 
-            $this->mailer = new \PHPMailer();
+            $this->mailer = new \PHPMailer\PHPMailer\PHPMailer();
             $this->mailer->isHTML($this->html);
-            $this->mailer->setFrom($this->config->smtp_settings['addr']);
-            $this->mailer->setLanguage($this->config->system_lang);
+            $this->mailer->setFrom(baseconfig::$fpcmConfig->smtp_settings['addr']);
+            $this->mailer->setLanguage(baseconfig::$fpcmConfig->system_lang);
 
             return true;
 

@@ -319,7 +319,8 @@
          */
         private function checkFilesystem() {
 
-            $fbPath = \fpcm\classes\loader::libGetFileUrl('fancybox');
+            $fbPath        = \fpcm\classes\loader::libGetFileUrl('fancybox');
+            $phpMailerPath = \fpcm\classes\loader::libGetFilePath('PHPMailer', '', '', false);
             
             $files = [
                 \fpcm\classes\baseconfig::$jsPath.'editor_comments.js',
@@ -333,14 +334,14 @@
                 $fbPath.'fancybox_sprite.png',
                 $fbPath.'fancybox_sprite@2x.png',
                 $fbPath.'jquery.fancybox.css',
-                $fbPath.'jquery.fancybox.pack.js'
+                $fbPath.'jquery.fancybox.pack.js',
+                $phpMailerPath.'class.phpmailer.php',
+                $phpMailerPath.'class.smtp.php'
             ];
 
             foreach ($files as $file) {
-
                 if (!file_exists($file)) continue;
                 unlink($file);
-
             }
             
             \fpcm\model\files\ops::deleteRecursive(dirname(\fpcm\classes\loader::libGetFilePath('spinjs', 'spin.min.js', '', false)));
