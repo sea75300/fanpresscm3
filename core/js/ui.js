@@ -243,7 +243,7 @@ fpcm.ui = {
             params.width = 200;
         }
 
-        jQuery(elemClassId).selectmenu(params);
+        return jQuery(elemClassId).selectmenu(params);
 
     },
     
@@ -511,6 +511,10 @@ fpcm.ui = {
     
     removeLoaderClass: function(elemId) {
         jQuery(elemId).removeClass('fpcm-loader');
+    },
+    
+    isReadonly: function(elemId, state) {
+        jQuery(elemId).prop('readonly', state);
     },
     
     createIFrame: function(params) {

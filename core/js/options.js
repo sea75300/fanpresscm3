@@ -45,6 +45,17 @@ fpcm.options = {
         jQuery('#fpcmsyschecksubmitstats').click(function () {
             fpcm.options.submitStatsData();
         });
+        
+        fpcm.ui.selectmenu('#smtp_enabled', {
+            change: function( event, data ) {
+                var status = (data.item.value == 1 ? false : true);
+                fpcm.ui.isReadonly('input.fpcm-ui-options-smtp-input', status);
+                fpcm.ui.selectmenu('#smtp_settingsencr', {
+                    disabled: status
+                });
+                return true;
+            }
+        });
     },
     
     submitStatsData: function () {

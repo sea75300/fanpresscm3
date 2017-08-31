@@ -17,7 +17,7 @@
         <div id="tabs-article">
             <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-html-filemanager"></div>            
             
-            <?php include $editorFile; ?>                
+            <?php include $editorFile; ?>
             <?php include __DIR__.'/buttons.php'; ?>
         </div>
         

@@ -260,23 +260,23 @@
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('GLOBAL_EMAIL'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[addr]', '', $globalConfig['smtp_settings']['addr'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[addr]', 'fpcm-ui-options-smtp-input', $globalConfig['smtp_settings']['addr'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
                     </tr>
                     <tr>	
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_SERVER'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[srvurl]', '', $globalConfig['smtp_settings']['srvurl'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[srvurl]', 'fpcm-ui-options-smtp-input', $globalConfig['smtp_settings']['srvurl'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_PORT'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[port]', '', $globalConfig['smtp_settings']['port'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[port]', 'fpcm-ui-options-smtp-input', $globalConfig['smtp_settings']['port'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_USERNAME'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[user]', '', $globalConfig['smtp_settings']['user'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[user]', 'fpcm-ui-options-smtp-input', $globalConfig['smtp_settings']['user'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_PASSWORD'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[pass]', '', $globalConfig['smtp_settings']['pass'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
+                        <td><?php fpcm\model\view\helper::textInput('smtp_settings[pass]', 'fpcm-ui-options-smtp-input', $globalConfig['smtp_settings']['pass'], ($globalConfig['smtp_enabled'] ? false : true)); ?></td>
                     </tr>
                     <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_EMAIL_ENCRYPTED'); ?>:</td>

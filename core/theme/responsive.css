@@ -116,14 +116,18 @@
     }
     
     div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-postponed,
-    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-tweettext  {
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-col-tweettext {
         margin: 0.4em;
+    }
+
+    div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-col.fpcm-ui-editor-extended-articleimg {
+        margin: 0.4em 0 0 0.8em;
     }
 
     div.fpcm-ui-editor-extended-row div.fpcm-ui-editor-extended-button .ui-checkboxradio-label {
         width: 90%;
     }
-    
+
     table.fpcm-ui-articles .fpcm-ui-editor-metabox-right {
         width: auto;
     }

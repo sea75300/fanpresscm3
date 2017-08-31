@@ -1,20 +1,21 @@
 <?php if (!$isRevision) : ?>
-    <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-extended">
+    <div class="fpcm-editor-fields-tabs">
+        <div class="fpcm-ui-editor-extended-row">
+            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-external-link fa-fw fa-lg"></span></div>
+            <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-textarea"><?php fpcm\model\view\helper::textInput('article[sources]', '', $article->getSources(), false, 255, 'TEMPLATE_ARTICLE_SOURCES'); ?></div>
+            <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-textarea"></div>
+            <div class="fpcm-clear"></div>
+        </div>
 
         <div class="fpcm-ui-editor-extended-row">
             <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-picture-o fa-fw fa-lg"></span></div>
-            <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-col-floatsmall fpcm-ui-editor-extended-col-large"><?php fpcm\model\view\helper::textInput('article[imagepath]', '', $article->getImagepath(), false, 512, 'TEMPLATE_ARTICLE_ARTICLEIMAGE'); ?></div>
-            <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-col-floatsmall"><?php \fpcm\model\view\helper::linkButton('', 'HL_FILES_MNG', 'fpcmuieditoraimgfmg', 'fpcm-ui-button-blank fpcm-folderopen-btn'); ?></div>
+            <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-textarea"><?php fpcm\model\view\helper::textInput('article[imagepath]', '', $article->getImagepath(), false, 512, 'TEMPLATE_ARTICLE_ARTICLEIMAGE'); ?></div>
+            <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-articleimg"><?php \fpcm\model\view\helper::linkButton('', 'HL_FILES_MNG', 'fpcmuieditoraimgfmg', 'fpcm-ui-button-blank fpcm-folderopen-btn'); ?></div>
             <div class="fpcm-clear"></div>
         </div>
-
-        <div class="fpcm-ui-editor-extended-row">
-            <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-external-link fa-fw fa-lg"></span></div>
-            <div class="fpcm-ui-editor-extended-button fpcm-ui-editor-extended-col-floatsmall fpcm-ui-editor-extended-col-large"><?php fpcm\model\view\helper::textInput('article[sources]', '', $article->getSources(), false, 255, 'TEMPLATE_ARTICLE_SOURCES'); ?></div>
-            <div class="fpcm-ui-editor-extended-col fpcm-ui-editor-extended-col-floatsmall"></div>
-            <div class="fpcm-clear"></div>
-        </div>
+    </div>
         
+    <div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-editor-extended">
         <?php if ($showTwitter) : ?>
         <div class="fpcm-ui-editor-extended-row">
             <div class="fpcm-ui-editor-extended-icon"><span class="fa fa-twitter fa-fw fa-lg"></span></div>
@@ -26,8 +27,8 @@
             </div>
             <div class="fpcm-clear"></div>
         </div>
+        <p class="fpcm-ui-center"><span class="fpcm-small-text"><?php print $twitterReplacements; ?></span> <?php fpcm\model\view\helper::shortHelpButton('EDITOR_TWEET_TEXT_REPLACER', '', $FPCM_BASEMODULELINK.'system/templates', '_blank'); ?></p>
         <?php endif; ?>
-                <p class="fpcm-ui-center"><span class="fpcm-small-text"><?php print $twitterReplacements; ?></span> <?php fpcm\model\view\helper::shortHelpButton('EDITOR_TWEET_TEXT_REPLACER', '', $FPCM_BASEMODULELINK.'system/templates', '_blank'); ?></p>
 
         <?php if (!$editorMode || $article->getPostponed()) : ?>
         <div class="fpcm-ui-editor-extended-row">
