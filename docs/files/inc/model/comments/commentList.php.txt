@@ -2,7 +2,7 @@
     /**
      * FanPress CM Comment List Model
      * @author Stefan Seehafer aka imagine <fanpress@nobody-knows.org>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @copyright (c) 2011-2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\comments;
@@ -406,7 +406,7 @@
             
             $result = $this->events->runEvent('commentsMassEditBefore', [
                 'fields'        => $fields,
-                'articleIds'    => $articleIds
+                'commentIds'    => $commentIds
             ]);
 
             foreach ($result as $key => $val) {
