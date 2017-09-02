@@ -11,7 +11,7 @@
      * 
      * @package fpcm\classes\baseconfig
      * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2016, Stefan Seehafer
+     * @copyright (c) 2011-2017, Stefan Seehafer
      */     
     final class baseconfig {
         
