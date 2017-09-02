@@ -17,5 +17,6 @@
         'COMMMENT_APPROVE'      => 'Kommentar ist genehmigt',
         'COMMMENT_SPAM'         => 'Kommentar ist Spam',
         'COMMMENT_MOVE'         => 'Kommentar zu Artikel mit ID verschieben',
-        'COMMMENT_SELETDEST'    => 'Bitte den Ziel-Artikel auswählen',
+        'COMMMENT_SELETDEST'      => 'Bitte den Ziel-Artikel auswählen',
+        'COMMMENT_SEARCH_ARTICLE' => 'Suche in Artikel mit ID',
     );

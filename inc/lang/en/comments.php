@@ -18,4 +18,5 @@
         'COMMMENT_SPAM'         => 'Comment is spam',
         'COMMMENT_MOVE'         => 'Move comment to article with ID',
         'COMMMENT_SELETDEST'    => 'Please select article destination',
+        'COMMMENT_SEARCH_ARTICLE' => 'Search in article with ID',
     );

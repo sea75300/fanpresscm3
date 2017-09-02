@@ -69,6 +69,12 @@ fpcm.comments = {
             });
 
             fpcm.ui.datepicker('.fpcm-full-width-date');
+            
+            fpcm.ui.autocomplete('#articleId', {
+                source: fpcmAjaxActionPath + 'autocomplete&src=articles',
+                appendTo: '#fpcm-dialog-comments-search',
+                minLength: 3
+            });
 
             var size = fpcm.ui.getDialogSizes();
 
