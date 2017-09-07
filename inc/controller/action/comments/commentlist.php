@@ -32,6 +32,24 @@
          * @var \fpcm\model\articles\articlelist
          */
         protected $articleList;
+        
+        /**
+         *
+         * @var int
+         */
+        protected $listShowLimit = 0;
+        
+        /**
+         *
+         * @var int
+         */
+        protected $listShowStart = 0;
+        
+        /**
+         *
+         * @var int
+         */
+        protected $commentCount = 0;
 
         /**
          * @see \fpcm\controller\abstracts\controller::__construct()
@@ -41,9 +59,11 @@
             
             $this->checkPermission = array('article' => array('editall', 'edit'), 'comment' => array('editall', 'edit'));
             
-            $this->view         = new \fpcm\model\view\acp('commentlist', 'comments');            
-            $this->list         = new \fpcm\model\comments\commentList();
-            $this->articleList  = new \fpcm\model\articles\articlelist();
+            $this->view          = new \fpcm\model\view\acp('commentlist', 'comments');            
+            $this->list          = new \fpcm\model\comments\commentList();
+            $this->articleList   = new \fpcm\model\articles\articlelist();
+
+            $this->listShowLimit = $this->config->articles_acp_limit;
         }
 
         /**
@@ -75,10 +95,16 @@
             $this->initCommentPermissions();
             $this->initSearchForm();
             $this->initCommentMassEditForm();
+            $this->initPagination();
 
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'comments.js'));
-            $this->view->assign('comments', $this->list->getCommentsAll());
+            
+            $comments           = $this->list->getCommentsByLimit($this->listShowLimit, $this->listShowStart);
+            $this->commentCount = count($comments);
+            $this->view->assign('comments', $comments);
+            
             $this->view->assign('commentsMode', 1);
+            $this->view->assign('showPager', true);
             $this->view->setHelpLink('hl_comments_mng');
             $this->view->render();
         }
@@ -123,6 +149,28 @@
             ));
 
             $this->view->addJsVars(array('fpcmCommentsLastSearch' => 0));
+        }
+
+        protected function initPagination() {
+
+            $this->view->assign('listAction', 'comments/list');  
+
+            $page       = $this->getRequestVar('page', [\fpcm\classes\http::FPCM_REQFILTER_CASTINT]);
+            $pagerData  = \fpcm\classes\tools::calcPagination(
+                $this->listShowLimit,
+                $page,
+                $this->list->countCommentsByCondition(new \fpcm\model\comments\search()),
+                $this->commentCount
+            );
+
+            $this->listShowStart = \fpcm\classes\tools::getPageOffset($page, $this->listShowLimit);
+
+            $this->view->assign('showPager', true);
+            foreach ($pagerData as $key => $value) {
+                $this->view->assign($key, $value);
+            }
+            
+            $this->view->addJsVars(['fpcmCurrentModule'=> $this->getRequestVar('module')]);
         }
 
     }

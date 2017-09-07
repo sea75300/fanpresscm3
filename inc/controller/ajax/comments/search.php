@@ -104,6 +104,7 @@
             $this->view->setExcludeMessages(true);
             $this->view->assign('ownArticleIds', $this->articleList->getArticleIDsByUser($this->session->getUserId()));
             $this->view->assign('commentsMode', 1);
+            $this->view->assign('showPager', false);
             $this->view->render();
             
         }

@@ -32,6 +32,8 @@
     <?php endforeach; ?>
 </table>
 
+<?php include dirname(__DIR__).'/components/pager.php'; ?>
+
 <?php if (count($commentActions)) : ?>
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-commentaction-buttons">
     <div class="fpcm-ui-margin-center">

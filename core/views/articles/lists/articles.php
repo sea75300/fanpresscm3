@@ -34,11 +34,13 @@
                         
                     </div>
 
+                    <?php if ($commentEnabledGlobal) : ?>
                     <?php \fpcm\model\view\helper::badge([
                         'value' => (isset($commentCount[$articleId]) ? $commentCount[$articleId] : 0),
                         'title' => (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId] ? 'ARTICLE_LIST_COMMENTNOTICE' : 'HL_COMMENTS_MNG'),
                         'class' => (isset($commentPrivateUnapproved[$articleId]) && $commentPrivateUnapproved[$articleId] ? 'fpcm-ui-badge-red fpcm-ui-badge-comments' : 'fpcm-ui-badge-comments')]);
                     ?>
+                    <?php endif; ?>
 
                     <?php include dirname(__DIR__).'/times.php'; ?>
                 </td>                

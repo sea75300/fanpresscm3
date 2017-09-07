@@ -75,6 +75,7 @@
             $this->view = new \fpcm\model\view\ajax('commentlist_inner', 'comments');
             $this->view->assign('comments', $commentList->getCommentsBySearchCondition($search));
             $this->view->assign('commentsMode', 2);
+            $this->view->assign('showPager', false);
             
             $this->initCommentMassEditForm(true);
             $this->initCommentPermissions();

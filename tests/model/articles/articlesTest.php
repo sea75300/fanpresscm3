@@ -3,6 +3,11 @@
 require_once dirname(dirname(__DIR__)).'/testBase.php';
 
 class articlesTest extends testBase {
+    
+    /**
+     * @var \fpcm\model\articles\articlelist
+     */
+    protected $object;
 
     public function setUp() {
         $this->className = 'articles\\articlelist';

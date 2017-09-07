@@ -158,6 +158,13 @@
          * @since FPCM 3.2
          */
         private $lastTable = '';
+        
+        /**
+         * SQL-Query via explain testen
+         * @var bool
+         * @since FPCM 3.6
+         */
+        private $explain = false;
 
         /**
          * Konstruktor
@@ -418,6 +425,10 @@
             
             $this->queryCount++;
             
+            if ($this->explain) {
+                $command = 'EXPLAIN '.$command;
+            }
+            
             $statement = $this->connection->prepare($command);     
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
@@ -530,6 +541,10 @@
             
             $this->queryCount++;
             
+            if ($this->explain) {
+                $command = 'EXPLAIN '.$command;
+            }
+
             $statement = $this->connection->prepare($command);
 
             if (defined('FPCM_DEBUG') && FPCM_DEBUG && defined('FPCM_DEBUG_SQL') && FPCM_DEBUG_SQL) {
@@ -903,4 +918,14 @@
             return $files;
 
         }
+
+        /**
+         * SQL-EXPLAIN de/aktivieren
+         * @param bool $explain
+         * @since FPCM 3.6
+         */
+        public function setExplain($explain) {
+            $this->explain = (bool) $explain;
+        }
+
     }
