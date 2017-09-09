@@ -68,7 +68,8 @@
                     $conditions->category = $this->category;
                 }
                     
-                $articles   = $this->articleList->getArticlesByCondition($conditions);
+                $articles    = $this->articleList->getArticlesByCondition($conditions);
+                $this->users = $this->userList->getUsersForArticles(array_keys($articles));
 
                 foreach ($articles as $article) {
                     $parsed[] = $this->assignData($article);

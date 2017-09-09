@@ -82,7 +82,7 @@
             }
             
             if (isset($this->data['pinned'])) {
-                $fields['pinned'] = ($this->data['archived'] ? 0 : (int) $this->data['pinned']);
+                $fields['pinned'] = ($this->data['archived'] > 0 ? 0 : (int) $this->data['pinned']);
             }
             
             if (isset($this->data['approval'])) {

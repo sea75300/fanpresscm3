@@ -246,20 +246,23 @@
             
             $this->articleTemplate->setCommentsEnabled($this->config->system_comments_enabled && $this->article->getComments());
 
-            if (isset($users[$this->article->getCreateuser()])) {                
-                $emailAddress = '<a href="mailto:'.$users[$this->article->getCreateuser()]->getEmail().'">'.$users[$this->article->getCreateuser()]->getDisplayname().'</a>';
-            } else {
-                $emailAddress = '';
-            }
+            $cuser  = isset($users[$this->article->getCreateuser()]) ? $users[$this->article->getCreateuser()] : false;
+            $chuser = isset($users[$this->article->getChangeuser()]) ? $users[$this->article->getChangeuser()] : false;
+
+            $emailAddress   = $cuser
+                            ? '<a href="mailto:'.$cuser->getEmail().'">'.$cuser->getDisplayname().'</a>'
+                            : '';
             
             $replacements = array(
                 '{{headline}}'                      => $this->article->getTitle(),
                 '{{text}}'                          => $this->article->getContent(),
-                '{{author}}'                        => isset($users[$this->article->getCreateuser()]) ? $users[$this->article->getCreateuser()]->getDisplayname() : $this->lang->translate('GLOBAL_NOTFOUND'),
+                '{{author}}'                        => $cuser ? $cuser->getDisplayname() : $this->lang->translate('GLOBAL_NOTFOUND'),
                 '{{authorEmail}}'                   => $emailAddress,
+                '{{authorAvatar}}'                  => $cuser ? \fpcm\model\users\author::getAuthorImageDataOrPath($cuser, 0) : '',
+                '{{authorInfoText}}'                => $cuser ? $cuser->getUsrinfo() : '',
                 '{{date}}'                          => date($this->config->system_dtmask, $this->article->getCreatetime()),
                 '{{changeDate}}'                    => date($this->config->system_dtmask, $this->article->getChangetime()),
-                '{{changeUser}}'                    => isset($users[$this->article->getChangeuser()]) ? $users[$this->article->getChangeuser()]->getDisplayname() : $this->lang->translate('GLOBAL_NOTFOUND'),
+                '{{changeUser}}'                    => $chuser ? $chuser->getDisplayname() : $this->lang->translate('GLOBAL_NOTFOUND'),
                 '{{statusPinned}}'                  => $this->article->getPinned() ? $this->lang->translate('PUBLIC_ARTICLE_PINNED') : '',
                 '{{shareButtons}}'                  => $shareButtonParser->parse(),
                 '{{categoryIcons}}'                 => implode(PHP_EOL, $categoryIcons),

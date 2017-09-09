@@ -122,7 +122,8 @@
                     $conditions->category = $this->category;
                 }
 
-                $articles   = $this->articleList->getArticlesByCondition($conditions);
+                $articles    = $this->articleList->getArticlesByCondition($conditions);
+                $this->users = $this->userList->getUsersForArticles(array_keys($articles));
 
                 foreach ($articles as $article) {
                     $parsed[] = $this->assignData($article);
@@ -156,7 +157,7 @@
             
             $replacements = array(
                 '{{headline}}'                      => $article->getTitle(),
-                '{{author}}'                        => isset($this->users[$article->getCreateuser()]) ? $this->users[$article->getCreateuser()] : $this->lang->translate('GLOBAL_NOTFOUND'),
+                '{{author}}'                        => isset($this->users[$article->getCreateuser()]) ? $this->users[$article->getCreateuser()]->getDisplayname() : $this->lang->translate('GLOBAL_NOTFOUND'),
                 '{{date}}'                          => date($this->config->system_dtmask, $article->getCreatetime()),
                 '{{permaLink}}:{{/permaLink}}'      => $article->getArticleLink(),
                 '{{commentLink}}:{{/commentLink}}'  => $article->getArticleLink().'#comments'

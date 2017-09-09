@@ -154,9 +154,7 @@
             parent::process();
             
             if ($this->cache->isExpired() || $this->session->exists()) { 
-                $this->users       = array_flip($this->userList->getUsersNameList());
-                $this->usersEmails = array_flip($this->userList->getUsersEmailList());
-                $this->categories = $this->categoryList->getCategoriesAll();
+                $this->categories    = $this->categoryList->getCategoriesAll();
                 $this->commentCounts = ($this->config->system_comments_enabled) ? $this->commentList->countComments([], 0, 1) : [];
             }
         }
@@ -196,20 +194,23 @@
             
             $tpl->setCommentsEnabled($this->config->system_comments_enabled && $article->getComments());
             
-            if (isset($this->usersEmails[$article->getCreateuser()])) {                
-                $emailAddress = '<a href="mailto:'.$this->usersEmails[$article->getCreateuser()].'">'.$this->users[$article->getCreateuser()].'</a>';
-            } else {
-                $emailAddress = '';
-            }
-            
+            $cuser  = isset($this->users[$article->getCreateuser()]) ? $this->users[$article->getCreateuser()] : false;
+            $chuser = isset($this->users[$article->getChangeuser()]) ? $this->users[$article->getChangeuser()] : false;
+
+            $emailAddress   = $cuser
+                            ? '<a href="mailto:'.$cuser->getEmail().'">'.$cuser->getDisplayname().'</a>'
+                            : '';
+
             $replacements = array(
                 '{{headline}}'                      => $article->getTitle(),
                 '{{text}}'                          => $article->getContent(),
-                '{{author}}'                        => isset($this->users[$article->getCreateuser()]) ? $this->users[$article->getCreateuser()] : $this->lang->translate('GLOBAL_NOTFOUND'),
+                '{{author}}'                        => $cuser ? $cuser->getDisplayname() : $this->lang->translate('GLOBAL_NOTFOUND'),
                 '{{authorEmail}}'                   => $emailAddress,
+                '{{authorAvatar}}'                  => $cuser ? \fpcm\model\users\author::getAuthorImageDataOrPath($cuser, 0) : '',
+                '{{authorInfoText}}'                => $cuser ? $cuser->getUsrinfo() : '',
                 '{{date}}'                          => date($this->config->system_dtmask, $article->getCreatetime()),
                 '{{changeDate}}'                    => date($this->config->system_dtmask, $article->getChangetime()),
-                '{{changeUser}}'                    => isset($this->users[$article->getChangeuser()]) ? $this->users[$article->getChangeuser()] : $this->lang->translate('GLOBAL_NOTFOUND'),
+                '{{changeUser}}'                    => $chuser ? $chuser->getDisplayname() : $this->lang->translate('GLOBAL_NOTFOUND'),
                 '{{statusPinned}}'                  => $article->getPinned() ? $this->lang->translate('PUBLIC_ARTICLE_PINNED') : '',
                 '{{shareButtons}}'                  => $shareButtonParser->parse(),
                 '{{categoryIcons}}'                 => implode(PHP_EOL, $categoryIcons),
