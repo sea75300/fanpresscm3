@@ -25,6 +25,8 @@
             '{{text}}'                          => '',
             '{{author}}'                        => '',
             '{{authorEmail}}'                   => '',
+            '{{authorInfoText}}'                => '',
+            '{{authorAvatar}}'                  => '',
             '{{date}}'                          => '',
             '{{changeDate}}'                    => '',
             '{{changeUser}}'                    => '',
@@ -81,7 +83,6 @@
             $this->replacementTags = $this->events->runEvent('parseTemplateArticle', $this->replacementTags);
             
             $content = $this->content;
-
             $tags    = array_merge($this->replacementInternal, $this->replacementTags);
             foreach ($tags as $replacement => $value) {
                 

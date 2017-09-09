@@ -48,4 +48,8 @@ cols:
         type: bool
         length: 
         params: NOT NULL
+    usrinfo:
+        type: text
+        length: 
+        params: NOT NULL
 indices:

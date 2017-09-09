@@ -27,6 +27,8 @@
         'TEMPLATE_ARTICLE_HEADLINE'         => 'Überschrift',
         'TEMPLATE_ARTICLE_AUTHOR'           => 'Artikel-Autor',
         'TEMPLATE_ARTICLE_AUTHOREMAIL'      => 'Artikel-Autor mit verlinkter E-Mail-Adresse',
+        'TEMPLATE_ARTICLE_AUTHORINFOTEXT'   => 'kurzer Text mit Infos zum Artikel-Autor',
+        'TEMPLATE_ARTICLE_AUTHORAVATAR'     => 'Avatar des Artikel-Autor',
         'TEMPLATE_ARTICLE_DATE'             => 'Datum + Zeit',
         'TEMPLATE_ARTICLE_CHANGEDATE'       => 'Datum + Zeit der letzten Änderung',
         'TEMPLATE_ARTICLE_CHANGEUSER'       => 'Benutzer der letzten Änderung',

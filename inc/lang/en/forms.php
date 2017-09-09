@@ -188,6 +188,7 @@
         'SYSCHECK_FOLDER_UPLOADS'       => 'Upload folder',
         'SYSCHECK_FOLDER_DBDUMPS'       => 'Database dump folder',
         'SYSCHECK_FOLDER_DRAFTS'        => 'Article template folder',
+        'SYSCHECK_FOLDER_PROFILES'      => 'Profiles folder structur',
         'SYSCHECK_COMPLETE'             => 'Complete system check'
     );
 

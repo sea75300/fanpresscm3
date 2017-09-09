@@ -145,8 +145,8 @@ fpcm.templates = {
                 fpcm.ui.appendHtml('#fpcm-dialog-templatepreview-layer', '<iframe id="fpcm-dialog-templatepreview-layer-frame" class="fpcm-full-width" src="' + fpcmActionPath + 'system/templatepreview&tid=' + tplId + '"></iframe>');
                 fpcm.ui.dialog({
                     id         : 'templatepreview-layer',
-                    dlWidth    : fpcm.ui.getDialogSizes().width,
-                    dlHeight   : fpcm.ui.getDialogSizes().height,
+                    dlWidth    : fpcm.ui.getDialogSizes(top, 0.75).width,
+                    dlHeight   : fpcm.ui.getDialogSizes(top, 0.75).height,
                     resizable  : true,
                     title      : fpcm.ui.translate('previewHeadline'),
                     dlButtons  : [

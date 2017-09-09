@@ -11,6 +11,8 @@
         'USERS_PASSWORD_CONFIRM' => 'Passwort bestätigen',
         'USERS_REQUIREMENTS'     => 'Passwort muss min. 6 Zeichen sowie Groß- und Kleinbuchstaben und Ziffern enthalten.',
         'USERS_ROLL'             => 'Rolle',
+        'USERS_BIOGRAPHY'        => 'Biografie / Sonstiges',
+        'USERS_AVATAR'           => 'Avatar',
         'USERS_REGISTEREDTIME'   => 'Registriert am',
         'USERS_ARTICLE_COUNT'    => 'Artikel-Anzahl',
         'USERS_LIST_ACTIVE'      => 'Aktive Benutzer',

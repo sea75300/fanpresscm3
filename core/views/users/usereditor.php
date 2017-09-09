@@ -39,6 +39,16 @@
             <?php endif; ?>                
         </td>
     </tr>
+    <?php if ($showExtended) : ?>
+    <tr>
+        <td class="fpcm-align-top"><?php $FPCM_LANG->write('USERS_BIOGRAPHY'); ?>:</td>
+        <td><?php \fpcm\model\view\helper::textArea('usrinfo','fpcm-ui-half-width fpcm-options-cssclasses',$author->getUsrinfo()); ?></td>
+    </tr>
+    <tr>
+        <td class="fpcm-align-top"><?php $FPCM_LANG->write('USERS_AVATAR'); ?>:</td>
+        <td><?php if ($avatar) : ?><img src="<?php print $avatar; ?>"><?php else: ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></td>
+    </tr>
+    <?php endif; ?>
     <?php if ($showDisableButton) : ?>
     <tr>
         <td><?php $FPCM_LANG->write('GLOBAL_DISABLE'); ?>:</td>

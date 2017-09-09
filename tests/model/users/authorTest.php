@@ -24,6 +24,7 @@ class authorTest extends testBase {
         $object->setRoll(3);
         $object->setDisabled(0);
         $object->setUserMeta([]);
+        $object->setUsrinfo($GLOBALS['userName']);
 
         $result = $object->save();
         $this->assertTrue($result);
@@ -54,8 +55,19 @@ class authorTest extends testBase {
         $this->assertEquals($GLOBALS['userName'], $object->getUsername());
         $this->assertEquals($GLOBALS['userName'], $object->getDisplayname());
         $this->assertEquals($GLOBALS['userEmail'], $object->getEmail());
+        $this->assertEquals($GLOBALS['userName'], $object->getUsrinfo());
         $this->assertEquals(1, $object->getDisabled());
         $this->assertEquals(3, $object->getRoll());
+    }
+    
+    public function getAuthorImage() {
+
+        /* @var $object \fpcm\model\users\author */
+        $object = new fpcm\model\users\author($GLOBALS['objectId']);
+
+        $img = \fpcm\model\users\author::getAuthorImageDataOrPath($object);
+        $this->assertEmpty($img);
+
     }
 
     public function testDelete() {

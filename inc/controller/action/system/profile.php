@@ -65,6 +65,7 @@
                 
                 $metaData = $this->getRequestVar('usermeta');
                 $author->setUserMeta($metaData);
+                $author->setUsrinfo($this->getRequestVar('usrinfo'));
 
                 $newpass         = $this->getRequestVar('password');
                 $newpass_confirm = $this->getRequestVar('password_confirm');
@@ -101,6 +102,7 @@
             }
             
             $this->view->assign('author', $author);
+            $this->view->assign('avatar', \fpcm\model\users\author::getAuthorImageDataOrPath($author, false));
             
             return true;
             
@@ -128,6 +130,7 @@
             $this->view->assign('timezoneAreas', $timezones);
             $this->view->assign('externalSave', true);
             $this->view->assign('inProfile', true);
+            $this->view->assign('showExtended', true);
             $this->view->setHelpLink('hl_profile');
             
             $this->view->addJsVars(array(
@@ -142,6 +145,11 @@
                 \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js'),
                 \fpcm\classes\baseconfig::$jsPath.'profile.js'
             ]);
+
+            $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', [
+                '{{filecount}}' => 1,
+                '{{filesize}}'  => \fpcm\classes\tools::calcSize(FPCM_AUTHOR_IMAGE_MAX_SIZE, 0)
+            ]));
 
             $this->view->render();            
         }

@@ -105,3 +105,11 @@
          */
         define ('FPCM_ARTICLE_DISABLE_SHORTLINKS', 60);
     }
+    
+    if (!defined('FPCM_AUTHOR_IMAGE_MAX_SIZE')) {
+        /**
+         * Maximale Größe von Author-Bildern
+         * @since FPCM 3.6
+         */
+        define ('FPCM_AUTHOR_IMAGE_MAX_SIZE', 32768);
+    }

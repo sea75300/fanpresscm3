@@ -11,6 +11,8 @@
         'USERS_PASSWORD_CONFIRM' => 'Confirm password',
         'USERS_REQUIREMENTS'     => 'Password requires at least six digits including upper and lower case letters and numbers',
         'USERS_ROLL'             => 'Roll',
+        'USERS_BIOGRAPHY'        => 'Biography / Other',
+        'USERS_AVATAR'           => 'Avatar',
         'USERS_REGISTEREDTIME'   => 'Registered on',
         'USERS_ARTICLE_COUNT'    => 'Article count',
         'USERS_LIST_ACTIVE'      => 'Active Users',

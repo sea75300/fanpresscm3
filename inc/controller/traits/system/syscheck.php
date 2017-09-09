@@ -244,7 +244,8 @@
                 $this->lang->translate('SYSCHECK_FOLDER_TEMP')          => \fpcm\classes\baseconfig::$tempDir,
                 $this->lang->translate('SYSCHECK_FOLDER_UPLOADS')       => \fpcm\classes\baseconfig::$uploadDir,
                 $this->lang->translate('SYSCHECK_FOLDER_DBDUMPS')       => \fpcm\classes\baseconfig::$dbdumpDir,
-                $this->lang->translate('SYSCHECK_FOLDER_DRAFTS')        => \fpcm\classes\baseconfig::$articleTemplatesDir
+                $this->lang->translate('SYSCHECK_FOLDER_DRAFTS')        => \fpcm\classes\baseconfig::$articleTemplatesDir,
+                $this->lang->translate('SYSCHECK_FOLDER_PROFILES')      => \fpcm\classes\baseconfig::$profilePath
             );
             
             natsort($checkFolders);

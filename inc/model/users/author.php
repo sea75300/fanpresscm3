@@ -87,9 +87,16 @@
 
         /**
          * Meta-Daten für persönliche Einstellungen
-         * @var array
+         * @var string
          */
         protected $usrmeta = '';
+
+        /**
+         * Author-Beschreibung
+         * @var string
+         * @since FPCM 3.6
+         */
+        protected $usrinfo = '';
 
         /**
          * Übersetzter Gruppenname
@@ -97,6 +104,13 @@
          * @since FPCM 3.4
          */
         protected $groupname;
+
+        /**
+         * Authoren-Bild
+         * @var string
+         * @since FPCM 3.6
+         */
+        protected $image = '';
         
         /**
          * Edit action string
@@ -115,7 +129,7 @@
          * Eigenschaften, welche beim Speichern in DB nicht von getPreparedSaveParams() zurückgegeben werden sollen
          * @var array
          */
-        protected $dbExcludes = array('groupname');
+        protected $dbExcludes = array('groupname', 'image');
         
         /**
          * Konstruktor
@@ -219,19 +233,27 @@
         }
 
         /**
+         * Kurze Authoren-Beschreibung setzen
+         * @since FPCM 3.6
+         */
+        public function getUsrinfo() {
+            return $this->usrinfo;
+        }
+
+        /**
+         * Author-Bild zurückliefern
+         * @since FPCM 3.6
+         */
+        public function getImage() {
+            return $this->image;
+        }
+
+        /**
          * Deaktiviert-Status setzen
          * @param bool $disabled
          */
         public function setDisabled($disabled) {
             $this->disabled = $disabled;
-        }
-        
-        /**
-         * ist Benutzer ein Administrator
-         * @return bool
-         */
-        public function isAdmin() {
-            return $this->roll == 1 ? true : false;
         }
 
         /**
@@ -250,26 +272,15 @@
                 return $userMeta[$valueName];
             }
             
-            switch ($valueName) {
-                case 'system_lang' :
-                    return $this->config->system_lang;
-                break;
-                case 'system_dtmask' :
-                    return $this->config->system_dtmask;
-                break;
-                case 'system_timezone' :
-                    return $this->config->system_timezone;
-                break;
-                case 'articles_acp_limit' :
-                    return $this->config->articles_acp_limit;
-                break;
-                case 'file_uploader_new' :
-                    return $this->config->file_uploader_new;
-                break;
-                case 'system_editor_fontsize' :
-                    return $this->config->system_editor_fontsize;
-                break;
-            }
+            return $this->config->{$valueName};
+        }
+        
+        /**
+         * ist Benutzer ein Administrator
+         * @return bool
+         */
+        public function isAdmin() {
+            return $this->roll == 1 ? true : false;
         }
 
         /**
@@ -318,7 +329,16 @@
          */
         public function setUserMeta(array $usrmeta) {
             $this->usrmeta = json_encode($usrmeta);
-        }        
+        }
+
+        /**
+         * Kurze Authoren-Beschreibung setzen
+         * @param string $usrinfo
+         * @since FPCM 3.6
+         */
+        public function setUsrinfo($usrinfo) {
+            $this->usrinfo = $usrinfo;
+        }
         
         /**
          * Speichert einen neuen Benutzer in der Datenbank
@@ -478,7 +498,8 @@
 
             $res = parent::createFromDbObject($object);
             $this->groupname = $this->language->translate($this->groupname);
-
+            $this->image     = preg_replace('/[^a-z0-9_\-\w]/', '', strtolower($this->username));
+            
             return $res;
 
         }
@@ -535,6 +556,47 @@
             $this->objExists = true;
             $this->createFromDbObject($data);
 
+        }
+
+        /**
+         * Author-Bild laden
+         * @param \fpcm\model\users\author $author
+         * @param bool $asUrl
+         * @return string
+         * @since FPCM 3.6
+         */
+        public static function getAuthorImageDataOrPath(author $author, $asUrl = true) {
+
+            $cache = new \fpcm\classes\cache('authorImages', 'system');
+            $data  = $cache->read();
+
+            if (!$cache->isExpired() && isset($data[$author->getUsername()])) {
+                return $asUrl ? $data[$author->getUsername()]['url'] : $data[$author->getUsername()]['data'];
+            }
+
+            foreach (\fpcm\model\files\image::$allowedExts as $ext) {
+
+                $img = new \fpcm\model\files\authorImage($author->getImage().'.'.$ext);
+                if (!$img->exists() || $img->getFilesize() > FPCM_AUTHOR_IMAGE_MAX_SIZE) {
+                    unset($img);
+                    continue;
+                }
+
+                $img->loadContent();
+                $data[$author->getUsername()] = [
+                    'url'  => $img->getImageUrl(),
+                    'data' => $img->getContent() ? 'data:'.$img->getMimetype().';base64,'.base64_encode($img->getContent()) : ''
+                ];
+                
+                break;
+            }
+            
+            $cache->write($data, FPCM_LANGCACHE_TIMEOUT);
+            if (!isset($data[$author->getUsername()])) {
+                return '';
+            }
+
+            return $asUrl ? $data[$author->getUsername()]['url'] : $data[$author->getUsername()]['data'];
         }
         
     }

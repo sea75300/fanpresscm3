@@ -74,7 +74,8 @@
                 $author->setEmail($this->getRequestVar('email'));
                 $author->setDisplayName($this->getRequestVar('displayname'));
                 $author->setRoll($this->getRequestVar('roll', [9]));
-                $author->setUserMeta($this->getRequestVar('usermeta'));
+                $author->setUserMeta($this->getRequestVar('usermeta'));                
+                $author->setUsrinfo($this->getRequestVar('usrinfo'));
                 
                 if ($this->getRequestVar('disabled') !== null) {
                     $author->setDisabled($this->getRequestVar('disabled', [9]));
@@ -119,6 +120,7 @@
             $this->userEnabled = $author->getDisabled();
             
             $this->view->assign('author', $author);
+            $this->view->assign('avatar', \fpcm\model\users\author::getAuthorImageDataOrPath($author, false));
             
             return true;
             
@@ -143,6 +145,7 @@
             $this->view->assign('externalSave', true);
             $this->view->assign('articleLimitList', \fpcm\model\system\config::getAcpArticleLimits());
             $this->view->assign('defaultFontsizes', \fpcm\model\system\config::getDefaultFontsizes());
+            $this->view->assign('showExtended', true);
             $this->view->setHelpLink('hl_options');
             
             $userList = new \fpcm\model\users\userList();
@@ -158,6 +161,11 @@
                 'fpcmFieldSetAutoFocus'      => 'username'
             ]);
 
+            $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', [
+                '{{filecount}}' => 1,
+                '{{filesize}}'  => \fpcm\classes\tools::calcSize(FPCM_AUTHOR_IMAGE_MAX_SIZE, 0)
+            ]));
+            
             $this->view->render();            
         }
 

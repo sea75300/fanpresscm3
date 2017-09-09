@@ -27,6 +27,8 @@
         'TEMPLATE_ARTICLE_HEADLINE'         => 'Headline',
         'TEMPLATE_ARTICLE_AUTHOR'           => 'Article author',
         'TEMPLATE_ARTICLE_AUTHOREMAIL'      => 'Article author with e-mail link',
+        'TEMPLATE_ARTICLE_AUTHORINFOTEXT'   => 'Short info about article author',
+        'TEMPLATE_ARTICLE_AUTHORAVATAR'     => 'Avatar of article author',
         'TEMPLATE_ARTICLE_DATE'             => 'Creation date and time',
         'TEMPLATE_ARTICLE_CHANGEDATE'       => 'Date and time op last change',
         'TEMPLATE_ARTICLE_CHANGEUSER'       => 'Username of last change',

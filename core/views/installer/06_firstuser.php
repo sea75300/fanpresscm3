@@ -3,6 +3,8 @@
     
     <div class="fpcm-ui-left">
         <?php $showDisableButton = false; ?>
+        <?php $showExtended      = false; ?>
+        <?php $avatar            = false; ?>
         <?php include_once dirname(__DIR__).'/users/usereditor.php'; ?>        
     </div>
 </div>
