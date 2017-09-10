@@ -40,34 +40,10 @@
         protected $yamlArray;
         
         /**
-         * Dateipfad zur YAML-Datei
-         * @var string
-         */
-        protected $filePath;
-        
-        /**
-         * Datenbank-Objekt
-         * @var \fpcm\classes\database
-         */
-        protected $db;
-        
-        /**
-         * Ist Datenbank Postgres oder MySQL
-         * @var bool
-         */
-        protected $isPg;
-        
-        /**
          * Array mit SQL-Strings
          * @var array
          */
         protected $sqlArray = [];
-        
-        /**
-         * Feldtypen aus \fpcm\classes\database::getYaTDLDataTypes()
-         * @var array
-         */
-        protected $colTypes = [];
         
         /**
          * fertige SQL-Query
@@ -89,15 +65,20 @@
 
         /**
          * Datentypen mit Längen-Angabe
-         * @var array
-         */
-        protected $lenghtTypes = [];
-
-        /**
-         * Datentypen mit Längen-Angabe
          * @var driver
          */
         protected $driver = [];
+
+        /**
+         * Liste mit Datentypen, die gemappt sein müssen
+         * @var array
+         */
+        protected $dataTypeList = [
+            'int', 'bigint',
+            'varchar', 'text', 'mtext', 'ltext', 'char',
+            'bool', 'bin', 'lbin',
+            'float', 'double'
+        ];
         
         /**
          * 
@@ -112,8 +93,11 @@
             if (!file_exists($drvPath)) {
                 throw new \Exception('Unsupported database driver '.$driver);
             }
-
-            require_once $drvPath;
+            
+            $dtCheck = $this->checkDataTypes($dataTypes);
+            if (is_array($dtCheck)) {
+                throw new \Exception('Data type map check failed. Undefined data types found: '. implode(', ', $dtCheck));
+            }
 
             $className       = 'nkorg\\yatdl\\'.$driver;
             $this->driver    = new $className($dataTypes);
@@ -337,6 +321,21 @@
             
             return true;
             
+        }
+
+        /**
+         * Prüfung, ob alle Datentypen definiert wurden
+         * @param array $dataTypes
+         * @return boolean
+         */
+        private function checkDataTypes(array $dataTypes) {
+            
+            $map = array_diff($this->dataTypeList, array_keys($dataTypes));
+            if (count($map)) {
+                return $map;
+            }
+
+            return true;
         }
 
     }

@@ -211,7 +211,35 @@
         public function countActiveUsers() {
             return $this->dbcon->count($this->table, '*', 'disabled = 0');
         }
-        
+
+        /**
+         * Liste von Benutzern zurückgeben, die in den übergebenen Artikeln verwendet wurden
+         * @param array $articleIds
+         * @return \fpcm\model\users\author[]
+         * @since FPCM 3.6
+         */
+        public function getUsersForArticles(array $articleIds) {
+
+            $where  = '(id IN (SELECT createuser FROM '.$this->dbcon->getTablePrefixed(\fpcm\classes\database::tableArticles).' WHERE id IN ('.implode(',', $articleIds).')))';
+            $where .= ' OR (id IN (SELECT changeuser FROM '.$this->dbcon->getTablePrefixed(\fpcm\classes\database::tableArticles).' WHERE id IN ('.implode(',', $articleIds).')))';
+            
+            $result = $this->dbcon->select($this->table, 'id, displayname, email, username, usrinfo', $where, [], true);
+            $users  = $this->dbcon->fetch($result, true);
+
+            if (!$users || !count($users)) {
+                return [];
+            }
+
+            $data = [];
+            foreach ($users as $value) {
+                $usr = new author();
+                $usr->createFromDbObject($value);
+                $data[$usr->getId()] = $usr;
+            }
+
+            return $data;
+        }
+
         /**
          * Erzeugt Array aus Benutzer-Liste
          * @param array $users

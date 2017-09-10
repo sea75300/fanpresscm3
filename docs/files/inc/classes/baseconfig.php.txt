@@ -210,6 +210,13 @@
         public static $dbStructPath;
         
         /**
+         * Profile-Daten-Pfad
+         * @var string
+         * @since FPCM 3.6
+         */
+        public static $profilePath;
+        
+        /**
          * auszuschließende Ordner
          * @var array
          */
@@ -308,6 +315,7 @@
             self::$dbdumpDir           = self::$dataDir.'dbdump/';
             self::$dbStructPath        = self::$dataDir.'dbstruct/';
             self::$articleTemplatesDir = self::$dataDir.'drafts/';
+            self::$profilePath         = self::$dataDir.'profiles/';
             
             self::$coreDir             = self::$baseDir.'/core/';
             self::$viewsDir            = self::$coreDir.'views/';

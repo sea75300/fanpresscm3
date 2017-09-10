@@ -1,20 +1,19 @@
 <?php
     /**
-     * YaML Table Definition Language\n
-     * Parse Wrapper\n
-     * uses \nkorg\yatdl\parser as of FPCM 3.6
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2017, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     namespace fpcm\model\system;
 
     /**
-     * YaML Table Definition Language Parse
+     * YaML Table Definition Language<br>
+     * Parse Wrapper<br>
+     * uses \nkorg\yatdl\parser as of FPCM 3.6
      * 
      * @package fpcm\model\system
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2017, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      * @since FPCM 3.2.0
      */
     class yatdl extends \fpcm\model\abstracts\staticModel {
@@ -33,7 +32,7 @@
         public function __construct($filePath) {
 
             include_once \fpcm\classes\loader::libGetFilePath('spyc', 'Spyc.php');
-            include_once \fpcm\classes\loader::libGetFilePath('nkorg/yatdl', 'parser.php');
+            include_once \fpcm\classes\loader::libGetFilePath('nkorg', 'autoload.php');
             
             $this->parser = new \nkorg\yatdl\parser(
                 \Spyc::YAMLLoad($filePath),
