@@ -16,7 +16,42 @@
     class editorAddLinks extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
-            \fpcm\modules\nkorg\example\model\logfile::logParams($params);
+
+            $params[] = array(
+                'label' => 'Google',
+                'value' => 'https://google.de'
+            );
+
+            $params[] = array(
+                'label' => 'Yahoo',
+                'value' => 'https://yahoo.de'
+            );
+
+            $params[] = array(
+                'label' => 'Bing',
+                'value' => 'https://bing.de'
+            );
+
+            $params[] = array(
+                'label' => 'Wikipedia',
+                'value' => 'https://de.wikipedia.org'
+            );
+
+            $params[] = array(
+                'label' => 'Youtube.com',
+                'value' => 'https://youtube.com'
+            );
+
+            $params[] = array(
+                'label' => 'PHP.net',
+                'value' => 'https://php.net'
+            );
+
+            $params[] = array(
+                'label' => 'Nobody-Knows.org',
+                'value' => 'https://nobody-knows.org/fanpress.cm/'
+            );
+
             return $params;
         }
 

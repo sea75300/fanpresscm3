@@ -8,7 +8,9 @@
     namespace fpcm\controller\action\articles;
     
     class articlebase extends \fpcm\controller\abstracts\controller {
-        
+
+        use \fpcm\controller\traits\articles\editor;
+
         /**
          *
          * @var \fpcm\model\view\acp
@@ -58,16 +60,8 @@
         
         public function process() {
             if (!parent::process()) return false;
-            
-            $eventResult = $this->events->runEvent('articleReplaceEditorPlugin');
-            if (is_a($eventResult, '\fpcm\model\abstracts\articleEditor')) {
-                $this->editorPlugin = $eventResult;
-            } elseif ($this->config->system_editor) {
-               $this->editorPlugin = new \fpcm\model\editor\htmlEditor();
-            } else {
-                $this->editorPlugin = new \fpcm\model\editor\tinymceEditor();
-            }
-            
+
+            $this->editorPlugin = $this->getEditorPlugin();            
             $this->view->setViewJsFiles($this->editorPlugin->getJsFiles());
             $this->view->setViewCssFiles($this->editorPlugin->getCssFiles());
             
@@ -76,7 +70,7 @@
                 $this->view->assign($key, $value);
             }
 
-            $changeAuthor = $this->permissions->check(array('article' => 'authors'));
+            $changeAuthor = $this->permissions->check(['article' => 'authors']);
             $this->view->assign('changeAuthor', $changeAuthor);
             if ($changeAuthor) {
                 $userlist = new \fpcm\model\users\userList();

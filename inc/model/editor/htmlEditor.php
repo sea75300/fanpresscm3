@@ -65,8 +65,6 @@
             
             return array(
                 'fpcmCmColors'                  => $editorHtmlColors,
-                'fpcmEditorAutocompleteLinks'   => $this->getEditorLinks(),
-                'fpcmEditorAutocompleteImages'  => $this->getFileList(),
                 'fpcmEditorHtmlElement'         => $this->language->translate('EDITOR_HTML_BUTTONS_LITEXT'),
                 'fpcmEditorAutosavePrefix'      => 'fpcm-editor-as-'.$this->session->getUserId().'draft',
                 'fpcmEditorInitFunction'        => 'initCodeMirror'

@@ -109,7 +109,7 @@
          * Editor-Links initialisieren
          * @return string
          */
-        protected function getEditorLinks() {
+        public function getEditorLinks() {
             $links = $this->events->runEvent('editorAddLinks');
             if (!is_array($links) || !count($links)) return [];
             return $links;
@@ -119,7 +119,7 @@
          * Dateiliste initialisieren
          * @return array
          */
-        protected function getFileList() {
+        public function getFileList() {
             $data = [];            
             foreach ($this->fileList->getDatabaseList() as $image) {
                 $data[] = array('label' => $image->getFilename(), 'value' => $image->getImageUrl());

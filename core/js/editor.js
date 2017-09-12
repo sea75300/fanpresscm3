@@ -564,20 +564,30 @@ fpcm.editor = {
                 jQuery('#fpcmdialogeditorhtmlcolorhexcode').val(colorCode);
             }
         });
-        
-        fpcm.ui.autocomplete('#linksurl', {
-            source: fpcmEditorAutocompleteLinks,
-            appendTo: "#fpcm-dialog-editor-html-insertlink",
-            select: function( event, ui ) {
-                jQuery('#linkstext').val(ui.item.label);
+
+        fpcm.ajax.exec('autocomplete&src=editorlinks', {
+            execDone: function () {
+                fpcm.ui.autocomplete('#linksurl', {
+                    source: fpcm.ajax.fromJSON(fpcm.ajax.getResult('autocomplete&src=editorlinks')),
+                    minLength: 3,
+                    appendTo: "#fpcm-dialog-editor-html-insertlink",
+                    select: function( event, ui ) {
+                        jQuery('#linkstext').val(ui.item.label);
+                    }
+                });
             }
         });
 
-        fpcm.ui.autocomplete('#imagespath', {
-            source: fpcmEditorAutocompleteImages,
-            appendTo: "#fpcm-dialog-editor-html-insertimage",
-            select: function( event, ui ) {
-                jQuery('#imagesalt').val(ui.item.label);
+        fpcm.ajax.exec('autocomplete&src=editorfiles', {
+            execDone: function () {
+                fpcm.ui.autocomplete('#imagespath', {
+                    source: fpcm.ajax.fromJSON(fpcm.ajax.getResult('autocomplete&src=editorfiles')),
+                    minLength: 3,
+                    appendTo: "#fpcm-dialog-editor-html-insertimage",
+                    select: function( event, ui ) {
+                        jQuery('#imagesalt').val(ui.item.label);
+                    }
+                });
             }
         });
         
@@ -1090,8 +1100,8 @@ fpcm.editor = {
             toolbar                      : fpcmTinyMceToolbar,
             link_class_list              : fpcmTinyMceCssClasses,
             image_class_list             : fpcmTinyMceCssClasses,
-            link_list                    : fpcmTinyMceLinkList,
-            image_list                   : fpcmTinyMceImageList,
+            link_list                    : fpcmAjaxActionPath + 'autocomplete&src=editorlinks',
+            image_list                   : fpcmAjaxActionPath + 'autocomplete&src=editorfiles',
             textpattern_patterns         : fpcmTinyMceTextpattern,
             templates                    : fpcmTinyMceTemplatesList,
             autosave_prefix              : fpcmTinyMceAutosavePrefix,

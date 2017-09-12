@@ -12,11 +12,22 @@
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     * @since FPCM 3.6
      */
     class autocomplete extends \fpcm\controller\abstracts\ajaxController {
-        
+
+        use \fpcm\controller\traits\articles\editor;
+
+        /**
+         * Modul-String
+         * @var string
+         */
         protected $module = null;
 
+        /**
+         * Suchbegriff
+         * @var string
+         */
         protected $term  = '';
 
         /**
@@ -50,9 +61,14 @@
                 'module'     => $this->module,
                 'returnData' => $this->returnData
             ]);
+
             $this->getSimpleResponse();
         }
-        
+
+        /**
+         * Autocomplete von Artikeln
+         * @return boolean
+         */
         private function autocompleteArticles() {
 
             if (!$this->permissions->check(['article' => ['edit', 'editall']])) {
@@ -83,6 +99,24 @@
                 ];
             }
 
+            return true;
+        }
+
+        /**
+         * Autocomplete der Bild-Liste im Editor
+         * @return boolean
+         */
+        private function autocompleteEditorfiles() {
+            $this->returnData   = $this->getEditorPlugin()->getFileList();
+            return true;
+        }
+
+        /**
+         * Autocomplete der Link-Liste im Editor
+         * @return boolean
+         */
+        private function autocompleteEditorlinks() {
+            $this->returnData = $this->getEditorPlugin()->getEditorLinks();
             return true;
         }
     }
