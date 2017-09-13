@@ -119,7 +119,7 @@ fpcm.editor = {
         fpcm.ui.button('#fpcmeditorextended', {},
         function() {
 
-            var size = fpcm.ui.getDialogSizes();
+            var size = fpcm.ui.getDialogSizes(top, 0.75);
 
             fpcm.ui.dialog({
                 id: 'editor-extended',
@@ -565,31 +565,7 @@ fpcm.editor = {
             }
         });
 
-        fpcm.ajax.exec('autocomplete&src=editorlinks', {
-            execDone: function () {
-                fpcm.ui.autocomplete('#linksurl', {
-                    source: fpcm.ajax.fromJSON(fpcm.ajax.getResult('autocomplete&src=editorlinks')),
-                    minLength: 3,
-                    appendTo: "#fpcm-dialog-editor-html-insertlink",
-                    select: function( event, ui ) {
-                        jQuery('#linkstext').val(ui.item.label);
-                    }
-                });
-            }
-        });
 
-        fpcm.ajax.exec('autocomplete&src=editorfiles', {
-            execDone: function () {
-                fpcm.ui.autocomplete('#imagespath', {
-                    source: fpcm.ajax.fromJSON(fpcm.ajax.getResult('autocomplete&src=editorfiles')),
-                    minLength: 3,
-                    appendTo: "#fpcm-dialog-editor-html-insertimage",
-                    select: function( event, ui ) {
-                        jQuery('#imagesalt').val(ui.item.label);
-                    }
-                });
-            }
-        });
         
         editor = fpcm.editor_codemirror.create({
            editorId  : 'htmleditor',
@@ -729,6 +705,18 @@ fpcm.editor = {
                     }
                 ],
                 dlOnOpen: function () {
+                    fpcm.ajax.exec('autocomplete&src=editorlinks', {
+                        execDone: function () {
+                            fpcm.ui.autocomplete('#linksurl', {
+                                source: fpcm.ajax.fromJSON(fpcm.ajax.getResult('autocomplete&src=editorlinks')),
+                                minLength: 2,
+                                appendTo: "#fpcm-dialog-editor-html-insertlink",
+                                select: function( event, ui ) {
+                                    jQuery('#linkstext').val(ui.item.label);
+                                }
+                            });
+                        }
+                    });
                     fpcm.editor.setSelectToDialog(this);
                 },
                 dlOnClose: function () {
@@ -769,6 +757,18 @@ fpcm.editor = {
                     }
                 ],
                 dlOnOpen: function () {
+                    fpcm.ajax.exec('autocomplete&src=editorfiles', {
+                        execDone: function () {
+                            fpcm.ui.autocomplete('#imagespath', {
+                                source: fpcm.ajax.fromJSON(fpcm.ajax.getResult('autocomplete&src=editorfiles')),
+                                minLength: 2,
+                                appendTo: "#fpcm-dialog-editor-html-insertimage",
+                                select: function( event, ui ) {
+                                    jQuery('#imagesalt').val(ui.item.label);
+                                }
+                            });
+                        }
+                    });
                     fpcm.editor.setSelectToDialog(this);
                 },
                 dlOnClose: function() {

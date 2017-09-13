@@ -98,12 +98,8 @@ Help language file
             <p>Im Bereich <b>Artikel verwalten</b> kannst findest du alle gespeicherten Artikel in FanPress CM. Über das Aktions-Menü
             kannst du verschiedene Dinge durchführen, bspw. Artikel löschen oder archivieren.</p>
             <ul>
-                <li><em>Artikel an-/abpinnen:</em> Den bzw. die ausgewählten Artikel pinnen, so dass sie über allen anderen angezeigt
-                    werden bzw. den abpinnen.</li>
-                <li><em>Artikel freigeben:</em> Den bzw. die ausgewählten Artikel, welche freigegeben werden müssen, freigeben so das
-                    sie für Besucher sichtbar sind.</li>
-                <li><em>Artikel archivieren:</em> Den bzw. die ausgewählten in das Archiv verschieben.</li>
-                <li><em>Kommentare (de)aktivieren:</em> Die Kommentare für den bzw. die ausgewählten Artikel deaktivieren.</li>
+                <li><em>Ausgewählte Bearbeiten:</em> Massenbearbeitung für die ausgewählten Artikel aufrufen. Die auswählbaren Optionen
+                    entsprechen denen im Artikel-Editor.</li>
                 <li><em>Neuen Tweet erzeugen:</em> Für den bzw. die ausgewählten Artikel neue Posts bei Twitter erzeugen, wenn Verbindung
                     zu Twitter eingerichtet wurde.</li>
                 <li><em>Löschen:</em> Den bzw. die ausgewählten Artikel löschen. Wurde in den Systemeinstellungen der Papierkorb aktiviert,
@@ -137,13 +133,22 @@ Help language file
             <p>Willst du nur die Artikel zu einem bestimmten Artikel anzeigen lassen, geht das wie gewohnt über die Liste
             auf dem Kommentar-Tab im Artikel-Editor.</p>
             <ul>
-                <li><em>Kommentar ist privat:</em> Private Kommentare werden nicht öffentlich angezeigt, sondern sind nur für Benutzer
-                    innerhalb von FanPress CM sichtbar</li>
-                <li><em>Kommentar ist genehmigt:</em> Genehmigte Kommentare werden öffentlich angezeigt und können von deinen Besuchern
-                    gelesen und beantwortet werden. Nicht genehmigte Kommentare verhalten sich wie private Kommentare und sind nicht
-                    sichtbar. Diese Funktion kann in den Systemeinstellungen deaktiviert werden.</li>
-                <li><em>Kommentar ist Spam:</em> Kommentare, welche als Spam markiert wurden, werden nicht öffentlich angezeigt. Ihre Daten
-                    werden zur Verbesserung der Spam-Erkennung genutzt, sofern du sie nicht löscht.</li>
+                <li><em>Ausgewählte Bearbeiten:</em> Massenbearbeitung für die ausgewählten Kommentare aufrufen. Die auswählbaren
+                    Optionen entsprechen denen im Kommentar-Editor.
+                    <ul>
+                        <li><em>Kommentar ist privat:</em> Private Kommentare werden nicht öffentlich angezeigt, sondern sind nur
+                            für Benutzer innerhalb von FanPress CM sichtbar</li>
+                        <li><em>Kommentar ist genehmigt:</em> Genehmigte Kommentare werden öffentlich angezeigt und können von
+                            deinen Besuchern gelesen und beantwortet werden. Nicht genehmigte Kommentare verhalten sich wie
+                            private Kommentare und sind nicht sichtbar. Diese Funktion kann in den Systemeinstellungen deaktiviert
+                            werden.</li>
+                        <li><em>Kommentar ist Spam:</em> Kommentare, welche als Spam markiert wurden, werden nicht öffentlich
+                            angezeigt. Ihre Daten werden zur Verbesserung der Spam-Erkennung genutzt, sofern du sie nicht löscht.</li>
+                        <li><em>Kommentar zu Artikel mit ID verschieben:</em> Die ausgewählten Kommentare zur eingetragenen Artikel-ID
+                            verschieben. Das Eingabefeld unterstützt die Suche nach Artikeln mittel Autovervollständigung.</li>
+                    </ul>
+                </li>    
+                <li><em>Löschen:</em> Ausgewählte Kommentare löschen. Achtung, für Kommentare existiert kein Papierkorb!</li>
             </ul>
              <p>Über den Button <span class="fpcm-ui-button">Suche & Filter</span> kannst du mithilfe eines Dialogs die angezeigten Kommentare anhand verschiedener Kriterien
                 weiter eingrenzen.</p>
@@ -192,6 +197,8 @@ Help language file
                 <li><em>Anzahl an Artikeln im ACP</em>, legt die Anzahl an Artikeln fest, welche unter "Artikel bearbeiten" pro Seite angezeigt werden</li>
                 <li><em>Standard-Schriftgröße im Editor:</em> Schriftgröße, die standardmäßig im Artikel-Editor genutzt wird</li>
                 <li><em>jQuery Dateiupload verwenden:</em> Nutzung des modernen AJAX-Uploads oder klassischer PHP-Upload</li>
+                <li><em>Biografie / Sonstiges:</em> Kurzer Info-Text zum Autor, der in den News angezeigt werden kann (optional).</li>
+                <li><em>Avatar:</em> Benutzer-Avatar, Dateiname entspricht dem Muster <em>benutzername.jpg/png/gif/bmp</em></li>
             </ul>
         ]]>
         </text>
@@ -315,6 +322,7 @@ Help language file
 
                         <li><em>E-Mails via SMTP versenden:</em> Wenn diese Option aktiv ist, erfolgt der E-Mail-Versand unter
                         Nutzung der E-Mail-Kontos, welche durch die SMTP-Zugangsdaten definiert wird.</li>
+                        <li><em>E-Mail-Adresse:</em> E-Mail-Server, die als Absender-Konto verwendet wird</li>
                         <li><em>SMTP-Server-Adresse:</em> E-Mail-Server-Adresse</li>
                         <li><em>SMTP-Server-Port:</em> E-Mail-Server-Port</li>
                         <li><em>SMTP-Benutzername:</em> Benutzername</li>
@@ -339,6 +347,7 @@ Help language file
                     Administratonsbereich gesperrt. Die Erstellten Artikel, etc. bleiben erhalten. Dies kann nützlich sein, wenn
                     der Benutzer das Team deiner Seite verlassen hat, aus ihm ausgeschlossen wurde oder der Account irgendwie
                     missbraucht wurde.</li>
+                <li>Die änderbaren Informationen in den Benutzern entsprechen denen im Benutzer-Profil.</li>
             </ul>
                 
             <h3>Berechtigungen</h3>

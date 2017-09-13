@@ -88,11 +88,8 @@ Help language file
             <p>This area allows you to manager you existing articles. You can edit or delete them as well as set different article
             options.</p>
             <ul>
-                <li><em>Pin/ unpin articles:</em> Pin selected articles to keep them on top of you sites article list or revet the
-                    pinned status.</li>
-                <li><em>Approve articles:</em> Publish selected articles waiting for approval to make them visible to your visitors.</li>
-                <li><em>Archive article:</em> Move selected articles to internal archive.</li>
-                <li><em>Enable/ disable comments:</em> Enable or disabled comment list and form for selected articles.</li>
+                <li><em>Edit selected:</em> Start mass editing for selected articles. The available options are similar to the
+                    ones in the article editor.</li>                
                 <li><em>Create new tweets:</em> Create new posts at Twitter for selected articles in case you enabled the Twitter
                     connection in system options.</li>
                 <li><em>Delete:</em> Throw selected articles into trash if enabled. If trash is not enabled, articles will be deleted
@@ -123,15 +120,25 @@ Help language file
         <![CDATA[
             <p>The <i>Comments</i> area is an extension of the editor <i>Comments</i>-tab. This area lists you all existing articles
             regardless of their related article. Your can manage all articles as you can do in the editor tab, which means edit, delete,
-            approve them or set the the spam/ private status.</p>
+            approve them or set the the spam/ private status.</p>            
             <ul>
-                <li><em>Comment is private:</em> Private comments will not be displayed to your visitors.</li>
-                <li><em>Comment is approved:</em> Approved comments will be displayed in public. Visitors can read and replay to them.
-                    Unapproved comments won't show up in public like private comments. Comment approval can be disabled in system
-                    options.</li>
-                <li><em>Comment is spam:</em> Comments marks as spam won't be displayed to your visitors. They will be used to improve
-                    spam detection if you don't delete them.</li>
+                <li><em>Edit selected:</em> Start mass editing for selected comments. The available options are similar to the
+                    ones in the comment editor.
+                    <ul>
+                        <li><em>Comment is private:</em> Private comments will not be displayed to your visitors.</li>
+                        <li><em>Comment is approved:</em> Approved comments will be displayed in public. Visitors can read and reply
+                            to them. Unapproved comments won't show up in public like private comments. Comment approval can be
+                            disabled in system options.</li>
+                        <li><em>Comment is spam:</em> Comments marks as spam won't be displayed to your visitors. They will
+                            be used to improve spam detection if you don't delete them.</li>
+                            disabled in system options.</li>
+                        <li><em>Move comment to article with ID:</em> Move selected comments to a certain article id. The input field
+                            offers search for articles and auto completion.</li>
+                    </ul>
+                </li>    
+                <li><em>Delete:</em> Delete selected comments. Important! Comments do not offer a trash.</li>
             </ul>
+
             <p>The <span class="fpcm-ui-button">Search & filter</span> button allows you to search or filter you articles by various conditions.</p>
         ]]>
         </text>
@@ -175,6 +182,9 @@ Help language file
                 <li><em>ACP article list limit</em> defined the number of articles display per page in ACP article list</li>
                 <li><em>Default editor font size:</em> Default font size used in the article editor</li>
                 <li><em>Use jQuery uploader:</em> Enables the jQuery file uploader.</li>
+                <li><em>Biography / Other:</em> Short optional text with information about the current user which can be displayed
+                    in the news.</li>
+                <li><em>Avatar:</em> User avatar, filename pattern is <em>username.jpg/png/gif/bmp</em></li>
             </ul>
         ]]>
         </text>
@@ -279,6 +289,7 @@ Help language file
                         
                         <li><em>Submit e-mail via SMTP:</em> If this setting is enabled, e-mail will be send using the e-mail-account
                         defined within the following data.</li>
+                        <li><em>Email address:</em> Email address, used as adress to send messages</li>
                         <li><em>SMTP server address:</em> URL to the e-mail-server to use</li>
                         <li><em>SMTP server port:</em> Mail server port</li>
                         <li><em>SMTP username:</em> Username for e-mail account</li>
