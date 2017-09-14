@@ -144,9 +144,23 @@
          * @return string
          */
         public function translate($langvar, array $replaceParams = array()) {
+
             $langvar  = strtoupper($langvar);
-            $langData = isset($GLOBALS['langdata'][$langvar]) ? $GLOBALS['langdata'][$langvar] : null;            
-            return is_null($langData) ? $langData : str_replace(array_keys($replaceParams), array_values($replaceParams), $langData);
+            $langData = isset($GLOBALS['langdata'][$langvar]) ? $GLOBALS['langdata'][$langvar] : null;  
+
+            $replacement = [];
+            foreach ($replaceParams as $key => $val) {
+
+                if (substr($key, 0, 2) !== '{{' && substr($key, -2) !== '}}') {
+                    $key = '{{'.$key.'}}';
+                }
+
+                $replacement[$key] = $val;
+            }
+            
+            $replaceParams = null;
+
+            return is_null($langData) ? $langData : str_replace(array_keys($replacement), array_values($replacement), $langData);
         }
         
         /**

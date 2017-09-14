@@ -513,9 +513,12 @@
             if (!isset($params['class'])) {
                 $params['class'] = '';
             }
-            
-            $params['title'] = self::$language->translate($params['title']);
-            print "<span class=\"fpcm-ui-badge {$params['class']}\" title=\"{$params['title']}\">{$params['value']}</span>\n";
+
+            $params['title']    = isset($params['title'])
+                                ? 'title=\"'.self::$language->translate($params['title']).'\"'
+                                : '';
+
+            print "<span class=\"fpcm-ui-badge {$params['class']}\" {$params['title']}>{$params['value']}</span>\n";
         }    
 
         /**

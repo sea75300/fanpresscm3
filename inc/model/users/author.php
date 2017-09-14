@@ -565,8 +565,12 @@
          * @return string
          * @since FPCM 3.6
          */
-        public static function getAuthorImageDataOrPath(author $author, $asUrl = true) {
+        public static function getAuthorImageDataOrPath($author, $asUrl = true) {
 
+            if (!$author instanceof author) {
+                return '';
+            }
+            
             $cache = new \fpcm\classes\cache('authorImages', 'system');
             $data  = $cache->read();
 
