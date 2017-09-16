@@ -77,7 +77,7 @@
             if ($filter['spam'] > -1)       $sparams->spam       = (int) $filter['spam'];
             if ($filter['private'] > -1)    $sparams->private    = (int) $filter['private'];
             if ($filter['approved'] > -1)   $sparams->approved   = (int) $filter['approved'];
-            if ($filter['articleId'] > 1)   $sparams->articleid  = (int) $filter['articleId'];
+            if ($filter['articleId'] > 0)   $sparams->articleid  = (int) $filter['articleId'];
 
             $sparams->combination = $filter['combination'] ? 'OR' : 'AND';
 
