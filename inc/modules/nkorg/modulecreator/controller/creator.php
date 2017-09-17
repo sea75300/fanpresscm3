@@ -104,7 +104,7 @@ class creator extends \fpcm\controller\abstracts\ajaxController {
                         strtoupper($this->info['vendor']).'_'.strtoupper($this->info['key']).'_HEADLINE' => $this->info['name']
                     ];
 
-                    $langFileContent = '<?php'.PHP_EOL.PHP_EOL.var_export($langFileContent, true).PHP_EOL.PHP_EOL.'?>';
+                    $langFileContent = '<?php'.PHP_EOL.PHP_EOL.'$lang = '.PHP_EOL.var_export($langFileContent, true).PHP_EOL.PHP_EOL.'?>';
                     if (!file_put_contents($langDir.DIRECTORY_SEPARATOR.'common.php', $langFileContent)) {
                         trigger_error('Unable to create default language file in "'.$langDir);
                         return false;                        

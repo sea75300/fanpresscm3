@@ -1,0 +1,10 @@
+## Module list config file
+---
+name: Extended statistics
+vendor: nkorg
+key: extendedstats
+author: imagine
+link: https://nobody-knows.org/
+version: 0.0.1
+sysversion: 3.5.0
+description: "Extended statistics for articles."
