@@ -1,10 +1,10 @@
 <?php
     /**
-     * imagine, https://nobody-knows.org/
+     * Extended statistics
      *
      * nkorg/extendedstats event class: navigationAdd
      * 
-     * @version 0.0.1
+     * @version 1.0.0
      * @author imagine <imagine@yourdomain.xyz>
      * @copyright (c) 2017, imagine
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3

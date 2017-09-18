@@ -7,9 +7,32 @@
             <li><a href="#fpcm-nkorg-extendedstats-main"><?php $FPCM_LANG->write('NKORG_EXTENDEDSTATS_BYMONTH'); ?></a></li>
         </ul>
         
-        <div id="fpcm-nkorg-extendedstats-main">
-            <canvas id="fpcm-nkorg-extendedstats-chart" height="100"></canvas>
-        </div>
-        
+        <form method="post" action="<?php print $FPCM_SELF; ?>?module=modules/config&key=nkorg/extendedstats">
+
+            <div id="fpcm-nkorg-extendedstats-main">
+                <div class="fpcm-half-width" style="margin-bottom: 1.8em;">
+                    <div class="fpcm-half-width" style="margin: 0.3em;">
+                        <?php \fpcm\model\view\helper::textInput('dateFrom', '', $start, false, 10, $FPCM_LANG->translate('ARTICLE_SEARCH_DATE_FROM')); ?>
+                    </div>
+
+                    <div class="fpcm-half-width" style="margin: 0.3em;">
+                        <?php \fpcm\model\view\helper::textInput('dateTo', '', $stop, false, 10, $FPCM_LANG->translate('ARTICLE_SEARCH_DATE_TO')); ?>
+                    </div>
+
+                    <div class="fpcm-clear"></div>
+                </div>
+
+                <canvas id="fpcm-nkorg-extendedstats-chart" height="100"></canvas>
+            </div>
+
+            <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+
+                <div class="fpcm-ui-margin-center">
+                    <?php \fpcm\model\view\helper::select('chartType', $chartTypes, '', false, false, false, 'fpcm-ui-input-select-articleactions'); ?>
+                    <?php \fpcm\model\view\helper::submitButton('setdatespan', 'GLOBAL_OK', 'fpcm-loader'); ?>
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>

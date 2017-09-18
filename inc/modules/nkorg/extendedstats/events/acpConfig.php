@@ -1,10 +1,10 @@
 <?php
     /**
-     * imagine, https://nobody-knows.org/
+     * Extended statistics
      *
      * nkorg/extendedstats event class: acpConfig
      * 
-     * @version 0.0.1
+     * @version 1.0.0
      * @author imagine <imagine@yourdomain.xyz>
      * @copyright (c) 2017, imagine
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
@@ -24,8 +24,31 @@
             ]);
             
             $counter = new \fpcm\modules\nkorg\extendedstats\model\counter();
+            
+            $start     = \fpcm\classes\http::postOnly('dateFrom');
+            $stop      = \fpcm\classes\http::postOnly('dateTo');
+            $chartType = \fpcm\classes\http::postOnly('chartType');
 
-            $view->addJsVars(['charValues' => $counter->fetch()]);
+            $view->assign('start', trim($start) ? $start : '');
+            $view->assign('stop', trim($stop) ? $stop : '');
+
+            $articleList = new \fpcm\model\articles\articlelist();
+            $minMax      = $articleList->getMinMaxDate();
+
+            $view->addJsVars([
+                'nkorgExtStatsCharValues' => $counter->fetchArticles($start, $stop),
+                'nkorgExtStatsChartType'  => trim($chartType) ? $chartType : 'bar',
+                'nkorgExtStatsMinDate'    => date('Y-m-d', $minMax['minDate'])
+            ]);
+            
+
+            $view->assign('chartTypes', [
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEBAR')   => 'bar',
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPELINE')  => 'line',
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEPIE')   => 'pie',
+            ]);
+            
+            
             $view->render();
         }
 
