@@ -33,6 +33,8 @@ fpcm.nkorg_extendedstats = {
             window.chart.destroy();
         }
 
+        nkorgExtStatsCharValues.datasets[0].borderWidth = (type === 'line' ? 5 : 1);
+
         window.chart = new Chart(jQuery('#fpcm-nkorg-extendedstats-chart'), {
             type: type,
             data: nkorgExtStatsCharValues,

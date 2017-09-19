@@ -14,7 +14,9 @@ namespace fpcm\modules\nkorg\extendedstats\model;
 
 class counter extends \fpcm\model\abstracts\tablelist {
 
-    public function fetchArticles($start, $stop) {        
+    public function fetchArticles($start, $stop) {
+        
+        $cache = new \fpcm\classes\cache(__METHOD__);
 
         $where = '1=1';
         
@@ -38,25 +40,32 @@ class counter extends \fpcm\model\abstracts\tablelist {
         $data   = [];
         $colors = [];
         
+        $cached = ($cache->isExpired() ? [] : $cache->read());
+        
         foreach ($values as $value) {
 
-            $dtstr = explode('-', $value->dtstr);
-            $month = (int) $dtstr[1];
-            
+            $dtstr      = explode('-', $value->dtstr);
+            $month      = (int) $dtstr[1];
+
             $labels[]   = $months[$month].' '.$dtstr[0];
             $data[]     = (string) $value->counted;
-            $colors[]   = $this->getRandomColor();
-            
+
+            $cached[$value->dtstr] = (isset($cached[$value->dtstr]) ? $cached[$value->dtstr] : $this->getRandomColor());
+            $colors[]   = $cached[$value->dtstr];
+
         }
+        
+        $cache->write($cached, 604800);
 
         return [
             'labels'    => $labels,
             'datasets'  => [
                 [
-                    'label' => '',
-                    'data'  => $data,
-                    'backgroundColor' => $colors,
-                    'borderColor'     => $this->getRandomColor()
+                    'label'             => '',
+                    'fill'              => false,
+                    'data'              => $data,
+                    'backgroundColor'   => $colors,
+                    'borderColor'       => $this->getRandomColor(),
                 ]
             ]
         ];

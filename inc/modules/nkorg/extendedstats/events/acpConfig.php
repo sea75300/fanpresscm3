@@ -17,6 +17,14 @@
 
         public function run($params = null) {
             
+            $chartTypes = [
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEBAR')   => 'bar',
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPELINE')  => 'line',
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEPIE')   => 'pie',
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEDOUGHNUT')  => 'doughnut',
+                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEPOLAR')     => 'polarArea',
+            ];
+            
             $view = new \fpcm\model\view\module('nkorg/extendedstats', 'acp', 'main');
             $view->setViewJsFiles([
                 \fpcm\classes\baseconfig::$rootPath.'inc/modules/'.\fpcm\model\abstracts\module::getModuleKeyByFolder(__FILE__).'/js/chart.min.js',
@@ -31,6 +39,7 @@
 
             $view->assign('start', trim($start) ? $start : '');
             $view->assign('stop', trim($stop) ? $stop : '');
+            $view->assign('chartType', trim($chartType) && in_array($chartType, $chartTypes) ? $chartType : 'bar');
 
             $articleList = new \fpcm\model\articles\articlelist();
             $minMax      = $articleList->getMinMaxDate();
@@ -42,11 +51,7 @@
             ]);
             
 
-            $view->assign('chartTypes', [
-                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEBAR')   => 'bar',
-                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPELINE')  => 'line',
-                $this->lang->translate('NKORG_EXTENDEDSTATS_TYPEPIE')   => 'pie',
-            ]);
+            $view->assign('chartTypes', $chartTypes);
             
             
             $view->render();
