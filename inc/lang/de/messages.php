@@ -78,7 +78,7 @@
         'SAVE_FAILED_PASSWORD_MATCH'    => 'Die eingegebenen Passwörter stimmen nicht überein.',
         'SAVE_FAILED_USER_SECURITY'     => 'Der eingegebene Benutzername ist potentiell gefährlich und kann daher nicht verwendet werden!',
         'SAVE_FAILED_OPTIONS'           => 'Die Änderungen an der Konfiguration konnten nicht gespeichert werden!',
-        'SAVE_FAILED_PERMISSIONS'       => 'Die Änderungen an den Berechtigungen für Rolle {{rollid}} konnten nicht gespeichert werden!',
+        'SAVE_FAILED_PERMISSIONS'       => 'Die Änderungen an den Berechtigungen für die ausgewählte Rolle konnten nicht gespeichert werden!',
         'SAVE_FAILED_SMILEY'            => 'Der Smiley konnte nicht gespeichert werden!',
         'SAVE_FAILED_IPADDRESS'         => 'Die IP-Adresse konnte nicht gesperrt werden!',
         'SAVE_FAILED_WORDBAN'           => 'Der Begriff konnte nicht gespeichert werden!',

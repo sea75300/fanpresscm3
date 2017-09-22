@@ -253,14 +253,6 @@
                     'icon'              => 'fa fa-users fa-fw'
                 ]),
                 navigationItem::createItemFromArray([
-                    'url'               => 'system/permissions',
-                    'permission'        => array('system' => 'permissions'),
-                    'description'       => $this->language->translate('HL_OPTIONS_PERMISSIONS'),
-                    'class'             => '',
-                    'id'                => '',
-                    'icon'              => 'fa fa-key fa-fw'
-                ]),
-                navigationItem::createItemFromArray([
                     'url'               => 'ips/list',
                     'permission'        => array('system' => 'ipaddr'),
                     'description'       => $this->language->translate('HL_OPTIONS_IPBLOCKING'),

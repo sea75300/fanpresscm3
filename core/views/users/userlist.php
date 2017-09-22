@@ -116,7 +116,10 @@
                     <tr class="fpcm-td-spacer"><td></td></tr>
                     <?php foreach($usersRollList AS $rollName => $rollid) : ?>
                     <tr>
-                        <td class="fpcm-ui-editbutton-col"><?php \fpcm\model\view\helper::editButton($FPCM_BASEMODULELINK.'users/editroll&id='.$rollid, ($rollid <= 3 ? false : true)); ?></td>
+                        <td class="fpcm-ui-editbutton-col">
+                            <?php \fpcm\model\view\helper::editButton($FPCM_BASEMODULELINK.'users/editroll&id='.$rollid, ($rollid <= 3 ? false : true)); ?>
+                            <?php \fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'users/permissions&roll='.$rollid, 'USERS_ROLLS_PERMISSIONS', '', 'fpcm-ui-button-blank fpcm-passreset-btn fpcm-ui-rolllist-permissionedit'); ?>
+                        </td>
                         <td><strong><?php print \fpcm\model\view\helper::escapeVal($rollName); ?></strong></td>
                         <td class="fpcm-td-select-row"><input type="radio" name="rollids" value="<?php print $rollid; ?>" <?php if ($rollid <= 3) : ?>disabled="disabled"<?php endif; ?>></td>
                     </tr>      

@@ -78,7 +78,7 @@
         'SAVE_FAILED_PASSWORD_MATCH'    => 'The given passwords do not match',
         'SAVE_FAILED_USER_SECURITY'     => 'The given username is highly dangerous and cannot be used!',
         'SAVE_FAILED_OPTIONS'           => 'Unable to save configuration changes!',
-        'SAVE_FAILED_PERMISSIONS'       => 'Unable to save permissions for user roll with id {{rollid}}!',
+        'SAVE_FAILED_PERMISSIONS'       => 'Unable to save permissions for selected user roll!',
         'SAVE_FAILED_SMILEY'            => 'Unable to save the smiley!',
         'SAVE_FAILED_IPADDRESS'         => 'Unable to save the IP address!',
         'SAVE_FAILED_WORDBAN'           => 'Unable to create censored text!',

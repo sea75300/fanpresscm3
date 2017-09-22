@@ -14,3 +14,5 @@
         </tr>
     </table>
 </div>
+
+<div class="fpcm-ui-dialog-layer fpcm-hidden fpcm-editor-dialog" id="fpcm-dialog-users-permissions-edit"></div>

@@ -745,8 +745,7 @@ table.fpcm-ui-table.fpcm-ui-article-revisions tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-rssnews tr td:first-child,
 table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr th:first-child,
 table.fpcm-ui-table.fpcm-ui-logs-cronjobs tr td:first-child,
-table.fpcm-ui-table.fpcm-ui-users tr th:first-child,
-table.fpcm-ui-table.fpcm-ui-users tr td:first-child
+table.fpcm-ui-table.fpcm-ui-users tr th:first-child
 {
     width: 3em;
 }
@@ -758,7 +757,8 @@ table.fpcm-ui-table.fpcm-ui-editor-smileys td,
 table.fpcm-ui-table.fpcm-ui-articletemplates td:first-child,
 table.fpcm-ui-table.fpcm-ui-articles tr th.fpcm-td-articlelist-times,
 table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-times,
-table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-meta {
+table.fpcm-ui-table.fpcm-ui-articles tr td.fpcm-td-articlelist-meta,
+table.fpcm-ui-table.fpcm-ui-users tr td:first-child {
     width: 6em;
 }
 

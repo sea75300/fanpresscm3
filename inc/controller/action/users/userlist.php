@@ -115,8 +115,10 @@
             $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'users.js']);
             $this->view->setHelpLink('hl_options');
             $this->view->addJsLangVars([
-                'USERS_ARTICLES_SELECT' => $this->lang->translate('USERS_ARTICLES_SELECT'),
-                'GLOBAL_OK'             => $this->lang->translate('GLOBAL_OK')
+                'USERS_ARTICLES_SELECT'     => $this->lang->translate('USERS_ARTICLES_SELECT'),
+                'GLOBAL_OK'                 => $this->lang->translate('GLOBAL_OK'),
+                'GLOBAL_SAVE'               => $this->lang->translate('GLOBAL_SAVE'),
+                'HL_OPTIONS_PERMISSIONS'    => $this->lang->translate('HL_OPTIONS_PERMISSIONS')
             ]);
 
             $this->view->render();

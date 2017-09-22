@@ -1,12 +1,18 @@
 <?php
     /**
-     * Permission edit controller
+     * FanPress CM 3.x
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
+     */
+
+namespace fpcm\controller\action\users;
+
+    /**
+     * Permission edit controller for single group
      * @author Stefan Seehafer <sea75300@yahoo.de>
      * @copyright (c) 2011-2017, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
-     */
-    namespace fpcm\controller\action\system;
-    
+     * @since FPCM 3.6
+     */    
     class permissions extends \fpcm\controller\abstracts\controller {
 
         /**
@@ -19,7 +25,7 @@
          *
          * @var \fpcm\model\system\permissions
          */
-        protected $permissionData;
+        protected $permissionObj;
 
         /**
          * Konstruktor
@@ -28,10 +34,10 @@
             parent::__construct();
             
             $this->checkPermission = array('system' => 'permissions');
+            $this->view = new \fpcm\model\view\acp('permissions', 'users');
+            $this->view->setShowHeader(false);
+            $this->view->setShowFooter(false);
 
-            $this->view = new \fpcm\model\view\acp('permissions', 'system');
-            
-            $this->permissionData = new \fpcm\model\system\permissions();
         }
 
         /**
@@ -40,6 +46,17 @@
          */
         public function request() {
 
+            $rollId = $this->getRequestVar('roll', [
+                \fpcm\classes\http::FPCM_REQFILTER_CASTINT
+            ]);
+            
+            $this->view->assign('rollId', $rollId);
+            
+            $roll = new \fpcm\model\users\userRoll($rollId);
+            $this->view->assign('rollname', $this->lang->translate($roll->getRollName()));
+
+            $this->permissionObj = new \fpcm\model\system\permissions($rollId);
+            
             $checkPageToken = $this->checkPageToken();
             if ($this->buttonClicked('permissionsSave') && !$checkPageToken) {
                 $this->view->addErrorMessage('CSRF_INVALID');
@@ -47,29 +64,22 @@
             
             if ($this->buttonClicked('permissionsSave') && !is_null($this->getRequestVar('permissions')) && $checkPageToken) {
                 
-                $permissionData = $this->getRequestVar('permissions');
+                $permissionData = $this->getRequestVar('permissions', [
+                    \fpcm\classes\http::FPCM_REQFILTER_CASTINT
+                ]);
 
-                $res = false;
-                foreach ($permissionData as $groupId => $permissions) {
-                    $permissions = array_map([$this, 'intval'], $permissions);
-                    
-                    if ($groupId == 1) {
-                        $permissions['system']['permissions'] = 1;
-                    }
-                    
-                    $permissions = array_replace_recursive($this->permissions->getPermissionSet(), $permissions);
-                    $this->permissionData->setRollId($groupId);
-                    $this->permissionData->setPermissionData($permissions);
-                    if (!$this->permissionData->update()) {
-                        $this->view->addErrorMessage('SAVE_FAILED_PERMISSIONS', array('{{rollid}}' => $groupId));
-                    } else {
-                        $res = true;
-                    }
+                if ($rollId == 1) {
+                    $permissionData['system']['permissions'] = 1;
                 }
-                
-                if ($res) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_PERMISSIONS');
+
+                $permissionData = array_replace_recursive($this->permissions->getPermissionSet(), $permissionData);
+                $this->permissionObj->setPermissionData($permissionData);
+                if (!$this->permissionObj->update()) {
+                    $this->view->addErrorMessage('SAVE_FAILED_PERMISSIONS');
+                    return true;
                 }
+
+                $this->view->addNoticeMessage('SAVE_SUCCESS_PERMISSIONS');
             }
             
             return true;
@@ -81,15 +91,12 @@
          */
         public function process() {
             if (!parent::process()) return false;
-            
-            $userRolls = new \fpcm\model\users\userRollList();            
-            $this->view->assign('userRolls', array_flip($userRolls->getUserRollsTranslated()));
 
-            $this->view->assign('permissions', $this->permissionData->getPermissionsAll());            
+            $this->view->assign('permissions', $this->permissionObj->getPermissionData());            
             $this->view->assign('hideTitle', false);
 
             $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'permissions.js'));
-            $this->view->setHelpLink('hl_options');
+            //$this->view->setHelpLink('hl_options');
             
             $this->view->render();            
         }

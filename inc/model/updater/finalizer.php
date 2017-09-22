@@ -327,6 +327,8 @@
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-2.2.0.min.js',
                 \fpcm\classes\baseconfig::$incDir.'lib/jquery/jquery-3.1.0.min.js',
                 \fpcm\classes\baseconfig::$incDir.'model/system/cli.php',
+                \fpcm\classes\baseconfig::$incDir.'controller/action/system/permissions.php',
+                \fpcm\classes\baseconfig::$viewsDir.'system/permissions.php',
                 $fbPath.'blank.gif',
                 $fbPath.'fancybox_loading.gif',
                 $fbPath.'fancybox_loading@2x.gif',
