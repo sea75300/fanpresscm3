@@ -135,22 +135,12 @@
          * @return array
          */
         protected function getTextPatterns() {
-            $patterns = array(
-                array(
-                    'start' => '- ',
-                    'cmd'   => 'InsertUnorderedList'
-                ),
-                array(
-                    'start' => '* ',
-                    'cmd'   => 'InsertUnorderedList'
-                ),
-                array(
-                    'start' => '1. ',
-                    'cmd'   => 'InsertOrderedList'
-                )
-            );
-
-            return $patterns;
+            return [
+                ['start' => '- ',   'cmd' => 'InsertUnorderedList'],
+                ['start' => '* ',   'cmd' => 'InsertUnorderedList'],
+                ['start' => '# ',   'cmd' => 'InsertOrderedList'],
+                ['start' => '1. ',  'cmd' => 'InsertOrderedList'],
+            ];
         }
 
     }
