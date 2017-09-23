@@ -100,7 +100,7 @@
             $params['fpcmUpdaterMaxStep']   = count($params['fpcmUpdaterStepMap']);
             
             $this->view->addJsVars($params);
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'updater.js'));
+            $this->view->setViewJsFiles(['updater.js']);
             $this->view->render();
         }
 

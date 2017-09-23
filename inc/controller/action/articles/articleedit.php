@@ -187,7 +187,7 @@
             $this->view->assign('showComments', $editComments);
             
             if ($editComments) {
-                $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'comments.js']);
+                $this->view->setViewJsFiles(['comments.js']);
                 $this->initCommentMassEditForm();
             }
             

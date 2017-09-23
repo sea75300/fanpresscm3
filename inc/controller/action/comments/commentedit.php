@@ -124,7 +124,7 @@
             
             $this->view->setViewJsFiles([
                 \fpcm\classes\loader::libGetFileUrl('tinymce4', 'tinymce.min.js'),
-                \fpcm\classes\baseconfig::$jsPath.'editor_tinymce.js'
+                'editor_tinymce.js'
             ]);
             $this->view->addJsVars([
                 'fpcmTinyMceLang'               => $this->config->system_lang,
@@ -148,7 +148,7 @@
                 $this->view->assign('changeInfo', $this->lang->translate('GLOBAL_NOCHANGE'));
             }
 
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'comments.js'));
+            $this->view->setViewJsFiles(['comments.js']);
             $this->view->assign('ipWhoisLink', substr($this->comment->getIpaddress(), -1) === '*' ? false : true);
             $this->view->assign('comment', $this->comment);
             $this->view->assign('commentsMode', $mode);

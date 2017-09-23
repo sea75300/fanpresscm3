@@ -81,7 +81,7 @@
                 'fpcmFieldSetAutoFocus'      => 'smileycode'
             ]);
 
-            $this->view->setViewJsFiles([\fpcm\classes\baseconfig::$jsPath.'smileys.js']);
+            $this->view->setViewJsFiles(['smileys.js']);
             $this->view->setHelpLink('hl_options');
             $this->view->assign('smiley', $this->smiley);
             $this->view->assign('files', $files);

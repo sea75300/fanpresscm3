@@ -170,6 +170,40 @@
         }
 
         /**
+         * Prüft, ob übergebener JS-Path schon in Elementen enthalten ist
+         * @param string $item
+         * @since FPCM 3.6
+         */
+        private function checkJsPath($item) {
+            
+            if (strpos($item, \fpcm\classes\baseconfig::$jsPath) === 0) {
+                return $item;
+            }
+
+            try {
+                $file_headers = get_headers(\fpcm\classes\baseconfig::$jsPath.$item);
+                if (isset($file_headers[0]) && $file_headers[0] === 'HTTP/1.1 200 OK') {
+                    return \fpcm\classes\baseconfig::$jsPath.$item;
+                }
+            } catch (\Exception $e) {
+                trigger_error($e->getMessage());
+                return '';
+            }
+
+            try {
+                $file_headers = get_headers($item);
+                if (isset($file_headers[0]) && $file_headers[0] === 'HTTP/1.1 200 OK') {
+                    return $item;
+                }
+            } catch (\Exception $e) {
+                trigger_error($e->getMessage());
+                return '';
+            }
+
+            return '';
+        }
+
+        /**
          * String zum Setzen des aktuell aktiven Modules in Navigation
          * @return string
          * @since FPCM 3.4
@@ -255,7 +289,7 @@
          * @param array $viewJsFiles
          */
         public function setViewJsFiles(array $viewJsFiles) {
-            $this->viewJsFiles = array_merge($this->viewJsFiles, $viewJsFiles);
+            $this->viewJsFiles = array_merge($this->viewJsFiles, array_map([$this, 'checkJsPath'], $viewJsFiles));
         }
  
         /**

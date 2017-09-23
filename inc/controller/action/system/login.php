@@ -161,7 +161,7 @@
                 ));
             }
             
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'login.js'));
+            $this->view->setViewJsFiles(['login.js']);
 
             $this->view->assign('loginAttempts', $this->currentAttempts);
             $this->view->assign('loginAttemptsMax', $this->config->system_loginfailed_locked);

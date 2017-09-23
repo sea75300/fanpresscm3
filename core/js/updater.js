@@ -89,6 +89,7 @@ fpcm.updater = {
         fpcm.ui.appendHtml('.fpcm-updater-list', '<p>' + '<span class="fa fa-check-square fa-fw fa-lg fpcm-ui-booltext-yes"></span>'  + fpcmUpdaterMessages['EXIT_1'] + '</p>');
         fpcm.ui.showLoader(false);
         fpcm.updater.addTimer();
+        jQuery('#updaterButtons').show();
         return true;
     },
 

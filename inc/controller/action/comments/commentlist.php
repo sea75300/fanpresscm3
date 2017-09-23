@@ -97,7 +97,7 @@
             $this->initCommentMassEditForm();
             $this->initPagination();
 
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'comments.js'));
+            $this->view->setViewJsFiles(['comments.js']);
             
             $comments           = $this->list->getCommentsByLimit($this->listShowLimit, $this->listShowStart);
             $this->commentCount = count($comments);

@@ -14,4 +14,11 @@
             <div class="fpcm-updater-list"></div>
         </div>        
     </div>
+    
+</div>
+
+<div id="updaterButtons" class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
+    <div class="fpcm-ui-margin-center">
+        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'system/dashboard', 'PACKAGES_BACKTODASHBOARD', '', 'fpcm-ui-pager-buttons fpcm-back-button fpcm-loader'); ?>
+    </div>
 </div>

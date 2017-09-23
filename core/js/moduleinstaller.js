@@ -139,3 +139,12 @@ var fpcmModuleInstaller = function () {
     };
     
 }
+
+fpcm.moduleinstaller = {
+    
+    init: function() {
+        fpcmModuleInstaller = new fpcmModuleInstaller();
+        fpcmModuleInstaller.init(fpcmModulesMode);
+    }
+    
+}

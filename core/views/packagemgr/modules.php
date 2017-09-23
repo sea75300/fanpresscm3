@@ -1,8 +1,8 @@
 <div class="fpcm-content-wrapper">
-    <h1><span class="fa fa-refresh" id="fpcm-ui-headspinner"></span> <?php $FPCM_LANG->write('MODULES_LIST_UPDATE'); ?></h1>
+    <h1><span class="fa fa-refresh" id="fpcm-ui-headspinner"></span> <?php $FPCM_LANG->write($modeHeadline); ?></h1>
     <div class="fpcm-tabs-general">
         <ul>
-            <li><a href="#tabs-updater-general"><?php $FPCM_LANG->write('MODULES_LIST_UPDATE'); ?></a></li>
+            <li><a href="#tabs-updater-general"><?php $FPCM_LANG->write($modeHeadline); ?></a></li>
         </ul>
 
         <div id="tabs-updater-general">
@@ -18,13 +18,6 @@
 
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
     <div class="fpcm-ui-margin-center">
-        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'modules/list', 'MODULES_LIST_BACKTOLIST', '', 'fpcm-loader'); ?>
+        <?php fpcm\model\view\helper::linkButton($FPCM_BASEMODULELINK.'modules/list', 'MODULES_LIST_BACKTOLIST', '', 'fpcm-ui-pager-buttons fpcm-back-button fpcm-loader'); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        fpcmModuleInstaller = new fpcmModuleInstaller();
-        fpcmModuleInstaller.init('update');
-    });
-</script>

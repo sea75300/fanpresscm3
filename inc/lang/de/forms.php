@@ -174,6 +174,7 @@
         'PACKAGES_UPDATE_NEW_VERSION'     => '<span class="fa fa-arrow-circle-right fpcm-ui-booltext-yes fa-fw fa-lg"></span> <strong>Neue Version</strong>',
         'PACKAGES_FILE_LIST'              => 'Paket-Manager-Log aktualisieren...',
         'PACKAGES_PROCESS_TIME'           => '<span class="fa fa-clock-o fpcm-ui-booltext-yes fa-fw fa-lg"></span> <strong>Benötigte Zeit</strong>',
+        'PACKAGES_BACKTODASHBOARD'        => 'Zurück zum Dashboard',
         
         'SYSCHECK_FOLDER_DATA'          => 'Data-Ordner',
         'SYSCHECK_FOLDER_CACHE'         => 'Cache-Ordner',

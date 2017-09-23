@@ -54,7 +54,9 @@
             
             $this->modulelist = new \fpcm\model\modules\modulelist();
             
-            $this->view = new \fpcm\model\view\acp('modulesupdate', 'packagemgr');
+            $this->view = new \fpcm\model\view\acp('modules', 'packagemgr');
+            $this->view->assign('modeHeadline', 'MODULES_LIST_UPDATE');
+
         }
         
         public function request() {
@@ -71,7 +73,7 @@
 
             if (!parent::process()) return false;
             
-            $this->view->setViewJsFiles(array(\fpcm\classes\baseconfig::$jsPath.'moduleinstaller.js'));
+            $this->view->setViewJsFiles(['moduleinstaller.js']);
             
             $tempFile = new \fpcm\model\files\tempfile('installkeys');            
             if (!$tempFile->getContent()) {                
@@ -92,9 +94,12 @@
             $params['fpcmProgressbarMax']             = count($keys);            
             $params['fpcmUpdaterMessages']['EXIT_1']  = $this->lang->translate('MODULES_SUCCESS_UPDATE');
             $params['fpcmUpdaterMessages']['4_0']     = $this->lang->translate('MODULES_FAILED_UPDATE');
+            $params['fpcmModulesMode']                = 'update';
             $this->view->addJsVars($params);                        
 
-            $this->view->addJsLangVars(array('statusinfo' => $this->lang->translate('MODULES_LIST_UPDATING')));
+            $this->view->addJsLangVars([
+                'statusinfo' => $this->lang->translate('MODULES_LIST_UPDATING')
+            ]);
             $this->view->render();
             
             $tempFile->delete();

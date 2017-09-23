@@ -329,6 +329,8 @@
                 \fpcm\classes\baseconfig::$incDir.'model/system/cli.php',
                 \fpcm\classes\baseconfig::$incDir.'controller/action/system/permissions.php',
                 \fpcm\classes\baseconfig::$viewsDir.'system/permissions.php',
+                \fpcm\classes\baseconfig::$viewsDir.'packagemgr/modulesinstall.php',
+                \fpcm\classes\baseconfig::$viewsDir.'packagemgr/modulesupdate.php',
                 $fbPath.'blank.gif',
                 $fbPath.'fancybox_loading.gif',
                 $fbPath.'fancybox_loading@2x.gif',

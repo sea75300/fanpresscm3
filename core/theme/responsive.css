@@ -30,23 +30,6 @@
         width: 25%;
     }
     
-    .ui-tabs-vertical {
-        width: 99%;
-    }
-    
-    .ui-tabs-vertical .ui-tabs-nav,
-    .ui-tabs-vertical .ui-tabs-panel {
-        width: 100%;
-        padding-right: 0.2em;
-    }
-
-    .ui-tabs-vertical .ui-tabs-nav li {
-        padding-right: 0px !important;
-        margin-bottom: 0px !important;
-        border-bottom-right-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    
     .fpcm-ui-permissions-container {
         width: 100% !important;
     }

@@ -310,13 +310,12 @@ Help language file
                 <li>Here you can manage users and user rolls in your system, including deletion, editing and so on.</li>
                 <li>An user can be a member of only one group.</li>
                 <li>You can disable users to keep their data (written articles & co.) and prevent them from login to the admin panel.
-                    This can be usefull if the user was excluded or left your team, or the account was abused by someone else..</li>
+                    This can be usefull if the user was excluded or left your team, or the account was abused by someone else.</li>
+                <li><strong>Permissions:</strong> Permissions allows you to define which user can use a function or not. This area
+                should be visible for administrators only! You can't prohibit the Administrator roll to access permission settings.
+                As of FPCM 3.6, permission are directly modified in the user roll management view.</li>
             </ul>
-                
-            <h3>Permissions</h3>
-            <p>Permissions allows you to define which user can use a function or not. This area should be visible for
-            administrators only! You can't prohibit the Administrator roll to access permission settings.</p>
-                
+
             <h3>IP addresses</h3>
             <p>Here you can lock IP addresses to prohibit access to FanPress CM because of spam comments, many login failures, etc.</p>
             <ul>

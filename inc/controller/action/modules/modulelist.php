@@ -75,10 +75,7 @@
             $this->view->addJsLangVars(array('detailsHeadline' => $this->lang->translate('MODULES_LIST_INFORMATIONS')));
             $this->view->addJsVars(array('fpcmJqUploadInit' => 0));
 
-            $this->view->setViewJsFiles(array(
-                \fpcm\classes\baseconfig::$jsPath.'modulelist.js',
-                \fpcm\classes\baseconfig::$jsPath.'filemanager.js'
-            ));
+            $this->view->setViewJsFiles(['modulelist.js', 'filemanager.js']);
             
             if (!$this->permissions->check(array('modules' => 'install'))) {
                 unset($this->moduleActions[$this->lang->translate('MODULES_LIST_INSTALL')],

@@ -143,7 +143,7 @@
             $this->view->assign('showDisableButton', false);
             $this->view->setViewJsFiles([
                 \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js'),
-                \fpcm\classes\baseconfig::$jsPath.'profile.js'
+                'profile.js'
             ]);
 
             $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', [

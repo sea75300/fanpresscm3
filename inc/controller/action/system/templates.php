@@ -200,11 +200,7 @@
             $tplfilelist = new \fpcm\model\files\templatefilelist();
             $this->view->assign('templateFiles', $tplfilelist->getFolderObjectList());
             
-            $this->view->setViewJsFiles(array(
-                \fpcm\classes\baseconfig::$jsPath.'filemanager.js',
-                \fpcm\classes\baseconfig::$jsPath.'editor_codemirror.js',
-                \fpcm\classes\baseconfig::$jsPath.'templates.js'
-            ));
+            $this->view->setViewJsFiles(['filemanager.js', 'editor_codemirror.js', 'templates.js']);
             
             $translInfo = array(
                 '{{filecount}}' => 1,

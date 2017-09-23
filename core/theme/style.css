@@ -431,40 +431,6 @@ table.fpcm-ui-options div.fpcm-ui-input-wrapper {
     padding-bottom: 0.2em;
 }
 
-.ui-tabs-vertical {
-    width: 99.5%;
-}
-
-.ui-tabs-vertical .ui-tabs-nav {
-    padding: 0.2em 0.1em 0.2em 0.2em;
-    float: left;
-    width: 25%;
-}
-
-.ui-tabs-vertical .ui-tabs-nav li {
-    clear: left;
-    width: 100%;
-    border-bottom-width: 1px !important;
-    border-right-width: 0 !important;
-}
-
-.ui-tabs-vertical .ui-tabs-nav li a {
-    display:block;
-    width: 90%;
-}
-
-.ui-tabs-vertical .ui-tabs-nav li,
-.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
-    padding-right: 0.1em;
-    border-right-width: 1px;
-}
-
-.ui-tabs-vertical .ui-tabs-panel {
-    padding: .2em .1em .2em .5em;
-    float: left;
-    width: 73.5%;
-}
-
 .ui-icon-blank {
     background-position: 16px 16px !important;
 }

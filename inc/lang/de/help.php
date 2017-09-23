@@ -348,12 +348,12 @@ Help language file
                     der Benutzer das Team deiner Seite verlassen hat, aus ihm ausgeschlossen wurde oder der Account irgendwie
                     missbraucht wurde.</li>
                 <li>Die änderbaren Informationen in den Benutzern entsprechen denen im Benutzer-Profil.</li>
+                <li><strong>Berechtigungen:</strong> Benutzer mit entsprechenden Rechten können hier die Zugriffsrechte
+                auf verschiedene Dinge von FanPress CM ändern und den Zugriff einschränken. Der Bereich sollte nur von
+                Administratoren nutzbar sein! Der Rolle "Administrator" kann der Zugriff auf die Rechte-Einstellungen nicht
+                verweigert werden. Seit Version 3.6 werden Berechtigungen direkt im bereich der Rollen bearbeitet.
+                </li>
             </ul>
-                
-            <h3>Berechtigungen</h3>
-            <p>Benutzer mit entsprechenden Rechten können hier die Zugriffsrechte auf verschiedene Dinge von FanPress CM ändern und
-               den Zugriff einschränken. Der Bereich sollte nur von Administratoren nutzbar sein! Der Rolle "Administrator" kann der Zugriff
-               auf die Rechte-Einstellungen nicht verweigert werden.</p>
                 
             <h3>IP-Adressen</h3>
             <p>Benutzer mit Rechten zur Änderung der Systemeinstellungen können hier IP-Adressen sperren oder Sperren wieder aufheben.
