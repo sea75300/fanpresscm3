@@ -42,9 +42,9 @@
                 $this->fileLib->getCmJsFiles(),
                 array(
                     \fpcm\classes\loader::libGetFileUrl('leela-colorpicker', 'leela.colorpicker-1.0.2.jquery.min.js'),
-                    \fpcm\classes\baseconfig::$jsPath.'editor.js',
-                    \fpcm\classes\baseconfig::$jsPath.'editor_codemirror.js',
-                    \fpcm\classes\baseconfig::$jsPath.'editor_videolinks.js'
+                    'editor.js',
+                    'editor_codemirror.js',
+                    'editor_videolinks.js'
                 )
             );
         }
