@@ -26,11 +26,11 @@
 
                 $this->cache->cleanup('authorImages', 'system');
                 if ($res == true) {
-                    $this->view->addNoticeMessage('SAVE_SUCCESS_UPLOADTPLFILE');
+                    $this->view->addNoticeMessage('SAVE_SUCCESS_UPLOADAUTHORIMG');
                     return true;
                 }
 
-                $this->view->addErrorMessage('SAVE_FAILED_UPLOADTPLFILE');
+                $this->view->addErrorMessage('SAVE_FAILED_UPLOADAUTHORIMG');
                 return false;
             }
             
