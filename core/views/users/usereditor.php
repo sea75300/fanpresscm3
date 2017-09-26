@@ -44,10 +44,21 @@
         <td class="fpcm-align-top"><?php $FPCM_LANG->write('USERS_BIOGRAPHY'); ?>:</td>
         <td><?php \fpcm\model\view\helper::textArea('usrinfo','fpcm-ui-half-width fpcm-options-cssclasses',$author->getUsrinfo()); ?></td>
     </tr>
-    <tr>
-        <td class="fpcm-align-top"><?php $FPCM_LANG->write('USERS_AVATAR'); ?>:</td>
-        <td><?php if ($avatar) : ?><img src="<?php print $avatar; ?>"><?php else: ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></td>
-    </tr>
+        <?php if ($showImage) : ?>
+        <tr>
+            <td class="fpcm-align-top"><?php $FPCM_LANG->write('USERS_AVATAR'); ?>:</td>
+            <td><div class="fpcm-filemanager-buttons">
+                    <?php fpcm\model\view\helper::linkButton('#', 'FILE_FORM_FILEADD', 'btnAddFile') ?>
+                    <?php fpcm\model\view\helper::submitButton('uploadFile', 'FILE_FORM_UPLOADSTART', 'start-upload fpcm-loader'); ?>
+                    <button type="reset" class="cancel-upload" id="btnCancelUpload"><?php $FPCM_LANG->write('FILE_FORM_UPLOADCANCEL'); ?></button>
+                    <?php fpcm\model\view\helper::deleteButton('fileDelete'); ?>
+                    <input type="file" name="files" class="fpcm-ui-fileinput-select fpcm-hidden">
+                </div>
+
+                <p><?php if ($avatar) : ?><img src="<?php print $avatar; ?>"><?php else: ?><?php $FPCM_LANG->write('GLOBAL_NOTFOUND'); ?><?php endif; ?></p>
+            </td>
+        </tr>
+        <?php endif; ?>
     <?php endif; ?>
     <?php if ($showDisableButton) : ?>
     <tr>

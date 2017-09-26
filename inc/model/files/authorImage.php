@@ -79,7 +79,7 @@
          * @return boolean
          */
         public function delete() {
-            return false;
+            return unlink($this->fullpath);
         }
         
         /**

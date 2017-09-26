@@ -9,7 +9,8 @@
     
     class profile extends \fpcm\controller\abstracts\controller {
         
-        use \fpcm\controller\traits\common\timezone;
+        use \fpcm\controller\traits\common\timezone,
+            \fpcm\controller\traits\users\authorImages;
         
         /**
          *
@@ -38,11 +39,15 @@
         public function request() {
 
             $author = $this->session->getCurrentUser();
-            
+
+            $this->uploadImage($author);
+
             $pageTokenCheck = $this->checkPageToken();
             if (($this->buttonClicked('profileSave') || $this->buttonClicked('resetProfileSettings')) && !$pageTokenCheck) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
+
+            $this->deleteImage($author);
 
             $this->reloadSite = 0;
             if ($this->buttonClicked('resetProfileSettings') && $pageTokenCheck) {
@@ -131,11 +136,13 @@
             $this->view->assign('externalSave', true);
             $this->view->assign('inProfile', true);
             $this->view->assign('showExtended', true);
+            $this->view->assign('showImage', true);
             $this->view->setHelpLink('hl_profile');
             
             $this->view->addJsVars(array(
-                'fpcmDtMasks'    => \fpcm\classes\baseconfig::$dateTimeMasks,
-                'fpcmReloadPage' => $this->reloadSite
+                'fpcmDtMasks'       => \fpcm\classes\baseconfig::$dateTimeMasks,
+                'fpcmReloadPage'    => $this->reloadSite,
+                'fpcmJqUploadInit'  => 0
             ));
 
             $this->view->assign('articleLimitList', \fpcm\model\system\config::getAcpArticleLimits());
@@ -143,13 +150,8 @@
             $this->view->assign('showDisableButton', false);
             $this->view->setViewJsFiles([
                 \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js'),
-                'profile.js'
+                'profile.js', 'fileuploader.js'
             ]);
-
-            $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', [
-                '{{filecount}}' => 1,
-                '{{filesize}}'  => \fpcm\classes\tools::calcSize(FPCM_AUTHOR_IMAGE_MAX_SIZE, 0)
-            ]));
 
             $this->view->render();            
         }

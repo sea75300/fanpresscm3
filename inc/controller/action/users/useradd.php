@@ -83,16 +83,12 @@
             $this->view->assign('avatar', false);
             $this->view->assign('showDisableButton', false);
             $this->view->assign('showExtended', true);
+            $this->view->assign('showImage', false);
             $this->view->setViewJsFiles([\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')]);
             $this->view->addJsVars([
                 'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users',
                 'fpcmFieldSetAutoFocus'      => 'username'
             ]);
-
-            $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', [
-                '{{filecount}}' => 1,
-                '{{filesize}}'  => \fpcm\classes\tools::calcSize(FPCM_AUTHOR_IMAGE_MAX_SIZE, 0)
-            ]));
 
             $this->view->render();            
         }

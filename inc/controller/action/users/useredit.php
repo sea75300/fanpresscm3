@@ -9,7 +9,8 @@
     
     class useredit extends \fpcm\controller\abstracts\controller {
         
-        use \fpcm\controller\traits\common\timezone;
+        use \fpcm\controller\traits\common\timezone,
+            \fpcm\controller\traits\users\authorImages;
         
         /**
          *
@@ -51,11 +52,15 @@
                 $this->view->setNotFound('LOAD_FAILED_USER', 'users/list');                
                 return true;
             }
+            
+            $this->uploadImage($author);
 
             $checkPageToken = $this->checkPageToken();
             if (($this->buttonClicked('userSave') || $this->buttonClicked('resetProfileSettings')) && !$checkPageToken) {
                 $this->view->addErrorMessage('CSRF_INVALID');
             }
+            
+            $this->deleteImage($author);
 
             if ($this->buttonClicked('resetProfileSettings') && $checkPageToken) {
                 $author->setUserMeta([]);
@@ -146,6 +151,7 @@
             $this->view->assign('articleLimitList', \fpcm\model\system\config::getAcpArticleLimits());
             $this->view->assign('defaultFontsizes', \fpcm\model\system\config::getDefaultFontsizes());
             $this->view->assign('showExtended', true);
+            $this->view->assign('showImage', true);
             $this->view->setHelpLink('hl_options');
             
             $userList = new \fpcm\model\users\userList();
@@ -154,17 +160,16 @@
                                : true;
             
             $this->view->assign('showDisableButton', $showDisableButton);
-            $this->view->setViewJsFiles([\fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js')]);
+            $this->view->setViewJsFiles([
+                \fpcm\classes\loader::libGetFileUrl('password-generator', 'password-generator.min.js'),
+                'fileuploader.js'
+            ]);
             $this->view->addJsVars([
                 'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users',
                 'fpcmDtMasks'                => \fpcm\classes\baseconfig::$dateTimeMasks,
-                'fpcmFieldSetAutoFocus'      => 'username'
+                'fpcmFieldSetAutoFocus'      => 'username',
+                'fpcmJqUploadInit'           => 0
             ]);
-
-            $this->view->assign('maxFilesInfo', $this->lang->translate('FILE_LIST_PHPMAXINFO', [
-                '{{filecount}}' => 1,
-                '{{filesize}}'  => \fpcm\classes\tools::calcSize(FPCM_AUTHOR_IMAGE_MAX_SIZE, 0)
-            ]));
             
             $this->view->render();            
         }

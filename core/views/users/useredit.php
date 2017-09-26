@@ -1,6 +1,6 @@
 <div class="fpcm-content-wrapper">
     <h1><span class="fa fa-users"></span> <?php $FPCM_LANG->write('HL_OPTIONS_USERS'); ?></h1>
-    <form method="post" action="<?php print $author->getEditLink(); ?>">
+    <form method="post" action="<?php print $author->getEditLink(); ?>" enctype="multipart/form-data">
         <div class="fpcm-tabs-general">
             <ul>
                 <li><a href="#tabs-user"><?php $FPCM_LANG->write('USERS_EDIT'); ?></a></li>

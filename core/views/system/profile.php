@@ -2,7 +2,7 @@
     <h1>
         <span class="fa fa-wrench"></span> <?php $FPCM_LANG->write('HL_PROFILE'); ?>
     </h1>
-    <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/profile">
+    <form method="post" action="<?php print $FPCM_SELF; ?>?module=system/profile" enctype="multipart/form-data">
         <div class="fpcm-tabs-general">
             <ul>
                 <li><a href="#tabs-user"><?php $FPCM_LANG->write('HL_PROFILE'); ?></a></li>
