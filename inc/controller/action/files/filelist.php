@@ -153,10 +153,10 @@
             ]);
 
             $this->view->addJsLangVars(['newNameMsg' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME')]);
-            
+
             $this->view->assign('newUploader', $this->config->file_uploader_new);
             $this->view->assign('jquploadPath', \fpcm\classes\loader::libGetFileUrl('jqupload'));
-            $this->view->setViewJsFiles(['filemanager.js']);
+            $this->view->setViewJsFiles(['filemanager.js', 'fileuploader.js']);
             
             if ($this->config->file_uploader_new) {
                 $this->view->assign('actionPath', \fpcm\classes\baseconfig::$rootPath.$this->getControllerLink('ajax/jqupload'));
