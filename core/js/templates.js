@@ -21,12 +21,12 @@ fpcm.templates = {
 
             fpcm.ui.showLoader();
 
-            var frameHeight = parseInt(fpcm.ui.getDialogSizes().height);
-
+            var sizes       = fpcm.ui.getDialogSizes(top, 0.75);
             fpcm.ui.dialog({
                 title     : fpcm.ui.translate('articleTplEditHeadline'),
                 content   : '<iframe id="fpcm-articletemplates-editor-frame" src="' + jQuery(this).attr('href') + '" class="fpcm-full-width"></iframe>',
-                dlHeight  : frameHeight,
+                dlWidth   : parseInt(sizes.width),
+                dlHeight  : parseInt(sizes.height),
                 resizable : true,
                 dlButtons : [
                     {
