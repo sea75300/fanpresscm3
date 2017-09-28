@@ -577,9 +577,11 @@
             if (!is_array($data)) {
                 $data = [];
             }
+            
+            $usernameHash = hash(\fpcm\classes\security::defaultHashAlgo, $author->getUsername());
 
-            if (!$cache->isExpired() && isset($data[$author->getUsername()])) {
-                return $asUrl ? $data[$author->getUsername()]['url'] : $data[$author->getUsername()]['data'];
+            if (!$cache->isExpired() && isset($data[$usernameHash])) {
+                return $asUrl ? $data[$usernameHash]['url'] : $data[$usernameHash]['data'];
             }
 
             foreach (\fpcm\model\files\image::$allowedExts as $ext) {
@@ -591,7 +593,7 @@
                 }
 
                 $img->loadContent();
-                $data[$author->getUsername()] = [
+                $data[$usernameHash] = [
                     'url'  => $img->getImageUrl(),
                     'data' => $img->getContent() ? 'data:'.$img->getMimetype().';base64,'.base64_encode($img->getContent()) : ''
                 ];
@@ -600,11 +602,11 @@
             }
             
             $cache->write($data, FPCM_LANGCACHE_TIMEOUT);
-            if (!isset($data[$author->getUsername()])) {
+            if (!isset($data[$usernameHash])) {
                 return '';
             }
 
-            return $asUrl ? $data[$author->getUsername()]['url'] : $data[$author->getUsername()]['data'];
+            return $asUrl ? $data[$usernameHash]['url'] : $data[$usernameHash]['data'];
         }
         
     }
