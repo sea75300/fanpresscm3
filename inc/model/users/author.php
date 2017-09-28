@@ -573,6 +573,10 @@
             
             $cache = new \fpcm\classes\cache('authorImages', 'system');
             $data  = $cache->read();
+            
+            if (!is_array($data)) {
+                $data = [];
+            }
 
             if (!$cache->isExpired() && isset($data[$author->getUsername()])) {
                 return $asUrl ? $data[$author->getUsername()]['url'] : $data[$author->getUsername()]['data'];
