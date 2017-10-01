@@ -54,14 +54,12 @@ fpcm.nkorg_extendedstats = {
             chartOptions.scales = {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true,
-                        stepSize: 1
+                        beginAtZero: true
                     }
                 }],
                 xAxes: [{
                     ticks: {
-                        beginAtZero: true,
-                        stepSize: 1
+                        beginAtZero: true
                     }
                 }],
             };

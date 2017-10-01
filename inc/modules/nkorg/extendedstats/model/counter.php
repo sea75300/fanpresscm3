@@ -27,8 +27,9 @@ class counter extends \fpcm\model\abstracts\tablelist {
     public function fetchArticles($start, $stop, $mode = 1) {
         
         $this->mode = (int) $mode;
-
-        $cache = new \fpcm\classes\cache(__METHOD__.$mode);
+        
+        $hash = hash(\fpcm\classes\security::defaultHashAlgo, __METHOD__.json_encode(func_get_args()));
+        $cache = new \fpcm\classes\cache($hash);
 
         $where = '1=1';
         
@@ -132,6 +133,8 @@ class counter extends \fpcm\model\abstracts\tablelist {
     }
 
     private function getRandomColor() {
-        return '#'.dechex(mt_rand(0, 255)).dechex(mt_rand(0, 255)).dechex(mt_rand(0, 255));
+        
+        $colStr = '#'.dechex(mt_rand(0, 255)).dechex(mt_rand(0, 255)).dechex(mt_rand(0, 255));
+        return strlen($colStr) === 7 ? $colStr : str_pad($colStr, 7, dechex(mt_rand(0, 16)));
     }
 }
