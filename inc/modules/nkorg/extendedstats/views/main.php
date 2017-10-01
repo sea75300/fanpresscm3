@@ -4,7 +4,7 @@
     <div class="fpcm-tabs-general">
         
         <ul>
-            <li><a href="#fpcm-nkorg-extendedstats-main"><?php $FPCM_LANG->write('NKORG_EXTENDEDSTATS_BYMONTH'); ?></a></li>
+            <li><a href="#fpcm-nkorg-extendedstats-main"><?php $FPCM_LANG->write('NKORG_EXTENDEDSTATS_BY'.$modeStr); ?></a></li>
         </ul>
         
         <form method="post" action="<?php print $FPCM_SELF; ?>?module=modules/config&key=nkorg/extendedstats">
@@ -25,12 +25,13 @@
                     <div class="fpcm-clear"></div>
                 </div>
 
-                <canvas id="fpcm-nkorg-extendedstats-chart" height="100"></canvas>
+                <canvas id="fpcm-nkorg-extendedstats-chart"></canvas>
             </div>
 
             <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
 
                 <div class="fpcm-ui-margin-center">
+                    <?php \fpcm\model\view\helper::select('chartMode', $chartModes, $chartMode, false, false, false, 'fpcm-ui-input-select-articleactions'); ?>
                     <?php \fpcm\model\view\helper::select('chartType', $chartTypes, $chartType, false, false, false, 'fpcm-ui-input-select-articleactions'); ?>
                     <?php \fpcm\model\view\helper::submitButton('setdatespan', 'GLOBAL_OK', 'fpcm-loader'); ?>
                 </div>

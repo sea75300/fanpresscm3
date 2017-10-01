@@ -13,10 +13,22 @@
 namespace fpcm\modules\nkorg\extendedstats\model;
 
 class counter extends \fpcm\model\abstracts\tablelist {
+    
+    const FPCM_NKORG_EXTSTATS_MODE_MONTH = 1;
 
-    public function fetchArticles($start, $stop) {
+    const FPCM_NKORG_EXTSTATS_MODE_YEAR = 2;
+
+    const FPCM_NKORG_EXTSTATS_MODE_DAY = 3;
+    
+    protected $mode;
+
+    protected $months;
+
+    public function fetchArticles($start, $stop, $mode = 1) {
         
-        $cache = new \fpcm\classes\cache(__METHOD__);
+        $this->mode = (int) $mode;
+
+        $cache = new \fpcm\classes\cache(__METHOD__.$mode);
 
         $where = '1=1';
         
@@ -33,8 +45,8 @@ class counter extends \fpcm\model\abstracts\tablelist {
             return [];
         }
 
-        $values = $this->dbcon->fetch($result, true);
-        $months = $this->language->translate('SYSTEM_MONTHS');
+        $values       = $this->dbcon->fetch($result, true);
+        $this->months = $this->language->translate('SYSTEM_MONTHS');
         
         $labels = [];
         $data   = [];
@@ -44,10 +56,7 @@ class counter extends \fpcm\model\abstracts\tablelist {
         
         foreach ($values as $value) {
 
-            $dtstr      = explode('-', $value->dtstr);
-            $month      = (int) $dtstr[1];
-
-            $labels[]   = $months[$month].' '.$dtstr[0];
+            $labels[]   = $this->getLabel($value->dtstr);
             $data[]     = (string) $value->counted;
 
             $cached[$value->dtstr] = (isset($cached[$value->dtstr]) ? $cached[$value->dtstr] : $this->getRandomColor());
@@ -71,12 +80,54 @@ class counter extends \fpcm\model\abstracts\tablelist {
         ];
 
     }
+    
+    private function getLabel($data) {
+        
+        switch ($this->mode) {
+            case self::FPCM_NKORG_EXTSTATS_MODE_DAY :
+
+                $dtstr      = explode('-',$data);
+                $month      = (int) $dtstr[1];
+
+                return $dtstr[2].'. '.$this->months[$month].' '.$dtstr[0];
+                
+                break;
+            case self::FPCM_NKORG_EXTSTATS_MODE_YEAR :                
+                return $data;
+                break;
+        }
+
+        $dtstr      = explode('-',$data);
+        $month      = (int) $dtstr[1];
+
+        return $this->months[$month].' '.$dtstr[0];
+    }
 
     private function getSelectItemMysql() {
+        
+        switch ($this->mode) {
+            case self::FPCM_NKORG_EXTSTATS_MODE_DAY :
+                return "DATE_FORMAT(FROM_UNIXTIME(createtime), '%Y-%m-%d' ) AS dtstr";
+                break;
+            case self::FPCM_NKORG_EXTSTATS_MODE_YEAR :
+                return "DATE_FORMAT(FROM_UNIXTIME(createtime), '%Y' ) AS dtstr";
+                break;
+        }
+        
         return "DATE_FORMAT(FROM_UNIXTIME(createtime), '%Y-%m' ) AS dtstr";
     }
     
     private function getSelectItemPgsql() {
+        
+        switch ($this->mode) {
+            case self::FPCM_NKORG_EXTSTATS_MODE_DAY :
+                return "to_char(to_timestamp(createtime), 'YYYY-MM_DD') AS dtstr";
+                break;
+            case self::FPCM_NKORG_EXTSTATS_MODE_YEAR :
+                return "to_char(to_timestamp(createtime), 'YYYY') AS dtstr";
+                break;
+        }
+
         return "to_char(to_timestamp(createtime), 'YYYY-MM') AS dtstr";
     }
 

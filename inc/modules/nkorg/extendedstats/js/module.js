@@ -33,16 +33,45 @@ fpcm.nkorg_extendedstats = {
             window.chart.destroy();
         }
 
-        nkorgExtStatsCharValues.datasets[0].borderWidth = (type === 'line' ? 5 : 1);
+        nkorgExtStatsCharValues.datasets[0].borderWidth = (type === 'line' ? 5 : 0);
+        
+        var isBarOrLine = (type === 'line' || type === 'bar');
+        
+        var chartOptions = {
+            legend: {
+                display : (isBarOrLine ? false : true),
+                position: 'bottom',
+                labels  : {
+                    boxWidth: 25,
+                    fontSize: 10                    
+                }
+            },
+            responsive: true
+        }
+        
+        if (isBarOrLine) {
+
+            chartOptions.scales = {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }],
+            };
+
+        }
 
         window.chart = new Chart(jQuery('#fpcm-nkorg-extendedstats-chart'), {
             type: type,
             data: nkorgExtStatsCharValues,
-            options: {
-                legend: {
-                    display: false
-                }
-            }
+            options: chartOptions
         });
     }
 
