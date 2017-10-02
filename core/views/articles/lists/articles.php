@@ -2,7 +2,7 @@
     <tr>
         <th></th>
         <th><?php $FPCM_LANG->write('ARTICLE_LIST_TITLE'); ?></th>
-        <th class="fpcm-ui-center"><?php $FPCM_LANG->write('HL_CATEGORIES_MNG'); ?></th>
+        <th class="fpcm-ui-center fpcm-td-articlelist-categories"><?php $FPCM_LANG->write('HL_CATEGORIES_MNG'); ?></th>
         <th class="fpcm-td-articlelist-meta"></th>
         <th class="fpcm-th-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-all', '', '', '', 'fpcm-select-all', false); ?></th>
     </tr>
@@ -14,7 +14,7 @@
         <tr>
             <th></th>
             <th><?php $FPCM_LANG->writeMonth(fpcm\model\view\helper::dateText($articleMonth, 'n', true)); ?> <?php print fpcm\model\view\helper::dateText($articleMonth, 'Y', true); ?> (<?php print count($articles); ?>)</th> 
-            <th></th>
+            <th class="fpcm-td-articlelist-categories"></th>
             <th class="fpcm-td-articlelist-meta"></th>
             <th class="fpcm-td-select-row"><?php fpcm\model\view\helper::checkbox('fpcm-select-allsub', 'fpcm-select-allsub', $articleMonth, '', 'fpcm-select-allsub'.$articleMonth, false); ?></th>
         </tr>
@@ -31,7 +31,6 @@
                         <strong title="<?php print substr(\fpcm\model\view\helper::escapeVal(strip_tags($article->getContent())), 0, 128); ?>...">
                             <?php print \fpcm\model\view\helper::escapeVal(strip_tags($article->getTitle())); ?>
                         </strong>
-                        
                     </div>
 
                     <?php if ($commentEnabledGlobal) : ?>
@@ -42,9 +41,14 @@
                     ?>
                     <?php endif; ?>
 
+                    <div class="fpcm-ui-editor-metabox-left fpcm-articlelist-categories fpcm-hidden">
+                        <strong><?php $FPCM_LANG->write('HL_CATEGORIES_MNG'); ?>:</strong>
+                        <?php print implode(', ', $article->getCategories()); ?>
+                    </div>
+                    
                     <?php include dirname(__DIR__).'/times.php'; ?>
                 </td>                
-                <td><?php print implode(', ', $article->getCategories()); ?></td>
+                <td class="fpcm-ui-center fpcm-td-articlelist-categories"><?php print implode(', ', $article->getCategories()); ?></td>
                 <td class="fpcm-td-articlelist-meta"><?php include dirname(__DIR__).'/metainfo.php'; ?></td>
                 <td class="fpcm-td-select-row">
                 <?php if ($article->getEditPermission()) : ?>                    
