@@ -38,6 +38,11 @@
          */
         public function request() {
 
+            if (!$this->session->exists()) {
+                $this->redirectNoSession();
+                return false;
+            }
+
             $author = $this->session->getCurrentUser();
 
             $this->uploadImage($author);

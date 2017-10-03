@@ -16,7 +16,16 @@
      */
     trait authorImages {
 
-        protected function uploadImage(\fpcm\model\users\author $author) {
+        /**
+         * Author-Avatar hochlanden
+         * @param \fpcm\model\users\author $author
+         * @return boolean
+         */
+        protected function uploadImage($author) {
+
+            if (!$author instanceof \fpcm\model\users\author) {
+                return false;
+            }
             
             $files = \fpcm\classes\http::getFiles();
 
@@ -35,8 +44,17 @@
             }
             
         }
-        
-        protected function deleteImage(\fpcm\model\users\author $author) {
+
+        /**
+         * Author-Avatar löschen
+         * @param \fpcm\model\users\author $author
+         * @return boolean
+         */
+        protected function deleteImage($author) {
+
+            if (!$author instanceof \fpcm\model\users\author) {
+                return false;
+            }
 
             if (!$this->buttonClicked('fileDelete')) {
                 return true;
