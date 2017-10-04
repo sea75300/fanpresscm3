@@ -238,7 +238,17 @@
          * Datetime-Masken
          * @var array
          */
-        public static $dateTimeMasks    = array("d.m.Y, H:i", "d. M Y, H:i", 'd.n.Y H:i', 'j. M Y H:i', 'j.n.Y H:i', "M dS Y - h:ia", "m/d/Y - h:ia", 'M jS Y - h:ia', 'n/d/Y - h:ia');
+        public static $dateTimeMasks    = [
+            'd.m.Y, H:i',
+            'd. M Y, H:i',
+            'd.n.Y H:i',
+            'j. M Y H:i',
+            'j.n.Y H:i',
+            'M dS Y - h:ia',
+            'm/d/Y - h:ia',
+            'M jS Y - h:ia',
+            'n/d/Y - h:ia'
+        ];
 
         /**
          * Version-Datei

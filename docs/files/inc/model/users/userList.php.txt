@@ -220,8 +220,12 @@
          */
         public function getUsersForArticles(array $articleIds) {
 
-            $where  = '(id IN (SELECT createuser FROM '.$this->dbcon->getTablePrefixed(\fpcm\classes\database::tableArticles).' WHERE id IN ('.implode(',', $articleIds).')))';
-            $where .= ' OR (id IN (SELECT changeuser FROM '.$this->dbcon->getTablePrefixed(\fpcm\classes\database::tableArticles).' WHERE id IN ('.implode(',', $articleIds).')))';
+            if (!count($articleIds)) {
+                return [];
+            }
+            
+            $where  = '( id IN ( SELECT createuser FROM '.$this->dbcon->getTablePrefixed(\fpcm\classes\database::tableArticles).' WHERE id IN ('.implode(',', $articleIds).') ) )';
+            $where .= ' OR ( id IN ( SELECT changeuser FROM '.$this->dbcon->getTablePrefixed(\fpcm\classes\database::tableArticles).' WHERE id IN ('.implode(',', $articleIds).') ) )';
             
             $result = $this->dbcon->select($this->table, 'id, displayname, email, username, usrinfo', $where, [], true);
             $users  = $this->dbcon->fetch($result, true);

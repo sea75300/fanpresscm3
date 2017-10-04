@@ -108,8 +108,10 @@
             $folderFiles = is_null($folderFiles) ? $this->getFolderList() : $folderFiles;
             include_once \fpcm\classes\loader::libGetFilePath('PHPImageWorkshop', 'ImageWorkshop.php');
 
-            $filesizeLimit   = \fpcm\classes\baseconfig::memoryLimit(true) * 0.025;
-            $memoryWorkLimit = \fpcm\classes\baseconfig::memoryLimit(true) * 0.5;
+            $memoryLimit      = \fpcm\classes\baseconfig::memoryLimit(true);
+            
+            $filesizeLimit   = $memoryLimit * 0.025;
+            $memoryWorkLimit = $memoryLimit * (\fpcm\classes\baseconfig::memoryLimit() < 128) ? 0.33 : 0.5;
             foreach ($folderFiles as $folderFile) {
 
                 if (filesize($folderFile) >= $filesizeLimit) {

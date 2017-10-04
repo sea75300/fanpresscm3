@@ -180,5 +180,43 @@
             
             return true;
         }
+        
+        /**
+         * Führt Upload eines Artikel-Bildes aus
+         * @param string $filename
+         * @since FPCM 3.6
+         * @return boolean
+         */
+        public function processAuthorImageUpload($filename) {
+
+            if (!isset($this->uploader)) {
+                return false;
+            }
+
+            if (!is_uploaded_file($this->uploader['tmp_name']) || !trim($this->uploader['name'])) {
+                return false;
+            }
+
+            if ($this->uploader['size'] > FPCM_AUTHOR_IMAGE_MAX_SIZE) {
+                trigger_error('Uploaded file '.$this->uploader['name'].' is to large, maximum size is '.\fpcm\classes\tools::calcSize(FPCM_AUTHOR_IMAGE_MAX_SIZE));
+                return false;
+            }
+
+            $ext = pathinfo($this->uploader['name'], PATHINFO_EXTENSION);
+            $ext = ($ext) ? strtolower($ext) : '';
+
+            if (!in_array($this->uploader['type'], authorImage::$allowedTypes) || !in_array($ext, authorImage::$allowedExts)) {
+                trigger_error('Unsupported filetype in '.$this->uploader['name']);
+                return false;
+            }
+
+            $file = new authorImage($filename.'.'.$ext);
+            if (!$file->moveUploadedFile($this->uploader['tmp_name'])) {
+                trigger_error('Unable to move uploaded to to uploader folder! '.$this->uploader['name']);
+                return false;
+            }
+
+            return true;
+        }
     }
 ?>

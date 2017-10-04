@@ -336,8 +336,18 @@
             }
 
             $this->output('Update package manager log...');
-            $pkg->loadPackageFileListFromTemp();
-            fpcmLogPackages($pkg->getKey().' '.$pkg->getVersion(), $pkg->getFiles());
+
+            $list = [];
+            if (method_exists($pkg, 'getProtocol')) {
+                $list = $pkg->getProtocol();
+            }
+
+            if (!count($list)) {
+                $pkg->loadPackageFileListFromTemp();
+                $list = $pkg->getFiles();
+            }
+
+            fpcmLogPackages($pkg->getKey().' '.$pkg->getVersion(), $list);
 
             $this->output('Perform cleanup...');
             $pkg->cleanup();

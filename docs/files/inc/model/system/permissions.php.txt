@@ -177,7 +177,12 @@
          * Berechtigungsdaten auslesen
          * @return array
          */
-        function getPermissionData() {
+        public function getPermissionData() {
+            
+            if (is_array($this->permissiondata)) {
+                return $this->permissiondata;
+            }
+            
             return json_decode($this->permissiondata, true);
         }
 
@@ -185,7 +190,7 @@
          * Rollen-ID setzen
          * @param array $rollid
          */
-        function setRollId($rollid) {
+        public function setRollId($rollid) {
             $this->rollid = $rollid;
         }
 
@@ -193,7 +198,7 @@
          * Berechtigungsdaten setzen
          * @param array $permissiondata
          */
-        function setPermissionData(array $permissiondata) {
+        public function setPermissionData(array $permissiondata) {
             $this->permissiondata = json_encode($permissiondata);
         }
 

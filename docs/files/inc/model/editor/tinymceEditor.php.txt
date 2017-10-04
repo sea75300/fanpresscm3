@@ -40,9 +40,9 @@
 
             return array(
                 \fpcm\classes\loader::libGetFileUrl('tinymce4', 'tinymce.min.js'),
-                \fpcm\classes\baseconfig::$jsPath.'editor.js',
-                \fpcm\classes\baseconfig::$jsPath.'editor_tinymce.js',
-                \fpcm\classes\baseconfig::$jsPath.'editor_videolinks.js'
+                'editor.js',
+                'editor_tinymce.js',
+                'editor_videolinks.js'
             );
         }
 
@@ -73,8 +73,6 @@
                 'fpcmTinyMcePlugins'     => $pluginFolders,
                 'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table toc | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime template | undo redo removeformat searchreplace fullscreen code restoredraft',
                 'fpcmTinyMceCssClasses'  => array_merge($editorStyles, $this->getEditorStyles()),
-                'fpcmTinyMceLinkList'    => $this->getEditorLinks(),
-                'fpcmTinyMceImageList'   => $this->getFileList(),
                 'fpcmTinyMceTextpattern' => $this->getTextPatterns(),
                 'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize,
                 'fpcmTinyMceReadmoreBlockHL' => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE'),
@@ -117,7 +115,7 @@
          * Editor-Links initialisieren
          * @return string
          */
-        protected function getEditorLinks() {
+        public function getEditorLinks() {
             $links = $this->events->runEvent('editorAddLinks');
             if (!is_array($links) || !count($links)) return [];
             return json_decode(str_replace('label', 'title', json_encode($links)), false);
@@ -127,7 +125,7 @@
          * Dateiliste initialisieren
          * @return array
          */
-        protected function getFileList() {
+        public function getFileList() {
             $data = [];            
             foreach ($this->fileList->getDatabaseList() as $image) {
                 $data[] = array('title' => $image->getFilename(), 'value' => $image->getImageUrl());
