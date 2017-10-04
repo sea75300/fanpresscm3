@@ -145,7 +145,7 @@
             $this->view->setHelpLink('hl_profile');
             
             $this->view->addJsVars(array(
-                'fpcmDtMasks'       => \fpcm\classes\baseconfig::$dateTimeMasks,
+                'fpcmDtMasks'       => $this->getDateTimeMasks(),
                 'fpcmReloadPage'    => $this->reloadSite,
                 'fpcmJqUploadInit'  => 0
             ));

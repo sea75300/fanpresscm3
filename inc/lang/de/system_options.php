@@ -58,7 +58,7 @@
         'SYSTEM_OPTIONS_INCLUDEJQUERY'              => 'jQuery Bibliothek laden',
         'SYSTEM_OPTIONS_INCLUDEJQUERY_YES'          => 'Wähle &quot;ja&quot;, wenn du jQuery noch nicht anderweitig in deiner Seite eingebunden hast.',
         'SYSTEM_OPTIONS_STYLESHEET'                 => 'Pfad zu deiner CSS-Datei',   
-        'SYSTEM_OPTIONS_NEWSSHOWLIMIT'              => 'max. News pro Seite',  
+        'SYSTEM_OPTIONS_NEWSSHOWLIMIT'              => 'Anzahl Artikel pro öffentlicher Seite',  
         'SYSTEM_OPTIONS_ACTIVENEWSTEMPLATE'         => 'Template für Artikel-Liste',
         'SYSTEM_OPTIONS_ACTIVENEWSTEMPLATESINGLE'   => 'Template für einzelnen Artikel',
         'SYSTEM_OPTIONS_LATESTNEWSTEMPLATE'         => '&quot;Lastest News&quot; Template',
@@ -96,7 +96,7 @@
         'SYSTEM_OPTIONS_COMMENTFORMTEMPLATE'        => 'Kommentar-Formular-Template',
         'SYSTEM_OPTIONS_ANTISPAMQUESTION'           => 'Anti-Spam-Frage',
         'SYSTEM_OPTIONS_ANTISPAMANSWER'             => 'Antwort auf Anti-Spam-Frage',
-        'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'Anzahl an Artikeln pro Seite',
+        'SYSTEM_OPTIONS_ACPARTICLES_LIMIT'          => 'Anzahl an Artikeln pro Seite in ACP',
         'SYSTEM_OPTIONS_LOGIN_MAXATTEMPTS'          => 'Anzahl Login-Versuche vor temporärer Sperre',
         
         'SYSTEM_OPTIONS_FLOODPROTECTION'            => 'Zeitsperre zwischen zwei Kommentaren',

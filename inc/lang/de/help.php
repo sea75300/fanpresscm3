@@ -255,7 +255,7 @@ Help language file
                 <li><b>Artikel:</b><br>
                     Der Tab enthält verschiedene Einstellungen zur Artikel-Ausgabe.
                     <ul>
-                        <li><em>max. News pro Seite:</em> Anzahl an Artikeln, die im Frontend ausgegeben werden sollen.</li>
+                        <li><em>Anzahl Artikel pro öffentlicher Seite:</em> Anzahl an Artikeln, die im Frontend ausgegeben werden sollen.</li>
                         <li><em>Anzahl an Artikeln im ACP:</em> Anzahl an Artikeln, die im ACP ausgegeben werden sollen,
                             kann durch Benutzer-Einstellung überschrieben werden</li>
                         <li><em>Template für Artikel-Liste::</em> Template, welches für Artikel-Liste genutzt werden soll.</li>

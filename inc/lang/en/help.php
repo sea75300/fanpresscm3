@@ -235,7 +235,7 @@ Help language file
                 <li><b>Articles:</b><br>
                     Settings for article output.
                     <ul>
-                        <li><em>Articles per page:</em> Number of articles to display per page in front end.</li>
+                        <li><em>Articles per public page:</em> Number of articles to display per page in front end.</li>
                         <li><em>Article list template:</em> Template for front end article list.</li>
                         <li><em>Single article template:</em> Template to display a single article in front end.</li>
                         <li><em>Sort articles by:</em> Sorting of articles in article list.</li>

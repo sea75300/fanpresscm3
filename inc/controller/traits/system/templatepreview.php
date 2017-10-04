@@ -1,18 +1,18 @@
 <?php
     /**
-     * Template preview trait
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2017, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
+
     namespace fpcm\controller\traits\system;
     
     /**
      * System check trait
      * 
-     * @package fpcm.controller.traits.system.syscheck
+     * @package fpcm\controller\traits\system.syscheck
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2017, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     trait templatepreview {
         

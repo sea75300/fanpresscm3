@@ -1,20 +1,18 @@
 <?php
     /**
-     * File manager lists trait
-     * 
-     * file manager lists
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2017, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
+
     namespace fpcm\controller\traits\files;
     
     /**
      * Dateimanager-Liste
      * 
-     * @package fpcm.controller.traits.files.lists
+     * @package fpcm\controller\traits\files\lists
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2017, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     trait lists {
 

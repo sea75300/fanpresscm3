@@ -1,18 +1,18 @@
 <?php
     /**
-     * Package manager controller trait
-     * 
-     * @author Stefan Seehafer <sea75300@yahoo.de>
-     * @copyright (c) 2011-2017, Stefan Seehafer
+     * FanPress CM 3.x
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
+
     namespace fpcm\controller\traits\packagemgr;
     
     /**
      * Trait für Initialisierung von Paket Manager
      * 
-     * @package fpcm.controller.traits.packagemgr.initialize
+     * @package fpcm\controller\traits\packagemgr\initialize
      * @author Stefan Seehafer <sea75300@yahoo.de>
+     * @copyright (c) 2011-2017, Stefan Seehafer
+     * @license http://www.gnu.org/licenses/gpl.txt GPLv3
      */
     trait initialize {
 

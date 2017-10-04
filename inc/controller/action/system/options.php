@@ -194,11 +194,7 @@
             $this->view->assign('articleLimitList', \fpcm\model\system\config::getArticleLimits());
             $this->view->assign('articleLimitListAcp', \fpcm\model\system\config::getAcpArticleLimits());
             $this->view->assign('defaultFontsizes', \fpcm\model\system\config::getDefaultFontsizes());
-            
-            $this->view->addJsVars(array(
-                'fpcmDtMasks' => \fpcm\classes\baseconfig::$dateTimeMasks
-            ));
-            
+
             $twitter = new \fpcm\model\system\twitter();
             
             $showTwitter = $twitter->checkRequirements();
@@ -222,8 +218,9 @@
             $this->view->setHelpLink('hl_options');
             $this->view->setViewJsFiles(['options.js']);
             $this->view->addJsVars([
-                'showTwitter' => $showTwitter ? 1 : 0,
-                'syscheck' => $this->syscheck
+                'showTwitter'   => $showTwitter ? 1 : 0,
+                'syscheck'      => $this->syscheck,
+                'fpcmDtMasks'   => $this->getDateTimeMasks()
             ]);
             
             $this->view->render();            

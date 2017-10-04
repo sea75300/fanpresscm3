@@ -166,7 +166,7 @@
             ]);
             $this->view->addJsVars([
                 'fpcmNavigationActiveItemId' => 'submenu-itemnav-item-users',
-                'fpcmDtMasks'                => \fpcm\classes\baseconfig::$dateTimeMasks,
+                'fpcmDtMasks'                => $this->getDateTimeMasks(),
                 'fpcmFieldSetAutoFocus'      => 'username',
                 'fpcmJqUploadInit'           => 0
             ]);

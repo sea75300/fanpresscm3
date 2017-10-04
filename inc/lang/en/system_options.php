@@ -58,7 +58,7 @@
         'SYSTEM_OPTIONS_INCLUDEJQUERY'              => 'Include jQuery library',
         'SYSTEM_OPTIONS_INCLUDEJQUERY_YES'          => 'Select &quot;yes&quot;, if jQuery is not loaded in your site yet.',
         'SYSTEM_OPTIONS_STYLESHEET'                 => 'CSS style file path',   
-        'SYSTEM_OPTIONS_NEWSSHOWLIMIT'              => 'Articles per page',  
+        'SYSTEM_OPTIONS_NEWSSHOWLIMIT'              => 'Articles per public page',  
         'SYSTEM_OPTIONS_ACTIVENEWSTEMPLATE'         => 'Article list template',
         'SYSTEM_OPTIONS_ACTIVENEWSTEMPLATESINGLE'   => 'Single article template',
         'SYSTEM_OPTIONS_LATESTNEWSTEMPLATE'         => '&quot;Lastest News&quot; Template',
