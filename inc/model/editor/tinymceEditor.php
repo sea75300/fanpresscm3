@@ -53,9 +53,12 @@
         public function getJsVars() {
 
             $editorStyles = array(array('title' => $this->language->translate('GLOBAL_SELECT'), 'value' => ''));
-            
+
             $cache = new \fpcm\classes\cache('tinymce_plugins');
-            if ($cache->isExpired()) {
+            if (defined('FPCM_TINYMCE_PLUGINS') && FPCM_TINYMCE_PLUGINS) {
+                $pluginFolders = FPCM_TINYMCE_PLUGINS;
+            }
+            elseif ($cache->isExpired()) {
 
                 $path  = dirname(\fpcm\classes\loader::libGetFilePath('tinymce4', 'tinymce.min.js'));            
                 $path .= '/plugins/*';
@@ -68,18 +71,18 @@
             }
             
             $params = array(
-                'fpcmTinyMceLang'        => $this->config->system_lang,
-                'fpcmTinyMceElements'     => '~readmore',
-                'fpcmTinyMcePlugins'     => $pluginFolders,
-                'fpcmTinyMceToolbar'     => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table toc | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime template | undo redo removeformat searchreplace fullscreen code restoredraft',
-                'fpcmTinyMceCssClasses'  => array_merge($editorStyles, $this->getEditorStyles()),
-                'fpcmTinyMceTextpattern' => $this->getTextPatterns(),
-                'fpcmTinyMceDefaultFontsize' => $this->config->system_editor_fontsize,
-                'fpcmTinyMceReadmoreBlockHL' => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE'),
-                'fpcmTinyMceTemplatesList'   => $this->getTemplateDrafts(),
-                'fpcmTinyMceAutosavePrefix'  => 'fpcm-editor-as-'.$this->session->getUserId(),
-                'fpcmTinyMceFileUpload'      => $this->config->articles_imageedit_persistence ? 1 : 0,
-                'fpcmEditorInitFunction'     => 'initTinyMce'
+                'fpcmTinyMceLang'               => $this->config->system_lang,
+                'fpcmTinyMceElements'           => '~readmore',
+                'fpcmTinyMcePlugins'            => $pluginFolders,
+                'fpcmTinyMceToolbar'            => 'formatselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify outdent indent | subscript superscript table toc | bullist numlist | fpcm_readmore hr blockquote | link unlink anchor image media | emoticons charmap insertdatetime template | undo redo removeformat searchreplace fullscreen code restoredraft',
+                'fpcmTinyMceCssClasses'         => array_merge($editorStyles, $this->getEditorStyles()),
+                'fpcmTinyMceTextpattern'        => $this->getTextPatterns(),
+                'fpcmTinyMceDefaultFontsize'    => $this->config->system_editor_fontsize,
+                'fpcmTinyMceReadmoreBlockHL'    => $this->language->translate('EDITOR_HTML_BUTTONS_READMORE'),
+                'fpcmTinyMceTemplatesList'      => $this->getTemplateDrafts(),
+                'fpcmTinyMceAutosavePrefix'     => 'fpcm-editor-as-'.$this->session->getUserId(),
+                'fpcmTinyMceFileUpload'         => $this->config->articles_imageedit_persistence ? 1 : 0,
+                'fpcmEditorInitFunction'        => 'initTinyMce'
             );
             
             return $this->events->runEvent('editorInitTinymce', $params);

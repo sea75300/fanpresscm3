@@ -13,16 +13,17 @@ fpcm.editor_tinymce = {
     create: function(config) {
 
         params = {
-            selector              : "textarea",
-            skin                  : "fpcm",
-            theme                 : "modern",
-            menubar               : false,
-            relative_urls         : false,
-            image_advtab          : true,
-            resize                : true,
-            convert_urls          : true,
-            browser_spellcheck    : true,
-            default_link_target   : "_blank"
+            selector            : "textarea",
+            skin                : "fpcm",
+            theme               : "modern",
+            menubar             : false,
+            relative_urls       : false,
+            image_advtab        : true,
+            resize              : true,
+            convert_urls        : true,
+            browser_spellcheck  : true,
+            default_link_target : "_blank",
+            branding            : false,    
         };
         
         if (config.language !== undefined) {

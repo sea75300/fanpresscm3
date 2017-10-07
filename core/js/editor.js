@@ -1144,7 +1144,7 @@ fpcm.editor = {
 
                 ed.on('init', function() {
                     this.getBody().style.fontSize = fpcmTinyMceDefaultFontsize;
-                    jQuery(this.iframeElement).removeAttr('title');
+                    jQuery('#' + this.iframeElement.id).removeAttr('title');                 
                     fpcm.ui.resize();
                 });
 

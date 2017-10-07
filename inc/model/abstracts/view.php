@@ -175,15 +175,29 @@
          * @since FPCM 3.6
          */
         private function checkJsPath($item) {
-            
+
             if (strpos($item, \fpcm\classes\baseconfig::$jsPath) === 0) {
                 return $item;
             }
 
+            $cache  = new \fpcm\classes\cache('jspaths', 'system');
+            $checks = [];
+            
+            if (!$cache->isExpired()) {
+                $checks = $cache->read();
+            }
+            
+            $hash = hash(\fpcm\classes\security::defaultHashAlgo, $item);
+            if (isset($checks[$hash])) {
+                return $checks[$hash];
+            }
+            
             try {
                 $file_headers = get_headers(\fpcm\classes\baseconfig::$jsPath.$item);
                 if (isset($file_headers[0]) && $file_headers[0] === 'HTTP/1.1 200 OK') {
-                    return \fpcm\classes\baseconfig::$jsPath.$item;
+                    $checks[$hash] = \fpcm\classes\baseconfig::$jsPath.$item;
+                    $cache->write($checks, FPCM_LANGCACHE_TIMEOUT);
+                    return $checks[$hash];
                 }
             } catch (\Exception $e) {
                 trigger_error($e->getMessage());
@@ -193,7 +207,9 @@
             try {
                 $file_headers = get_headers($item);
                 if (isset($file_headers[0]) && $file_headers[0] === 'HTTP/1.1 200 OK') {
-                    return $item;
+                    $checks[$hash] = $item;
+                    $cache->write($checks, FPCM_LANGCACHE_TIMEOUT);
+                    return $checks[$hash];
                 }
             } catch (\Exception $e) {
                 trigger_error($e->getMessage());
