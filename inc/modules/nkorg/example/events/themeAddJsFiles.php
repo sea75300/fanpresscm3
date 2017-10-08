@@ -16,7 +16,7 @@
     class themeAddJsFiles extends \fpcm\model\abstracts\moduleEvent {
 
         public function run($params = null) {
-            \fpcm\modules\nkorg\example\model\logfile::logParams($params);
+            $params[] = 'inc/modules/nkorg/example/js/module.js';
             return $params;
         }
 

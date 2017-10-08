@@ -17,6 +17,7 @@ if ($cache->isExpired() || \fpcm\classes\baseconfig::installerEnabled() || FPCM_
         __DIR__.'/ui.js',
         __DIR__.'/ajax.js',
         __DIR__.'/functions.js',
+        __DIR__.'/notifications.js',
         __DIR__.'/system.js'
     );
 

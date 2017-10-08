@@ -91,11 +91,18 @@
         protected $helpLink     = '';
 
         /**
+         * Notifications
+         * @var \fpcm\model\theme\notifications
+         * @since FPCM 3.6
+         */
+        protected $notifications;
+
+        /**
          * Konstruktor
          * @param string $viewName View-Name, ohne Endung .php
          * @param string $viewPath View-Pfad unterhalb von core/views/
          */
-        function __construct($viewName = '', $viewPath = '') {
+        public function __construct($viewName = '', $viewPath = '') {
             parent::__construct();
             if (!$this->viewPath) {
                 $this->viewPath = \fpcm\classes\baseconfig::$viewsDir.$viewPath;                
@@ -220,12 +227,35 @@
         }
 
         /**
-         * String zum Setzen des aktuell aktiven Modules in Navigation
-         * @return string
-         * @since FPCM 3.4
+         * System-eigene Notifications setzen
+         * @return boolean
          */
-        protected function getNavigationActiveCheckStr() {
-            return \fpcm\classes\tools::getNavigationActiveCheckStr();
+        protected function prepareNotifications() {
+            
+            $notifications = \fpcm\classes\baseconfig::$fpcmNotifications;
+
+            if ($this->config->system_maintenance) {
+                $notification = new \fpcm\model\theme\notificationItem(
+                    'SYSTEM_OPTIONS_MAINTENANCE', 
+                    'fa fa-lightbulb-o fa-lg fa-fw',
+                    'fpcm-ui-important-text'
+                );
+                
+                $notifications->addNotification($notification);
+            }
+            
+            if (!\fpcm\classes\baseconfig::asyncCronjobsEnabled()) {
+                $notification = new \fpcm\model\theme\notificationItem(
+                    'SYSTEM_OPTIONS_CRONJOBS', 
+                    'fa fa-terminal fa-lg fa-fw',
+                    'fpcm-ui-important-text'
+                );
+                
+                $notifications->addNotification($notification);
+            }
+
+            $this->assign('notificationsString', $notifications->getNotificationsString());
+            return true;
         }
 
         /**

@@ -29,6 +29,22 @@
 
             $view->assign('logfiledata', \fpcm\modules\nkorg\example\model\logfile::getLog());
             
+            \fpcm\classes\baseconfig::$fpcmNotifications->addNotification(new \fpcm\model\theme\notificationItem(
+                'FPCM_EXAMPLE_HEADLINE',
+                'fa fa-check-square-o fa-fw',
+                false,
+                false,
+                'nkorg_example_callback'
+            ));
+            
+            \fpcm\classes\baseconfig::$fpcmNotifications->addNotification(new \fpcm\model\theme\notificationItem(
+                'FPCM_EXAMPLE_HEADLINE',
+                'fa fa-check-square fa-fw',
+                false,
+                false,
+                'https://nobody-knows.org/downloads/fanpress-cm/'
+            ));
+            
             $view->render();
         }
 

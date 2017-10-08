@@ -285,6 +285,12 @@
          * @var database
          */
         public static $fpcmDatabase;
+        
+        /**
+         * Notifications-Objekt
+         * @var \fpcm\model\theme\notifications
+         */
+        public static $fpcmNotifications;
 
         /**
          * Installer aktiv Status-Datei
@@ -381,6 +387,8 @@
             self::$fpcmLanguage         = new language(self::$fpcmConfig->system_lang);
             
             self::$fpcmSession          = new \fpcm\model\system\session();
+
+            self::$fpcmNotifications    = new \fpcm\model\theme\notifications();
             
         }
 

@@ -35,8 +35,8 @@
          * @param string $viewPath View-Pfad unterhalb von inc/modules/MODULE_KEY
          */
         public function __construct($moduleKey = '', $type = 'acp', $viewName = '', $viewPath = '') {
-            $this->moduleViewType = $type;
-            $this->viewPath = \fpcm\classes\baseconfig::$moduleDir.$moduleKey.'/views'.trim($viewPath, '/').'/';
+            $this->moduleViewType   = $type;
+            $this->viewPath         = \fpcm\classes\baseconfig::$moduleDir.$moduleKey.'/views'.trim($viewPath, '/').'/';
             parent::__construct($viewName);
         }        
         
@@ -182,10 +182,8 @@
             $this->assign('FPCM_FRONTEND_LINK', $this->config->system_url);
             $this->assign('FPCM_DATETIME_MASK', $this->config->system_dtmask);
             $this->assign('FPCM_DATETIME_ZONE', $this->config->system_timezone);
-            $this->assign('FPCM_MAINTENANCE_MODE', $this->config->system_maintenance);
-            $this->assign('FPCM_CRONJOBS_DISABLED', \fpcm\classes\baseconfig::asyncCronjobsEnabled());
             $this->assign('FPCM_SHORTHELP_LINK', $this->helpLink);
-            
+
             /**
              * Current module
              */
@@ -196,7 +194,8 @@
                 $this->assign('FPCM_SESSION_LOGIN', $this->session->getLogin());
                 $nav = new \fpcm\model\theme\navigation();
                 $this->assign('FPCM_NAVIGATION', $nav->render());
-                $this->assign('FPCM_NAVIGATION_ACTIVE', $this->getNavigationActiveCheckStr());
+                $this->assign('FPCM_NAVIGATION_ACTIVE', \fpcm\classes\tools::getNavigationActiveCheckStr());
+                $this->prepareNotifications();
             }
             
             helper::init($this->config->system_lang);

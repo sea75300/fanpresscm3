@@ -51,12 +51,7 @@
                  <span class="fpcm-ui-center fpcm-navicon fa fa-play fa-lg fa-fw"></span>
              </a>
          </li>
-     <?php if ($FPCM_MAINTENANCE_MODE) : ?>
-         <li class="fpcm-menu-top-level1"><span class="fa fa-lightbulb-o fa-lg fa-fw fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_MAINTENANCE'); ?>..."></span></li>
-     <?php endif; ?>
-     <?php if (!$FPCM_CRONJOBS_DISABLED) : ?>
-         <li class="fpcm-menu-top-level1"><span class="fa fa-terminal fa-lg fa-fw fpcm-ui-important-text" title="<?php $FPCM_LANG->write('SYSTEM_OPTIONS_CRONJOBS'); ?>..."></span></li>
-     <?php endif; ?>
+         <?php if (!empty($notificationsString)) : ?><?php print $notificationsString; ?><?php endif; ?>
      </ul>
 
      <div class="fpcm-clear"></div>

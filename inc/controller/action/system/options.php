@@ -39,7 +39,7 @@
          *
          * @var bool
          */
-        protected $mainSettingsChanged = false;
+        protected $mailSettingsChanged = false;
 
         /**
          * Konstruktor
@@ -94,7 +94,7 @@
                 $this->config->setNewConfig($this->newconfig);
                 $this->config->prepareDataSave();
 
-                $this->mainSettingsChanged = (hash(\fpcm\classes\security::defaultHashAlgo, json_encode($this->config->smtp_settings)) ===
+                $this->mailSettingsChanged = (hash(\fpcm\classes\security::defaultHashAlgo, json_encode($this->config->smtp_settings)) ===
                                               hash(\fpcm\classes\security::defaultHashAlgo, json_encode($this->newconfig['smtp_settings'])) ? false : true);
 
                 if (!$this->config->update()) {
@@ -119,7 +119,7 @@
                     $this->view->addNoticeMessage('SAVE_FAILED_OPTIONS');
                     return true;
                 }
-                
+
                 $this->view->addNoticeMessage('SAVE_SUCCESS_OPTIONS');
             }            
             
@@ -209,7 +209,7 @@
                 $smtpActive = $mail->checkSmtp();
             }
             
-            if ($smtpActive && $this->buttonClicked('configSave') && $this->mainSettingsChanged) {                
+            if ($smtpActive && $this->buttonClicked('configSave') && $this->mailSettingsChanged) {                
                 $this->view->addNoticeMessage('SYSTEM_OPTIONS_EMAIL_ACTIVE');
             }
 
