@@ -110,13 +110,13 @@
         public function __toString() {
             
             if ($this->callback && strpos($this->callback, 'http') === 0) {
-                return "<li id=\"{$this->id}\" class=\"fpcm-menu-top-level1 fpcm-notification-item\"><a href=\"{$this->callback}\"><span class=\"{$this->icon}{$this->class}\" title=\"{$this->description}\"></span></a></li>";
+                return "<li title=\"{$this->description}\" id=\"{$this->id}\" class=\"fpcm-menu-top-level1 fpcm-notification-item\"><a href=\"{$this->callback}\"><span class=\"{$this->icon}{$this->class}\" title=\"{$this->description}\"></span></a></li>";
             }
             elseif($this->callback) {
-                return "<li id=\"{$this->id}\" data-callback=\"{$this->callback}\" class=\"fpcm-menu-top-level1 fpcm-notification-item\"><a href=\"#\"><span class=\"{$this->icon}{$this->class}\" title=\"{$this->description}\"></span></a></li>";
+                return "<li title=\"{$this->description}\" id=\"{$this->id}\" data-callback=\"{$this->callback}\" class=\"fpcm-menu-top-level1 fpcm-notification-item\"><a href=\"#\"><span class=\"{$this->icon}{$this->class}\" title=\"{$this->description}\"></span></a></li>";
             }
             
-            return "<li id=\"{$this->id}\" class=\"fpcm-menu-top-level1 fpcm-notification-item\"><span class=\"{$this->icon}{$this->class}\" title=\"{$this->description}\"></span></li>";
+            return "<li title=\"{$this->description}\" id=\"{$this->id}\" class=\"fpcm-menu-top-level1 fpcm-notification-item\"><span class=\"{$this->icon}{$this->class}\" title=\"{$this->description}\"></span></li>";
         }
 
     }

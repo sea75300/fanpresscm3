@@ -67,6 +67,8 @@
         'EDITOR_STATUS_INEDIT'          => 'This article is currently in edit mode by {{username}}.',
         'EDITOR_STATUS_NOTINEDIT'       => 'This article is not in edit mode anymore.',
         
+        'EDITOR_TINYMCE_PLUGIN_OVERRIDE' => 'FPCM_TINYMCE_PLUGINS is defined, changes on plugins might not be accepted.',
+        
         'EDITOR_HTML_BUTTONS_BOLD'      => 'Bold',
         'EDITOR_HTML_BUTTONS_ITALIC'    => 'Italic',
         'EDITOR_HTML_BUTTONS_UNDERLINE' => 'Underline',

@@ -66,6 +66,8 @@
         'EDITOR_STATUS_REVISION_SHOW'   => 'Revision öffnen',
         'EDITOR_STATUS_INEDIT'          => 'Dieser Artikel befindet sich momentan in Bearbeitung durch {{username}}.',
         'EDITOR_STATUS_NOTINEDIT'       => 'Dieser Artikel ist nicht mehr in Bearbeitung.',
+
+        'EDITOR_TINYMCE_PLUGIN_OVERRIDE' => 'FPCM_TINYMCE_PLUGINS ist definiert, Änderungen an Plugins werden evtl. nicht übernommen.',
         
         'EDITOR_HTML_BUTTONS_BOLD'      => 'Fett',
         'EDITOR_HTML_BUTTONS_ITALIC'    => 'Kursiv',
