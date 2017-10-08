@@ -968,7 +968,7 @@
          */
         public function publicIsVisible() {
 
-            if (!$this->exists() || $this->getDeleted()) {
+            if (!$this->exists() || ($this->getDeleted() && !\fpcm\classes\baseconfig::$fpcmSession->exists())) {
                 return false;
             }
 

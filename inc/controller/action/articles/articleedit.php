@@ -224,6 +224,10 @@
                 return true;
             }
             
+            if ($this->article->isInEdit()) {
+                return false;
+            }
+            
             if ($this->article->delete()) {
                 $this->redirect('articles/listall');
                 return true;
@@ -244,7 +248,7 @@
 
             $allTimer = time();
             
-            if ($this->buttonClicked('articleSave') && !$this->showRevision && $this->checkPageToken) {
+            if ($this->buttonClicked('articleSave') && !$this->showRevision && $this->checkPageToken && !$this->article->isInEdit()) {
 
                 $this->article->prepareRevision();
                 
