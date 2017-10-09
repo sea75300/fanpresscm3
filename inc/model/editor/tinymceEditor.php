@@ -58,7 +58,7 @@
             if (defined('FPCM_TINYMCE_PLUGINS') && FPCM_TINYMCE_PLUGINS) {
                 $pluginFolders = FPCM_TINYMCE_PLUGINS;
                 
-                \fpcm\classes\baseconfig::$fpcmNotifications->addNotification(new \fpcm\model\theme\notificationItem(
+                $this->notifications->addNotification(new \fpcm\model\theme\notificationItem(
                     'EDITOR_TINYMCE_PLUGIN_OVERRIDE', 
                     'fa fa-plug fa-lg fa-fw'
                 ));

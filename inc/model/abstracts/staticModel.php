@@ -52,6 +52,13 @@
          * @var \fpcm\model\system\session
          */
         protected $session;
+
+        /**
+         * Notifications
+         * @var \fpcm\model\theme\notifications
+         * @since FPCM 3.6
+         */
+        protected $notifications;
         
         /**
          * Cache name
@@ -77,9 +84,10 @@
             
             if (!\fpcm\classes\baseconfig::dbConfigExists()) return;
 
-            $this->session  = \fpcm\classes\baseconfig::$fpcmSession;
-            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
-            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->session       = \fpcm\classes\baseconfig::$fpcmSession;
+            $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language      = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->notifications = \fpcm\classes\baseconfig::$fpcmNotifications;
             
             if (is_object($this->config)) $this->config->setUserSettings();
         }

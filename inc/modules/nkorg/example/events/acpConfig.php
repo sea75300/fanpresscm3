@@ -29,7 +29,7 @@
 
             $view->assign('logfiledata', \fpcm\modules\nkorg\example\model\logfile::getLog());
             
-            \fpcm\classes\baseconfig::$fpcmNotifications->addNotification(new \fpcm\model\theme\notificationItem(
+            $this->notifications->addNotification(new \fpcm\model\theme\notificationItem(
                 'FPCM_EXAMPLE_HEADLINE',
                 'fa fa-check-square-o fa-fw',
                 false,
@@ -37,7 +37,7 @@
                 'nkorg_example_callback'
             ));
             
-            \fpcm\classes\baseconfig::$fpcmNotifications->addNotification(new \fpcm\model\theme\notificationItem(
+            $this->notifications->addNotification(new \fpcm\model\theme\notificationItem(
                 'FPCM_EXAMPLE_HEADLINE',
                 'fa fa-check-square fa-fw',
                 false,

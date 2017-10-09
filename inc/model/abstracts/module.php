@@ -60,6 +60,13 @@
         protected $language;
 
         /**
+         * Notifications
+         * @var \fpcm\model\theme\notifications
+         * @since FPCM 3.6
+         */
+        protected $notifications;
+
+        /**
          * Module-Key
          * @var string
          */
@@ -149,8 +156,9 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
-            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language      = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->notifications = \fpcm\classes\baseconfig::$fpcmNotifications;
             
             $this->modkey           = $key;
             $this->name             = $name;

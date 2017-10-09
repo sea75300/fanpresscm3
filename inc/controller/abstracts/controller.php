@@ -71,6 +71,12 @@
          * @var \fpcm\classes\cache
          */
         protected $cache;
+
+        /**
+         * Notifications
+         * @var \fpcm\model\theme\notifications
+         */
+        protected $notifications;
         
         /**
          * Update-Prüfung aktiv
@@ -108,11 +114,12 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
 
-            $this->events       = \fpcm\classes\baseconfig::$fpcmEvents;
-            $this->cache        = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)), $this->cacheModule);
-            $this->config       = \fpcm\classes\baseconfig::$fpcmConfig;
-            $this->session      = \fpcm\classes\baseconfig::$fpcmSession;
-            $this->crons        = new \fpcm\model\crons\cronlist();
+            $this->events        = \fpcm\classes\baseconfig::$fpcmEvents;
+            $this->cache         = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)), $this->cacheModule);
+            $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->session       = \fpcm\classes\baseconfig::$fpcmSession;
+            $this->notifications = \fpcm\classes\baseconfig::$fpcmNotifications;
+            $this->crons         = new \fpcm\model\crons\cronlist();
             
             $moduleList           = new \fpcm\model\modules\modulelist();
             $this->enabledModules = $moduleList->getEnabledInstalledModules();
