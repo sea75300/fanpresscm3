@@ -105,6 +105,10 @@ fpcm.editor_tinymce = {
         if (config.onPaste !== undefined) {
             params.paste_preprocess = config.onPaste;
         }
+        
+        if (config.custom_elements) {
+            params.custom_elements = config.custom_elements;
+        }
 
         tinymce.init(params);
 
