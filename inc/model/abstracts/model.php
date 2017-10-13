@@ -122,7 +122,7 @@
             
             $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
             $this->language      = \fpcm\classes\baseconfig::$fpcmLanguage;
-            $this->notifications = \fpcm\classes\baseconfig::$fpcmNotifications;
+            $this->notifications = !empty(\fpcm\classes\baseconfig::$fpcmNotifications) ? \fpcm\classes\baseconfig::$fpcmNotifications : null;
 
             if (is_object($this->config)) $this->config->setUserSettings();
             
