@@ -5,6 +5,6 @@ vendor: nkorg
 key: example
 author: Stefan Seehafer
 link: https://nobody-knows.org
-version: 3.5.0
+version: 3.6.0
 sysversion: 3.5.0
 description: "This is a FanPress CM 3.x module. This module can be used as an example or for testing purposes. It replaces the former \"Example Module\" starting with FPCM 3.4!"

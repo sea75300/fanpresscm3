@@ -4,7 +4,7 @@
      *
      * nkorg/example event class: imageUpdate
      * 
-     * @version 3.4.0
+     * @version 3.6.0
      * @author Stefan Seehafer <Stefan Seehafer@yourdomain.xyz>
      * @copyright (c) 2016, Stefan Seehafer
      * @license http://www.gnu.org/licenses/gpl.txt GPLv3

@@ -1,6 +1,6 @@
 <?php
 
-        $installfile   = 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress3.6.0_full.zip';
+        $installfile   = 'https://github.com/sea75300/fanpresscm3/releases/download/v3.6.0/fanpress3.6.0_full.zip';
 
     $versions = array(
         'default' => array(
