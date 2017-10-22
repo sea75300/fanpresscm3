@@ -34,6 +34,13 @@
          * @var \fpcm\model\system\config
          */
         protected $config;
+
+        /**
+         * Notifications
+         * @var \fpcm\model\theme\notifications
+         * @since FPCM 3.6
+         */
+        protected $notifications;
         
         /**
          * Konstruktor
@@ -43,8 +50,9 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $this->config = \fpcm\classes\baseconfig::$fpcmConfig;
-            $this->lang   = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->lang          = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->notifications = \fpcm\classes\baseconfig::$fpcmNotifications;
             
             $this->config->setUserSettings();
         }

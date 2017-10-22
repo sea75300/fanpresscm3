@@ -75,6 +75,13 @@
          * @var \fpcm\classes\language
          */
         protected $language;
+
+        /**
+         * Notifications
+         * @var \fpcm\model\theme\notifications
+         * @since FPCM 3.6
+         */
+        protected $notifications;
         
         /**
          * Controller-Pfad, wenn Objekt Edit-Action besitzt
@@ -113,8 +120,9 @@
 
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
-            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language      = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->notifications = !empty(\fpcm\classes\baseconfig::$fpcmNotifications) ? \fpcm\classes\baseconfig::$fpcmNotifications : null;
 
             if (is_object($this->config)) $this->config->setUserSettings();
             
@@ -297,7 +305,8 @@
                 $params['objExists'],
                 $params['cacheName'],
                 $params['cacheModule'],
-                $params['wordbanList']
+                $params['wordbanList'],
+                $params['notifications']
             );
             
             if ($this->nodata) {

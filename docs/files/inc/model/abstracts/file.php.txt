@@ -58,6 +58,13 @@
          * @var \fpcm\classes\language
          */
         protected $language;
+
+        /**
+         * Notifications
+         * @var \fpcm\model\theme\notifications
+         * @since FPCM 3.6
+         */
+        protected $notifications;
         
         /**
          * Dateiname
@@ -128,10 +135,11 @@
             
             if (\fpcm\classes\baseconfig::installerEnabled()) return false;
             
-            $this->cache    = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)), $this->cacheModule);
-            $this->events   = \fpcm\classes\baseconfig::$fpcmEvents;
-            $this->config   = \fpcm\classes\baseconfig::$fpcmConfig;
-            $this->language = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->cache         = new \fpcm\classes\cache($this->cacheName ? $this->cacheName : md5(microtime(false)), $this->cacheModule);
+            $this->events        = \fpcm\classes\baseconfig::$fpcmEvents;
+            $this->config        = \fpcm\classes\baseconfig::$fpcmConfig;
+            $this->language      = \fpcm\classes\baseconfig::$fpcmLanguage;
+            $this->notifications = !empty(\fpcm\classes\baseconfig::$fpcmNotifications) ? \fpcm\classes\baseconfig::$fpcmNotifications : null;
             
             $this->config->setUserSettings();
             

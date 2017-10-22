@@ -205,7 +205,6 @@
             $this->assign('FPCM_FRONTEND_LINK', $this->config->system_url);
             $this->assign('FPCM_DATETIME_MASK', $this->config->system_dtmask);
             $this->assign('FPCM_DATETIME_ZONE', $this->config->system_timezone);
-            $this->assign('FPCM_MAINTENANCE_MODE', $this->config->system_maintenance);
             
             /**
              * Current module
