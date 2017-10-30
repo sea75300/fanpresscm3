@@ -35,9 +35,12 @@
             if (isset($_FILES['file'])) {
                 $data = $_FILES['file'];
 
-                $name     = explode('.', $data['name']);
-                $name[0] .= '_cropped'. date('Ymd').$this->session->getUserId();
-                $name     = implode('.', $name);
+                $name = $data['name'];
+                if (file_exists(\fpcm\classes\baseconfig::$uploadDir.$name)) {
+                    $name     = explode('.', $data['name']);
+                    $name[0] .= '_cropped'. date('Ymd').$this->session->getUserId();
+                    $name     = implode('.', $name);
+                }
 
                 $uploader = new \fpcm\model\files\fileuploader([
                     'tmp_name'  => [$data['tmp_name']],
@@ -50,6 +53,7 @@
                 if (!count($result['error']) && count($result['success'])) {
                     die(json_encode(['location' => \fpcm\classes\baseconfig::$uploadRootPath.$name]));
                 }
+
             }
 
             header("HTTP/1.0 500 Server Error");
