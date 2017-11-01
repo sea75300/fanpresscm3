@@ -100,7 +100,7 @@
                         break;
                     case '<readmore>' :
                         $keys   = $replacement;
-                        $values = array('<a href="#" class="fpcm-pub-readmore-link" id="'.$value.'">'.$this->language->translate('ARTICLES_PUBLIC_READMORE').'</a><p class="fpcm-pub-readmore-text" id="fpcm-pub-readmore-text-'.$value.'">', '</p>');
+                        $values = array('<a href="#" class="fpcm-pub-readmore-link" id="'.$value.'">'.$this->language->translate('ARTICLES_PUBLIC_READMORE').'</a><div class="fpcm-pub-readmore-text" id="fpcm-pub-readmore-text-'.$value.'">', '</div>');
                         break;
                     case '{{sources}}' :
                         $keys   = $replacement;
