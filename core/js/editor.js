@@ -236,6 +236,10 @@ fpcm.editor = {
             },
             addTabScroll: true
         });
+        
+        jQuery('#fpcm-editor-tabs-editorregister').click(function() {
+            fpcmJs.assignButtons();
+        });
 
         /**
          * Keycodes

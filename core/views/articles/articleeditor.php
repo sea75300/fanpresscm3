@@ -3,7 +3,7 @@
         <?php if ($isRevision) : ?>
         <li><a href="#tabs-article"><?php $FPCM_LANG->write('EDITOR_STATUS_REVISION'); ?></a></li>
         <?php else : ?>
-        <li><a href="#tabs-article"><?php $FPCM_LANG->write('ARTICLES_EDITOR'); ?></a></li>
+        <li id="fpcm-editor-tabs-editorregister"><a href="#tabs-article"><?php $FPCM_LANG->write('ARTICLES_EDITOR'); ?></a></li>
         <?php endif; ?>
         <?php if ($showComments && !$isRevision) : ?>
         <li><a href="<?php print $FPCM_BASELINK.\fpcm\classes\tools::getControllerLink('ajax/editor/editorlist', ['id' => $article->getId(), 'view' => 'comments']); ?>">
