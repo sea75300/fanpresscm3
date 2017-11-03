@@ -1,16 +1,16 @@
 <?php
 
-    $installfile   = 'https://github.com/sea75300/fanpresscm3/releases/download/v3.6.0/fanpress3.6.0_full.zip';
+    $installfile   = 'https://github.com/sea75300/fanpresscm3/releases/download/v3.6.1/fanpress3.6.1_full.zip';
     
-    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.6.0.zip')
-               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.6.0.zip').'_'
-                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.6.0.zip').'$sig$'
+    $signature = (file_exists(__DIR__.'/packages/fanpress_update_version3.6.1.zip')
+               ? '$sig$'.md5_file(__DIR__.'/packages/fanpress_update_version3.6.1.zip').'_'
+                        .sha1_file(__DIR__.'/packages/fanpress_update_version3.6.1.zip').'$sig$'
                : '');
 
     $versions = array(
         'default' => array(
-            'newversion'    => '3.6.0',
-            'file'      => 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.6.0.zip',
+            'newversion'    => '3.6.1',
+            'file'      => 'https://updates.nobody-knows.org/fanpress/system/packages/fanpress_update_version3.6.1.zip',
             'force'     => 0,
             'message'   => 'Next minor release of FanPress CM 3.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-6-0-veroeffentlicht/',
