@@ -878,8 +878,8 @@
             $tpl->setReplacementTags(array(
                 '{{headline}}'   => $eventResult->getTitle(),
                 '{{author}}'     => $author->getDisplayname(),
-                '{{date}}'       => date($this->config->system_dtmask),
-                '{{changeDate}}' => date('H:m:s', $this->getChangetime()),
+                '{{date}}'       => date($this->config->system_dtmask, $this->getCreatetime()),
+                '{{changeDate}}' => date($this->config->system_dtmask, $this->getChangetime()),
                 '{{permaLink}}'  => $eventResult->getArticleLink(),
                 '{{shortLink}}'  => $eventResult->getArticleShortLink()
             ));
