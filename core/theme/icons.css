@@ -63,6 +63,7 @@ span.fpcm-ui-badge.fpcm-ui-badge:before {
 }
 
 .fpcm-ui-button.fpcm-ui-button-edit span.ui-icon:before,
+.fpcm-ui-button.fpcm-ui-button-massedit:before,
 .fpcm-ui-button.fpcm-rename-btn:before {
     content: '\f044';
 }

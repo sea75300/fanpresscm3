@@ -34,12 +34,12 @@
 
 <?php include dirname(__DIR__).'/components/pager.php'; ?>
 
-<?php if (count($commentActions)) : ?>
+<?php if ($canEditComments || $canDelete || $commentsMode == 1) : ?>
 <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons fpcm-ui-commentaction-buttons">
     <div class="fpcm-ui-margin-center">
         <?php if ($commentsMode == 1) : ?><?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcmcommentsopensearch', 'fpcm-articles-opensearch'); ?><?php endif; ?>
-        <?php \fpcm\model\view\helper::select('commentAction', $commentActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?>
-        <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?>
+        <?php if ($canEditComments) : ?><?php \fpcm\model\view\helper::linkButton('#', 'GLOBAL_EDIT', 'fpcm-comments-listmassedit', 'fpcm-ui-button-massedit'); ?><?php endif; ?>
+        <?php if ($canDelete) : ?><?php fpcm\model\view\helper::deleteButton('deleteComment'); ?><?php endif; ?>
     </div>
 </div>
 <?php endif; ?>

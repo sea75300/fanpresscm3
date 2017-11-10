@@ -37,17 +37,14 @@ fpcm.comments = {
 
     assignActions: function() {
 
-        var action = jQuery('#commentAction').val();
-
-        if (action == 1) {
+        jQuery('#fpcmcommentslistmassedit').click(function () {
             fpcm.system.initMassEditDialog('comments/massedit', 'comments-massedit', this);
-            fpcm.ui.removeLoaderClass(this);
-            return -1;
-        }
-        
+            return false;
+        });
+
         return true;
     },
-    
+
     initWidgets: function(dialogId) {
 
         fpcm.ui.autocomplete('#moveToArticle', {
@@ -124,7 +121,7 @@ fpcm.comments = {
     startCommentSearch: function (sParams) {
 
         if (((new Date()).getTime() - fpcmCommentsLastSearch) < 10000) {
-            self.addAjaxMassage('error', fpcm.ui.translate('searchWaitMsg'));            
+            fpcmJs.addAjaxMassage('error', fpcm.ui.translate('searchWaitMsg'));            
             return false;
         }
 
@@ -137,6 +134,7 @@ fpcm.comments = {
                 fpcm.ui.assignHtml('#tabs-comments-active', fpcm.ajax.getResult('comments/search'));
                 fpcmJs.assignButtons();
                 fpcm.comments.initCommentSearch();
+                fpcm.comments.assignActions();
                 fpcm.ui.assignSelectmenu();
                 fpcm.ui.resize();
             }

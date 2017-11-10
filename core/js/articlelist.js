@@ -15,6 +15,11 @@ fpcm.articlelist = {
         fpcm.ui.checkboxradio('.fpcm-ui-massedit-categories .fpcm-ui-input-checkbox', {
             icon: false
         });
+
+        jQuery('#fpcmarticleslistmassedit').click(function () {
+            fpcm.system.initMassEditDialog('articles/massedit', 'articles-massedit', fpcm.articlelist);
+            return false;
+        });
         
         fpcm.articlelist.initArticleSearch();
         fpcm.articlelist.clearArticleCache();
@@ -23,21 +28,21 @@ fpcm.articlelist = {
     assignActions: function() {
 
         var articleActions = {
-            newtweet: 'newtweet',
-            massedit: 'massedit'
+            newtweet    : 'newtweet',
+            clearcache  : 'articlecache'
         }
         
         var action = jQuery('#actionsaction').val();
-
-        if (action == articleActions.massedit) {
-            fpcm.system.initMassEditDialog('articles/massedit', 'articles-massedit', fpcm.articlelist)
-            fpcm.ui.removeLoaderClass(this);
-            return -1;
-        }
-
         if (action == articleActions.newtweet) {
             fpcm.articlelist.articleActionsTweet();
             fpcm.ui.removeLoaderClass(this);
+            return -1;
+        }
+        if (action == articleActions.clearcache) {
+            fpcmJs.clearCache({
+                cache: artCacheMod,
+                objid: 0
+            });
             return -1;
         }
         

@@ -282,18 +282,24 @@
             $canEdit = $this->permissions->check([ 'article' => ['edit', 'editall', 'approve', 'archive'] ]);
             $this->view->assign('canEdit', $canEdit);
             
+            $this->view->assign('permEdit', $canEdit ? true : false);
+
             $this->deleteActions = $this->permissions->check(['article' => 'delete']);
+
+            $tweet = new \fpcm\model\system\twitter();
             
-            if ($canEdit) {                
-                $this->articleActions[$this->lang->translate('GLOBAL_EDIT_SELECTED')]   = 'massedit';
+            if ($tweet->checkRequirements() && $tweet->checkConnection()) {
+                $this->articleActions[$this->lang->translate('ARTICLE_LIST_NEWTWEET')]  = 'newtweet';
             }
-            
-            $this->articleActions[$this->lang->translate('ARTICLE_LIST_NEWTWEET')]      = 'newtweet';
             
             if ($this->deleteActions) {
                 $this->articleActions[$this->lang->translate('GLOBAL_DELETE')]          = 'delete';
             }
 
+            $this->articleActions[$this->lang->translate('ARTICLES_CACHE_CLEAR')]       = 'articlecache';
+            
+            $crypt = new \fpcm\classes\crypt();
+            $this->view->addJsVars(['artCacheMod' => urlencode($crypt->encrypt(\fpcm\model\articles\article::CACHE_ARTICLE_MODULE))]);
         }
         
         /**

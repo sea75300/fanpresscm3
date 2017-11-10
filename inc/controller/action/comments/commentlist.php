@@ -71,8 +71,8 @@
          * @return boolean
          */
         public function request() {
-            
-            if (!$this->buttonClicked('doAction')) {
+
+            if (!$this->buttonClicked('deleteComment')) {
                 return true;
             }
 

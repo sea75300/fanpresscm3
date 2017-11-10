@@ -62,6 +62,11 @@
          */
         public function checkConnection() {
             
+            $cache = new \fpcm\classes\cache(__METHOD__, 'system');
+            if (!$cache->isExpired()) {
+                return $cache->read();
+            }
+
             $keys = $this->config->twitter_data['consumer_key'] &&
                     $this->config->twitter_data['consumer_secret'] &&
                     $this->config->twitter_data['user_token'] &&
@@ -77,8 +82,11 @@
             );
             
             $this->log();
-            
-            return ($code != 200 ? false : true);
+
+            $return = ($code != 200 ? false : true);
+            $cache->write($return, $this->config->system_cache_timeout);
+
+            return $return;
         }
         
         /**

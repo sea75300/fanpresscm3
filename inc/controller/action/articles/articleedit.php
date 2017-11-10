@@ -206,7 +206,7 @@
          */
         protected function handleCommentActions() {
 
-            if (!$this->checkPageToken || !$this->buttonClicked('DoAction')) {
+            if (!$this->checkPageToken || !$this->buttonClicked('deleteComment')) {
                 return false;
             }
 

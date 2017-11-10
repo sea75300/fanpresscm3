@@ -17,11 +17,11 @@
         <div class="<?php \fpcm\model\view\helper::buttonsContainerClass(); ?> fpcm-ui-list-buttons">
 
             <div class="fpcm-ui-margin-center">
-                <?php if ($permAdd) : ?><?php \fpcm\model\view\helper::linkButton('?module=articles/add', 'HL_ARTICLE_ADD', 'fpcm-articles-listaddnew', 'fpcm-new-btn fpcm-loader'); ?><?php endif; ?>
+                <?php if ($permAdd) : ?><?php \fpcm\model\view\helper::linkButton($FPCM_SELF.'?module=articles/add', 'HL_ARTICLE_ADD', 'fpcm-articles-listaddnew', 'fpcm-new-btn fpcm-loader'); ?><?php endif; ?>
+                <?php if ($permEdit) : ?><?php \fpcm\model\view\helper::linkButton('#', 'GLOBAL_EDIT', 'fpcm-articles-listmassedit', 'fpcm-ui-button-massedit'); ?><?php endif; ?>
                 <?php \fpcm\model\view\helper::linkButton('#', 'ARTICLES_SEARCH', 'fpcm-articles-opensearch', 'fpcm-articles-opensearch'); ?>
                 <?php \fpcm\model\view\helper::select('actions[action]', $articleActions, '', false, true, false, 'fpcm-ui-input-select-articleactions'); ?>
                 <?php \fpcm\model\view\helper::submitButton('doAction', 'GLOBAL_OK', 'fpcm-ui-articleactions-ok fpcm-loader'); ?>
-                <?php \fpcm\model\view\helper::clearCacheButton(['cache' => 'articles'], true, 'fpcm-article-cache-clear', true); ?>
             </div>
 
         </div>
