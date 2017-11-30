@@ -38,7 +38,7 @@ fpcm.comments = {
     assignActions: function() {
 
         jQuery('#fpcmcommentslistmassedit').click(function () {
-            fpcm.system.initMassEditDialog('comments/massedit', 'comments-massedit', this);
+            fpcm.system.initMassEditDialog('comments/massedit', 'comments-massedit', fpcm.comments);
             return false;
         });
 
