@@ -32,3 +32,5 @@
         <?php endif; ?>
     </div>
 </div>
+    
+<?php include __DIR__.'/searchform.php'; ?>

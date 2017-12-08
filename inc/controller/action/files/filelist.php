@@ -144,15 +144,26 @@
             if (!parent::process()) return false;
 
             $this->view->addJsVars([
-                'fpcmBaseUrl'      => \fpcm\classes\baseconfig::$rootPath,
-                'fpcmFmgrMode'     => $this->mode,
-                'fpcmEditorType'   => $this->config->system_editor,
-                'fpcmJqUploadInit' => $this->config->file_uploader_new,
-                'fpcmLoadAjax'     => ($this->fileList->getDatabaseFileCount() ? 1 : 0),
-                'fpcmCurrentModule'=> $this->getRequestVar('module')
+                'fpcmBaseUrl'           => \fpcm\classes\baseconfig::$rootPath,
+                'fpcmFmgrMode'          => $this->mode,
+                'fpcmEditorType'        => $this->config->system_editor,
+                'fpcmJqUploadInit'      => $this->config->file_uploader_new,
+                'fpcmLoadAjax'          => ($this->fileList->getDatabaseFileCount() ? 1 : 0),
+                'fpcmCurrentModule'     => $this->getRequestVar('module'),
+                'fpcmFilesLastSearch'   => 0
             ]);
 
-            $this->view->addJsLangVars(['newNameMsg' => $this->lang->translate('FILE_LIST_RENAME_NEWNAME')]);
+            $this->view->addJsLangVars([
+                'newNameMsg'        => $this->lang->translate('FILE_LIST_RENAME_NEWNAME'),
+                'searchWaitMsg'     => $this->lang->translate('SEARCH_WAITMSG'),
+                'searchHeadline'    => $this->lang->translate('ARTICLES_SEARCH'),
+                'searchStart'       => $this->lang->translate('ARTICLE_SEARCH_START')
+            ]);
+
+            $this->view->assign('searchCombination', array(
+                $this->lang->translate('ARTICLE_SEARCH_LOGICAND') => 0,
+                $this->lang->translate('ARTICLE_SEARCH_LOGICOR')  => 1
+            ));
 
             $this->view->assign('newUploader', $this->config->file_uploader_new);
             $this->view->assign('jquploadPath', \fpcm\classes\loader::libGetFileUrl('jqupload'));

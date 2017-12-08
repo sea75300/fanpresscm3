@@ -53,6 +53,69 @@
             
             return $res;            
         }
+        
+        /**
+         * Gibt Dateiindex in Datenbank zurück
+         * @param int $limit
+         * @param int $offset
+         * @return array:\fpcm\model\files\image
+         */
+        
+        /**
+         * Gibt Dateiindex anahdn von bestimmten Bedigungen zurück
+         * @param \fpcm\model\files\search $conditions
+         * @return array:\fpcm\model\files\image
+         */
+        public function getDatabaseListByCondition(search $conditions) {
+
+            $where = array('1=1');
+            $valueParams = [];
+
+            if ($conditions->filename) {
+                $where[] = "filename LIKE ?";
+                $valueParams[] = '%'.$conditions->filename.'%';
+            }
+
+            if ($conditions->datefrom) {
+                $where[] = "filetime >= ?";
+                $valueParams[] = $conditions->datefrom;
+            }
+            
+            if ($conditions->dateto) {
+                $where[] = "filetime <= ?";
+                $valueParams[] = $conditions->dateto;
+            }
+
+            $combination = $conditions->combination ? $conditions->combination : 'AND';
+
+            $where       = implode(" {$combination} ", $where);
+            
+            $where2   = [];
+            $where2[] = $this->dbcon->orderBy($conditions->limit ? $conditions->limit : ['filetime DESC']);
+            
+            if (is_array($conditions->limit)) {
+                $where2[] = $this->dbcon->limitQuery($conditions->limit[0], $conditions->limit[1]);
+            }
+
+            $where .= ' '.implode(' ', $where2);
+
+            $images = $this->dbcon->fetch(
+                $this->dbcon->select(
+                    $this->table, '*', $where,
+                    $valueParams
+                ),
+                true
+            );
+
+            $res = [];
+            foreach ($images as $image) {
+                $imageObj = new image('', '', '', false);
+                $imageObj->createFromDbObject($image);
+                $res[$image->filename] = $imageObj;
+            }
+            
+            return $res;            
+        }
 
         /**
          * Aktualisiert Dateiindex in Datenbank

@@ -16,6 +16,10 @@ fpcm.filemanager = {
             this.reloadFiles();
             this.initActionButtons();
         }
+        
+        if (fpcmLang.searchHeadline) {
+            this.initFilesSearch();
+        }
     
         jQuery('#tabs-files-list-reload').click(function () {
             fpcm.filemanager.reloadFiles();
@@ -190,5 +194,100 @@ fpcm.filemanager = {
         });
         
         return false;
+    },
+    
+    initFilesSearch: function() {
+
+        jQuery('#fpcmfilessopensearch').click(function () {
+
+            fpcm.ui.selectmenu('.fpcm-ui-input-select-filesearch', {
+                width: '100%',
+                appendTo: '#fpcm-dialog-files-search'
+            });
+
+            fpcm.ui.datepicker('.fpcm-full-width-date');
+            
+            fpcm.ui.autocomplete('#articleId', {
+                source: fpcmAjaxActionPath + 'autocomplete&src=articles',
+                appendTo: '#fpcm-dialog-files-search',
+                minLength: 3
+            });
+
+            var size = fpcm.ui.getDialogSizes();
+
+            fpcm.ui.dialog({
+                id      : 'files-search',
+                dlWidth: size.width,
+                resizable: true,
+                title    : fpcm.ui.translate('searchHeadline'),
+                dlButtons  : [
+                    {
+                        text: fpcm.ui.translate('searchStart'),
+                        icon: "ui-icon-check",                        
+                        click: function() {                            
+                            var sfields = jQuery('.fpcm-files-search-input');
+                            var sParams = {
+                                mode    : fpcmFmgrMode,
+                                filter  : {}
+                            };
+
+                            jQuery.each(sfields, function( key, obj ) {
+                                var objVal  = jQuery(obj).val();
+                                var objName = jQuery(obj).attr('name');                                
+                                sParams.filter[objName] = objVal;
+                            });
+
+                            fpcm.filemanager.startFilesSearch(sParams);
+                            jQuery(this).dialog('close');
+                        }
+                    },                    
+                    {
+                        text: fpcm.ui.translate('close'),
+                        icon: "ui-icon-closethick",                        
+                        click: function() {
+                            jQuery(this).dialog('close');
+                        }
+                    }                            
+                ],
+                dlOnOpen: function( event, ui ) {
+                    jQuery('#text').focus();
+                }
+            });
+
+            return false;
+        });
+
+    },
+
+    startFilesSearch: function (sParams) {
+
+        if (((new Date()).getTime() - fpcmFilesLastSearch) < 10000) {
+            fpcmJs.addAjaxMassage('error', fpcm.ui.translate('searchWaitMsg'));            
+            return false;
+        }
+
+        fpcm.ui.showLoader(true);
+        
+        fpcm.ajax.post('files/search', {
+            data: sParams,
+            execDone: function () {
+                fpcm.ui.assignHtml("#tabs-files-list-content", fpcm.ajax.getResult('files/search'));
+                fpcmJs.assignButtons();
+                fpcm.filemanager.assignButtons();
+                var fpcmRFDinterval = setInterval(function(){
+                    if (jQuery('#fpcm-filelist-images-finished').length == 1) {
+                        fpcm.ui.showLoader(false);
+                        fpcm.ui.resize();
+                        clearInterval(fpcmRFDinterval);
+                        if (page) {
+                            jQuery(window).scrollTop(0);
+                        }
+                        return false;
+                    }
+                }, 250);
+            }
+        });
+
+        fpcmFilesLastSearch = (new Date()).getTime();
     }
 };
