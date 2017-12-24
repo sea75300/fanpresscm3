@@ -15,7 +15,8 @@
             'message'   => 'Next minor release of FanPress CM 3.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-6-0-veroeffentlicht/',
             'signature' => $signature,
-            'phpversion' => '5.5.3'
+            'phpversion' => '5.5.3',
+            'release'   => '30.11.2017'
         ),
 
         '3.2' => array(
@@ -25,7 +26,8 @@
             'message'   => 'No direct upgrade from FPCM 3.2.x to FPCVM 3.5.x!',
             'notice'    => 'https://nobody-knows.org/fanpress-cm-3-4-0-veroeffentlicht/',
             'signature' => $signature,
-            'phpversion'    => '5.4.0'
+            'phpversion'    => '5.4.0',
+            'release'   => '03.02.2017'
         ),
 
         '3.1' => array(
