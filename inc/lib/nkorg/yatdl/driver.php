@@ -126,8 +126,8 @@
                 return false;
             }
 
-            if (!isset($col['type']) || !is_array($col['type']) || !count($col['type'])) {
-                trigger_error('Invalid YAML col data, no "cols" property found!');
+            if (!isset($col['type']) || (is_array($col['type']) && !count($col['type']))) {
+                trigger_error('Invalid YAML col data, no "type" property found!');
                 return false;
             }
 
