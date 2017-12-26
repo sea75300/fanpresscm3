@@ -287,7 +287,7 @@
                 return false;
             }
 
-            if (!array_key_exists('cols', $this->yamlArray) || !count($this->yamlArray['cols'])) {
+            if (!array_key_exists('cols', $this->yamlArray) || !is_array($this->yamlArray['cols']) || !count($this->yamlArray['cols'])) {
                 trigger_error('Invalid YAML data, no "cols" property found!');
                 return false;
             }

@@ -141,7 +141,7 @@
 
             $data = $yatdl->getArray();
 
-            if (!isset($data['defaultvalues']['rows']) || !count($data['defaultvalues']['rows'])) {
+            if (!isset($data['defaultvalues']['rows']) || !is_array($data['defaultvalues']['rows']) || !count($data['defaultvalues']['rows'])) {
                 return true;
             }
 
