@@ -62,6 +62,7 @@
             if (!parent::process()) return false;
 
             $this->template = $this->getTemplateById($this->tid);
+
             switch ($this->tid) {
                 case 1 :
                     $this->getArticlesPreview();
@@ -156,7 +157,11 @@
             $this->template->setReplacementTags($replacements);
             $parsed[] = $this->template->parse();
 
-            $this->view->assign('content', implode(PHP_EOL, $parsed));
+            $this->view->assign('content', str_replace(
+                ['<script>', '</script>'],
+                ['&lt;script_diabled_in_preview&gt;', '&lt;/script_diabled_in_preview&gt;'],
+                implode(PHP_EOL, $parsed))
+            );
             $this->view->assign('commentform', '');
 
         }

@@ -45,12 +45,18 @@
             if (!parent::process()) return false;
 
             $contents = $this->cache->read();
-            if ($this->cache->isExpired() || !is_array($contents)) {
+            if (!is_array($contents)) {
+                $contents = [];
+            }
+
+            if ($this->cache->isExpired()) {
                 $xml = simplexml_load_string($this->lang->getHelp());
                 foreach ($xml->chapter as $chapter) {
                     $headline = trim($chapter->headline);
                     $contents[$headline] = trim($chapter->text);
-                }                
+                }
+                
+                $this->cache->write($contents, FPCM_LANGCACHE_TIMEOUT);
             }            
             
             $contents = $this->events->runEvent('extendHelp', $contents);
