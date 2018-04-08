@@ -342,8 +342,8 @@
             self::$dashcontainerDir    = self::$incDir.'model/dashboard/';
 
             if (php_sapi_name() !== 'cli') {
-                $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
-                self::$rootPath = $http.$_SERVER['HTTP_HOST'].rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/').'/'.basename(self::$baseDir).'/';
+                self::$rootPath =   ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://').
+                                    $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) . '/';
             }
             
 
