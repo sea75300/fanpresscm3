@@ -352,23 +352,24 @@
             }
             
             $replacementTags = array(
-                '{{formHeadline}}'                   => $this->lang->translate('COMMENTS_PUBLIC_FORMHEADLINE'),
-                '{{submitUrl}}'                      => $this->article->getArticleLink(),
-                '{{nameDescription}}'                => $this->lang->translate('COMMMENT_AUTHOR'),
-                '{{nameField}}'                      => '<input type="text" class="fpcm-pub-textinput" name="newcomment[name]" value="'.$this->newComment->getName().'">',
-                '{{emailDescription}}'               => $this->lang->translate('GLOBAL_EMAIL'),
-                '{{emailField}}'                     => '<input type="text" class="fpcm-pub-textinput" name="newcomment[email]" value="'.$this->newComment->getEmail().'">',
-                '{{websiteDescription}}'             => $this->lang->translate('COMMMENT_WEBSITE'),
-                '{{websiteField}}'                   => '<input type="text" class="fpcm-pub-textinput" name="newcomment[website]" value="'.$this->newComment->getWebsite().'">',
-                '{{textfield}}'                      => '<textarea class="fpcm-pub-textarea" id="newcommenttext" name="newcomment[text]">'.$this->newComment->getText().'</textarea>',
-                '{{smileysDescription}}'             => $this->lang->translate('HL_OPTIONS_SMILEYS'),
-                '{{smileys}}'                        => $this->getSmileyList(),
-                '{{tags}}'                           => htmlentities(\fpcm\model\comments\comment::COMMENT_TEXT_HTMLTAGS_FORM),
-                '{{spampluginQuestion}}'             => $this->captcha->createPluginText(),
-                '{{spampluginField}}'                => $this->captcha->createPluginInput(),
-                '{{privateCheckbox}}'                => '<input type="checkbox" class="fpcm-pub-checkboxinput" name="newcomment[private]" value="1">',
-                '{{submitButton}}'                   => '<button type="submit" name="btnSendComment">'.$this->lang->translate('GLOBAL_SUBMIT').'</button>',
-                '{{resetButton}}'                    => '<button type="reset">'.$this->lang->translate('GLOBAL_RESET').'</button>'
+                '{{formHeadline}}'        => $this->lang->translate('COMMENTS_PUBLIC_FORMHEADLINE'),
+                '{{submitUrl}}'           => $this->article->getArticleLink(),
+                '{{nameDescription}}'     => $this->lang->translate('COMMMENT_AUTHOR'),
+                '{{nameField}}'           => '<input type="text" class="fpcm-pub-textinput" name="newcomment[name]" value="'.$this->newComment->getName().'">',
+                '{{emailDescription}}'    => $this->lang->translate('GLOBAL_EMAIL'),
+                '{{emailField}}'          => '<input type="text" class="fpcm-pub-textinput" name="newcomment[email]" value="'.$this->newComment->getEmail().'">',
+                '{{websiteDescription}}'  => $this->lang->translate('COMMMENT_WEBSITE'),
+                '{{websiteField}}'        => '<input type="text" class="fpcm-pub-textinput" name="newcomment[website]" value="'.$this->newComment->getWebsite().'">',
+                '{{textfield}}'           => '<textarea class="fpcm-pub-textarea" id="newcommenttext" name="newcomment[text]">'.$this->newComment->getText().'</textarea>',
+                '{{smileysDescription}}'  => $this->lang->translate('HL_OPTIONS_SMILEYS'),
+                '{{smileys}}'             => $this->getSmileyList(),
+                '{{tags}}'                => htmlentities(\fpcm\model\comments\comment::COMMENT_TEXT_HTMLTAGS_FORM),
+                '{{spampluginQuestion}}'  => $this->captcha->createPluginText(),
+                '{{spampluginField}}'     => $this->captcha->createPluginInput(),
+                '{{privateCheckbox}}'     => '<input type="checkbox" class="fpcm-pub-checkboxinput" name="newcomment[private]" value="1">',
+                '{{privacyComfirmation}}' => '<input type="checkbox" class="fpcm-pub-checkboxinput" name="newcomment[privacy]" value="1">',
+                '{{submitButton}}'        => '<button type="submit" name="btnSendComment">'.$this->lang->translate('GLOBAL_SUBMIT').'</button>',
+                '{{resetButton}}'         => '<button type="reset">'.$this->lang->translate('GLOBAL_RESET').'</button>'
             );            
            
             $this->commentFormTemplate->setReplacementTags($replacementTags);
@@ -433,6 +434,12 @@
 
             if ($this->buttonClicked('sendComment') && !is_null($this->getRequestVar('newcomment')) && !$this->iplist->ipIsLocked() && !$this->iplist->ipIsLocked('nocomments')) {
                 $newCommentData = $this->getRequestVar('newcomment');
+                
+                $hasPrivacy = (isset($newCommentData['privacy']) && $this->config->comments_privacy_optin) || !$this->config->comments_privacy_optin ? true : false;
+                if ($this->buttonClicked('sendComment') && !$hasPrivacy) {
+                    $this->view->addErrorMessage('PUBLIC_PRIVACY');
+                    return true;
+                }
 
                 $timer = time();
 

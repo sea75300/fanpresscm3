@@ -21,23 +21,24 @@
          * @var array
          */
         protected $replacementTags = array(
-            '{{formHeadline}}'                   => '',
-            '{{submitUrl}}'                      => '',
-            '{{nameDescription}}'                => '',
-            '{{nameField}}'                      => '',
-            '{{emailDescription}}'               => '',
-            '{{emailField}}'                     => '',
-            '{{websiteDescription}}'             => '',
-            '{{websiteField}}'                   => '',
-            '{{textfield}}'                      => '',
-            '{{smileysDescription}}'             => '',
-            '{{smileys}}'                        => '',
-            '{{tags}}'                           => '',
-            '{{spampluginQuestion}}'             => '',
-            '{{spampluginField}}'                => '',
-            '{{privateCheckbox}}'                => '',
-            '{{submitButton}}'                   => '',
-            '{{resetButton}}'                    => ''
+            '{{formHeadline}}'         => '',
+            '{{submitUrl}}'            => '',
+            '{{nameDescription}}'      => '',
+            '{{nameField}}'            => '',
+            '{{emailDescription}}'     => '',
+            '{{emailField}}'           => '',
+            '{{websiteDescription}}'   => '',
+            '{{websiteField}}'         => '',
+            '{{textfield}}'            => '',
+            '{{smileysDescription}}'   => '',
+            '{{smileys}}'              => '',
+            '{{tags}}'                 => '',
+            '{{spampluginQuestion}}'   => '',
+            '{{spampluginField}}'      => '',
+            '{{privateCheckbox}}'      => '',
+            '{{submitButton}}'         => '',
+            '{{resetButton}}'          => '',
+            '{{privacyComfirmation}}'  => '',
         );      
         
         /**

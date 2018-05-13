@@ -178,7 +178,11 @@
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENT_ENABLED_GLOBAL'); ?>:</td>
                         <td><?php fpcm\model\view\helper::boolSelect('system_comments_enabled', $globalConfig['system_comments_enabled']); ?></td>		
-                   </tr>                                                
+                   </tr>	
+                   <tr>			
+                        <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENT_PRIVACYOPTIN'); ?>:</td>
+                        <td><?php fpcm\model\view\helper::boolSelect('comments_privacy_optin', $globalConfig['comments_privacy_optin']); ?></td>
+                   </tr>
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_ACTIVECOMMENTTEMPLATE'); ?>:</td>
                         <td><?php fpcm\model\view\helper::select('comments_template_active', $commentTemplates, $globalConfig['comments_template_active'], false, false); ?></td>
@@ -193,7 +197,7 @@
                    </tr>	
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENT_APPROVE'); ?>:</td>
-                        <td><?php fpcm\model\view\helper::boolSelect('comments_confirm', $globalConfig['comments_confirm']); ?></td>		
+                        <td><?php fpcm\model\view\helper::boolSelect('comments_confirm', $globalConfig['comments_confirm']); ?></td>
                    </tr>	
                    <tr>			
                         <td><?php $FPCM_LANG->write('SYSTEM_OPTIONS_COMMENT_NOTIFY'); ?>:</td>

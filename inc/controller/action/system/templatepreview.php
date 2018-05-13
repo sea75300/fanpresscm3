@@ -247,23 +247,24 @@
             $smileyHtml[] = '</ul>';
             
             $replacementTags = array(
-                '{{formHeadline}}'                   => $this->lang->translate('COMMENTS_PUBLIC_FORMHEADLINE'),
-                '{{submitUrl}}'                      => $this->config->system_url,
-                '{{nameDescription}}'                => $this->lang->translate('COMMMENT_AUTHOR'),
-                '{{nameField}}'                      => '<input type="text" class="fpcm-pub-textinput" name="newcomment[name]" value="">',
-                '{{emailDescription}}'               => $this->lang->translate('GLOBAL_EMAIL'),
-                '{{emailField}}'                     => '<input type="text" class="fpcm-pub-textinput" name="newcomment[email]" value="">',
-                '{{websiteDescription}}'             => $this->lang->translate('COMMMENT_WEBSITE'),
-                '{{websiteField}}'                   => '<input type="text" class="fpcm-pub-textinput" name="newcomment[website]" value="">',
-                '{{textfield}}'                      => '<textarea class="fpcm-pub-textarea" id="newcommenttext" name="newcomment[text]"></textarea>',
-                '{{smileysDescription}}'             => $this->lang->translate('HL_OPTIONS_SMILEYS'),
-                '{{smileys}}'                        => implode(PHP_EOL, $smileyHtml),
-                '{{tags}}'                           => htmlentities(\fpcm\model\comments\comment::COMMENT_TEXT_HTMLTAGS_FORM),
-                '{{spampluginQuestion}}'             => $captcha->createPluginText(),
-                '{{spampluginField}}'                => $captcha->createPluginInput(),
-                '{{privateCheckbox}}'                => '<input type="checkbox" class="fpcm-pub-checkboxinput" name="newcomment[private]" value="1">',
-                '{{submitButton}}'                   => '<button type="submit" name="btnSendComment">'.$this->lang->translate('GLOBAL_SUBMIT').'</button>',
-                '{{resetButton}}'                    => '<button type="reset">'.$this->lang->translate('GLOBAL_RESET').'</button>'
+                '{{formHeadline}}'        => $this->lang->translate('COMMENTS_PUBLIC_FORMHEADLINE'),
+                '{{submitUrl}}'           => $this->config->system_url,
+                '{{nameDescription}}'     => $this->lang->translate('COMMMENT_AUTHOR'),
+                '{{nameField}}'           => '<input type="text" class="fpcm-pub-textinput" name="newcomment[name]" value="">',
+                '{{emailDescription}}'    => $this->lang->translate('GLOBAL_EMAIL'),
+                '{{emailField}}'          => '<input type="text" class="fpcm-pub-textinput" name="newcomment[email]" value="">',
+                '{{websiteDescription}}'  => $this->lang->translate('COMMMENT_WEBSITE'),
+                '{{websiteField}}'        => '<input type="text" class="fpcm-pub-textinput" name="newcomment[website]" value="">',
+                '{{textfield}}'           => '<textarea class="fpcm-pub-textarea" id="newcommenttext" name="newcomment[text]"></textarea>',
+                '{{smileysDescription}}'  => $this->lang->translate('HL_OPTIONS_SMILEYS'),
+                '{{smileys}}'             => implode(PHP_EOL, $smileyHtml),
+                '{{tags}}'                => htmlentities(\fpcm\model\comments\comment::COMMENT_TEXT_HTMLTAGS_FORM),
+                '{{spampluginQuestion}}'  => $captcha->createPluginText(),
+                '{{spampluginField}}'     => $captcha->createPluginInput(),
+                '{{privateCheckbox}}'     => '<input type="checkbox" class="fpcm-pub-checkboxinput" name="newcomment[private]" value="1">',
+                '{{privacyComfirmation}}' => '<input type="checkbox" class="fpcm-pub-checkboxinput" name="newcomment[privacy]" value="1">',
+                '{{submitButton}}'        => '<button type="submit" name="btnSendComment">'.$this->lang->translate('GLOBAL_SUBMIT').'</button>',
+                '{{resetButton}}'         => '<button type="reset">'.$this->lang->translate('GLOBAL_RESET').'</button>',
             );            
 
             $this->template->setReplacementTags($replacementTags);            
