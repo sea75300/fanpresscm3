@@ -127,10 +127,17 @@
             $modulesFiles = $this->events->runEvent('publicAddJsFiles');
             $modulesFiles = $modulesFiles ? $modulesFiles : array();
             
+            $base = basename(\fpcm\classes\baseconfig::$baseDir);
+            $fpcmJsPath = $this->addRootPath('js/fpcm.js');
+            
+            if (strpos($fpcmJsPath, $base) === false) {
+                $fpcmJsPath = $this->addRootPath($base.'/js/fpcm.js');
+            }
+            
             return array_merge(
                 array(
                     \fpcm\classes\loader::libGetFileUrl('jquery', 'jquery-3.2.1.min.js'),
-                    \fpcm\classes\baseconfig::$rootPath.'js/fpcm.js'
+                    $fpcmJsPath
                 ),
                 $modulesFiles
             );

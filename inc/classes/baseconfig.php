@@ -350,6 +350,12 @@
             self::$uploadRootPath      = self::$rootPath.basename(self::$dataDir).'/uploads/';
             self::$shareRootPath       = self::$rootPath.basename(self::$dataDir).'/share/';
             self::$smileyRootPath      = self::$rootPath.basename(self::$dataDir).'/smileys/';
+            
+            $base = basename(self::$baseDir);
+            if (strpos(self::$smileyRootPath, $base) === false) {
+                self::$smileyRootPath = self::$rootPath.$base.'/'.basename(self::$dataDir).'/smileys/';
+            }
+
             self::$themePath           = self::$rootPath.basename(self::$coreDir).'/theme/';
             self::$jsPath              = self::$rootPath.basename(self::$coreDir).'/js/';
             self::$filemanagerRootPath = self::$rootPath.basename(self::$dataDir).'/filemanager/';
