@@ -356,6 +356,10 @@
                 self::$smileyRootPath = self::$rootPath.$base.'/'.basename(self::$dataDir).'/smileys/';
             }
 
+            if (strpos(self::$shareRootPath, $base) === false) {
+                self::$shareRootPath = self::$rootPath.$base.'/'.basename(self::$dataDir).'/share/';
+            }
+
             self::$themePath           = self::$rootPath.basename(self::$coreDir).'/theme/';
             self::$jsPath              = self::$rootPath.basename(self::$coreDir).'/js/';
             self::$filemanagerRootPath = self::$rootPath.basename(self::$dataDir).'/filemanager/';
