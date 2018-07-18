@@ -38,6 +38,7 @@ articles/trash: action/articles/articlelisttrash
 comments/edit: action/comments/commentedit
 comments/list: action/comments/commentlist
 package/sysupdate: action/packagemgr/sysupdate
+package/updatev4: action/packagemgr/updatev4
 package/modinstall: action/packagemgr/modinstall
 package/modupdate: action/packagemgr/modupdate
 modules/list: action/modules/modulelist
