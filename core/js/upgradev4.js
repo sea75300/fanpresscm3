@@ -42,7 +42,7 @@ fpcm.upgradev4 = {
         }
         
         fpcm.upgradev4.currentEl = el;
-        fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').addClass('fa-spinner fa-pulse');
+        fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-'+el.attr('data-icon')).addClass('fa-spinner fa-pulse');
 
         fpcm.ajax.post(fpcm.upgradev4.actionName, {
             data: {
@@ -50,7 +50,7 @@ fpcm.upgradev4 = {
             },
             execDone: function () {
 
-                fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-spinner fa-pulse');
+                fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-spinner fa-pulse').addClass('fa-'+el.attr('data-icon'));
                 var result = fpcm.ajax.getResult(fpcm.upgradev4.actionName);
                 
                 if (!result) {

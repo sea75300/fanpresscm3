@@ -27,12 +27,13 @@ class updatev4 extends update {
      */
     public function __construct($type, $key, $version = '', $signature = '')
     {
-        $this->filename     = 'fanpress_update_version4.0.0.zip';
-
-        $this->remoteFile   = \fpcm\classes\baseconfig::$updateServer.self::FPCMPACKAGE_SERVER_PACKAGEPATH.$this->filename;
+        $this->filename     = $key.'_version'.$version.'.zip';
+        $this->remoteFile   = \fpcm\classes\baseconfig::$updateServer.self::FPCMPACKAGE_SERVER_PACKAGEPATH.'v4/'.$this->filename;
         $this->localFile    = \fpcm\classes\baseconfig::$tempDir.$this->filename;
         $this->extractPath  = dirname($this->localFile).'/'.md5(basename($this->localFile, '.zip')).'/';
         $this->tempListFile = \fpcm\classes\baseconfig::$tempDir.md5($this->localFile);
+        $this->archive      = new \ZipArchive();
+
     }
     
     protected function init()

@@ -17,27 +17,27 @@
                 <?php print $FPCM_LANG->getLangCode(); ?>
             </p>
 
-            <p data-action="download" class="fpcm-ui-update-steps">
+            <p data-action="download" data-icon="download" class="fpcm-ui-update-steps">
                 <span class="fpcm-update-icon fa fa-download fa-lg fa-fw"></span>
                 <span class="fpcm-ui-descr"><?php $FPCM_LANG->write('UPGARDEV4_DOWNLOAD'); ?></span>
             </p>
 
-            <p data-action="checkFs" class="fpcm-ui-update-steps">
-                <span class="fpcm-update-icon fa fa-medkit fa-lg fa-fw"></span>
-                <span class="fpcm-ui-descr"><?php $FPCM_LANG->write('UPGARDEV4_CHECKFS'); ?></span>
-            </p>
-
-            <p data-action="extract" class="fpcm-ui-update-steps">
+            <p data-action="extract" data-icon="file-archive-o" class="fpcm-ui-update-steps">
                 <span class="fpcm-update-icon fa fa-file-archive-o fa-lg fa-fw"></span>
                 <span class="fpcm-ui-descr"><?php $FPCM_LANG->write('UPGARDEV4_EXTRACT'); ?></span>
             </p>
 
-            <p data-action="updateFs" class="fpcm-ui-update-steps">
+            <p data-action="checkFs" data-icon="medkit" class="fpcm-ui-update-steps">
+                <span class="fpcm-update-icon fa fa-medkit fa-lg fa-fw"></span>
+                <span class="fpcm-ui-descr"><?php $FPCM_LANG->write('UPGARDEV4_CHECKFS'); ?></span>
+            </p>
+
+            <p data-action="updateFs" data-icon="copy" class="fpcm-ui-update-steps">
                 <span class="fpcm-update-icon fa fa-copy fa-lg fa-fw"></span>
                 <span class="fpcm-ui-descr"><?php $FPCM_LANG->write('UPGARDEV4_REPLACE'); ?></span>
             </p>
 
-            <p data-func="redirect" class="fpcm-ui-update-steps">
+            <p data-func="redirect" data-icon="forward" class="fpcm-ui-update-steps">
                 <span class="fpcm-update-icon fa fa-forward fa-lg fa-fw"></span>
                 <span class="fpcm-ui-descr"><?php $FPCM_LANG->write('UPGARDEV4_REDIRECT'); ?></span>
             </p>

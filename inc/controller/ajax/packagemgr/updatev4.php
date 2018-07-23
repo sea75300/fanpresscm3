@@ -38,8 +38,6 @@ class updatev4 extends \fpcm\controller\abstracts\ajaxController {
         $this->pkg = new \fpcm\model\packages\updatev4('update', 'fanpress_update', $updater->getRemoteData('v4version'), false);
 
         $method = 'process'.ucfirst($this->getRequestVar('action'));
-        
-        $this->returnData['func'] = $method;
         if (!method_exists($this, $method)) {
             return false;
         }
@@ -51,66 +49,50 @@ class updatev4 extends \fpcm\controller\abstracts\ajaxController {
 
     private function processDownload()
     {
-        $this->returnData['code'] = true;
-        $this->returnData['errorMsg'] = __METHOD__;
-        return true;
-
         $this->res = $this->pkg->download();
-
-        if ($this->res === \fpcm\model\packages\package::FPCMPACKAGE_REMOTEFILE_ERROR) {
-            $this->versionDataFile->delete();
-        }
-
         if ($this->res === true) {
-            $this->syslog('Downloaded update package successfully from ' . $this->pkg->getRemoteFile());
-            $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_EXTRACT;
+            fpcmLogSystem('Downloaded update package successfully from ' . $this->pkg->getRemoteFile());
+            $this->returnData['code'] = true;
             return true;
         }
 
-        $this->syslog('Error while downloading update package from ' . $this->pkg->getRemoteFile());
-        $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
-    }
-
-    private function processCheckFs()
-    {
-        $this->returnData['code'] = true;
-        $this->returnData['errorMsg'] = __METHOD__;
-        return true;
-
-        $this->res = $this->pkg->checkFiles();
-
-        if ($this->res === \fpcm\model\packages\package::FPCMPACKAGE_FILESCHECK_ERROR) {
-            $this->versionDataFile->delete();
-        }
-
-        if ($this->res === true) {
-            $this->syslog('All local files are writable ' . $this->pkg->getRemoteFile());
-            $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_COPY;
-            return true;
-        }
-
-        $this->syslog('A few files in local file system where not writable ' . $this->pkg->getRemoteFile());
-        $this->syslog(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
-        $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
+        fpcmLogSystem('Error while downloading update package from ' . $this->pkg->getRemoteFile());
+        $this->returnData['code'] = false;
+        $this->returnData['errorMsg'] = $this->lang->translate('PACKAGES_FAILED_GENERAL');
+        return false;
     }
 
     private function processExtract()
     {
-        $this->returnData['code'] = true;
-        $this->returnData['errorMsg'] = __METHOD__;
-        return true;
-
         $this->res = $this->pkg->extract();
         $from = \fpcm\model\files\ops::removeBaseDir($this->pkg->getLocalFile());
 
         if ($this->res === true) {
-            $this->syslog('Extracted update package successfully from ' . $from);
-            $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CHECKFILES;
+            fpcmLogSystem('Extracted update package successfully from ' . $from);
+            $this->returnData['code'] = true;
             return true;
         }
 
-        $this->syslog('Error while extracting update package from ' . $from);
-        $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
+        fpcmLogSystem('Error while extracting update package from ' . $from);
+        $this->returnData['code'] = false;
+        $this->returnData['errorMsg'] = $this->lang->translate('PACKAGES_FAILED_GENERAL');
+        return false;
+    }
+
+    private function processCheckFs()
+    {
+        $this->res = $this->pkg->checkFiles();
+        if ($this->res === true) {
+            fpcmLogSystem('All local files are writable ' . $this->pkg->getRemoteFile());
+            $this->returnData['code'] = true;
+            return true;
+        }
+
+        fpcmLogSystem('A few files in local file system where not writable ' . $this->pkg->getRemoteFile());
+        fpcmLogSystem(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
+        $this->returnData['code'] = false;
+        $this->returnData['errorMsg'] = $this->lang->translate('PACKAGES_FAILED_GENERAL');
+        return false;
     }
 
     private function processUpdateFs()
@@ -125,13 +107,13 @@ class updatev4 extends \fpcm\controller\abstracts\ajaxController {
         $from = \fpcm\model\files\ops::removeBaseDir($this->pkg->getExtractPath());
 
         if ($this->res === true) {
-            $this->syslog('Moved update package content successfully from ' . $from . ' to ' . $dest);
+            fpcmLogSystem('Moved update package content successfully from ' . $from . ' to ' . $dest);
             $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB;
             return true;
         }
 
-        $this->syslog('Error while moving update package content from ' . $from . ' to ' . $dest);
-        $this->syslog(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
+        fpcmLogSystem('Error while moving update package content from ' . $from . ' to ' . $dest);
+        fpcmLogSystem(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
         $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
     }
 

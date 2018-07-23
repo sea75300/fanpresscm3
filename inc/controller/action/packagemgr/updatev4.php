@@ -37,7 +37,10 @@ class updatev4 extends \fpcm\controller\abstracts\controller {
         $updater->checkUpdates();
         
         if (!parent::process() || !$updater->getRemoteData('v4Available')) {
-            return false;
+            $this->view = new \fpcm\model\view\error();
+            $this->view->setMessage('Version 4 is not available.');
+            $this->view->render();
+            exit;
         }
 
         $this->config->setMaintenanceMode(false);
