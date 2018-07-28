@@ -47,7 +47,8 @@ class updatev4 extends \fpcm\controller\abstracts\controller {
 
         $update = new \fpcm\model\packages\updatev4('update', 'fanpress_update', $updater->getRemoteData('v4version'), false);
         $this->view->addJsVars([
-            'upgradeUrl' => $update->getRemoteFile()
+            'upgradeUrl' => $update->getRemoteFile(),
+            'updateDbUrl' => \fpcm\classes\tools::getControllerLink('package/sysupdate', ['update-db' => 1])
         ]);
         $this->view->setViewJsFiles(['upgradev4.js']);
         $this->view->render();

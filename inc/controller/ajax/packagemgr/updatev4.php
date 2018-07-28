@@ -19,7 +19,7 @@ class updatev4 extends \fpcm\controller\abstracts\ajaxController {
     
     /**
      * Update-Package-Object
-     * @var \fpcm\model\packages\update
+     * @var \fpcm\model\packages\updatev4
      */
     protected $pkg;
 
@@ -43,7 +43,6 @@ class updatev4 extends \fpcm\controller\abstracts\ajaxController {
         }
 
         call_user_func([$this, $method]);
-        sleep(3);
         $this->getSimpleResponse();
     }
 
@@ -97,10 +96,6 @@ class updatev4 extends \fpcm\controller\abstracts\ajaxController {
 
     private function processUpdateFs()
     {
-        $this->returnData['code'] = true;
-        $this->returnData['errorMsg'] = __METHOD__;
-        return true;
-
         $this->res = $this->pkg->copy();
 
         $dest = \fpcm\model\files\ops::removeBaseDir(\fpcm\classes\baseconfig::$baseDir);
@@ -108,13 +103,13 @@ class updatev4 extends \fpcm\controller\abstracts\ajaxController {
 
         if ($this->res === true) {
             fpcmLogSystem('Moved update package content successfully from ' . $from . ' to ' . $dest);
-            $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_UPGRADEDB;
+            $this->returnData['code'] = true;
             return true;
         }
 
-        fpcmLogSystem('Error while moving update package content from ' . $from . ' to ' . $dest);
-        fpcmLogSystem(implode(PHP_EOL, $this->pkg->getCopyErrorPaths()));
-        $this->returnData['nextstep'] = \fpcm\model\packages\package::FPCMPACKAGE_STEP_CLEANUP;
+        $this->returnData['code'] = false;
+        $this->returnData['errorMsg'] = $this->lang->translate('PACKAGES_FAILED_GENERAL');
+        return false;
     }
 
 }

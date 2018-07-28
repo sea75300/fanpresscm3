@@ -32,6 +32,9 @@ fpcm.upgradev4 = {
     execRequest: function(el) {
 
         fpcm.upgradev4.currentIdx++;
+        
+        fpcm.upgradev4.currentEl = el;
+        fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-'+el.attr('data-icon')).addClass('fa-spinner fa-pulse');
 
         if (el.attr('data-func')) {
             return fpcm.upgradev4[el.attr('data-func')] ? fpcm.upgradev4[el.attr('data-func')]() : false;
@@ -40,9 +43,6 @@ fpcm.upgradev4 = {
         if (!el.attr('data-action')) {
             return false;
         }
-        
-        fpcm.upgradev4.currentEl = el;
-        fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-'+el.attr('data-icon')).addClass('fa-spinner fa-pulse');
 
         fpcm.ajax.post(fpcm.upgradev4.actionName, {
             data: {
@@ -81,7 +81,10 @@ fpcm.upgradev4 = {
     },
     
     redirect: function() {
-        alert('redirect');
+        setTimeout(function () {
+            fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-spinner fa-pulse').addClass('fa-'+ fpcm.upgradev4.currentEl.attr('data-icon'));
+            window.location.href = updateDbUrl;
+        }, 1500);
     }
 
 };
