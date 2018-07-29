@@ -53,6 +53,11 @@
                     $this->output('Check successfull!');
                     $this->output('Current system version: '.$updaterSys->getRemoteData('version'));
                     $this->output('Module updates available: '.($successMod ? 'yes' : 'no'));
+                    
+                    if ($updaterSys->getRemoteData('v4Available')) {
+                        $this->output('>> Important!!! A new major system release '.$updaterSys->getRemoteData('v4version').' is available with. Run fpcmcli.php pkg '
+                        . self::FPCMCLI_PARAM_DISTUPGRADE.' system and upgrade to the new version.');
+                    }
 
                     break;
 
@@ -79,6 +84,7 @@
                         if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_SYSTEM) {
                             $this->output('System update successful. New version: '.$this->config->system_version);
                         }
+                        
                     }
                     elseif ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {
 
@@ -121,6 +127,60 @@
                     
                     break;
 
+                case self::FPCMCLI_PARAM_DISTUPGRADE :
+                    
+                    $updater = new \fpcm\model\updater\system();
+                    $updater->checkUpdates();
+
+                    if ($this->funcParams[1] !== self::FPCMCLI_PARAM_TYPE_SYSTEM || !$updater->getRemoteData('v4Available')) {
+                        $this->output('Invalid params', true);
+                    }
+
+                    $this->output('Starter system upgrade to new major release...');
+
+                    $pkg = new \fpcm\model\packages\updatev4('update', 'fanpress_update', $updater->getRemoteData('v4version'), false);
+                    $this->output('Download package from '.$pkg->getRemoteFile().'...');
+
+                    $success = $pkg->download();
+                    if ($success !== true) {
+                        $this->output('Download failed. ERROR CODE: '.$success, true);
+                    }
+
+                    $this->output('Unpacking package file '.\fpcm\model\files\ops::removeBaseDir($pkg->getLocalFile(), true).'...');
+                    $success = $pkg->extract();
+                    if ($success !== true) {
+                        $this->output('Unpacking failed. ERROR CODE: '.$success, true);
+                    }
+
+                    $this->output('Check files in local file system...');
+
+                    $success = $pkg->checkFiles();
+                    if ($success !== true) {
+                        $this->output('Check failed, one or more files are not wriatble. ERROR CODE: '.(int) $success);
+                        $this->output(implode(PHP_EOL, $pkg->getCopyErrorPaths()), true);
+                    }
+
+                    $this->output('Update local file system...');
+                    $success = $pkg->copy();
+                    if ($success !== true) {
+                        $this->output('Update of local file system failed. ERROR CODE: '.$success, true);
+                    }
+
+                    if (function_exists('exec') && is_callable('exec')) {
+                        $this->output('Update local database...');
+                        system('php '. \fpcm\classes\baseconfig::$baseDir.DIRECTORY_SEPARATOR.'fpcmcli.php pkg '.self::FPCMCLI_PARAM_UPGRADE_DB.' system');
+                        
+                        $this->cache->cleanup();
+                        $this->config->init();
+                        
+                        $this->output('Upgrade to new majopr system release was successful. New version: '.$this->config->system_version);
+                    }
+                    else {
+                        $this->output('Update of file system was successfull!');
+                        $this->output('Please run fpcmcli.php pkg '.self::FPCMCLI_PARAM_UPGRADE_DB.' system to upgrade the local database to the recent version.');
+                    }
+
+                    break;
                 case self::FPCMCLI_PARAM_UPGRADE_DB :
                     
                     if ($this->funcParams[1] === self::FPCMCLI_PARAM_TYPE_MODULE) {

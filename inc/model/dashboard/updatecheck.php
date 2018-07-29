@@ -94,10 +94,12 @@
                 $statusClass = 'fpcm-dashboard-updates-outdated';
                 
                 $replace = array(
-                    '{{versionlink}}'   => $this->systemUpdates->getRemoteData('version')
+                    '{{versionlink}}'   => $this->systemUpdates->getRemoteData('v4Available')
                                         ? 'index.php?module=package/updatev4'
                                         : 'index.php?module=package/sysupdate',
-                    '{{version}}'       => $this->systemUpdates->getRemoteData('version')
+                    '{{version}}'       => $this->systemUpdates->getRemoteData('v4Available')
+                                        ? $this->systemUpdates->getRemoteData('v4version')
+                                        : $this->systemUpdates->getRemoteData('version')
                 );
                 $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', $replace);
             } elseif ($this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {

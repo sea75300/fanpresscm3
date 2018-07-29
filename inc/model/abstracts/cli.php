@@ -37,6 +37,11 @@
         const FPCMCLI_PARAM_UPGRADE_DB = '--upgrade-db';
 
         /**
+         * CLI param: --dist-upgrade
+         */
+        const FPCMCLI_PARAM_DISTUPGRADE = '--dist-upgrade';
+
+        /**
          * CLI param: --remove
          */
         const FPCMCLI_PARAM_REMOVE  = '--remove';

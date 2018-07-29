@@ -115,11 +115,12 @@ class updatev4 extends update {
         }
 
         $base = dirname(\fpcm\classes\baseconfig::$baseDir);
+
+        $deleteProto = [];
         
         $diff = array_diff($oldList, $newList);
         foreach ($diff as $file) {
             
-            fpcmLogSystem('Unlink file '.$file);
             if (strpos($file, 'fanpress/data/') !== false) {
                 continue;
             }
@@ -129,11 +130,15 @@ class updatev4 extends update {
                 continue;
             }
 
-            
+            $deleteProto[] = $file;
             if (!unlink($file)) {
                 return false;
             }
 
+        }
+        
+        if (count($deleteProto)) {
+            fpcmLogSystem('Removed files during upgrade:'.PHP_EOL. implode(PHP_EOL, $deleteProto));
         }
         
         return true;
