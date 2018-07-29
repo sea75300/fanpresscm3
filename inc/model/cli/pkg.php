@@ -166,7 +166,7 @@
                         $this->output('Update of local file system failed. ERROR CODE: '.$success, true);
                     }
 
-                    if (function_exists('exec') && is_callable('exec')) {
+                    if (function_exists('system') && is_callable('system')) {
                         $this->output('Update local database...');
                         system('php '. \fpcm\classes\baseconfig::$baseDir.DIRECTORY_SEPARATOR.'fpcmcli.php pkg '.self::FPCMCLI_PARAM_UPGRADE_DB.' system');
                         
