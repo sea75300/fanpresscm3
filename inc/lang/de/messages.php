@@ -145,12 +145,14 @@
         'LOAD_FAILED_CATEGORY'          => 'Die gesuchte Kategorie wurde nicht gefunden.',
         'LOAD_FAILED_WORDBAN'           => 'Der Begriff wurde nicht gefunden.',
         
-        'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM Version <i>{{version}}</i> ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
+        'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM <i>{{version}}</i> ist verfügbar! Um das Update durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
+        'UPDATE_VERSIONCHECK_NEWV4'     => 'Das Major-Release FanPress CM <i>{{version}}</i> ist verfügbar! Um das Upgrade durchzuführen <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">klicke hier</a>',
         'UPDATE_VERSIONCHECK_CURRENT'   => 'Deine Version von FanPress CM ist <strong>aktuell</strong>!',
         'UPDATE_VERSIONCHECK_NOTES'     => 'Release-Notes und weitere Infos zu System- und Modul-Updates findest du in den aktuellen FanPress CM News.',
         'UPDATE_VERSIONCECK_FILEDB_ERR' => 'Die Version im Dateisystem und der Datenbank stimmen nicht überein. <a class="fpcm-ui-button fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Klicke hier</a> um den Updater zu starten.',
         'UPDATE_NOTAUTOCHECK'           => 'Es konnte keine automatische Update-Prüfung durchgeführt werden! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Manuell prüfen</a>',
         'UPDATE_WRITEERROR'             => 'Einige Dateien im Dateisystem sind nicht beschreibbar und können daher nicht ersetzt werden. Prüfe die Rechte der Dateien via FTP, eine Liste findest du im System-Log.',
+        'UPDATE_UPGRADE_ERROR'          => 'FanPress CM <i>{{version}}</i> benötigt <em>PHP 7</em> und eine <em>aktive OpenSSL-Erweiterung</em>. Ein Upgrade ist nicht möglich, solang diese Nachricht angezeigt wird.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Für einige Module sind Updates verfügbar. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Updates anzeigen</a>',
         'UPDATE_MODULECHECK_CURRENT'     => 'Alle installierten Module sind <strong>aktuell</strong>!',

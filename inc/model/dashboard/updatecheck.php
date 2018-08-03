@@ -73,6 +73,7 @@
         protected function runCheck() {
 
             $this->getSystemUpdateStatus();
+            $this->getSystemUpgradeV4Status();
             $this->getModuleUpdateStatus();
         }
         
@@ -94,12 +95,8 @@
                 $statusClass = 'fpcm-dashboard-updates-outdated';
                 
                 $replace = array(
-                    '{{versionlink}}'   => $this->systemUpdates->getRemoteData('v4Available')
-                                        ? 'index.php?module=package/updatev4'
-                                        : 'index.php?module=package/sysupdate',
-                    '{{version}}'       => $this->systemUpdates->getRemoteData('v4Available')
-                                        ? $this->systemUpdates->getRemoteData('v4version')
-                                        : $this->systemUpdates->getRemoteData('version')
+                    '{{versionlink}}'   => 'index.php?module=package/sysupdate',
+                    '{{version}}'       => $this->systemUpdates->getRemoteData('version')
                 );
                 $statusText  = $this->language->translate('UPDATE_VERSIONCHECK_NEW', $replace);
             } elseif ($this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FURLOPEN_ERROR) {
@@ -117,6 +114,31 @@
             }
 
             $this->renderTable($iconClass, $statusClass, $statusText);
+        }
+        
+        /**
+         * Liefert System-Update-HTML zurück
+         * @since FPCM 3.1.0
+         */
+        private function getSystemUpgradeV4Status()
+        {
+            if (!$this->systemUpdates->getRemoteData('v4Available')) {
+                return false;
+            }
+
+            if (version_compare(PHP_VERSION, '7.0.0', '<') ||
+                !in_array('openssl', array_map('strtolower', get_loaded_extensions())) ||
+                !defined('OPENSSL_ALGO_SHA512') ) {
+                $this->renderTable('fa-exclamation-triangle', 'fpcm-dashboard-updates-checkerror', $this->language->translate('UPDATE_UPGRADE_ERROR', [
+                    '{{version}}'       => $this->systemUpdates->getRemoteData('v4version')
+                ]));
+                return false;
+            }
+
+            $this->renderTable('fa-step-forward', 'fpcm-dashboard-updates-outdated', $this->language->translate('UPDATE_VERSIONCHECK_NEWV4', [
+                '{{versionlink}}'   => 'index.php?module=package/updatev4',
+                '{{version}}'       => $this->systemUpdates->getRemoteData('v4version')
+            ]));
         }
         
         /**

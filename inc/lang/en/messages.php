@@ -145,12 +145,14 @@
         'LOAD_FAILED_CATEGORY'          => 'The requested category was not found.',
         'LOAD_FAILED_WORDBAN'           => 'The requested censored text was not found.',
         
-        'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM version <i>{{version}}</i> is available! <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to start update process.',
+        'UPDATE_VERSIONCHECK_NEW'       => 'FanPress CM <i>{{version}}</i> is available! <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to start update process.',
+        'UPDATE_VERSIONCHECK_NEWV4'     => 'A new major release FanPress CM <i>{{version}}</i> is available! <a class="fpcm-ui-button fpcm-start-update fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to start upgrade process.',
         'UPDATE_VERSIONCHECK_CURRENT'   => 'Your version of FanPress CM is <strong>up to date</strong>!',
         'UPDATE_VERSIONCHECK_NOTES'     => 'Release notes and further information for system and module updates can be found in "Recent FanPress CM news".',
         'UPDATE_VERSIONCECK_FILEDB_ERR' => 'Mismatch of version information in file system and database. <a class="fpcm-ui-button fpcm-ui-actions-genreal fpcm-loader" href="{{versionlink}}">Click here</a> to execute updater.',
         'UPDATE_NOTAUTOCHECK'           => 'Automatic update check failed! <a class="fpcm-ui-button fpcm-updatecheck-manual" href="#">Check manually</a>',
         'UPDATE_WRITEERROR'             => 'Various files in the file system are not writable. Please check the permissions of the files mentioned in system log via FTP access.',
+        'UPDATE_UPGRADE_ERROR'          => 'FanPress CM <i>{{version}}</i> requires <em>PHP 7</em> and <em>enabled OpenSSL extension</em> to run. If you see this message, an upgrade is impossible.',
         
         'UPDATE_MODULECHECK_NEW'         => 'Module updates are available. <a class="fpcm-ui-button fpcm-loader" href="?module=modules/list">Show updates</a>',
         'UPDATE_MODULECHECK_CURRENT'     => 'All installed modules are <strong>up to date</strong>!',

@@ -10,7 +10,9 @@
             'message'       => '5th minor version of FanPress CM 3.x!',
             'notice'        => 'https://nobody-knows.org/fanpress-cm-3-6-5-veroeffentlicht/',
             'signature'     => '',
-            'phpversion'    => '5.5.3'
+            'phpversion'    => '5.5.3',
+            'v4Available'   => true,
+            'v4version'     => '4.0.0-rc1',
         )
     );
 ?>
