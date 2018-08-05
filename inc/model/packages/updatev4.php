@@ -120,6 +120,7 @@ class updatev4 extends update {
         $base = dirname(\fpcm\classes\baseconfig::$baseDir);
 
         $deleteProto = [];
+        $deleteDirs = [];
         
         $diff = array_diff($oldList, $newList);
         foreach ($diff as $file) {
@@ -129,7 +130,12 @@ class updatev4 extends update {
             }
 
             $file = $base.DIRECTORY_SEPARATOR.$this->replaceFanpressDirString($file);
-            if (!file_exists($file) || is_dir($file)) {
+            if (!file_exists($file)) {
+                continue;
+            }
+            
+            if (is_dir($file)) {
+                $deleteDirs[] = $file;
                 continue;
             }
 
@@ -139,9 +145,22 @@ class updatev4 extends update {
             }
 
         }
+
+        foreach ($deleteDirs as $deleteDir) {
+
+            if (!file_exists($deleteDir)) {
+                continue;
+            }
+
+            if (!\fpcm\model\files\ops::deleteRecursive($deleteDir)) {
+                return false;
+            }
+
+            $deleteProto[] = $file;
+        }
         
         if (count($deleteProto)) {
-            fpcmLogSystem('Removed files during upgrade:'.PHP_EOL. implode(PHP_EOL, $deleteProto));
+            fpcmLogSystem('Removed files during upgrade:'.PHP_EOL. implode(PHP_EOL, array_unique($deleteProto)));
         }
         
         return true;

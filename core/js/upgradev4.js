@@ -84,7 +84,7 @@ fpcm.upgradev4 = {
         setTimeout(function () {
             fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-spinner fa-pulse').addClass('fa-'+ fpcm.upgradev4.currentEl.attr('data-icon'));
             window.location.href = updateDbUrl;
-        }, 1500);
+        }, 2500);
     }
 
 };
