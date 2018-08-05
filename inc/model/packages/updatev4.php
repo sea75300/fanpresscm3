@@ -27,6 +27,9 @@ class updatev4 extends update {
      */
     public function __construct($type, $key, $version = '', $signature = '')
     {
+        $this->key          = $key.'_version';
+        $this->version      = $version;
+
         $this->filename     = $key.'_version'.$version.'.zip';
         $this->remoteFile   = \fpcm\classes\baseconfig::$updateServer.self::FPCMPACKAGE_SERVER_PACKAGEPATH.'v4/'.$this->filename;
         $this->localFile    = \fpcm\classes\baseconfig::$tempDir.$this->filename;
