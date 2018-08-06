@@ -69,7 +69,7 @@
 
             $result = $this->dbcon->fetch($this->dbcon->select($this->table, 'count(id) AS counted', $where, $adresses));
             
-            return $result->counted ? true : false;
+            return is_object($result) && isset($result->counted) && $result->counted ? true : false;
         }
         
         /**
