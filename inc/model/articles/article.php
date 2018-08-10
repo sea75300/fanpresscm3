@@ -602,8 +602,10 @@
                 }
                 $url = fgetss($remote);
             }
+
+            $newUrl = $this->events->runEvent('articleShortLink', array('artikellink' => urlencode($this->getArticleLink()), 'url' => $url))['url'];
+            return $shortenerUrl === $newUrl ? $this->getArticleLink() : $newUrl;
             
-            return $this->events->runEvent('articleShortLink', array('artikellink' => urlencode($this->getArticleLink()), 'url' => $url))['url'];
         }
         
         /**
