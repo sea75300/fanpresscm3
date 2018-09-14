@@ -15,6 +15,8 @@ fpcm.upgradev4 = {
     elCount: [],
     elements: [],
     currentIdx: 0,
+    redirectCount: 0,
+
     currentEl: {},
 
     init: function () {
@@ -81,10 +83,28 @@ fpcm.upgradev4 = {
     },
     
     redirect: function() {
-        setTimeout(function () {
-            fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-spinner fa-pulse').addClass('fa-'+ fpcm.upgradev4.currentEl.attr('data-icon'));
-            window.location.href = updateDbUrl;
-        }, 2500);
+
+        fpcm.upgradev4.redirectCount += 1;
+
+        fpcm.ajax.get('refresh', {
+            execDone: function() {               
+                fpcm.upgradev4.currentEl.find('span.fpcm-update-icon').removeClass('fa-spinner fa-pulse').addClass('fa-'+ fpcm.upgradev4.currentEl.attr('data-icon'));
+                window.location.href = updateDbUrl;
+            },
+            execFail: function () {
+                
+                if (fpcm.upgradev4.redirectCount > 10) {
+                    alert(fpcm.ui.translate('redircErr'));
+                    return false;
+                }
+                
+                setTimeout(function () {
+                    fpcm.upgradev4.redirect();
+                }, 2500);
+            }
+        });
+        
+
     }
 
 };

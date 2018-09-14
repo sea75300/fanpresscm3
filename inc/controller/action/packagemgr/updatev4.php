@@ -50,6 +50,11 @@ class updatev4 extends \fpcm\controller\abstracts\controller {
             'upgradeUrl' => $update->getRemoteFile(),
             'updateDbUrl' => \fpcm\classes\tools::getControllerLink('package/sysupdate', ['update-db' => 1])
         ]);
+        
+        $this->view->addJsLangVars([
+            'redircErr' => $this->lang->translate('UPGARDEV4_REDIRECT_ERR')
+        ]);
+        
         $this->view->setViewJsFiles(['upgradev4.js']);
         $this->view->render();
     }
