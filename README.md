@@ -1,11 +1,12 @@
 # FanPress CM News System version 3
-The FanPress CM News System version 3 is a lightwight but powerfull content
+
+The FanPress CM News System version 3 is a lightweight but powerful content
 management system for small and mide size websites, started as replacement
 for the Cutenews CMS in 2011.
 
 Including FanPress CM depend an how you use the system on your site.
 
-An assistent for integration is provided by the "FanPress CM Integration" Modul which can be found in module manage. If you do it manually, here are further information:
+An assistant for integration is provided by the "FanPress CM Integration" module which can be found in module manage. If you do it manually, here are further information:
 
 ## php include
 
@@ -39,7 +40,7 @@ You can use a couple of constants fpr further configuration of the output:
 * FPCM_PUB_LIMIT_LATEST
     * amount of articles in $api->showLatestNews()
 * FPCM_PUB_OUTPUT_UTF8
-    * enable or disbale usage of UTF-8 charset in output of $api->showLatestNews(), $api->showArticles() and $api->showTitle(). Should only be used in case special signs as german umlauts are displayed incorrectly.
+    * enable or disbale usage of UTF-8 charset in output of $api->showLatestNews(), $api->showArticles() and $api->showTitle(). Should only be used in case special signs as German umlauts are displayed incorrectly.
 
 ## iframes
 
