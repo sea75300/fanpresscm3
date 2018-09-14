@@ -44,6 +44,15 @@
     $updateData['phpversion'] = isset($versions[$version]['phpversion'])
                               ? $versions[$version]['phpversion']
                               : false;
+
+     
+    $updateData['v4Available'] = isset($versions[$version]['v4Available'])
+                             ? $versions[$version]['v4Available']
+                             : false;
+     
+    $updateData['v4version'] = isset($versions[$version]['v4version'])
+                              ? $versions[$version]['v4version']
+                              : false;
     
     header('Content-type: text/plain');
     header("Content-Transfer-Encoding: binary\n");

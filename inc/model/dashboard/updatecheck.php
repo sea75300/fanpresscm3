@@ -93,7 +93,7 @@
             if ($this->systemCheckresult === false || $this->systemCheckresult === \fpcm\model\updater\system::SYSTEMUPDATER_FORCE_UPDATE) {
                 $iconClass   = 'fa-cloud-download';
                 $statusClass = 'fpcm-dashboard-updates-outdated';
-                
+
                 $replace = array(
                     '{{versionlink}}'   => 'index.php?module=package/sysupdate',
                     '{{version}}'       => $this->systemUpdates->getRemoteData('version')
